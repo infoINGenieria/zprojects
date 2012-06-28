@@ -1,0 +1,525 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="1.3310000000000004"/>
+	<property name="ireport.x" value="12"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="id_informe" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[new Integer(1)]]></defaultValueExpression>
+	</parameter>
+	<parameter name="urlimagenZille" class="java.lang.String"/>
+	<parameter name="urlimagenZilleBg" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT 
+R.hs_tarea, R.hs_50, R.hs_100, R.hs_viaje,R.comida, R.vianda, R.vianda_desa,
+PD.fecha, PD.multifuncion AS multi, PD.observaciones,
+OB.codigo AS COD_OBRA,
+O.nombre AS NOM_OP,
+F.funcion,
+IH.*,
+EQ.n_interno, EQ.equipo, EQ.marca, EQ.modelo,
+S.situacion, S.id AS id_sit
+
+FROM partediario PD
+LEFT JOIN operarios O ON PD.operario = O.id
+LEFT JOIN informes_horas IH ON PD.operario = IH.id_operario 
+LEFT JOIN obras OB ON PD.obra = OB.id
+LEFT JOIN registro R ON PD.horario = R.id
+LEFT JOIN funcion F ON PD.funcion = F.id
+LEFT JOIN registro_equipo RQ ON PD.equipo = RQ.id
+LEFT JOIN equipos EQ ON RQ.equipo = EQ.id 
+LEFT JOIN situacion S ON PD.situacion = S.id
+
+where IH.id = $P{id_informe} and  PD.fecha <= IH.hasta_f and PD.fecha >= IH.desde_f
+order by PD.fecha asc]]>
+	</queryString>
+	<field name="hs_tarea" class="java.sql.Time">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="hs_50" class="java.sql.Time">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="hs_100" class="java.sql.Time">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="hs_viaje" class="java.sql.Time">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="comida" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="vianda" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="vianda_desa" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="fecha" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="multi" class="java.lang.Boolean">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="observaciones" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="COD_OBRA" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NOM_OP" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="funcion" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ID" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ID_OPERARIO" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="MULTI_FC" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="TOTAL_HS_VIAJE" class="java.lang.Float">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="TOTAL_50" class="java.lang.Float">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="TOTAL_100" class="java.lang.Float">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="TOTAL_NORMAL" class="java.lang.Float">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="TOTAL_TAREA" class="java.lang.Float">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PERIODO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="DESDE_F" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="HASTA_F" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="X100OBRA" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="n_interno" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="equipo" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="marca" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="modelo" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="situacion" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="id_sit" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<variable name="comida_1" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{comida}]]></variableExpression>
+	</variable>
+	<variable name="vianda_1" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{vianda}]]></variableExpression>
+	</variable>
+	<variable name="vianda_desa_1" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{vianda_desa}]]></variableExpression>
+	</variable>
+	<background>
+		<band height="555" splitType="Stretch">
+			<image>
+				<reportElement x="216" y="210" width="386" height="136"/>
+				<imageExpression><![CDATA[$P{urlimagenZilleBg}]]></imageExpression>
+			</image>
+		</band>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="48" splitType="Stretch">
+			<textField>
+				<reportElement x="246" y="0" width="556" height="24"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="16" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Totales del periodo "+$F{PERIODO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="246" y="24" width="556" height="23"/>
+				<textElement textAlignment="Left">
+					<font size="16" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{NOM_OP}]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement mode="Opaque" x="0" y="1" width="234" height="47"/>
+				<imageExpression><![CDATA[$P{urlimagenZille}]]></imageExpression>
+			</image>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="20" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="0" width="88" height="20" backcolor="#DFDFDF"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="88" y="0" width="146" height="20" backcolor="#E9E9E9"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Obra]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="234" y="0" width="189" height="20" backcolor="#DFDFDF"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Equipo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="423" y="0" width="28" height="20" backcolor="#E9E9E9"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[MF]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="525" y="0" width="89" height="20" backcolor="#E9E9E9"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Hs Trabajadas]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="614" y="0" width="58" height="20" backcolor="#DFDFDF"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Hs Viaje]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="737" y="0" width="65" height="20" backcolor="#DFDFDF"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Hora 100%]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="672" y="0" width="65" height="20" backcolor="#E9E9E9"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Hora 50%]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="451" y="0" width="24" height="20" backcolor="#DFDFDF"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[C]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="475" y="0" width="24" height="20" backcolor="#E9E9E9"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[V]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="499" y="0" width="26" height="20" backcolor="#DFDFDF"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[VD]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="23" splitType="Stretch">
+			<textField pattern="HH:mm:ss" isBlankWhenNull="true">
+				<reportElement mode="Transparent" x="737" y="0" width="65" height="17" backcolor="#E9E9E9">
+					<printWhenExpression><![CDATA[$F{id_sit}.intValue() == 1 ? Boolean.TRUE: Boolean.FALSE]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.sql.Timestamp($F{hs_100}.getTime())]]></textFieldExpression>
+			</textField>
+			<textField pattern="HH:mm:ss" isBlankWhenNull="true">
+				<reportElement mode="Transparent" x="672" y="0" width="65" height="17">
+					<printWhenExpression><![CDATA[$F{id_sit}.intValue() == 1 ? Boolean.TRUE: Boolean.FALSE]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.sql.Timestamp($F{hs_50}.getTime())]]></textFieldExpression>
+			</textField>
+			<textField pattern="HH:mm:ss" isBlankWhenNull="true">
+				<reportElement mode="Transparent" x="614" y="0" width="58" height="17">
+					<printWhenExpression><![CDATA[$F{id_sit}.intValue() == 1 ? Boolean.TRUE: Boolean.FALSE]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.sql.Timestamp($F{hs_viaje}.getTime())]]></textFieldExpression>
+			</textField>
+			<textField pattern="HH:mm:ss" isBlankWhenNull="true">
+				<reportElement mode="Transparent" x="525" y="0" width="89" height="17">
+					<printWhenExpression><![CDATA[$F{id_sit}.intValue() == 1 ? Boolean.TRUE: Boolean.FALSE]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.sql.Timestamp($F{hs_tarea}.getTime())]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="88" y="0" width="146" height="17">
+					<printWhenExpression><![CDATA[$F{id_sit}.intValue() == 1 ? Boolean.TRUE: Boolean.FALSE]]></printWhenExpression>
+				</reportElement>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{COD_OBRA}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="234" y="0" width="189" height="17">
+					<printWhenExpression><![CDATA[$F{id_sit}.intValue() == 1 ? Boolean.TRUE: Boolean.FALSE]]></printWhenExpression>
+				</reportElement>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{n_interno} +" "+$F{equipo} +" "+ $F{marca} +"("+$F{modelo}+")"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="451" y="0" width="24" height="17">
+					<printWhenExpression><![CDATA[$F{id_sit}.intValue() == 1 ? Boolean.TRUE: Boolean.FALSE]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{comida}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="475" y="0" width="24" height="17">
+					<printWhenExpression><![CDATA[$F{id_sit}.intValue() == 1 ? Boolean.TRUE: Boolean.FALSE]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{vianda}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="499" y="0" width="26" height="17">
+					<printWhenExpression><![CDATA[$F{id_sit}.intValue() == 1 ? Boolean.TRUE: Boolean.FALSE]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{vianda_desa}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="336" y="0" width="464" height="17">
+					<printWhenExpression><![CDATA[$F{id_sit}.intValue() == 1 ? Boolean.FALSE : Boolean.TRUE]]></printWhenExpression>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" isItalic="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{observaciones}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd MMM yyyy">
+				<reportElement x="0" y="0" width="88" height="17"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{fecha}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="88" y="0" width="248" height="17">
+					<printWhenExpression><![CDATA[$F{id_sit}.intValue() == 1 ? Boolean.FALSE : Boolean.TRUE]]></printWhenExpression>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font isItalic="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{situacion}]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="423" y="0" width="28" height="17">
+					<printWhenExpression><![CDATA[$F{id_sit}.intValue() == 1 && $F{multi}.booleanValue() ==  Boolean.FALSE ? Boolean.TRUE : Boolean.FALSE]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[0]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="423" y="0" width="28" height="17">
+					<printWhenExpression><![CDATA[$F{multi}.booleanValue() && ($F{id_sit}.intValue() == 1) ? Boolean.TRUE: Boolean.FALSE]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[1]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="19" splitType="Stretch">
+			<textField>
+				<reportElement x="602" y="4" width="169" height="15"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Pagina "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="771" y="4" width="30" height="15"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="14" y="4" width="306" height="15"/>
+				<textElement textAlignment="Left"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="98" splitType="Stretch">
+			<staticText>
+				<reportElement x="122" y="74" width="76" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Multifunción:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="628" y="54" width="83" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Hs Trabajadas:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="285" y="54" width="80" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Horas al 50%:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="451" y="54" width="87" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Horas al 100%:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="19" width="122" height="35"/>
+				<textElement>
+					<font fontName="SansSerif" size="22" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Totales:]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="15" width="801" height="1"/>
+			</line>
+			<staticText>
+				<reportElement x="122" y="54" width="76" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Total Hs Viaje:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="198" y="74" width="87" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{MULTI_FC}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="198" y="54" width="87" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TOTAL_HS_VIAJE}+" Hs."]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="365" y="54" width="86" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TOTAL_50}+" Hs."]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="538" y="54" width="90" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TOTAL_100}+" Hs."]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="711" y="54" width="89" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TOTAL_TAREA}+" Hs."]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="122" y="19" width="76" height="34"/>
+				<textElement verticalAlignment="Middle">
+					<font isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Obras:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="198" y="19" width="602" height="34"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{X100OBRA}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="365" y="74" width="86" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{comida_1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="538" y="74" width="90" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{vianda_1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="737" y="74" width="63" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{vianda_desa_1}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="285" y="74" width="80" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Almuerzos:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="451" y="74" width="87" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Viandas:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="628" y="74" width="109" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Viandas: desarraigo:]]></text>
+			</staticText>
+		</band>
+	</summary>
+</jasperReport>

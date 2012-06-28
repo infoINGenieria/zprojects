@@ -1,0 +1,374 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="1.1000000000000005"/>
+	<property name="ireport.x" value="12"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="id_informe" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[new Integer(1)]]></defaultValueExpression>
+	</parameter>
+	<parameter name="urlimagenZille" class="java.lang.String"/>
+	<parameter name="urlimagenZilleBg" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT
+R.*,
+PD.fecha AS fec, PD.multifuncion AS multi, PD.observaciones,
+O.nombre AS NOM_OP,
+IH.*,
+S.situacion, S.id AS id_sit,
+OB.codigo AS obra
+
+FROM partediario PD
+LEFT JOIN obras OB ON PD.obra = OB.id
+LEFT JOIN operarios O ON PD.operario = O.id
+LEFT JOIN informes_horas IH ON PD.operario = IH.id_operario
+LEFT JOIN registro R ON PD.horario = R.id
+LEFT JOIN situacion S ON PD.situacion = S.id
+
+where IH.id = $P{id_informe} and  PD.fecha <= IH.hasta_f and PD.fecha >= IH.desde_f
+order by PD.fecha asc]]>
+	</queryString>
+	<field name="ID" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ESPECIAL" class="java.lang.Boolean">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="DIA" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="FECHA" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="HS_SALIDA" class="java.sql.Time">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="HS_LLEGADA" class="java.sql.Time">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="HS_INICIO" class="java.sql.Time">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="HS_FIN" class="java.sql.Time">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="HS_IALMUERZO" class="java.sql.Time">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="HS_FALMUERZO" class="java.sql.Time">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="HS_NORMAL" class="java.sql.Time">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="HS_VIAJE" class="java.sql.Time">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="HS_ALMUERZO" class="java.sql.Time">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="HS_50" class="java.sql.Time">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="HS_100" class="java.sql.Time">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="HS_TOTAL" class="java.sql.Time">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="HS_TAREA" class="java.sql.Time">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="COMIDA" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="VIANDA" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="VIANDA_DESA" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="fec" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="multi" class="java.lang.Boolean">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="observaciones" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NOM_OP" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ID_OPERARIO" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="MULTI_FC" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="TOTAL_HS_VIAJE" class="java.lang.Float">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="TOTAL_50" class="java.lang.Float">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="TOTAL_100" class="java.lang.Float">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="TOTAL_NORMAL" class="java.lang.Float">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="TOTAL_TAREA" class="java.lang.Float">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PERIODO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="DESDE_F" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="HASTA_F" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="X100OBRA" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="situacion" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="id_sit" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="obra" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<variable name="comida_1" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{COMIDA}]]></variableExpression>
+	</variable>
+	<variable name="vianda_1" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{VIANDA}]]></variableExpression>
+	</variable>
+	<variable name="vianda_desa_1" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{VIANDA_DESA}]]></variableExpression>
+	</variable>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="66" splitType="Stretch">
+			<textField>
+				<reportElement x="246" y="0" width="556" height="36"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="16" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Registros del periodo "+$F{PERIODO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="246" y="36" width="556" height="23"/>
+				<textElement textAlignment="Left">
+					<font size="16" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{NOM_OP}]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement x="0" y="0" width="246" height="59"/>
+				<imageExpression><![CDATA[$P{urlimagenZille}]]></imageExpression>
+			</image>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="20" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="0" width="94" height="20" backcolor="#E9E9E9"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="310" y="0" width="103" height="20" isPrintWhenDetailOverflows="true" backcolor="#DFDFDF"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[HS INICIO TAREAS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="772" y="0" width="30" height="20" backcolor="#E9E9E9"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[MF]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="413" y="0" width="82" height="20" backcolor="#E9E9E9"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[HS ALMUERZO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="495" y="0" width="105" height="20" backcolor="#DFDFDF"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[HS FIN ALMUERZO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="600" y="0" width="88" height="20" backcolor="#E9E9E9"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[HS FIN TAREAS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="688" y="0" width="84" height="20" backcolor="#DFDFDF"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[HS LLEGADA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" mode="Opaque" x="94" y="0" width="152" height="20" backcolor="#DFDFDF"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10" isBold="true" pdfEncoding="Cp1250"/>
+				</textElement>
+				<text><![CDATA[OBRA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="246" y="0" width="64" height="20" backcolor="#E9E9E9"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[HS SALIDA]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="17" splitType="Stretch">
+			<textField pattern="HH:mm:ss" isBlankWhenNull="true">
+				<reportElement mode="Opaque" x="413" y="0" width="82" height="17">
+					<printWhenExpression><![CDATA[$F{id_sit}.intValue() == 1 ? Boolean.TRUE: Boolean.FALSE]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.sql.Timestamp($F{HS_IALMUERZO}.getTime())]]></textFieldExpression>
+			</textField>
+			<textField pattern="HH:mm:ss" isBlankWhenNull="true">
+				<reportElement mode="Opaque" x="310" y="0" width="103" height="17">
+					<printWhenExpression><![CDATA[$F{id_sit}.intValue() == 1 ? Boolean.TRUE: Boolean.FALSE]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.sql.Timestamp($F{HS_INICIO}.getTime())]]></textFieldExpression>
+			</textField>
+			<textField pattern="HH:mm:ss" isBlankWhenNull="true">
+				<reportElement mode="Opaque" x="600" y="0" width="88" height="17" backcolor="#FFFFFF">
+					<printWhenExpression><![CDATA[$F{id_sit}.intValue() == 1 ? Boolean.TRUE: Boolean.FALSE]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.sql.Timestamp($F{HS_FIN}.getTime())]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Opaque" x="94" y="0" width="152" height="17">
+					<printWhenExpression><![CDATA[$F{id_sit}.intValue() == 1 ? Boolean.FALSE : Boolean.TRUE]]></printWhenExpression>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font isItalic="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{situacion}]]></textFieldExpression>
+			</textField>
+			<textField pattern="HH:mm:ss" isBlankWhenNull="true">
+				<reportElement mode="Opaque" x="688" y="0" width="84" height="17" backcolor="#FFFFFF">
+					<printWhenExpression><![CDATA[$F{id_sit}.intValue() == 1 ? Boolean.TRUE: Boolean.FALSE]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.sql.Timestamp($F{HS_LLEGADA}.getTime())]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
+				<reportElement mode="Opaque" x="0" y="0" width="94" height="17" backcolor="#FFFFFF"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.sql.Timestamp($F{fec}.getTime())]]></textFieldExpression>
+			</textField>
+			<textField pattern="HH:mm:ss" isBlankWhenNull="true">
+				<reportElement mode="Opaque" x="495" y="0" width="105" height="17" backcolor="#FFFFFF">
+					<printWhenExpression><![CDATA[$F{id_sit}.intValue() == 1 ? Boolean.TRUE: Boolean.FALSE]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.sql.Timestamp($F{HS_FALMUERZO}.getTime())]]></textFieldExpression>
+			</textField>
+			<textField pattern="HH:mm:ss" isBlankWhenNull="true">
+				<reportElement positionType="FixRelativeToBottom" mode="Opaque" x="246" y="0" width="64" height="17">
+					<printWhenExpression><![CDATA[$F{id_sit}.intValue() == 1 ? Boolean.TRUE: Boolean.FALSE]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.sql.Timestamp($F{HS_SALIDA}.getTime())]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Transparent" x="94" y="0" width="152" height="17">
+					<printWhenExpression><![CDATA[$F{id_sit}.intValue() == 1 ? Boolean.TRUE: Boolean.FALSE]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{obra}]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="772" y="0" width="30" height="17">
+					<printWhenExpression><![CDATA[$F{id_sit}.intValue() == 1 && $F{multi}.booleanValue() ==  Boolean.FALSE ? Boolean.TRUE : Boolean.FALSE]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[0]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Transparent" x="772" y="0" width="30" height="17">
+					<printWhenExpression><![CDATA[$F{multi}.booleanValue() && ($F{id_sit}.intValue() == 1) ? Boolean.TRUE: Boolean.FALSE]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[1]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" mode="Transparent" x="310" y="0" width="462" height="17">
+					<printWhenExpression><![CDATA[$F{id_sit}.intValue() == 1 ? Boolean.FALSE : Boolean.TRUE]]></printWhenExpression>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font isItalic="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{observaciones}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="23" splitType="Stretch">
+			<textField>
+				<reportElement x="600" y="8" width="172" height="15"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Pagina "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="771" y="8" width="31" height="15"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" evaluationTime="Report" pattern="dd/MM/yyyy">
+				<reportElement x="0" y="8" width="246" height="15"/>
+				<textElement textAlignment="Left"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

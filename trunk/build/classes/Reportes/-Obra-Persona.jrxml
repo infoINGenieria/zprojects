@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<parameter name="desde_f" class="java.util.Date"/>
+	<parameter name="hasta_f" class="java.util.Date"/>
+	<parameter name="subreport" class="net.sf.jasperreports.engine.JasperReport"/>
+	<parameter name="urlimagenZille" class="java.lang.String"/>
+	<parameter name="urlimagenMF" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT  PD.fecha, PD.obra AS ID_OBRA,
+OB.codigo AS COD_OBRA, OB.obra AS NOM_OBRA
+FROM partediario PD
+LEFT JOIN obras OB ON PD.obra = OB.id
+LEFT JOIN situacion S ON PD.situacion = S.id
+WHERE PD.fecha <= $P{hasta_f}
+AND PD.fecha >= $P{desde_f}
+AND PD.situacion =1
+GROUP BY PD.fecha
+ORDER BY OB.codigo desc,  PD.fecha ASC]]>
+	</queryString>
+	<field name="fecha" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="COD_OBRA" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NOM_OBRA" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ID_OBRA" class="java.lang.Integer"/>
+	<background>
+		<band height="802" splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="54" splitType="Stretch">
+			<image>
+				<reportElement x="0" y="0" width="216" height="54"/>
+				<imageExpression class="java.lang.String"><![CDATA[$P{urlimagenZille}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="179" y="0" width="372" height="26"/>
+				<textElement textAlignment="Right">
+					<font fontName="Liberation Sans" size="20" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Informe Operario/Equipo por Obra]]></text>
+			</staticText>
+			<textField pattern="dd-MMM-yyyy">
+				<reportElement x="432" y="24" width="120" height="20"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression class="java.util.Date"><![CDATA[$P{hasta_f}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd-MMM-yyyy">
+				<reportElement x="290" y="24" width="89" height="20"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression class="java.util.Date"><![CDATA[$P{desde_f}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="246" y="24" width="44" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Desde:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="392" y="24" width="40" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Hasta:]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="51" splitType="Stretch">
+			<textField>
+				<reportElement x="202" y="0" width="180" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{COD_OBRA}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="382" y="0" width="173" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{NOM_OBRA}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd MMMMM yyyy">
+				<reportElement x="0" y="0" width="119" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.util.Date"><![CDATA[$F{fecha}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="21" width="555" height="1"/>
+			</line>
+			<subreport>
+				<reportElement x="8" y="20" width="547" height="31"/>
+				<subreportParameter name="fecha">
+					<subreportParameterExpression><![CDATA[$F{fecha}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="urlimagenMF">
+					<subreportParameterExpression><![CDATA[$P{urlimagenMF}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="id_obra">
+					<subreportParameterExpression><![CDATA[$F{ID_OBRA}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression class="net.sf.jasperreports.engine.JasperReport"><![CDATA[$P{subreport}]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement x="423" y="0" width="80" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.lang.String"><![CDATA["Página "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="503" y="0" width="52" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="13" y="0" width="174" height="20"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Zille SRL]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

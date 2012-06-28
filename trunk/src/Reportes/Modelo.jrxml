@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<parameter name="desde_f" class="java.util.Date"/>
+	<parameter name="hasta_f" class="java.util.Date"/>
+	<parameter name="urlimagenZille" class="java.lang.String"/>
+	<parameter name="id_equipo" class="java.lang.Integer"/>
+	<queryString>
+		<![CDATA[SELECT 
+
+PD.fecha, 
+OB.codigo AS COD_OBRA,
+O.nombre AS NOM_OP,
+EQ.n_interno, EQ.equipo, EQ.marca, EQ.modelo,
+RQ.tarea,
+M.*
+
+FROM partediario PD
+LEFT JOIN operarios O ON PD.operario = O.id
+LEFT JOIN obras OB ON PD.obra = OB.id
+LEFT JOIN registro_equipo RQ ON PD.equipo = RQ.id
+LEFT JOIN equipos EQ ON RQ.equipo = EQ.id 
+LEFT JOIN materiales M ON M.ID_REGISTROEQUIPO = RQ.id 
+
+
+where PD.fecha <= $P{hasta_f} and PD.fecha >= $P{desde_f} and RQ.equipo = $P{id_equipo}
+order by PD.fecha asc]]>
+	</queryString>
+	<field name="fecha" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="COD_OBRA" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NOM_OP" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="n_interno" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="equipo" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="marca" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="modelo" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="tarea" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ID" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="MATERIAL" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CANTIDAD" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="DISTANCIA" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="VIAJES" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CANTERA_CARGADERO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ID_REGISTROEQUIPO" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band height="802" splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="54" splitType="Stretch">
+			<image>
+				<reportElement x="0" y="0" width="216" height="54"/>
+				<imageExpression class="java.lang.String"><![CDATA[$P{urlimagenZille}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="216" y="0" width="339" height="20"/>
+				<textElement textAlignment="Right">
+					<font fontName="Liberation Sans" size="17" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Informe del equipo]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="20" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="40" splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement x="423" y="0" width="80" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.lang.String"><![CDATA["Página "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="503" y="0" width="52" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="13" y="0" width="174" height="20"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Zille SRL]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

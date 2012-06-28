@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="otReport" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="0">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="52"/>
+	<style name="Title" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#FFFFFF" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<parameter name="ordentrabajoid" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select OT.*, EQ.* from orden_trabajo OT, equipos EQ where ordentrabajoid= $P{ordentrabajoid} and EQ.id = OT.ninternoid]]>
+	</queryString>
+	<field name="OrdenTrabajoID" class="java.lang.Integer"/>
+	<field name="Fecha" class="java.sql.Date"/>
+	<field name="Km" class="java.lang.String"/>
+	<field name="Hs" class="java.lang.String"/>
+	<field name="DetalleServicio" class="java.lang.String"/>
+	<field name="NInternoID" class="java.lang.Integer"/>
+	<field name="ManoDeObra" class="java.lang.String"/>
+	<field name="Solicitante" class="java.lang.String"/>
+	<field name="AperturaFecha" class="java.sql.Date"/>
+	<field name="CierreFecha" class="java.sql.Date"/>
+	<field name="Mantenimiento" class="java.lang.String"/>
+	<field name="NInterno" class="java.lang.String"/>
+	<field name="ID" class="java.lang.Integer"/>
+	<field name="N_INTERNO" class="java.lang.String"/>
+	<field name="EQUIPO" class="java.lang.String"/>
+	<field name="MARCA" class="java.lang.String"/>
+	<field name="MODELO" class="java.lang.String"/>
+	<field name="AÑO" class="java.lang.Double"/>
+	<field name="DOMINIO" class="java.lang.String"/>
+	<field name="VTO_VT" class="java.sql.Date"/>
+	<field name="VTO_SEGURO" class="java.sql.Date"/>
+	<title>
+		<band height="83" splitType="Stretch">
+			<staticText>
+				<reportElement style="Title" x="0" y="0" width="477" height="54"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="36" isBold="true" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[Orden de Trabajo]]></text>
+			</staticText>
+			<textField>
+				<reportElement mode="Opaque" x="477" y="10" width="323" height="35" forecolor="#FEFEFE" backcolor="#371818"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="22" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Mantenimiento}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="54" width="802" height="27" forecolor="#4E4E4E"/>
+				<textElement verticalAlignment="Middle">
+					<font size="16" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["("+$F{N_INTERNO} +") "+ $F{EQUIPO}+" "+$F{MARCA}+" "+$F{MODELO} +" ("+$F{DOMINIO}+ ")"]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="192" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="108" height="85"/>
+				<textElement>
+					<font size="12" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Descripción:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="108" y="0" width="694" height="85"/>
+				<textElement verticalAlignment="Top">
+					<font size="14" isItalic="true"/>
+					<paragraph lineSpacing="Double"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{DetalleServicio}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="85" width="108" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Solicitante:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="108" y="85" width="694" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+					<paragraph leftIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Solicitante}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="145" width="108" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Odómetro:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="108" y="145" width="147" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+					<paragraph leftIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Km}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="255" y="145" width="144" height="20"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="12" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Horómetro:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="399" y="145" width="139" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+					<paragraph leftIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Hs}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="-1" y="125" width="109" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Fecha:]]></text>
+			</staticText>
+			<textField pattern="dd-MMM-yyyy" isBlankWhenNull="true">
+				<reportElement x="108" y="125" width="147" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+					<paragraph leftIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Fecha}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="255" y="125" width="144" height="20"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="12" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Fecha de Apertura:]]></text>
+			</staticText>
+			<textField pattern="dd-MMM-yyyy" isBlankWhenNull="true">
+				<reportElement x="399" y="125" width="139" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+					<paragraph leftIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{AperturaFecha}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="538" y="125" width="123" height="20"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="12" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Fecha de Cierre:]]></text>
+			</staticText>
+			<textField pattern="dd-MMM-yyyy" isBlankWhenNull="true">
+				<reportElement x="661" y="125" width="141" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+					<paragraph leftIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CierreFecha}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="105" width="108" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Mano de Obra:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="108" y="105" width="694" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+					<paragraph leftIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ManoDeObra}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="56" splitType="Stretch">
+			<staticText>
+				<reportElement x="14" y="21" width="267" height="20"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Zille SRL - Oficina Técnica]]></text>
+			</staticText>
+			<line>
+				<reportElement x="-1" y="20" width="801" height="1" forecolor="#3D3B3B"/>
+			</line>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

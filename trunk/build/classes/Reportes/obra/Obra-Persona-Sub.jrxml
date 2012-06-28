@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="595" leftMargin="0" rightMargin="0" topMargin="1" bottomMargin="1">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="fecha" class="java.util.Date"/>
+	<parameter name="id_obra" class="java.lang.Integer"/>
+	<parameter name="urlimagenMF" class="java.lang.String"/>
+	<parameter name="subreport2" class="net.sf.jasperreports.engine.JasperReport">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT 
+PD.multifuncion AS multi, PD.funcion AS id_fc, 
+O.nombre AS NOM_OP,
+F.funcion AS FUNORI, 
+EQ.n_interno, EQ.equipo, EQ.marca, EQ.modelo
+
+FROM partediario PD
+LEFT JOIN operarios O ON PD.operario = O.id
+LEFT JOIN obras OB ON PD.obra = OB.id
+LEFT JOIN funcion F ON O.funcion = F.id
+LEFT JOIN registro_equipo RQ ON PD.equipo = RQ.id
+LEFT JOIN equipos EQ ON RQ.equipo = EQ.id 
+LEFT JOIN situacion S ON PD.situacion = S.id
+
+where  PD.fecha = $P{fecha}  and PD.situacion = 1 and OB.id= $P{id_obra}
+order by NOM_OP asc]]>
+	</queryString>
+	<field name="multi" class="java.lang.Boolean">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NOM_OP" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="FUNORI" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="n_interno" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="equipo" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="marca" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="modelo" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="id_fc" class="java.lang.Integer"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="14" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="180" height="14"/>
+				<textElement verticalAlignment="Top">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nombre]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="180" y="0" width="86" height="14"/>
+				<textElement verticalAlignment="Top">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Función]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="266" y="0" width="171" height="14"/>
+				<textElement verticalAlignment="Top">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Equipo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="437" y="0" width="136" height="14"/>
+				<textElement textAlignment="Left" verticalAlignment="Top">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Multi-función]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="12" splitType="Stretch">
+			<textField isStretchWithOverflow="true">
+				<reportElement mode="Opaque" x="0" y="1" width="180" height="11"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{NOM_OP}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement mode="Opaque" x="266" y="1" width="171" height="11"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{n_interno} +"  "+$F{equipo}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement mode="Opaque" x="180" y="1" width="86" height="11"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{FUNORI}]]></textFieldExpression>
+			</textField>
+			<image hAlign="Center">
+				<reportElement x="437" y="1" width="24" height="11">
+					<printWhenExpression><![CDATA[$F{multi}.booleanValue() ? Boolean.TRUE: Boolean.FALSE]]></printWhenExpression>
+				</reportElement>
+				<imageExpression class="java.lang.String"><![CDATA[$P{urlimagenMF}]]></imageExpression>
+			</image>
+			<subreport>
+				<reportElement x="461" y="1" width="112" height="11"/>
+				<subreportParameter name="id_fc">
+					<subreportParameterExpression><![CDATA[$F{id_fc}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression class="net.sf.jasperreports.engine.JasperReport"><![CDATA[$P{subreport2}]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>
