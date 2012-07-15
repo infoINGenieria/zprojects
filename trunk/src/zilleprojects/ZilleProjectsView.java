@@ -3,6 +3,7 @@
  */
 package zilleprojects;
 
+import DAO.AlarmasDAO;
 import Vista.DialogImgZille;
 import Vista.DialogImagenLogin;
 import DAO.Conexion.Conexion;
@@ -15,6 +16,7 @@ import DAO.OperarioDAO;
 import DAO.ParteDiarioDAO;
 import DAO.SituacionDAO;
 import DAO.UsuarioDAO;
+import Modelo.Alarma;
 import Modelo.Equipos;
 import Modelo.EstacionServicio;
 import Modelo.Funcion;
@@ -62,6 +64,7 @@ import javax.swing.JFrame;
 import org.jdesktop.application.Task;
 
 
+import zilleprojects.form.JDAlarmaActividad;
 import zilleprojects.form.JDAlarmas;
 import zilleprojects.form.JDEmpleadoGestion;
 import zilleprojects.form.JDEquiposModificar;
@@ -974,7 +977,8 @@ public class ZilleProjectsView extends FrameView {
     }
 
     private class verificarAlarmasTask extends org.jdesktop.application.Task<Object, Void> {
-  
+        ArrayList<ItemAlarma> alarmas = new ArrayList<ItemAlarma>();
+        ArrayList<Alarma> alarmasList = new ArrayList<Alarma>();
         verificarAlarmasTask(org.jdesktop.application.Application app) {
 
             super(app);
@@ -1000,31 +1004,46 @@ public class ZilleProjectsView extends FrameView {
             EquiposDAO edao=new EquiposDAO();
             edao.conectar();
             OperarioDAO odao = new OperarioDAO();
-            odao.conectar();
-            modelAlarma.clean();
+            odao.conectar();    
             //Buscar las VTO_VT con fecha prximo 20 dias.
-            
             //Buscar las VTO_SEGURO con fecha proximo 20 días.
-            ArrayList<ItemAlarma> alarmas = edao.getAlarmasEquipos(dia, proximo);
+            alarmas = edao.getAlarmasEquipos(dia, proximo);
             //Buscar las VtO_CARNET con fecha proximo 20 días.
             alarmas.addAll(odao.getAlarmasEquipos(dia, proximo));
-            //Ordeno la lista segun la fecha
-            Collections.sort(alarmas);
-            for(ItemAlarma ia: alarmas){
-                modelAlarma.addRegistro(ia);
-            }  
-            jTable1.getColumnModel().getColumn(0).setMaxWidth(28);
-            jTable1.getColumnModel().getColumn(1).setMaxWidth(80);
-           
             //Luego, buscar las alarmas para hoy, y cuyo fecha previa sea antes o igual a hoy.
-            
-            
+            AlarmasDAO adao = new AlarmasDAO();
+            adao.conectar();
+            alarmasList = adao.findAlarmasActivadas();    
             return null;
         }
 
         @Override
         protected void succeeded(Object result) {
-            if(modelAlarma.getRowCount()>0){
+            if(alarmas.size()>0 || alarmasList.size() > 0){
+                //Crear dialogos para cada alarma actividad, y incorporar las alarmas item. 
+                for(Alarma al:alarmasList){
+                    if(alarmasDialogo){
+                        JFrame mainFrame = ZilleProjectsApp.getApplication().getMainFrame();
+                        JDAlarmaActividad aAct = new JDAlarmaActividad(mainFrame,  true, al);
+                        aAct.setLocationRelativeTo(null);
+                        ZilleProjectsApp.getApplication().show(aAct);
+                    }
+                    ItemAlarma aux = new ItemAlarma();
+                    aux.setFecha(al.getFecha());
+                    aux.setTipo(0);
+                    aux.setMensaje(al.getNombre()+": "+al.getComentario());
+                    alarmas.add(aux);
+                }
+                alarmasDialogo=false;
+                modelAlarma.clean();
+                //Ordeno la lista segun la fecha
+                Collections.sort(alarmas);
+                for(ItemAlarma ia: alarmas){
+                    modelAlarma.addRegistro(ia);
+                }  
+                jTable1.getColumnModel().getColumn(0).setMaxWidth(28);
+                jTable1.getColumnModel().getColumn(1).setWidth(80);
+                jTable1.getColumnModel().getColumn(1).setMaxWidth(100);
                 panelAlarmas.setVisible(true);
             }else {
                 panelAlarmas.setVisible(false);
@@ -2266,4 +2285,5 @@ private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     DefaultListModel listEmpl = new DefaultListModel();
     private static TablaAlarmasModel modelAlarma = new TablaAlarmasModel();
     private String resultBKP= "";
+    private boolean alarmasDialogo = true;
 }
