@@ -194,7 +194,10 @@ public class AlarmasDAO {
             PreparedStatement ps = conector.prepareStatement(query);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                 if(hoy.after(rs.getDate("FECHA_PREVIA"))||hoy.equals(rs.getDate("FECHA_PREVIA")) )
+                 if(     hoy.equals(rs.getDate("FECHA")) || 
+                         rs.getDate("FECHA_PREVIA") != null && (hoy.equals(rs.getDate("FECHA_PREVIA"))  ||
+                                                                hoy.after(rs.getDate("FECHA_PREVIA"))) 
+                    )
                     {
                     Alarma al = new Alarma();
                     al.setAlarmaID(rs.getInt("ALARMAID"));

@@ -10,7 +10,9 @@
  */
 package zilleprojects.form;
 
+import DAO.AlarmasDAO;
 import Modelo.Alarma;
+import Vista.OpcionPanel;
 import Vista.PanelAzul;
 import org.jdesktop.application.Action;
 import org.jdesktop.application.Task;
@@ -292,25 +294,55 @@ private void isReprogramarItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-
 
     @Action
     public Task reprogramarAlarma() {
+        if(!isReprogramar.isSelected()){
+            dispose();
+            return null;
+            
+        }else{
+            if(fechaReprogramada.getDate()==null){
+                OpcionPanel.showMessageDialog(null, "La fecha no puede ser nula", "ERROR", OpcionPanel.ERROR_MESSAGE);
+                return null;
+            }
+            if(descripcionReprogramada.getText().isEmpty()){
+                OpcionPanel.showMessageDialog(null, "Debe agregar una descripción", "ERROR", OpcionPanel.ERROR_MESSAGE);
+                return null;
+            }
+        }
         return new ReprogramarAlarmaTask(org.jdesktop.application.Application.getInstance(zilleprojects.ZilleProjectsApp.class));
     }
 
     private class ReprogramarAlarmaTask extends org.jdesktop.application.Task<Object, Void> {
+        Alarma a = new Alarma();
+        int r = 0;
         ReprogramarAlarmaTask(org.jdesktop.application.Application app) {
             // Runs on the EDT.  Copy GUI state that
             // doInBackground() depends on from parameters
             // to ReprogramarAlarmaTask fields, here.
             super(app);
+            a.setNombre(alarma.getNombre());
+            a.setComentario(descripcionReprogramada.getText());
+            a.setFecha(fechaReprogramada.getDate());
+            if(alarma.getRiID()!=0){
+                a.setRiID(alarma.getRiID());
+            }
+                    
         }
         @Override protected Object doInBackground() {
             // Your Task's code here.  This method runs
             // on a background thread, so don't reference
             // the Swing GUI from here.
+            AlarmasDAO adao= new AlarmasDAO();
+            adao.conectar();
+            r=adao.guardar(a);
             return null;  // return your result
         }
         @Override protected void succeeded(Object result) {
-            // Runs on the EDT.  Update the GUI based on
-            // the result computed by doInBackground().
+            if(r>0){
+                dispose();
+                
+            }else{
+                OpcionPanel.showMessageDialog(null, "Ocurrió un error al procesar la solicitud.", "Error", OpcionPanel.ERROR_MESSAGE);
+            }
         }
     }
 
