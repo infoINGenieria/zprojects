@@ -20,7 +20,7 @@ public class RI {
 
     @Override
     public String toString() {
-        return "["+RI_num + "] "+detalle.substring(0, 10);
+        return "["+RI_num + "] "+detalle;
     }
 
     @Override
