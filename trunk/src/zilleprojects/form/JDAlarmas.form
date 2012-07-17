@@ -339,7 +339,6 @@
               <action class="zilleprojects.form.JDAlarmas" id="guardarAlarma" methodName="guardarAlarma"/>
             </Property>
             <Property name="text" type="java.lang.String" resourceKey="btnGuardar.text"/>
-            <Property name="enabled" type="boolean" value="false"/>
             <Property name="name" type="java.lang.String" value="btnGuardar" noResource="true"/>
           </Properties>
         </Component>
@@ -349,7 +348,6 @@
               <action class="zilleprojects.form.JDAlarmas" id="modificarAlarma" methodName="modificarAlarma"/>
             </Property>
             <Property name="text" type="java.lang.String" resourceKey="btnModificar.text"/>
-            <Property name="enabled" type="boolean" value="false"/>
             <Property name="name" type="java.lang.String" value="btnModificar" noResource="true"/>
           </Properties>
         </Component>

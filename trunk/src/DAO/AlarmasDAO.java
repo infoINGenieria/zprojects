@@ -190,15 +190,14 @@ public class AlarmasDAO {
         hoy = gc.getTime();
         ArrayList<Alarma> alarmas = new ArrayList<Alarma>();
         try {
-            query = "select * from alarma where fecha >="+FechaUtil.getFecha(hoy)+" order by fecha asc ";
+            query = "select * from alarma where fecha >='"+FechaUtil.getFechatoDB(hoy)+"' order by fecha asc";
             PreparedStatement ps = conector.prepareStatement(query);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                  if(     hoy.equals(rs.getDate("FECHA")) || 
                          rs.getDate("FECHA_PREVIA") != null && (hoy.equals(rs.getDate("FECHA_PREVIA"))  ||
                                                                 hoy.after(rs.getDate("FECHA_PREVIA"))) 
-                    )
-                    {
+                    ) {
                     Alarma al = new Alarma();
                     al.setAlarmaID(rs.getInt("ALARMAID"));
                     al.setRiID(rs.getInt("RI_ID"));

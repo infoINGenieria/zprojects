@@ -441,6 +441,15 @@
                 <Property name="name" type="java.lang.String" value="jMenuItem5" noResource="true"/>
               </Properties>
             </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem8">
+              <Properties>
+                <Property name="action" type="javax.swing.Action" editor="org.netbeans.modules.swingapp.ActionEditor">
+                  <action class="zilleprojects.ZilleProjectsView" id="mostrarJDRIDialog" methodName="mostrarJDRIDialog"/>
+                </Property>
+                <Property name="text" type="java.lang.String" resourceKey="jMenuItem8.text"/>
+                <Property name="name" type="java.lang.String" value="jMenuItem8" noResource="true"/>
+              </Properties>
+            </MenuItem>
           </SubComponents>
         </Menu>
         <Menu class="javax.swing.JMenu" name="jMenu5">
@@ -1009,8 +1018,8 @@
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.DesignGridLayout">
                 <Property name="columns" type="int" value="2"/>
-                <Property name="horizontalGap" type="int" value="10"/>
                 <Property name="rows" type="int" value="2"/>
+                <Property name="horizontalGap" type="int" value="10"/>
                 <Property name="verticalGap" type="int" value="10"/>
               </Layout>
               <SubComponents>

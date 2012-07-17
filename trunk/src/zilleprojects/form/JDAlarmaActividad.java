@@ -14,6 +14,8 @@ import DAO.AlarmasDAO;
 import Modelo.Alarma;
 import Vista.OpcionPanel;
 import Vista.PanelAzul;
+import java.awt.Image;
+import java.awt.Toolkit;
 import org.jdesktop.application.Action;
 import org.jdesktop.application.Task;
 
@@ -23,6 +25,8 @@ import org.jdesktop.application.Task;
  */
 public class JDAlarmaActividad extends javax.swing.JDialog {
     private Alarma alarma = new Alarma();
+    Image icono = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/zilleprojects/resources/icono.png"));
+
     /** Creates new form JDAlarmaActividad */
     public JDAlarmaActividad(java.awt.Frame parent, boolean modal, Alarma alarm) {
         super(parent, modal);

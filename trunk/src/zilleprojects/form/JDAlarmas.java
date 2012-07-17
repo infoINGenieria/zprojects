@@ -318,7 +318,7 @@ private void btnNuevaAlarmaActionPerformed(java.awt.event.ActionEvent evt) {//GE
 }//GEN-LAST:event_btnNuevaAlarmaActionPerformed
 
 private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-    limpiarCampos();
+        limpiarCampos();
         if (obtenerDatosDeList()){
             desbloquearCampos(false);
             desbloquearBoton(3);

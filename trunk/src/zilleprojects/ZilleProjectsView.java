@@ -72,6 +72,7 @@ import zilleprojects.form.JDEstacionServicio;
 import zilleprojects.form.JDObrasGestion;
 import zilleprojects.form.JDOrdenTrabajo;
 import zilleprojects.form.JDParteDiario;
+import zilleprojects.form.JDRI;
 import zilleprojects.form.JDRemoverParte;
 import zilleprojects.form.JDReportes;
 import zilleprojects.form.JDReportesAnteriores;
@@ -603,6 +604,18 @@ public class ZilleProjectsView extends FrameView {
         } 
 
     }
+    @Action
+    public void mostrarJDRIDialog() {
+       
+        if (verificarCredenciales("Administrador")) {
+            JFrame mainFrame = ZilleProjectsApp.getApplication().getMainFrame();
+            reqInt = new JDRI(mainFrame, true);
+            reqInt.setLocationRelativeTo(mainFrame);   
+            ZilleProjectsApp.getApplication().show(reqInt);
+        } 
+
+    }
+    
     
     @Action
     public void mostrarBusquedaEmpleado() {
@@ -1089,6 +1102,7 @@ public class ZilleProjectsView extends FrameView {
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
+        jMenuItem8 = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
         jMenuItem6 = new javax.swing.JMenuItem();
         jMenuItem7 = new javax.swing.JMenuItem();
@@ -1417,6 +1431,11 @@ public class ZilleProjectsView extends FrameView {
         jMenuItem5.setText(resourceMap.getString("jMenuItem5.text")); // NOI18N
         jMenuItem5.setName("jMenuItem5"); // NOI18N
         EmpleadosMenu.add(jMenuItem5);
+
+        jMenuItem8.setAction(actionMap.get("mostrarJDRIDialog")); // NOI18N
+        jMenuItem8.setText(resourceMap.getString("jMenuItem8.text")); // NOI18N
+        jMenuItem8.setName("jMenuItem8"); // NOI18N
+        EmpleadosMenu.add(jMenuItem8);
 
         menuBar.add(EmpleadosMenu);
 
@@ -2222,6 +2241,7 @@ private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
+    private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel2;
@@ -2274,6 +2294,7 @@ private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     private JDEstacionServicio estacionServicio;
     private JDOrdenTrabajo ordenDeTrabajo;
     private JDAlarmas alarmaDialog;
+    private JDRI reqInt;
     LeerXML configDB = new LeerXML();
     static Conexion conn;
     static Connection link2db;
