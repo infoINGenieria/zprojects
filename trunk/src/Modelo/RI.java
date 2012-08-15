@@ -63,9 +63,7 @@ public class RI {
         if(fecha_necesidad!=null && fecha_emision!=null && fecha_oc ==null && fecha_entrega==null){
             return "Emitida";
         }
-        
         return "Creada";
-        
     }
 
     public Float getImporte() {
