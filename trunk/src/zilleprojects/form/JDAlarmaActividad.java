@@ -11,7 +11,9 @@
 package zilleprojects.form;
 
 import DAO.AlarmasDAO;
+import DAO.RIDAO;
 import Modelo.Alarma;
+import Modelo.RI;
 import Vista.OpcionPanel;
 import Vista.PanelAzul;
 import java.awt.Image;
@@ -50,7 +52,6 @@ public class JDAlarmaActividad extends javax.swing.JDialog {
         descripcionAlarma = new javax.swing.JTextArea();
         jLabel2 = new javax.swing.JLabel();
         RIID = new javax.swing.JLabel();
-        btnVerRI = new javax.swing.JButton();
         btnAceptarAlarma = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         isReprogramar = new javax.swing.JCheckBox();
@@ -93,9 +94,6 @@ public class JDAlarmaActividad extends javax.swing.JDialog {
         RIID.setText(resourceMap.getString("RIID.text")); // NOI18N
         RIID.setName("RIID"); // NOI18N
 
-        btnVerRI.setText(resourceMap.getString("btnVerRI.text")); // NOI18N
-        btnVerRI.setName("btnVerRI"); // NOI18N
-
         javax.swing.ActionMap actionMap = org.jdesktop.application.Application.getInstance(zilleprojects.ZilleProjectsApp.class).getContext().getActionMap(JDAlarmaActividad.class, this);
         btnAceptarAlarma.setAction(actionMap.get("reprogramarAlarma")); // NOI18N
         btnAceptarAlarma.setText(resourceMap.getString("btnAceptarAlarma.text")); // NOI18N
@@ -108,6 +106,7 @@ public class JDAlarmaActividad extends javax.swing.JDialog {
 
         jPanel2.setBorder(new javax.swing.border.LineBorder(resourceMap.getColor("jPanel2.border.lineColor"), 1, true)); // NOI18N
         jPanel2.setName("jPanel2"); // NOI18N
+        jPanel2.setOpaque(false);
 
         isReprogramar.setText(resourceMap.getString("isReprogramar.text")); // NOI18N
         isReprogramar.setName("isReprogramar"); // NOI18N
@@ -119,6 +118,7 @@ public class JDAlarmaActividad extends javax.swing.JDialog {
 
         fechaReprogramada.setEnabled(false);
         fechaReprogramada.setName("fechaReprogramada"); // NOI18N
+        fechaReprogramada.setOpaque(false);
 
         jScrollPane2.setName("jScrollPane2"); // NOI18N
 
@@ -136,12 +136,14 @@ public class JDAlarmaActividad extends javax.swing.JDialog {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(isReprogramar)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(12, 12, 12)
-                        .addComponent(fechaReprogramada, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(fechaReprogramada, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(isReprogramar, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 284, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -164,19 +166,20 @@ public class JDAlarmaActividad extends javax.swing.JDialog {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 451, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 451, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(nombreAlarma, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 451, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(RIID, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnAceptarAlarma, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnVerRI, javax.swing.GroupLayout.DEFAULT_SIZE, 167, Short.MAX_VALUE)))
+                            .addComponent(RIID, javax.swing.GroupLayout.DEFAULT_SIZE, 365, Short.MAX_VALUE)))
                     .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
+
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jPanel2, jScrollPane1});
+
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -187,16 +190,15 @@ public class JDAlarmaActividad extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(RIID, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2)
-                    .addComponent(btnVerRI))
+                    .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                 .addComponent(btnAceptarAlarma)
                 .addContainerGap())
         );
 
-        jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {RIID, btnVerRI, jLabel2});
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {RIID, jLabel2});
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -268,7 +270,6 @@ private void isReprogramarItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel RIID;
     private javax.swing.JButton btnAceptarAlarma;
-    private javax.swing.JButton btnVerRI;
     private javax.swing.JTextArea descripcionAlarma;
     private javax.swing.JTextArea descripcionReprogramada;
     private com.toedter.calendar.JDateChooser fechaReprogramada;
@@ -287,12 +288,17 @@ private void isReprogramarItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-
         if( alarma.getRiID() == 0){
             RIID.setText("Sin RI asociado");
             RIID.setEnabled(false);
-            btnVerRI.setEnabled(false);
+            
         }
         else{
-            RIID.setText("ID: "+alarma.getRiID());
+            
+            RIDAO riDao = new RIDAO();
+            riDao.conectar();
+            RI ri = riDao.findById(alarma.getRiID());
+            //RIID.setText(ri.toString().substring(0, 45) + "...");
+            RIID.setText(ri.getRI_num());
             RIID.setEnabled(true);
-            btnVerRI.setEnabled(true);
+            
         }
     }
 

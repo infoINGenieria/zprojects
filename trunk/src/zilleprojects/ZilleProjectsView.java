@@ -609,7 +609,7 @@ public class ZilleProjectsView extends FrameView {
        
         if (verificarCredenciales("Administrador")) {
             JFrame mainFrame = ZilleProjectsApp.getApplication().getMainFrame();
-            reqInt = new JDRI(mainFrame, true);
+            reqInt = new JDRI(mainFrame, true, this);
             reqInt.setLocationRelativeTo(mainFrame);   
             ZilleProjectsApp.getApplication().show(reqInt);
         } 

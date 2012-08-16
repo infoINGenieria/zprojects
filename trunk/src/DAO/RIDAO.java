@@ -110,19 +110,23 @@ public class RIDAO {
 
         boolean r =false;
         try {
-            
+            conector.setAutoCommit(false);
             String query = "delete from RI where RIID = ?";
             PreparedStatement ps = conector.prepareStatement(query);
             ps.setInt(1, ri.getRI_ID());
-            
-            
-            ps.executeUpdate();
-            ResultSet rs = ps.getGeneratedKeys();
-            if (rs.next()) {
+            int rs = ps.executeUpdate();
+            if (rs != 0) {   
                 r=true;
+                query = "delete from alarma where RI_ID = ?";
+                ps = conector.prepareStatement(query);
+                ps.setInt(1, ri.getRI_ID());
+                rs = ps.executeUpdate();
+                
             }
+            conector.commit();
             ps.close();
-            rs.close();
+            //rs.close();
+            conector.setAutoCommit(true);
             r=true;
 
         } catch (SQLException ex) {
@@ -169,17 +173,17 @@ public class RIDAO {
 
     } 
     
-    public ArrayList<RI> findById(int RI_ID) {
+    public RI findById(int RI_ID) {
         String query = null;
-        ArrayList<RI> alarmas = new ArrayList<RI>();
+        RI ri = new RI();
         try {
             query = "select RI.*, OB.codigo from RI "
                     + "INNER JOIN obras OB ON RI.obraID = OB.id where "
-                    + "RI.RI_ID = "+RI_ID+ " order by fecha_necesidad asc";
+                    + "RI.RIID = "+RI_ID+ " order by fecha_necesidad asc";
             PreparedStatement ps = conector.prepareStatement(query);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                RI ri = new RI();
+                
                 ri.setRI_ID(rs.getInt("RIID"));
                 ri.setObraID(rs.getInt("OBRAID"));
                 ri.setRI_num(rs.getString("RI_NUM"));
@@ -195,7 +199,7 @@ public class RIDAO {
                 ri.setFecha_oc(rs.getDate("FECHA_OC"));
                 ri.setFecha_entrega(rs.getDate("FECHA_ENTREGA"));
                 ri.setCodigoObra(rs.getString("CODIGO"));
-                alarmas.add(ri);
+                
             }
             rs.close();
             ps.close();
@@ -203,7 +207,7 @@ public class RIDAO {
         } catch (SQLException ex) {
             System.out.print("Falló al cargar los ri: " +ex.getMessage()+ "\n");
         }
-        return alarmas;
+        return ri;
 
     } 
     
