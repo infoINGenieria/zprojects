@@ -68,6 +68,7 @@ public class JDAlarmas extends javax.swing.JDialog {
         btnGuardar = new javax.swing.JButton();
         btnModificar = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        txtBuscarAlarmas = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(775, 400));
@@ -146,14 +147,14 @@ public class JDAlarmas extends javax.swing.JDialog {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(txtFecha, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
+                        .addComponent(txtFecha, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel3)
                         .addGap(18, 18, 18)
                         .addComponent(pinDiasAntes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel4))
-                    .addComponent(txtNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 382, Short.MAX_VALUE))
+                    .addComponent(txtNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 362, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -214,12 +215,10 @@ public class JDAlarmas extends javax.swing.JDialog {
 
         btnGuardar.setAction(actionMap.get("guardarAlarma")); // NOI18N
         btnGuardar.setText(resourceMap.getString("btnGuardar.text")); // NOI18N
-        btnGuardar.setEnabled(false);
         btnGuardar.setName("btnGuardar"); // NOI18N
 
         btnModificar.setAction(actionMap.get("modificarAlarma")); // NOI18N
         btnModificar.setText(resourceMap.getString("btnModificar.text")); // NOI18N
-        btnModificar.setEnabled(false);
         btnModificar.setName("btnModificar"); // NOI18N
 
         jButton1.setAction(actionMap.get("cerrarDialog")); // NOI18N
@@ -227,32 +226,50 @@ public class JDAlarmas extends javax.swing.JDialog {
         jButton1.setText(resourceMap.getString("jButton1.text")); // NOI18N
         jButton1.setName("jButton1"); // NOI18N
 
+        txtBuscarAlarmas.setText(resourceMap.getString("txtBuscarAlarmas.text")); // NOI18N
+        txtBuscarAlarmas.setName("txtBuscarAlarmas"); // NOI18N
+        txtBuscarAlarmas.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtBuscarAlarmasFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtBuscarAlarmasFocusLost(evt);
+            }
+        });
+        txtBuscarAlarmas.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtBuscarAlarmasKeyReleased(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(btnNuevaAlarma, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnModificarAlarma, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnQuitarAlarma, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(btnQuitarAlarma, javax.swing.GroupLayout.DEFAULT_SIZE, 72, Short.MAX_VALUE)
+                        .addGap(17, 17, 17))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(24, 24, 24)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(txtBuscarAlarmas, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(btnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -274,12 +291,15 @@ public class JDAlarmas extends javax.swing.JDialog {
                         .addComponent(btnModificar)
                         .addComponent(btnGuardar)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 322, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 76, Short.MAX_VALUE)
-                        .addComponent(jButton1)))
+                        .addComponent(jButton1))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(txtBuscarAlarmas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(24, 24, 24))
         );
 
@@ -324,6 +344,29 @@ private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
             desbloquearBoton(3);
         }
 }//GEN-LAST:event_btnCancelarActionPerformed
+
+    private void txtBuscarAlarmasKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarAlarmasKeyReleased
+        if(txtBuscarAlarmas.getText().length()>= 3){
+            query = txtBuscarAlarmas.getText();
+            Task t = queryAlarmas();
+            t.execute();
+        }
+        if(txtBuscarAlarmas.getText().length()== 0){
+            recargarListaDeAlarmas();
+        }
+    }//GEN-LAST:event_txtBuscarAlarmasKeyReleased
+
+    private void txtBuscarAlarmasFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtBuscarAlarmasFocusGained
+        if(txtBuscarAlarmas.getText().equals("Buscar...")){
+            txtBuscarAlarmas.setText("");
+        }
+    }//GEN-LAST:event_txtBuscarAlarmasFocusGained
+
+    private void txtBuscarAlarmasFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtBuscarAlarmasFocusLost
+        if(txtBuscarAlarmas.getText().isEmpty()){
+            txtBuscarAlarmas.setText("Buscar...");
+        }
+    }//GEN-LAST:event_txtBuscarAlarmasFocusLost
 
     /**
      * @param args the command line arguments
@@ -581,6 +624,30 @@ private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
             }
         }
     }
+    
+    @Action
+    public Task queryAlarmas() {
+        return new queryAlarmasTask(org.jdesktop.application.Application.getInstance(zilleprojects.ZilleProjectsApp.class));
+    }
+
+    private class queryAlarmasTask extends org.jdesktop.application.Task<Object, Void> {
+        ArrayList<Alarma> aList = new ArrayList<Alarma>();
+        queryAlarmasTask(org.jdesktop.application.Application app) {
+            
+            super(app);
+        }
+        @Override protected Object doInBackground() {
+            AlarmasDAO otDao = new AlarmasDAO();
+            otDao.conectar();
+            aList = otDao.find(query);
+            return null;  // return your result
+        }
+        @Override protected void succeeded(Object result) {
+
+            setListDeAlarma(aList);
+
+        }
+    }
 
 
 
@@ -603,6 +670,7 @@ private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSpinner pinDiasAntes;
+    private javax.swing.JTextField txtBuscarAlarmas;
     private javax.swing.JTextArea txtComentario;
     private com.toedter.calendar.JDateChooser txtFecha;
     private javax.swing.JTextField txtNombre;
@@ -610,5 +678,5 @@ private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
     private DefaultListModel listaDeAlarmas = new DefaultListModel();
     private ArrayList<Alarma> alarmas = new ArrayList<Alarma>();
     private Alarma alActual = new Alarma();
-
+    private String query ="";
 }

@@ -120,9 +120,9 @@ public class AlarmasDAO {
     public ArrayList<Alarma> cargarTodos() {
         String query = null;
         ArrayList<Alarma> alarmas = new ArrayList<Alarma>();
-        Date hace1Mes = FechaUtil.restarFechasDias(new Date(), 30);
+        Date hace2Mes = FechaUtil.restarFechasDias(new Date(), 60);
         try {
-            query = "select * from alarma where fecha >"+FechaUtil.getFecha(hace1Mes)+" order by fecha asc ";
+            query = "select * from alarma where fecha >"+FechaUtil.getFecha(hace2Mes)+" order by fecha desc ";
             PreparedStatement ps = conector.prepareStatement(query);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
@@ -155,6 +155,35 @@ public class AlarmasDAO {
             while (rs.next()) {
                  
                  Alarma al = new Alarma();
+                al.setAlarmaID(rs.getInt("ALARMAID"));
+                al.setRiID(rs.getInt("RI_ID"));
+                al.setFecha(rs.getDate("FECHA"));
+                al.setFecha_previa(rs.getDate("FECHA_PREVIA"));
+                al.setComentario(rs.getString("COMENTARIO"));
+                al.setNombre(rs.getString("NOMBRE"));
+                alarmas.add(al);
+                
+            }
+            rs.close();
+            ps.close();
+
+        } catch (SQLException ex) {
+            System.out.print("Falló al cargar las alarmas: " +ex.getMessage()+ "\n");
+        }
+        return alarmas;
+
+    } 
+   
+   public ArrayList<Alarma> find(String q) {
+        String query = null;
+        ArrayList<Alarma> alarmas = new ArrayList<Alarma>();
+        try {
+            query = "select distinct * from alarma where NOMBRE like '%" + q + "%' or COMENTARIO like '%" + q +"%'";
+            PreparedStatement ps = conector.prepareStatement(query);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                 
+                Alarma al = new Alarma();
                 al.setAlarmaID(rs.getInt("ALARMAID"));
                 al.setRiID(rs.getInt("RI_ID"));
                 al.setFecha(rs.getDate("FECHA"));
