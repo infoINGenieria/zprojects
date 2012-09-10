@@ -21,6 +21,7 @@ public class FechaUtil {
   public static final String DATETIME_FORMAT_NOW = "yyyyMMdd-HH-mm-ss";
   public static final String DATE_FORMAT_NOW = "yyyyMMdd";
   public static final String DATE_FORMAT_HUMAN = "dd-MM-yyyy";
+  public static final String DATE_FORMAT_SQL = "yyyy-MM-dd";
   public static final String DAY_FORMAT_HUMAN = "EEEE";
 
   public static String getDay(){
@@ -44,6 +45,11 @@ public class FechaUtil {
   
   public static String getFecha(Date d){
       SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT_HUMAN);
+      return sdf.format(d);
+  }
+  
+  public static String getFechaSQL(Date d){
+      SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT_SQL);
       return sdf.format(d);
   }
   

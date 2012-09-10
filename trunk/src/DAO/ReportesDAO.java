@@ -4,12 +4,19 @@
  */
 package DAO;
 
+import Modelo.Obras;
+import Utils.FechaUtil;
 import java.awt.Desktop;
 import java.awt.Dialog.ModalExclusionType;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -24,6 +31,12 @@ import net.sf.jasperreports.engine.export.JRXlsExporter;
 import net.sf.jasperreports.engine.export.JRXlsExporterParameter;
 import net.sf.jasperreports.engine.util.JRLoader;
 import net.sf.jasperreports.view.JasperViewer;
+import org.apache.poi.hssf.usermodel.HSSFCell;
+import org.apache.poi.hssf.usermodel.HSSFFormulaEvaluator;
+import org.apache.poi.hssf.usermodel.HSSFRichTextString;
+import org.apache.poi.hssf.usermodel.HSSFRow;
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 
 /**
  *
@@ -488,5 +501,117 @@ public class ReportesDAO {
     /*
     
      */
+
+    public void reportCustom(int idOperario, ArrayList<Obras> obrasIDlist, Date desde, Date hasta) {
+        String dest = "customReport.xls";
+        HSSFWorkbook myWorkBook = new HSSFWorkbook();
+        HSSFSheet mySheet = myWorkBook.createSheet();
+        
+        String query= "select  OP.nombre ";
+        /*query += ", (select count(PD2.id) from partediario as PD2 where PD2.operario = OP.id "
+                + "AND PD2.fecha <= '"+ FechaUtil.getFechaSQL(hasta) + "' AND PD2.fecha >= '"+ 
+                FechaUtil.getFechaSQL(desde) +"') as total ";*/
+        for(int i = 0; i < obrasIDlist.size(); i++){
+            query += ", (select count(PD1.id) from partediario as PD1 where PD1.operario = OP.id AND "+
+                    "PD1.fecha <= '"+ FechaUtil.getFechaSQL(hasta) + "' AND PD1.fecha >= '"+
+                     FechaUtil.getFechaSQL(desde) +"' and OB.id = "+ obrasIDlist.get(i).getId() +") as obra"+obrasIDlist.get(i).getId();
+        }
+        query += " FROM partediario PD "
+                + "LEFT JOIN obras OB ON PD.obra = OB.id "
+                + "LEFT JOIN operarios OP ON PD.operario = OP.id "
+                + "WHERE PD.fecha <= '"+FechaUtil.getFechaSQL(hasta)+"' AND PD.fecha >= '"+FechaUtil.getFechaSQL(desde)+"' "
+                + "AND PD.situacion =1 Group by OP.id ORDER BY OP.nombre asc";
+        try {
+            
+            
+
+            
+            
+            PreparedStatement ps = conector.prepareStatement(query);
+            ResultSet rs = ps.executeQuery();
+            int i = 0;
+            
+            //ENCABEZADOS
+            HSSFRow myRow = mySheet.getRow(i);
+            if (myRow == null) {
+                myRow = mySheet.createRow(i);
+            }
+            HSSFCell myCell = myRow.createCell(0);
+            myCell.setCellValue(new HSSFRichTextString("NOMBRE"));
+            //Total
+            myCell = myRow.createCell(1);
+            myCell.setCellValue(new HSSFRichTextString("TOTAL"));
+            for (int h = 0; h < obrasIDlist.size(); h++) {
+                myCell = myRow.createCell(h+2);
+                myCell.setCellValue(new HSSFRichTextString(obrasIDlist.get(h).getCodigo()));
+            }
+            while (rs.next()) {
+                i++;
+                myRow = mySheet.getRow(i);
+                if (myRow == null) {
+                    myRow = mySheet.createRow(i);
+                }
+                //Nombre
+                myCell = myRow.createCell(0);
+                myCell.setCellValue(new HSSFRichTextString(rs.getString("nombre")));
+                //Total
+                HSSFCell myCellF = myRow.createCell(1);
+                int i2= i+1;
+                String formula = "SUM(C"+i2+":Z"+i2+")";
+                myCellF.setCellFormula(formula);
+                //Obras
+                for (int j = 0; j < obrasIDlist.size(); j++) {           
+                    myCell = myRow.createCell(j+2);
+                    int value = Integer.parseInt(rs.getString("obra"+obrasIDlist.get(j).getId()));
+                    myCell.setCellValue(value);
+                }
+                
+                HSSFFormulaEvaluator evaluador = new HSSFFormulaEvaluator(myWorkBook) ;
+                evaluador.evaluate(myCellF);
+
+            }
+            for (int b = 0; b < i; b++){
+                mySheet.autoSizeColumn((short)b); //ajusta el ancho de la primera columna
+                
+            }
+            
+        
+          
+            FileOutputStream out = new FileOutputStream(dest);
+            myWorkBook.write(out);
+            Desktop.getDesktop().open(new File(dest));
+            out.close();
+             
+
+            
+            /*URL master = null;
+            Map parametro = new HashMap();
+            parametro.put("sqlQuery", query);
+            
+            master = getClass().getResource("/Reportes/combustible/InformeCombustibleResumen.jasper");
+            System.out.println("Cargando desde: " + master);
+            if (master == null) {
+                System.out.println("No se encuentra el archivo master.");
+                //System.exit(2);
+            }
+            JasperReport masterReport = (JasperReport) JRLoader.loadObject(master);
+            JasperPrint jasperPrint = JasperFillManager.fillReport(masterReport, parametro, conector);
+            //JasperPrintManager.printReport(jasperPrint, false);
+            JasperViewer jviewer = new JasperViewer(jasperPrint, false);
+
+            jviewer.setModalExclusionType(ModalExclusionType.APPLICATION_EXCLUDE);
+            jviewer.setTitle("Informe");
+
+            jviewer.setVisible(true);
+
+        } catch (JRException j) {
+            System.out.print(j.getMessage());
+        }*/
+        } catch (SQLException ex){
+        } catch (Exception e) {
+                e.printStackTrace();
+        }
+        
+    }
     
 }

@@ -20,7 +20,9 @@ import DAO.ReportesDAO;
 import Modelo.Equipos;
 import Modelo.EstacionServicio;
 import Modelo.InformesHoras;
+import Modelo.ItemObra;
 import Modelo.Obras;
+import Modelo.ObrasTablaInforme;
 import Modelo.Operario;
 import Modelo.Registro;
 import Vista.OpcionPanel;
@@ -29,6 +31,7 @@ import Vista.PanelTabAzul;
 import java.awt.Desktop;
 import java.io.File;
 import java.io.IOException;
+import java.lang.Integer;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.logging.Level;
@@ -187,6 +190,18 @@ public class JDReportes extends javax.swing.JDialog {
         btnInformeCombustiblePlataforma = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
+        jPanel27 = new PanelAzul();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        jLabel16 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
+        ObrasCustomFechaDesde = new com.toedter.calendar.JDateChooser();
+        ObrasCustomFechaHasta = new com.toedter.calendar.JDateChooser();
+        jLabel18 = new javax.swing.JLabel();
+        isOperarioSelectedCustomInforme = new javax.swing.JCheckBox();
+        lblOperarioSelected = new javax.swing.JLabel();
+        btnBuscarEmpleado = new javax.swing.JButton();
+        jButton12 = new javax.swing.JButton();
         jButton15 = new javax.swing.JButton();
 
         informeHorasDialog.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -261,53 +276,51 @@ public class JDReportes extends javax.swing.JDialog {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addContainerGap()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel7)
+                                .addGap(24, 24, 24)
+                                .addComponent(mesPeriodo, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel4)
+                                .addComponent(jLabel8)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(operariosCombo, 0, 377, Short.MAX_VALUE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(botonBuscarEmpleado))
+                                .addComponent(añoPeriodo, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addGap(37, 37, 37)
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(desdeFecha, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(hastaFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(28, 28, 28)
-                        .addComponent(jLabel7)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel5))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(mesPeriodo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel8)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(añoPeriodo, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                .addComponent(desdeFecha, javax.swing.GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel6)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(hastaFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(operariosCombo, 0, 377, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(botonBuscarEmpleado)))))
                 .addContainerGap())
         );
-
-        jPanel2Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {desdeFecha, hastaFecha});
-
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(jLabel4)
                     .addComponent(operariosCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botonBuscarEmpleado))
+                    .addComponent(botonBuscarEmpleado)
+                    .addComponent(jLabel4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(hastaFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -316,10 +329,10 @@ public class JDReportes extends javax.swing.JDialog {
                     .addComponent(jLabel5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(mesPeriodo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7)
                     .addComponent(jLabel8)
-                    .addComponent(añoPeriodo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(añoPeriodo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7)
+                    .addComponent(mesPeriodo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton4)
@@ -927,7 +940,7 @@ public class JDReportes extends javax.swing.JDialog {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 219, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 239, Short.MAX_VALUE)
                         .addComponent(generarDetalleRegistroButton, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel1))
                 .addContainerGap())
@@ -971,9 +984,9 @@ public class JDReportes extends javax.swing.JDialog {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel9)
                     .addComponent(jLabel10))
-                .addContainerGap(93, Short.MAX_VALUE))
+                .addContainerGap(113, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(364, Short.MAX_VALUE)
+                .addContainerGap(384, Short.MAX_VALUE)
                 .addComponent(generarInformesHorasButton, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -1044,9 +1057,9 @@ public class JDReportes extends javax.swing.JDialog {
             .addGroup(jPanel25Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel15)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(32, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel25Layout.createSequentialGroup()
-                .addContainerGap(76, Short.MAX_VALUE)
+                .addContainerGap(96, Short.MAX_VALUE)
                 .addComponent(generarExportacion, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -1103,7 +1116,7 @@ public class JDReportes extends javax.swing.JDialog {
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel25, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(72, 72, 72))
+                .addGap(245, 245, 245))
         );
 
         jPanel6Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jPanel16, jPanel25});
@@ -1230,7 +1243,7 @@ public class JDReportes extends javax.swing.JDialog {
                         .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(50, Short.MAX_VALUE))
+                .addContainerGap(70, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1239,9 +1252,9 @@ public class JDReportes extends javax.swing.JDialog {
                 .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(245, Short.MAX_VALUE))
+                    .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(414, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab(resourceMap.getString("jPanel5.TabConstraints.tabTitle"), jPanel5); // NOI18N
@@ -1269,10 +1282,10 @@ public class JDReportes extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel14Layout.createSequentialGroup()
-                        .addComponent(lblEquiposSelect, javax.swing.GroupLayout.DEFAULT_SIZE, 577, Short.MAX_VALUE)
+                        .addComponent(lblEquiposSelect, javax.swing.GroupLayout.DEFAULT_SIZE, 597, Short.MAX_VALUE)
                         .addContainerGap())
                     .addGroup(jPanel14Layout.createSequentialGroup()
-                        .addComponent(selectEquiposBoton, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
+                        .addComponent(selectEquiposBoton, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE)
                         .addGap(421, 421, 421))))
         );
         jPanel14Layout.setVerticalGroup(
@@ -1326,7 +1339,7 @@ public class JDReportes extends javax.swing.JDialog {
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel14, javax.swing.GroupLayout.DEFAULT_SIZE, 601, Short.MAX_VALUE)
+                    .addComponent(jPanel14, javax.swing.GroupLayout.DEFAULT_SIZE, 621, Short.MAX_VALUE)
                     .addComponent(jPanel15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
@@ -1336,8 +1349,8 @@ public class JDReportes extends javax.swing.JDialog {
                 .addContainerGap()
                 .addComponent(jPanel14, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel15, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(249, Short.MAX_VALUE))
+                .addComponent(jPanel15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(418, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab(resourceMap.getString("jPanel7.TabConstraints.tabTitle"), jPanel7); // NOI18N
@@ -1369,9 +1382,9 @@ public class JDReportes extends javax.swing.JDialog {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel20Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(obraSeleccionadaConsumo, javax.swing.GroupLayout.DEFAULT_SIZE, 297, Short.MAX_VALUE)
+                    .addComponent(obraSeleccionadaConsumo, javax.swing.GroupLayout.DEFAULT_SIZE, 307, Short.MAX_VALUE)
                     .addGroup(jPanel20Layout.createSequentialGroup()
-                        .addComponent(selectConsumoObraBoton, javax.swing.GroupLayout.DEFAULT_SIZE, 106, Short.MAX_VALUE)
+                        .addComponent(selectConsumoObraBoton, javax.swing.GroupLayout.DEFAULT_SIZE, 116, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
                         .addComponent(btnInformeCombustibleObra, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
@@ -1411,10 +1424,10 @@ public class JDReportes extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel21Layout.createSequentialGroup()
-                        .addComponent(jButton13, javax.swing.GroupLayout.DEFAULT_SIZE, 106, Short.MAX_VALUE)
+                        .addComponent(jButton13, javax.swing.GroupLayout.DEFAULT_SIZE, 116, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
                         .addComponent(btnInformeCombustibleEquipo, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(lblEquiposCombustible, javax.swing.GroupLayout.DEFAULT_SIZE, 297, Short.MAX_VALUE))
+                    .addComponent(lblEquiposCombustible, javax.swing.GroupLayout.DEFAULT_SIZE, 307, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel21Layout.setVerticalGroup(
@@ -1446,7 +1459,7 @@ public class JDReportes extends javax.swing.JDialog {
             jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel22Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton11, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
+                .addComponent(jButton11, javax.swing.GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel22Layout.setVerticalGroup(
@@ -1454,7 +1467,7 @@ public class JDReportes extends javax.swing.JDialog {
             .addGroup(jPanel22Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jButton11)
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
 
         jPanel19.setBorder(javax.swing.BorderFactory.createTitledBorder(resourceMap.getString("jPanel19.border.title"))); // NOI18N
@@ -1480,9 +1493,9 @@ public class JDReportes extends javax.swing.JDialog {
             .addGroup(jPanel19Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblPlataformaCombustible, javax.swing.GroupLayout.DEFAULT_SIZE, 297, Short.MAX_VALUE)
+                    .addComponent(lblPlataformaCombustible, javax.swing.GroupLayout.DEFAULT_SIZE, 307, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel19Layout.createSequentialGroup()
-                        .addComponent(btnSeleccionPlataforma, javax.swing.GroupLayout.DEFAULT_SIZE, 106, Short.MAX_VALUE)
+                        .addComponent(btnSeleccionPlataforma, javax.swing.GroupLayout.DEFAULT_SIZE, 116, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
                         .addComponent(btnInformeCombustiblePlataforma, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
@@ -1549,17 +1562,122 @@ public class JDReportes extends javax.swing.JDialog {
                         .addComponent(jLabel14)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(hastaConsumoObra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jPanel20, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanel20, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel22, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel21, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel19, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(128, Short.MAX_VALUE))
+                .addContainerGap(293, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab(resourceMap.getString("jPanel17.TabConstraints.tabTitle"), jPanel17); // NOI18N
+
+        jPanel27.setName("jPanel27"); // NOI18N
+        jPanel27.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                jPanel27ComponentShown(evt);
+            }
+        });
+
+        jScrollPane4.setName("jScrollPane4"); // NOI18N
+
+        jTable1.setModel(modelObraSelected);
+        modelObraSelected.addRegistro(new ItemObra());
+        jTable1.setName("jTable1"); // NOI18N
+        jTable1.setOpaque(false);
+        jScrollPane4.setViewportView(jTable1);
+
+        jLabel16.setText(resourceMap.getString("jLabel16.text")); // NOI18N
+        jLabel16.setName("jLabel16"); // NOI18N
+
+        jLabel17.setText(resourceMap.getString("jLabel17.text")); // NOI18N
+        jLabel17.setName("jLabel17"); // NOI18N
+
+        ObrasCustomFechaDesde.setName("ObrasCustomFechaDesde"); // NOI18N
+
+        ObrasCustomFechaHasta.setName("ObrasCustomFechaHasta"); // NOI18N
+
+        jLabel18.setText(resourceMap.getString("jLabel18.text")); // NOI18N
+        jLabel18.setName("jLabel18"); // NOI18N
+
+        isOperarioSelectedCustomInforme.setText(resourceMap.getString("isOperarioSelectedCustomInforme.text")); // NOI18N
+        isOperarioSelectedCustomInforme.setName("isOperarioSelectedCustomInforme"); // NOI18N
+        isOperarioSelectedCustomInforme.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                isOperarioSelectedCustomInformeItemStateChanged(evt);
+            }
+        });
+
+        lblOperarioSelected.setFont(lblOperarioSelected.getFont().deriveFont(lblOperarioSelected.getFont().getStyle() | java.awt.Font.BOLD, lblOperarioSelected.getFont().getSize()+2));
+        lblOperarioSelected.setText(resourceMap.getString("lblOperarioSelected.text")); // NOI18N
+        lblOperarioSelected.setName("lblOperarioSelected"); // NOI18N
+
+        btnBuscarEmpleado.setAction(actionMap.get("mostrarBusquedaEmpleado")); // NOI18N
+        btnBuscarEmpleado.setIcon(resourceMap.getIcon("btnBuscarEmpleado.icon")); // NOI18N
+        btnBuscarEmpleado.setText(resourceMap.getString("btnBuscarEmpleado.text")); // NOI18N
+        btnBuscarEmpleado.setEnabled(false);
+        btnBuscarEmpleado.setName("btnBuscarEmpleado"); // NOI18N
+
+        jButton12.setAction(actionMap.get("generarInformeCustom")); // NOI18N
+        jButton12.setText(resourceMap.getString("jButton12.text")); // NOI18N
+        jButton12.setName("jButton12"); // NOI18N
+
+        javax.swing.GroupLayout jPanel27Layout = new javax.swing.GroupLayout(jPanel27);
+        jPanel27.setLayout(jPanel27Layout);
+        jPanel27Layout.setHorizontalGroup(
+            jPanel27Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel27Layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(jPanel27Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 621, Short.MAX_VALUE)
+                    .addComponent(jLabel17, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel18, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel27Layout.createSequentialGroup()
+                        .addGroup(jPanel27Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel16)
+                            .addGroup(jPanel27Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(ObrasCustomFechaHasta, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(ObrasCustomFechaDesde, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE)))
+                        .addGap(86, 86, 86)
+                        .addGroup(jPanel27Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblOperarioSelected, javax.swing.GroupLayout.DEFAULT_SIZE, 363, Short.MAX_VALUE)
+                            .addGroup(jPanel27Layout.createSequentialGroup()
+                                .addComponent(isOperarioSelectedCustomInforme)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 181, Short.MAX_VALUE)
+                                .addComponent(btnBuscarEmpleado))
+                            .addComponent(jButton12, javax.swing.GroupLayout.DEFAULT_SIZE, 363, Short.MAX_VALUE))))
+                .addContainerGap())
+        );
+        jPanel27Layout.setVerticalGroup(
+            jPanel27Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel27Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel27Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(btnBuscarEmpleado)
+                    .addComponent(isOperarioSelectedCustomInforme)
+                    .addComponent(jLabel16))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel27Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel27Layout.createSequentialGroup()
+                        .addComponent(ObrasCustomFechaDesde, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel17)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(ObrasCustomFechaHasta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel27Layout.createSequentialGroup()
+                        .addComponent(lblOperarioSelected)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton12)))
+                .addGap(18, 18, 18)
+                .addComponent(jLabel18)
+                .addGap(9, 9, 9)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 433, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        jTabbedPane1.addTab(resourceMap.getString("jPanel27.TabConstraints.tabTitle"), jPanel27); // NOI18N
 
         jButton15.setIcon(resourceMap.getIcon("jButton15.icon")); // NOI18N
         jButton15.setText(resourceMap.getString("jButton15.text")); // NOI18N
@@ -1574,9 +1692,9 @@ public class JDReportes extends javax.swing.JDialog {
         jPanel26.setLayout(jPanel26Layout);
         jPanel26Layout.setHorizontalGroup(
             jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 766, Short.MAX_VALUE)
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 786, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel26Layout.createSequentialGroup()
-                .addContainerGap(676, Short.MAX_VALUE)
+                .addContainerGap(696, Short.MAX_VALUE)
                 .addComponent(jButton15)
                 .addContainerGap())
         );
@@ -1627,11 +1745,16 @@ public class JDReportes extends javax.swing.JDialog {
     if (listEmpl.isEmpty() || listaEmpleados.isSelectionEmpty()) {
         //nothing
     } else {
-        if(opcion==0)
-        operariosCombo.setSelectedItem((Operario) listaEmpleados.getSelectedValue());
-        else{
-           operariosCombo1.setSelectedItem((Operario) listaEmpleados.getSelectedValue()); 
+        operarioSelect = (Operario) listaEmpleados.getSelectedValue();
+        switch(opcion){
+            case 0:
+                operariosCombo.setSelectedItem((Operario) listaEmpleados.getSelectedValue());
+                break;
+            case 1:
+                operariosCombo1.setSelectedItem((Operario) listaEmpleados.getSelectedValue()); 
+                break;
         }
+        lblOperarioSelected.setText(operarioSelect.toString());
         buscarEmpleado.dispose();
         query1.setText("");
         listEmpl.removeAllElements();
@@ -1686,6 +1809,17 @@ public class JDReportes extends javax.swing.JDialog {
     private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
         dispose();
     }//GEN-LAST:event_jButton15ActionPerformed
+
+    private void isOperarioSelectedCustomInformeItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_isOperarioSelectedCustomInformeItemStateChanged
+        
+            btnBuscarEmpleado.setEnabled(isOperarioSelectedCustomInforme.isSelected());
+    }//GEN-LAST:event_isOperarioSelectedCustomInformeItemStateChanged
+
+    private void jPanel27ComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jPanel27ComponentShown
+        //lblOperarioSelected.setText(new Date().toString());
+        Task t = ObrasListadoSeleccionInforme();
+        t.execute();
+    }//GEN-LAST:event_jPanel27ComponentShown
 
     /**
      * @param args the command line arguments
@@ -1771,6 +1905,16 @@ public class JDReportes extends javax.swing.JDialog {
     @Action
     public Task generarInformeHorasMes() {
         return new GenerarInformeHorasMesTask(org.jdesktop.application.Application.getInstance(zilleprojects.ZilleProjectsApp.class));
+    }
+
+    private int countObrasSelected() {
+        int count = 0;
+        for(int i =0; i<modelObraSelected.getRowCount(); i++){
+            if(modelObraSelected.getFila(i).isSelected()){
+                count++;
+            }
+        }
+        return count;
     }
 
     private class GenerarInformeHorasMesTask extends org.jdesktop.application.Task<Object, Void> {
@@ -1940,8 +2084,10 @@ public class JDReportes extends javax.swing.JDialog {
         }
         if(botonBuscarEmpleado1.isShowing()){
             opcion=1;
+        }else{
+         opcion = 2;
         }
-        System.out.println("Opcion Presionada: "+opcion);
+        
     }
 
      @Action
@@ -2469,7 +2615,7 @@ public class JDReportes extends javax.swing.JDialog {
     }
 
     @Action
-    public Task nerarExportacionAction() {
+    public Task generarExportacionAction() {
         if(periodo.isEmpty()){
             OpcionPanel.showMessageDialog(null, "Seleccione un periodo", "Ningún periodo seleccionado", OpcionPanel.ERROR_MESSAGE);
             return null;
@@ -2554,7 +2700,128 @@ public class JDReportes extends javax.swing.JDialog {
 
 
 
+    @Action
+    public Task ObrasListadoSeleccionInforme() {
+        
+        return new ObrasListadoSeleccionInformeTask(org.jdesktop.application.Application.getInstance(zilleprojects.ZilleProjectsApp.class));
+    }
 
+    private class ObrasListadoSeleccionInformeTask extends org.jdesktop.application.Task<Object, Void> {
+        
+       
+        ObrasListadoSeleccionInformeTask(org.jdesktop.application.Application app) {
+            super(app);
+                       
+        }
+        @Override protected Object doInBackground() {
+            ObrasDAO dao = new ObrasDAO();
+            dao.conectar();
+            obrasListado = dao.cargarTodos();
+            return null;  // return your result
+        }
+        @Override protected void succeeded(Object result) {
+            modelObraSelected.clean();
+            for(Obras o : obrasListado){
+                ItemObra io = new ItemObra();
+                io.cast(o);
+                modelObraSelected.addRegistro(io);
+            }
+            jTable1.getColumnModel().getColumn(0).setWidth(26);
+            jTable1.getColumnModel().getColumn(0).setMaxWidth(35);
+        }
+    }
+
+    
+    /*
+     @Action
+    public Task ObrasListadoSeleccionInforme() {
+        
+        return new ObrasListadoSeleccionInformeTask(org.jdesktop.application.Application.getInstance(zilleprojects.ZilleProjectsApp.class));
+    }
+
+    private class ObrasListadoSeleccionInformeTask extends org.jdesktop.application.Task<Object, Void> {
+        
+        Date desde, hasta;
+        ObrasListadoSeleccionInformeTask(org.jdesktop.application.Application app) {
+            super(app);
+            desde = desdeConsumoObra.getDate();
+            hasta = hastaConsumoObra.getDate();
+            
+        }
+        @Override protected Object doInBackground() {
+            ObrasDAO dao = new ObrasDAO();
+            dao.conectar();
+            obrasListado = dao.cargarTodos();
+            return null;  // return your result
+        }
+        @Override protected void succeeded(Object result) {
+            modelObraSelected.clean();
+            for(Obras o : obrasListado){
+                ItemObra io = (ItemObra) o;
+                modelObraSelected.addRegistro(io);
+            }
+        }
+    }
+     
+     
+     
+     */
+
+    @Action
+    public Task generarInformeCustom() {
+        if(ObrasCustomFechaDesde.getDate() == null || ObrasCustomFechaHasta.getDate() == null){
+            OpcionPanel.showMessageDialog(null, "Seleccione un rango de fechas", "Aviso",OpcionPanel.INFORMATION_MESSAGE);
+            return null;
+        }
+        if(isOperarioSelectedCustomInforme.isSelected() && ( operarioSelect == null || operarioSelect.getId() == 0)){
+            OpcionPanel.showMessageDialog(null, "Seleccione un operario o desactive la opción", "Aviso",OpcionPanel.INFORMATION_MESSAGE);
+            return null;
+        }
+        if(countObrasSelected()== 0){
+            OpcionPanel.showMessageDialog(null, "No ha seleccionado ninguna obra", "Aviso",OpcionPanel.INFORMATION_MESSAGE);
+            return null;
+        }
+        return new GenerarInformeCustomTask(org.jdesktop.application.Application.getInstance(zilleprojects.ZilleProjectsApp.class));
+    }
+
+    private class GenerarInformeCustomTask extends org.jdesktop.application.Task<Object, Void> {
+        Date desde, hasta;
+        ArrayList<Obras> obrasIDlist = new ArrayList<Obras>();
+        GenerarInformeCustomTask(org.jdesktop.application.Application app) {
+            // Runs on the EDT.  Copy GUI state that
+            // doInBackground() depends on from parameters
+            // to GenerarInformeCustomTask fields, here.
+            super(app);
+            desde = ObrasCustomFechaDesde.getDate();
+            hasta = ObrasCustomFechaHasta.getDate();
+            obrasIDlist = generarArrayIdObras();
+        }
+        @Override protected Object doInBackground() {
+            ReportesDAO rDao = new ReportesDAO();
+            rDao.conectar();
+            if(operarioSelect == null || operarioSelect.getId() == 0){
+                rDao.reportCustom(0, obrasIDlist, desde, hasta);
+            }else{
+                rDao.reportCustom(operarioSelect.getId(), obrasIDlist, desde, hasta);
+            }
+            
+            
+            return null;  // return your result
+        }
+        @Override protected void succeeded(Object result) {
+            
+        }
+
+        private ArrayList<Obras> generarArrayIdObras() {
+            ArrayList<Obras> aux = new ArrayList<Obras>();
+            for(int i =0; i<modelObraSelected.getRowCount(); i++){
+                if(modelObraSelected.getFila(i).isSelected()){
+                    aux.add((Obras)modelObraSelected.getFila(i));
+                }
+            }
+            return aux;
+        }
+    }
 
 
 
@@ -2564,10 +2831,13 @@ public class JDReportes extends javax.swing.JDialog {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private com.toedter.calendar.JDateChooser ObrasCustomFechaDesde;
+    private com.toedter.calendar.JDateChooser ObrasCustomFechaHasta;
     private com.toedter.calendar.JYearChooser añoPeriodo;
     private javax.swing.JButton botonBuscarEmpleado;
     private javax.swing.JButton botonBuscarEmpleado1;
     private javax.swing.JButton botonQuery;
+    private javax.swing.JButton btnBuscarEmpleado;
     private javax.swing.JButton btnInformeCombustibleEquipo;
     private javax.swing.JButton btnInformeCombustibleObra;
     private javax.swing.JButton btnInformeCombustiblePlataforma;
@@ -2595,9 +2865,11 @@ public class JDReportes extends javax.swing.JDialog {
     private com.toedter.calendar.JDateChooser hastaFechaPersEqXObra;
     private javax.swing.JDialog informeDetalleHora;
     private javax.swing.JDialog informeHorasDialog;
+    private javax.swing.JCheckBox isOperarioSelectedCustomInforme;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
+    private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton13;
     private javax.swing.JButton jButton15;
     private javax.swing.JButton jButton2;
@@ -2615,6 +2887,9 @@ public class JDReportes extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -2643,6 +2918,7 @@ public class JDReportes extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel24;
     private javax.swing.JPanel jPanel25;
     private javax.swing.JPanel jPanel26;
+    private javax.swing.JPanel jPanel27;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
@@ -2653,13 +2929,16 @@ public class JDReportes extends javax.swing.JDialog {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTable jTable1;
     private javax.swing.JLabel lblEquiposCombustible;
     private javax.swing.JLabel lblEquiposSelect;
     private javax.swing.JLabel lblObraReportPersEqXObra;
+    private javax.swing.JLabel lblOperarioSelected;
     private javax.swing.JLabel lblPeriodo;
     private javax.swing.JLabel lblPlataformaCombustible;
     private javax.swing.JList listReportes;
@@ -2695,8 +2974,11 @@ public class JDReportes extends javax.swing.JDialog {
     private JDialog informesAnteriores;
     int opcion;
     DefaultListModel listReport = new DefaultListModel();
-    Obras obraSelect= null;
-    Equipos equipoSelect = null;
-    EstacionServicio estacionSelect = null;
+    Obras obraSelect= new Obras();
+    Equipos equipoSelect = new Equipos();
+    Operario operarioSelect = new Operario();
+    EstacionServicio estacionSelect = new EstacionServicio();
     String periodo = "";
+    ObrasTablaInforme modelObraSelected = new ObrasTablaInforme();
+    ArrayList<Obras> obrasListado = new ArrayList<Obras>();
 }

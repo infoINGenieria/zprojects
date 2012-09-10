@@ -56,6 +56,8 @@ public class Obras {
         this.codigo = codigo;
     }
     public Obras(){}
+    
+   
 
     public String getCodigo() {
         return codigo;
