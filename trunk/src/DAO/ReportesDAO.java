@@ -520,7 +520,11 @@ public class ReportesDAO {
                 + "LEFT JOIN obras OB ON PD.obra = OB.id "
                 + "LEFT JOIN operarios OP ON PD.operario = OP.id "
                 + "WHERE PD.fecha <= '"+FechaUtil.getFechaSQL(hasta)+"' AND PD.fecha >= '"+FechaUtil.getFechaSQL(desde)+"' "
-                + "AND PD.situacion =1 Group by OP.id ORDER BY OP.nombre asc";
+                + "AND PD.situacion =1 ";
+        if(idOperario != 0){
+                query += " AND PD.operario = " + idOperario;
+        }
+        query += " Group by OP.id ORDER BY OP.nombre asc";
         try {
             
             
