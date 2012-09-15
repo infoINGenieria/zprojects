@@ -2808,6 +2808,10 @@ public class JDReportes extends javax.swing.JDialog {
 
     @Action
     public Task generarInformeCustom() {
+        if(countObrasSelected() > 24){
+            OpcionPanel.showMessageDialog(null, "El límite máximo de obras seleccionadas es 24.", "Aviso",OpcionPanel.INFORMATION_MESSAGE);
+            return null;
+        }
         if(ObrasCustomFechaDesde.getDate() == null || ObrasCustomFechaHasta.getDate() == null){
             OpcionPanel.showMessageDialog(null, "Seleccione un rango de fechas", "Aviso",OpcionPanel.INFORMATION_MESSAGE);
             return null;

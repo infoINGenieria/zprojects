@@ -561,7 +561,7 @@ public class ReportesDAO {
                 //Total
                 HSSFCell myCellF = myRow.createCell(1);
                 int i2= i+1;
-                String formula = "SUM(C"+i2+":Z"+i2+")";
+                String formula = "SUM(C"+i2+":AA"+i2+")";
                 myCellF.setCellFormula(formula);
                 //Obras
                 for (int j = 0; j < obrasIDlist.size(); j++) {           
