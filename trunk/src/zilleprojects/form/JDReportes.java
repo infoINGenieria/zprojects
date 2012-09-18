@@ -1045,7 +1045,7 @@ public class JDReportes extends javax.swing.JDialog {
         jPanel25.setName("jPanel25"); // NOI18N
         jPanel25.setOpaque(false);
 
-        generarExportacion.setAction(actionMap.get("nerarExportacionAction")); // NOI18N
+        generarExportacion.setAction(actionMap.get("generarExportacionAction")); // NOI18N
         generarExportacion.setText(resourceMap.getString("generarExportacion.text")); // NOI18N
         generarExportacion.setName("generarExportacion"); // NOI18N
 
@@ -1118,7 +1118,7 @@ public class JDReportes extends javax.swing.JDialog {
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel25, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(269, 269, 269))
+                .addGap(289, 289, 289))
         );
 
         jPanel6Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jPanel16, jPanel25});
@@ -1256,7 +1256,7 @@ public class JDReportes extends javax.swing.JDialog {
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(430, Short.MAX_VALUE))
+                .addContainerGap(450, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab(resourceMap.getString("jPanel5.TabConstraints.tabTitle"), jPanel5); // NOI18N
@@ -1352,7 +1352,7 @@ public class JDReportes extends javax.swing.JDialog {
                 .addComponent(jPanel14, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(434, Short.MAX_VALUE))
+                .addContainerGap(454, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab(resourceMap.getString("jPanel7.TabConstraints.tabTitle"), jPanel7); // NOI18N
@@ -1571,7 +1571,7 @@ public class JDReportes extends javax.swing.JDialog {
                     .addComponent(jPanel21, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel19, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(313, Short.MAX_VALUE))
+                .addContainerGap(333, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab(resourceMap.getString("jPanel17.TabConstraints.tabTitle"), jPanel17); // NOI18N
@@ -1604,8 +1604,10 @@ public class JDReportes extends javax.swing.JDialog {
         jLabel18.setText(resourceMap.getString("jLabel18.text")); // NOI18N
         jLabel18.setName("jLabel18"); // NOI18N
 
+        isOperarioSelectedCustomInforme.setBackground(resourceMap.getColor("isOperarioSelectedCustomInforme.background")); // NOI18N
         isOperarioSelectedCustomInforme.setText(resourceMap.getString("isOperarioSelectedCustomInforme.text")); // NOI18N
         isOperarioSelectedCustomInforme.setName("isOperarioSelectedCustomInforme"); // NOI18N
+        isOperarioSelectedCustomInforme.setOpaque(true);
         isOperarioSelectedCustomInforme.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 isOperarioSelectedCustomInformeItemStateChanged(evt);
@@ -1619,6 +1621,7 @@ public class JDReportes extends javax.swing.JDialog {
         btnBuscarEmpleado.setAction(actionMap.get("mostrarBusquedaEmpleado")); // NOI18N
         btnBuscarEmpleado.setIcon(resourceMap.getIcon("btnBuscarEmpleado.icon")); // NOI18N
         btnBuscarEmpleado.setText(resourceMap.getString("btnBuscarEmpleado.text")); // NOI18N
+        btnBuscarEmpleado.setEnabled(false);
         btnBuscarEmpleado.setName("btnBuscarEmpleado"); // NOI18N
 
         jButton12.setAction(actionMap.get("generarInformeCustom")); // NOI18N
@@ -1665,9 +1668,9 @@ public class JDReportes extends javax.swing.JDialog {
                         .addGap(86, 86, 86)
                         .addGroup(jPanel27Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblOperarioSelected, javax.swing.GroupLayout.DEFAULT_SIZE, 355, Short.MAX_VALUE)
-                            .addGroup(jPanel27Layout.createSequentialGroup()
-                                .addComponent(isOperarioSelectedCustomInforme)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 173, Short.MAX_VALUE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel27Layout.createSequentialGroup()
+                                .addComponent(isOperarioSelectedCustomInforme, javax.swing.GroupLayout.DEFAULT_SIZE, 313, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnBuscarEmpleado))
                             .addComponent(jButton12, javax.swing.GroupLayout.DEFAULT_SIZE, 355, Short.MAX_VALUE))))
                 .addContainerGap())
@@ -1698,7 +1701,7 @@ public class JDReportes extends javax.swing.JDialog {
                     .addComponent(jButton14)
                     .addComponent(jButton16))
                 .addGap(9, 9, 9)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 433, Short.MAX_VALUE)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 453, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -2660,6 +2663,25 @@ public class JDReportes extends javax.swing.JDialog {
             return null;
         }        
         return new NerarExportacionActionTask(org.jdesktop.application.Application.getInstance(zilleprojects.ZilleProjectsApp.class));
+    }
+
+    private class GenerarExportacionActionTask extends org.jdesktop.application.Task<Object, Void> {
+        GenerarExportacionActionTask(org.jdesktop.application.Application app) {
+            // Runs on the EDT.  Copy GUI state that
+            // doInBackground() depends on from parameters
+            // to GenerarExportacionActionTask fields, here.
+            super(app);
+        }
+        @Override protected Object doInBackground() {
+            // Your Task's code here.  This method runs
+            // on a background thread, so don't reference
+            // the Swing GUI from here.
+            return null;  // return your result
+        }
+        @Override protected void succeeded(Object result) {
+            // Runs on the EDT.  Update the GUI based on
+            // the result computed by doInBackground().
+        }
     }
 
     private class NerarExportacionActionTask extends org.jdesktop.application.Task<Object, Void> {

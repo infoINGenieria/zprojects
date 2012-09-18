@@ -214,8 +214,10 @@
           <SubComponents>
             <Component class="javax.swing.JCheckBox" name="isReprogramar">
               <Properties>
+                <Property name="background" type="java.awt.Color" resourceKey="isReprogramar.background"/>
                 <Property name="text" type="java.lang.String" resourceKey="isReprogramar.text"/>
                 <Property name="name" type="java.lang.String" value="isReprogramar" noResource="true"/>
+                <Property name="opaque" type="boolean" value="true"/>
               </Properties>
               <Events>
                 <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="isReprogramarItemStateChanged"/>

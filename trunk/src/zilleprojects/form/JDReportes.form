@@ -1216,7 +1216,7 @@
                               <Component id="jPanel25" linkSize="14" max="32767" attributes="1"/>
                               <Component id="jPanel16" linkSize="14" alignment="0" min="-2" max="-2" attributes="1"/>
                           </Group>
-                          <EmptySpace min="-2" pref="269" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="289" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -1471,7 +1471,7 @@
                     <Component class="javax.swing.JButton" name="generarExportacion">
                       <Properties>
                         <Property name="action" type="javax.swing.Action" editor="org.netbeans.modules.swingapp.ActionEditor">
-                          <action class="zilleprojects.form.JDReportes" id="nerarExportacionAction" methodName="nerarExportacionAction"/>
+                          <action class="zilleprojects.form.JDReportes" id="generarExportacionAction" methodName="generarExportacionAction"/>
                         </Property>
                         <Property name="text" type="java.lang.String" resourceKey="generarExportacion.text"/>
                         <Property name="name" type="java.lang.String" value="generarExportacion" noResource="true"/>
@@ -1547,7 +1547,7 @@
                               <Component id="jPanel11" alignment="0" min="-2" max="-2" attributes="1"/>
                               <Component id="jPanel10" alignment="0" min="-2" max="-2" attributes="1"/>
                           </Group>
-                          <EmptySpace pref="430" max="32767" attributes="0"/>
+                          <EmptySpace pref="450" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -1776,7 +1776,7 @@
                           <Component id="jPanel14" min="-2" pref="64" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jPanel15" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="434" max="32767" attributes="0"/>
+                          <EmptySpace pref="454" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -1984,7 +1984,7 @@
                           </Group>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="jPanel19" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="313" max="32767" attributes="0"/>
+                          <EmptySpace pref="333" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -2332,9 +2332,9 @@
                                   <EmptySpace min="-2" pref="86" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="lblOperarioSelected" pref="355" max="32767" attributes="0"/>
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <Component id="isOperarioSelectedCustomInforme" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace pref="173" max="32767" attributes="0"/>
+                                      <Group type="102" alignment="1" attributes="0">
+                                          <Component id="isOperarioSelectedCustomInforme" pref="313" max="32767" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
                                           <Component id="btnBuscarEmpleado" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <Component id="jButton12" alignment="0" pref="355" max="32767" attributes="0"/>
@@ -2376,7 +2376,7 @@
                               <Component id="jButton16" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
-                          <Component id="jScrollPane4" pref="433" max="32767" attributes="0"/>
+                          <Component id="jScrollPane4" pref="453" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -2434,8 +2434,10 @@
                 </Component>
                 <Component class="javax.swing.JCheckBox" name="isOperarioSelectedCustomInforme">
                   <Properties>
+                    <Property name="background" type="java.awt.Color" resourceKey="isOperarioSelectedCustomInforme.background"/>
                     <Property name="text" type="java.lang.String" resourceKey="isOperarioSelectedCustomInforme.text"/>
                     <Property name="name" type="java.lang.String" value="isOperarioSelectedCustomInforme" noResource="true"/>
+                    <Property name="opaque" type="boolean" value="true"/>
                   </Properties>
                   <Events>
                     <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="isOperarioSelectedCustomInformeItemStateChanged"/>
@@ -2459,6 +2461,7 @@
                     </Property>
                     <Property name="icon" type="javax.swing.Icon" resourceKey="btnBuscarEmpleado.icon"/>
                     <Property name="text" type="java.lang.String" resourceKey="btnBuscarEmpleado.text"/>
+                    <Property name="enabled" type="boolean" value="false"/>
                     <Property name="name" type="java.lang.String" value="btnBuscarEmpleado" noResource="true"/>
                   </Properties>
                 </Component>

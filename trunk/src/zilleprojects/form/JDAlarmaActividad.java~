@@ -108,10 +108,8 @@ public class JDAlarmaActividad extends javax.swing.JDialog {
         jPanel2.setName("jPanel2"); // NOI18N
         jPanel2.setOpaque(false);
 
-        isReprogramar.setBackground(resourceMap.getColor("isReprogramar.background")); // NOI18N
         isReprogramar.setText(resourceMap.getString("isReprogramar.text")); // NOI18N
         isReprogramar.setName("isReprogramar"); // NOI18N
-        isReprogramar.setOpaque(true);
         isReprogramar.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 isReprogramarItemStateChanged(evt);
