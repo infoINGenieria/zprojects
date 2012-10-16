@@ -507,16 +507,7 @@ public class ReportesDAO {
         HSSFWorkbook myWorkBook = new HSSFWorkbook();
         HSSFSheet mySheet = myWorkBook.createSheet();
         
-        String query= "select  OP.nombre ";
-        /*query += ", (select count(PD2.id) from partediario as PD2 where PD2.operario = OP.id "
-                + "AND PD2.fecha <= '"+ FechaUtil.getFechaSQL(hasta) + "' AND PD2.fecha >= '"+ 
-                FechaUtil.getFechaSQL(desde) +"') as total ";*/
-        for(int i = 0; i < obrasIDlist.size(); i++){
-            query += ", (select count(PD1.id) from partediario as PD1 where PD1.operario = OP.id AND "+
-                    "PD1.fecha <= '"+ FechaUtil.getFechaSQL(hasta) + "' AND PD1.fecha >= '"+
-                     FechaUtil.getFechaSQL(desde) +"' and OB.id = "+ obrasIDlist.get(i).getId() +") as obra"+obrasIDlist.get(i).getId();
-        }
-        query += " FROM partediario PD "
+        String query= "select  OP.nombre, OP.id FROM partediario PD "
                 + "LEFT JOIN obras OB ON PD.obra = OB.id "
                 + "LEFT JOIN operarios OP ON PD.operario = OP.id "
                 + "WHERE PD.fecha <= '"+FechaUtil.getFechaSQL(hasta)+"' AND PD.fecha >= '"+FechaUtil.getFechaSQL(desde)+"' "
@@ -527,90 +518,64 @@ public class ReportesDAO {
         query += " Group by OP.id ORDER BY OP.nombre asc";
         try {
             
-            
-
-            
-            
             PreparedStatement ps = conector.prepareStatement(query);
             ResultSet rs = ps.executeQuery();
             int i = 0;
             
-            //ENCABEZADOS
+        //ENCABEZADOS
             HSSFRow myRow = mySheet.getRow(i);
-            if (myRow == null) {
-                myRow = mySheet.createRow(i);
-            }
+            if (myRow == null) { myRow = mySheet.createRow(i); }
             HSSFCell myCell = myRow.createCell(0);
             myCell.setCellValue(new HSSFRichTextString("NOMBRE"));
-            //Total
+        //TOTAL
             myCell = myRow.createCell(1);
             myCell.setCellValue(new HSSFRichTextString("TOTAL"));
+        //OBRAS
             for (int h = 0; h < obrasIDlist.size(); h++) {
                 myCell = myRow.createCell(h+2);
                 myCell.setCellValue(new HSSFRichTextString(obrasIDlist.get(h).getCodigo()));
             }
+        //Datos
             while (rs.next()) {
                 i++;
                 myRow = mySheet.getRow(i);
                 if (myRow == null) {
                     myRow = mySheet.createRow(i);
                 }
-                //Nombre
+            //Nombre
                 myCell = myRow.createCell(0);
                 myCell.setCellValue(new HSSFRichTextString(rs.getString("nombre")));
-                //Total
+            //Total
                 HSSFCell myCellF = myRow.createCell(1);
                 int i2= i+1;
                 String formula = "SUM(C"+i2+":AA"+i2+")";
                 myCellF.setCellFormula(formula);
-                //Obras
-                for (int j = 0; j < obrasIDlist.size(); j++) {           
+            //Obras
+                    for (int j = 0; j < obrasIDlist.size(); j++) {    
+                    String subq = "select count(PD.obra) as cantidad FROM partediario PD WHERE PD.fecha <= '"+
+                            FechaUtil.getFechaSQL(hasta)+"' AND PD.fecha >= '"+ FechaUtil.getFechaSQL(desde) +
+                            "' AND PD.situacion =1 AND PD.obra = "+ obrasIDlist.get(j).getId() + " and PD.operario = "+
+                            rs.getInt("id");
+                    ps = conector.prepareStatement(subq);
+                    ResultSet rs2 = ps.executeQuery();
                     myCell = myRow.createCell(j+2);
-                    int value = Integer.parseInt(rs.getString("obra"+obrasIDlist.get(j).getId()));
+                    int value = 0;
+                    if(rs2.next()){
+                        value = rs2.getInt("cantidad"); 
+                    }
                     myCell.setCellValue(value);
                 }
-                
                 HSSFFormulaEvaluator evaluador = new HSSFFormulaEvaluator(myWorkBook) ;
                 evaluador.evaluate(myCellF);
-
             }
             for (int b = 0; b < i; b++){
                 mySheet.autoSizeColumn((short)b); //ajusta el ancho de la primera columna
-                
-            }
-            
-        
-          
+            }          
             FileOutputStream out = new FileOutputStream(dest);
             myWorkBook.write(out);
             Desktop.getDesktop().open(new File(dest));
             out.close();
-             
-
             
-            /*URL master = null;
-            Map parametro = new HashMap();
-            parametro.put("sqlQuery", query);
-            
-            master = getClass().getResource("/Reportes/combustible/InformeCombustibleResumen.jasper");
-            System.out.println("Cargando desde: " + master);
-            if (master == null) {
-                System.out.println("No se encuentra el archivo master.");
-                //System.exit(2);
-            }
-            JasperReport masterReport = (JasperReport) JRLoader.loadObject(master);
-            JasperPrint jasperPrint = JasperFillManager.fillReport(masterReport, parametro, conector);
-            //JasperPrintManager.printReport(jasperPrint, false);
-            JasperViewer jviewer = new JasperViewer(jasperPrint, false);
-
-            jviewer.setModalExclusionType(ModalExclusionType.APPLICATION_EXCLUDE);
-            jviewer.setTitle("Informe");
-
-            jviewer.setVisible(true);
-
-        } catch (JRException j) {
-            System.out.print(j.getMessage());
-        }*/
         } catch (SQLException ex){
         } catch (Exception e) {
                 e.printStackTrace();
