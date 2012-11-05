@@ -196,6 +196,42 @@ public class InformesHorasDAO {
         return arrayInformes;
 
     }
+    public ArrayList<InformesHoras> findByPeriodoDistinct(String periodo) {
+        String query = null;
+        ArrayList<InformesHoras> arrayInformes = new ArrayList<InformesHoras>();
+        try {
+            query = "SELECT DISTINCT IH.* FROM partediario PD "
+                    + "LEFT JOIN operarios O ON PD.operario = O.id "
+                    + "LEFT JOIN informes_horas IH ON PD.operario = IH.id_operario "
+                    + "where IH.periodo like '"+ periodo+"' order by O.NOMBRE asc";
+            
+            PreparedStatement ps = conector.prepareStatement(query);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                InformesHoras ih = new InformesHoras();
+                ih.setId(rs.getInt("ID"));
+                ih.setDesdeF(rs.getDate("DESDE_F"));
+                ih.setHastaF(rs.getDate("HASTA_F"));
+                ih.setId_operario(rs.getInt("ID_OPERARIO"));
+                ih.setMultiFc(rs.getInt("MULTI_FC"));
+                ih.setPeriodo(rs.getString("PERIODO"));
+                ih.setTotal_100(rs.getFloat("TOTAL_100"));
+                ih.setTotal_50(rs.getFloat("TOTAL_50"));
+                ih.setTotal_hs_viaje(rs.getFloat("TOTAL_HS_VIAJE"));
+                ih.setTotal_normal(rs.getFloat("TOTAL_NORMAL"));
+                ih.setTotal_tarea(rs.getFloat("TOTAL_TAREA"));
+                ih.setX100Obras(rs.getString("X100OBRA"));
+                arrayInformes.add(ih);
+            }
+            rs.close();
+            ps.close();
+
+        } catch (SQLException ex) {
+            System.out.print("Falló al cargar los InformesHoras.\n");
+        }
+        return arrayInformes;
+
+    }
     
     public ArrayList<String> findPeriodoDistinct() {
         String query = null;

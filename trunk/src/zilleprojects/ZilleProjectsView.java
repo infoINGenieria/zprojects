@@ -1311,7 +1311,7 @@ public class ZilleProjectsView extends FrameView {
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 559, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelAlarmasLayout.createSequentialGroup()
                         .addGap(73, 73, 73)
-                        .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 432, Short.MAX_VALUE)
+                        .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 436, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
                         .addComponent(jButton2)))
                 .addContainerGap())
@@ -1324,7 +1324,7 @@ public class ZilleProjectsView extends FrameView {
                     .addComponent(jButton2)
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 202, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -1355,6 +1355,7 @@ public class ZilleProjectsView extends FrameView {
         menuBar.setName("menuBar"); // NOI18N
 
         fileMenu.setText(resourceMap.getString("fileMenu.text")); // NOI18N
+        fileMenu.setMargin(new java.awt.Insets(0, 10, 5, 10));
         fileMenu.setName("fileMenu"); // NOI18N
 
         iniciarSesion.setAction(actionMap.get("iniciarSesion")); // NOI18N
@@ -1376,6 +1377,7 @@ public class ZilleProjectsView extends FrameView {
         menuBar.add(fileMenu);
 
         jMenu4.setText(resourceMap.getString("jMenu4.text")); // NOI18N
+        jMenu4.setMargin(new java.awt.Insets(0, 10, 5, 10));
         jMenu4.setName("jMenu4"); // NOI18N
 
         jMenuItem3.setAction(actionMap.get("mostrarIngresarParte")); // NOI18N
@@ -1400,6 +1402,7 @@ public class ZilleProjectsView extends FrameView {
 
         EmpleadosMenu.setAction(actionMap.get("mostrarEstaciones")); // NOI18N
         EmpleadosMenu.setText(resourceMap.getString("EmpleadosMenu.text")); // NOI18N
+        EmpleadosMenu.setMargin(new java.awt.Insets(0, 10, 5, 10));
         EmpleadosMenu.setName("EmpleadosMenu"); // NOI18N
 
         gestionarMenu.setAction(actionMap.get("mostrarGestionOperario")); // NOI18N
@@ -1442,6 +1445,7 @@ public class ZilleProjectsView extends FrameView {
         jMenu5.setText(resourceMap.getString("jMenu5.text")); // NOI18N
         jMenu5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jMenu5.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        jMenu5.setMargin(new java.awt.Insets(0, 10, 5, 10));
         jMenu5.setName("jMenu5"); // NOI18N
 
         jMenuItem6.setAction(actionMap.get("verificarAlarmas")); // NOI18N
@@ -1458,6 +1462,7 @@ public class ZilleProjectsView extends FrameView {
         menuBar.add(jMenu5);
 
         jMenu1.setText(resourceMap.getString("jMenu1.text")); // NOI18N
+        jMenu1.setMargin(new java.awt.Insets(0, 10, 5, 10));
         jMenu1.setName("jMenu1"); // NOI18N
 
         jMenu3.setIcon(resourceMap.getIcon("jMenu3.icon")); // NOI18N
@@ -1481,6 +1486,7 @@ public class ZilleProjectsView extends FrameView {
         menuBar.add(jMenu1);
 
         jMenu2.setText(resourceMap.getString("jMenu2.text")); // NOI18N
+        jMenu2.setMargin(new java.awt.Insets(0, 10, 5, 10));
         jMenu2.setName("jMenu2"); // NOI18N
 
         backupDB.setAction(actionMap.get("RespaldarDB")); // NOI18N
@@ -1492,6 +1498,7 @@ public class ZilleProjectsView extends FrameView {
         menuBar.add(jMenu2);
 
         helpMenu.setText(resourceMap.getString("helpMenu.text")); // NOI18N
+        helpMenu.setMargin(new java.awt.Insets(0, 10, 5, 10));
         helpMenu.setName("helpMenu"); // NOI18N
 
         aboutMenuItem.setAction(actionMap.get("showAboutBox")); // NOI18N
@@ -1729,14 +1736,14 @@ public class ZilleProjectsView extends FrameView {
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout configurarConnDialogLayout = new javax.swing.GroupLayout(configurarConnDialog.getContentPane());
@@ -1828,7 +1835,7 @@ public class ZilleProjectsView extends FrameView {
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 94, Short.MAX_VALUE)
+                .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(outText, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -1933,8 +1940,8 @@ public class ZilleProjectsView extends FrameView {
                                 .addComponent(comboSituaciones, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel8Layout.createSequentialGroup()
                                     .addComponent(empleadoText, javax.swing.GroupLayout.PREFERRED_SIZE, 403, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(botonBuscarEmpleado))
+                                    .addGap(18, 18, 18)
+                                    .addComponent(botonBuscarEmpleado, javax.swing.GroupLayout.DEFAULT_SIZE, 46, Short.MAX_VALUE))
                                 .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel8Layout.createSequentialGroup()
                                     .addComponent(fechaChoose, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
@@ -1969,9 +1976,9 @@ public class ZilleProjectsView extends FrameView {
                     .addComponent(comboSituaciones, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(isHasta)
                     .addComponent(jLabel7)
                     .addComponent(fechaChoose, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(isHasta)
                     .addComponent(hastaDateChoose, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel4)
@@ -2006,6 +2013,7 @@ public class ZilleProjectsView extends FrameView {
         buscarEmpleado.setResizable(false);
         buscarEmpleado.setUndecorated(true);
 
+        jPanel9.setBorder(new javax.swing.border.LineBorder(resourceMap.getColor("jPanel9.border.lineColor"), 1, true)); // NOI18N
         jPanel9.setName("jPanel9"); // NOI18N
 
         jPanel10.setName("jPanel10"); // NOI18N
@@ -2062,6 +2070,7 @@ public class ZilleProjectsView extends FrameView {
         gridBagConstraints.ipadx = 10;
         gridBagConstraints.ipady = 30;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        gridBagConstraints.insets = new java.awt.Insets(2, 2, 0, 0);
         jPanel10.add(jScrollPane5, gridBagConstraints);
 
         exitDialog.setIcon(resourceMap.getIcon("exitDialog.icon")); // NOI18N
@@ -2089,9 +2098,9 @@ public class ZilleProjectsView extends FrameView {
             .addGroup(jPanel9Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, 476, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(11, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
-                .addContainerGap(205, Short.MAX_VALUE)
+                .addContainerGap(204, Short.MAX_VALUE)
                 .addComponent(selectRow, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(exitDialog)

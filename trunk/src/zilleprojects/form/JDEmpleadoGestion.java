@@ -251,7 +251,6 @@ public class JDEmpleadoGestion extends javax.swing.JDialog {
 
         desaChechMod.setText(resourceMap.getString("desaChechMod.text")); // NOI18N
         desaChechMod.setName("desaChechMod"); // NOI18N
-        desaChechMod.setOpaque(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 6;
         gridBagConstraints.gridy = 5;
@@ -422,7 +421,7 @@ public class JDEmpleadoGestion extends javax.swing.JDialog {
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         jPanel1.add(alertas, gridBagConstraints);
 
-        nuevoOperario.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(resourceMap.getColor("nuevoOperario.border.border.lineColor"), 1, true), resourceMap.getString("nuevoOperario.border.title"), javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), resourceMap.getColor("nuevoOperario.border.titleColor"))); // NOI18N
+        nuevoOperario.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(resourceMap.getColor("nuevoOperario.border.border.lineColor"), 1, true), resourceMap.getString("nuevoOperario.border.title"), javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, resourceMap.getColor("nuevoOperario.border.titleColor"))); // NOI18N
         nuevoOperario.setToolTipText(resourceMap.getString("nuevoOperario.toolTipText")); // NOI18N
         nuevoOperario.setName("nuevoOperario"); // NOI18N
         nuevoOperario.setOpaque(false);
@@ -561,7 +560,6 @@ public class JDEmpleadoGestion extends javax.swing.JDialog {
 
         desaCheck.setText(resourceMap.getString("desaCheck.text")); // NOI18N
         desaCheck.setName("desaCheck"); // NOI18N
-        desaCheck.setOpaque(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 5;
@@ -652,7 +650,7 @@ public class JDEmpleadoGestion extends javax.swing.JDialog {
                 .addComponent(botonModificar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(botonSalir)
-                .addContainerGap(88, Short.MAX_VALUE))
+                .addContainerGap(130, Short.MAX_VALUE))
         );
 
         jPanel2Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {botonEliminar, botonModificar, botonRecargar, botonSalir});
@@ -680,8 +678,8 @@ public class JDEmpleadoGestion extends javax.swing.JDialog {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelAzulLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(nuevoOperario, javax.swing.GroupLayout.DEFAULT_SIZE, 528, Short.MAX_VALUE))
+                    .addComponent(nuevoOperario, javax.swing.GroupLayout.DEFAULT_SIZE, 528, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         panelAzulLayout.setVerticalGroup(
@@ -691,8 +689,8 @@ public class JDEmpleadoGestion extends javax.swing.JDialog {
                 .addGroup(panelAzulLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, 0, 0, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelAzulLayout.createSequentialGroup()
-                        .addComponent(nuevoOperario, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addComponent(nuevoOperario, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(18, Short.MAX_VALUE))
         );

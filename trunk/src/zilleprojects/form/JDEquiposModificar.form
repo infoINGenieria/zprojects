@@ -91,18 +91,17 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jScrollPane1" alignment="0" pref="410" max="32767" attributes="2"/>
+                          <Component id="jScrollPane1" alignment="0" pref="443" max="32767" attributes="2"/>
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="1" attributes="0">
                                   <Group type="102" attributes="0">
-                                      <EmptySpace max="32767" attributes="0"/>
                                       <Component id="dominioOp" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                       <Component id="nInt" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                       <Component id="marcaOp" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <Component id="buscarText" pref="199" max="32767" attributes="1"/>
+                                  <Component id="buscarText" pref="228" max="32767" attributes="1"/>
                               </Group>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
@@ -113,7 +112,7 @@
                                   </Group>
                                   <Component id="añoOp" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -124,8 +123,8 @@
                   <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="botonBuscar" alignment="2" min="-2" max="-2" attributes="1"/>
-                          <Component id="todosAutos" alignment="2" min="-2" pref="33" max="-2" attributes="1"/>
+                          <Component id="botonBuscar" linkSize="8" alignment="2" min="-2" max="-2" attributes="1"/>
+                          <Component id="todosAutos" linkSize="8" alignment="2" min="-2" max="-2" attributes="1"/>
                           <Component id="buscarText" alignment="0" min="-2" pref="31" max="-2" attributes="1"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
@@ -136,7 +135,7 @@
                           <Component id="añoOp" alignment="2" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jScrollPane1" pref="304" max="32767" attributes="0"/>
+                      <Component id="jScrollPane1" pref="298" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -207,7 +206,6 @@
                 <Property name="selected" type="boolean" value="true"/>
                 <Property name="text" type="java.lang.String" resourceKey="dominioOp.text"/>
                 <Property name="name" type="java.lang.String" value="dominioOp" noResource="true"/>
-                <Property name="opaque" type="boolean" value="false"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JRadioButton" name="nInt">
@@ -217,7 +215,6 @@
                 </Property>
                 <Property name="text" type="java.lang.String" resourceKey="nInt.text"/>
                 <Property name="name" type="java.lang.String" value="nInt" noResource="true"/>
-                <Property name="opaque" type="boolean" value="false"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JRadioButton" name="marcaOp">
@@ -227,7 +224,6 @@
                 </Property>
                 <Property name="text" type="java.lang.String" resourceKey="marcaOp.text"/>
                 <Property name="name" type="java.lang.String" value="marcaOp" noResource="true"/>
-                <Property name="opaque" type="boolean" value="false"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JRadioButton" name="a&#xf1;oOp">
@@ -237,7 +233,6 @@
                 </Property>
                 <Property name="text" type="java.lang.String" resourceKey="a&#xf1;oOp.text"/>
                 <Property name="name" type="java.lang.String" value="a&#xf1;oOp" noResource="true"/>
-                <Property name="opaque" type="boolean" value="false"/>
               </Properties>
             </Component>
           </SubComponents>
@@ -251,8 +246,12 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="1" attributes="0">
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jPanel3" pref="452" max="32767" attributes="1"/>
+                          </Group>
                           <Group type="102" alignment="1" attributes="0">
                               <Group type="103" groupAlignment="1" attributes="0">
                                   <Group type="102" alignment="1" attributes="0">
@@ -272,11 +271,7 @@
                                   <Component id="jButton1" linkSize="7" alignment="0" pref="138" max="32767" attributes="1"/>
                               </Group>
                           </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jPanel3" pref="452" max="32767" attributes="1"/>
-                          </Group>
-                          <Component id="alertasText" alignment="1" pref="462" max="32767" attributes="1"/>
+                          <Component id="alertasText" alignment="1" pref="464" max="32767" attributes="1"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -286,8 +281,8 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jPanel3" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="100" max="-2" attributes="0"/>
+                      <Component id="jPanel3" min="-2" pref="241" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="guardarCambiosDeEquipo" linkSize="6" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jButton2" alignment="3" min="-2" max="-2" attributes="0"/>

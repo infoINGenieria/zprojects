@@ -28,6 +28,13 @@
       <SubComponents>
         <Container class="javax.swing.JPanel" name="panelAzul2">
           <Properties>
+            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+              <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+                <LineBorder roundedCorners="true">
+                  <Property name="color" resourceKey="panelAzul2.border.lineColor"/>
+                </LineBorder>
+              </Border>
+            </Property>
             <Property name="name" type="java.lang.String" value="panelAzul2" noResource="true"/>
           </Properties>
           <AuxValues>
@@ -40,7 +47,7 @@
                   <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jScrollPane4" pref="599" max="32767" attributes="0"/>
+                          <Component id="jScrollPane4" pref="597" max="32767" attributes="0"/>
                           <Group type="102" alignment="1" attributes="0">
                               <Component id="aceptarInfoTransporte" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
@@ -55,7 +62,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace min="-2" max="-2" attributes="0"/>
-                      <Component id="jScrollPane4" pref="105" max="32767" attributes="0"/>
+                      <Component id="jScrollPane4" pref="103" max="32767" attributes="0"/>
                       <EmptySpace min="-2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="cerrarInfoTransporte" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -533,7 +540,7 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="generalPanel" alignment="0" max="32767" attributes="3"/>
                       <Group type="102" alignment="1" attributes="1">
-                          <Component id="outText" pref="719" max="32767" attributes="0"/>
+                          <Component id="outText" pref="746" max="32767" attributes="0"/>
                           <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
                           <Component id="guardarParteBoton" min="-2" pref="110" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
@@ -609,7 +616,7 @@
                               <Component id="jButton2" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="isDesarrango" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace pref="109" max="32767" attributes="0"/>
+                              <EmptySpace pref="111" max="32767" attributes="0"/>
                               <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="comboObra" min="-2" pref="301" max="-2" attributes="0"/>
@@ -766,14 +773,12 @@
               <Properties>
                 <Property name="text" type="java.lang.String" resourceKey="multifuncionCheck.text"/>
                 <Property name="name" type="java.lang.String" value="multifuncionCheck" noResource="true"/>
-                <Property name="opaque" type="boolean" value="false"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JCheckBox" name="isDesarrango">
               <Properties>
                 <Property name="text" type="java.lang.String" resourceKey="isDesarrango.text"/>
                 <Property name="name" type="java.lang.String" value="isDesarrango" noResource="true"/>
-                <Property name="opaque" type="boolean" value="false"/>
               </Properties>
             </Component>
           </SubComponents>
@@ -799,7 +804,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jScrollPane1" pref="921" max="32767" attributes="0"/>
+                      <Component id="jScrollPane1" pref="944" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -897,12 +902,12 @@
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="jPanel5" linkSize="6" min="-2" pref="136" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-                              <Component id="jPanel6" pref="283" max="32767" attributes="0"/>
+                              <Component id="jPanel6" pref="304" max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="comboEquipos" pref="502" max="32767" attributes="0"/>
+                              <Component id="comboEquipos" pref="533" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="botonBuscarEquipoMostrar" min="-2" max="-2" attributes="0"/>
                           </Group>
@@ -1145,7 +1150,6 @@
                   <Border info="null"/>
                 </Property>
                 <Property name="name" type="java.lang.String" value="isTransporte" noResource="true"/>
-                <Property name="opaque" type="boolean" value="false"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JButton" name="cargarDatosTransporte">
@@ -1205,7 +1209,7 @@
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="isCrearOT" min="-2" max="-2" attributes="0"/>
-                          <Component id="jScrollPane2" alignment="0" max="32767" attributes="0"/>
+                          <Component id="jScrollPane2" alignment="0" pref="53" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
                   </Group>
@@ -1236,7 +1240,6 @@
               <Properties>
                 <Property name="text" type="java.lang.String" resourceKey="isCrearOT.text"/>
                 <Property name="name" type="java.lang.String" value="isCrearOT" noResource="true"/>
-                <Property name="opaque" type="boolean" value="false"/>
               </Properties>
             </Component>
           </SubComponents>

@@ -2,14 +2,14 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
 	<property name="ireport.zoom" value="1.3310000000000004"/>
 	<property name="ireport.x" value="12"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.y" value="96"/>
 	<parameter name="id_informe" class="java.lang.Integer">
 		<defaultValueExpression><![CDATA[new Integer(1)]]></defaultValueExpression>
 	</parameter>
 	<parameter name="urlimagenZille" class="java.lang.String"/>
 	<parameter name="urlimagenZilleBg" class="java.lang.String"/>
 	<queryString>
-		<![CDATA[SELECT 
+		<![CDATA[SELECT
 R.hs_tarea, R.hs_50, R.hs_100, R.hs_viaje,R.comida, R.vianda, R.vianda_desa,
 PD.fecha, PD.multifuncion AS multi, PD.observaciones,
 OB.codigo AS COD_OBRA,
@@ -21,12 +21,12 @@ S.situacion, S.id AS id_sit
 
 FROM partediario PD
 LEFT JOIN operarios O ON PD.operario = O.id
-LEFT JOIN informes_horas IH ON PD.operario = IH.id_operario 
+LEFT JOIN informes_horas IH ON PD.operario = IH.id_operario
 LEFT JOIN obras OB ON PD.obra = OB.id
 LEFT JOIN registro R ON PD.horario = R.id
 LEFT JOIN funcion F ON PD.funcion = F.id
 LEFT JOIN registro_equipo RQ ON PD.equipo = RQ.id
-LEFT JOIN equipos EQ ON RQ.equipo = EQ.id 
+LEFT JOIN equipos EQ ON RQ.equipo = EQ.id
 LEFT JOIN situacion S ON PD.situacion = S.id
 
 where IH.id = $P{id_informe} and  PD.fecha <= IH.hasta_f and PD.fecha >= IH.desde_f

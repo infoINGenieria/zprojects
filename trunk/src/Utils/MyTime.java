@@ -53,8 +53,12 @@ public class MyTime  {
         }
 
         //java.util.Date utilDate = new java.util.Date("1970/01/01 " + milisegundosToStringHoras(timeTotal));
-        java.util.Date utilDate = new java.util.Date("1970/01/01 " + milisegundosToStringHoras(timeTotal));
-        long lnMilisegundos = utilDate.getTime();
+        //java.util.Date utilDate = new java.util.Date("1970/01/01 " + milisegundosToStringHoras(timeTotal));
+        
+        String[] hhmm = milisegundosToStringHoras(timeTotal).toString().split(":");
+        Calendar calendarIn = new GregorianCalendar(1970, 01, 01, Integer.parseInt(hhmm[0]), Integer.parseInt(hhmm[1]), Integer.parseInt(hhmm[2]));
+        
+        long lnMilisegundos = calendarIn.getTimeInMillis();
         return lnMilisegundos;
     }
 
@@ -62,19 +66,23 @@ public class MyTime  {
         long returnAux = 0;
 
 //creamos una fecha con la hora que nos pasan y fecha 1970/01/01
-        java.util.Date fecha = new java.util.Date("1970/01/01 " + hora.toString());
 
+        String[] hhmm = hora.toString().split(":");
+        Calendar calendarIn = new GregorianCalendar(1970, 01, 01, Integer.parseInt(hhmm[0]), Integer.parseInt(hhmm[1]), Integer.parseInt(hhmm[2]));
+        /*
+        java.util.Date fecha = new java.util.Date("1970/01/01 " + hora.toString());
+        
         Calendar calendarIn = new GregorianCalendar();
         calendarIn.setTime(fecha);
         SimpleDateFormat sdf = new SimpleDateFormat();
-
+        
         sdf.applyPattern("HH");
         calendarIn.set(Calendar.HOUR_OF_DAY, Integer.parseInt(sdf.format(fecha.getTime())));
         sdf.applyPattern("mm");
         calendarIn.set(Calendar.MINUTE, Integer.parseInt(sdf.format(fecha.getTime())));
         sdf.applyPattern("ss");
         calendarIn.set(Calendar.SECOND, Integer.parseInt(sdf.format(fecha.getTime())));
-
+        */
         returnAux = calendarIn.getTimeInMillis();
 
 // el java.sql.time hay que sumarle una hora

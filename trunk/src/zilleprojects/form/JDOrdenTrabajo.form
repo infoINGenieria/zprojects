@@ -144,6 +144,7 @@
   </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="2"/>
+    <Property name="title" type="java.lang.String" resourceKey="Form.title"/>
     <Property name="name" type="java.lang.String" value="Form" noResource="true"/>
     <Property name="resizable" type="boolean" value="false"/>
   </Properties>
@@ -191,7 +192,7 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="jScrollPane2" pref="321" max="32767" attributes="1"/>
                       <Group type="102" attributes="0">
-                          <Component id="textoFiltroOT" pref="279" max="32767" attributes="1"/>
+                          <Component id="textoFiltroOT" pref="283" max="32767" attributes="1"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="buscarOTs" min="-2" max="-2" attributes="0"/>
                       </Group>
@@ -205,19 +206,28 @@
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="1" attributes="0">
+                      <Component id="jPanel2" alignment="0" min="-2" pref="509" max="-2" attributes="0"/>
                       <Group type="102" alignment="1" attributes="0">
-                          <Component id="modificarOrdenTrabajo" linkSize="7" min="-2" pref="114" max="-2" attributes="0"/>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="crearOrdenTrabajo" linkSize="7" min="-2" pref="131" max="-2" attributes="0"/>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="btnCancelarAccion" linkSize="7" min="-2" pref="122" max="-2" attributes="1"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" alignment="1" attributes="0">
+                                  <Component id="modificarOrdenTrabajo" linkSize="7" min="-2" pref="114" max="-2" attributes="0"/>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Component id="crearOrdenTrabajo" linkSize="7" min="-2" pref="131" max="-2" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="jButton1" min="-2" pref="173" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="205" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Group type="102" alignment="0" attributes="1">
+                                  <EmptySpace min="12" pref="12" max="12" attributes="0"/>
+                                  <Component id="cancelarOT" alignment="0" max="32767" attributes="1"/>
+                              </Group>
+                              <Component id="btnCancelarAccion" linkSize="7" alignment="1" min="-2" pref="122" max="-2" attributes="1"/>
+                          </Group>
                       </Group>
-                      <Group type="102" alignment="1" attributes="0">
-                          <Component id="jButton1" min="-2" pref="173" max="-2" attributes="0"/>
-                          <EmptySpace pref="223" max="32767" attributes="0"/>
-                          <Component id="cancelarOT" min="-2" max="-2" attributes="1"/>
-                      </Group>
-                      <Component id="jPanel2" alignment="0" min="-2" pref="474" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -237,9 +247,9 @@
                               <Component id="modificarOrdenTrabajo" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="cancelarOT" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="2" attributes="0">
+                              <Component id="jButton1" linkSize="11" alignment="2" min="-2" max="-2" attributes="0"/>
+                              <Component id="cancelarOT" linkSize="11" alignment="2" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
@@ -483,7 +493,6 @@
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" resourceKey="btnBuscarPorNumInterno.icon"/>
                 <Property name="text" type="java.lang.String" resourceKey="btnBuscarPorNumInterno.text"/>
-                <Property name="enabled" type="boolean" value="false"/>
                 <Property name="name" type="java.lang.String" value="btnBuscarPorNumInterno" noResource="true"/>
               </Properties>
               <Constraints>
@@ -591,7 +600,6 @@
               <action class="zilleprojects.form.JDOrdenTrabajo" id="modificarOrdenTrabajoAction" methodName="modificarOrdenTrabajoAction"/>
             </Property>
             <Property name="text" type="java.lang.String" resourceKey="modificarOrdenTrabajo.text"/>
-            <Property name="enabled" type="boolean" value="false"/>
             <Property name="name" type="java.lang.String" value="modificarOrdenTrabajo" noResource="true"/>
           </Properties>
         </Component>
@@ -657,7 +665,6 @@
               <action class="zilleprojects.form.JDOrdenTrabajo" id="checkearOrdenDeTrabajoAction" methodName="checkearOrdenDeTrabajoAction"/>
             </Property>
             <Property name="text" type="java.lang.String" resourceKey="crearOrdenTrabajo.text"/>
-            <Property name="enabled" type="boolean" value="false"/>
             <Property name="name" type="java.lang.String" value="crearOrdenTrabajo" noResource="true"/>
           </Properties>
         </Component>

@@ -154,7 +154,9 @@ public class JDGestionarParte extends javax.swing.JDialog {
         datosTransporteDialog.setMinimumSize(new java.awt.Dimension(625, 222));
         datosTransporteDialog.setModal(true);
         datosTransporteDialog.setName("datosTransporteDialog"); // NOI18N
+        datosTransporteDialog.setUndecorated(true);
 
+        panelAzul2.setBorder(new javax.swing.border.LineBorder(resourceMap.getColor("panelAzul2.border.lineColor"), 1, true)); // NOI18N
         panelAzul2.setName("panelAzul2"); // NOI18N
 
         jScrollPane4.setName("jScrollPane4"); // NOI18N
@@ -194,7 +196,7 @@ public class JDGestionarParte extends javax.swing.JDialog {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelAzul2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(panelAzul2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 599, Short.MAX_VALUE)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 597, Short.MAX_VALUE)
                     .addGroup(panelAzul2Layout.createSequentialGroup()
                         .addComponent(eliminarMateriales)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -237,6 +239,7 @@ public class JDGestionarParte extends javax.swing.JDialog {
         buscarEmpleado.setResizable(false);
         buscarEmpleado.setUndecorated(true);
 
+        jPanel8.setBorder(new javax.swing.border.LineBorder(resourceMap.getColor("jPanel8.border.lineColor"), 1, true)); // NOI18N
         jPanel8.setName("jPanel8"); // NOI18N
 
         jPanel9.setName("jPanel9"); // NOI18N
@@ -293,6 +296,7 @@ public class JDGestionarParte extends javax.swing.JDialog {
         gridBagConstraints.ipadx = 10;
         gridBagConstraints.ipady = 30;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        gridBagConstraints.insets = new java.awt.Insets(2, 2, 0, 0);
         jPanel9.add(jScrollPane5, gridBagConstraints);
 
         exitDialog.setIcon(resourceMap.getIcon("exitDialog.icon")); // NOI18N
@@ -322,12 +326,15 @@ public class JDGestionarParte extends javax.swing.JDialog {
                 .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, 476, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
-                .addContainerGap(238, Short.MAX_VALUE)
+                .addContainerGap(198, Short.MAX_VALUE)
                 .addComponent(selectRow, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(exitDialog)
+                .addGap(18, 18, 18)
+                .addComponent(exitDialog, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
+
+        jPanel8Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {exitDialog, selectRow});
+
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
@@ -339,6 +346,8 @@ public class JDGestionarParte extends javax.swing.JDialog {
                     .addComponent(selectRow, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        jPanel8Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {exitDialog, selectRow});
 
         javax.swing.GroupLayout buscarEmpleadoLayout = new javax.swing.GroupLayout(buscarEmpleado.getContentPane());
         buscarEmpleado.getContentPane().setLayout(buscarEmpleadoLayout);
@@ -360,6 +369,7 @@ public class JDGestionarParte extends javax.swing.JDialog {
         buscarEquipo.setResizable(false);
         buscarEquipo.setUndecorated(true);
 
+        jPanel10.setBorder(new javax.swing.border.LineBorder(resourceMap.getColor("jPanel10.border.lineColor"), 1, true)); // NOI18N
         jPanel10.setName("jPanel10"); // NOI18N
 
         jPanel11.setName("jPanel11"); // NOI18N
@@ -416,6 +426,7 @@ public class JDGestionarParte extends javax.swing.JDialog {
         gridBagConstraints.ipadx = 10;
         gridBagConstraints.ipady = 30;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        gridBagConstraints.insets = new java.awt.Insets(2, 2, 0, 0);
         jPanel11.add(jScrollPane6, gridBagConstraints);
 
         exitDialogEq.setIcon(resourceMap.getIcon("exitDialogEq.icon")); // NOI18N
@@ -445,12 +456,15 @@ public class JDGestionarParte extends javax.swing.JDialog {
                 .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, 476, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
-                .addContainerGap(238, Short.MAX_VALUE)
+                .addContainerGap(204, Short.MAX_VALUE)
                 .addComponent(selectEquipo, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(exitDialogEq)
+                .addComponent(exitDialogEq, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
+
+        jPanel10Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {exitDialogEq, selectEquipo});
+
         jPanel10Layout.setVerticalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel10Layout.createSequentialGroup()
@@ -462,6 +476,8 @@ public class JDGestionarParte extends javax.swing.JDialog {
                     .addComponent(selectEquipo, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        jPanel10Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {exitDialogEq, selectEquipo});
 
         javax.swing.GroupLayout buscarEquipoLayout = new javax.swing.GroupLayout(buscarEquipo.getContentPane());
         buscarEquipo.getContentPane().setLayout(buscarEquipoLayout);
@@ -483,6 +499,7 @@ public class JDGestionarParte extends javax.swing.JDialog {
         selectObraDialog.setResizable(false);
         selectObraDialog.setUndecorated(true);
 
+        jPanel12.setBorder(new javax.swing.border.LineBorder(resourceMap.getColor("jPanel12.border.lineColor"), 1, true)); // NOI18N
         jPanel12.setMinimumSize(new java.awt.Dimension(291, 206));
         jPanel12.setName("jPanel12"); // NOI18N
         jPanel12.setLayout(new java.awt.GridBagLayout());
@@ -499,7 +516,7 @@ public class JDGestionarParte extends javax.swing.JDialog {
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.ipadx = 65;
+        gridBagConstraints.ipadx = 40;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         jPanel12.add(cerrarBusquedaObra, gridBagConstraints);
 
@@ -511,7 +528,7 @@ public class JDGestionarParte extends javax.swing.JDialog {
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.ipadx = 20;
+        gridBagConstraints.ipadx = 40;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         jPanel12.add(selectObraButton, gridBagConstraints);
 
@@ -537,7 +554,7 @@ public class JDGestionarParte extends javax.swing.JDialog {
         selectObraDialog.getContentPane().setLayout(selectObraDialogLayout);
         selectObraDialogLayout.setHorizontalGroup(
             selectObraDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, 291, Short.MAX_VALUE)
         );
         selectObraDialogLayout.setVerticalGroup(
             selectObraDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -597,7 +614,6 @@ public class JDGestionarParte extends javax.swing.JDialog {
 
         multifuncionCheck.setText(resourceMap.getString("multifuncionCheck.text")); // NOI18N
         multifuncionCheck.setName("multifuncionCheck"); // NOI18N
-        multifuncionCheck.setOpaque(false);
 
         lblOperario.setFont(resourceMap.getFont("lblOperario.font")); // NOI18N
         lblOperario.setText(resourceMap.getString("lblOperario.text")); // NOI18N
@@ -623,7 +639,6 @@ public class JDGestionarParte extends javax.swing.JDialog {
 
         isDesarraigo.setText(resourceMap.getString("isDesarraigo.text")); // NOI18N
         isDesarraigo.setName("isDesarraigo"); // NOI18N
-        isDesarraigo.setOpaque(false);
 
         javax.swing.GroupLayout generalPanelLayout = new javax.swing.GroupLayout(generalPanel);
         generalPanel.setLayout(generalPanelLayout);
@@ -649,12 +664,12 @@ public class JDGestionarParte extends javax.swing.JDialog {
                         .addGap(6, 6, 6)
                         .addComponent(numPre, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(numPro, javax.swing.GroupLayout.DEFAULT_SIZE, 184, Short.MAX_VALUE))
+                        .addComponent(numPro, javax.swing.GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE))
                     .addGroup(generalPanelLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(comboFunciones, 0, 337, Short.MAX_VALUE)
+                        .addComponent(comboFunciones, 0, 318, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -716,7 +731,7 @@ public class JDGestionarParte extends javax.swing.JDialog {
             horarioPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(horarioPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 940, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 934, Short.MAX_VALUE)
                 .addContainerGap())
         );
         horarioPanelLayout.setVerticalGroup(
@@ -825,7 +840,6 @@ public class JDGestionarParte extends javax.swing.JDialog {
         isTransporte.setText(resourceMap.getString("isTransporte.text")); // NOI18N
         isTransporte.setBorder(null);
         isTransporte.setName("isTransporte"); // NOI18N
-        isTransporte.setOpaque(false);
 
         cargarDatosTransporte.setText(resourceMap.getString("cargarDatosTransporte.text")); // NOI18N
         cargarDatosTransporte.setName("cargarDatosTransporte"); // NOI18N
@@ -854,7 +868,7 @@ public class JDGestionarParte extends javax.swing.JDialog {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(lblEquipo, javax.swing.GroupLayout.DEFAULT_SIZE, 575, Short.MAX_VALUE)
+                        .addComponent(lblEquipo, javax.swing.GroupLayout.DEFAULT_SIZE, 551, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(botonBuscarEquipoMostrar)
                         .addGap(12, 12, 12)
@@ -911,13 +925,13 @@ public class JDGestionarParte extends javax.swing.JDialog {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 940, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 934, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addComponent(jScrollPane2)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 56, Short.MAX_VALUE)
                 .addGap(11, 11, 11))
         );
 
@@ -932,7 +946,7 @@ public class JDGestionarParte extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(outText, javax.swing.GroupLayout.DEFAULT_SIZE, 740, Short.MAX_VALUE)
+                        .addComponent(outText, javax.swing.GroupLayout.DEFAULT_SIZE, 730, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(guardarParteBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -941,7 +955,7 @@ public class JDGestionarParte extends javax.swing.JDialog {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.LEADING, 0, 970, Short.MAX_VALUE)
+                            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.LEADING, 0, 968, Short.MAX_VALUE)
                             .addComponent(generalPanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(horarioPanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(8, 8, 8)))

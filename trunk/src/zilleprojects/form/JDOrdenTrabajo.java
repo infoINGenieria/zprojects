@@ -204,6 +204,7 @@ Image icono = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/zill
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle(resourceMap.getString("Form.title")); // NOI18N
         setName("Form"); // NOI18N
         setResizable(false);
 
@@ -378,7 +379,6 @@ Image icono = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/zill
         btnBuscarPorNumInterno.setAction(actionMap.get("showDialogSeleccionarEquipo")); // NOI18N
         btnBuscarPorNumInterno.setIcon(resourceMap.getIcon("btnBuscarPorNumInterno.icon")); // NOI18N
         btnBuscarPorNumInterno.setText(resourceMap.getString("btnBuscarPorNumInterno.text")); // NOI18N
-        btnBuscarPorNumInterno.setEnabled(false);
         btnBuscarPorNumInterno.setName("btnBuscarPorNumInterno"); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
@@ -452,7 +452,6 @@ Image icono = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/zill
 
         modificarOrdenTrabajo.setAction(actionMap.get("modificarOrdenTrabajoAction")); // NOI18N
         modificarOrdenTrabajo.setText(resourceMap.getString("modificarOrdenTrabajo.text")); // NOI18N
-        modificarOrdenTrabajo.setEnabled(false);
         modificarOrdenTrabajo.setName("modificarOrdenTrabajo"); // NOI18N
 
         cancelarOT.setAction(actionMap.get("CerrarDialogOrdenesDeTrabajo")); // NOI18N
@@ -493,7 +492,6 @@ Image icono = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/zill
 
         crearOrdenTrabajo.setAction(actionMap.get("checkearOrdenDeTrabajoAction")); // NOI18N
         crearOrdenTrabajo.setText(resourceMap.getString("crearOrdenTrabajo.text")); // NOI18N
-        crearOrdenTrabajo.setEnabled(false);
         crearOrdenTrabajo.setName("crearOrdenTrabajo"); // NOI18N
 
         btnCancelarAccion.setText(resourceMap.getString("btnCancelarAccion.text")); // NOI18N
@@ -519,7 +517,7 @@ Image icono = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/zill
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 321, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(textoFiltroOT, javax.swing.GroupLayout.DEFAULT_SIZE, 279, Short.MAX_VALUE)
+                        .addComponent(textoFiltroOT, javax.swing.GroupLayout.DEFAULT_SIZE, 283, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(buscarOTs))
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -530,17 +528,22 @@ Image icono = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/zill
                         .addComponent(btnEliminarOT)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 509, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(modificarOrdenTrabajo, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(crearOrdenTrabajo, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnCancelarAccion, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 223, Short.MAX_VALUE)
-                        .addComponent(cancelarOT))
-                    .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 474, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(modificarOrdenTrabajo, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(crearOrdenTrabajo, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(205, 205, 205)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(12, 12, 12)
+                                .addComponent(cancelarOT, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(btnCancelarAccion, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
         );
 
@@ -561,9 +564,9 @@ Image icono = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/zill
                             .addComponent(crearOrdenTrabajo)
                             .addComponent(modificarOrdenTrabajo))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(cancelarOT)
-                            .addComponent(jButton1)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                            .addComponent(jButton1)
+                            .addComponent(cancelarOT)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                             .addComponent(buscarOTs)
@@ -581,6 +584,8 @@ Image icono = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/zill
         jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnEliminarOT, btnModificarOT, btnNuevoOT});
 
         jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {buscarOTs, textoFiltroOT});
+
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {cancelarOT, jButton1});
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

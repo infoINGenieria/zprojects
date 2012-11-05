@@ -157,6 +157,7 @@ public class JDParteDiario extends javax.swing.JDialog {
         datosTransporteDialog.setModal(true);
         datosTransporteDialog.setName("datosTransporteDialog"); // NOI18N
 
+        panelAzul2.setBorder(new javax.swing.border.LineBorder(resourceMap.getColor("panelAzul2.border.lineColor"), 1, true)); // NOI18N
         panelAzul2.setName("panelAzul2"); // NOI18N
 
         jScrollPane4.setName("jScrollPane4"); // NOI18N
@@ -190,7 +191,7 @@ public class JDParteDiario extends javax.swing.JDialog {
             .addGroup(panelAzul2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(panelAzul2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 599, Short.MAX_VALUE)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 597, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelAzul2Layout.createSequentialGroup()
                         .addComponent(aceptarInfoTransporte)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -201,7 +202,7 @@ public class JDParteDiario extends javax.swing.JDialog {
             panelAzul2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelAzul2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 103, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelAzul2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cerrarInfoTransporte)
@@ -539,11 +540,9 @@ public class JDParteDiario extends javax.swing.JDialog {
 
         multifuncionCheck.setText(resourceMap.getString("multifuncionCheck.text")); // NOI18N
         multifuncionCheck.setName("multifuncionCheck"); // NOI18N
-        multifuncionCheck.setOpaque(false);
 
         isDesarrango.setText(resourceMap.getString("isDesarrango.text")); // NOI18N
         isDesarrango.setName("isDesarrango"); // NOI18N
-        isDesarrango.setOpaque(false);
 
         javax.swing.GroupLayout generalPanelLayout = new javax.swing.GroupLayout(generalPanel);
         generalPanel.setLayout(generalPanelLayout);
@@ -578,7 +577,7 @@ public class JDParteDiario extends javax.swing.JDialog {
                         .addComponent(jButton2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(isDesarrango)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 109, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 111, Short.MAX_VALUE)
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(comboObra, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -640,7 +639,7 @@ public class JDParteDiario extends javax.swing.JDialog {
             horarioPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(horarioPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 921, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 944, Short.MAX_VALUE)
                 .addContainerGap())
         );
         horarioPanelLayout.setVerticalGroup(
@@ -664,7 +663,7 @@ public class JDParteDiario extends javax.swing.JDialog {
         guardarParteBoton.setText(resourceMap.getString("guardarParteBoton.text")); // NOI18N
         guardarParteBoton.setName("guardarParteBoton"); // NOI18N
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true), resourceMap.getString("jPanel2.border.title"), javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), resourceMap.getColor("jPanel2.border.titleColor"))); // NOI18N
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true), resourceMap.getString("jPanel2.border.title"), javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, resourceMap.getColor("jPanel2.border.titleColor"))); // NOI18N
         jPanel2.setName("jPanel2"); // NOI18N
         jPanel2.setOpaque(false);
 
@@ -755,7 +754,6 @@ public class JDParteDiario extends javax.swing.JDialog {
         isTransporte.setText(resourceMap.getString("isTransporte.text")); // NOI18N
         isTransporte.setBorder(null);
         isTransporte.setName("isTransporte"); // NOI18N
-        isTransporte.setOpaque(false);
 
         cargarDatosTransporte.setIcon(resourceMap.getIcon("cargarDatosTransporte.icon")); // NOI18N
         cargarDatosTransporte.setText(resourceMap.getString("cargarDatosTransporte.text")); // NOI18N
@@ -784,11 +782,11 @@ public class JDParteDiario extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(12, 12, 12)
-                        .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, 283, Short.MAX_VALUE))
+                        .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, 304, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(comboEquipos, 0, 502, Short.MAX_VALUE)
+                        .addComponent(comboEquipos, 0, 533, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(botonBuscarEquipoMostrar)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -825,7 +823,7 @@ public class JDParteDiario extends javax.swing.JDialog {
 
         jPanel2Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {cargarDatosTransporte, comboEquipos});
 
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true), resourceMap.getString("jPanel3.border.title"), javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), resourceMap.getColor("jPanel3.border.titleColor"))); // NOI18N
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true), resourceMap.getString("jPanel3.border.title"), javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, resourceMap.getColor("jPanel3.border.titleColor"))); // NOI18N
         jPanel3.setName("jPanel3"); // NOI18N
         jPanel3.setOpaque(false);
 
@@ -838,7 +836,6 @@ public class JDParteDiario extends javax.swing.JDialog {
 
         isCrearOT.setText(resourceMap.getString("isCrearOT.text")); // NOI18N
         isCrearOT.setName("isCrearOT"); // NOI18N
-        isCrearOT.setOpaque(false);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -856,7 +853,7 @@ public class JDParteDiario extends javax.swing.JDialog {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(isCrearOT)
-                    .addComponent(jScrollPane2))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 53, Short.MAX_VALUE))
                 .addGap(11, 11, 11))
         );
 
@@ -873,7 +870,7 @@ public class JDParteDiario extends javax.swing.JDialog {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(generalPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(outText, javax.swing.GroupLayout.DEFAULT_SIZE, 719, Short.MAX_VALUE)
+                        .addComponent(outText, javax.swing.GroupLayout.DEFAULT_SIZE, 746, Short.MAX_VALUE)
                         .addGap(4, 4, 4)
                         .addComponent(guardarParteBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(12, 12, 12)

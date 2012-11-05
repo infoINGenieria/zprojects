@@ -78,6 +78,9 @@ public class Operario {
     public Operario(String NOMBRE) {
         this.nombre = NOMBRE;
     }
+    public Operario(int id){
+        this.id = id;
+    }
     
     public Operario() { }
             
