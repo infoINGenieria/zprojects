@@ -828,9 +828,11 @@ Image icono = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/zill
             ot.setOrdenTrabajoID(-1);
         }
         @Override protected Object doInBackground() {
-            OrdenTrabajoDAO otDao = new OrdenTrabajoDAO();
-            otDao.conectar();
-            ot = otDao.existeParaEquipo(equipo.getId());
+            /*SOLICITUD: No verificar esto*/
+            //OrdenTrabajoDAO otDao = new OrdenTrabajoDAO();
+            //otDao.conectar();
+            //ot = otDao.existeParaEquipo(equipo.getId());
+            ot.setOrdenTrabajoID(0);
             return null;  // return your result
         }
         @Override protected void succeeded(Object result) {

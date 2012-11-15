@@ -190,7 +190,7 @@
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jScrollPane2" pref="321" max="32767" attributes="1"/>
+                      <Component id="jScrollPane2" pref="327" max="32767" attributes="1"/>
                       <Group type="102" attributes="0">
                           <Component id="textoFiltroOT" pref="283" max="32767" attributes="1"/>
                           <EmptySpace max="-2" attributes="0"/>

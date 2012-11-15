@@ -2214,7 +2214,7 @@ public class JDReportes extends javax.swing.JDialog {
 
     private class BuscarEmpleadoTask extends org.jdesktop.application.Task<Object, Void> {
 
-        ArrayList<Operario> opList = new ArrayList<>();
+        ArrayList<Operario> opList = new ArrayList<Operario>();
         String query = query1.getText();
 
         BuscarEmpleadoTask(org.jdesktop.application.Application app) {
@@ -2256,7 +2256,7 @@ public class JDReportes extends javax.swing.JDialog {
     }
 
     private class CargarReportesTask extends org.jdesktop.application.Task<Object, Void> {
-        ArrayList<InformesHoras> arrayInfor = new ArrayList<>();
+        ArrayList<InformesHoras> arrayInfor = new ArrayList<InformesHoras>();
         int re, id;
         Operario op = (Operario) operariosCombo1.getSelectedItem();
         CargarReportesTask(org.jdesktop.application.Application app) {
@@ -2347,7 +2347,7 @@ public class JDReportes extends javax.swing.JDialog {
     }
 
     private class SeleccionarObraDialogTask extends org.jdesktop.application.Task<Object, Void> {
-        ArrayList<Obras> obras = new ArrayList<>();
+        ArrayList<Obras> obras = new ArrayList<Obras>();
         SeleccionarObraDialogTask(org.jdesktop.application.Application app) {
             
             super(app);
@@ -2919,7 +2919,7 @@ public class JDReportes extends javax.swing.JDialog {
     private class GenerarInformeCustomTask extends org.jdesktop.application.Task<Object, Void> {
         Date desde, hasta;
         boolean monoEmpleado = isOperarioSelectedCustomInforme.isSelected();
-        ArrayList<Obras> obrasIDlist = new ArrayList<>();
+        ArrayList<Obras> obrasIDlist = new ArrayList<Obras>();
         GenerarInformeCustomTask(org.jdesktop.application.Application app) {
             // Runs on the EDT.  Copy GUI state that
             // doInBackground() depends on from parameters
