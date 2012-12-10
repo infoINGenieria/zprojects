@@ -5,6 +5,7 @@
 package Modelo;
 
 import Utils.FechaUtil;
+import java.util.Currency;
 import java.util.Date;
 
 /**
@@ -14,8 +15,17 @@ import java.util.Date;
 public class OrdenTrabajo {
     
     private int OrdenTrabajoID, nInternoID;
-    private String km, hs, detalleServicio, manoDeObra, mantenimiento, nInterno, solicitante;
+    private String km, hs, detalleServicio, manoDeObra, mantenimiento, nInterno, solicitante,importe;
     private Date fecha, fechaApertura, fechaCierre;
+    
+
+    public String getImporte() {
+        return importe;
+    }
+
+    public void setImporte(String importe) {
+        this.importe = importe;
+    }
 
     public OrdenTrabajo(){}
     

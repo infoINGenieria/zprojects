@@ -87,6 +87,8 @@ Image icono = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/zill
         hsOT = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         solicitanteOT = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
+        importeOT = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
         jListDeOT = new javax.swing.JList();
         modificarOrdenTrabajo = new javax.swing.JButton();
@@ -439,6 +441,25 @@ Image icono = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/zill
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel2.add(solicitanteOT, gridBagConstraints);
 
+        jLabel11.setText(resourceMap.getString("jLabel11.text")); // NOI18N
+        jLabel11.setName("jLabel11"); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 7;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        jPanel2.add(jLabel11, gridBagConstraints);
+
+        importeOT.setText(resourceMap.getString("importeOT.text")); // NOI18N
+        importeOT.setEnabled(false);
+        importeOT.setName("importeOT"); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 7;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        jPanel2.add(importeOT, gridBagConstraints);
+
         jScrollPane2.setName("jScrollPane2"); // NOI18N
 
         jListDeOT.setModel(listDeOT);
@@ -490,7 +511,7 @@ Image icono = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/zill
         buscarOTs.setText(resourceMap.getString("buscarOTs.text")); // NOI18N
         buscarOTs.setName("buscarOTs"); // NOI18N
 
-        crearOrdenTrabajo.setAction(actionMap.get("checkearOrdenDeTrabajoAction")); // NOI18N
+        crearOrdenTrabajo.setAction(actionMap.get("crearOrdenTrabajoAction")); // NOI18N
         crearOrdenTrabajo.setText(resourceMap.getString("crearOrdenTrabajo.text")); // NOI18N
         crearOrdenTrabajo.setName("crearOrdenTrabajo"); // NOI18N
 
@@ -515,9 +536,9 @@ Image icono = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/zill
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 321, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 393, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(textoFiltroOT, javax.swing.GroupLayout.DEFAULT_SIZE, 283, Short.MAX_VALUE)
+                        .addComponent(textoFiltroOT, javax.swing.GroupLayout.DEFAULT_SIZE, 329, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(buscarOTs))
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -557,7 +578,7 @@ Image icono = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/zill
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 324, Short.MAX_VALUE)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 328, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnCancelarAccion)
@@ -717,6 +738,7 @@ Image icono = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/zill
         manoObraOT.setEnabled(b);
         aperturaOT.setEnabled(b);
         cierreOT.setEnabled(b);
+        importeOT.setEnabled(b);
     }
 
     public void desbloquearBoton(int opcion) {
@@ -772,6 +794,7 @@ Image icono = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/zill
         manoObraOT.setText(ot.getManoDeObra());
         aperturaOT.setDate(ot.getFechaApertura());
         cierreOT.setDate(ot.getFechaCierre());
+        importeOT.setText((ot.getImporte()));
     }
 
     public void limpiarCampos() {
@@ -787,6 +810,7 @@ Image icono = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/zill
         manoObraOT.setText("");
         aperturaOT.setDate(new Date());
         cierreOT.setDate(null);
+        importeOT.setText(null);
     }
 
     private void setListDeOT(ArrayList<OrdenTrabajo> list) {
@@ -881,6 +905,7 @@ Image icono = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/zill
         otActual.setMantenimiento(tipoOT.getSelectedItem().toString());
         otActual.setManoDeObra(manoObraOT.getText());
         otActual.setDetalleServicio(detalleOT.getText());
+        otActual.setImporte(importeOT.getText());
         return new CrearOrdenTrabajoActionTask(org.jdesktop.application.Application.getInstance(zilleprojects.ZilleProjectsApp.class));
     }
     private class CrearOrdenTrabajoActionTask extends org.jdesktop.application.Task<Object, Void> {
@@ -950,6 +975,7 @@ Image icono = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/zill
         otActual.setMantenimiento(tipoOT.getSelectedItem().toString());
         otActual.setManoDeObra(manoObraOT.getText());
         otActual.setDetalleServicio(detalleOT.getText());
+        otActual.setImporte(importeOT.getText());
         return new ModificarOrdenTrabajoActionTask(org.jdesktop.application.Application.getInstance(zilleprojects.ZilleProjectsApp.class));
     }
 
@@ -976,7 +1002,9 @@ Image icono = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/zill
                }
             } else {
                 OpcionPanel.showMessageDialog(null, "Ocurrió un error al procesar la solicitud.", "Error", OpcionPanel.ERROR_MESSAGE);
-            }
+                recargarListaDeOT();
+                limpiarCampos();
+           }
         }
     }
 
@@ -1095,9 +1123,11 @@ Image icono = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/zill
     private javax.swing.JDialog dialogSeleccionarEquipos;
     private com.toedter.calendar.JDateChooser fechaOT;
     private javax.swing.JTextField hsOT;
+    private javax.swing.JTextField importeOT;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

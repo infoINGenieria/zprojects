@@ -31,7 +31,7 @@ public class RIDAO {
 
         try {          
             query = "insert into RI (OBRAID, RI_NUM, CANTIDAD, UNIDAD, DETALLE, "
-                    + "FECHA_NECESIDAD, OBSERVACIONES, IMPORTE, OC_NUM, "
+                    + "FECHA_NECESIDAD, OBSERVACIONES, SOLICITANTE, OC_NUM, "
                     + "PROVEEDOR, FECHA_EMISION, FECHA_OC, FECHA_ENTREGA) "
                     + "values ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement ps = conector.prepareStatement(query);     
@@ -42,7 +42,7 @@ public class RIDAO {
             ps.setString(5, ri.getDetalle());
             ps.setDate(6, FechaUtil.getFechatoDB(ri.getFecha_necesidad()));
             ps.setString(7, ri.getObservaciones());
-            ps.setFloat(8, ri.getImporte());
+            ps.setString(8, ri.getSolicitante());
             ps.setString(9,ri.getOC_num());
             ps.setString(10, ri.getProveedor());
             ps.setDate(11, FechaUtil.getFechatoDB(ri.getFecha_emision()));
@@ -72,7 +72,7 @@ public class RIDAO {
             /*(ALARMAID, FECHA, NOMBRE, COMENTARIO, "
                     + "FECHA_PREVIA, RI_ID)*/
             query = "update RI set OBRAID=?, RI_NUM=?, CANTIDAD=?, UNIDAD=?, DETALLE=?, "
-                    + "FECHA_NECESIDAD=?, OBSERVACIONES=?, IMPORTE=?, OC_NUM=?, "
+                    + "FECHA_NECESIDAD=?, OBSERVACIONES=?, SOLICITANTE=?, OC_NUM=?, "
                     + "PROVEEDOR=?, FECHA_EMISION=?, FECHA_OC=?, FECHA_ENTREGA=? where RIID = " +ri.getRI_ID();
             PreparedStatement ps = conector.prepareStatement(query);
             ps.setInt(1, ri.getObraID());
@@ -82,7 +82,7 @@ public class RIDAO {
             ps.setString(5, ri.getDetalle());
             ps.setDate(6, FechaUtil.getFechatoDB(ri.getFecha_necesidad()));
             ps.setString(7, ri.getObservaciones());
-            ps.setFloat(8, ri.getImporte());
+            ps.setString(8, ri.getSolicitante());
             ps.setString(9,ri.getOC_num());
             ps.setString(10, ri.getProveedor());
             ps.setDate(11, FechaUtil.getFechatoDB(ri.getFecha_emision()));
@@ -154,7 +154,7 @@ public class RIDAO {
                 ri.setDetalle(rs.getString("DETALLE"));
                 ri.setFecha_necesidad(rs.getDate("FECHA_NECESIDAD"));
                 ri.setObservaciones(rs.getString("OBSERVACIONES"));
-                ri.setImporte(rs.getFloat("IMPORTE"));
+                ri.setSolicitante(rs.getString("SOLICITANTE"));
                 ri.setOC_num(rs.getString("OC_NUM"));
                 ri.setProveedor(rs.getString("PROVEEDOR"));
                 ri.setFecha_emision(rs.getDate("FECHA_EMISION"));
@@ -192,7 +192,7 @@ public class RIDAO {
                 ri.setDetalle(rs.getString("DETALLE"));
                 ri.setFecha_necesidad(rs.getDate("FECHA_NECESIDAD"));
                 ri.setObservaciones(rs.getString("OBSERVACIONES"));
-                ri.setImporte(rs.getFloat("IMPORTE"));
+                ri.setSolicitante(rs.getString("SOLICITANTE"));
                 ri.setOC_num(rs.getString("OC_NUM"));
                 ri.setProveedor(rs.getString("PROVEEDOR"));
                 ri.setFecha_emision(rs.getDate("FECHA_EMISION"));
@@ -217,7 +217,11 @@ public class RIDAO {
         try {
             query = "select RI.*, OB.codigo from RI "
                     + "INNER JOIN obras OB ON RI.obraID = OB.id where "
-                    + "RI.RI_NUM like '%"+q+ "%' order by fecha_necesidad asc";
+                    + "RI.RI_NUM like '%"+q+"%' or "
+                    + "OB.codigo like '%"+q+"%' or "
+                    + "RI.proveedor like '%"+q+"%' or "
+                    + "RI.detalle like '%"+q+"%' "
+                    + "order by fecha_necesidad asc";
             PreparedStatement ps = conector.prepareStatement(query);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
@@ -230,7 +234,7 @@ public class RIDAO {
                 ri.setDetalle(rs.getString("DETALLE"));
                 ri.setFecha_necesidad(rs.getDate("FECHA_NECESIDAD"));
                 ri.setObservaciones(rs.getString("OBSERVACIONES"));
-                ri.setImporte(rs.getFloat("IMPORTE"));
+                ri.setSolicitante(rs.getString("SOLICITANTE"));
                 ri.setOC_num(rs.getString("OC_NUM"));
                 ri.setProveedor(rs.getString("PROVEEDOR"));
                 ri.setFecha_emision(rs.getDate("FECHA_EMISION"));

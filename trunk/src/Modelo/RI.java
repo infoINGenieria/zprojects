@@ -12,15 +12,15 @@ import java.util.Date;
  */
 public class RI {
     int RI_ID, cantidad, obraID;
-    String RI_num, unidad, detalle, observaciones, OC_num, proveedor, codigoObra;
+    String RI_num, unidad, detalle, observaciones, OC_num, proveedor, codigoObra, solicitante;
     Date fecha_necesidad, fecha_emision, fecha_oc, fecha_entrega;
-    Float importe;
+    
     public RI() {
     }
 
     @Override
     public String toString() {
-        return "["+RI_num + "] "+detalle;
+        return "["+RI_num + "] "+codigoObra+" - "+detalle;
     }
 
     @Override
@@ -60,18 +60,18 @@ public class RI {
         if(fecha_necesidad!=null && fecha_emision!=null && fecha_oc !=null && fecha_entrega==null){
             return "OC generada";
         }
-        if(fecha_necesidad!=null && fecha_emision!=null && fecha_oc ==null && fecha_entrega==null){
+        
             return "Emitida";
-        }
-        return "Creada";
+        
+        
     }
 
-    public Float getImporte() {
-        return importe;
+    public String getSolicitante() {
+        return solicitante;
     }
 
-    public void setImporte(Float importe) {
-        this.importe = importe;
+    public void setSolicitante(String solicitante) {
+        this.solicitante = solicitante;
     }
     
     

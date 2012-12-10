@@ -13,6 +13,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+
 /**
  *
  * @author matuu
@@ -37,10 +38,10 @@ public class OrdenTrabajoDAO {
 
         try {
             //OrdenTrabajoID 	Fecha 	KmHs 	DetalleServicio 	NInterno 	
-            // ManoDeObra 	AperturaFecha 	CierreFecha 	Mantenimiento
+            // ManoDeObra 	AperturaFecha 	CierreFecha 	Mantenimiento IMPORTE
             query = "insert into orden_trabajo (FECHA, KM, HS, DETALLESERVICIO, NINTERNOID, "
-                    + " MANODEOBRA, APERTURAFECHA, CIERREFECHA, MANTENIMIENTO, NINTERNO, SOLICITANTE) "
-                    + "values ( ?, ?, ?, ?, ?, ?, ?, ?, ?,?, ?)";
+                    + " MANODEOBRA, APERTURAFECHA, CIERREFECHA, MANTENIMIENTO, NINTERNO, SOLICITANTE, IMPORTE) "
+                    + "values ( ?, ?, ?, ?, ?, ?, ?, ?, ?,?, ?,?)";
             PreparedStatement ps = conector.prepareStatement(query);
             if (ot.getFecha() != null) {
                 ps.setDate(1, new Date(ot.getFecha().getTime()));
@@ -65,6 +66,7 @@ public class OrdenTrabajoDAO {
             ps.setString(9, ot.getMantenimiento());
             ps.setString(10, ot.getnInterno());
             ps.setString(11, ot.getSolicitante());
+            ps.setString(12, ot.getImporte());
             ps.executeUpdate();
             ResultSet generatedKeys = ps.getGeneratedKeys();
 
@@ -88,7 +90,7 @@ public class OrdenTrabajoDAO {
             //OrdenTrabajoID 	Fecha 	KmHs 	DetalleServicio 	NInterno 	
             // ManoDeObra 	AperturaFecha 	CierreFecha 	Mantenimiento
             query = "update orden_trabajo set FECHA=?, KM=?, HS=?, DETALLESERVICIO=?, NINTERNOID=?, "
-                    + "MANODEOBRA=?, APERTURAFECHA=?, CIERREFECHA=?, MANTENIMIENTO=?, NINTERNO =?, SOLICITANTE=? "
+                    + "MANODEOBRA=?, APERTURAFECHA=?, CIERREFECHA=?, MANTENIMIENTO=?, NINTERNO =?, SOLICITANTE=?, IMPORTE=? "
                     + "where ORDENTRABAJOID =" +ot.getOrdenTrabajoID();
             PreparedStatement ps = conector.prepareStatement(query);
             if (ot.getFecha() != null) {
@@ -114,6 +116,7 @@ public class OrdenTrabajoDAO {
             ps.setString(9, ot.getMantenimiento());
             ps.setString(10, ot.getnInterno());
             ps.setString(11, ot.getSolicitante());
+            ps.setString(12, ot.getImporte());
             ps.executeUpdate();
             ResultSet generatedKeys = ps.getGeneratedKeys();
 
@@ -182,6 +185,7 @@ public class OrdenTrabajoDAO {
                 ot.setMantenimiento(rs.getString("MANTENIMIENTO"));
                 ot.setnInterno(rs.getString("NINTERNO"));
                 ot.setSolicitante(rs.getString("SOLICITANTE"));
+                ot.setImporte(rs.getString("IMPORTE"));
             }
             
             ps.close();
@@ -218,6 +222,7 @@ public class OrdenTrabajoDAO {
                 ot.setMantenimiento(rs.getString("MANTENIMIENTO"));
                 ot.setnInterno(rs.getString("NINTERNO"));
                 ot.setSolicitante(rs.getString("SOLICITANTE"));
+                ot.setImporte(rs.getString("IMPORTE"));
                 ordenes.add(ot);
             }
             rs.close();
@@ -255,6 +260,7 @@ public class OrdenTrabajoDAO {
                 ot.setMantenimiento(rs.getString("MANTENIMIENTO"));
                 ot.setnInterno(rs.getString(("NINTERNO")));
                 ot.setSolicitante(rs.getString("SOLICITANTE"));
+                ot.setImporte(rs.getString("IMPORTE"));
                 ordenes.add(ot);
             }
             rs.close();
