@@ -68,7 +68,12 @@ public class InformesHorasDAO {
             ps.setString(8, ih.getPeriodo());
             ps.setDate(9, new java.sql.Date(ih.getDesdeF().getTime()));
             ps.setDate(10, new java.sql.Date(ih.getHastaF().getTime()));
-            ps.setString(11, ih.getX100Obras());
+            if(ih.getX100Obras().length()>128){
+                ps.setString(11, ih.getX100Obras().substring(0, 127));
+            }else{
+                ps.setString(11, ih.getX100Obras());
+            }
+            
             
             ps.executeUpdate();
             rs = ps.getGeneratedKeys();

@@ -11,8 +11,8 @@ import java.util.Date;
  * @author matuuar
  */
 public class RI {
-    int RI_ID, cantidad, obraID;
-    String RI_num, unidad, detalle, observaciones, OC_num, proveedor, codigoObra, solicitante;
+    int RI_ID, obraID;
+    String RI_num, observaciones, OC_num, proveedor, codigoObra, solicitante;
     Date fecha_necesidad, fecha_emision, fecha_oc, fecha_entrega;
     
     public RI() {
@@ -20,7 +20,7 @@ public class RI {
 
     @Override
     public String toString() {
-        return "["+RI_num + "] "+codigoObra+" - "+detalle;
+        return "["+RI_num + "] "+codigoObra+" - "+solicitante;
     }
 
     @Override
@@ -100,22 +100,6 @@ public class RI {
         this.RI_num = RI_num;
     }
 
-    public int getCantidad() {
-        return cantidad;
-    }
-
-    public void setCantidad(int cantidad) {
-        this.cantidad = cantidad;
-    }
-
-    public String getDetalle() {
-        return detalle;
-    }
-
-    public void setDetalle(String detalle) {
-        this.detalle = detalle;
-    }
-
     public Date getFecha_emision() {
         return fecha_emision;
     }
@@ -172,13 +156,6 @@ public class RI {
         this.proveedor = proveedor;
     }
 
-    public String getUnidad() {
-        return unidad;
-    }
-
-    public void setUnidad(String unidad) {
-        this.unidad = unidad;
-    }
     
     
 }

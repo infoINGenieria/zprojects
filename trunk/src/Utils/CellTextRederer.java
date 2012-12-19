@@ -26,6 +26,7 @@ public class CellTextRederer extends JTextField implements TableCellRenderer {
         super();
     }
 
+    @Override
     public Component getTableCellRendererComponent(JTable tabla, Object valor, boolean isSelected, boolean hasFocus, int row, int column) {
         Color especial= new Color(205,48,169);
         SimpleDateFormat sdf=new SimpleDateFormat("dd/MM/yyyy");

@@ -134,6 +134,18 @@ public class InformesHoras {
     public float Redondear(float numero) {
         return (float) (Math.round(numero * Math.pow(10, 2)) / Math.pow(10, 2));
     }
+    public float RedondearHora(float numero) {
+        int horasInt = (int) (Math.round(numero * Math.pow(10, 2)) / Math.pow(10, 2));
+        float horasFloat = (float) (Math.round(numero * Math.pow(10, 2)) / Math.pow(10, 2));
+        float diferencia = horasFloat-horasInt;
+        if(diferencia < 0.5){
+            diferencia= 0;
+        }
+        else{
+            diferencia = 0.5F;
+        }
+        return (float) horasInt + diferencia;
+    }
 
     public void tomarElTiempo(Registro r){
        
@@ -152,11 +164,11 @@ public class InformesHoras {
     
     public void CalcularValoresHoras(){
        
-         total_hs_viaje=Redondear(total_hs_viaje/3600);
-         total_50=Redondear(total_50/3600);
-         total_100=Redondear(total_100/3600);
-         total_normal=Redondear(total_normal/3600);
-         total_tarea=Redondear(total_tarea/3600);
+         total_hs_viaje=RedondearHora(total_hs_viaje/3600);
+         total_50=RedondearHora(total_50/3600);
+         total_100=RedondearHora(total_100/3600);
+         total_normal=RedondearHora(total_normal/3600);
+         total_tarea=RedondearHora(total_tarea/3600);
     }
     
     
