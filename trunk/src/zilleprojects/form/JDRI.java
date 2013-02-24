@@ -13,6 +13,7 @@ package zilleprojects.form;
 import DAO.AlarmasDAO;
 import DAO.ObrasDAO;
 import DAO.RIDAO;
+import DAO.RIItemDAO;
 import Modelo.Alarma;
 import Modelo.Obras;
 import Modelo.RI;
@@ -385,7 +386,7 @@ public class JDRI extends javax.swing.JDialog {
         txtObservaciones.setRows(3);
         txtObservaciones.setWrapStyleWord(true);
         txtObservaciones.setEnabled(false);
-        txtObservaciones.setMinimumSize(new java.awt.Dimension(100, 39));
+        txtObservaciones.setMinimumSize(new java.awt.Dimension(100, 50));
         txtObservaciones.setName("txtObservaciones"); // NOI18N
         jScrollPane3.setViewportView(txtObservaciones);
 
@@ -394,6 +395,7 @@ public class JDRI extends javax.swing.JDialog {
         gridBagConstraints.gridy = 5;
         gridBagConstraints.gridwidth = 8;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.ipady = 40;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
         gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
         jPanel2.add(jScrollPane3, gridBagConstraints);
@@ -615,7 +617,7 @@ public class JDRI extends javax.swing.JDialog {
                     .addComponent(jLabel16)
                     .addComponent(dateNuevaAlarma, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnCrearAlarma))
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -636,13 +638,13 @@ public class JDRI extends javax.swing.JDialog {
                             .addComponent(buscarRI, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 307, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(22, 22, 22)
-                                .addComponent(lblStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 349, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(lblStatus, javax.swing.GroupLayout.DEFAULT_SIZE, 327, Short.MAX_VALUE)
+                                .addGap(287, 287, 287))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -654,9 +656,9 @@ public class JDRI extends javax.swing.JDialog {
                             .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 932, Short.MAX_VALUE))))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 932, Short.MAX_VALUE))))
                 .addGap(12, 12, 12))
         );
 
@@ -679,17 +681,17 @@ public class JDRI extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 338, Short.MAX_VALUE)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 346, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                         .addComponent(buscarRI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 385, Short.MAX_VALUE)))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 404, Short.MAX_VALUE)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(22, 22, 22)
-                        .addComponent(lblStatus, javax.swing.GroupLayout.DEFAULT_SIZE, 18, Short.MAX_VALUE))
+                        .addComponent(lblStatus, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton4)))
@@ -799,6 +801,7 @@ public class JDRI extends javax.swing.JDialog {
 
     private void addItemRIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addItemRIActionPerformed
         modelItems.addRegistro(new RiItem());
+        
     }//GEN-LAST:event_addItemRIActionPerformed
 
     private void remItemRIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_remItemRIActionPerformed
@@ -911,6 +914,7 @@ public class JDRI extends javax.swing.JDialog {
         comboEstado.setEnabled(b);
         addItemRI.setEnabled(b);
         remItemRI.setEnabled(b);
+        tablaItems.setEnabled(b);
         /*if((ri.getRI_ID() != 0 && b == true) || !b  ){
             dateNuevaAlarma.setEnabled(b);
             btnCrearAlarma.setEnabled(b);
@@ -955,6 +959,13 @@ public class JDRI extends javax.swing.JDialog {
     }
     
     public void setDatosDeRI(RI req) {
+        RIItemDAO riiDao = new RIItemDAO();
+        riiDao.conectar();
+        ArrayList<RiItem> list = riiDao.cargarTodos(req.getRI_ID());
+        modelItems.clean();
+        for(RiItem it:list){
+            modelItems.addRegistro(it);
+        }
         txtRI_Num.setText(req.getRI_num());
         lblNombreObra.setText(req.getCodigoObra());
         dateNecesidad.setDate(req.getFecha_necesidad());
@@ -986,6 +997,7 @@ public class JDRI extends javax.swing.JDialog {
         ri = new RI();
         obraSelect = new Obras();
         dateNuevaAlarma.setDate(null);
+        modelItems.clean();
     }
     
     private void setListDeRI(ArrayList<RI> list) {
@@ -1017,10 +1029,16 @@ public class JDRI extends javax.swing.JDialog {
     @Action
     public Task guardarRI() {
         if(txtRI_Num.getText().isEmpty()){
+            OpcionPanel.showMessageDialog(null, "El número de Requerimiento Interno es obligatorio.", "Error", OpcionPanel.ERROR_MESSAGE);
+            return null;
+        }
+        if(tablaItems.getModel().getRowCount()== 0){
+            OpcionPanel.showMessageDialog(null, "Debe especificar al menos un ítem en la lista.", "Error", OpcionPanel.ERROR_MESSAGE);
             return null;
         }
         
         ri = new RI();
+        riItemes = new ArrayList<RiItem>();
         ri.setRI_num(txtRI_Num.getText());
         ri.setFecha_necesidad(dateNecesidad.getDate());
         if(!txtSolicitante.getText().isEmpty()){
@@ -1035,6 +1053,10 @@ public class JDRI extends javax.swing.JDialog {
         ri.setFecha_entrega(dateEntrega.getDate());
         ri.setObraID(obraSelect.getId());
         ri.setCodigoObra(obraSelect.getCodigo());
+        for(int i = 0; i < modelItems.getRowCount(); i++){
+            
+            riItemes.add(modelItems.getFila(i));
+        }
         return new GuardarRITask(org.jdesktop.application.Application.getInstance(zilleprojects.ZilleProjectsApp.class));
     }
 
@@ -1049,7 +1071,7 @@ public class JDRI extends javax.swing.JDialog {
         @Override protected Object doInBackground() {
             RIDAO dao = new RIDAO();
             dao.conectar();
-            r = dao.guardar(ri);
+            r = dao.guardar(ri, riItemes);
             ri.setRI_ID(r);
             return null;  // return your result
         }
@@ -1072,7 +1094,7 @@ public class JDRI extends javax.swing.JDialog {
         if(txtRI_Num.getText().isEmpty()){
             return null;
         }
-        ///TODO Guardar el estado de el RI, guardar el ID de obra
+        
         ri.setRI_num(txtRI_Num.getText());
         ri.setFecha_necesidad(dateNecesidad.getDate());
         if(!txtSolicitante.getText().isEmpty()){
@@ -1086,7 +1108,11 @@ public class JDRI extends javax.swing.JDialog {
         ri.setFecha_entrega(dateEntrega.getDate());
         ri.setObraID(obraSelect.getId());
         ri.setCodigoObra(obraSelect.getCodigo());
-        
+        riItemes = new ArrayList<RiItem>();
+        for(int i = 0; i < modelItems.getRowCount(); i++){
+            
+            riItemes.add(modelItems.getFila(i));
+        }
         return new ModificarRITask(org.jdesktop.application.Application.getInstance(zilleprojects.ZilleProjectsApp.class));
     }
 
@@ -1099,7 +1125,7 @@ public class JDRI extends javax.swing.JDialog {
         @Override protected Object doInBackground() {
             RIDAO dao = new RIDAO();
             dao.conectar();
-            r = dao.modificar(ri);
+            r = dao.modificar(ri, riItemes);
             return null;  // return your result
         }
         @Override protected void succeeded(Object result) {
@@ -1321,6 +1347,7 @@ public class JDRI extends javax.swing.JDialog {
     // End of variables declaration//GEN-END:variables
     private DefaultListModel listaDeRI = new DefaultListModel();
     private RI ri = new RI();
+    private ArrayList<RiItem> riItemes= new ArrayList<RiItem>();
     private DefaultListModel listaDeObras = new DefaultListModel();
     private Obras obraSelect = new Obras();
     private String query ="";

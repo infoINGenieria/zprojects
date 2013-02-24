@@ -28,12 +28,13 @@ public class RIDAO {
         }
     }
     
-    public int guardar(RI ri) {
+    public int guardar(RI ri, ArrayList<RiItem> riItemes) {
         int r = 0;
         String query = null;
-
+        
         try {          
-            query = "insert into RI (OBRAID, RI_NUM, "
+            conector.setAutoCommit(false);
+            query = "insert into ri (OBRAID, RI_NUM, "
                     + "FECHA_NECESIDAD, OBSERVACIONES, SOLICITANTE, OC_NUM, "
                     + "PROVEEDOR, FECHA_EMISION, FECHA_OC, FECHA_ENTREGA) "
                     + "values ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
@@ -55,21 +56,31 @@ public class RIDAO {
             if (generatedKeys.next()) {
                 r = generatedKeys.getInt(1);
             }
+            RIItemDAO riiDao = new RIItemDAO();
+            riiDao.conectar(conector);
+            for(RiItem item:riItemes){
+                item.setRiId(r);
+                riiDao.guardar(item);
+            }
+            conector.commit();
+            
             generatedKeys.close();
             ps.close();
-
+            conector.setAutoCommit(true);
+            
         } catch (SQLException ex) {
             r = 0;
         }
         return r;
     }
     
-    public int modificar(RI ri) {
+    public int modificar(RI ri, ArrayList<RiItem> riItems) {
         int r = 0;
         String query = null;
 
         try {
-            query = "update RI set OBRAID=?, RI_NUM=?, "
+            conector.setAutoCommit(false);
+            query = "update ri set OBRAID=?, RI_NUM=?, "
                     + "FECHA_NECESIDAD=?, OBSERVACIONES=?, SOLICITANTE=?, OC_NUM=?, "
                     + "PROVEEDOR=?, FECHA_EMISION=?, FECHA_OC=?, FECHA_ENTREGA=? where RIID = " +ri.getRI_ID();
             PreparedStatement ps = conector.prepareStatement(query);
@@ -92,8 +103,31 @@ public class RIDAO {
                 r= ri.getRI_ID();
                 
             }
+            RIItemDAO riiDao = new RIItemDAO();
+            riiDao.conectar(conector);
+            final ArrayList<RiItem> riItemAll = riiDao.cargarTodos(r);
+            for(RiItem item:riItemAll){
+                if(riItems.contains(item)){ //si sigue estando, se modifica
+                    //busco el index del item
+                    int idx = riItems.indexOf(item);
+                    //guardamos los cambios
+                    riiDao.modificar(riItems.get(idx));
+                    //lo removemos de la lista
+                    riItems.remove(idx);  
+                }else{ //si no está se elimina
+                    riiDao.borrar(item);
+                }
+            }
+            if(!riItems.isEmpty()){ //Si quedan item sin guardar
+                for(RiItem it: riItems){
+                    it.setRiId(r);
+                    riiDao.guardar(it);
+                }
+            }
+            conector.commit();
             generatedKeys.close();
             ps.close();
+            conector.setAutoCommit(false);
 
         } catch (SQLException ex) {
             r = 0;
@@ -106,7 +140,7 @@ public class RIDAO {
         boolean r =false;
         try {
             conector.setAutoCommit(false);
-            String query = "delete from RI where RIID = ?";
+            String query = "delete from ri where RIID = ?";
             PreparedStatement ps = conector.prepareStatement(query);
             ps.setInt(1, ri.getRI_ID());
             int rs = ps.executeUpdate();
@@ -117,6 +151,10 @@ public class RIDAO {
                 ps.setInt(1, ri.getRI_ID());
                 rs = ps.executeUpdate();
                 
+                query = "delete from ri_item where riId = ?";
+                ps = conector.prepareStatement(query);
+                ps.setInt(1, ri.getRI_ID());
+                rs = ps.executeUpdate();
             }
             conector.commit();
             ps.close();
@@ -135,8 +173,8 @@ public class RIDAO {
         String query = null;
         ArrayList<RI> alarmas = new ArrayList<RI>();
         try {
-            query = "select RI.*, OB.codigo from RI "
-                    + "INNER JOIN obras OB ON RI.obraID = OB.id order by fecha_necesidad asc";
+            query = "select ri.*, OB.codigo from ri "
+                    + "LEFT JOIN obras OB ON ri.obraID = OB.id order by fecha_necesidad asc";
             PreparedStatement ps = conector.prepareStatement(query);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
@@ -169,9 +207,9 @@ public class RIDAO {
         String query = null;
         RI ri = new RI();
         try {
-            query = "select RI.*, OB.codigo from RI "
-                    + "INNER JOIN obras OB ON RI.obraID = OB.id where "
-                    + "RI.RIID = "+RI_ID+ " order by fecha_necesidad asc";
+            query = "select ri.*, OB.codigo from ri "
+                    + "LEFT JOIN obras OB ON ri.obraID = OB.id where "
+                    + "ri.RIID = "+RI_ID+ " order by fecha_necesidad asc";
             PreparedStatement ps = conector.prepareStatement(query);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
@@ -204,11 +242,12 @@ public class RIDAO {
         String query = null;
         ArrayList<RI> alarmas = new ArrayList<RI>();
         try {
-            query = "select RI.*, OB.codigo from RI "
-                    + "INNER JOIN obras OB ON RI.obraID = OB.id where "
-                    + "RI.RI_NUM like '%"+q+"%' or "
+            query = "select ri.*, OB.codigo from ri "
+                    + "LEFT JOIN obras OB ON ri.obraID = OB.id where "
+                    + "ri.RI_NUM like '%"+q+"%' or "
                     + "OB.codigo like '%"+q+"%' or "
-                    + "RI.proveedor like '%"+q+"%' "
+                    + "ri.solicitante like '%"+q+"%' or "
+                    + "ri.proveedor like '%"+q+"%' "
                     + "order by fecha_necesidad asc";
             PreparedStatement ps = conector.prepareStatement(query);
             ResultSet rs = ps.executeQuery();
@@ -240,6 +279,7 @@ public class RIDAO {
     
     
     /*RI ITEM*/
+    /*
     public int guardarItem(RiItem ri) {
         int r = 0;
         String query = null;
@@ -347,7 +387,7 @@ public class RIDAO {
             ps.close();
 
         } catch (SQLException ex) {
-            System.out.print("Falló al cargar las alarmas " +ex.getMessage()+ "\n");
+            System.out.print("Falló al cargar las Ri " +ex.getMessage()+ "\n");
         }
         return riItems;
 
@@ -378,5 +418,5 @@ public class RIDAO {
         }
         return ri;
 
-    } 
+    } */
 }
