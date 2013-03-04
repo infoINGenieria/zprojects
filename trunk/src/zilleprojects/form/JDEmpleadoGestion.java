@@ -766,7 +766,9 @@ private void listaEmpleadosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FI
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
 
+            @Override
             public void run() {
+                
                 JDEmpleadoGestion dialog = new JDEmpleadoGestion(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
 

@@ -442,7 +442,7 @@ public class ReportesDAO {
         }
     }
     
-     public String reportOrdenTrabajo( int idOT){
+     public String reportOrdenTrabajo( int idOT, String interno){
          String result="";
         try {
 
@@ -465,7 +465,7 @@ public class ReportesDAO {
             exporterXLS.setParameter(JRXlsExporterParameter.IS_WHITE_PAGE_BACKGROUND, Boolean.FALSE);
             exporterXLS.setParameter(JRXlsExporterParameter.IS_REMOVE_EMPTY_SPACE_BETWEEN_ROWS, Boolean.TRUE);
             String soName = System.getProperty("os.name").toUpperCase();
-            String archivo="OrdenTrabajo("+ idOT+ ").xls";
+            String archivo="OT"+idOT +" ("+ interno+ ").xls";
             //String command = "start " +archivo ;
             File folder = new File("Ordenes\\");
             if (soName.equals("LINUX")) { //Si se ejecuta en Linux  
@@ -524,6 +524,7 @@ public class ReportesDAO {
             
         //ENCABEZADOS
             HSSFRow myRow = mySheet.getRow(i);
+            
             if (myRow == null) { myRow = mySheet.createRow(i); }
             HSSFCell myCell = myRow.createCell(0);
             myCell.setCellValue(new HSSFRichTextString("NOMBRE"));

@@ -40,7 +40,9 @@ public class EquiposDAO {
             /*`N_INTERNO` `VEHICULO`  `MARCA`   `MODELO`  `AÑO`  `DOMINIO` 
             */
             query = "insert into equipos (N_INTERNO, EQUIPO, MARCA,"
-                    + " MODELO, AÑO, DOMINIO, VTO_VT, VTO_SEGURO) values ( ?, ?, ?, ?, ?, ?, ?, ?)";
+                    + " MODELO, AÑO, DOMINIO, VTO_VTV, VTO_SEGURO, "
+                    + " VTO_OTROS1, VTO_OTROS2, VTO_OTROS3, DESCRIPCION_VTO1, DESCRIPCION_VTO2, DESCRIPCION_VTO3"
+                    + ") values ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement ps = conector.prepareStatement(query);
             ps.setString(1, eq.getN_interno());
             ps.setString(2, eq.getEquipos());
@@ -48,8 +50,14 @@ public class EquiposDAO {
             ps.setString(4, eq.getModelo());
             ps.setDouble(5, eq.getAño());
             ps.setString(6, eq.getDominio());
-            ps.setDate(7, FechaUtil.getFechatoDB(eq.getVto_vt()));
+            ps.setDate(7, FechaUtil.getFechatoDB(eq.getVto_vtv()));
             ps.setDate(8, FechaUtil.getFechatoDB(eq.getVto_seguro()));
+            ps.setDate(9, FechaUtil.getFechatoDB(eq.getVto_otros1()));
+            ps.setDate(10, FechaUtil.getFechatoDB(eq.getVto_otros2()));
+            ps.setDate(11, FechaUtil.getFechatoDB(eq.getVto_otros3()));
+            ps.setString(12, eq.getDescripcion_vto1());
+            ps.setString(13, eq.getDescripcion_vto2());
+            ps.setString(14, eq.getDescripcion_vto3());
             ps.executeUpdate();
             ResultSet generatedKeys = ps.getGeneratedKeys();
 
@@ -69,8 +77,11 @@ public class EquiposDAO {
 
         int r = 0;
         try {
-            String query = "update equipos set N_INTERNO=?, EQUIPO=?, MARCA=?,"
-                    + " MODELO=?, AÑO=?, DOMINIO=?, VTO_VT=?, VTO_SEGURO=? where ID = ?";
+            String query = "update equipos set N_INTERNO=?, EQUIPO=?, MARCA=?, "
+                    + "MODELO=?, AÑO=?, DOMINIO=?, VTO_VTV=?, VTO_SEGURO=?, "
+                    + "VTO_OTROS1=?, VTO_OTROS2=?, VTO_OTROS3=?, DESCRIPCION_VTO1=?, "
+                    + "DESCRIPCION_VTO2=?, DESCRIPCION_VTO3=? "
+                    + "where ID = ?";
             PreparedStatement ps = conector.prepareStatement(query);
             ps.setString(1, eq.getN_interno());
             ps.setString(2, eq.getEquipos());
@@ -78,9 +89,15 @@ public class EquiposDAO {
             ps.setString(4, eq.getModelo());
             ps.setDouble(5, eq.getAño());
             ps.setString(6, eq.getDominio());
-            ps.setDate(7, FechaUtil.getFechatoDB(eq.getVto_vt()));
+            ps.setDate(7, FechaUtil.getFechatoDB(eq.getVto_vtv()));
             ps.setDate(8, FechaUtil.getFechatoDB(eq.getVto_seguro()));
-            ps.setInt(9, eq.getId());
+            ps.setDate(9, FechaUtil.getFechatoDB(eq.getVto_otros1()));
+            ps.setDate(10, FechaUtil.getFechatoDB(eq.getVto_otros2()));
+            ps.setDate(11, FechaUtil.getFechatoDB(eq.getVto_otros3()));
+            ps.setString(12, eq.getDescripcion_vto1());
+            ps.setString(13, eq.getDescripcion_vto2());
+            ps.setString(14, eq.getDescripcion_vto3());
+            ps.setInt(15, eq.getId());
             ps.executeUpdate();
             ResultSet rs = ps.getGeneratedKeys();
             if (rs.next()) {
@@ -90,7 +107,7 @@ public class EquiposDAO {
             rs.close();
 
         } catch (SQLException ex) {
-            r = 0;
+            r = -1;
         }
 
         return r;
@@ -114,8 +131,15 @@ public class EquiposDAO {
                 eq.setModelo(rs.getString("MODELO"));
                 eq.setAño(rs.getDouble("AÑO"));
                 eq.setDominio(rs.getString("DOMINIO"));
-                eq.setVto_vt(rs.getDate("VTO_VT"));
+                eq.setVto_vtv(rs.getDate("VTO_VTV"));
                 eq.setVto_seguro(rs.getDate("VTO_SEGURO"));
+                eq.setVto_otros1(rs.getDate("VTO_OTROS1"));
+                eq.setVto_otros2(rs.getDate("VTO_OTROS2"));
+                eq.setVto_otros3(rs.getDate("VTO_OTROS3"));
+                eq.setDescripcion_vto1(rs.getString("DESCRIPCION_VTO1"));
+                eq.setDescripcion_vto2(rs.getString("DESCRIPCION_VTO2"));
+                eq.setDescripcion_vto3(rs.getString("DESCRIPCION_VTO3"));
+                
                 equipos.add(eq);
             }
             rs.close();
@@ -143,8 +167,14 @@ public class EquiposDAO {
                 eq.setModelo(rs.getString("MODELO"));
                 eq.setAño(rs.getDouble("AÑO"));
                 eq.setDominio(rs.getString("DOMINIO"));
-                eq.setVto_vt(rs.getDate("VTO_VT"));
+                eq.setVto_vtv(rs.getDate("VTO_VTV"));
                 eq.setVto_seguro(rs.getDate("VTO_SEGURO"));
+                eq.setVto_otros1(rs.getDate("VTO_OTROS1"));
+                eq.setVto_otros2(rs.getDate("VTO_OTROS2"));
+                eq.setVto_otros3(rs.getDate("VTO_OTROS3"));
+                eq.setDescripcion_vto1(rs.getString("DESCRIPCION_VTO1"));
+                eq.setDescripcion_vto2(rs.getString("DESCRIPCION_VTO2"));
+                eq.setDescripcion_vto3(rs.getString("DESCRIPCION_VTO3"));
                 equipos.add(eq);
             }
             rs.close();
@@ -173,8 +203,14 @@ public class EquiposDAO {
                 eq.setModelo(rs.getString("MODELO"));
                 eq.setAño(rs.getDouble("AÑO"));
                 eq.setDominio(rs.getString("DOMINIO"));
-                eq.setVto_vt(rs.getDate("VTO_VT"));
+                eq.setVto_vtv(rs.getDate("VTO_VTV"));
                 eq.setVto_seguro(rs.getDate("VTO_SEGURO"));
+                eq.setVto_otros1(rs.getDate("VTO_OTROS1"));
+                eq.setVto_otros2(rs.getDate("VTO_OTROS2"));
+                eq.setVto_otros3(rs.getDate("VTO_OTROS3"));
+                eq.setDescripcion_vto1(rs.getString("DESCRIPCION_VTO1"));
+                eq.setDescripcion_vto2(rs.getString("DESCRIPCION_VTO2"));
+                eq.setDescripcion_vto3(rs.getString("DESCRIPCION_VTO3"));
             }
             rs.close();
             ps.close();
@@ -218,8 +254,14 @@ public class EquiposDAO {
                 eq.setModelo(rs.getString("MODELO"));
                 eq.setAño(rs.getDouble("AÑO"));
                 eq.setDominio(rs.getString("DOMINIO"));
-                eq.setVto_vt(rs.getDate("VTO_VT"));
+                eq.setVto_vtv(rs.getDate("VTO_VTV"));
                 eq.setVto_seguro(rs.getDate("VTO_SEGURO"));
+                eq.setVto_otros1(rs.getDate("VTO_OTROS1"));
+                eq.setVto_otros2(rs.getDate("VTO_OTROS2"));
+                eq.setVto_otros3(rs.getDate("VTO_OTROS3"));
+                eq.setDescripcion_vto1(rs.getString("DESCRIPCION_VTO1"));
+                eq.setDescripcion_vto2(rs.getString("DESCRIPCION_VTO2"));
+                eq.setDescripcion_vto3(rs.getString("DESCRIPCION_VTO3"));
                equipos.add(eq);
             }
             rs.close();
@@ -280,8 +322,14 @@ public class EquiposDAO {
                 eq.setModelo(rs.getString("MODELO"));
                 eq.setAño(rs.getDouble("AÑO"));
                 eq.setDominio(rs.getString("DOMINIO"));
-                eq.setVto_vt(rs.getDate("VTO_VT"));
+                eq.setVto_vtv(rs.getDate("VTO_VTV"));
                 eq.setVto_seguro(rs.getDate("VTO_SEGURO"));
+                eq.setVto_otros1(rs.getDate("VTO_OTROS1"));
+                eq.setVto_otros2(rs.getDate("VTO_OTROS2"));
+                eq.setVto_otros3(rs.getDate("VTO_OTROS3"));
+                eq.setDescripcion_vto1(rs.getString("DESCRIPCION_VTO1"));
+                eq.setDescripcion_vto2(rs.getString("DESCRIPCION_VTO2"));
+                eq.setDescripcion_vto3(rs.getString("DESCRIPCION_VTO3"));
                equipos.add(eq);
             }
             rs.close();
@@ -297,18 +345,31 @@ public class EquiposDAO {
     public ArrayList<ItemAlarma> getAlarmasEquipos(java.util.Date inicio, java.util.Date fin){
         ArrayList<ItemAlarma> alarmas = new ArrayList<ItemAlarma>();
         try {
-            String query = "select distinct * from equipos where (VTO_VT "
-                    + ">= ? and VTO_VT <= ?) or (VTO_SEGURO >= ? and VTO_SEGURO <= ?)";
+            String query = "select distinct * from equipos where "
+                    + "(VTO_VTV >= ? and VTO_VTV <= ?) or "
+                    + "(VTO_SEGURO >= ? and VTO_SEGURO <= ?) or "
+                    + "(VTO_OTROS1 >= ? and VTO_OTROS1 <= ?) or "
+                    + "(VTO_OTROS2 >= ? and VTO_OTROS2 <= ?) or "
+                    + "(VTO_OTROS3 >= ? and VTO_OTROS3 <= ?)";
             PreparedStatement ps = conector.prepareStatement(query);
-            ps.setDate(1, FechaUtil.getFechatoDB(inicio));
-            ps.setDate(2, FechaUtil.getFechatoDB(fin));
-            ps.setDate(3, FechaUtil.getFechatoDB(inicio));
-            ps.setDate(4, FechaUtil.getFechatoDB(fin));
+            java.sql.Date inicioDB = FechaUtil.getFechatoDB(inicio);
+            java.sql.Date finDB = FechaUtil.getFechatoDB(fin);
+            ps.setDate(1, inicioDB);
+            ps.setDate(2, finDB);
+            ps.setDate(3, inicioDB);
+            ps.setDate(4, finDB);
+            ps.setDate(5, inicioDB);
+            ps.setDate(6, finDB);
+            ps.setDate(7, inicioDB);
+            ps.setDate(8, finDB);
+            ps.setDate(9, inicioDB);
+            ps.setDate(10, finDB);
+            
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 
-                java.util.Date vt = FechaUtil.getFechaFromDB(rs.getDate("VTO_VT"));
-                java.util.Date seg = FechaUtil.getFechaFromDB(rs.getDate("VTO_SEGURO"));
+                java.util.Date vt = FechaUtil.getFechaFromDB(rs.getDate("VTO_VTV"));
+                
                 
                 if(vt!=null && vt.after(inicio) && vt.before(fin)){ //vt se encuentra en el rango
                     ItemAlarma al = new ItemAlarma();
@@ -318,10 +379,10 @@ public class EquiposDAO {
                         al.setTipo(0);
                     }
                     al.setFecha(vt);
-                    al.setMensaje("La verificación técnica del equipo "+rs.getString("N_INTERNO")+" vence el "+FechaUtil.getFecha(vt));
+                    al.setMensaje("La VTV del equipo "+rs.getString("N_INTERNO")+" vence el "+FechaUtil.getFecha(vt));
                     alarmas.add(al);
                 }
-                
+                java.util.Date seg = FechaUtil.getFechaFromDB(rs.getDate("VTO_SEGURO"));
                 if(seg != null && seg.after(inicio) && seg.before(fin)){ //seg se encuentra en el rango
                     ItemAlarma al = new ItemAlarma();
                     if(seg.equals(inicio)) {
@@ -333,6 +394,45 @@ public class EquiposDAO {
                     al.setMensaje("El seguro del equipo "+rs.getString("N_INTERNO")+" vence el "+FechaUtil.getFecha(seg));
                     alarmas.add(al);
                 }
+                
+                java.util.Date otros1 = FechaUtil.getFechaFromDB(rs.getDate("VTO_OTROS1"));
+                if(otros1 != null && otros1.after(inicio) && otros1.before(fin)){ //seg se encuentra en el rango
+                    ItemAlarma al = new ItemAlarma();
+                    if(otros1.equals(inicio)) {
+                        al.setTipo(1);
+                    }else {
+                        al.setTipo(0);
+                    }
+                    al.setFecha(otros1);
+                    al.setMensaje(rs.getString("DESCRIPCION_VTO1")+" del equipo "+rs.getString("N_INTERNO")+" vence el "+FechaUtil.getFecha(otros1));
+                    alarmas.add(al);
+                }
+                java.util.Date otros2 = FechaUtil.getFechaFromDB(rs.getDate("VTO_OTROS2"));
+                if(otros2 != null && otros2.after(inicio) && otros2.before(fin)){ //seg se encuentra en el rango
+                    ItemAlarma al = new ItemAlarma();
+                    if(otros2.equals(inicio)) {
+                        al.setTipo(1);
+                    }else {
+                        al.setTipo(0);
+                    }
+                    al.setFecha(otros2);
+                    al.setMensaje(rs.getString("DESCRIPCION_VTO2")+" del equipo "+rs.getString("N_INTERNO")+" vence el "+FechaUtil.getFecha(otros2));
+                    alarmas.add(al);
+                }
+                java.util.Date otros3 = FechaUtil.getFechaFromDB(rs.getDate("VTO_OTROS3"));
+                if(otros3 != null && otros3.after(inicio) && otros3.before(fin)){ //seg se encuentra en el rango
+                    ItemAlarma al = new ItemAlarma();
+                    if(otros3.equals(inicio)) {
+                        al.setTipo(1);
+                    }else {
+                        al.setTipo(0);
+                    }
+                    al.setFecha(otros3);
+                    al.setMensaje(rs.getString("DESCRIPCION_VTO3")+" del equipo "+rs.getString("N_INTERNO")+" vence el "+FechaUtil.getFecha(otros3));
+                    alarmas.add(al);
+                }
+                
+                
            
             }
             rs.close();

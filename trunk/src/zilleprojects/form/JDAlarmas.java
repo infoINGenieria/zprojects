@@ -69,6 +69,7 @@ public class JDAlarmas extends javax.swing.JDialog {
         btnModificar = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         txtBuscarAlarmas = new javax.swing.JTextField();
+        lblResultados = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(zilleprojects.ZilleProjectsApp.class).getContext().getResourceMap(JDAlarmas.class);
@@ -92,7 +93,7 @@ public class JDAlarmas extends javax.swing.JDialog {
         });
         jScrollPane1.setViewportView(jListAlarmas);
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(resourceMap.getColor("jPanel2.border.lineColor"))); // NOI18N
+        jPanel2.setBorder(new javax.swing.border.LineBorder(resourceMap.getColor("jPanel2.border.lineColor"), 1, true)); // NOI18N
         jPanel2.setName("jPanel2"); // NOI18N
         jPanel2.setOpaque(false);
 
@@ -116,6 +117,7 @@ public class JDAlarmas extends javax.swing.JDialog {
         txtFecha.setName("txtFecha"); // NOI18N
 
         txtNombre.setText(resourceMap.getString("txtNombre.text")); // NOI18N
+        txtNombre.setDisabledTextColor(resourceMap.getColor("txtNombre.disabledTextColor")); // NOI18N
         txtNombre.setEnabled(false);
         txtNombre.setName("txtNombre"); // NOI18N
 
@@ -129,6 +131,7 @@ public class JDAlarmas extends javax.swing.JDialog {
         txtComentario.setLineWrap(true);
         txtComentario.setRows(3);
         txtComentario.setWrapStyleWord(true);
+        txtComentario.setDisabledTextColor(resourceMap.getColor("txtComentario.disabledTextColor")); // NOI18N
         txtComentario.setEnabled(false);
         txtComentario.setMinimumSize(new java.awt.Dimension(10, 10));
         txtComentario.setName("txtComentario"); // NOI18N
@@ -155,7 +158,7 @@ public class JDAlarmas extends javax.swing.JDialog {
                         .addComponent(pinDiasAntes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel4))
-                    .addComponent(txtNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 362, Short.MAX_VALUE))
+                    .addComponent(txtNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 364, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -205,6 +208,7 @@ public class JDAlarmas extends javax.swing.JDialog {
         btnQuitarAlarma.setText(resourceMap.getString("btnQuitarAlarma.text")); // NOI18N
         btnQuitarAlarma.setName("btnQuitarAlarma"); // NOI18N
 
+        btnCancelar.setIcon(resourceMap.getIcon("btnCancelar.icon")); // NOI18N
         btnCancelar.setText(resourceMap.getString("btnCancelar.text")); // NOI18N
         btnCancelar.setEnabled(false);
         btnCancelar.setName("btnCancelar"); // NOI18N
@@ -215,10 +219,12 @@ public class JDAlarmas extends javax.swing.JDialog {
         });
 
         btnGuardar.setAction(actionMap.get("guardarAlarma")); // NOI18N
+        btnGuardar.setIcon(resourceMap.getIcon("btnGuardar.icon")); // NOI18N
         btnGuardar.setText(resourceMap.getString("btnGuardar.text")); // NOI18N
         btnGuardar.setName("btnGuardar"); // NOI18N
 
         btnModificar.setAction(actionMap.get("modificarAlarma")); // NOI18N
+        btnModificar.setIcon(resourceMap.getIcon("btnModificar.icon")); // NOI18N
         btnModificar.setText(resourceMap.getString("btnModificar.text")); // NOI18N
         btnModificar.setName("btnModificar"); // NOI18N
 
@@ -243,6 +249,11 @@ public class JDAlarmas extends javax.swing.JDialog {
             }
         });
 
+        lblResultados.setFont(lblResultados.getFont().deriveFont(lblResultados.getFont().getStyle() | java.awt.Font.BOLD));
+        lblResultados.setForeground(resourceMap.getColor("lblResultados.foreground")); // NOI18N
+        lblResultados.setText(resourceMap.getString("lblResultados.text")); // NOI18N
+        lblResultados.setName("lblResultados"); // NOI18N
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -257,11 +268,9 @@ public class JDAlarmas extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnQuitarAlarma, javax.swing.GroupLayout.DEFAULT_SIZE, 72, Short.MAX_VALUE)
                         .addGap(17, 17, 17))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(txtBuscarAlarmas, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                    .addComponent(txtBuscarAlarmas, javax.swing.GroupLayout.DEFAULT_SIZE, 258, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1))
+                .addGap(12, 12, 12)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -270,7 +279,10 @@ public class JDAlarmas extends javax.swing.JDialog {
                         .addGap(18, 18, 18)
                         .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(lblResultados, javax.swing.GroupLayout.DEFAULT_SIZE, 330, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
 
@@ -281,9 +293,9 @@ public class JDAlarmas extends javax.swing.JDialog {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(btnNuevaAlarma)
@@ -294,16 +306,17 @@ public class JDAlarmas extends javax.swing.JDialog {
                                 .addComponent(btnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(txtBuscarAlarmas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(24, 24, 24))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton1)
-                        .addContainerGap())))
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 90, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                            .addComponent(lblResultados, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton1)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(54, 54, 54)
+                        .addComponent(txtBuscarAlarmas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
 
         jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnCancelar, btnGuardar, btnModificar});
@@ -474,6 +487,7 @@ private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
         txtComentario.setText("");
         pinDiasAntes.setValue(new Integer(0));
         alActual= new Alarma();
+        lblResultados.setText(null);
     }
     private void setListDeAlarma(ArrayList<Alarma> list) {
         listaDeAlarmas.clear();
@@ -499,6 +513,7 @@ private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
         AlarmasDAO otDao = new AlarmasDAO();
         otDao.conectar();
         setListDeAlarma(otDao.cargarTodos());
+        lblResultados.setText(query);
     }
 
     @Action
@@ -542,8 +557,8 @@ private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
         }
         @Override protected void succeeded(Object result) {
             if (r > 0) {
-                OpcionPanel.showMessageDialog(null, "Alarma creada correctamente.", "Éxito", OpcionPanel.INFORMATION_MESSAGE);
-                
+                ///OpcionPanel.showMessageDialog(null, "Alarma creada correctamente.", "Éxito", OpcionPanel.INFORMATION_MESSAGE);
+                lblResultados.setText("Alarma modificada correctamente.");
                 listaDeAlarmas.addElement(alActual);
                 //jListDeOT.setModel(listDeOT);
                 jListAlarmas.setSelectedValue(alActual, true);
@@ -586,7 +601,8 @@ private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
         }
         @Override protected void succeeded(Object result) {
             if (r > 0) {
-                OpcionPanel.showMessageDialog(null, "Alarma modificada correctamente.", "Éxito", OpcionPanel.INFORMATION_MESSAGE);
+                lblResultados.setText("Alarma modificada correctamente.");
+                
                 if (obtenerDatosDeList()) {
                    desbloquearCampos(false);
                    desbloquearBoton(3);
@@ -674,6 +690,7 @@ private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JLabel lblResultados;
     private javax.swing.JSpinner pinDiasAntes;
     private javax.swing.JTextField txtBuscarAlarmas;
     private javax.swing.JTextArea txtComentario;

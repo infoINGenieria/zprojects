@@ -124,7 +124,7 @@ public class OrdenTrabajo {
     
     @Override
     public String toString(){
-        return nInterno+" - "+FechaUtil.getFecha(fecha) +" ("+mantenimiento+")";
+        return "OT"+ OrdenTrabajoID +" [" +nInterno+"] - "+FechaUtil.getFecha(fecha) +" ("+mantenimiento+")";
     }
 
     @Override

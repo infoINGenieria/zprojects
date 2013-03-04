@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
 	<property name="ireport.zoom" value="1.3310000000000004"/>
-	<property name="ireport.x" value="188"/>
-	<property name="ireport.y" value="63"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
 	<parameter name="id_informe" class="java.lang.Integer">
 		<defaultValueExpression><![CDATA[new Integer(1)]]></defaultValueExpression>
 	</parameter>
@@ -250,7 +250,7 @@ order by PD.fecha asc]]>
 	</columnHeader>
 	<detail>
 		<band height="23" splitType="Stretch">
-			<textField pattern="" isBlankWhenNull="true">
+			<textField isStretchWithOverflow="true" pattern="###0.00" isBlankWhenNull="true">
 				<reportElement mode="Transparent" x="737" y="0" width="65" height="17" backcolor="#E9E9E9">
 					<printWhenExpression><![CDATA[$F{id_sit}.intValue() == 1 ? Boolean.TRUE: Boolean.FALSE]]></printWhenExpression>
 				</reportElement>
@@ -258,9 +258,9 @@ order by PD.fecha asc]]>
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{hs_100}]]></textFieldExpression>
-				<patternExpression><![CDATA[$F{hs_100}.getHours()+","+((int)(Double.valueOf($F{hs_100}.getMinutes())/60*100))]]></patternExpression>
+				<patternExpression><![CDATA[$F{hs_100}.getHours() +","+ (int) ( (float) $F{hs_100}.getMinutes()/60*100 )]]></patternExpression>
 			</textField>
-			<textField pattern="" isBlankWhenNull="true">
+			<textField isStretchWithOverflow="true" pattern="###0.00" isBlankWhenNull="true">
 				<reportElement mode="Transparent" x="672" y="0" width="65" height="17">
 					<printWhenExpression><![CDATA[$F{id_sit}.intValue() == 1 ? Boolean.TRUE: Boolean.FALSE]]></printWhenExpression>
 				</reportElement>
@@ -268,9 +268,9 @@ order by PD.fecha asc]]>
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{hs_50}]]></textFieldExpression>
-				<patternExpression><![CDATA[$F{hs_50}.getHours()+","+((int)(Double.valueOf($F{hs_50}.getMinutes())/60*100))]]></patternExpression>
+				<patternExpression><![CDATA[$F{hs_50}.getHours() +","+ (int) ( (float)   $F{hs_50}.getMinutes()/60*100)]]></patternExpression>
 			</textField>
-			<textField pattern="" isBlankWhenNull="true">
+			<textField isStretchWithOverflow="true" pattern="###0.00" isBlankWhenNull="true">
 				<reportElement mode="Transparent" x="614" y="0" width="58" height="17">
 					<printWhenExpression><![CDATA[$F{id_sit}.intValue() == 1 ? Boolean.TRUE: Boolean.FALSE]]></printWhenExpression>
 				</reportElement>
@@ -278,9 +278,9 @@ order by PD.fecha asc]]>
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{hs_viaje}]]></textFieldExpression>
-				<patternExpression><![CDATA[$F{hs_viaje}.getHours()+","+((int)(Double.valueOf($F{hs_viaje}.getMinutes())/60*100))]]></patternExpression>
+				<patternExpression><![CDATA[$F{hs_viaje}.getHours() +","+( (int) ( (float) $F{hs_viaje}.getMinutes()/60*100))]]></patternExpression>
 			</textField>
-			<textField pattern="" isBlankWhenNull="true">
+			<textField isStretchWithOverflow="true" pattern="###0.00" isBlankWhenNull="true">
 				<reportElement mode="Transparent" x="525" y="0" width="89" height="17">
 					<printWhenExpression><![CDATA[$F{id_sit}.intValue() == 1 ? Boolean.TRUE: Boolean.FALSE]]></printWhenExpression>
 				</reportElement>
@@ -288,7 +288,7 @@ order by PD.fecha asc]]>
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{hs_tarea}]]></textFieldExpression>
-				<patternExpression><![CDATA[$F{hs_tarea}.getHours()+","+((int)(Double.valueOf($F{hs_tarea}.getMinutes())/60*100))]]></patternExpression>
+				<patternExpression><![CDATA[$F{hs_tarea}.getHours()+","+  (int)  ( (float) $F{hs_tarea}.getMinutes()/60*100 )]]></patternExpression>
 			</textField>
 			<textField>
 				<reportElement x="88" y="0" width="146" height="17">
@@ -379,7 +379,7 @@ order by PD.fecha asc]]>
 				<textElement textAlignment="Right"/>
 				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
-			<textField pattern="EEEEE dd MMMMM yyyy">
+			<textField pattern="dd/MM/yyyy HH.mm.ss">
 				<reportElement x="14" y="4" width="306" height="15"/>
 				<textElement textAlignment="Left"/>
 				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>

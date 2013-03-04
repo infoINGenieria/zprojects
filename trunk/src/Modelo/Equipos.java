@@ -13,14 +13,15 @@ import java.util.Date;
 public class Equipos {
     
      int id;
-    String n_interno, equipos, marca, modelo,dominio;
+    String n_interno, equipos, marca, modelo,dominio, descripcion_vto1,
+            descripcion_vto2, descripcion_vto3;
     double año;
-    Date vto_vt, vto_seguro;
+    Date vto_vtv, vto_seguro, vto_otros1, vto_otros2, vto_otros3;
     
-    public long getDateToDB(){
+    public long getDateVtoVTVToDB(){
        try{
-           vto_vt.getTime();
-           return vto_vt.getTime();
+           vto_vtv.getTime();
+           return vto_vtv.getTime();
        }catch (NullPointerException ex){
            return 0;
        }
@@ -34,12 +35,12 @@ public class Equipos {
         this.vto_seguro = vto_seguro;
     }
 
-    public Date getVto_vt() {
-        return vto_vt;
+    public Date getVto_vtv() {
+        return vto_vtv;
     }
 
-    public void setVto_vt(Date vto_vt) {
-        this.vto_vt = vto_vt;
+    public void setVto_vtv(Date vto_vt) {
+        this.vto_vtv = vto_vt;
     }
 
     
@@ -132,6 +133,56 @@ public class Equipos {
         hash = 79 * hash + this.id;
         return hash;
     }
+
+    public String getDescripcion_vto1() {
+        return descripcion_vto1;
+    }
+
+    public void setDescripcion_vto1(String descripcion_vto1) {
+        this.descripcion_vto1 = descripcion_vto1;
+    }
+
+    public String getDescripcion_vto2() {
+        return descripcion_vto2;
+    }
+
+    public void setDescripcion_vto2(String descripcion_vto2) {
+        this.descripcion_vto2 = descripcion_vto2;
+    }
+
+    public String getDescripcion_vto3() {
+        return descripcion_vto3;
+    }
+
+    public void setDescripcion_vto3(String descripcion_vto3) {
+        this.descripcion_vto3 = descripcion_vto3;
+    }
+
+    public Date getVto_otros1() {
+        return vto_otros1;
+    }
+
+    public void setVto_otros1(Date vto_otros1) {
+        this.vto_otros1 = vto_otros1;
+    }
+
+    public Date getVto_otros2() {
+        return vto_otros2;
+    }
+
+    public void setVto_otros2(Date vto_otros2) {
+        this.vto_otros2 = vto_otros2;
+    }
+
+    public Date getVto_otros3() {
+        return vto_otros3;
+    }
+
+    public void setVto_otros3(Date vto_otros3) {
+        this.vto_otros3 = vto_otros3;
+    }
+
+    
     
     
     

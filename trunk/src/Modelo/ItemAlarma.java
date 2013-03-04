@@ -73,6 +73,7 @@ public class ItemAlarma implements Comparable<ItemAlarma>{
         return hash;
     }
 
+    @Override
     public int compareTo(ItemAlarma o) {
         if (this.fecha.before(o.fecha)) {
             return -1;

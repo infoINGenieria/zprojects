@@ -6,6 +6,7 @@ package zilleprojects;
 import java.awt.Component;
 import java.util.EventObject;
 import javax.swing.JOptionPane;
+import javax.swing.UIManager;
 import org.jdesktop.application.Application;
 import org.jdesktop.application.SingleFrameApplication;
 
@@ -60,8 +61,8 @@ public class ZilleProjectsApp extends SingleFrameApplication {
      * Main method launching the application.
      */
     public static void main(String[] args) {
-
-        launch(ZilleProjectsApp.class, args);
+        
+            launch(ZilleProjectsApp.class, args); 
     }
     
 

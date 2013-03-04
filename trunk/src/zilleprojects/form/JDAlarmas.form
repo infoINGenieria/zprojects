@@ -54,7 +54,7 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace max="-2" attributes="0"/>
+                  <EmptySpace min="-2" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
                           <Component id="btnNuevaAlarma" linkSize="3" min="-2" pref="72" max="-2" attributes="0"/>
@@ -64,14 +64,10 @@
                           <Component id="btnQuitarAlarma" linkSize="3" pref="72" max="32767" attributes="0"/>
                           <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
                       </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                              <Component id="txtBuscarAlarmas" alignment="0" max="32767" attributes="1"/>
-                              <Component id="jScrollPane1" alignment="0" max="32767" attributes="1"/>
-                          </Group>
-                          <EmptySpace max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="txtBuscarAlarmas" alignment="0" pref="258" max="32767" attributes="1"/>
+                      <Component id="jScrollPane1" alignment="0" max="32767" attributes="2"/>
                   </Group>
+                  <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="1" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
                           <Component id="btnGuardar" linkSize="4" min="-2" pref="132" max="-2" attributes="0"/>
@@ -81,18 +77,22 @@
                           <Component id="btnCancelar" linkSize="4" min="-2" pref="119" max="-2" attributes="0"/>
                       </Group>
                       <Component id="jPanel2" alignment="1" min="-2" max="-2" attributes="0"/>
-                      <Component id="jButton1" alignment="1" min="-2" pref="139" max="-2" attributes="0"/>
+                      <Group type="102" alignment="1" attributes="0">
+                          <Component id="lblResultados" pref="330" max="32767" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="jButton1" min="-2" pref="139" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
-                  <EmptySpace max="-2" attributes="0"/>
+                  <EmptySpace min="-2" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
-                  <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="1" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="btnNuevaAlarma" min="-2" max="-2" attributes="0"/>
@@ -106,21 +106,21 @@
                               </Group>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="1" attributes="0">
-                              <Component id="jPanel2" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Group type="102" attributes="0">
-                                  <Component id="txtBuscarAlarmas" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace pref="12" max="32767" attributes="0"/>
-                                  <Component id="jScrollPane1" min="-2" pref="285" max="-2" attributes="0"/>
-                              </Group>
+                          <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace pref="90" max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="2" attributes="0">
+                              <Component id="lblResultados" alignment="2" min="-2" pref="27" max="-2" attributes="0"/>
+                              <Component id="jButton1" alignment="2" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
                       </Group>
-                      <Group type="102" alignment="1" attributes="0">
-                          <Component id="jButton1" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
+                      <Group type="102" attributes="0">
+                          <EmptySpace min="54" pref="54" max="54" attributes="0"/>
+                          <Component id="txtBuscarAlarmas" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace pref="24" max="32767" attributes="0"/>
+                          <Component id="jScrollPane1" min="-2" pref="285" max="-2" attributes="0"/>
                       </Group>
                   </Group>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -153,7 +153,7 @@
           <Properties>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
-                <LineBorder>
+                <LineBorder roundedCorners="true">
                   <Property name="color" resourceKey="jPanel2.border.lineColor"/>
                 </LineBorder>
               </Border>
@@ -184,7 +184,7 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="txtNombre" pref="362" max="32767" attributes="0"/>
+                          <Component id="txtNombre" pref="364" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -263,6 +263,7 @@
             <Component class="javax.swing.JTextField" name="txtNombre">
               <Properties>
                 <Property name="text" type="java.lang.String" resourceKey="txtNombre.text"/>
+                <Property name="disabledTextColor" type="java.awt.Color" resourceKey="txtNombre.disabledTextColor"/>
                 <Property name="enabled" type="boolean" value="false"/>
                 <Property name="name" type="java.lang.String" value="txtNombre" noResource="true"/>
               </Properties>
@@ -294,6 +295,7 @@
                     <Property name="lineWrap" type="boolean" value="true"/>
                     <Property name="rows" type="int" value="3"/>
                     <Property name="wrapStyleWord" type="boolean" value="true"/>
+                    <Property name="disabledTextColor" type="java.awt.Color" resourceKey="txtComentario.disabledTextColor"/>
                     <Property name="enabled" type="boolean" value="false"/>
                     <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                       <Dimension value="[10, 10]"/>
@@ -337,6 +339,7 @@
         </Component>
         <Component class="javax.swing.JButton" name="btnCancelar">
           <Properties>
+            <Property name="icon" type="javax.swing.Icon" resourceKey="btnCancelar.icon"/>
             <Property name="text" type="java.lang.String" resourceKey="btnCancelar.text"/>
             <Property name="enabled" type="boolean" value="false"/>
             <Property name="name" type="java.lang.String" value="btnCancelar" noResource="true"/>
@@ -350,6 +353,7 @@
             <Property name="action" type="javax.swing.Action" editor="org.netbeans.modules.swingapp.ActionEditor">
               <action class="zilleprojects.form.JDAlarmas" id="guardarAlarma" methodName="guardarAlarma"/>
             </Property>
+            <Property name="icon" type="javax.swing.Icon" resourceKey="btnGuardar.icon"/>
             <Property name="text" type="java.lang.String" resourceKey="btnGuardar.text"/>
             <Property name="name" type="java.lang.String" value="btnGuardar" noResource="true"/>
           </Properties>
@@ -359,6 +363,7 @@
             <Property name="action" type="javax.swing.Action" editor="org.netbeans.modules.swingapp.ActionEditor">
               <action class="zilleprojects.form.JDAlarmas" id="modificarAlarma" methodName="modificarAlarma"/>
             </Property>
+            <Property name="icon" type="javax.swing.Icon" resourceKey="btnModificar.icon"/>
             <Property name="text" type="java.lang.String" resourceKey="btnModificar.text"/>
             <Property name="name" type="java.lang.String" value="btnModificar" noResource="true"/>
           </Properties>
@@ -383,6 +388,18 @@
             <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txtBuscarAlarmasFocusLost"/>
             <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtBuscarAlarmasKeyReleased"/>
           </Events>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lblResultados">
+          <Properties>
+            <Property name="font" type="java.awt.Font" noResource="true" editor="org.netbeans.modules.form.editors2.FontEditor">
+              <FontInfo relative="true">
+                <Font bold="true" component="lblResultados" property="font" relativeSize="true" size="0"/>
+              </FontInfo>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" resourceKey="lblResultados.foreground"/>
+            <Property name="text" type="java.lang.String" resourceKey="lblResultados.text"/>
+            <Property name="name" type="java.lang.String" value="lblResultados" noResource="true"/>
+          </Properties>
         </Component>
       </SubComponents>
     </Container>

@@ -20,7 +20,7 @@ public class PanelAlarma extends javax.swing.JPanel {
             ImageIcon imagenFondo = new ImageIcon(getClass().
                     getResource("/zilleprojects/resources/alarma.png"));
             g.drawImage(imagenFondo.getImage(), 10, 0,
-                    38, 50, null);
+                    261, 36, null);
             setOpaque(false);
 
             super.paintComponent(g);

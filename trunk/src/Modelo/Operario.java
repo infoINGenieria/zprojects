@@ -13,9 +13,9 @@ import java.util.Date;
 public class Operario {
    
     int id, funcion;
-    String n_legajo, nombre, cuil, observaciones;
+    String n_legajo, nombre, cuil, observaciones, descripcion_vto1, descripcion_vto2,descripcion_vto3;
     boolean desarraigo;
-    Date vto_carnet;
+    Date vto_carnet, vto_psicofisico, vto_cargagral, vto_cargapeligrosa, vto_otros1, vto_otros2, vto_otros3;
 
     public boolean isDesarraigo() {
         return desarraigo;
@@ -117,6 +117,78 @@ public class Operario {
 
     public void setVto_carnet(Date vto_carnet) {
         this.vto_carnet = vto_carnet;
+    }
+
+    public String getDescripcion_vto1() {
+        return descripcion_vto1;
+    }
+
+    public void setDescripcion_vto1(String descripcion_vto1) {
+        this.descripcion_vto1 = descripcion_vto1;
+    }
+
+    public String getDescripcion_vto2() {
+        return descripcion_vto2;
+    }
+
+    public void setDescripcion_vto2(String descripcion_vto2) {
+        this.descripcion_vto2 = descripcion_vto2;
+    }
+
+    public String getDescripcion_vto3() {
+        return descripcion_vto3;
+    }
+
+    public void setDescripcion_vto3(String descripcion_vto3) {
+        this.descripcion_vto3 = descripcion_vto3;
+    }
+
+    public Date getVto_cargagral() {
+        return vto_cargagral;
+    }
+
+    public void setVto_cargagral(Date vto_cargagral) {
+        this.vto_cargagral = vto_cargagral;
+    }
+
+    public Date getVto_cargapeligrosa() {
+        return vto_cargapeligrosa;
+    }
+
+    public void setVto_cargapeligrosa(Date vto_cargapeligrosa) {
+        this.vto_cargapeligrosa = vto_cargapeligrosa;
+    }
+
+    public Date getVto_otros1() {
+        return vto_otros1;
+    }
+
+    public void setVto_otros1(Date vto_otros1) {
+        this.vto_otros1 = vto_otros1;
+    }
+
+    public Date getVto_otros2() {
+        return vto_otros2;
+    }
+
+    public void setVto_otros2(Date vto_otros2) {
+        this.vto_otros2 = vto_otros2;
+    }
+
+    public Date getVto_otros3() {
+        return vto_otros3;
+    }
+
+    public void setVto_otros3(Date vto_otros3) {
+        this.vto_otros3 = vto_otros3;
+    }
+
+    public Date getVto_psicofisico() {
+        return vto_psicofisico;
+    }
+
+    public void setVto_psicofisico(Date vto_psicofisico) {
+        this.vto_psicofisico = vto_psicofisico;
     }
     
     

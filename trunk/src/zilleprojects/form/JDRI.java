@@ -106,7 +106,8 @@ public class JDRI extends javax.swing.JDialog {
         btnGuardar = new javax.swing.JButton();
         lblStatus = new javax.swing.JLabel();
         buscarRI = new javax.swing.JTextField();
-        jPanel4 = new javax.swing.JPanel();
+        riNum = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         dateNuevaAlarma = new com.toedter.calendar.JDateChooser();
         btnCrearAlarma = new javax.swing.JButton();
@@ -235,18 +236,19 @@ public class JDRI extends javax.swing.JDialog {
         jLabel1.setText(resourceMap.getString("jLabel1.text")); // NOI18N
         jLabel1.setName("jLabel1"); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridx = 7;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
         gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
         jPanel2.add(jLabel1, gridBagConstraints);
 
         txtRI_Num.setText(resourceMap.getString("txtRI_Num.text")); // NOI18N
+        txtRI_Num.setDisabledTextColor(resourceMap.getColor("txtRI_Num.disabledTextColor")); // NOI18N
         txtRI_Num.setEnabled(false);
         txtRI_Num.setMinimumSize(new java.awt.Dimension(100, 29));
         txtRI_Num.setName("txtRI_Num"); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 5;
+        gridBagConstraints.gridx = 8;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.ipadx = 30;
@@ -263,6 +265,7 @@ public class JDRI extends javax.swing.JDialog {
         jPanel2.add(jLabel2, gridBagConstraints);
 
         lblNombreObra.setFont(lblNombreObra.getFont().deriveFont(lblNombreObra.getFont().getStyle() | java.awt.Font.BOLD));
+        lblNombreObra.setForeground(resourceMap.getColor("lblNombreObra.foreground")); // NOI18N
         lblNombreObra.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lblNombreObra.setText(resourceMap.getString("lblNombreObra.text")); // NOI18N
         lblNombreObra.setMaximumSize(new java.awt.Dimension(115, 18));
@@ -272,20 +275,20 @@ public class JDRI extends javax.swing.JDialog {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.gridwidth = 4;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.ipadx = 20;
         gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
         jPanel2.add(lblNombreObra, gridBagConstraints);
 
         btnObra.setAction(actionMap.get("openSelectObra")); // NOI18N
         btnObra.setIcon(resourceMap.getIcon("btnObra.icon")); // NOI18N
         btnObra.setText(resourceMap.getString("btnObra.text")); // NOI18N
-        btnObra.setEnabled(false);
         btnObra.setName("btnObra"); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridx = 5;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
         gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
         jPanel2.add(btnObra, gridBagConstraints);
 
@@ -293,7 +296,7 @@ public class JDRI extends javax.swing.JDialog {
         jLabel6.setName("jLabel6"); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 7;
-        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridy = 1;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
         gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
         jPanel2.add(jLabel6, gridBagConstraints);
@@ -303,7 +306,7 @@ public class JDRI extends javax.swing.JDialog {
         dateNecesidad.setName("dateNecesidad"); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 8;
-        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridy = 1;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.ipadx = 20;
         gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
@@ -319,13 +322,14 @@ public class JDRI extends javax.swing.JDialog {
         jPanel2.add(jLabel8, gridBagConstraints);
 
         txtSolicitante.setText(resourceMap.getString("txtSolicitante.text")); // NOI18N
+        txtSolicitante.setDisabledTextColor(resourceMap.getColor("txtSolicitante.disabledTextColor")); // NOI18N
         txtSolicitante.setEnabled(false);
         txtSolicitante.setMinimumSize(new java.awt.Dimension(100, 29));
         txtSolicitante.setName("txtSolicitante"); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridwidth = 8;
+        gridBagConstraints.gridwidth = 4;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
         jPanel2.add(txtSolicitante, gridBagConstraints);
@@ -334,7 +338,7 @@ public class JDRI extends javax.swing.JDialog {
         jLabel9.setName("jLabel9"); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 7;
-        gridBagConstraints.gridy = 6;
+        gridBagConstraints.gridy = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
         gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
         jPanel2.add(jLabel9, gridBagConstraints);
@@ -343,28 +347,30 @@ public class JDRI extends javax.swing.JDialog {
         jLabel10.setName("jLabel10"); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 6;
+        gridBagConstraints.gridy = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
         gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
         jPanel2.add(jLabel10, gridBagConstraints);
 
         txtOC_Num.setText(resourceMap.getString("txtOC_Num.text")); // NOI18N
+        txtOC_Num.setDisabledTextColor(resourceMap.getColor("txtOC_Num.disabledTextColor")); // NOI18N
         txtOC_Num.setEnabled(false);
         txtOC_Num.setMinimumSize(new java.awt.Dimension(100, 29));
         txtOC_Num.setName("txtOC_Num"); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 8;
-        gridBagConstraints.gridy = 6;
+        gridBagConstraints.gridy = 3;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
         jPanel2.add(txtOC_Num, gridBagConstraints);
 
         txtProveedor.setText(resourceMap.getString("txtProveedor.text")); // NOI18N
+        txtProveedor.setDisabledTextColor(resourceMap.getColor("txtProveedor.disabledTextColor")); // NOI18N
         txtProveedor.setEnabled(false);
         txtProveedor.setName("txtProveedor"); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
-        gridBagConstraints.gridy = 6;
+        gridBagConstraints.gridy = 3;
         gridBagConstraints.gridwidth = 3;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
@@ -374,7 +380,7 @@ public class JDRI extends javax.swing.JDialog {
         jLabel11.setName("jLabel11"); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 5;
+        gridBagConstraints.gridy = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
         gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
         jPanel2.add(jLabel11, gridBagConstraints);
@@ -385,6 +391,7 @@ public class JDRI extends javax.swing.JDialog {
         txtObservaciones.setLineWrap(true);
         txtObservaciones.setRows(3);
         txtObservaciones.setWrapStyleWord(true);
+        txtObservaciones.setDisabledTextColor(resourceMap.getColor("txtObservaciones.disabledTextColor")); // NOI18N
         txtObservaciones.setEnabled(false);
         txtObservaciones.setMinimumSize(new java.awt.Dimension(100, 50));
         txtObservaciones.setName("txtObservaciones"); // NOI18N
@@ -392,7 +399,7 @@ public class JDRI extends javax.swing.JDialog {
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 5;
+        gridBagConstraints.gridy = 2;
         gridBagConstraints.gridwidth = 8;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.ipady = 40;
@@ -404,7 +411,7 @@ public class JDRI extends javax.swing.JDialog {
         jLabel12.setName("jLabel12"); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 6;
+        gridBagConstraints.gridy = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
         gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
         jPanel2.add(jLabel12, gridBagConstraints);
@@ -413,7 +420,7 @@ public class JDRI extends javax.swing.JDialog {
         jLabel13.setName("jLabel13"); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 7;
+        gridBagConstraints.gridy = 4;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
         gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
         jPanel2.add(jLabel13, gridBagConstraints);
@@ -422,7 +429,7 @@ public class JDRI extends javax.swing.JDialog {
         jLabel14.setName("jLabel14"); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
-        gridBagConstraints.gridy = 7;
+        gridBagConstraints.gridy = 4;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
         gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
         jPanel2.add(jLabel14, gridBagConstraints);
@@ -431,7 +438,7 @@ public class JDRI extends javax.swing.JDialog {
         jLabel15.setName("jLabel15"); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 7;
-        gridBagConstraints.gridy = 7;
+        gridBagConstraints.gridy = 4;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
         gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
         jPanel2.add(jLabel15, gridBagConstraints);
@@ -446,7 +453,7 @@ public class JDRI extends javax.swing.JDialog {
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 8;
-        gridBagConstraints.gridy = 7;
+        gridBagConstraints.gridy = 4;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
         jPanel2.add(comboEstado, gridBagConstraints);
@@ -456,7 +463,7 @@ public class JDRI extends javax.swing.JDialog {
         dateEmision.setName("dateEmision"); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 6;
+        gridBagConstraints.gridy = 3;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.ipadx = 20;
         gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
@@ -467,8 +474,7 @@ public class JDRI extends javax.swing.JDialog {
         dateOC.setName("dateOC"); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 7;
-        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.gridy = 4;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
         jPanel2.add(dateOC, gridBagConstraints);
@@ -478,7 +484,7 @@ public class JDRI extends javax.swing.JDialog {
         dateEntrega.setName("dateEntrega"); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 5;
-        gridBagConstraints.gridy = 7;
+        gridBagConstraints.gridy = 4;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
         jPanel2.add(dateEntrega, gridBagConstraints);
@@ -493,8 +499,8 @@ public class JDRI extends javax.swing.JDialog {
         setUpModelItems(modelItems);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 5;
         gridBagConstraints.gridwidth = 8;
         gridBagConstraints.gridheight = 3;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
@@ -512,8 +518,8 @@ public class JDRI extends javax.swing.JDialog {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 8;
-        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 5;
         gridBagConstraints.insets = new java.awt.Insets(5, 0, 0, 0);
         jPanel2.add(addItemRI, gridBagConstraints);
 
@@ -526,8 +532,8 @@ public class JDRI extends javax.swing.JDialog {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 8;
-        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 6;
         gridBagConstraints.insets = new java.awt.Insets(5, 0, 0, 0);
         jPanel2.add(remItemRI, gridBagConstraints);
 
@@ -540,6 +546,7 @@ public class JDRI extends javax.swing.JDialog {
             }
         });
 
+        btnCancelar.setIcon(resourceMap.getIcon("btnCancelar.icon")); // NOI18N
         btnCancelar.setText(resourceMap.getString("btnCancelar.text")); // NOI18N
         btnCancelar.setEnabled(false);
         btnCancelar.setName("btnCancelar"); // NOI18N
@@ -550,13 +557,13 @@ public class JDRI extends javax.swing.JDialog {
         });
 
         btnModificar.setAction(actionMap.get("modificarRI")); // NOI18N
+        btnModificar.setIcon(resourceMap.getIcon("btnModificar.icon")); // NOI18N
         btnModificar.setText(resourceMap.getString("btnModificar.text")); // NOI18N
-        btnModificar.setEnabled(false);
         btnModificar.setName("btnModificar"); // NOI18N
 
         btnGuardar.setAction(actionMap.get("guardarRI")); // NOI18N
+        btnGuardar.setIcon(resourceMap.getIcon("btnGuardar.icon")); // NOI18N
         btnGuardar.setText(resourceMap.getString("btnGuardar.text")); // NOI18N
-        btnGuardar.setEnabled(false);
         btnGuardar.setName("btnGuardar"); // NOI18N
 
         lblStatus.setFont(lblStatus.getFont().deriveFont(lblStatus.getFont().getStyle() | java.awt.Font.BOLD, lblStatus.getFont().getSize()+1));
@@ -584,9 +591,14 @@ public class JDRI extends javax.swing.JDialog {
             }
         });
 
-        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(resourceMap.getColor("jPanel4.border.border.lineColor"), 1, true), resourceMap.getString("jPanel4.border.title"))); // NOI18N
-        jPanel4.setName("jPanel4"); // NOI18N
-        jPanel4.setOpaque(false);
+        riNum.setFont(resourceMap.getFont("riNum.font")); // NOI18N
+        riNum.setForeground(resourceMap.getColor("riNum.foreground")); // NOI18N
+        riNum.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        riNum.setText(resourceMap.getString("riNum.text")); // NOI18N
+        riNum.setName("riNum"); // NOI18N
+
+        jLabel4.setText(resourceMap.getString("jLabel4.text")); // NOI18N
+        jLabel4.setName("jLabel4"); // NOI18N
 
         jLabel16.setText(resourceMap.getString("jLabel16.text")); // NOI18N
         jLabel16.setName("jLabel16"); // NOI18N
@@ -594,31 +606,9 @@ public class JDRI extends javax.swing.JDialog {
         dateNuevaAlarma.setName("dateNuevaAlarma"); // NOI18N
 
         btnCrearAlarma.setAction(actionMap.get("crearAlarma2RI")); // NOI18N
+        btnCrearAlarma.setIcon(resourceMap.getIcon("btnCrearAlarma.icon")); // NOI18N
         btnCrearAlarma.setText(resourceMap.getString("btnCrearAlarma.text")); // NOI18N
         btnCrearAlarma.setName("btnCrearAlarma"); // NOI18N
-
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel16, javax.swing.GroupLayout.DEFAULT_SIZE, 167, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(dateNuevaAlarma, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnCrearAlarma, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(401, 401, 401))
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(jLabel16)
-                    .addComponent(dateNuevaAlarma, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnCrearAlarma))
-                .addContainerGap(31, Short.MAX_VALUE))
-        );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -627,39 +617,39 @@ public class JDRI extends javax.swing.JDialog {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblStatus, javax.swing.GroupLayout.DEFAULT_SIZE, 318, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(addRI, javax.swing.GroupLayout.DEFAULT_SIZE, 93, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(editRI, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(remRI, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(buscarRI, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 307, Short.MAX_VALUE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(buscarRI, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 307, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(22, 22, 22)
-                                .addComponent(lblStatus, javax.swing.GroupLayout.DEFAULT_SIZE, 327, Short.MAX_VALUE)
-                                .addGap(287, 287, 287))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(34, 34, 34)))
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(riNum, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
                         .addComponent(btnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 932, Short.MAX_VALUE))))
-                .addGap(12, 12, 12))
+                        .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addComponent(jLabel16)
+                            .addGap(24, 24, 24)
+                            .addComponent(dateNuevaAlarma, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(btnCrearAlarma, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
 
         jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnCancelar, btnGuardar, btnModificar});
@@ -675,25 +665,25 @@ public class JDRI extends javax.swing.JDialog {
                     .addComponent(remRI, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(editRI, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(riNum)
+                        .addComponent(jLabel4)
                         .addComponent(btnCancelar)
                         .addComponent(btnModificar)
                         .addComponent(btnGuardar)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 346, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                         .addComponent(buscarRI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 404, Short.MAX_VALUE)))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 348, Short.MAX_VALUE))
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 385, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(22, 22, 22)
-                        .addComponent(lblStatus, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(lblStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                        .addComponent(jLabel16)
+                        .addComponent(dateNuevaAlarma, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnCrearAlarma)
                         .addComponent(jButton4)))
                 .addContainerGap())
         );
@@ -979,7 +969,7 @@ public class JDRI extends javax.swing.JDialog {
         comboEstado.setSelectedItem(req.getEstado());
         obraSelect.setCodigo(req.getCodigoObra());
         obraSelect.setId(req.getObraID());
-        
+        riNum.setText("RI"+req.getRI_ID());
     }
     
     public void limpiarCampos() {
@@ -998,6 +988,7 @@ public class JDRI extends javax.swing.JDialog {
         obraSelect = new Obras();
         dateNuevaAlarma.setDate(null);
         modelItems.clean();
+        riNum.setText(null);
     }
     
     private void setListDeRI(ArrayList<RI> list) {
@@ -1195,6 +1186,7 @@ public class JDRI extends javax.swing.JDialog {
             RIDAO otDao = new RIDAO();
             otDao.conectar();
             rList = otDao.find(query);
+            
             return null;  // return your result
         }
         @Override protected void succeeded(Object result) {
@@ -1320,6 +1312,7 @@ public class JDRI extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
@@ -1328,7 +1321,6 @@ public class JDRI extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
@@ -1337,6 +1329,7 @@ public class JDRI extends javax.swing.JDialog {
     private javax.swing.JLabel lblStatus;
     private javax.swing.JButton remItemRI;
     private javax.swing.JButton remRI;
+    private javax.swing.JLabel riNum;
     private javax.swing.JButton seleccionarObra;
     private javax.swing.JTable tablaItems;
     private javax.swing.JTextField txtOC_Num;

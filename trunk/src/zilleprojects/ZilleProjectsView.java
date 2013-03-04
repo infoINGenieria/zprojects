@@ -5,7 +5,6 @@ package zilleprojects;
 
 import DAO.AlarmasDAO;
 import Vista.DialogImgZille;
-import Vista.DialogImagenLogin;
 import DAO.Conexion.Conexion;
 import DAO.Conexion.LeerXML;
 import DAO.EquiposDAO;
@@ -29,7 +28,6 @@ import Modelo.TablaAlarmasModel;
 import Modelo.Usuario;
 import Utils.FechaUtil;
 import Utils.ImageIconTable;
-import Vista.DialogImgLetras;
 import Vista.DialogPanel;
 import Vista.OpcionPanel;
 import Vista.PanelAlarma;
@@ -96,6 +94,7 @@ public class ZilleProjectsView extends FrameView {
         int messageTimeout = resourceMap.getInteger("StatusBar.messageTimeout");
         messageTimer = new Timer(messageTimeout, new ActionListener() {
 
+            @Override
             public void actionPerformed(ActionEvent e) {
                 statusMessageLabel.setText("");
             }
@@ -107,6 +106,7 @@ public class ZilleProjectsView extends FrameView {
         }
         busyIconTimer = new Timer(busyAnimationRate, new ActionListener() {
 
+            @Override
             public void actionPerformed(ActionEvent e) {
                 busyIconIndex = (busyIconIndex + 1) % busyIcons.length;
                 statusAnimationLabel.setIcon(busyIcons[busyIconIndex]);
@@ -120,6 +120,7 @@ public class ZilleProjectsView extends FrameView {
         TaskMonitor taskMonitor = new TaskMonitor(getApplication().getContext());
         taskMonitor.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
 
+            @Override
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
                 String propertyName = evt.getPropertyName();
                 if ("started".equals(propertyName)) {
@@ -147,6 +148,9 @@ public class ZilleProjectsView extends FrameView {
                 }
             }
         });
+    
+    
+        this.getRootPane().setDefaultButton(BotonGrandeLogin);
     }
 
     @Action
@@ -178,6 +182,7 @@ public class ZilleProjectsView extends FrameView {
         java.awt.EventQueue.invokeLater(new Runnable() {
             
             
+            @Override
             public void run() {
                 String soName = System.getProperty("os.name").toUpperCase();
                 System.out.println(soName);
@@ -277,12 +282,11 @@ public class ZilleProjectsView extends FrameView {
         protected void succeeded(Object result) {
 
             if (conexionStatus() == 1) {
-                loginDialogo.getRootPane().setDefaultButton(botonLogin);
+                
                 loginDialogo.setLocationRelativeTo(mainPanel);
                 loginDialogo.setIconImage(icono);
                 loginDialogo.setVisible(true);
-
-
+                
             } else {
                 OpcionPanel.showMessageDialog(mainPanel, "No se pudo establecer una conexión a la "
                         + "Base de Datos.\nPor favor, revise los datos de conexión en Inicio -> Configurar Conexión.",
@@ -1054,9 +1058,15 @@ public class ZilleProjectsView extends FrameView {
                 for(ItemAlarma ia: alarmas){
                     modelAlarma.addRegistro(ia);
                 }  
-                jTable1.getColumnModel().getColumn(0).setMaxWidth(28);
-                jTable1.getColumnModel().getColumn(1).setWidth(80);
-                jTable1.getColumnModel().getColumn(1).setMaxWidth(100);
+                
+                jTable1.getColumnModel().getColumn(0).setWidth(28);
+                jTable1.getColumnModel().getColumn(0).setMinWidth(26);
+                jTable1.getColumnModel().getColumn(0).setMaxWidth(30);
+                
+                jTable1.getColumnModel().getColumn(1).setWidth(100);
+                jTable1.getColumnModel().getColumn(1).setMinWidth(98);
+                jTable1.getColumnModel().getColumn(1).setMaxWidth(102);
+                
                 panelAlarmas.setVisible(true);
             }else {
                 panelAlarmas.setVisible(false);
@@ -1075,18 +1085,15 @@ public class ZilleProjectsView extends FrameView {
         java.awt.GridBagConstraints gridBagConstraints;
 
         mainPanel = new javax.swing.JPanel();
-        jPanel3 = new DialogImgZille();
         jPanel6 = new DialogPanel();
-        loginPanel = new javax.swing.JPanel();
         BotonGrandeLogin = new javax.swing.JButton();
-        botonGrandeSalir = new javax.swing.JButton();
         loginOut = new javax.swing.JLabel();
-        letraSG = new DialogImgLetras();
+        botonGrandeSalir = new javax.swing.JButton();
         panelAlarmas = new PanelAlarma();
-        jLabel6 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jButton2 = new javax.swing.JButton();
+        jPanel3 = new DialogImgZille();
         menuBar = new javax.swing.JMenuBar();
         javax.swing.JMenu fileMenu = new javax.swing.JMenu();
         iniciarSesion = new javax.swing.JMenuItem();
@@ -1100,14 +1107,13 @@ public class ZilleProjectsView extends FrameView {
         gestionarMenu = new javax.swing.JMenuItem();
         gestionarEquipos = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenuItem8 = new javax.swing.JMenuItem();
+        jMenuItem4 = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
         jMenuItem6 = new javax.swing.JMenuItem();
         jMenuItem7 = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
-        jMenu3 = new javax.swing.JMenu();
         menuGenerarInforme = new javax.swing.JMenuItem();
         informesAntesMenu = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
@@ -1119,7 +1125,6 @@ public class ZilleProjectsView extends FrameView {
         statusMessageLabel = new javax.swing.JLabel();
         statusAnimationLabel = new javax.swing.JLabel();
         progressBar = new javax.swing.JProgressBar();
-        jPanel1 = new DialogImagenLogin();
         configurarConnDialog = new javax.swing.JDialog();
         jPanel7 = new Vista.PanelAzul();
         jPanel2 = new javax.swing.JPanel();
@@ -1171,28 +1176,12 @@ public class ZilleProjectsView extends FrameView {
         exitDialog = new javax.swing.JButton();
         selectRow = new javax.swing.JButton();
 
-        mainPanel.setMinimumSize(new java.awt.Dimension(544, 401));
+        mainPanel.setMinimumSize(new java.awt.Dimension(744, 500));
         mainPanel.setName("mainPanel"); // NOI18N
-
-        jPanel3.setName("jPanel3"); // NOI18N
-        jPanel3.setPreferredSize(new java.awt.Dimension(419, 149));
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 379, Short.MAX_VALUE)
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 149, Short.MAX_VALUE)
-        );
+        mainPanel.setPreferredSize(new java.awt.Dimension(996, 500));
 
         jPanel6.setMinimumSize(new java.awt.Dimension(728, 90));
         jPanel6.setName("jPanel6"); // NOI18N
-
-        loginPanel.setName("loginPanel"); // NOI18N
-        loginPanel.setOpaque(false);
 
         javax.swing.ActionMap actionMap = org.jdesktop.application.Application.getInstance(zilleprojects.ZilleProjectsApp.class).getContext().getActionMap(ZilleProjectsView.class, this);
         BotonGrandeLogin.setAction(actionMap.get("iniciarSesion")); // NOI18N
@@ -1202,51 +1191,15 @@ public class ZilleProjectsView extends FrameView {
         BotonGrandeLogin.setText(resourceMap.getString("BotonGrandeLogin.text")); // NOI18N
         BotonGrandeLogin.setName("BotonGrandeLogin"); // NOI18N
 
+        loginOut.setForeground(resourceMap.getColor("loginOut.foreground")); // NOI18N
+        loginOut.setText(resourceMap.getString("loginOut.text")); // NOI18N
+        loginOut.setName("loginOut"); // NOI18N
+
         botonGrandeSalir.setAction(actionMap.get("quit")); // NOI18N
         botonGrandeSalir.setFont(botonGrandeSalir.getFont().deriveFont(botonGrandeSalir.getFont().getStyle() | java.awt.Font.BOLD, botonGrandeSalir.getFont().getSize()-1));
         botonGrandeSalir.setIcon(resourceMap.getIcon("botonGrandeSalir.icon")); // NOI18N
         botonGrandeSalir.setText(resourceMap.getString("botonGrandeSalir.text")); // NOI18N
         botonGrandeSalir.setName("botonGrandeSalir"); // NOI18N
-
-        javax.swing.GroupLayout loginPanelLayout = new javax.swing.GroupLayout(loginPanel);
-        loginPanel.setLayout(loginPanelLayout);
-        loginPanelLayout.setHorizontalGroup(
-            loginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(loginPanelLayout.createSequentialGroup()
-                .addComponent(BotonGrandeLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(botonGrandeSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-
-        loginPanelLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {BotonGrandeLogin, botonGrandeSalir});
-
-        loginPanelLayout.setVerticalGroup(
-            loginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(loginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                .addComponent(BotonGrandeLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addComponent(botonGrandeSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-
-        loginPanelLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {BotonGrandeLogin, botonGrandeSalir});
-
-        loginOut.setForeground(resourceMap.getColor("loginOut.foreground")); // NOI18N
-        loginOut.setText(resourceMap.getString("loginOut.text")); // NOI18N
-        loginOut.setName("loginOut"); // NOI18N
-
-        letraSG.setName("letraSG"); // NOI18N
-        letraSG.setPreferredSize(new java.awt.Dimension(302, 43));
-
-        javax.swing.GroupLayout letraSGLayout = new javax.swing.GroupLayout(letraSG);
-        letraSG.setLayout(letraSGLayout);
-        letraSGLayout.setHorizontalGroup(
-            letraSGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 302, Short.MAX_VALUE)
-        );
-        letraSGLayout.setVerticalGroup(
-            letraSGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 43, Short.MAX_VALUE)
-        );
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -1254,22 +1207,24 @@ public class ZilleProjectsView extends FrameView {
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(loginPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(BotonGrandeLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(botonGrandeSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(loginOut, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 251, Short.MAX_VALUE)
-                .addComponent(letraSG, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addComponent(loginOut, javax.swing.GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE)
+                .addGap(420, 420, 420))
         );
+
+        jPanel6Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {BotonGrandeLogin, botonGrandeSalir});
+
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(letraSG, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(loginOut, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(loginPanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(loginOut, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(BotonGrandeLogin, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
+                    .addComponent(botonGrandeSalir, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -1277,12 +1232,6 @@ public class ZilleProjectsView extends FrameView {
         panelAlarmas.setMinimumSize(new java.awt.Dimension(420, 276));
         panelAlarmas.setName("panelAlarmas"); // NOI18N
         panelAlarmas.setOpaque(false);
-
-        jLabel6.setFont(resourceMap.getFont("jLabel6.font")); // NOI18N
-        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel6.setText(resourceMap.getString("jLabel6.text")); // NOI18N
-        jLabel6.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
-        jLabel6.setName("jLabel6"); // NOI18N
 
         jScrollPane2.setName("jScrollPane2"); // NOI18N
 
@@ -1308,50 +1257,59 @@ public class ZilleProjectsView extends FrameView {
             .addGroup(panelAlarmasLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(panelAlarmasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 559, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelAlarmasLayout.createSequentialGroup()
-                        .addGap(73, 73, 73)
-                        .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 436, Short.MAX_VALUE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton2)))
-                .addContainerGap())
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 520, Short.MAX_VALUE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING)))
         );
         panelAlarmasLayout.setVerticalGroup(
             panelAlarmasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelAlarmasLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(panelAlarmasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton2)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jButton2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 202, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 427, Short.MAX_VALUE))
+        );
+
+        jPanel3.setName("jPanel3"); // NOI18N
+        jPanel3.setPreferredSize(new java.awt.Dimension(419, 149));
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 428, Short.MAX_VALUE)
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 149, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout mainPanelLayout = new javax.swing.GroupLayout(mainPanel);
         mainPanel.setLayout(mainPanelLayout);
         mainPanelLayout.setHorizontalGroup(
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(mainPanelLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 379, Short.MAX_VALUE)
+                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 428, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(panelAlarmas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(10, 10, 10))
-            .addComponent(jPanel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+            .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         mainPanelLayout.setVerticalGroup(
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+            .addGroup(mainPanelLayout.createSequentialGroup()
+                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(panelAlarmas, javax.swing.GroupLayout.PREFERRED_SIZE, 264, Short.MAX_VALUE))
-                .addContainerGap())
+                    .addGroup(mainPanelLayout.createSequentialGroup()
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(344, 344, 344))
+                    .addGroup(mainPanelLayout.createSequentialGroup()
+                        .addComponent(panelAlarmas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())))
         );
 
+        menuBar.setBackground(resourceMap.getColor("menuBar.background")); // NOI18N
         menuBar.setName("menuBar"); // NOI18N
 
         fileMenu.setText(resourceMap.getString("fileMenu.text")); // NOI18N
@@ -1423,12 +1381,6 @@ public class ZilleProjectsView extends FrameView {
         jMenuItem2.setName("jMenuItem2"); // NOI18N
         EmpleadosMenu.add(jMenuItem2);
 
-        jMenuItem4.setAction(actionMap.get("mostrarEstacionesServicio")); // NOI18N
-        jMenuItem4.setIcon(resourceMap.getIcon("jMenuItem4.icon")); // NOI18N
-        jMenuItem4.setText(resourceMap.getString("jMenuItem4.text")); // NOI18N
-        jMenuItem4.setName("jMenuItem4"); // NOI18N
-        EmpleadosMenu.add(jMenuItem4);
-
         jMenuItem5.setAction(actionMap.get("mostrarOrdenDeTrabajo")); // NOI18N
         jMenuItem5.setIcon(resourceMap.getIcon("jMenuItem5.icon")); // NOI18N
         jMenuItem5.setText(resourceMap.getString("jMenuItem5.text")); // NOI18N
@@ -1436,15 +1388,20 @@ public class ZilleProjectsView extends FrameView {
         EmpleadosMenu.add(jMenuItem5);
 
         jMenuItem8.setAction(actionMap.get("mostrarJDRIDialog")); // NOI18N
+        jMenuItem8.setIcon(resourceMap.getIcon("jMenuItem8.icon")); // NOI18N
         jMenuItem8.setText(resourceMap.getString("jMenuItem8.text")); // NOI18N
         jMenuItem8.setName("jMenuItem8"); // NOI18N
         EmpleadosMenu.add(jMenuItem8);
 
+        jMenuItem4.setAction(actionMap.get("mostrarEstacionesServicio")); // NOI18N
+        jMenuItem4.setIcon(resourceMap.getIcon("jMenuItem4.icon")); // NOI18N
+        jMenuItem4.setText(resourceMap.getString("jMenuItem4.text")); // NOI18N
+        jMenuItem4.setName("jMenuItem4"); // NOI18N
+        EmpleadosMenu.add(jMenuItem4);
+
         menuBar.add(EmpleadosMenu);
 
         jMenu5.setText(resourceMap.getString("jMenu5.text")); // NOI18N
-        jMenu5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jMenu5.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
         jMenu5.setMargin(new java.awt.Insets(0, 10, 5, 10));
         jMenu5.setName("jMenu5"); // NOI18N
 
@@ -1455,6 +1412,7 @@ public class ZilleProjectsView extends FrameView {
         jMenu5.add(jMenuItem6);
 
         jMenuItem7.setAction(actionMap.get("mostrarAlarmasDialog")); // NOI18N
+        jMenuItem7.setIcon(resourceMap.getIcon("jMenuItem7.icon")); // NOI18N
         jMenuItem7.setText(resourceMap.getString("jMenuItem7.text")); // NOI18N
         jMenuItem7.setName("jMenuItem7"); // NOI18N
         jMenu5.add(jMenuItem7);
@@ -1465,23 +1423,17 @@ public class ZilleProjectsView extends FrameView {
         jMenu1.setMargin(new java.awt.Insets(0, 10, 5, 10));
         jMenu1.setName("jMenu1"); // NOI18N
 
-        jMenu3.setIcon(resourceMap.getIcon("jMenu3.icon")); // NOI18N
-        jMenu3.setText(resourceMap.getString("jMenu3.text")); // NOI18N
-        jMenu3.setName("jMenu3"); // NOI18N
-
         menuGenerarInforme.setAction(actionMap.get("mostrarGenerarInforme")); // NOI18N
         menuGenerarInforme.setIcon(resourceMap.getIcon("menuGenerarInforme.icon")); // NOI18N
         menuGenerarInforme.setText(resourceMap.getString("menuGenerarInforme.text")); // NOI18N
         menuGenerarInforme.setName("menuGenerarInforme"); // NOI18N
-        jMenu3.add(menuGenerarInforme);
+        jMenu1.add(menuGenerarInforme);
 
         informesAntesMenu.setAction(actionMap.get("mostrarInformesAnteriores")); // NOI18N
         informesAntesMenu.setIcon(resourceMap.getIcon("informesAntesMenu.icon")); // NOI18N
         informesAntesMenu.setText(resourceMap.getString("informesAntesMenu.text")); // NOI18N
         informesAntesMenu.setName("informesAntesMenu"); // NOI18N
-        jMenu3.add(informesAntesMenu);
-
-        jMenu1.add(jMenu3);
+        jMenu1.add(informesAntesMenu);
 
         menuBar.add(jMenu1);
 
@@ -1509,7 +1461,9 @@ public class ZilleProjectsView extends FrameView {
 
         menuBar.add(helpMenu);
 
+        statusPanel.setMinimumSize(new java.awt.Dimension(990, 40));
         statusPanel.setName("statusPanel"); // NOI18N
+        statusPanel.setPreferredSize(new java.awt.Dimension(990, 40));
 
         statusPanelSeparator.setName("statusPanelSeparator"); // NOI18N
 
@@ -1521,55 +1475,35 @@ public class ZilleProjectsView extends FrameView {
 
         progressBar.setName("progressBar"); // NOI18N
 
-        jPanel1.setName("jPanel1"); // NOI18N
-        jPanel1.setPreferredSize(new java.awt.Dimension(385, 111));
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 385, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 111, Short.MAX_VALUE)
-        );
-
         javax.swing.GroupLayout statusPanelLayout = new javax.swing.GroupLayout(statusPanel);
         statusPanel.setLayout(statusPanelLayout);
         statusPanelLayout.setHorizontalGroup(
             statusPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(statusPanelSeparator, javax.swing.GroupLayout.DEFAULT_SIZE, 990, Short.MAX_VALUE)
             .addGroup(statusPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(statusPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, statusPanelLayout.createSequentialGroup()
-                        .addComponent(statusMessageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 453, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 351, Short.MAX_VALUE)
-                        .addComponent(progressBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(statusAnimationLabel))
-                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
-            .addComponent(statusPanelSeparator, javax.swing.GroupLayout.DEFAULT_SIZE, 990, Short.MAX_VALUE)
+                .addComponent(statusMessageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 453, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 351, Short.MAX_VALUE)
+                .addComponent(progressBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(3, 3, 3)
+                .addComponent(statusAnimationLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         statusPanelLayout.setVerticalGroup(
             statusPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(statusPanelLayout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(9, 9, 9)
                 .addComponent(statusPanelSeparator, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(statusPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(statusPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(statusMessageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(statusAnimationLabel)
-                    .addComponent(progressBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(3, 3, 3))
+                    .addComponent(progressBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(statusAnimationLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         configurarConnDialog.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         configurarConnDialog.setTitle(resourceMap.getString("configurarConnDialog.title")); // NOI18N
         configurarConnDialog.setIconImage(null);
-        configurarConnDialog.setMinimumSize(new java.awt.Dimension(333, 246));
+        configurarConnDialog.setMinimumSize(new java.awt.Dimension(402, 250));
         configurarConnDialog.setModal(true);
         configurarConnDialog.setName("configurarConnDialog"); // NOI18N
         configurarConnDialog.setResizable(false);
@@ -1735,15 +1669,15 @@ public class ZilleProjectsView extends FrameView {
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(31, Short.MAX_VALUE))
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 376, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(16, 16, 16))
         );
 
         javax.swing.GroupLayout configurarConnDialogLayout = new javax.swing.GroupLayout(configurarConnDialog.getContentPane());
@@ -1765,6 +1699,11 @@ public class ZilleProjectsView extends FrameView {
         loginDialogo.setName("loginDialogo"); // NOI18N
         loginDialogo.setResizable(false);
         loginDialogo.setUndecorated(true);
+        loginDialogo.addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                loginDialogoWindowActivated(evt);
+            }
+        });
 
         jPanel4.setBackground(resourceMap.getColor("jPanel4.background")); // NOI18N
         jPanel4.setBorder(new javax.swing.border.LineBorder(resourceMap.getColor("jPanel4.border.lineColor"), 1, true)); // NOI18N
@@ -1784,6 +1723,11 @@ public class ZilleProjectsView extends FrameView {
         jPanel5.add(jLabel1);
 
         userText1.setName("userText1"); // NOI18N
+        userText1.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                userText1FocusGained(evt);
+            }
+        });
         jPanel5.add(userText1);
 
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -2195,6 +2139,14 @@ private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         panelAlarmas.setVisible(false);
 }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void userText1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_userText1FocusGained
+        loginDialogo.getRootPane().setDefaultButton(botonLogin);
+    }//GEN-LAST:event_userText1FocusGained
+
+    private void loginDialogoWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_loginDialogoWindowActivated
+        userText1.requestFocusInWindow();
+    }//GEN-LAST:event_loginDialogoWindowActivated
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BotonGrandeLogin;
     private javax.swing.JMenu EmpleadosMenu;
@@ -2236,11 +2188,9 @@ private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuItem jMenuItem1;
@@ -2251,7 +2201,6 @@ private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -2265,11 +2214,9 @@ private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JTable jTable1;
-    private javax.swing.JPanel letraSG;
     private javax.swing.JList listaEmpleados;
     private javax.swing.JDialog loginDialogo;
     private javax.swing.JLabel loginOut;
-    private javax.swing.JPanel loginPanel;
     private javax.swing.JPanel mainPanel;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenuItem menuGenerarInforme;

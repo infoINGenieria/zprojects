@@ -5,6 +5,7 @@
 package DAO;
 
 import Modelo.InformesHoras;
+import Modelo.Periodo;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -20,6 +21,8 @@ import net.sf.jasperreports.view.JasperViewer;
 import java.awt.Dialog.ModalExclusionType;
 import java.net.URL;
 import java.sql.Connection;
+import java.util.Collection;
+import java.util.Collections;
 
 /**
  *
@@ -238,17 +241,19 @@ public class InformesHorasDAO {
 
     }
     
-    public ArrayList<String> findPeriodoDistinct() {
+    public ArrayList<Periodo> findPeriodoDistinct() {
         String query = null;
-        ArrayList<String> periodos = new ArrayList<String>();
+        
+        ArrayList<Periodo> periodos = new ArrayList<Periodo>();
         try {
             query = "SELECT DISTINCT periodo FROM informes_horas order by id desc";
             
             PreparedStatement ps = conector.prepareStatement(query);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-               periodos.add(rs.getString("PERIODO"));
+               periodos.add(new Periodo(rs.getString("PERIODO")));
             }
+            Collections.sort(periodos, Collections.reverseOrder());
             rs.close();
             ps.close();
 

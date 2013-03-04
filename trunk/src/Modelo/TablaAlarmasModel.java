@@ -163,6 +163,7 @@ public class TablaAlarmasModel  extends AbstractTableModel {
         
     
 
+    @Override
     public int getColumnCount() {
         return 3;
     }

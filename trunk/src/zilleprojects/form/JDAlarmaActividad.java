@@ -85,6 +85,7 @@ public class JDAlarmaActividad extends javax.swing.JDialog {
         descripcionAlarma.setLineWrap(true);
         descripcionAlarma.setRows(3);
         descripcionAlarma.setWrapStyleWord(true);
+        descripcionAlarma.setDisabledTextColor(resourceMap.getColor("descripcionAlarma.disabledTextColor")); // NOI18N
         descripcionAlarma.setName("descripcionAlarma"); // NOI18N
         jScrollPane1.setViewportView(descripcionAlarma);
 
@@ -129,6 +130,7 @@ public class JDAlarmaActividad extends javax.swing.JDialog {
         descripcionReprogramada.setLineWrap(true);
         descripcionReprogramada.setRows(3);
         descripcionReprogramada.setWrapStyleWord(true);
+        descripcionReprogramada.setDisabledTextColor(resourceMap.getColor("descripcionReprogramada.disabledTextColor")); // NOI18N
         descripcionReprogramada.setEnabled(false);
         descripcionReprogramada.setName("descripcionReprogramada"); // NOI18N
         jScrollPane2.setViewportView(descripcionReprogramada);
@@ -196,7 +198,7 @@ public class JDAlarmaActividad extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnAceptarAlarma, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE)
+                .addComponent(btnAceptarAlarma, javax.swing.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE)
                 .addContainerGap())
         );
 

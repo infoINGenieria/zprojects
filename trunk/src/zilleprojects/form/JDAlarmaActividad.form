@@ -95,7 +95,7 @@
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="btnAceptarAlarma" pref="39" max="32767" attributes="0"/>
+                  <Component id="btnAceptarAlarma" pref="42" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -130,6 +130,7 @@
                 <Property name="lineWrap" type="boolean" value="true"/>
                 <Property name="rows" type="int" value="3"/>
                 <Property name="wrapStyleWord" type="boolean" value="true"/>
+                <Property name="disabledTextColor" type="java.awt.Color" resourceKey="descripcionAlarma.disabledTextColor"/>
                 <Property name="name" type="java.lang.String" value="descripcionAlarma" noResource="true"/>
               </Properties>
             </Component>
@@ -245,6 +246,7 @@
                     <Property name="lineWrap" type="boolean" value="true"/>
                     <Property name="rows" type="int" value="3"/>
                     <Property name="wrapStyleWord" type="boolean" value="true"/>
+                    <Property name="disabledTextColor" type="java.awt.Color" resourceKey="descripcionReprogramada.disabledTextColor"/>
                     <Property name="enabled" type="boolean" value="false"/>
                     <Property name="name" type="java.lang.String" value="descripcionReprogramada" noResource="true"/>
                   </Properties>

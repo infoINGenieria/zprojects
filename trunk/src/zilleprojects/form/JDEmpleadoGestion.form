@@ -357,7 +357,7 @@
                   <Component id="jPanel1" min="-2" pref="345" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="nuevoOperario" pref="528" max="32767" attributes="1"/>
+                      <Component id="nuevoOperario" pref="552" max="32767" attributes="1"/>
                       <Component id="jPanel2" alignment="0" max="32767" attributes="1"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>

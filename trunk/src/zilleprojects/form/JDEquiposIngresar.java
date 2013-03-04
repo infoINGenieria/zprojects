@@ -60,6 +60,12 @@ Image icono = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/zill
         vto_vt = new com.toedter.calendar.JDateChooser();
         vto_seguro_nuevo = new com.toedter.calendar.JDateChooser();
         jLabel6 = new javax.swing.JLabel();
+        descripcionVto1 = new javax.swing.JTextField();
+        descripcionVto2 = new javax.swing.JTextField();
+        descripcionVto3 = new javax.swing.JTextField();
+        vto_otros1 = new com.toedter.calendar.JDateChooser();
+        vto_otros3 = new com.toedter.calendar.JDateChooser();
+        vto_otros2 = new com.toedter.calendar.JDateChooser();
         agregarAutomotor = new javax.swing.JButton();
         cancelarAutomotor = new javax.swing.JButton();
 
@@ -80,18 +86,18 @@ Image icono = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/zill
         jLabel1.setName("jLabel1"); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 5);
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel2.add(jLabel1, gridBagConstraints);
 
         nInternoText.setText(resourceMap.getString("nInternoText.text")); // NOI18N
-        nInternoText.setMinimumSize(new java.awt.Dimension(100, 20));
+        nInternoText.setMinimumSize(null);
         nInternoText.setName("nInternoText"); // NOI18N
-        nInternoText.setPreferredSize(new java.awt.Dimension(100, 20));
+        nInternoText.setPreferredSize(new java.awt.Dimension(100, 31));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.ipadx = 10;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel2.add(nInternoText, gridBagConstraints);
 
         jLabel3.setText(resourceMap.getString("jLabel3.text")); // NOI18N
@@ -100,20 +106,21 @@ Image icono = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/zill
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
-        gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 5);
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel2.add(jLabel3, gridBagConstraints);
 
         equiposText.setText(resourceMap.getString("equiposText.text")); // NOI18N
-        equiposText.setMinimumSize(new java.awt.Dimension(100, 20));
+        equiposText.setMaximumSize(null);
+        equiposText.setMinimumSize(null);
         equiposText.setName("equiposText"); // NOI18N
+        equiposText.setPreferredSize(new java.awt.Dimension(100, 31));
+        equiposText.setRequestFocusEnabled(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridwidth = 4;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.ipadx = 10;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
-        gridBagConstraints.insets = new java.awt.Insets(5, 0, 0, 0);
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel2.add(equiposText, gridBagConstraints);
 
         jLabel2.setText(resourceMap.getString("jLabel2.text")); // NOI18N
@@ -122,19 +129,18 @@ Image icono = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/zill
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 5);
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel2.add(jLabel2, gridBagConstraints);
 
         marcaText.setText(resourceMap.getString("marcaText.text")); // NOI18N
-        marcaText.setMinimumSize(new java.awt.Dimension(100, 20));
+        marcaText.setMinimumSize(null);
         marcaText.setName("marcaText"); // NOI18N
-        marcaText.setPreferredSize(new java.awt.Dimension(100, 20));
+        marcaText.setPreferredSize(new java.awt.Dimension(100, 31));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.ipadx = 10;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel2.add(marcaText, gridBagConstraints);
 
         jLabel4.setText(resourceMap.getString("jLabel4.text")); // NOI18N
@@ -143,20 +149,19 @@ Image icono = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/zill
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 5);
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel2.add(jLabel4, gridBagConstraints);
 
         modeloText.setText(resourceMap.getString("modeloText.text")); // NOI18N
         modeloText.setMinimumSize(new java.awt.Dimension(100, 20));
         modeloText.setName("modeloText"); // NOI18N
-        modeloText.setPreferredSize(new java.awt.Dimension(100, 20));
+        modeloText.setPreferredSize(new java.awt.Dimension(100, 31));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
-        gridBagConstraints.gridwidth = 4;
+        gridBagConstraints.gridwidth = 3;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.ipadx = 10;
-        gridBagConstraints.insets = new java.awt.Insets(5, 0, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel2.add(modeloText, gridBagConstraints);
 
         jLabel5.setText(resourceMap.getString("jLabel5.text")); // NOI18N
@@ -165,67 +170,65 @@ Image icono = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/zill
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 5);
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel2.add(jLabel5, gridBagConstraints);
 
         añoText.setMinimumSize(new java.awt.Dimension(100, 20));
         añoText.setName("añoText"); // NOI18N
-        añoText.setPreferredSize(new java.awt.Dimension(100, 20));
+        añoText.setPreferredSize(new java.awt.Dimension(100, 31));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 3;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.ipadx = 10;
-        gridBagConstraints.insets = new java.awt.Insets(5, 0, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel2.add(añoText, gridBagConstraints);
 
         jLabel7.setText(resourceMap.getString("jLabel7.text")); // NOI18N
         jLabel7.setName("jLabel7"); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 4;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
-        gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 5);
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel2.add(jLabel7, gridBagConstraints);
 
         dominioText.setMinimumSize(new java.awt.Dimension(100, 20));
         dominioText.setName("dominioText"); // NOI18N
-        dominioText.setPreferredSize(new java.awt.Dimension(100, 20));
+        dominioText.setPreferredSize(new java.awt.Dimension(100, 31));
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 4;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.ipadx = 10;
-        gridBagConstraints.insets = new java.awt.Insets(5, 0, 0, 0);
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel2.add(dominioText, gridBagConstraints);
 
         jLabel8.setText(resourceMap.getString("jLabel8.text")); // NOI18N
         jLabel8.setName("jLabel8"); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 5);
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel2.add(jLabel8, gridBagConstraints);
 
         vto_vt.setMinimumSize(new java.awt.Dimension(100, 20));
         vto_vt.setName("vto_vt"); // NOI18N
         vto_vt.setOpaque(false);
-        vto_vt.setPreferredSize(new java.awt.Dimension(100, 20));
+        vto_vt.setPreferredSize(new java.awt.Dimension(140, 31));
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
-        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 4;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.ipadx = 10;
-        gridBagConstraints.insets = new java.awt.Insets(5, 0, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel2.add(vto_vt, gridBagConstraints);
 
         vto_seguro_nuevo.setName("vto_seguro_nuevo"); // NOI18N
+        vto_seguro_nuevo.setPreferredSize(new java.awt.Dimension(140, 31));
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 4;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel2.add(vto_seguro_nuevo, gridBagConstraints);
 
         jLabel6.setText(resourceMap.getString("jLabel6.text")); // NOI18N
@@ -233,10 +236,71 @@ Image icono = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/zill
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 4;
-        gridBagConstraints.gridwidth = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
-        gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 5);
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel2.add(jLabel6, gridBagConstraints);
+
+        descripcionVto1.setText(resourceMap.getString("descripcionVto1.text")); // NOI18N
+        descripcionVto1.setToolTipText(resourceMap.getString("descripcionVto1.toolTipText")); // NOI18N
+        descripcionVto1.setMinimumSize(new java.awt.Dimension(50, 31));
+        descripcionVto1.setName("descripcionVto1"); // NOI18N
+        descripcionVto1.setPreferredSize(new java.awt.Dimension(100, 31));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        jPanel2.add(descripcionVto1, gridBagConstraints);
+
+        descripcionVto2.setText(resourceMap.getString("descripcionVto2.text")); // NOI18N
+        descripcionVto2.setToolTipText(resourceMap.getString("descripcionVto2.toolTipText")); // NOI18N
+        descripcionVto2.setName("descripcionVto2"); // NOI18N
+        descripcionVto2.setPreferredSize(new java.awt.Dimension(100, 31));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        jPanel2.add(descripcionVto2, gridBagConstraints);
+
+        descripcionVto3.setText(resourceMap.getString("descripcionVto3.text")); // NOI18N
+        descripcionVto3.setToolTipText(resourceMap.getString("descripcionVto3.toolTipText")); // NOI18N
+        descripcionVto3.setName("descripcionVto3"); // NOI18N
+        descripcionVto3.setPreferredSize(new java.awt.Dimension(100, 31));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 7;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        jPanel2.add(descripcionVto3, gridBagConstraints);
+
+        vto_otros1.setName("vto_otros1"); // NOI18N
+        vto_otros1.setPreferredSize(new java.awt.Dimension(140, 31));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        jPanel2.add(vto_otros1, gridBagConstraints);
+
+        vto_otros3.setName("vto_otros3"); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 7;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        jPanel2.add(vto_otros3, gridBagConstraints);
+
+        vto_otros2.setName("vto_otros2"); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        jPanel2.add(vto_otros2, gridBagConstraints);
 
         javax.swing.ActionMap actionMap = org.jdesktop.application.Application.getInstance(zilleprojects.ZilleProjectsApp.class).getContext().getActionMap(JDEquiposIngresar.class, this);
         agregarAutomotor.setAction(actionMap.get("agregarEquipo")); // NOI18N
@@ -259,14 +323,14 @@ Image icono = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/zill
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(24, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(agregarAutomotor, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(cancelarAutomotor, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 493, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(cancelarAutomotor, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {agregarAutomotor, cancelarAutomotor});
@@ -275,12 +339,12 @@ Image icono = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/zill
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cancelarAutomotor, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(agregarAutomotor, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {agregarAutomotor, cancelarAutomotor});
@@ -289,11 +353,11 @@ Image icono = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/zill
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 517, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 579, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 391, Short.MAX_VALUE)
         );
 
         pack();
@@ -309,10 +373,12 @@ Image icono = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/zill
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
 
+            @Override
             public void run() {
                 JDEquiposIngresar dialog = new JDEquiposIngresar(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
 
+                    @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
                         System.exit(0);
                     }
@@ -344,11 +410,23 @@ Image icono = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/zill
             a.setDominio(dominioText.getText());
             a.setAño(añoText.getYear());
             if(vto_vt.getDate()!=null){
-                a.setVto_vt(vto_vt.getDate());
+                a.setVto_vtv(vto_vt.getDate());
             }
             if(vto_seguro_nuevo.getDate()!=null){
                 a.setVto_seguro(vto_seguro_nuevo.getDate());
             }
+            if(vto_otros1.getDate()!=null){
+                a.setVto_otros1(vto_otros1.getDate());
+            }
+            if(vto_otros2.getDate()!=null){
+                a.setVto_otros2(vto_otros2.getDate());
+            }
+            if(vto_otros2.getDate()!=null){
+                a.setVto_otros3(vto_otros2.getDate());
+            }
+            a.setDescripcion_vto1(descripcionVto1.getText());
+            a.setDescripcion_vto2(descripcionVto2.getText());
+            a.setDescripcion_vto3(descripcionVto3.getText());
         }
         @Override protected Object doInBackground() {
             EquiposDAO aDao= new EquiposDAO();
@@ -372,6 +450,9 @@ Image icono = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/zill
     private javax.swing.JButton agregarAutomotor;
     private com.toedter.calendar.JYearChooser añoText;
     private javax.swing.JButton cancelarAutomotor;
+    private javax.swing.JTextField descripcionVto1;
+    private javax.swing.JTextField descripcionVto2;
+    private javax.swing.JTextField descripcionVto3;
     private javax.swing.JTextField dominioText;
     private javax.swing.JTextField equiposText;
     private javax.swing.JLabel jLabel1;
@@ -387,6 +468,9 @@ Image icono = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/zill
     private javax.swing.JTextField marcaText;
     private javax.swing.JTextField modeloText;
     private javax.swing.JTextField nInternoText;
+    private com.toedter.calendar.JDateChooser vto_otros1;
+    private com.toedter.calendar.JDateChooser vto_otros2;
+    private com.toedter.calendar.JDateChooser vto_otros3;
     private com.toedter.calendar.JDateChooser vto_seguro_nuevo;
     private com.toedter.calendar.JDateChooser vto_vt;
     // End of variables declaration//GEN-END:variables

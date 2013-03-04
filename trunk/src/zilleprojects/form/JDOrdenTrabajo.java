@@ -89,6 +89,8 @@ Image icono = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/zill
         solicitanteOT = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
         importeOT = new javax.swing.JTextField();
+        otNum = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jListDeOT = new javax.swing.JList();
         modificarOrdenTrabajo = new javax.swing.JButton();
@@ -241,6 +243,7 @@ Image icono = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/zill
         detalleOT.setLineWrap(true);
         detalleOT.setRows(2);
         detalleOT.setWrapStyleWord(true);
+        detalleOT.setDisabledTextColor(resourceMap.getColor("detalleOT.disabledTextColor")); // NOI18N
         detalleOT.setEnabled(false);
         detalleOT.setMinimumSize(new java.awt.Dimension(164, 94));
         detalleOT.setName("detalleOT"); // NOI18N
@@ -265,6 +268,7 @@ Image icono = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/zill
         jPanel2.add(jLabel3, gridBagConstraints);
 
         kmOT.setText(resourceMap.getString("kmOT.text")); // NOI18N
+        kmOT.setDisabledTextColor(resourceMap.getColor("kmOT.disabledTextColor")); // NOI18N
         kmOT.setEnabled(false);
         kmOT.setName("kmOT"); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -285,6 +289,7 @@ Image icono = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/zill
         jPanel2.add(jLabel4, gridBagConstraints);
 
         manoObraOT.setText(resourceMap.getString("manoObraOT.text")); // NOI18N
+        manoObraOT.setDisabledTextColor(resourceMap.getColor("manoObraOT.disabledTextColor")); // NOI18N
         manoObraOT.setEnabled(false);
         manoObraOT.setName("manoObraOT"); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -295,7 +300,7 @@ Image icono = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/zill
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel2.add(manoObraOT, gridBagConstraints);
 
-        tipoOT.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "CORRECTIVO", "PROGRAMADO" }));
+        tipoOT.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "CORRECTIVO", "PREVENTIVO", "PROGRAMADO"  }));
         tipoOT.setEnabled(false);
         tipoOT.setName("tipoOT"); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -334,7 +339,7 @@ Image icono = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/zill
         jPanel2.add(jLabel8, gridBagConstraints);
 
         aperturaOT.setEnabled(false);
-        aperturaOT.setMinimumSize(new java.awt.Dimension(38, 30));
+        aperturaOT.setMinimumSize(new java.awt.Dimension(100, 30));
         aperturaOT.setName("aperturaOT"); // NOI18N
         aperturaOT.setOpaque(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -383,14 +388,15 @@ Image icono = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/zill
         btnBuscarPorNumInterno.setText(resourceMap.getString("btnBuscarPorNumInterno.text")); // NOI18N
         btnBuscarPorNumInterno.setName("btnBuscarPorNumInterno"); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel2.add(btnBuscarPorNumInterno, gridBagConstraints);
 
-        ninternoOT.setFont(resourceMap.getFont("ninternoOT.font")); // NOI18N
+        ninternoOT.setFont(ninternoOT.getFont().deriveFont(ninternoOT.getFont().getStyle() | java.awt.Font.BOLD));
+        ninternoOT.setForeground(resourceMap.getColor("ninternoOT.foreground")); // NOI18N
         ninternoOT.setText(resourceMap.getString("ninternoOT.text")); // NOI18N
-        ninternoOT.setEnabled(false);
         ninternoOT.setMaximumSize(new java.awt.Dimension(120, 18));
         ninternoOT.setMinimumSize(new java.awt.Dimension(120, 18));
         ninternoOT.setName("ninternoOT"); // NOI18N
@@ -398,6 +404,7 @@ Image icono = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/zill
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridwidth = 3;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel2.add(ninternoOT, gridBagConstraints);
@@ -412,8 +419,11 @@ Image icono = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/zill
         jPanel2.add(jLabel10, gridBagConstraints);
 
         hsOT.setText(resourceMap.getString("hsOT.text")); // NOI18N
+        hsOT.setDisabledTextColor(resourceMap.getColor("hsOT.disabledTextColor")); // NOI18N
         hsOT.setEnabled(false);
+        hsOT.setMinimumSize(new java.awt.Dimension(100, 31));
         hsOT.setName("hsOT"); // NOI18N
+        hsOT.setPreferredSize(new java.awt.Dimension(100, 31));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
@@ -431,6 +441,7 @@ Image icono = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/zill
         jPanel2.add(jLabel9, gridBagConstraints);
 
         solicitanteOT.setText(resourceMap.getString("solicitanteOT.text")); // NOI18N
+        solicitanteOT.setDisabledTextColor(resourceMap.getColor("solicitanteOT.disabledTextColor")); // NOI18N
         solicitanteOT.setEnabled(false);
         solicitanteOT.setName("solicitanteOT"); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -451,6 +462,7 @@ Image icono = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/zill
         jPanel2.add(jLabel11, gridBagConstraints);
 
         importeOT.setText(resourceMap.getString("importeOT.text")); // NOI18N
+        importeOT.setDisabledTextColor(resourceMap.getColor("importeOT.disabledTextColor")); // NOI18N
         importeOT.setEnabled(false);
         importeOT.setName("importeOT"); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -459,6 +471,27 @@ Image icono = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/zill
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel2.add(importeOT, gridBagConstraints);
+
+        otNum.setFont(resourceMap.getFont("otNum.font")); // NOI18N
+        otNum.setForeground(resourceMap.getColor("otNum.foreground")); // NOI18N
+        otNum.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        otNum.setText(resourceMap.getString("otNum.text")); // NOI18N
+        otNum.setName("otNum"); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 7;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        jPanel2.add(otNum, gridBagConstraints);
+
+        jLabel13.setText(resourceMap.getString("jLabel13.text")); // NOI18N
+        jLabel13.setName("jLabel13"); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 7;
+        gridBagConstraints.gridwidth = 2;
+        jPanel2.add(jLabel13, gridBagConstraints);
 
         jScrollPane2.setName("jScrollPane2"); // NOI18N
 
@@ -472,6 +505,7 @@ Image icono = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/zill
         jScrollPane2.setViewportView(jListDeOT);
 
         modificarOrdenTrabajo.setAction(actionMap.get("modificarOrdenTrabajoAction")); // NOI18N
+        modificarOrdenTrabajo.setIcon(resourceMap.getIcon("modificarOrdenTrabajo.icon")); // NOI18N
         modificarOrdenTrabajo.setText(resourceMap.getString("modificarOrdenTrabajo.text")); // NOI18N
         modificarOrdenTrabajo.setName("modificarOrdenTrabajo"); // NOI18N
 
@@ -512,9 +546,11 @@ Image icono = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/zill
         buscarOTs.setName("buscarOTs"); // NOI18N
 
         crearOrdenTrabajo.setAction(actionMap.get("crearOrdenTrabajoAction")); // NOI18N
+        crearOrdenTrabajo.setIcon(resourceMap.getIcon("crearOrdenTrabajo.icon")); // NOI18N
         crearOrdenTrabajo.setText(resourceMap.getString("crearOrdenTrabajo.text")); // NOI18N
         crearOrdenTrabajo.setName("crearOrdenTrabajo"); // NOI18N
 
+        btnCancelarAccion.setIcon(resourceMap.getIcon("btnCancelarAccion.icon")); // NOI18N
         btnCancelarAccion.setText(resourceMap.getString("btnCancelarAccion.text")); // NOI18N
         btnCancelarAccion.setEnabled(false);
         btnCancelarAccion.setName("btnCancelarAccion"); // NOI18N
@@ -538,7 +574,7 @@ Image icono = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/zill
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 393, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(textoFiltroOT, javax.swing.GroupLayout.DEFAULT_SIZE, 329, Short.MAX_VALUE)
+                        .addComponent(textoFiltroOT, javax.swing.GroupLayout.DEFAULT_SIZE, 349, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(buscarOTs))
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -548,8 +584,7 @@ Image icono = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/zill
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnEliminarOT)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 509, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
@@ -564,7 +599,8 @@ Image icono = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/zill
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(12, 12, 12)
                                 .addComponent(cancelarOT, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(btnCancelarAccion, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(btnCancelarAccion, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 509, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -578,8 +614,8 @@ Image icono = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/zill
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 328, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 370, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnCancelarAccion)
                             .addComponent(crearOrdenTrabajo)
@@ -598,7 +634,7 @@ Image icono = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/zill
                             .addComponent(btnModificarOT)
                             .addComponent(btnEliminarOT))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 319, Short.MAX_VALUE)))
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 376, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
@@ -731,7 +767,7 @@ Image icono = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/zill
         kmOT.setEnabled(b);
         hsOT.setEnabled(b);
         solicitanteOT.setEnabled(b);
-        ninternoOT.setEnabled(b);
+        //ninternoOT.setEnabled(b);
         btnBuscarPorNumInterno.setEnabled(b);
         tipoOT.setEnabled(b);
         detalleOT.setEnabled(b);
@@ -795,6 +831,7 @@ Image icono = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/zill
         aperturaOT.setDate(ot.getFechaApertura());
         cierreOT.setDate(ot.getFechaCierre());
         importeOT.setText((ot.getImporte()));
+        otNum.setText("OT"+ot.getOrdenTrabajoID());
     }
 
     public void limpiarCampos() {
@@ -811,6 +848,7 @@ Image icono = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/zill
         aperturaOT.setDate(new Date());
         cierreOT.setDate(null);
         importeOT.setText(null);
+        otNum.setText(null);
     }
 
     private void setListDeOT(ArrayList<OrdenTrabajo> list) {
@@ -1093,7 +1131,7 @@ Image icono = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/zill
         @Override protected Object doInBackground() {
             ReportesDAO rdao= new ReportesDAO();
             rdao.conectar();
-            url=rdao.reportOrdenTrabajo(otActual.getOrdenTrabajoID());
+            url=rdao.reportOrdenTrabajo(otActual.getOrdenTrabajoID(), otActual.getnInterno());
             return null;  // return your result
         }
         @Override protected void succeeded(Object result) {
@@ -1128,6 +1166,7 @@ Image icono = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/zill
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -1148,6 +1187,7 @@ Image icono = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/zill
     private javax.swing.JTextField manoObraOT;
     private javax.swing.JButton modificarOrdenTrabajo;
     private javax.swing.JLabel ninternoOT;
+    private javax.swing.JLabel otNum;
     private javax.swing.JTextField solicitanteOT;
     private javax.swing.JTextField textoFiltroOT;
     private javax.swing.JComboBox tipoOT;
