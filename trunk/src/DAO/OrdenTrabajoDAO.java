@@ -241,7 +241,7 @@ public class OrdenTrabajoDAO {
             query = "select distinct * from orden_trabajo where FECHA like '%"+ filtro+"%' "
                     + "or NINTERNO like '%"+filtro+"%' or NINTERNOID like '%"+filtro+"%' or MANODEOBRA like '%" +
                     filtro+"%' or  MANTENIMIENTO like '%"+filtro+"%' or APERTURAFECHA like '%"
-                    +filtro+"%' or CIERREFECHA like '%"+filtro+"%' or SOLICITANTE like '%"+filtro+"%'";
+                    +filtro+"%' or CIERREFECHA like '%"+filtro+"%' or SOLICITANTE like '%"+filtro+"%' or ORDENTRABAJOID like '%"+filtro+"%' ";
             PreparedStatement ps = conector.prepareStatement(query);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {

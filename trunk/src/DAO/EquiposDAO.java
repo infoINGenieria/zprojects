@@ -222,24 +222,14 @@ public class EquiposDAO {
 
     }
 
-    public ArrayList<Equipos> buscar(int opcion, String consulta) {
+    public ArrayList<Equipos> buscar(String consulta) {
         String query = null;
         ArrayList<Equipos> equipos = new ArrayList<Equipos>();
         try {
-            switch(opcion){
-                case 0:
-                    query = "select * from equipos where DOMINIO like '%"+consulta+"%'";
-                    break;
-                case 1:
-                    query = "select * from equipos where N_INTERNO like '%"+consulta+"%'";
-                    break;
-                case 2:
-                    query = "select * from equipos where MARCA like '%"+consulta+"%'";
-                    break;
-                case 3:
-                    query = "select * from equipos where AÑO like '%"+consulta+"%'";
-                    break;
-            }
+            query = "select distinct * from equipos where EQUIPO like '%"+consulta+"%' or DOMINIO like '%"+consulta+"%'"
+                    + " or N_INTERNO like '%"+consulta+"%' or MARCA like '%"+consulta+"%'"
+                    + " or MODELO like '%"+consulta+"%' or AÑO like '%"+consulta+"%'";
+            
             
             PreparedStatement ps = conector.prepareStatement(query);
             
