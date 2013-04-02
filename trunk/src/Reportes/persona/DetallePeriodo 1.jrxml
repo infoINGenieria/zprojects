@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
 	<property name="ireport.zoom" value="1.1000000000000005"/>
-	<property name="ireport.x" value="62"/>
+	<property name="ireport.x" value="14"/>
 	<property name="ireport.y" value="0"/>
 	<parameter name="id_informe" class="java.lang.Integer">
 		<defaultValueExpression><![CDATA[new Integer(1)]]></defaultValueExpression>
@@ -178,81 +178,74 @@ order by PD.fecha asc]]>
 	<columnHeader>
 		<band height="20" splitType="Stretch">
 			<staticText>
-				<reportElement mode="Opaque" x="0" y="0" width="69" height="20" backcolor="#E9E9E9"/>
+				<reportElement mode="Opaque" x="0" y="0" width="94" height="20" backcolor="#E9E9E9"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="8" isBold="true"/>
+					<font size="10" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Fecha]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="285" y="0" width="103" height="20" isPrintWhenDetailOverflows="true" backcolor="#DFDFDF"/>
+				<reportElement mode="Opaque" x="310" y="0" width="103" height="20" isPrintWhenDetailOverflows="true" backcolor="#DFDFDF"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="8" isBold="true"/>
+					<font size="10" isBold="true"/>
 				</textElement>
 				<text><![CDATA[HS INICIO TAREAS]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="747" y="0" width="30" height="20" backcolor="#E9E9E9"/>
+				<reportElement mode="Opaque" x="772" y="0" width="30" height="20" backcolor="#E9E9E9"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="8" isBold="true"/>
+					<font size="10" isBold="true"/>
 				</textElement>
 				<text><![CDATA[MF]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="388" y="0" width="82" height="20" backcolor="#E9E9E9"/>
+				<reportElement mode="Opaque" x="413" y="0" width="82" height="20" backcolor="#E9E9E9"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="8" isBold="true"/>
+					<font size="10" isBold="true"/>
 				</textElement>
 				<text><![CDATA[HS ALMUERZO]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="470" y="0" width="105" height="20" backcolor="#DFDFDF"/>
+				<reportElement mode="Opaque" x="495" y="0" width="105" height="20" backcolor="#DFDFDF"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="8" isBold="true"/>
+					<font size="10" isBold="true"/>
 				</textElement>
 				<text><![CDATA[HS FIN ALMUERZO]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="575" y="0" width="88" height="20" backcolor="#E9E9E9"/>
+				<reportElement mode="Opaque" x="600" y="0" width="88" height="20" backcolor="#E9E9E9"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="8" isBold="true"/>
+					<font size="10" isBold="true"/>
 				</textElement>
 				<text><![CDATA[HS FIN TAREAS]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="663" y="0" width="84" height="20" backcolor="#DFDFDF"/>
+				<reportElement mode="Opaque" x="688" y="0" width="84" height="20" backcolor="#DFDFDF"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="8" isBold="true"/>
+					<font size="10" isBold="true"/>
 				</textElement>
 				<text><![CDATA[HS LLEGADA]]></text>
 			</staticText>
 			<staticText>
-				<reportElement positionType="Float" mode="Opaque" x="69" y="0" width="152" height="20" backcolor="#DFDFDF"/>
+				<reportElement positionType="Float" mode="Opaque" x="94" y="0" width="152" height="20" backcolor="#DFDFDF"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="8" isBold="true" pdfEncoding="Cp1250"/>
+					<font size="10" isBold="true" pdfEncoding="Cp1250"/>
 				</textElement>
 				<text><![CDATA[OBRA]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="221" y="0" width="64" height="20" backcolor="#E9E9E9"/>
+				<reportElement mode="Opaque" x="246" y="0" width="64" height="20" backcolor="#E9E9E9"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="8" isBold="true"/>
+					<font size="10" isBold="true"/>
 				</textElement>
 				<text><![CDATA[HS SALIDA]]></text>
-			</staticText>
-			<staticText>
-				<reportElement mode="Opaque" x="777" y="0" width="25" height="20" backcolor="#E9E9E9"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="8" isBold="true"/>
-				</textElement>
-				<text><![CDATA[VD]]></text>
 			</staticText>
 		</band>
 	</columnHeader>
 	<detail>
 		<band height="17" splitType="Stretch">
-			<textField pattern="###0.00" isBlankWhenNull="true">
-				<reportElement mode="Opaque" x="388" y="0" width="82" height="17">
+			<textField evaluationTime="Auto" pattern="###0.00" isBlankWhenNull="true">
+				<reportElement mode="Opaque" x="413" y="0" width="82" height="17">
 					<printWhenExpression><![CDATA[$F{id_sit}.intValue() == 1 ? Boolean.TRUE: Boolean.FALSE]]></printWhenExpression>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
@@ -262,7 +255,7 @@ order by PD.fecha asc]]>
 				<patternExpression><![CDATA[$F{HS_IALMUERZO}.getHours()+","+((int)(Double.valueOf($F{HS_IALMUERZO}.getMinutes())/60*100))]]></patternExpression>
 			</textField>
 			<textField pattern="###0.00" isBlankWhenNull="true">
-				<reportElement mode="Opaque" x="285" y="0" width="103" height="17">
+				<reportElement mode="Opaque" x="310" y="0" width="103" height="17">
 					<printWhenExpression><![CDATA[$F{id_sit}.intValue() == 1 ? Boolean.TRUE: Boolean.FALSE]]></printWhenExpression>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
@@ -272,7 +265,7 @@ order by PD.fecha asc]]>
 				<patternExpression><![CDATA[$F{HS_INICIO}.getHours()+","+((int)(Double.valueOf($F{HS_INICIO}.getMinutes())/60*100))]]></patternExpression>
 			</textField>
 			<textField pattern="###0.00" isBlankWhenNull="true">
-				<reportElement mode="Opaque" x="575" y="0" width="88" height="17" backcolor="#FFFFFF">
+				<reportElement mode="Opaque" x="600" y="0" width="88" height="17" backcolor="#FFFFFF">
 					<printWhenExpression><![CDATA[$F{id_sit}.intValue() == 1 ? Boolean.TRUE: Boolean.FALSE]]></printWhenExpression>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
@@ -282,7 +275,7 @@ order by PD.fecha asc]]>
 				<patternExpression><![CDATA[$F{HS_FIN}.getHours()+","+((int)(Double.valueOf($F{HS_FIN}.getMinutes())/60*100))]]></patternExpression>
 			</textField>
 			<textField>
-				<reportElement mode="Opaque" x="69" y="0" width="152" height="17">
+				<reportElement mode="Opaque" x="94" y="0" width="152" height="17">
 					<printWhenExpression><![CDATA[$F{id_sit}.intValue() == 1 ? Boolean.FALSE : Boolean.TRUE]]></printWhenExpression>
 				</reportElement>
 				<textElement verticalAlignment="Middle">
@@ -291,7 +284,7 @@ order by PD.fecha asc]]>
 				<textFieldExpression><![CDATA[$F{situacion}]]></textFieldExpression>
 			</textField>
 			<textField pattern="###0.00" isBlankWhenNull="true">
-				<reportElement mode="Opaque" x="663" y="0" width="84" height="17" backcolor="#FFFFFF">
+				<reportElement mode="Opaque" x="688" y="0" width="84" height="17" backcolor="#FFFFFF">
 					<printWhenExpression><![CDATA[$F{id_sit}.intValue() == 1 ? Boolean.TRUE: Boolean.FALSE]]></printWhenExpression>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
@@ -301,14 +294,14 @@ order by PD.fecha asc]]>
 				<patternExpression><![CDATA[$F{HS_LLEGADA}.getHours()+","+((int)(Double.valueOf($F{HS_LLEGADA}.getMinutes())/60*100))]]></patternExpression>
 			</textField>
 			<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
-				<reportElement mode="Opaque" x="0" y="0" width="69" height="17" backcolor="#FFFFFF"/>
+				<reportElement mode="Opaque" x="0" y="0" width="94" height="17" backcolor="#FFFFFF"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[new java.sql.Timestamp($F{fec}.getTime())]]></textFieldExpression>
 			</textField>
-			<textField pattern="###0.00" isBlankWhenNull="true">
-				<reportElement mode="Opaque" x="470" y="0" width="105" height="17" backcolor="#FFFFFF">
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement mode="Opaque" x="495" y="0" width="105" height="17" backcolor="#FFFFFF">
 					<printWhenExpression><![CDATA[$F{id_sit}.intValue() == 1 ? Boolean.TRUE: Boolean.FALSE]]></printWhenExpression>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
@@ -318,7 +311,7 @@ order by PD.fecha asc]]>
 				<patternExpression><![CDATA[$F{HS_FALMUERZO}.getHours()+","+((int)(Double.valueOf($F{HS_FALMUERZO}.getMinutes())/60*100))]]></patternExpression>
 			</textField>
 			<textField pattern="###0.00" isBlankWhenNull="true">
-				<reportElement positionType="FixRelativeToBottom" mode="Opaque" x="221" y="0" width="64" height="17">
+				<reportElement positionType="FixRelativeToBottom" mode="Opaque" x="246" y="0" width="64" height="17">
 					<printWhenExpression><![CDATA[$F{id_sit}.intValue() == 1 ? Boolean.TRUE: Boolean.FALSE]]></printWhenExpression>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
@@ -328,41 +321,34 @@ order by PD.fecha asc]]>
 				<patternExpression><![CDATA[$F{HS_SALIDA}.getHours()+","+((int)(Double.valueOf($F{HS_SALIDA}.getMinutes())/60*100))]]></patternExpression>
 			</textField>
 			<textField>
-				<reportElement mode="Transparent" x="69" y="0" width="152" height="17">
+				<reportElement mode="Transparent" x="94" y="0" width="152" height="17">
 					<printWhenExpression><![CDATA[$F{id_sit}.intValue() == 1 ? Boolean.TRUE: Boolean.FALSE]]></printWhenExpression>
 				</reportElement>
 				<textElement textAlignment="Left" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{obra}]]></textFieldExpression>
 			</textField>
 			<textField evaluationTime="Report">
-				<reportElement x="747" y="0" width="30" height="17">
+				<reportElement x="772" y="0" width="30" height="17">
 					<printWhenExpression><![CDATA[$F{id_sit}.intValue() == 1 && $F{multi}.booleanValue() ==  Boolean.FALSE ? Boolean.TRUE : Boolean.FALSE]]></printWhenExpression>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[0]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement mode="Transparent" x="747" y="0" width="30" height="17">
+				<reportElement mode="Transparent" x="772" y="0" width="30" height="17">
 					<printWhenExpression><![CDATA[$F{multi}.booleanValue() && ($F{id_sit}.intValue() == 1) ? Boolean.TRUE: Boolean.FALSE]]></printWhenExpression>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[1]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement positionType="Float" mode="Transparent" x="285" y="0" width="462" height="17">
+				<reportElement positionType="Float" mode="Transparent" x="310" y="0" width="462" height="17">
 					<printWhenExpression><![CDATA[$F{id_sit}.intValue() == 1 ? Boolean.FALSE : Boolean.TRUE]]></printWhenExpression>
 				</reportElement>
 				<textElement verticalAlignment="Middle">
 					<font isItalic="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{observaciones}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="777" y="0" width="25" height="17">
-					<printWhenExpression><![CDATA[($F{id_sit}.intValue() == 1) ? Boolean.TRUE: Boolean.FALSE]]></printWhenExpression>
-				</reportElement>
-				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA[$F{VIANDA_DESA}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
