@@ -32,11 +32,15 @@ import net.sf.jasperreports.engine.export.JRXlsExporterParameter;
 import net.sf.jasperreports.engine.util.JRLoader;
 import net.sf.jasperreports.view.JasperViewer;
 import org.apache.poi.hssf.usermodel.HSSFCell;
+import org.apache.poi.hssf.usermodel.HSSFCellStyle;
+import org.apache.poi.hssf.usermodel.HSSFFont;
 import org.apache.poi.hssf.usermodel.HSSFFormulaEvaluator;
 import org.apache.poi.hssf.usermodel.HSSFRichTextString;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.hssf.util.HSSFColor;
+import org.apache.poi.poifs.filesystem.POIFSFileSystem;
 
 /**
  *
@@ -498,15 +502,109 @@ public class ReportesDAO {
         }
         return result;
     }
+     
+     public String reportRIexcel( int riid, String ri_num){
+         String result="";
+        try {
+
+            URL master = null;
+            Map parametro = new HashMap();
+            parametro.put("riid", riid);
+            master = getClass().getResource("/Reportes/ri/ri.jasper");
+            System.out.println("Cargando desde: " + master);
+            if (master == null) {
+                System.out.println("No se encuentra el archivo master.");
+                //System.exit(2);
+            }
+            
+            JasperReport masterReport = (JasperReport) JRLoader.loadObject(master);
+            JasperPrint jasperPrint = JasperFillManager.fillReport(masterReport, parametro, conector);          
+            //Exporta el informe a excel
+            JRXlsExporter exporterXLS = new JRXlsExporter();
+            exporterXLS.setParameter(JRXlsExporterParameter.JASPER_PRINT,  jasperPrint);
+            exporterXLS.setParameter(JRXlsExporterParameter.IS_DETECT_CELL_TYPE, Boolean.TRUE);
+            exporterXLS.setParameter(JRXlsExporterParameter.IS_WHITE_PAGE_BACKGROUND, Boolean.FALSE);
+            exporterXLS.setParameter(JRXlsExporterParameter.IS_REMOVE_EMPTY_SPACE_BETWEEN_ROWS, Boolean.TRUE);
+            String soName = System.getProperty("os.name").toUpperCase();
+            String archivo="RI"+riid +"("+ ri_num+ ").xls";
+            //String command = "start " +archivo ;
+            File folder = new File("RI\\");
+            if (soName.equals("LINUX")) { //Si se ejecuta en Linux  
+                    folder = new File("RI/");
+                    if(!folder.exists()){
+                        folder.mkdirs();
+                    }
+                    archivo=folder.getAbsoluteFile()+"/"+archivo;
+                    //command = "xdg-open "+archivo;
+            }else if(soName.equals("WINDOWS")|| soName.equals("WINDOWS 7")) {  //si se ejecuta en Windows)
+                    folder = new File("RI\\");
+                    if(!folder.exists()){
+                        folder.mkdirs();
+                    }
+                    archivo=folder.getAbsoluteFile()+"\\"+archivo;
+                    //command = "start " +archivo ;
+            }
+            exporterXLS.setParameter(JRExporterParameter.OUTPUT_FILE_NAME, archivo);
+            exporterXLS.exportReport();
+            Desktop.getDesktop().open(new File(archivo));
+            result="Se ha exportado correctamente el Requerimirnto Interno "+ri_num+".\n"
+                    + "Archivo: "+archivo;
+
+        } catch (IOException ex) {
+            Logger.getLogger(ReportesDAO.class.getName()).log(Level.SEVERE, null, ex);
+            result="Error al procesar la solicitud."; 
+        } catch (JRException j) {
+            System.out.print(j.getMessage());
+            result="Error al procesar la solicitud.";
+        }
+        return result;
+    }
     /*
     
      */
 
     public void reportCustom(int idOperario, ArrayList<Obras> obrasIDlist, Date desde, Date hasta) {
         String dest = "customReport.xls";
+        System.out.println("Cantidad de obras: "+obrasIDlist.size());
+        //POIFSFileSystem fs = new POIFSFileSystem(new InputStream() {})
         HSSFWorkbook myWorkBook = new HSSFWorkbook();
-        HSSFSheet mySheet = myWorkBook.createSheet();
-        
+        HSSFSheet mySheet = myWorkBook.createSheet("Reporte Personalizado");
+        //Style
+            HSSFCellStyle amarillo = myWorkBook.createCellStyle();
+            amarillo.setFillForegroundColor(HSSFColor.YELLOW.index);
+            amarillo.setFillPattern(HSSFCellStyle.SOLID_FOREGROUND);
+            amarillo.setBorderBottom((short)14);
+            amarillo.setBorderLeft((short)14);
+            amarillo.setBorderRight((short)14);
+            amarillo.setBorderTop((short)14);
+            amarillo.setAlignment(HSSFCellStyle.ALIGN_CENTER);
+            amarillo.setVerticalAlignment(HSSFCellStyle.VERTICAL_CENTER);
+            amarillo.setWrapText(true);
+           
+            
+            HSSFCellStyle azul = myWorkBook.createCellStyle();
+            azul.setFillForegroundColor(HSSFColor.LIGHT_BLUE.index);
+            azul.setFillPattern(HSSFCellStyle.SOLID_FOREGROUND);
+            azul.setAlignment(HSSFCellStyle.ALIGN_CENTER);
+            azul.setVerticalAlignment(HSSFCellStyle.VERTICAL_CENTER);
+            azul.setBorderBottom((short)14);
+            azul.setBorderLeft((short)14);
+            azul.setBorderRight((short)14);
+            azul.setBorderTop((short)14);
+            azul.setWrapText(true);
+            
+            
+            HSSFCellStyle verde = myWorkBook.createCellStyle();
+            verde.setFillForegroundColor(HSSFColor.LIGHT_GREEN.index);
+            verde.setFillPattern(HSSFCellStyle.SOLID_FOREGROUND);
+            verde.setAlignment(HSSFCellStyle.ALIGN_CENTER);
+            verde.setVerticalAlignment(HSSFCellStyle.VERTICAL_CENTER);
+            verde.setWrapText(true);
+            verde.setBorderBottom((short)14);
+            verde.setBorderLeft((short)14);
+            verde.setBorderRight((short)14);
+            verde.setBorderTop((short)14);
+            
         String query= "select  OP.nombre, OP.id FROM partediario PD "
                 + "LEFT JOIN obras OB ON PD.obra = OB.id "
                 + "LEFT JOIN operarios OP ON PD.operario = OP.id "
@@ -523,55 +621,114 @@ public class ReportesDAO {
             int i = 0;
             
         //ENCABEZADOS
-            HSSFRow myRow = mySheet.getRow(i);
             
-            if (myRow == null) { myRow = mySheet.createRow(i); }
+            HSSFRow myRow = mySheet.getRow(i);
+            if (myRow == null) { myRow = mySheet.createRow(i); }  
             HSSFCell myCell = myRow.createCell(0);
-            myCell.setCellValue(new HSSFRichTextString("NOMBRE"));
+            myCell.setCellValue(new HSSFRichTextString("TOTAL DE DIAS POR CENTRO DE COSTO"));
+            myCell.setCellStyle(amarillo);
+            
+            //Siguiente renglón
+            i++;
+            
+            myRow = mySheet.getRow(i);        
+            if (myRow == null) { myRow = mySheet.createRow(i); }    
+            myRow.setHeight((short)600);
+            myCell = myRow.createCell(0);
+            myCell.setCellValue(new HSSFRichTextString("APELLIDO Y NOMBRE"));
+            myCell.setCellStyle(amarillo);
         //TOTAL
             myCell = myRow.createCell(1);
             myCell.setCellValue(new HSSFRichTextString("TOTAL"));
+            myCell.setCellStyle(azul);
         //OBRAS
             for (int h = 0; h < obrasIDlist.size(); h++) {
                 myCell = myRow.createCell(h+2);
                 myCell.setCellValue(new HSSFRichTextString(obrasIDlist.get(h).getCodigo()));
+                if((h+2) % 2 == 0){
+                    myCell.setCellStyle(verde);
+                }else{
+                    myCell.setCellStyle(azul);
+                }
             }
         //Datos
+            int contador = 0;
             while (rs.next()) {
+                String nombre = rs.getString("nombre");
+                if(nombre==null || nombre.isEmpty()){
+                    continue;
+                }
                 i++;
                 myRow = mySheet.getRow(i);
                 if (myRow == null) {
                     myRow = mySheet.createRow(i);
                 }
             //Nombre
-                myCell = myRow.createCell(0);
-                myCell.setCellValue(new HSSFRichTextString(rs.getString("nombre")));
+                myCell = myRow.createCell(0);  
+                myCell.setCellValue(new HSSFRichTextString(nombre));
             //Total
                 HSSFCell myCellF = myRow.createCell(1);
                 int i2= i+1;
                 String formula = "SUM(C"+i2+":AA"+i2+")";
                 myCellF.setCellFormula(formula);
             //Obras
-                    for (int j = 0; j < obrasIDlist.size(); j++) {    
-                    String subq = "select count(PD.obra) as cantidad FROM partediario PD WHERE PD.fecha <= '"+
-                            FechaUtil.getFechaSQL(hasta)+"' AND PD.fecha >= '"+ FechaUtil.getFechaSQL(desde) +
-                            "' AND PD.situacion =1 AND PD.obra = "+ obrasIDlist.get(j).getId() + " and PD.operario = "+
-                            rs.getInt("id");
+                for (int j = 0; j < obrasIDlist.size(); j++) {
+                    String subq = "select count(PD.obra) as cantidad FROM partediario PD WHERE PD.fecha <= '"
+                            + FechaUtil.getFechaSQL(hasta) + "' AND PD.fecha >= '" + FechaUtil.getFechaSQL(desde)
+                            + "' AND PD.situacion =1 AND PD.obra = " + obrasIDlist.get(j).getId() + " and PD.operario = "
+                            + rs.getInt("id");
                     ps = conector.prepareStatement(subq);
                     ResultSet rs2 = ps.executeQuery();
-                    myCell = myRow.createCell(j+2);
+                    myCell = myRow.createCell(j + 2);
+                    
                     int value = 0;
-                    if(rs2.next()){
-                        value = rs2.getInt("cantidad"); 
+                    if (rs2.next()) {
+                        value = rs2.getInt("cantidad");
                     }
                     myCell.setCellValue(value);
+                    
                 }
                 HSSFFormulaEvaluator evaluador = new HSSFFormulaEvaluator(myWorkBook) ;
                 evaluador.evaluate(myCellF);
+                contador++;
             }
+            
             for (int b = 0; b < i; b++){
-                mySheet.autoSizeColumn((short)b); //ajusta el ancho de la primera columna
-            }          
+                mySheet.autoSizeColumn((short)b); //ajusta el ancho de la primera columna  
+            }   
+            //Vuelvo a la fila 0, a ingresar las formulas de totales
+            myRow = mySheet.getRow(0);
+            myCell = myRow.getCell(1);
+            if (myCell == null) {
+                    myCell = myRow.createCell(1);
+                }
+            char col = 'B';
+            String formula = "SUM("+col+"3:"+col+(contador+2)+")";
+            myCell.setCellFormula(formula);
+            myCell.setCellStyle(azul);
+            HSSFFormulaEvaluator evaluador = new HSSFFormulaEvaluator(myWorkBook) ;
+            evaluador.evaluate(myCell);
+
+            col='A';
+            for(int c = 0; c < obrasIDlist.size();c++){
+                myCell = myRow.getCell(c+2);
+                if (myCell == null) {
+                    myCell = myRow.createCell(c+2);
+                }
+                //Esto es magía. 
+                //Paso el char a int, lo incremento y lo vuelvo a char.
+                char col1 = (char)((int)col+(c+2));
+                formula = "SUM("+col1+"3:"+col1+(contador+2)+")";
+                myCell.setCellFormula(formula);
+                if((c+2) % 2 == 0){
+                    myCell.setCellStyle(verde);
+                }else{
+                    myCell.setCellStyle(azul);
+                }
+                evaluador.evaluate(myCell);
+            }
+            
+            mySheet.createFreezePane(2, 2);
             FileOutputStream out = new FileOutputStream(dest);
             myWorkBook.write(out);
             Desktop.getDesktop().open(new File(dest));
@@ -579,7 +736,6 @@ public class ReportesDAO {
             
         } catch (SQLException ex){
         } catch (Exception e) {
-                e.printStackTrace();
         }
         
     }

@@ -65,7 +65,7 @@ import org.jdesktop.application.Task;
 import zilleprojects.form.JDAlarmaActividad;
 import zilleprojects.form.JDAlarmas;
 import zilleprojects.form.JDEmpleadoGestion;
-import zilleprojects.form.JDEquiposModificar;
+import zilleprojects.form.JDEquipos;
 import zilleprojects.form.JDEstacionServicio;
 import zilleprojects.form.JDObrasGestion;
 import zilleprojects.form.JDOrdenTrabajo;
@@ -579,7 +579,7 @@ public class ZilleProjectsView extends FrameView {
     public void mostrarModificarEquipo() {
         if (verificarCredenciales("Administrador")) {
             JFrame mainFrame = ZilleProjectsApp.getApplication().getMainFrame();
-            modificarEquipo = new JDEquiposModificar(mainFrame, true);
+            modificarEquipo = new JDEquipos(mainFrame, true);
             modificarEquipo.setLocationRelativeTo(mainFrame);
             ZilleProjectsApp.getApplication().show(modificarEquipo);
         } 
@@ -2242,7 +2242,7 @@ private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     private JDialog aboutBox;
     private JDRemoverParte removerParte;
     //private JDialog ingresarEquipo;
-    private JDEquiposModificar modificarEquipo;
+    private JDEquipos modificarEquipo;
     private JDObrasGestion obrasDialog;
     private JDEmpleadoGestion gestionOperario;
     private JDParteDiario parteIngreso;
