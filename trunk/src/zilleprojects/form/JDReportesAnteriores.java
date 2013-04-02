@@ -45,14 +45,13 @@ public class JDReportesAnteriores extends javax.swing.JDialog {
         java.awt.GridBagConstraints gridBagConstraints;
 
         buscarEmpleado = new javax.swing.JDialog();
-        jPanel8 = new PanelAzul();
-        jPanel9 = new javax.swing.JPanel();
+        jPanel2 = new PanelAzul();
         query1 = new javax.swing.JTextField();
         botonQuery = new javax.swing.JButton();
         jScrollPane5 = new javax.swing.JScrollPane();
         listaEmpleados = new javax.swing.JList();
-        exitDialog = new javax.swing.JButton();
         selectRow = new javax.swing.JButton();
+        exitDialog = new javax.swing.JButton();
         jPanel1 = new PanelAzul();
         jLabel4 = new javax.swing.JLabel();
         botonBuscarEmpleado = new javax.swing.JButton();
@@ -73,74 +72,36 @@ public class JDReportesAnteriores extends javax.swing.JDialog {
         buscarEmpleado.setResizable(false);
         buscarEmpleado.setUndecorated(true);
 
-        jPanel8.setBorder(javax.swing.BorderFactory.createLineBorder(resourceMap.getColor("jPanel8.border.lineColor"))); // NOI18N
-        jPanel8.setName("jPanel8"); // NOI18N
+        jPanel2.setName("jPanel2"); // NOI18N
 
-        jPanel9.setName("jPanel9"); // NOI18N
-        jPanel9.setOpaque(false);
-        jPanel9.setLayout(new java.awt.GridBagLayout());
-
+        query1.setMinimumSize(new java.awt.Dimension(30, 19));
         query1.setName("query1"); // NOI18N
+        query1.setPreferredSize(new java.awt.Dimension(30, 19));
         query1.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 query1FocusGained(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 5;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.ipadx = 120;
-        gridBagConstraints.ipady = 10;
-        gridBagConstraints.weightx = 0.8;
-        gridBagConstraints.insets = new java.awt.Insets(2, 2, 0, 0);
-        jPanel9.add(query1, gridBagConstraints);
 
         javax.swing.ActionMap actionMap = org.jdesktop.application.Application.getInstance(zilleprojects.ZilleProjectsApp.class).getContext().getActionMap(JDReportesAnteriores.class, this);
         botonQuery.setAction(actionMap.get("buscarEmpleado")); // NOI18N
         botonQuery.setIcon(resourceMap.getIcon("botonQuery.icon")); // NOI18N
         botonQuery.setToolTipText(resourceMap.getString("botonQuery.toolTipText")); // NOI18N
         botonQuery.setName("botonQuery"); // NOI18N
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 5;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.ipadx = 8;
-        gridBagConstraints.ipady = 8;
-        gridBagConstraints.insets = new java.awt.Insets(2, 2, 0, 0);
-        jPanel9.add(botonQuery, gridBagConstraints);
 
         jScrollPane5.setName("jScrollPane5"); // NOI18N
 
         listaEmpleados.setModel(listEmpl);
         listaEmpleados.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        listaEmpleados.setMinimumSize(new java.awt.Dimension(200, 200));
         listaEmpleados.setName("listaEmpleados"); // NOI18N
+        listaEmpleados.setPreferredSize(new java.awt.Dimension(200, 150));
         listaEmpleados.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 listaEmpleadosFocusGained(evt);
             }
         });
         jScrollPane5.setViewportView(listaEmpleados);
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridwidth = 5;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.ipadx = 10;
-        gridBagConstraints.ipady = 30;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
-        jPanel9.add(jScrollPane5, gridBagConstraints);
-
-        exitDialog.setIcon(resourceMap.getIcon("exitDialog.icon")); // NOI18N
-        exitDialog.setText(resourceMap.getString("exitDialog.text")); // NOI18N
-        exitDialog.setName("exitDialog"); // NOI18N
-        exitDialog.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                exitDialogActionPerformed(evt);
-            }
-        });
 
         selectRow.setIcon(resourceMap.getIcon("selectRow.icon")); // NOI18N
         selectRow.setText(resourceMap.getString("selectRow.text")); // NOI18N
@@ -151,44 +112,59 @@ public class JDReportesAnteriores extends javax.swing.JDialog {
             }
         });
 
-        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
-        jPanel8.setLayout(jPanel8Layout);
-        jPanel8Layout.setHorizontalGroup(
-            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel8Layout.createSequentialGroup()
+        exitDialog.setIcon(resourceMap.getIcon("exitDialog.icon")); // NOI18N
+        exitDialog.setText(resourceMap.getString("exitDialog.text")); // NOI18N
+        exitDialog.setName("exitDialog"); // NOI18N
+        exitDialog.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                exitDialogActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, 476, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
-                .addContainerGap(147, Short.MAX_VALUE)
-                .addComponent(selectRow, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 351, Short.MAX_VALUE)
+                    .addComponent(query1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 351, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(exitDialog, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(selectRow)
+                    .addComponent(botonQuery)
+                    .addComponent(exitDialog))
                 .addContainerGap())
         );
-        jPanel8Layout.setVerticalGroup(
-            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel8Layout.createSequentialGroup()
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(exitDialog)
-                    .addComponent(selectRow, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(query1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botonQuery))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(selectRow)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(exitDialog)))
+                .addContainerGap())
         );
 
-        jPanel8Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {exitDialog, selectRow});
+        jPanel2Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {botonQuery, query1});
 
         javax.swing.GroupLayout buscarEmpleadoLayout = new javax.swing.GroupLayout(buscarEmpleado.getContentPane());
         buscarEmpleado.getContentPane().setLayout(buscarEmpleadoLayout);
         buscarEmpleadoLayout.setHorizontalGroup(
             buscarEmpleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         buscarEmpleadoLayout.setVerticalGroup(
             buscarEmpleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -273,10 +249,10 @@ public class JDReportesAnteriores extends javax.swing.JDialog {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(jLabel4)
                     .addComponent(operariosText, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botonBuscarEmpleado)
+                    .addComponent(botonBuscarEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(alert, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -328,7 +304,9 @@ public class JDReportesAnteriores extends javax.swing.JDialog {
              operariosText.setText(op.toString());
              buscarEmpleado.dispose();
              query1.setText("");
-             listaEmpleados.removeAll();         
+             listaEmpleados.removeAll();    
+             Task tarea = cargarReportes();
+             tarea.execute();
 	}     
 }//GEN-LAST:event_selectRowActionPerformed
 
@@ -366,6 +344,7 @@ public class JDReportesAnteriores extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
 
+            @Override
             public void run() {
                 JDReportesAnteriores dialog = new JDReportesAnteriores(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
@@ -512,7 +491,7 @@ public class JDReportesAnteriores extends javax.swing.JDialog {
         }
         @Override protected void succeeded(Object result) {
             if(res>=0){
-                listReport.clear();
+                //listReport.clear();
             }else{
                 alert.setText("Error: no pudo generarse el informe.");
             }
@@ -533,8 +512,7 @@ public class JDReportesAnteriores extends javax.swing.JDialog {
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel8;
-    private javax.swing.JPanel jPanel9;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JList listaDeReportes;
