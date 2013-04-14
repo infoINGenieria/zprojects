@@ -6,12 +6,11 @@
       <Properties>
         <Property name="defaultCloseOperation" type="int" value="2"/>
         <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-          <Dimension value="[333, 288]"/>
+          <Dimension value="[333, 320]"/>
         </Property>
         <Property name="modal" type="boolean" value="true"/>
         <Property name="name" type="java.lang.String" value="jDialog1" noResource="true"/>
         <Property name="resizable" type="boolean" value="false"/>
-        <Property name="undecorated" type="boolean" value="true"/>
       </Properties>
 
       <Layout>
@@ -37,7 +36,7 @@
               </Border>
             </Property>
             <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-              <Dimension value="[299, 288]"/>
+              <Dimension value="[333, 290]"/>
             </Property>
             <Property name="name" type="java.lang.String" value="jPanel3" noResource="true"/>
           </Properties>
@@ -49,22 +48,23 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <Component id="seleccionarObra" min="-2" pref="163" max="-2" attributes="0"/>
+                      <Component id="seleccionarObra" min="-2" pref="175" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="Cerrar" pref="162" max="32767" attributes="0"/>
+                      <Component id="Cerrar" pref="150" max="32767" attributes="0"/>
                   </Group>
                   <Component id="jScrollPane4" alignment="0" pref="331" max="32767" attributes="2"/>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <Component id="jScrollPane4" pref="248" max="32767" attributes="0"/>
-                      <EmptySpace min="-2" max="-2" attributes="0"/>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Component id="jScrollPane4" pref="236" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="seleccionarObra" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="Cerrar" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="seleccionarObra" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
+                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -114,6 +114,9 @@
                     <Property name="selectionMode" type="int" value="0"/>
                     <Property name="name" type="java.lang.String" value="jListDeObra" noResource="true"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jListDeObraMouseClicked"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
@@ -234,12 +237,14 @@
                           <Component id="addRI" alignment="0" min="-2" pref="31" max="-2" attributes="0"/>
                           <Component id="remRI" min="-2" pref="31" max="-2" attributes="0"/>
                           <Component id="editRI" min="-2" pref="31" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="riNum" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="btnCancelar" alignment="0" pref="34" max="32767" attributes="1"/>
                               <Component id="btnModificar" linkSize="8" alignment="0" max="32767" attributes="1"/>
                               <Component id="btnGuardar" linkSize="8" alignment="0" max="32767" attributes="1"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="riNum" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
                       </Group>
                   </Group>
@@ -755,7 +760,6 @@
             </Property>
             <Property name="icon" type="javax.swing.Icon" resourceKey="btnModificar.icon"/>
             <Property name="text" type="java.lang.String" resourceKey="btnModificar.text"/>
-            <Property name="enabled" type="boolean" value="false"/>
             <Property name="name" type="java.lang.String" value="btnModificar" noResource="true"/>
           </Properties>
         </Component>
@@ -766,7 +770,6 @@
             </Property>
             <Property name="icon" type="javax.swing.Icon" resourceKey="btnGuardar.icon"/>
             <Property name="text" type="java.lang.String" resourceKey="btnGuardar.text"/>
-            <Property name="enabled" type="boolean" value="false"/>
             <Property name="name" type="java.lang.String" value="btnGuardar" noResource="true"/>
           </Properties>
         </Component>

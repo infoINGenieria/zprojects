@@ -1168,13 +1168,12 @@ public class ZilleProjectsView extends FrameView {
         hastaDateChoose = new com.toedter.calendar.JDateChooser();
         buscarEmpleado = new javax.swing.JDialog();
         jPanel9 = new PanelAzul();
-        jPanel10 = new javax.swing.JPanel();
-        findEmpleadoText = new javax.swing.JTextField();
+        exitDialog = new javax.swing.JButton();
+        selectRow = new javax.swing.JButton();
         botonQuery = new javax.swing.JButton();
         jScrollPane5 = new javax.swing.JScrollPane();
         listaEmpleados = new javax.swing.JList();
-        exitDialog = new javax.swing.JButton();
-        selectRow = new javax.swing.JButton();
+        findEmpleadoText = new javax.swing.JTextField();
 
         mainPanel.setMinimumSize(new java.awt.Dimension(744, 500));
         mainPanel.setName("mainPanel"); // NOI18N
@@ -1266,7 +1265,7 @@ public class ZilleProjectsView extends FrameView {
                 .addContainerGap()
                 .addComponent(jButton2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 427, Short.MAX_VALUE))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 433, Short.MAX_VALUE))
         );
 
         jPanel3.setName("jPanel3"); // NOI18N
@@ -1483,7 +1482,7 @@ public class ZilleProjectsView extends FrameView {
             .addGroup(statusPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(statusMessageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 453, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 351, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 353, Short.MAX_VALUE)
                 .addComponent(progressBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(3, 3, 3)
                 .addComponent(statusAnimationLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -1885,7 +1884,7 @@ public class ZilleProjectsView extends FrameView {
                                 .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel8Layout.createSequentialGroup()
                                     .addComponent(empleadoText, javax.swing.GroupLayout.PREFERRED_SIZE, 403, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(18, 18, 18)
-                                    .addComponent(botonBuscarEmpleado, javax.swing.GroupLayout.DEFAULT_SIZE, 46, Short.MAX_VALUE))
+                                    .addComponent(botonBuscarEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 46, Short.MAX_VALUE))
                                 .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel8Layout.createSequentialGroup()
                                     .addComponent(fechaChoose, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
@@ -1960,63 +1959,6 @@ public class ZilleProjectsView extends FrameView {
         jPanel9.setBorder(new javax.swing.border.LineBorder(resourceMap.getColor("jPanel9.border.lineColor"), 1, true)); // NOI18N
         jPanel9.setName("jPanel9"); // NOI18N
 
-        jPanel10.setName("jPanel10"); // NOI18N
-        jPanel10.setOpaque(false);
-        jPanel10.setLayout(new java.awt.GridBagLayout());
-
-        findEmpleadoText.setName("findEmpleadoText"); // NOI18N
-        findEmpleadoText.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                findEmpleadoTextFocusGained(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 5;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.ipadx = 120;
-        gridBagConstraints.ipady = 10;
-        gridBagConstraints.weightx = 0.8;
-        gridBagConstraints.insets = new java.awt.Insets(2, 2, 0, 0);
-        jPanel10.add(findEmpleadoText, gridBagConstraints);
-
-        botonQuery.setAction(actionMap.get("buscarEmpleado")); // NOI18N
-        botonQuery.setIcon(resourceMap.getIcon("botonQuery.icon")); // NOI18N
-        botonQuery.setToolTipText(resourceMap.getString("botonQuery.toolTipText")); // NOI18N
-        botonQuery.setName("botonQuery"); // NOI18N
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 5;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.ipadx = 8;
-        gridBagConstraints.ipady = 8;
-        gridBagConstraints.insets = new java.awt.Insets(2, 2, 0, 0);
-        jPanel10.add(botonQuery, gridBagConstraints);
-
-        jScrollPane5.setName("jScrollPane5"); // NOI18N
-
-        listaEmpleados.setModel(listEmpl);
-        listaEmpleados.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        listaEmpleados.setName("listaEmpleados"); // NOI18N
-        listaEmpleados.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                listaEmpleadosFocusGained(evt);
-            }
-        });
-        jScrollPane5.setViewportView(listaEmpleados);
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridwidth = 5;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.ipadx = 10;
-        gridBagConstraints.ipady = 30;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
-        gridBagConstraints.insets = new java.awt.Insets(2, 2, 0, 0);
-        jPanel10.add(jScrollPane5, gridBagConstraints);
-
         exitDialog.setIcon(resourceMap.getIcon("exitDialog.icon")); // NOI18N
         exitDialog.setText(resourceMap.getString("exitDialog.text")); // NOI18N
         exitDialog.setName("exitDialog"); // NOI18N
@@ -2035,43 +1977,78 @@ public class ZilleProjectsView extends FrameView {
             }
         });
 
+        botonQuery.setAction(actionMap.get("buscarEmpleado")); // NOI18N
+        botonQuery.setIcon(resourceMap.getIcon("botonQuery.icon")); // NOI18N
+        botonQuery.setToolTipText(resourceMap.getString("botonQuery.toolTipText")); // NOI18N
+        botonQuery.setName("botonQuery"); // NOI18N
+
+        jScrollPane5.setName("jScrollPane5"); // NOI18N
+
+        listaEmpleados.setModel(listEmpl);
+        listaEmpleados.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        listaEmpleados.setName("listaEmpleados"); // NOI18N
+        listaEmpleados.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                listaEmpleadosFocusGained(evt);
+            }
+        });
+        jScrollPane5.setViewportView(listaEmpleados);
+
+        findEmpleadoText.setName("findEmpleadoText"); // NOI18N
+        findEmpleadoText.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                findEmpleadoTextFocusGained(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
         jPanel9Layout.setHorizontalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel9Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, 476, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
-                .addContainerGap(204, Short.MAX_VALUE)
-                .addComponent(selectRow, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(exitDialog)
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 440, Short.MAX_VALUE)
+                    .addComponent(findEmpleadoText, javax.swing.GroupLayout.DEFAULT_SIZE, 440, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(botonQuery, javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(selectRow))
+                    .addComponent(exitDialog, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
-        jPanel9Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {exitDialog, selectRow});
+        jPanel9Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {botonQuery, exitDialog, selectRow});
 
         jPanel9Layout.setVerticalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel9Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(exitDialog)
-                    .addComponent(selectRow, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel9Layout.createSequentialGroup()
+                        .addComponent(botonQuery, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
+                        .addComponent(selectRow, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(exitDialog)
+                        .addGap(94, 94, 94))
+                    .addGroup(jPanel9Layout.createSequentialGroup()
+                        .addComponent(findEmpleadoText, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
 
         jPanel9Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {exitDialog, selectRow});
+
+        jPanel9Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {botonQuery, findEmpleadoText});
 
         javax.swing.GroupLayout buscarEmpleadoLayout = new javax.swing.GroupLayout(buscarEmpleado.getContentPane());
         buscarEmpleado.getContentPane().setLayout(buscarEmpleadoLayout);
         buscarEmpleadoLayout.setHorizontalGroup(
             buscarEmpleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, 530, Short.MAX_VALUE)
         );
         buscarEmpleadoLayout.setVerticalGroup(
             buscarEmpleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2201,7 +2178,6 @@ private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;
-    private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;

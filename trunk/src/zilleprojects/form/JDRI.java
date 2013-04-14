@@ -115,15 +115,14 @@ public class JDRI extends javax.swing.JDialog {
         jButton1 = new javax.swing.JButton();
 
         jDialog1.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        jDialog1.setMinimumSize(new java.awt.Dimension(333, 288));
+        jDialog1.setMinimumSize(new java.awt.Dimension(333, 320));
         jDialog1.setModal(true);
         jDialog1.setName("jDialog1"); // NOI18N
         jDialog1.setResizable(false);
-        jDialog1.setUndecorated(true);
 
         org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(zilleprojects.ZilleProjectsApp.class).getContext().getResourceMap(JDRI.class);
         jPanel3.setBorder(new javax.swing.border.LineBorder(resourceMap.getColor("jPanel3.border.lineColor"), 1, true)); // NOI18N
-        jPanel3.setMinimumSize(new java.awt.Dimension(299, 288));
+        jPanel3.setMinimumSize(new java.awt.Dimension(333, 290));
         jPanel3.setName("jPanel3"); // NOI18N
 
         seleccionarObra.setIcon(resourceMap.getIcon("seleccionarObra.icon")); // NOI18N
@@ -151,6 +150,11 @@ public class JDRI extends javax.swing.JDialog {
         jListDeObra.setModel(listaDeObras);
         jListDeObra.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jListDeObra.setName("jListDeObra"); // NOI18N
+        jListDeObra.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jListDeObraMouseClicked(evt);
+            }
+        });
         jScrollPane4.setViewportView(jListDeObra);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -158,19 +162,20 @@ public class JDRI extends javax.swing.JDialog {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addComponent(seleccionarObra, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(seleccionarObra, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Cerrar, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE))
+                .addComponent(Cerrar, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE))
             .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 331, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 248, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 236, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(seleccionarObra)
-                    .addComponent(Cerrar)))
+                    .addComponent(Cerrar)
+                    .addComponent(seleccionarObra))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
@@ -561,13 +566,11 @@ public class JDRI extends javax.swing.JDialog {
         btnModificar.setAction(actionMap.get("modificarRI")); // NOI18N
         btnModificar.setIcon(resourceMap.getIcon("btnModificar.icon")); // NOI18N
         btnModificar.setText(resourceMap.getString("btnModificar.text")); // NOI18N
-        btnModificar.setEnabled(false);
         btnModificar.setName("btnModificar"); // NOI18N
 
         btnGuardar.setAction(actionMap.get("guardarRI")); // NOI18N
         btnGuardar.setIcon(resourceMap.getIcon("btnGuardar.icon")); // NOI18N
         btnGuardar.setText(resourceMap.getString("btnGuardar.text")); // NOI18N
-        btnGuardar.setEnabled(false);
         btnGuardar.setName("btnGuardar"); // NOI18N
 
         lblStatus.setFont(lblStatus.getFont().deriveFont(lblStatus.getFont().getStyle() | java.awt.Font.BOLD, lblStatus.getFont().getSize()+1));
@@ -675,12 +678,13 @@ public class JDRI extends javax.swing.JDialog {
                         .addComponent(addRI, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(remRI, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(editRI, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(riNum)
-                            .addComponent(jLabel4)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
                             .addComponent(btnModificar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnGuardar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(btnGuardar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(riNum)
+                                .addComponent(jLabel4)))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -813,6 +817,17 @@ public class JDRI extends javax.swing.JDialog {
         modelItems.delRegistro(opcion);
         }
     }//GEN-LAST:event_remItemRIActionPerformed
+
+    private void jListDeObraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jListDeObraMouseClicked
+    if (evt.getClickCount() == 2) // Se mira si es doble click
+        {
+            if(!jListDeObra.isSelectionEmpty()){
+            obraSelect = (Obras)jListDeObra.getSelectedValue();
+            lblNombreObra.setText(obraSelect.toString());
+            jDialog1.dispose();
+        }
+        }
+    }//GEN-LAST:event_jListDeObraMouseClicked
 
     /**
      * @param args the command line arguments
