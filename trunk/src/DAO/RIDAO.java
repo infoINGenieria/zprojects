@@ -35,20 +35,13 @@ public class RIDAO {
         try {          
             conector.setAutoCommit(false);
             query = "insert into ri (OBRAID, RI_NUM, "
-                    + "FECHA_NECESIDAD, OBSERVACIONES, SOLICITANTE, OC_NUM, "
-                    + "PROVEEDOR, FECHA_EMISION, FECHA_OC, FECHA_ENTREGA) "
-                    + "values ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                    + "OBSERVACIONES, SOLICITANTE) "
+                    + "values ( ?, ?, ?, ?)";
             PreparedStatement ps = conector.prepareStatement(query);     
             ps.setInt(1, ri.getObraID());
-            ps.setString(2, ri.getRI_num());
-            ps.setDate(3, FechaUtil.getFechatoDB(ri.getFecha_necesidad()));
-            ps.setString(4, ri.getObservaciones());
-            ps.setString(5, ri.getSolicitante());
-            ps.setString(6,ri.getOC_num());
-            ps.setString(7, ri.getProveedor());
-            ps.setDate(8, FechaUtil.getFechatoDB(ri.getFecha_emision()));
-            ps.setDate(9, FechaUtil.getFechatoDB(ri.getFecha_oc()));
-            ps.setDate(10, FechaUtil.getFechatoDB(ri.getFecha_entrega()));
+            ps.setString(2, ri.getRI_num());    
+            ps.setString(3, ri.getObservaciones());
+            ps.setString(4, ri.getSolicitante());
             
             ps.executeUpdate();
             ResultSet generatedKeys = ps.getGeneratedKeys();
@@ -81,19 +74,13 @@ public class RIDAO {
         try {
             conector.setAutoCommit(false);
             query = "update ri set OBRAID=?, RI_NUM=?, "
-                    + "FECHA_NECESIDAD=?, OBSERVACIONES=?, SOLICITANTE=?, OC_NUM=?, "
-                    + "PROVEEDOR=?, FECHA_EMISION=?, FECHA_OC=?, FECHA_ENTREGA=? where RIID = " +ri.getRI_ID();
+                    + "OBSERVACIONES=?, SOLICITANTE=? "
+                    + " where RIID = " +ri.getRI_ID();
             PreparedStatement ps = conector.prepareStatement(query);
             ps.setInt(1, ri.getObraID());
             ps.setString(2, ri.getRI_num());
-            ps.setDate(3, FechaUtil.getFechatoDB(ri.getFecha_necesidad()));
-            ps.setString(4, ri.getObservaciones());
-            ps.setString(5, ri.getSolicitante());
-            ps.setString(6,ri.getOC_num());
-            ps.setString(7, ri.getProveedor());
-            ps.setDate(8, FechaUtil.getFechatoDB(ri.getFecha_emision()));
-            ps.setDate(9, FechaUtil.getFechatoDB(ri.getFecha_oc()));
-            ps.setDate(10, FechaUtil.getFechatoDB(ri.getFecha_entrega()));
+            ps.setString(3, ri.getObservaciones());
+            ps.setString(4, ri.getSolicitante());
             ps.executeUpdate();
             ResultSet generatedKeys = ps.getGeneratedKeys();
 
@@ -182,14 +169,8 @@ public class RIDAO {
                 ri.setRI_ID(rs.getInt("RIID"));
                 ri.setObraID(rs.getInt("OBRAID"));
                 ri.setRI_num(rs.getString("RI_NUM"));
-                ri.setFecha_necesidad(rs.getDate("FECHA_NECESIDAD"));
                 ri.setObservaciones(rs.getString("OBSERVACIONES"));
                 ri.setSolicitante(rs.getString("SOLICITANTE"));
-                ri.setOC_num(rs.getString("OC_NUM"));
-                ri.setProveedor(rs.getString("PROVEEDOR"));
-                ri.setFecha_emision(rs.getDate("FECHA_EMISION"));
-                ri.setFecha_oc(rs.getDate("FECHA_OC"));
-                ri.setFecha_entrega(rs.getDate("FECHA_ENTREGA"));
                 ri.setCodigoObra(rs.getString("CODIGO"));
                 alarmas.add(ri);
             }
@@ -217,14 +198,8 @@ public class RIDAO {
                 ri.setRI_ID(rs.getInt("RIID"));
                 ri.setObraID(rs.getInt("OBRAID"));
                 ri.setRI_num(rs.getString("RI_NUM"));
-                ri.setFecha_necesidad(rs.getDate("FECHA_NECESIDAD"));
                 ri.setObservaciones(rs.getString("OBSERVACIONES"));
                 ri.setSolicitante(rs.getString("SOLICITANTE"));
-                ri.setOC_num(rs.getString("OC_NUM"));
-                ri.setProveedor(rs.getString("PROVEEDOR"));
-                ri.setFecha_emision(rs.getDate("FECHA_EMISION"));
-                ri.setFecha_oc(rs.getDate("FECHA_OC"));
-                ri.setFecha_entrega(rs.getDate("FECHA_ENTREGA"));
                 ri.setCodigoObra(rs.getString("CODIGO"));
                 
             }
@@ -256,14 +231,8 @@ public class RIDAO {
                 ri.setRI_ID(rs.getInt("RIID"));
                 ri.setObraID(rs.getInt("OBRAID"));
                 ri.setRI_num(rs.getString("RI_NUM"));
-                ri.setFecha_necesidad(rs.getDate("FECHA_NECESIDAD"));
                 ri.setObservaciones(rs.getString("OBSERVACIONES"));
                 ri.setSolicitante(rs.getString("SOLICITANTE"));
-                ri.setOC_num(rs.getString("OC_NUM"));
-                ri.setProveedor(rs.getString("PROVEEDOR"));
-                ri.setFecha_emision(rs.getDate("FECHA_EMISION"));
-                ri.setFecha_oc(rs.getDate("FECHA_OC"));
-                ri.setFecha_entrega(rs.getDate("FECHA_ENTREGA"));
                 ri.setCodigoObra(rs.getString("CODIGO"));
                 alarmas.add(ri);
             }

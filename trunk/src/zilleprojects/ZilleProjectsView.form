@@ -67,7 +67,7 @@
                       <Component id="botonGrandeSalir" linkSize="10" min="-2" pref="129" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="loginOut" pref="276" max="32767" attributes="1"/>
-                      <EmptySpace min="-2" pref="420" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="426" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -912,7 +912,7 @@
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
-                      <Component id="jPanel5" max="32767" attributes="0"/>
+                      <Component id="jPanel5" pref="92" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="outText" min="-2" pref="15" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>

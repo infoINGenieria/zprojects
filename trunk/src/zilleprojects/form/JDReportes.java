@@ -32,6 +32,7 @@ import Vista.PanelAzul;
 import java.awt.Desktop;
 import java.io.File;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.logging.Level;
@@ -135,20 +136,21 @@ public class JDReportes extends javax.swing.JDialog {
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel6 = new PanelAzul();
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         generarDetalleRegistroButton = new javax.swing.JButton();
+        jScrollPane9 = new javax.swing.JScrollPane();
+        jTextPane2 = new javax.swing.JTextPane();
         jPanel3 = new javax.swing.JPanel();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
         generarInformesHorasButton = new javax.swing.JButton();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        jTextPane1 = new javax.swing.JTextPane();
         jPanel16 = new javax.swing.JPanel();
         jButton2 = new javax.swing.JButton();
-        jLabel11 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
+        jScrollPane10 = new javax.swing.JScrollPane();
+        jTextPane3 = new javax.swing.JTextPane();
         jPanel25 = new javax.swing.JPanel();
         generarExportacion = new javax.swing.JButton();
-        jLabel15 = new javax.swing.JLabel();
+        jScrollPane11 = new javax.swing.JScrollPane();
+        jTextPane4 = new javax.swing.JTextPane();
         lblPeriodo = new javax.swing.JLabel();
         jButton6 = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
@@ -156,12 +158,8 @@ public class JDReportes extends javax.swing.JDialog {
         jSeparator3 = new javax.swing.JSeparator();
         jPanel5 = new PanelAzul();
         jPanel10 = new javax.swing.JPanel();
-        desdeFechaPersEqXObra = new com.toedter.calendar.JDateChooser();
-        hastaFechaPersEqXObra = new com.toedter.calendar.JDateChooser();
         generarReportePersEqXObra = new javax.swing.JButton();
         jPanel11 = new javax.swing.JPanel();
-        desdeEqMatXObra = new com.toedter.calendar.JDateChooser();
-        hastaEqMatXObra = new com.toedter.calendar.JDateChooser();
         generarEqMatXObra = new javax.swing.JButton();
         jPanel13 = new javax.swing.JPanel();
         lblObraReportPersEqXObra = new javax.swing.JLabel();
@@ -171,9 +169,9 @@ public class JDReportes extends javax.swing.JDialog {
         lblEquiposSelect = new javax.swing.JLabel();
         selectEquiposBoton = new javax.swing.JButton();
         jPanel15 = new javax.swing.JPanel();
-        desdeFechaEquipo = new com.toedter.calendar.JDateChooser();
-        hastaFechaEquipo = new com.toedter.calendar.JDateChooser();
         genReporteEquipo = new javax.swing.JButton();
+        jPanel9 = new javax.swing.JPanel();
+        exportTodosEquipos = new javax.swing.JButton();
         jPanel17 = new PanelAzul();
         jPanel20 = new javax.swing.JPanel();
         obraSeleccionadaConsumo = new javax.swing.JLabel();
@@ -183,24 +181,15 @@ public class JDReportes extends javax.swing.JDialog {
         lblEquiposCombustible = new javax.swing.JLabel();
         jButton13 = new javax.swing.JButton();
         btnInformeCombustibleEquipo = new javax.swing.JButton();
-        desdeConsumoObra = new com.toedter.calendar.JDateChooser();
-        hastaConsumoObra = new com.toedter.calendar.JDateChooser();
         jPanel22 = new javax.swing.JPanel();
         jButton11 = new javax.swing.JButton();
         jPanel19 = new javax.swing.JPanel();
         btnSeleccionPlataforma = new javax.swing.JButton();
         lblPlataformaCombustible = new javax.swing.JLabel();
         btnInformeCombustiblePlataforma = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
-        jSeparator4 = new javax.swing.JSeparator();
         jPanel27 = new PanelAzul();
         jScrollPane4 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jLabel16 = new javax.swing.JLabel();
-        jLabel17 = new javax.swing.JLabel();
-        ObrasCustomFechaDesde = new com.toedter.calendar.JDateChooser();
-        ObrasCustomFechaHasta = new com.toedter.calendar.JDateChooser();
         jLabel18 = new javax.swing.JLabel();
         isOperarioSelectedCustomInforme = new javax.swing.JCheckBox();
         lblOperarioSelected = new javax.swing.JLabel();
@@ -209,6 +198,12 @@ public class JDReportes extends javax.swing.JDialog {
         jButton14 = new javax.swing.JButton();
         jButton16 = new javax.swing.JButton();
         jButton15 = new javax.swing.JButton();
+        jPanel29 = new javax.swing.JPanel();
+        desdeFechaFiltro = new com.toedter.calendar.JDateChooser();
+        hastaFechaFiltro = new com.toedter.calendar.JDateChooser();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
+        jSeparator4 = new javax.swing.JSeparator();
 
         informeHorasDialog.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(zilleprojects.ZilleProjectsApp.class).getContext().getResourceMap(JDReportes.class);
@@ -911,50 +906,45 @@ public class JDReportes extends javax.swing.JDialog {
         jPanel1.setName("jPanel1"); // NOI18N
         jPanel1.setOpaque(false);
 
-        jLabel1.setText(resourceMap.getString("jLabel1.text")); // NOI18N
-        jLabel1.setName("jLabel1"); // NOI18N
-
-        jLabel2.setText(resourceMap.getString("jLabel2.text")); // NOI18N
-        jLabel2.setName("jLabel2"); // NOI18N
-
         generarDetalleRegistroButton.setAction(actionMap.get("generarInformeDetalleHora")); // NOI18N
         generarDetalleRegistroButton.setText(resourceMap.getString("generarDetalleRegistroButton.text")); // NOI18N
         generarDetalleRegistroButton.setName("generarDetalleRegistroButton"); // NOI18N
+
+        jScrollPane9.setName("jScrollPane9"); // NOI18N
+
+        jTextPane2.setEditable(false);
+        jTextPane2.setText(resourceMap.getString("jTextPane2.text")); // NOI18N
+        jTextPane2.setName("jTextPane2"); // NOI18N
+        jTextPane2.setOpaque(false);
+        jScrollPane9.setViewportView(jTextPane2);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 304, Short.MAX_VALUE)
-                        .addComponent(generarDetalleRegistroButton, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel1))
+                .addComponent(jScrollPane9, javax.swing.GroupLayout.DEFAULT_SIZE, 443, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(generarDetalleRegistroButton, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addComponent(generarDetalleRegistroButton))
-                .addContainerGap(15, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(26, 26, 26)
+                        .addComponent(generarDetalleRegistroButton))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(resourceMap.getString("jPanel3.border.title"))); // NOI18N
         jPanel3.setName("jPanel3"); // NOI18N
         jPanel3.setOpaque(false);
-
-        jLabel9.setText(resourceMap.getString("jLabel9.text")); // NOI18N
-        jLabel9.setName("jLabel9"); // NOI18N
-
-        jLabel10.setText(resourceMap.getString("jLabel10.text")); // NOI18N
-        jLabel10.setName("jLabel10"); // NOI18N
 
         generarInformesHorasButton.setAction(actionMap.get("generarInformeHorasMes")); // NOI18N
         generarInformesHorasButton.setText(resourceMap.getString("generarInformesHorasButton.text")); // NOI18N
@@ -965,30 +955,34 @@ public class JDReportes extends javax.swing.JDialog {
             }
         });
 
+        jScrollPane6.setName("jScrollPane6"); // NOI18N
+
+        jTextPane1.setEditable(false);
+        jTextPane1.setText(resourceMap.getString("jTextPane1.text")); // NOI18N
+        jTextPane1.setName("jTextPane1"); // NOI18N
+        jTextPane1.setOpaque(false);
+        jScrollPane6.setViewportView(jTextPane1);
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel9)
-                    .addComponent(jLabel10))
-                .addContainerGap(110, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(473, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 443, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(generarInformesHorasButton, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addComponent(jLabel9)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel10)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(generarInformesHorasButton)
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(generarInformesHorasButton)))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
 
         jPanel16.setBorder(javax.swing.BorderFactory.createTitledBorder(resourceMap.getString("jPanel16.border.title"))); // NOI18N
@@ -999,11 +993,13 @@ public class JDReportes extends javax.swing.JDialog {
         jButton2.setText(resourceMap.getString("jButton2.text")); // NOI18N
         jButton2.setName("jButton2"); // NOI18N
 
-        jLabel11.setText(resourceMap.getString("jLabel11.text")); // NOI18N
-        jLabel11.setName("jLabel11"); // NOI18N
+        jScrollPane10.setName("jScrollPane10"); // NOI18N
 
-        jLabel13.setText(resourceMap.getString("jLabel13.text")); // NOI18N
-        jLabel13.setName("jLabel13"); // NOI18N
+        jTextPane3.setEditable(false);
+        jTextPane3.setText(resourceMap.getString("jTextPane3.text")); // NOI18N
+        jTextPane3.setName("jTextPane3"); // NOI18N
+        jTextPane3.setOpaque(false);
+        jScrollPane10.setViewportView(jTextPane3);
 
         javax.swing.GroupLayout jPanel16Layout = new javax.swing.GroupLayout(jPanel16);
         jPanel16.setLayout(jPanel16Layout);
@@ -1012,21 +1008,18 @@ public class JDReportes extends javax.swing.JDialog {
             .addGroup(jPanel16Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel11)
-                    .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel13)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 361, Short.MAX_VALUE)
+                    .addComponent(jScrollPane10, javax.swing.GroupLayout.Alignment.TRAILING, 0, 0, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jPanel16Layout.setVerticalGroup(
             jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel16Layout.createSequentialGroup()
-                .addComponent(jLabel11)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addGroup(jPanel16Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton2)
-                .addGap(15, 15, 15))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         jPanel25.setBorder(javax.swing.BorderFactory.createTitledBorder(resourceMap.getString("jPanel25.border.title"))); // NOI18N
@@ -1037,8 +1030,13 @@ public class JDReportes extends javax.swing.JDialog {
         generarExportacion.setText(resourceMap.getString("generarExportacion.text")); // NOI18N
         generarExportacion.setName("generarExportacion"); // NOI18N
 
-        jLabel15.setText(resourceMap.getString("jLabel15.text")); // NOI18N
-        jLabel15.setName("jLabel15"); // NOI18N
+        jScrollPane11.setName("jScrollPane11"); // NOI18N
+
+        jTextPane4.setEditable(false);
+        jTextPane4.setText(resourceMap.getString("jTextPane4.text")); // NOI18N
+        jTextPane4.setName("jTextPane4"); // NOI18N
+        jTextPane4.setOpaque(false);
+        jScrollPane11.setViewportView(jTextPane4);
 
         javax.swing.GroupLayout jPanel25Layout = new javax.swing.GroupLayout(jPanel25);
         jPanel25.setLayout(jPanel25Layout);
@@ -1046,21 +1044,19 @@ public class JDReportes extends javax.swing.JDialog {
             jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel25Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel15)
-                .addContainerGap(42, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel25Layout.createSequentialGroup()
-                .addContainerGap(143, Short.MAX_VALUE)
-                .addComponent(generarExportacion, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGroup(jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(generarExportacion, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel25Layout.setVerticalGroup(
             jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel25Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel15)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(generarExportacion)
-                .addContainerGap())
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         lblPeriodo.setFont(resourceMap.getFont("lblPeriodo.font")); // NOI18N
@@ -1085,19 +1081,21 @@ public class JDReportes extends javax.swing.JDialog {
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jSeparator3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 708, Short.MAX_VALUE)
                     .addComponent(jSeparator2, javax.swing.GroupLayout.DEFAULT_SIZE, 708, Short.MAX_VALUE)
-                    .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 708, Short.MAX_VALUE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 708, Short.MAX_VALUE)
                     .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                        .addComponent(jPanel16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jPanel25, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(6, 6, 6))
                     .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addComponent(lblPeriodo, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(12, 12, 12)
+                        .addComponent(lblPeriodo, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton6))
-                    .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel25, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(jSeparator3, javax.swing.GroupLayout.DEFAULT_SIZE, 708, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel6Layout.setVerticalGroup(
@@ -1105,25 +1103,23 @@ public class JDReportes extends javax.swing.JDialog {
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(lblPeriodo)
                     .addComponent(jButton6))
-                .addGap(18, 18, 18)
-                .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel25, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(95, 95, 95))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel25, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
-
-        jPanel6Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jPanel16, jPanel25});
 
         jPanel6Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jButton6, lblPeriodo});
 
@@ -1136,10 +1132,6 @@ public class JDReportes extends javax.swing.JDialog {
         jPanel10.setName("jPanel10"); // NOI18N
         jPanel10.setOpaque(false);
 
-        desdeFechaPersEqXObra.setName("desdeFechaPersEqXObra"); // NOI18N
-
-        hastaFechaPersEqXObra.setName("hastaFechaPersEqXObra"); // NOI18N
-
         generarReportePersEqXObra.setAction(actionMap.get("generarReportPersEqXObra")); // NOI18N
         generarReportePersEqXObra.setText(resourceMap.getString("generarReportePersEqXObra.text")); // NOI18N
         generarReportePersEqXObra.setName("generarReportePersEqXObra"); // NOI18N
@@ -1150,30 +1142,20 @@ public class JDReportes extends javax.swing.JDialog {
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel10Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(desdeFechaPersEqXObra, javax.swing.GroupLayout.DEFAULT_SIZE, 222, Short.MAX_VALUE)
-                    .addComponent(hastaFechaPersEqXObra, javax.swing.GroupLayout.DEFAULT_SIZE, 222, Short.MAX_VALUE)
-                    .addComponent(generarReportePersEqXObra, javax.swing.GroupLayout.DEFAULT_SIZE, 222, Short.MAX_VALUE))
+                .addComponent(generarReportePersEqXObra, javax.swing.GroupLayout.DEFAULT_SIZE, 229, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel10Layout.setVerticalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel10Layout.createSequentialGroup()
-                .addComponent(desdeFechaPersEqXObra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(hastaFechaPersEqXObra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(9, 9, 9)
+                .addContainerGap()
                 .addComponent(generarReportePersEqXObra)
-                .addContainerGap(46, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel11.setBorder(javax.swing.BorderFactory.createTitledBorder(resourceMap.getString("jPanel11.border.title"))); // NOI18N
         jPanel11.setName("jPanel11"); // NOI18N
         jPanel11.setOpaque(false);
-
-        desdeEqMatXObra.setName("desdeEqMatXObra"); // NOI18N
-
-        hastaEqMatXObra.setName("hastaEqMatXObra"); // NOI18N
 
         generarEqMatXObra.setAction(actionMap.get("generarEqMatXObraAccion")); // NOI18N
         generarEqMatXObra.setText(resourceMap.getString("generarEqMatXObra.text")); // NOI18N
@@ -1183,21 +1165,15 @@ public class JDReportes extends javax.swing.JDialog {
         jPanel11.setLayout(jPanel11Layout);
         jPanel11Layout.setHorizontalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel11Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel11Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(desdeEqMatXObra, javax.swing.GroupLayout.DEFAULT_SIZE, 229, Short.MAX_VALUE)
-                    .addComponent(hastaEqMatXObra, javax.swing.GroupLayout.DEFAULT_SIZE, 229, Short.MAX_VALUE)
-                    .addComponent(generarEqMatXObra, javax.swing.GroupLayout.DEFAULT_SIZE, 229, Short.MAX_VALUE))
+                .addComponent(generarEqMatXObra, javax.swing.GroupLayout.DEFAULT_SIZE, 229, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel11Layout.setVerticalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel11Layout.createSequentialGroup()
-                .addComponent(desdeEqMatXObra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(hastaEqMatXObra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addContainerGap()
                 .addComponent(generarEqMatXObra)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -1221,16 +1197,13 @@ public class JDReportes extends javax.swing.JDialog {
             .addGroup(jPanel13Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel13Layout.createSequentialGroup()
-                        .addComponent(lblObraReportPersEqXObra, javax.swing.GroupLayout.DEFAULT_SIZE, 539, Short.MAX_VALUE)
-                        .addContainerGap())
-                    .addGroup(jPanel13Layout.createSequentialGroup()
-                        .addComponent(seleccionarObraReportPersEq, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
-                        .addGap(413, 413, 413))))
+                    .addComponent(seleccionarObraReportPersEq, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblObraReportPersEqXObra, javax.swing.GroupLayout.DEFAULT_SIZE, 539, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jPanel13Layout.setVerticalGroup(
             jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel13Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel13Layout.createSequentialGroup()
                 .addComponent(seleccionarObraReportPersEq)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lblObraReportPersEqXObra, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1251,17 +1224,22 @@ public class JDReportes extends javax.swing.JDialog {
                         .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(157, Short.MAX_VALUE))
         );
+
+        jPanel5Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jPanel10, jPanel11});
+
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(297, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE)
+                    .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE))
+                .addContainerGap(349, Short.MAX_VALUE))
         );
+
+        jPanel5Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jPanel10, jPanel11});
 
         jTabbedPane1.addTab(resourceMap.getString("jPanel5.TabConstraints.tabTitle"), jPanel5); // NOI18N
 
@@ -1287,26 +1265,25 @@ public class JDReportes extends javax.swing.JDialog {
             .addGroup(jPanel14Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(selectEquiposBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblEquiposSelect, javax.swing.GroupLayout.DEFAULT_SIZE, 684, Short.MAX_VALUE))
-                .addContainerGap())
+                    .addGroup(jPanel14Layout.createSequentialGroup()
+                        .addComponent(selectEquiposBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
+                    .addGroup(jPanel14Layout.createSequentialGroup()
+                        .addComponent(lblEquiposSelect, javax.swing.GroupLayout.DEFAULT_SIZE, 672, Short.MAX_VALUE)
+                        .addGap(24, 24, 24))))
         );
         jPanel14Layout.setVerticalGroup(
             jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel14Layout.createSequentialGroup()
+            .addGroup(jPanel14Layout.createSequentialGroup()
                 .addComponent(selectEquiposBoton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblEquiposSelect, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel15.setBorder(javax.swing.BorderFactory.createTitledBorder(resourceMap.getString("jPanel15.border.title"))); // NOI18N
         jPanel15.setName("jPanel15"); // NOI18N
         jPanel15.setOpaque(false);
-
-        desdeFechaEquipo.setName("desdeFechaEquipo"); // NOI18N
-
-        hastaFechaEquipo.setName("hastaFechaEquipo"); // NOI18N
 
         genReporteEquipo.setAction(actionMap.get("generarInformeEquipo")); // NOI18N
         genReporteEquipo.setText(resourceMap.getString("genReporteEquipo.text")); // NOI18N
@@ -1318,21 +1295,40 @@ public class JDReportes extends javax.swing.JDialog {
             jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel15Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(desdeFechaEquipo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE)
-                    .addComponent(hastaFechaEquipo, javax.swing.GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE)
-                    .addComponent(genReporteEquipo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE))
+                .addComponent(genReporteEquipo, javax.swing.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel15Layout.setVerticalGroup(
             jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel15Layout.createSequentialGroup()
-                .addComponent(desdeFechaEquipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(hastaFechaEquipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addContainerGap()
                 .addComponent(genReporteEquipo)
-                .addContainerGap(46, Short.MAX_VALUE))
+                .addContainerGap(27, Short.MAX_VALUE))
+        );
+
+        jPanel9.setBorder(javax.swing.BorderFactory.createTitledBorder(resourceMap.getString("jPanel9.border.title"))); // NOI18N
+        jPanel9.setName("jPanel9"); // NOI18N
+        jPanel9.setOpaque(false);
+
+        exportTodosEquipos.setAction(actionMap.get("exportarTodosEquipos2Excel")); // NOI18N
+        exportTodosEquipos.setText(resourceMap.getString("exportTodosEquipos.text")); // NOI18N
+        exportTodosEquipos.setName("exportTodosEquipos"); // NOI18N
+
+        javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
+        jPanel9.setLayout(jPanel9Layout);
+        jPanel9Layout.setHorizontalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel9Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(exportTodosEquipos, javax.swing.GroupLayout.DEFAULT_SIZE, 247, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel9Layout.setVerticalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel9Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(exportTodosEquipos)
+                .addContainerGap(27, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
@@ -1341,10 +1337,14 @@ public class JDReportes extends javax.swing.JDialog {
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel14, javax.swing.GroupLayout.DEFAULT_SIZE, 708, Short.MAX_VALUE)
-                    .addComponent(jPanel15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                .addComponent(jPanel15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(198, 198, 198))
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addGap(12, 12, 12)
+                .addComponent(jPanel14, javax.swing.GroupLayout.DEFAULT_SIZE, 708, Short.MAX_VALUE)
+                .addContainerGap(12, Short.MAX_VALUE))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1352,8 +1352,10 @@ public class JDReportes extends javax.swing.JDialog {
                 .addContainerGap()
                 .addComponent(jPanel14, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(301, Short.MAX_VALUE))
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(335, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab(resourceMap.getString("jPanel7.TabConstraints.tabTitle"), jPanel7); // NOI18N
@@ -1385,10 +1387,10 @@ public class JDReportes extends javax.swing.JDialog {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel20Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(obraSeleccionadaConsumo, javax.swing.GroupLayout.DEFAULT_SIZE, 452, Short.MAX_VALUE)
-                    .addGroup(jPanel20Layout.createSequentialGroup()
-                        .addComponent(selectConsumoObraBoton, javax.swing.GroupLayout.DEFAULT_SIZE, 261, Short.MAX_VALUE)
-                        .addGap(18, 18, 18)
+                    .addComponent(obraSeleccionadaConsumo, javax.swing.GroupLayout.DEFAULT_SIZE, 485, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel20Layout.createSequentialGroup()
+                        .addComponent(selectConsumoObraBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnInformeCombustibleObra, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
@@ -1398,9 +1400,9 @@ public class JDReportes extends javax.swing.JDialog {
                 .addComponent(obraSeleccionadaConsumo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnInformeCombustibleObra)
-                    .addComponent(selectConsumoObraBoton))
-                .addContainerGap(25, Short.MAX_VALUE))
+                    .addComponent(selectConsumoObraBoton)
+                    .addComponent(btnInformeCombustibleObra))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
 
         jPanel21.setBorder(javax.swing.BorderFactory.createTitledBorder(resourceMap.getString("jPanel21.border.title"))); // NOI18N
@@ -1426,11 +1428,11 @@ public class JDReportes extends javax.swing.JDialog {
             .addGroup(jPanel21Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel21Layout.createSequentialGroup()
-                        .addComponent(jButton13, javax.swing.GroupLayout.DEFAULT_SIZE, 261, Short.MAX_VALUE)
-                        .addGap(18, 18, 18)
+                    .addGroup(jPanel21Layout.createSequentialGroup()
+                        .addComponent(jButton13, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnInformeCombustibleEquipo, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(lblEquiposCombustible, javax.swing.GroupLayout.DEFAULT_SIZE, 452, Short.MAX_VALUE))
+                    .addComponent(lblEquiposCombustible, javax.swing.GroupLayout.DEFAULT_SIZE, 485, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel21Layout.setVerticalGroup(
@@ -1441,12 +1443,8 @@ public class JDReportes extends javax.swing.JDialog {
                 .addGroup(jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton13)
                     .addComponent(btnInformeCombustibleEquipo))
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
-
-        desdeConsumoObra.setName("desdeConsumoObra"); // NOI18N
-
-        hastaConsumoObra.setName("hastaConsumoObra"); // NOI18N
 
         jPanel22.setBorder(javax.swing.BorderFactory.createTitledBorder(resourceMap.getString("jPanel22.border.title"))); // NOI18N
         jPanel22.setName("jPanel22"); // NOI18N
@@ -1463,7 +1461,7 @@ public class JDReportes extends javax.swing.JDialog {
             .addGroup(jPanel22Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(280, Short.MAX_VALUE))
+                .addContainerGap(313, Short.MAX_VALUE))
         );
         jPanel22Layout.setVerticalGroup(
             jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1496,10 +1494,10 @@ public class JDReportes extends javax.swing.JDialog {
             .addGroup(jPanel19Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblPlataformaCombustible, javax.swing.GroupLayout.DEFAULT_SIZE, 452, Short.MAX_VALUE)
+                    .addComponent(lblPlataformaCombustible, javax.swing.GroupLayout.DEFAULT_SIZE, 485, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel19Layout.createSequentialGroup()
-                        .addComponent(btnSeleccionPlataforma, javax.swing.GroupLayout.DEFAULT_SIZE, 261, Short.MAX_VALUE)
-                        .addGap(18, 18, 18)
+                        .addComponent(btnSeleccionPlataforma, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnInformeCombustiblePlataforma, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
@@ -1511,18 +1509,8 @@ public class JDReportes extends javax.swing.JDialog {
                 .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSeleccionPlataforma)
                     .addComponent(btnInformeCombustiblePlataforma))
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
-
-        jLabel3.setText(resourceMap.getString("jLabel3.text")); // NOI18N
-        jLabel3.setName("jLabel3"); // NOI18N
-
-        jLabel14.setText(resourceMap.getString("jLabel14.text")); // NOI18N
-        jLabel14.setName("jLabel14"); // NOI18N
-
-        jSeparator4.setOrientation(javax.swing.SwingConstants.VERTICAL);
-        jSeparator4.setToolTipText(resourceMap.getString("jSeparator4.toolTipText")); // NOI18N
-        jSeparator4.setName("jSeparator4"); // NOI18N
 
         javax.swing.GroupLayout jPanel17Layout = new javax.swing.GroupLayout(jPanel17);
         jPanel17.setLayout(jPanel17Layout);
@@ -1531,55 +1519,25 @@ public class JDReportes extends javax.swing.JDialog {
             .addGroup(jPanel17Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel17Layout.createSequentialGroup()
-                            .addComponent(jLabel3)
-                            .addGap(134, 134, 134))
-                        .addGroup(jPanel17Layout.createSequentialGroup()
-                            .addComponent(desdeConsumoObra, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(24, 24, 24)))
-                    .addComponent(jLabel14)
-                    .addComponent(hastaConsumoObra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(24, 24, 24)
-                .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel21, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel20, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(jPanel21, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jPanel20, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(jPanel22, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                .addGap(201, 201, 201))
         );
-
-        jPanel17Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {desdeConsumoObra, hastaConsumoObra});
-
         jPanel17Layout.setVerticalGroup(
             jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel17Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel17Layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(desdeConsumoObra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel14)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(hastaConsumoObra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(20, 20, 20))
-                    .addGroup(jPanel17Layout.createSequentialGroup()
-                        .addComponent(jPanel20, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanel20, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel21, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel19, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel22, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(121, 121, 121))
-            .addGroup(jPanel17Layout.createSequentialGroup()
-                .addComponent(jSeparator4, javax.swing.GroupLayout.DEFAULT_SIZE, 519, Short.MAX_VALUE)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel22, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(98, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab(resourceMap.getString("jPanel17.TabConstraints.tabTitle"), jPanel17); // NOI18N
@@ -1600,16 +1558,6 @@ public class JDReportes extends javax.swing.JDialog {
         jTable1.setOpaque(false);
         jScrollPane4.setViewportView(jTable1);
 
-        jLabel16.setText(resourceMap.getString("jLabel16.text")); // NOI18N
-        jLabel16.setName("jLabel16"); // NOI18N
-
-        jLabel17.setText(resourceMap.getString("jLabel17.text")); // NOI18N
-        jLabel17.setName("jLabel17"); // NOI18N
-
-        ObrasCustomFechaDesde.setName("ObrasCustomFechaDesde"); // NOI18N
-
-        ObrasCustomFechaHasta.setName("ObrasCustomFechaHasta"); // NOI18N
-
         jLabel18.setText(resourceMap.getString("jLabel18.text")); // NOI18N
         jLabel18.setName("jLabel18"); // NOI18N
 
@@ -1623,8 +1571,8 @@ public class JDReportes extends javax.swing.JDialog {
         });
 
         lblOperarioSelected.setFont(lblOperarioSelected.getFont().deriveFont(lblOperarioSelected.getFont().getStyle() | java.awt.Font.BOLD, lblOperarioSelected.getFont().getSize()+2));
+        lblOperarioSelected.setForeground(resourceMap.getColor("lblOperarioSelected.foreground")); // NOI18N
         lblOperarioSelected.setText(resourceMap.getString("lblOperarioSelected.text")); // NOI18N
-        lblOperarioSelected.setEnabled(false);
         lblOperarioSelected.setName("lblOperarioSelected"); // NOI18N
 
         btnBuscarEmpleado.setAction(actionMap.get("mostrarBusquedaEmpleado")); // NOI18N
@@ -1659,59 +1607,44 @@ public class JDReportes extends javax.swing.JDialog {
             .addGroup(jPanel27Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel27Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 708, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel27Layout.createSequentialGroup()
+                    .addGroup(jPanel27Layout.createSequentialGroup()
                         .addGroup(jPanel27Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel16)
-                            .addGroup(jPanel27Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(ObrasCustomFechaHasta, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(ObrasCustomFechaDesde, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
-                        .addGroup(jPanel27Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel27Layout.createSequentialGroup()
-                                .addGap(149, 149, 149)
-                                .addGroup(jPanel27Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel27Layout.createSequentialGroup()
-                                        .addComponent(isOperarioSelectedCustomInforme, javax.swing.GroupLayout.DEFAULT_SIZE, 260, Short.MAX_VALUE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(btnBuscarEmpleado))
-                                    .addComponent(lblOperarioSelected, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(jButton12)
+                            .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 708, Short.MAX_VALUE)
                             .addGroup(jPanel27Layout.createSequentialGroup()
+                                .addComponent(isOperarioSelectedCustomInforme, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnBuscarEmpleado)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lblOperarioSelected, javax.swing.GroupLayout.DEFAULT_SIZE, 316, Short.MAX_VALUE))
+                            .addGroup(jPanel27Layout.createSequentialGroup()
+                                .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 295, Short.MAX_VALUE)
                                 .addComponent(jButton16, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton14, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addComponent(jLabel17))
-                .addContainerGap())
+                                .addComponent(jButton14, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap())
+                    .addGroup(jPanel27Layout.createSequentialGroup()
+                        .addComponent(jButton12, javax.swing.GroupLayout.DEFAULT_SIZE, 225, Short.MAX_VALUE)
+                        .addGap(495, 495, 495))))
         );
         jPanel27Layout.setVerticalGroup(
             jPanel27Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel27Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel27Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(btnBuscarEmpleado)
-                    .addComponent(isOperarioSelectedCustomInforme)
-                    .addComponent(jLabel16))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel27Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel27Layout.createSequentialGroup()
-                        .addComponent(ObrasCustomFechaDesde, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel17)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(ObrasCustomFechaHasta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel27Layout.createSequentialGroup()
-                        .addComponent(lblOperarioSelected)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton12)))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel27Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton14)
+                    .addComponent(lblOperarioSelected, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(isOperarioSelectedCustomInforme, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnBuscarEmpleado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton12)
+                .addGap(19, 19, 19)
+                .addGroup(jPanel27Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel18)
-                    .addComponent(jButton16))
-                .addGap(9, 9, 9)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 344, Short.MAX_VALUE)
+                    .addGroup(jPanel27Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jButton14)
+                        .addComponent(jButton16)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 357, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -1726,23 +1659,84 @@ public class JDReportes extends javax.swing.JDialog {
             }
         });
 
+        jPanel29.setBorder(javax.swing.BorderFactory.createTitledBorder(null, resourceMap.getString("jPanel29.border.title"), javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, resourceMap.getFont("jPanel29.border.titleFont"))); // NOI18N
+        jPanel29.setName("jPanel29"); // NOI18N
+        jPanel29.setOpaque(false);
+
+        desdeFechaFiltro.setName("desdeFechaFiltro"); // NOI18N
+
+        hastaFechaFiltro.setName("hastaFechaFiltro"); // NOI18N
+
+        jLabel8.setText(resourceMap.getString("jLabel8.text")); // NOI18N
+        jLabel8.setName("jLabel8"); // NOI18N
+
+        jLabel19.setText(resourceMap.getString("jLabel19.text")); // NOI18N
+        jLabel19.setName("jLabel19"); // NOI18N
+
+        javax.swing.GroupLayout jPanel29Layout = new javax.swing.GroupLayout(jPanel29);
+        jPanel29.setLayout(jPanel29Layout);
+        jPanel29Layout.setHorizontalGroup(
+            jPanel29Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel29Layout.createSequentialGroup()
+                .addGap(36, 36, 36)
+                .addComponent(jLabel8)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(desdeFechaFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel19)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(hastaFechaFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(243, Short.MAX_VALUE))
+        );
+
+        jPanel29Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {desdeFechaFiltro, hastaFechaFiltro});
+
+        jPanel29Layout.setVerticalGroup(
+            jPanel29Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel29Layout.createSequentialGroup()
+                .addGroup(jPanel29Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(hastaFechaFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel19)
+                    .addComponent(desdeFechaFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jPanel29Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {desdeFechaFiltro, hastaFechaFiltro});
+
+        jSeparator4.setName("jSeparator4"); // NOI18N
+
         javax.swing.GroupLayout jPanel26Layout = new javax.swing.GroupLayout(jPanel26);
         jPanel26.setLayout(jPanel26Layout);
         jPanel26Layout.setHorizontalGroup(
             jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 893, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel26Layout.createSequentialGroup()
                 .addContainerGap(774, Short.MAX_VALUE)
                 .addComponent(jButton15)
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel26Layout.createSequentialGroup()
+                .addContainerGap(157, Short.MAX_VALUE)
+                .addComponent(jPanel29, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 893, Short.MAX_VALUE)
+            .addGroup(jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jSeparator4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 893, Short.MAX_VALUE))
         );
         jPanel26Layout.setVerticalGroup(
             jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel26Layout.createSequentialGroup()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 538, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addContainerGap()
+                .addComponent(jPanel29, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 509, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(jButton15)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel26Layout.createSequentialGroup()
+                    .addGap(72, 72, 72)
+                    .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(579, Short.MAX_VALUE)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -1753,7 +1747,7 @@ public class JDReportes extends javax.swing.JDialog {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel26, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel26, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -2358,15 +2352,15 @@ public class JDReportes extends javax.swing.JDialog {
              OpcionPanel.showMessageDialog(null, "Seleccione un obra", "Ninguna obra seleccionada", OpcionPanel.ERROR_MESSAGE);
             return null;
         }
-        if(desdeFechaPersEqXObra.getDate() == null|| hastaFechaPersEqXObra.getDate() == null){
+        if(desdeFechaFiltro.getDate() == null|| hastaFechaFiltro.getDate() == null){
             return null;
         }
         return new GenerarReportPersEqXObraTask(org.jdesktop.application.Application.getInstance(zilleprojects.ZilleProjectsApp.class));
     }
 
     private class GenerarReportPersEqXObraTask extends org.jdesktop.application.Task<Object, Void> {
-        Date desde=desdeFechaPersEqXObra.getDate();
-        Date hasta = hastaFechaPersEqXObra.getDate();
+        Date desde=desdeFechaFiltro.getDate();
+        Date hasta = hastaFechaFiltro.getDate();
         GenerarReportPersEqXObraTask(org.jdesktop.application.Application app) {
             // Runs on the EDT.  Copy GUI state that
             // doInBackground() depends on from parameters
@@ -2392,15 +2386,15 @@ public class JDReportes extends javax.swing.JDialog {
              OpcionPanel.showMessageDialog(null, "Seleccione un obra", "Ninguna obra seleccionada", OpcionPanel.ERROR_MESSAGE);
             return null;
         }
-        if(desdeEqMatXObra.getDate() == null|| hastaEqMatXObra.getDate() == null){
+        if(desdeFechaFiltro.getDate() == null|| hastaFechaFiltro.getDate() == null){
             return null;
         }
         return new GenerarEqMatXObraAccionTask(org.jdesktop.application.Application.getInstance(zilleprojects.ZilleProjectsApp.class));
     }
 
     private class GenerarEqMatXObraAccionTask extends org.jdesktop.application.Task<Object, Void> {
-        Date desde = desdeEqMatXObra.getDate();
-        Date hasta = hastaEqMatXObra.getDate();
+        Date desde = desdeFechaFiltro.getDate();
+        Date hasta = hastaFechaFiltro.getDate();
         GenerarEqMatXObraAccionTask(org.jdesktop.application.Application app) {
             // Runs on the EDT.  Copy GUI state that
             // doInBackground() depends on from parameters
@@ -2490,7 +2484,7 @@ public class JDReportes extends javax.swing.JDialog {
 
     @Action
     public Task generarInformeEquipo() {
-        if(desdeFechaEquipo.getDate() == null || hastaFechaEquipo.getDate() == null){
+        if(desdeFechaFiltro.getDate() == null || hastaFechaFiltro.getDate() == null){
             OpcionPanel.showMessageDialog(null, "Seleccione un rango de fechas", "Aviso",OpcionPanel.INFORMATION_MESSAGE);
             return null;
         }
@@ -2510,8 +2504,8 @@ public class JDReportes extends javax.swing.JDialog {
             // to GenerarInformeEquipoTask fields, here.
             super(app);
             id = equipoSelect.getId();
-            desde = desdeFechaEquipo.getDate();
-            hasta = hastaFechaEquipo.getDate();
+            desde = desdeFechaFiltro.getDate();
+            hasta = hastaFechaFiltro.getDate();
         }
         @Override protected Object doInBackground() {
            ReportesDAO rdao=new ReportesDAO();
@@ -2566,7 +2560,7 @@ public class JDReportes extends javax.swing.JDialog {
 
     @Action
     public Task generarInformeCombustibleObra() {
-        if(desdeConsumoObra.getDate() == null || hastaConsumoObra.getDate() == null){
+        if(desdeFechaFiltro.getDate() == null || hastaFechaFiltro.getDate() == null){
             OpcionPanel.showMessageDialog(null, "Seleccione un rango de fechas", "Aviso",OpcionPanel.INFORMATION_MESSAGE);
             return null;
         }
@@ -2583,8 +2577,8 @@ public class JDReportes extends javax.swing.JDialog {
         GenerarInformeCombustibleObraTask(org.jdesktop.application.Application app) {
             
             super(app);
-            desde = desdeConsumoObra.getDate();
-            hasta = hastaConsumoObra.getDate();
+            desde = desdeFechaFiltro.getDate();
+            hasta = hastaFechaFiltro.getDate();
             idObra = obraSelect.getId();
             
         }
@@ -2602,7 +2596,7 @@ public class JDReportes extends javax.swing.JDialog {
 
     @Action
     public Task generarInformeCombustibleResumen() {
-        if(desdeConsumoObra.getDate() == null || hastaConsumoObra.getDate() == null){
+        if(desdeFechaFiltro.getDate() == null || hastaFechaFiltro.getDate() == null){
             OpcionPanel.showMessageDialog(null, "Seleccione un rango de fechas", "Aviso",OpcionPanel.INFORMATION_MESSAGE);
             return null;
         }
@@ -2613,8 +2607,8 @@ public class JDReportes extends javax.swing.JDialog {
         Date desde, hasta;
         GenerarInformeCombustibleResumenTask(org.jdesktop.application.Application app) {
             super(app);
-            desde = desdeConsumoObra.getDate();
-            hasta = hastaConsumoObra.getDate();
+            desde = desdeFechaFiltro.getDate();
+            hasta = hastaFechaFiltro.getDate();
         }
         @Override protected Object doInBackground() {
             ReportesDAO dao = new ReportesDAO();
@@ -2630,7 +2624,7 @@ public class JDReportes extends javax.swing.JDialog {
 
     @Action
     public Task generarInformeCombustibleEquipo() {
-        if(desdeConsumoObra.getDate() == null || hastaConsumoObra.getDate() == null){
+        if(desdeFechaFiltro.getDate() == null || hastaFechaFiltro.getDate() == null){
             OpcionPanel.showMessageDialog(null, "Seleccione un rango de fechas", "Aviso",OpcionPanel.INFORMATION_MESSAGE);
             return null;
         }
@@ -2646,8 +2640,8 @@ public class JDReportes extends javax.swing.JDialog {
         Date desde, hasta;
         GenerarInformeCombustibleEquipoTask(org.jdesktop.application.Application app) {
             super(app);
-            desde = desdeConsumoObra.getDate();
-            hasta = hastaConsumoObra.getDate();
+            desde = desdeFechaFiltro.getDate();
+            hasta = hastaFechaFiltro.getDate();
             idEquipo = equipoSelect.getId();
         }
         @Override protected Object doInBackground() {
@@ -2664,7 +2658,7 @@ public class JDReportes extends javax.swing.JDialog {
 
     @Action
     public Task generarInformeCombustiblePlataforma() {
-        if(desdeConsumoObra.getDate() == null || hastaConsumoObra.getDate() == null){
+        if(desdeFechaFiltro.getDate() == null || hastaFechaFiltro.getDate() == null){
             OpcionPanel.showMessageDialog(null, "Seleccione un rango de fechas", "Aviso",OpcionPanel.INFORMATION_MESSAGE);
             return null;
         }
@@ -2680,8 +2674,8 @@ public class JDReportes extends javax.swing.JDialog {
         Date desde, hasta;
         GenerarInformeCombustiblePlataformaTask(org.jdesktop.application.Application app) {
             super(app);
-            desde = desdeConsumoObra.getDate();
-            hasta = hastaConsumoObra.getDate();
+            desde = desdeFechaFiltro.getDate();
+            hasta = hastaFechaFiltro.getDate();
             idEstacion = estacionSelect.getEstacionServicioID();
         }
         @Override protected Object doInBackground() {
@@ -2828,8 +2822,8 @@ public class JDReportes extends javax.swing.JDialog {
         Date desde, hasta;
         ObrasListadoSeleccionInformeTask(org.jdesktop.application.Application app) {
             super(app);
-            desde = desdeConsumoObra.getDate();
-            hasta = hastaConsumoObra.getDate();
+            desde = desdeFechaFiltro.getDate();
+            hasta = hastaFechaFiltro.getDate();
             
         }
         @Override protected Object doInBackground() {
@@ -2857,7 +2851,7 @@ public class JDReportes extends javax.swing.JDialog {
             OpcionPanel.showMessageDialog(null, "El límite máximo de obras seleccionadas es 24.", "Aviso",OpcionPanel.INFORMATION_MESSAGE);
             return null;
         }
-        if(ObrasCustomFechaDesde.getDate() == null || ObrasCustomFechaHasta.getDate() == null){
+        if(desdeFechaFiltro.getDate() == null || hastaFechaFiltro.getDate() == null){
             OpcionPanel.showMessageDialog(null, "Seleccione un rango de fechas", "Aviso",OpcionPanel.INFORMATION_MESSAGE);
             return null;
         }
@@ -2883,8 +2877,8 @@ public class JDReportes extends javax.swing.JDialog {
             // doInBackground() depends on from parameters
             // to GenerarInformeCustomTask fields, here.
             super(app);
-            desde = ObrasCustomFechaDesde.getDate();
-            hasta = ObrasCustomFechaHasta.getDate();
+            desde = desdeFechaFiltro.getDate();
+            hasta = hastaFechaFiltro.getDate();
             obrasIDlist = generarArrayIdObras();
         }
         @Override protected Object doInBackground() {
@@ -2916,6 +2910,92 @@ public class JDReportes extends javax.swing.JDialog {
         }
     }
 
+    @Action
+    public Task exportarTodosEquipos2Excel() {
+        return new ExportarTodosEquipos2ExcelTask(org.jdesktop.application.Application.getInstance(zilleprojects.ZilleProjectsApp.class));
+    }
+
+    private class ExportarTodosEquipos2ExcelTask extends org.jdesktop.application.Task<Object, Void> {
+        boolean r= false;
+        String ruta="";
+        String strDesde;
+        String strHasta;
+        Date desde;
+        Date hasta;
+        ExportarTodosEquipos2ExcelTask(org.jdesktop.application.Application app) {
+            // Runs on the EDT.  Copy GUI state that
+            // doInBackground() depends on from parameters
+            // to ExportarTodosEquipos2ExcelTask fields, here.
+            super(app);
+            desde = desdeFechaFiltro.getDate();
+            hasta = hastaFechaFiltro.getDate();
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+            strDesde = sdf.format(desde);
+            strHasta = sdf.format(hasta);
+        }
+        @Override protected Object doInBackground() {
+            ReportesDAO rDao= new ReportesDAO();
+            EquiposDAO eqDao = new EquiposDAO();
+            eqDao.conectar();
+            rDao.conectar();
+            ArrayList<Equipos> list= eqDao.cargarTodosMenos1();
+            String soName = System.getProperty("os.name").toUpperCase();
+            File folder = new File("Equipos("+strDesde+"-"+strHasta+")\\");
+                if (soName.equals("LINUX")) { //Si se ejecuta en Linux  
+                        folder = new File("Equipos("+strDesde+"-"+strHasta+")/");
+                        if(!folder.exists()){
+                            folder.mkdirs();
+                        }
+                }else  {  //si se ejecuta en Windows u otro
+                        if(!folder.exists()){
+                            folder.mkdirs();
+                        }                       
+                }
+                r=true;
+                ruta = folder.getAbsolutePath();
+            for(Equipos eq: list){
+                
+                try {
+                    JRXlsExporter exporterXLS = new JRXlsExporter();
+                    exporterXLS.setParameter(JRXlsExporterParameter.JASPER_PRINT,  rDao.equiposTodos2Excel(desde, hasta, eq.getId()));
+                    exporterXLS.setParameter(JRXlsExporterParameter.IS_DETECT_CELL_TYPE, Boolean.FALSE);
+                    exporterXLS.setParameter(JRXlsExporterParameter.IS_WHITE_PAGE_BACKGROUND, Boolean.FALSE);
+                    exporterXLS.setParameter(JRXlsExporterParameter.IS_REMOVE_EMPTY_SPACE_BETWEEN_ROWS, Boolean.TRUE);
+                    String equipoName = eq.getN_interno() +"-"+eq.getEquipos();
+                    equipoName=equipoName.replaceAll(",","").replaceAll(" ","_").replaceAll("/", "-").trim();
+                    String archivo=equipoName+".xls";
+                    if (soName.equals("LINUX")) { //Si se ejecuta en Linux                    
+                            archivo=folder.getAbsoluteFile()+"/"+archivo;
+                    }else  {  //si se ejecuta en Windows)                       
+                            archivo=folder.getAbsoluteFile()+"\\"+archivo;
+                    }
+                    exporterXLS.setParameter(JRExporterParameter.OUTPUT_FILE_NAME, archivo);
+                    exporterXLS.exportReport();
+                    System.out.println("Se ha exportado correctamente:\n"
+                    + "Archivo: "+ archivo);
+                } catch (JRException ex) {
+                    Logger.getLogger(JDReportes.class.getName()).log(Level.SEVERE, null, ex);
+                    r= false;
+                }
+                
+            } //End for
+            try {
+                Desktop.getDesktop().browse((folder.toURI()));
+            } catch (IOException ex) {
+                Logger.getLogger(JDReportes.class.getName()).log(Level.SEVERE, null, ex);
+            }
+         return null; 
+        }
+        @Override protected void succeeded(Object result) {
+           if(r){
+                OpcionPanel.showMessageDialog(null, "Sus reportes se encuentran en:\n"+ruta, "Exportación correcta", OpcionPanel.INFORMATION_MESSAGE);
+            }else{
+                OpcionPanel.showMessageDialog(null, "Error exportado los reportes. Revise el directorio:\n"+ruta, "ERROR", OpcionPanel.ERROR_MESSAGE);
+            }
+        }
+    }
+
+
 
 
 
@@ -2924,8 +3004,6 @@ public class JDReportes extends javax.swing.JDialog {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private com.toedter.calendar.JDateChooser ObrasCustomFechaDesde;
-    private com.toedter.calendar.JDateChooser ObrasCustomFechaHasta;
     private com.toedter.calendar.JYearChooser añoPeriodo;
     private javax.swing.JButton botonBuscarEmpleado;
     private javax.swing.JButton botonBuscarEmpleado1;
@@ -2939,24 +3017,19 @@ public class JDReportes extends javax.swing.JDialog {
     private javax.swing.JButton buscarEquiposBoton;
     private javax.swing.JButton cerrarBusquedaObras;
     private javax.swing.JButton cerrarBusquedaPlataformas;
-    private com.toedter.calendar.JDateChooser desdeConsumoObra;
-    private com.toedter.calendar.JDateChooser desdeEqMatXObra;
     private com.toedter.calendar.JDateChooser desdeFecha;
-    private com.toedter.calendar.JDateChooser desdeFechaEquipo;
-    private com.toedter.calendar.JDateChooser desdeFechaPersEqXObra;
+    private com.toedter.calendar.JDateChooser desdeFechaFiltro;
     private javax.swing.JCheckBox empleadoCheck;
     private javax.swing.JButton exitDialog;
+    private javax.swing.JButton exportTodosEquipos;
     private javax.swing.JButton genReporteEquipo;
     private javax.swing.JButton generarDetalleRegistroButton;
     private javax.swing.JButton generarEqMatXObra;
     private javax.swing.JButton generarExportacion;
     private javax.swing.JButton generarInformesHorasButton;
     private javax.swing.JButton generarReportePersEqXObra;
-    private com.toedter.calendar.JDateChooser hastaConsumoObra;
-    private com.toedter.calendar.JDateChooser hastaEqMatXObra;
     private com.toedter.calendar.JDateChooser hastaFecha;
-    private com.toedter.calendar.JDateChooser hastaFechaEquipo;
-    private com.toedter.calendar.JDateChooser hastaFechaPersEqXObra;
+    private com.toedter.calendar.JDateChooser hastaFechaFiltro;
     private javax.swing.JDialog informeDetalleHora;
     private javax.swing.JDialog informeHorasDialog;
     private javax.swing.JCheckBox isOperarioSelectedCustomInforme;
@@ -2976,23 +3049,14 @@ public class JDReportes extends javax.swing.JDialog {
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JList jListEquipos;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
@@ -3015,24 +3079,34 @@ public class JDReportes extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel26;
     private javax.swing.JPanel jPanel27;
     private javax.swing.JPanel jPanel28;
+    private javax.swing.JPanel jPanel29;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane10;
+    private javax.swing.JScrollPane jScrollPane11;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
+    private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JTextPane jTextPane1;
+    private javax.swing.JTextPane jTextPane2;
+    private javax.swing.JTextPane jTextPane3;
+    private javax.swing.JTextPane jTextPane4;
     private javax.swing.JLabel lblEquiposCombustible;
     private javax.swing.JLabel lblEquiposSelect;
     private javax.swing.JLabel lblObraReportPersEqXObra;

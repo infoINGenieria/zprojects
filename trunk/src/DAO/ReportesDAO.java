@@ -33,14 +33,12 @@ import net.sf.jasperreports.engine.util.JRLoader;
 import net.sf.jasperreports.view.JasperViewer;
 import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFCellStyle;
-import org.apache.poi.hssf.usermodel.HSSFFont;
 import org.apache.poi.hssf.usermodel.HSSFFormulaEvaluator;
 import org.apache.poi.hssf.usermodel.HSSFRichTextString;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.hssf.util.HSSFColor;
-import org.apache.poi.poifs.filesystem.POIFSFileSystem;
 
 /**
  *
@@ -146,6 +144,46 @@ public class ReportesDAO {
         } catch (JRException j) {
             System.out.print(j.getMessage());
         }
+    }
+    
+    public JasperPrint equiposTodos2Excel(Date desde, Date hasta, int idEquipo)  {
+        try {
+            
+            URL master = null;
+            URL subreport = null;
+            Map parametro = new HashMap();
+            parametro.put("urlimagenZille", getClass().getResource("/Reportes/zille.png").toString());
+                       
+            parametro.put("desde_f", desde);
+            parametro.put("hasta_f", hasta);
+            parametro.put("id_equipo", new Integer(idEquipo));
+            master = getClass().getResource("/Reportes/equipo/Equipo-ObraPersona.jasper");
+            subreport = getClass().getResource("/Reportes/equipo/Equipo-ObraPersona-resumen.jasper");
+            
+            System.out.println("Cargando desde: " + master);
+            if (master == null) {
+                System.out.println("No se encuentra el archivo master.");
+                //System.exit(2);
+            }
+            System.out.println("Cargando desde: " + subreport);
+            if (master == null) {
+                System.out.println("No se encuentra el archivo subreport.");
+                //System.exit(2);
+            }
+            
+            JasperReport masterReport = (JasperReport) JRLoader.loadObject(master);
+            JasperReport report = (JasperReport) JRLoader.loadObject(subreport);
+            parametro.put("subreport", report);
+            JasperPrint jasperPrint = JasperFillManager.fillReport(masterReport, parametro, conector);
+            
+                         
+            return jasperPrint;
+
+        }catch (JRException j){
+            j.getMessage();
+            return null;
+        } 
+     
     }
     
     public void reportPersEqXObra(Date desde, Date hasta, int idObra) {

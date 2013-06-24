@@ -4,16 +4,14 @@
  */
 package Modelo;
 
-import java.util.Date;
-
 /**
  *
  * @author matuuar
  */
 public class RI {
     int RI_ID, obraID;
-    String RI_num, observaciones, OC_num, proveedor, codigoObra, solicitante;
-    Date fecha_necesidad, fecha_emision, fecha_oc, fecha_entrega;
+    String RI_num, observaciones, codigoObra, solicitante;
+    
     
     public RI() {
     }
@@ -53,35 +51,13 @@ public class RI {
         this.codigoObra = codigoObra;
     }
     
-    public String getEstado(){
-        if(fecha_necesidad!=null && fecha_emision!=null && fecha_oc !=null && fecha_entrega!=null){
-            return "Cumplida";
-        }
-        if(fecha_necesidad!=null && fecha_emision!=null && fecha_oc !=null && fecha_entrega==null){
-            return "OC generada";
-        }
-        
-            return "Emitida";
-        
-        
-    }
-
+    
     public String getSolicitante() {
         return solicitante;
     }
 
     public void setSolicitante(String solicitante) {
         this.solicitante = solicitante;
-    }
-    
-    
-
-    public String getOC_num() {
-        return OC_num;
-    }
-
-    public void setOC_num(String OC_num) {
-        this.OC_num = OC_num;
     }
 
     public int getRI_ID() {
@@ -100,38 +76,6 @@ public class RI {
         this.RI_num = RI_num;
     }
 
-    public Date getFecha_emision() {
-        return fecha_emision;
-    }
-
-    public void setFecha_emision(Date fecha_emision) {
-        this.fecha_emision = fecha_emision;
-    }
-
-    public Date getFecha_entrega() {
-        return fecha_entrega;
-    }
-
-    public void setFecha_entrega(Date fecha_entrega) {
-        this.fecha_entrega = fecha_entrega;
-    }
-
-    public Date getFecha_necesidad() {
-        return fecha_necesidad;
-    }
-
-    public void setFecha_necesidad(Date fecha_necesidad) {
-        this.fecha_necesidad = fecha_necesidad;
-    }
-
-    public Date getFecha_oc() {
-        return fecha_oc;
-    }
-
-    public void setFecha_oc(Date fecha_oc) {
-        this.fecha_oc = fecha_oc;
-    }
-
     public int getObraID() {
         return obraID;
     }
@@ -147,15 +91,4 @@ public class RI {
     public void setObservaciones(String observaciones) {
         this.observaciones = observaciones;
     }
-
-    public String getProveedor() {
-        return proveedor;
-    }
-
-    public void setProveedor(String proveedor) {
-        this.proveedor = proveedor;
-    }
-
-    
-    
 }

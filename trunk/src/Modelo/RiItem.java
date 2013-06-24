@@ -4,6 +4,8 @@
  */
 package Modelo;
 
+import java.util.Date;
+
 /**
  *
  * @author matuuar
@@ -11,7 +13,8 @@ package Modelo;
 public class RiItem {
     
     private int riItemId, riId;
- 
+    String OC_num, proveedor;
+    Date fecha_necesidad, fecha_emision, fecha_oc, fecha_entrega;
     private String cantidad, unidad, detalle, observacion;
 
     public RiItem() {
@@ -88,6 +91,67 @@ public class RiItem {
         return hash;
     }
 
+    public String getEstado(){
+        if(fecha_necesidad!=null && fecha_emision!=null && fecha_oc !=null && fecha_entrega!=null){
+            return "Cumplida";
+        }
+        if(fecha_necesidad!=null && fecha_emision!=null && fecha_oc !=null && fecha_entrega==null){
+            return "OC generada";
+        }
+        
+            return "Emitida";
+        
+        
+    }
+
+    public String getOC_num() {
+        return OC_num;
+    }
+
+    public void setOC_num(String OC_num) {
+        this.OC_num = OC_num;
+    }
+
+    public Date getFecha_emision() {
+        return fecha_emision;
+    }
+
+    public void setFecha_emision(Date fecha_emision) {
+        this.fecha_emision = fecha_emision;
+    }
+
+    public Date getFecha_entrega() {
+        return fecha_entrega;
+    }
+
+    public void setFecha_entrega(Date fecha_entrega) {
+        this.fecha_entrega = fecha_entrega;
+    }
+
+    public Date getFecha_necesidad() {
+        return fecha_necesidad;
+    }
+
+    public void setFecha_necesidad(Date fecha_necesidad) {
+        this.fecha_necesidad = fecha_necesidad;
+    }
+
+    public Date getFecha_oc() {
+        return fecha_oc;
+    }
+
+    public void setFecha_oc(Date fecha_oc) {
+        this.fecha_oc = fecha_oc;
+    }
+
+    public String getProveedor() {
+        return proveedor;
+    }
+
+    public void setProveedor(String proveedor) {
+        this.proveedor = proveedor;
+    }
+    
     
     
     

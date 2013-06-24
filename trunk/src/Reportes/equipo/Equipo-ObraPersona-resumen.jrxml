@@ -7,15 +7,15 @@
 	<parameter name="desde_f" class="java.util.Date"/>
 	<parameter name="hasta_f" class="java.util.Date"/>
 	<queryString>
-		<![CDATA[SELECT M.material, sum(M.cantidad) as total 
+		<![CDATA[SELECT M.material, sum(M.cantidad) as total
 
 FROM partediario PD
 LEFT JOIN registro_equipo RQ ON PD.equipo = RQ.id
-LEFT JOIN equipos EQ ON RQ.equipo = EQ.id 
-LEFT JOIN materiales M ON M.ID_REGISTROEQUIPO = RQ.id 
+LEFT JOIN equipos EQ ON RQ.equipo = EQ.id
+LEFT JOIN materiales M ON M.ID_REGISTROEQUIPO = RQ.id
 
-WHERE  M.material != '' and PD.fecha <= $P{hasta_f} AND PD.fecha >= $P{desde_f} and RQ.equipo = $P{id_equipo} AND PD.situacion =1 
-GROUP BY M.material 
+WHERE  M.material != '' and PD.fecha <= $P{hasta_f} AND PD.fecha >= $P{desde_f} and RQ.equipo = $P{id_equipo} AND PD.situacion =1
+GROUP BY M.material
 ORDER BY M.material]]>
 	</queryString>
 	<field name="material" class="java.lang.String"/>
@@ -33,16 +33,16 @@ ORDER BY M.material]]>
 		<band splitType="Stretch"/>
 	</columnHeader>
 	<detail>
-		<band height="17" splitType="Stretch">
+		<band height="16" splitType="Stretch">
 			<textField isBlankWhenNull="true">
-				<reportElement x="110" y="0" width="112" height="16"/>
+				<reportElement x="171" y="0" width="111" height="16"/>
 				<textElement/>
-				<textFieldExpression class="java.lang.Double"><![CDATA[$F{total}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{total}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="0" y="0" width="110" height="16"/>
+				<reportElement x="0" y="0" width="171" height="16"/>
 				<textElement/>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{material}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{material}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>

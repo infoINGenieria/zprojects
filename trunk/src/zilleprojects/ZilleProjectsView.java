@@ -334,6 +334,7 @@ public class ZilleProjectsView extends FrameView {
                 ZilleProjectsView.inicio = true;
                 //loginPanel.setVisible(false);
                 BotonGrandeLogin.setEnabled(false);
+                
                 loginOut.setText("Identificado como " + Usuario.getUser());
                 iniciarSesion.setEnabled(false);
                 if(verificarCredenciales("Administrador")){
@@ -1211,7 +1212,7 @@ public class ZilleProjectsView extends FrameView {
                 .addComponent(botonGrandeSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(loginOut, javax.swing.GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE)
-                .addGap(420, 420, 420))
+                .addGap(426, 426, 426))
         );
 
         jPanel6Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {BotonGrandeLogin, botonGrandeSalir});
@@ -1778,7 +1779,7 @@ public class ZilleProjectsView extends FrameView {
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 92, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(outText, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
