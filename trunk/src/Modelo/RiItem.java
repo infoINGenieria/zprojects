@@ -18,6 +18,8 @@ public class RiItem {
     private String cantidad, unidad, detalle, observacion;
 
     public RiItem() {
+        fecha_necesidad = new Date();
+        fecha_emision = new Date();
     }
 
 

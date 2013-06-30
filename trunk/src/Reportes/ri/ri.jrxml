@@ -15,24 +15,60 @@
 from ri, ri_item RII, obras AS OB
 where ri.RIID = $P{riid} and RII.riid = ri.RIID and OB.ID = ri.OBRAID]]>
 	</queryString>
-	<field name="RIID" class="java.lang.Integer"/>
-	<field name="RI_NUM" class="java.lang.String"/>
-	<field name="OBRAID" class="java.lang.Integer"/>
-	<field name="FECHA_NECESIDAD" class="java.sql.Date"/>
-	<field name="OBSERVACIONES" class="java.lang.String"/>
-	<field name="SOLICITANTE" class="java.lang.String"/>
-	<field name="OC_NUM" class="java.lang.String"/>
-	<field name="PROVEEDOR" class="java.lang.String"/>
-	<field name="FECHA_EMISION" class="java.sql.Date"/>
-	<field name="FECHA_OC" class="java.sql.Date"/>
-	<field name="FECHA_ENTREGA" class="java.sql.Date"/>
-	<field name="CODIGO_OBRA" class="java.lang.String"/>
-	<field name="riItemId" class="java.lang.Integer"/>
-	<field name="cantidad" class="java.lang.String"/>
-	<field name="unidad" class="java.lang.String"/>
-	<field name="detalle" class="java.lang.String"/>
-	<field name="observacion" class="java.lang.String"/>
-	<field name="codigo" class="java.lang.String"/>
+	<field name="RIID" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="RI_NUM" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="OBRAID" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="OBSERVACIONES" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="SOLICITANTE" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="FECHA_CREACION" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="riItemId" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cantidad" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="unidad" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="detalle" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="observacion" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="oc_num" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="proveedor" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="fecha_entrega" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="fecha_oc" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="fecha_emision" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="fecha_necesidad" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="codigo" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
 	<title>
 		<band height="73" splitType="Stretch">
 			<staticText>
@@ -160,7 +196,7 @@ PEDIDO]]></text>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{detalle}.toUpperCase()]]></textFieldExpression>
 			</textField>
-			<textField isStretchWithOverflow="true" isBlankWhenNull="false">
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 				<reportElement uuid="8d5384fd-ccf2-4e40-825b-1022699fa121" stretchType="RelativeToBandHeight" mode="Transparent" x="612" y="0" width="190" height="28" isPrintWhenDetailOverflows="true"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Arial" isBold="true"/>
@@ -172,14 +208,14 @@ PEDIDO]]></text>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Arial"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{FECHA_NECESIDAD}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{fecha_necesidad}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" pattern="dd-MMM-yy" isBlankWhenNull="false">
 				<reportElement uuid="924a5a67-4eaa-4a17-8e3a-eba8bdb3a7f3" stretchType="RelativeToBandHeight" mode="Transparent" x="389" y="1" width="69" height="27" isPrintWhenDetailOverflows="true" backcolor="#FFFFFF"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Arial"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{FECHA_EMISION}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{fecha_emision}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="false">
 				<reportElement uuid="fc1e4848-5704-4b11-9cb1-f501be40da9c" stretchType="RelativeToBandHeight" mode="Transparent" x="527" y="0" width="85" height="28" isPrintWhenDetailOverflows="true"/>

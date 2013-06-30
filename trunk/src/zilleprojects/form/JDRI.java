@@ -39,8 +39,10 @@ import org.jdesktop.application.Task;
  * @author matuuar
  */
 public class JDRI extends javax.swing.JDialog {
+
     Image icono = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/zilleprojects/resources/icono.png"));
     zilleprojects.ZilleProjectsView appMain;
+
     /** Creates new form JDRI */
     public JDRI(java.awt.Frame parent, boolean modal, zilleprojects.ZilleProjectsView appMain) {
         super(parent, modal);
@@ -66,6 +68,31 @@ public class JDRI extends javax.swing.JDialog {
         Cerrar = new javax.swing.JButton();
         jScrollPane4 = new javax.swing.JScrollPane();
         jListDeObra = new javax.swing.JList();
+        ABMRiItemDialog = new javax.swing.JDialog();
+        jPanel7 = new PanelAzul();
+        jLabel3 = new javax.swing.JLabel();
+        cantidad = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        fechaNecesidad = new com.toedter.calendar.JDateChooser();
+        jLabel6 = new javax.swing.JLabel();
+        unidad = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        detalle = new javax.swing.JTextField();
+        proveedor = new javax.swing.JTextField();
+        numeroOC = new javax.swing.JTextField();
+        fechaOc = new com.toedter.calendar.JDateChooser();
+        fechaEmision = new com.toedter.calendar.JDateChooser();
+        fechaEntrega = new com.toedter.calendar.JDateChooser();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        observaciones = new javax.swing.JTextArea();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
+        guardarRiItem = new javax.swing.JButton();
         jPanel1 = new PanelAzul();
         addRI = new javax.swing.JButton();
         editRI = new javax.swing.JButton();
@@ -89,6 +116,7 @@ public class JDRI extends javax.swing.JDialog {
         tablaItems = new javax.swing.JTable();
         addItemRI = new javax.swing.JButton();
         remItemRI = new javax.swing.JButton();
+        editItemRI = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         btnGuardar = new javax.swing.JButton();
@@ -176,6 +204,270 @@ public class JDRI extends javax.swing.JDialog {
         jDialog1Layout.setVerticalGroup(
             jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        ABMRiItemDialog.setLocationByPlatform(true);
+        ABMRiItemDialog.setMinimumSize(new java.awt.Dimension(596, 450));
+        ABMRiItemDialog.setModal(true);
+        ABMRiItemDialog.setName("ABMRiItemDialog"); // NOI18N
+        ABMRiItemDialog.setResizable(false);
+        ABMRiItemDialog.setUndecorated(true);
+
+        jPanel7.setMinimumSize(new java.awt.Dimension(596, 380));
+        jPanel7.setName("jPanel7"); // NOI18N
+        jPanel7.setPreferredSize(new java.awt.Dimension(596, 450));
+        jPanel7.setLayout(new java.awt.GridBagLayout());
+
+        jLabel3.setText(resourceMap.getString("jLabel3.text")); // NOI18N
+        jLabel3.setName("jLabel3"); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        jPanel7.add(jLabel3, gridBagConstraints);
+
+        cantidad.setText(resourceMap.getString("cantidad.text")); // NOI18N
+        cantidad.setDisabledTextColor(resourceMap.getColor("cantidad.disabledTextColor")); // NOI18N
+        cantidad.setMinimumSize(new java.awt.Dimension(150, 20));
+        cantidad.setName("cantidad"); // NOI18N
+        cantidad.setPreferredSize(new java.awt.Dimension(150, 30));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.ipady = 10;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        jPanel7.add(cantidad, gridBagConstraints);
+
+        jLabel5.setText(resourceMap.getString("jLabel5.text")); // NOI18N
+        jLabel5.setName("jLabel5"); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        jPanel7.add(jLabel5, gridBagConstraints);
+
+        fechaNecesidad.setName("fechaNecesidad"); // NOI18N
+        fechaNecesidad.setPreferredSize(new java.awt.Dimension(150, 30));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.ipady = 10;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        jPanel7.add(fechaNecesidad, gridBagConstraints);
+
+        jLabel6.setText(resourceMap.getString("jLabel6.text")); // NOI18N
+        jLabel6.setName("jLabel6"); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        jPanel7.add(jLabel6, gridBagConstraints);
+
+        unidad.setText(resourceMap.getString("unidad.text")); // NOI18N
+        unidad.setDisabledTextColor(resourceMap.getColor("unidad.disabledTextColor")); // NOI18N
+        unidad.setMinimumSize(new java.awt.Dimension(150, 20));
+        unidad.setName("unidad"); // NOI18N
+        unidad.setPreferredSize(new java.awt.Dimension(150, 30));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.ipady = 10;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        jPanel7.add(unidad, gridBagConstraints);
+
+        jLabel7.setText(resourceMap.getString("jLabel7.text")); // NOI18N
+        jLabel7.setName("jLabel7"); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        jPanel7.add(jLabel7, gridBagConstraints);
+
+        jLabel9.setText(resourceMap.getString("jLabel9.text")); // NOI18N
+        jLabel9.setName("jLabel9"); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        jPanel7.add(jLabel9, gridBagConstraints);
+
+        detalle.setText(resourceMap.getString("detalle.text")); // NOI18N
+        detalle.setDisabledTextColor(resourceMap.getColor("detalle.disabledTextColor")); // NOI18N
+        detalle.setName("detalle"); // NOI18N
+        detalle.setPreferredSize(new java.awt.Dimension(150, 30));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.ipady = 10;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        jPanel7.add(detalle, gridBagConstraints);
+
+        proveedor.setText(resourceMap.getString("proveedor.text")); // NOI18N
+        proveedor.setDisabledTextColor(resourceMap.getColor("proveedor.disabledTextColor")); // NOI18N
+        proveedor.setMinimumSize(new java.awt.Dimension(150, 20));
+        proveedor.setName("proveedor"); // NOI18N
+        proveedor.setPreferredSize(new java.awt.Dimension(150, 30));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.ipady = 10;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        jPanel7.add(proveedor, gridBagConstraints);
+
+        numeroOC.setText(resourceMap.getString("numeroOC.text")); // NOI18N
+        numeroOC.setDisabledTextColor(resourceMap.getColor("numeroOC.disabledTextColor")); // NOI18N
+        numeroOC.setMinimumSize(new java.awt.Dimension(150, 20));
+        numeroOC.setName("numeroOC"); // NOI18N
+        numeroOC.setPreferredSize(new java.awt.Dimension(150, 30));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.ipady = 10;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        jPanel7.add(numeroOC, gridBagConstraints);
+
+        fechaOc.setName("fechaOc"); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.ipady = 10;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        jPanel7.add(fechaOc, gridBagConstraints);
+
+        fechaEmision.setName("fechaEmision"); // NOI18N
+        fechaEmision.setPreferredSize(new java.awt.Dimension(150, 30));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.ipady = 10;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        jPanel7.add(fechaEmision, gridBagConstraints);
+
+        fechaEntrega.setName("fechaEntrega"); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.ipady = 10;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        jPanel7.add(fechaEntrega, gridBagConstraints);
+
+        jScrollPane5.setName("jScrollPane5"); // NOI18N
+
+        observaciones.setColumns(20);
+        observaciones.setRows(3);
+        observaciones.setDisabledTextColor(resourceMap.getColor("observaciones.disabledTextColor")); // NOI18N
+        observaciones.setName("observaciones"); // NOI18N
+        observaciones.setPreferredSize(new java.awt.Dimension(220, 95));
+        jScrollPane5.setViewportView(observaciones);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.ipady = 40;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        jPanel7.add(jScrollPane5, gridBagConstraints);
+
+        jLabel10.setText(resourceMap.getString("jLabel10.text")); // NOI18N
+        jLabel10.setName("jLabel10"); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        jPanel7.add(jLabel10, gridBagConstraints);
+
+        jLabel12.setText(resourceMap.getString("jLabel12.text")); // NOI18N
+        jLabel12.setName("jLabel12"); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        jPanel7.add(jLabel12, gridBagConstraints);
+
+        jLabel13.setText(resourceMap.getString("jLabel13.text")); // NOI18N
+        jLabel13.setName("jLabel13"); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        jPanel7.add(jLabel13, gridBagConstraints);
+
+        jLabel14.setText(resourceMap.getString("jLabel14.text")); // NOI18N
+        jLabel14.setName("jLabel14"); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        jPanel7.add(jLabel14, gridBagConstraints);
+
+        jLabel15.setText(resourceMap.getString("jLabel15.text")); // NOI18N
+        jLabel15.setName("jLabel15"); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        jPanel7.add(jLabel15, gridBagConstraints);
+
+        jButton2.setIcon(resourceMap.getIcon("jButton2.icon")); // NOI18N
+        jButton2.setText(resourceMap.getString("jButton2.text")); // NOI18N
+        jButton2.setName("jButton2"); // NOI18N
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 7;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        jPanel7.add(jButton2, gridBagConstraints);
+
+        guardarRiItem.setIcon(resourceMap.getIcon("guardarRiItem.icon")); // NOI18N
+        guardarRiItem.setText(resourceMap.getString("guardarRiItem.text")); // NOI18N
+        guardarRiItem.setName("guardarRiItem"); // NOI18N
+        guardarRiItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                guardarRiItemActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 7;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        jPanel7.add(guardarRiItem, gridBagConstraints);
+
+        javax.swing.GroupLayout ABMRiItemDialogLayout = new javax.swing.GroupLayout(ABMRiItemDialog.getContentPane());
+        ABMRiItemDialog.getContentPane().setLayout(ABMRiItemDialogLayout);
+        ABMRiItemDialogLayout.setHorizontalGroup(
+            ABMRiItemDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, 596, Short.MAX_VALUE)
+        );
+        ABMRiItemDialogLayout.setVerticalGroup(
+            ABMRiItemDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, 462, Short.MAX_VALUE)
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -398,9 +690,6 @@ public class JDRI extends javax.swing.JDialog {
             }
         });
         buscarRI.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                buscarRIKeyPressed(evt);
-            }
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 buscarRIKeyReleased(evt);
             }
@@ -422,6 +711,17 @@ public class JDRI extends javax.swing.JDialog {
         tablaItems.setModel(modelItems);
         tablaItems.setCellEditor(editor);
         tablaItems.setName("tablaItems"); // NOI18N
+        tablaItems.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        tablaItems.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaItemsMouseClicked(evt);
+            }
+        });
+        tablaItems.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                tablaItemsKeyPressed(evt);
+            }
+        });
         jScrollPane2.setViewportView(tablaItems);
         establecerEditorDeString(tablaItems);
         setUpModelItems(modelItems);
@@ -444,22 +744,32 @@ public class JDRI extends javax.swing.JDialog {
             }
         });
 
+        editItemRI.setText(resourceMap.getString("editItemRI.text")); // NOI18N
+        editItemRI.setEnabled(false);
+        editItemRI.setName("editItemRI"); // NOI18N
+        editItemRI.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editItemRIActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(13, 13, 13)
-                        .addComponent(remItemRI))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(addItemRI)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 1037, Short.MAX_VALUE)
+                    .addComponent(addItemRI)
+                    .addComponent(editItemRI)
+                    .addComponent(remItemRI))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 1043, Short.MAX_VALUE)
                 .addContainerGap())
         );
+
+        jPanel4Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {addItemRI, editItemRI, remItemRI});
+
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
@@ -467,11 +777,16 @@ public class JDRI extends javax.swing.JDialog {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(remItemRI)
+                        .addGap(31, 31, 31)
+                        .addComponent(addItemRI)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(addItemRI)))
+                        .addComponent(editItemRI)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(remItemRI)))
                 .addContainerGap())
         );
+
+        jPanel4Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {addItemRI, editItemRI, remItemRI});
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -643,10 +958,10 @@ public class JDRI extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        
+
         limpiarCampos();
         isEdit = false;
-        if (obtenerDatosDeList()){
+        if (obtenerDatosDeList()) {
             desbloquearCampos(false);
             desbloquearBoton(3);
         }
@@ -660,8 +975,8 @@ public class JDRI extends javax.swing.JDialog {
     }//GEN-LAST:event_addRIActionPerformed
 
     private void editRIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editRIActionPerformed
-        
-        if (obtenerDatosDeList()){
+
+        if (obtenerDatosDeList()) {
             isEdit = true;
             desbloquearCampos(true);
             desbloquearBoton(1);
@@ -670,7 +985,7 @@ public class JDRI extends javax.swing.JDialog {
 
     private void jListaDeRIValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jListaDeRIValueChanged
         isEdit = false;
-        if (obtenerDatosDeList()){
+        if (obtenerDatosDeList()) {
             desbloquearCampos(false);
             desbloquearBoton(3);
         }
@@ -680,17 +995,13 @@ public class JDRI extends javax.swing.JDialog {
         dispose();
     }//GEN-LAST:event_jButton4ActionPerformed
 
-    private void buscarRIKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_buscarRIKeyPressed
-        
-    }//GEN-LAST:event_buscarRIKeyPressed
-
     private void buscarRIKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_buscarRIKeyReleased
-        if(buscarRI.getText().length()>= 3){
+        if (buscarRI.getText().length() >= 3) {
             query = buscarRI.getText();
             Task t = queryRI();
             t.execute();
         }
-        if(buscarRI.getText().length()== 0){
+        if (buscarRI.getText().length() == 0) {
             recargarListaDeRI();
         }
     }//GEN-LAST:event_buscarRIKeyReleased
@@ -700,53 +1011,97 @@ public class JDRI extends javax.swing.JDialog {
     }//GEN-LAST:event_CerrarActionPerformed
 
     private void seleccionarObraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_seleccionarObraActionPerformed
-        if(!jListDeObra.isSelectionEmpty()){
-            obraSelect = (Obras)jListDeObra.getSelectedValue();
+        if (!jListDeObra.isSelectionEmpty()) {
+            obraSelect = (Obras) jListDeObra.getSelectedValue();
             lblNombreObra.setText(obraSelect.toString());
             jDialog1.dispose();
         }
     }//GEN-LAST:event_seleccionarObraActionPerformed
 
     private void buscarRIFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_buscarRIFocusGained
-        if(buscarRI.getText().equals("Buscar por número, obra, proveedor o detalle...")){
+        if (buscarRI.getText().equals("Buscar por número, obra, proveedor o detalle...")) {
             buscarRI.setText("");
-        }
-        else{
-            
+        } else {
         }
     }//GEN-LAST:event_buscarRIFocusGained
 
     private void buscarRIFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_buscarRIFocusLost
-        if(buscarRI.getText().equals("")){
+        if (buscarRI.getText().equals("")) {
             buscarRI.setText("Buscar por número, obra, proveedor o detalle...");
-        }
-        else{
-            
+        } else {
         }
     }//GEN-LAST:event_buscarRIFocusLost
 
     private void addItemRIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addItemRIActionPerformed
-        modelItems.addRegistro(new RiItem());
-        
+        selected = new RiItem();
+        setRiItemInDialog(selected, true);
+        ABMRiItemDialog.setLocationRelativeTo(tablaItems);
+        ABMRiItemDialog.setVisible(true);
+
     }//GEN-LAST:event_addItemRIActionPerformed
 
     private void remItemRIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_remItemRIActionPerformed
         int opcion = tablaItems.getSelectedRow();
-        if(opcion != -1){
-        modelItems.delRegistro(opcion);
+        if (opcion != -1) {
+            modelItems.delRegistro(opcion);
         }
     }//GEN-LAST:event_remItemRIActionPerformed
 
     private void jListDeObraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jListDeObraMouseClicked
-    if (evt.getClickCount() == 2) // Se mira si es doble click
+        if (evt.getClickCount() == 2) // Se mira si es doble click
         {
-            if(!jListDeObra.isSelectionEmpty()){
-            obraSelect = (Obras)jListDeObra.getSelectedValue();
-            lblNombreObra.setText(obraSelect.toString());
-            jDialog1.dispose();
-        }
+            if (!jListDeObra.isSelectionEmpty()) {
+                obraSelect = (Obras) jListDeObra.getSelectedValue();
+                lblNombreObra.setText(obraSelect.toString());
+                jDialog1.dispose();
+            }
         }
     }//GEN-LAST:event_jListDeObraMouseClicked
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        ABMRiItemDialog.dispose();
+        selected = new RiItem();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void tablaItemsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaItemsMouseClicked
+        if (evt.getClickCount() == 2) // Se mira si es doble click
+        {
+            setRiItemInDialog(selected, false);
+        ABMRiItemDialog.setLocationRelativeTo(tablaItems);
+        ABMRiItemDialog.setVisible(true);
+        } else {
+            int opcion = tablaItems.getSelectedRow();
+            if (opcion != -1) {
+                selected = modelItems.getFila(opcion);
+            }
+        }
+    }//GEN-LAST:event_tablaItemsMouseClicked
+
+    private void tablaItemsKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tablaItemsKeyPressed
+        int opcion = tablaItems.getSelectedRow();
+        if (opcion != -1) {
+            selected = modelItems.getFila(opcion);
+        }
+    }//GEN-LAST:event_tablaItemsKeyPressed
+
+    private void guardarRiItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarRiItemActionPerformed
+        selected = getRiItemFromDialog(selected);
+        if (selected.getRiItemId() != 0) {
+            //Modifico
+            modelItems.insertarFila(selected, tablaItems.getSelectedRow());
+        } else {
+            //nuevo
+            modelItems.addRegistro(selected);
+        }
+
+        ABMRiItemDialog.dispose();
+    }//GEN-LAST:event_guardarRiItemActionPerformed
+
+    private void editItemRIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editItemRIActionPerformed
+        setRiItemInDialog(selected, true);
+        ABMRiItemDialog.setLocationRelativeTo(tablaItems);
+        ABMRiItemDialog.setVisible(true);
+    }//GEN-LAST:event_editItemRIActionPerformed
 
     /**
      * @param args the command line arguments
@@ -788,76 +1143,106 @@ public class JDRI extends javax.swing.JDialog {
                     }
                 });
                 dialog.setVisible(true);
-                
+
             }
         });
     }
-    
-    private void setUpModelItems(TablaRIItemModel model){
-        
+
+    private void setUpModelItems(TablaRIItemModel model) {
+
         tablaItems.getColumnModel().getColumn(0).setWidth(30);
         tablaItems.getColumnModel().getColumn(1).setWidth(30);
-        
+
     }
-    
+
+    private void setRiItemInDialog(RiItem it, boolean editar) {
+
+        habilitarCamposABMRiItem(editar);
+
+        fechaNecesidad.setDate(it.getFecha_necesidad());
+        fechaEmision.setDate(it.getFecha_emision());
+        fechaOc.setDate(it.getFecha_oc());
+        fechaEntrega.setDate(it.getFecha_entrega());
+        cantidad.setText(it.getCantidad());
+        unidad.setText(it.getUnidad());
+        detalle.setText(it.getDetalle());
+        observaciones.setText(it.getObservacion());
+        proveedor.setText(it.getProveedor());
+        numeroOC.setText(it.getOC_num());
+    }
+
+    private RiItem getRiItemFromDialog(RiItem it) {
+        it.setFecha_necesidad(fechaNecesidad.getDate());
+        it.setFecha_emision(fechaEmision.getDate());
+        it.setFecha_oc(fechaOc.getDate());
+        it.setFecha_entrega(fechaEntrega.getDate());
+        it.setCantidad(cantidad.getText());
+        it.setUnidad(unidad.getText());
+        it.setDetalle(detalle.getText());
+        it.setObservacion(observaciones.getText());
+        it.setProveedor(proveedor.getText());
+        it.setOC_num(numeroOC.getText());
+        return it;
+    }
+    /*
     public void enabledCampoEstados(){
-        String opcion = comboEstado.getSelectedItem().toString();
-        if(isEdit){
-        //"Creada", "Emitida", "OC Generada", "Cumplida"
-        /*if(opcion .equals("Creada")){
-            dateEmision.setEnabled(false);
-            dateOC.setEnabled(false);
-            dateEntrega.setEnabled(false);
-            txtProveedor.setEnabled(false);
-            txtOC_Num.setEnabled(false);
-        }*/
-        if(opcion .equals("Emitida")){
-            dateEmision.setEnabled(true);
-            dateOC.setEnabled(false);
-            dateEntrega.setEnabled(false);
-            txtProveedor.setEnabled(true);
-            txtOC_Num.setEnabled(false);
-        }
-        if(opcion.equals("OC Generada")){
-            dateEmision.setEnabled(true);
-            dateOC.setEnabled(true);
-            dateEntrega.setEnabled(false);
-            txtProveedor.setEnabled(true);
-            txtOC_Num.setEnabled(true);
-        }
-        if(opcion.equals("Cumplida")){
-            dateEmision.setEnabled(true);
-            dateOC.setEnabled(true);
-            dateEntrega.setEnabled(true);
-            txtProveedor.setEnabled(true);
-            txtOC_Num.setEnabled(true);
-        }
-        }else{
-            dateEmision.setEnabled(false);
-            dateOC.setEnabled(false);
-            dateEntrega.setEnabled(false);
-            txtProveedor.setEnabled(false);
-            txtOC_Num.setEnabled(false);
-        }
+    String opcion = comboEstado.getSelectedItem().toString();
+    if(isEdit){
+    //"Creada", "Emitida", "OC Generada", "Cumplida"
+    if(opcion .equals("Creada")){
+    dateEmision.setEnabled(false);
+    dateOC.setEnabled(false);
+    dateEntrega.setEnabled(false);
+    txtProveedor.setEnabled(false);
+    txtOC_Num.setEnabled(false);
     }
-    
+    if(opcion .equals("Emitida")){
+    dateEmision.setEnabled(true);
+    dateOC.setEnabled(false);
+    dateEntrega.setEnabled(false);
+    txtProveedor.setEnabled(true);
+    txtOC_Num.setEnabled(false);
+    }
+    if(opcion.equals("OC Generada")){
+    dateEmision.setEnabled(true);
+    dateOC.setEnabled(true);
+    dateEntrega.setEnabled(false);
+    txtProveedor.setEnabled(true);
+    txtOC_Num.setEnabled(true);
+    }
+    if(opcion.equals("Cumplida")){
+    dateEmision.setEnabled(true);
+    dateOC.setEnabled(true);
+    dateEntrega.setEnabled(true);
+    txtProveedor.setEnabled(true);
+    txtOC_Num.setEnabled(true);
+    }
+    }else{
+    dateEmision.setEnabled(false);
+    dateOC.setEnabled(false);
+    dateEntrega.setEnabled(false);
+    txtProveedor.setEnabled(false);
+    txtOC_Num.setEnabled(false);
+    }
+    }*/
+
     public void desbloquearCampos(boolean b) {
-        
+
         txtRI_Num.setEnabled(b);
-        btnObra.setEnabled(b);    
-        dateNecesidad.setEnabled(b);
+        btnObra.setEnabled(b);
         txtSolicitante.setEnabled(b);
         txtObservaciones.setEnabled(b);
-        comboEstado.setEnabled(b);
         addItemRI.setEnabled(b);
         remItemRI.setEnabled(b);
-        tablaItems.setEnabled(b);
+        editItemRI.setEnabled(b);
+        //tablaItems.setEnabled(b);
         /*if((ri.getRI_ID() != 0 && b == true) || !b  ){
-            dateNuevaAlarma.setEnabled(b);
-            btnCrearAlarma.setEnabled(b);
+        dateNuevaAlarma.setEnabled(b);
+        btnCrearAlarma.setEnabled(b);
         }*/
-        enabledCampoEstados();
+        //enabledCampoEstados();
     }
+
     public void desbloquearBoton(int opcion) {
         /**
          * 0: Desbloquear boton Crear
@@ -880,13 +1265,13 @@ public class JDRI extends javax.swing.JDialog {
                 btnModificar.setEnabled(false);
         }
     }
-    
+
     public boolean obtenerDatosDeList() {
-        
+
         if (!listaDeRI.isEmpty()) {
-            if(jListaDeRI.isSelectionEmpty()){
+            if (jListaDeRI.isSelectionEmpty()) {
                 ri = (RI) listaDeRI.get(0);
-            }else{
+            } else {
                 ri = (RI) listaDeRI.get(jListaDeRI.getSelectedIndex());
             }
             setDatosDeRI(ri);
@@ -894,50 +1279,36 @@ public class JDRI extends javax.swing.JDialog {
         }
         return false;
     }
-    
+
     public void setDatosDeRI(RI req) {
         RIItemDAO riiDao = new RIItemDAO();
         riiDao.conectar();
         ArrayList<RiItem> list = riiDao.cargarTodos(req.getRI_ID());
         modelItems.clean();
-        for(RiItem it:list){
+        for (RiItem it : list) {
             modelItems.addRegistro(it);
         }
         txtRI_Num.setText(req.getRI_num());
         lblNombreObra.setText(req.getCodigoObra());
-        dateNecesidad.setDate(req.getFecha_necesidad());
         txtSolicitante.setText(req.getSolicitante());
         txtObservaciones.setText(req.getObservaciones());
-        dateEmision.setDate(req.getFecha_emision());
-        txtProveedor.setText(req.getProveedor());
-        txtOC_Num.setText(req.getOC_num());
-        dateOC.setDate(req.getFecha_oc());
-        dateEntrega.setDate(req.getFecha_entrega());
-        comboEstado.setSelectedItem(req.getEstado());
         obraSelect.setCodigo(req.getCodigoObra());
         obraSelect.setId(req.getObraID());
-        riNum.setText("RI"+req.getRI_ID());
+        riNum.setText("RI" + req.getRI_ID());
     }
-    
+
     public void limpiarCampos() {
         txtRI_Num.setText("");
         lblNombreObra.setText("");
-        dateNecesidad.setDate(null);
         txtSolicitante.setText("");
         txtObservaciones.setText("");
-        dateEmision.setDate(null);
-        txtProveedor.setText("");
-        txtOC_Num.setText("");
-        dateOC.setDate(null);
-        dateEntrega.setDate(null);
-        comboEstado.setSelectedIndex(0);
         ri = new RI();
         obraSelect = new Obras();
         dateNuevaAlarma.setDate(null);
         modelItems.clean();
         riNum.setText(null);
     }
-    
+
     private void setListDeRI(ArrayList<RI> list) {
         listaDeRI.clear();
         for (RI r : list) {
@@ -945,79 +1316,93 @@ public class JDRI extends javax.swing.JDialog {
         }
         jListaDeRI.setModel(listaDeRI);
     }
-    
+
     public void setModelListRI(DefaultListModel list) {
         listaDeRI = list;
     }
-    
-    public  void setSelectedAlarma(RI r){
+
+    public void setSelectedAlarma(RI r) {
         jListaDeRI.setSelectedValue(r, true);
     }
 
     public DefaultListModel getModelListAlarmas() {
         return listaDeRI;
     }
-    
+
     private void recargarListaDeRI() {
         RIDAO riDAO = new RIDAO();
         riDAO.conectar();
         setListDeRI(riDAO.cargarTodos());
     }
-    
+
     @Action
     public Task guardarRI() {
-        if(txtRI_Num.getText().isEmpty()){
+        if (txtRI_Num.getText().isEmpty()) {
             OpcionPanel.showMessageDialog(null, "El número de Requerimiento Interno es obligatorio.", "Error", OpcionPanel.ERROR_MESSAGE);
             return null;
         }
-        if(tablaItems.getModel().getRowCount()== 0){
+        if (tablaItems.getModel().getRowCount() == 0) {
             OpcionPanel.showMessageDialog(null, "Debe especificar al menos un ítem en la lista.", "Error", OpcionPanel.ERROR_MESSAGE);
             return null;
         }
-        
+
         ri = new RI();
         riItemes = new ArrayList<RiItem>();
         ri.setRI_num(txtRI_Num.getText());
-        ri.setFecha_necesidad(dateNecesidad.getDate());
-        if(!txtSolicitante.getText().isEmpty()){
+        if (!txtSolicitante.getText().isEmpty()) {
             ri.setSolicitante(txtSolicitante.getText());
         }
-        
+
         ri.setObservaciones(txtObservaciones.getText());
-        ri.setProveedor(txtProveedor.getText());
-        ri.setOC_num(txtOC_Num.getText());
-        ri.setFecha_emision(dateEmision.getDate());
-        ri.setFecha_oc(dateOC.getDate());
-        ri.setFecha_entrega(dateEntrega.getDate());
         ri.setObraID(obraSelect.getId());
         ri.setCodigoObra(obraSelect.getCodigo());
-        for(int i = 0; i < modelItems.getRowCount(); i++){
-            
+        for (int i = 0; i < modelItems.getRowCount(); i++) {
+
             riItemes.add(modelItems.getFila(i));
         }
         return new GuardarRITask(org.jdesktop.application.Application.getInstance(zilleprojects.ZilleProjectsApp.class));
     }
 
+    private void habilitarCamposABMRiItem(boolean editar) {
+        fechaNecesidad.setEnabled(editar);
+        fechaEmision.setEnabled(editar);
+        fechaOc.setEnabled(editar);
+        fechaEntrega.setEnabled(editar);
+        cantidad.setEnabled(editar);
+        unidad.setEnabled(editar);
+        detalle.setEnabled(editar);
+        observaciones.setEnabled(editar);
+        proveedor.setEnabled(editar);
+        numeroOC.setEnabled(editar);
+        guardarRiItem.setEnabled(editar);
+    }
+
     private class GuardarRITask extends org.jdesktop.application.Task<Object, Void> {
+
         int r = 0;
+
         GuardarRITask(org.jdesktop.application.Application app) {
             // Runs on the EDT.  Copy GUI state that
             // doInBackground() depends on from parameters
             // to GuardarAlarmaTask fields, here.
             super(app);
         }
-        @Override protected Object doInBackground() {
+
+        @Override
+        protected Object doInBackground() {
             RIDAO dao = new RIDAO();
             dao.conectar();
             r = dao.guardar(ri, riItemes);
             ri.setRI_ID(r);
             return null;  // return your result
         }
-        @Override protected void succeeded(Object result) {
+
+        @Override
+        protected void succeeded(Object result) {
             isEdit = false;
             if (r > 0) {
                 OpcionPanel.showMessageDialog(null, "Requerimiento interno creado correctamente.", "Éxito", OpcionPanel.INFORMATION_MESSAGE);
-                
+
                 listaDeRI.addElement(ri);
                 //jListDeOT.setModel(listDeOT);
                 jListaDeRI.setSelectedValue(ri, true);
@@ -1029,52 +1414,52 @@ public class JDRI extends javax.swing.JDialog {
 
     @Action
     public Task modificarRI() {
-        if(txtRI_Num.getText().isEmpty()){
+        if (txtRI_Num.getText().isEmpty()) {
             return null;
         }
-        
+
         ri.setRI_num(txtRI_Num.getText());
-        ri.setFecha_necesidad(dateNecesidad.getDate());
-        if(!txtSolicitante.getText().isEmpty()){
+        if (!txtSolicitante.getText().isEmpty()) {
             ri.setSolicitante(txtSolicitante.getText());
         }
         ri.setObservaciones(txtObservaciones.getText());
-        ri.setProveedor(txtProveedor.getText());
-        ri.setOC_num(txtOC_Num.getText());
-        ri.setFecha_emision(dateEmision.getDate());
-        ri.setFecha_oc(dateOC.getDate());
-        ri.setFecha_entrega(dateEntrega.getDate());
         ri.setObraID(obraSelect.getId());
         ri.setCodigoObra(obraSelect.getCodigo());
         riItemes = new ArrayList<RiItem>();
-        for(int i = 0; i < modelItems.getRowCount(); i++){
-            
+        for (int i = 0; i < modelItems.getRowCount(); i++) {
+
             riItemes.add(modelItems.getFila(i));
         }
         return new ModificarRITask(org.jdesktop.application.Application.getInstance(zilleprojects.ZilleProjectsApp.class));
     }
 
     private class ModificarRITask extends org.jdesktop.application.Task<Object, Void> {
+
         int r = 0;
+
         ModificarRITask(org.jdesktop.application.Application app) {
-            
+
             super(app);
         }
-        @Override protected Object doInBackground() {
+
+        @Override
+        protected Object doInBackground() {
             RIDAO dao = new RIDAO();
             dao.conectar();
             r = dao.modificar(ri, riItemes);
             return null;  // return your result
         }
-        @Override protected void succeeded(Object result) {
+
+        @Override
+        protected void succeeded(Object result) {
             isEdit = false;
-            
+
             if (r > 0) {
                 OpcionPanel.showMessageDialog(null, "Requerimiento interno modificado correctamente.", "Éxito", OpcionPanel.INFORMATION_MESSAGE);
                 if (obtenerDatosDeList()) {
-                   desbloquearCampos(false);
-                   desbloquearBoton(3);
-               }
+                    desbloquearCampos(false);
+                    desbloquearBoton(3);
+                }
             } else {
                 OpcionPanel.showMessageDialog(null, "Ocurrió un error al procesar la solicitud.", "Error", OpcionPanel.ERROR_MESSAGE);
                 recargarListaDeRI();
@@ -1085,58 +1470,73 @@ public class JDRI extends javax.swing.JDialog {
 
     @Action
     public Task eliminarRI() {
-        if(ri.getRI_ID() == 0) return  null;
-        if(OpcionPanel.NO_OPTION == OpcionPanel.showConfirmDialog(null, "¿Realmente desea quitar este requerimiento interno del sistema?\nTambién se eliminarán las alarmas asociadas.", "Confirmar eliminación", OpcionPanel.YES_NO_OPTION)){
+        if (ri.getRI_ID() == 0) {
+            return null;
+        }
+        if (OpcionPanel.NO_OPTION == OpcionPanel.showConfirmDialog(null, "¿Realmente desea quitar este requerimiento interno del sistema?\nTambién se eliminarán las alarmas asociadas.", "Confirmar eliminación", OpcionPanel.YES_NO_OPTION)) {
             return null;
         }
         return new EliminarRITask(org.jdesktop.application.Application.getInstance(zilleprojects.ZilleProjectsApp.class));
     }
 
     private class EliminarRITask extends org.jdesktop.application.Task<Object, Void> {
+
         boolean r = false;
+
         EliminarRITask(org.jdesktop.application.Application app) {
-            
+
             super(app);
         }
-        @Override protected Object doInBackground() {
+
+        @Override
+        protected Object doInBackground() {
             RIDAO otDao = new RIDAO();
             otDao.conectar();
             r = otDao.borrar(ri);
             return null;  // return your result
         }
-        @Override protected void succeeded(Object result) {
-            if(r) {
+
+        @Override
+        protected void succeeded(Object result) {
+            if (r) {
                 //int i = jListDeOT.getSelectedIndex();
                 listaDeRI.removeElement(ri);
                 limpiarCampos();
-                try{
-                appMain.verificarAlarmas().execute();
-                }catch (Exception ex) {}
-            }else{
+                try {
+                    appMain.verificarAlarmas().execute();
+                } catch (Exception ex) {
+                }
+            } else {
                 OpcionPanel.showMessageDialog(null, "Ocurrió un error al procesar la solicitud. \nIntente nuevamente. ", "Error", OpcionPanel.ERROR_MESSAGE);
             }
         }
     }
-    
+
     @Action
     public Task queryRI() {
         return new QueryRITask(org.jdesktop.application.Application.getInstance(zilleprojects.ZilleProjectsApp.class));
     }
 
     private class QueryRITask extends org.jdesktop.application.Task<Object, Void> {
+
         ArrayList<RI> rList = new ArrayList<RI>();
+
         QueryRITask(org.jdesktop.application.Application app) {
-            
+
             super(app);
         }
-        @Override protected Object doInBackground() {
+
+        @Override
+        protected Object doInBackground() {
             RIDAO otDao = new RIDAO();
             otDao.conectar();
             rList = otDao.find(query);
-            
+
             return null;  // return your result
         }
-        @Override protected void succeeded(Object result) {
+
+        @Override
+        protected void succeeded(Object result) {
 
             setListDeRI(rList);
 
@@ -1145,27 +1545,33 @@ public class JDRI extends javax.swing.JDialog {
 
     @Action
     public Task openSelectObra() {
-        
+
         return new OpenSelectObraTask(org.jdesktop.application.Application.getInstance(zilleprojects.ZilleProjectsApp.class));
     }
 
     private class OpenSelectObraTask extends org.jdesktop.application.Task<Object, Void> {
+
         ArrayList<Obras> arrayDeObras = new ArrayList<Obras>();
+
         OpenSelectObraTask(org.jdesktop.application.Application app) {
             // Runs on the EDT.  Copy GUI state that
             // doInBackground() depends on from parameters
             // to OpenSelectObraTask fields, here.
             super(app);
         }
-        @Override protected Object doInBackground() {
+
+        @Override
+        protected Object doInBackground() {
             ObrasDAO odao = new ObrasDAO();
             odao.conectar();
             arrayDeObras = odao.cargarTodos();
             return null;  // return your result
         }
-        @Override protected void succeeded(Object result) {
+
+        @Override
+        protected void succeeded(Object result) {
             listaDeObras.clear();
-            for(Obras o:arrayDeObras){
+            for (Obras o : arrayDeObras) {
                 listaDeObras.addElement(o);
             }
             jDialog1.setLocationRelativeTo(btnObra);
@@ -1175,46 +1581,54 @@ public class JDRI extends javax.swing.JDialog {
 
     @Action
     public Task crearAlarma2RI() {
-        if(ri.getRI_ID() == 0) return  null;
-        if(dateNuevaAlarma.getDate() == null) return  null;
-        if(OpcionPanel.NO_OPTION == OpcionPanel.showConfirmDialog(null, "¿Desea crear una alarma para este requerimiento interno?", "Confirmación", OpcionPanel.YES_NO_OPTION)){
+        if (ri.getRI_ID() == 0) {
+            return null;
+        }
+        if (dateNuevaAlarma.getDate() == null) {
+            return null;
+        }
+        if (OpcionPanel.NO_OPTION == OpcionPanel.showConfirmDialog(null, "¿Desea crear una alarma para este requerimiento interno?", "Confirmación", OpcionPanel.YES_NO_OPTION)) {
             return null;
         }
         return new CrearAlarma2RITask(org.jdesktop.application.Application.getInstance(zilleprojects.ZilleProjectsApp.class));
     }
 
     private class CrearAlarma2RITask extends org.jdesktop.application.Task<Object, Void> {
+
         Date fecha = dateNuevaAlarma.getDate();
         Alarma alarma = new Alarma();
+
         CrearAlarma2RITask(org.jdesktop.application.Application app) {
-            
+
             // Runs on the EDT.  Copy GUI state that
             // doInBackground() depends on from parameters
             // to CrearAlarma2RITask fields, here.
             super(app);
         }
-        @Override protected Object doInBackground() {
+
+        @Override
+        protected Object doInBackground() {
             AlarmasDAO aDao = new AlarmasDAO();
             aDao.conectar();
-            
+
             alarma.setFecha(fecha);
-            alarma.setComentario(ri.getSolicitante()+" \n"+ri.getObservaciones());
+            alarma.setComentario(ri.getSolicitante() + " \n" + ri.getObservaciones());
             alarma.setRiID(ri.getRI_ID());
-            alarma.setNombre("Alarma para el RI "+ri.getRI_num());
+            alarma.setNombre("Alarma para el RI " + ri.getRI_num());
             alarma.setAlarmaID(aDao.guardar(alarma));
             return null;  // return your result
         }
-        @Override protected void succeeded(Object result) {
-            if(alarma.getAlarmaID()>0){
+
+        @Override
+        protected void succeeded(Object result) {
+            if (alarma.getAlarmaID() > 0) {
                 lblStatus.setText("Alarma creada");
                 dateNuevaAlarma.setDate(null);
-            }else{
+            } else {
                 lblStatus.setText("Error al crear la alarma");
             }
         }
     }
-
-    
 
     private void establecerEditorDeString(JTable t) {
         final EditorDeCeldasString string = new EditorDeCeldasString(10);
@@ -1224,7 +1638,7 @@ public class JDRI extends javax.swing.JDialog {
             @Override
             public Object getCellEditorValue() {
                 return string.getValue();
-                }
+            }
         };
 
         t.setDefaultEditor(String.class, editotStr);
@@ -1232,35 +1646,38 @@ public class JDRI extends javax.swing.JDialog {
 
     @Action
     public Task exportRIexcel() {
-        if(ri.getRI_ID()==0){
+        if (ri.getRI_ID() == 0) {
             return null;
         }
         return new ExportRIexcelTask(org.jdesktop.application.Application.getInstance(zilleprojects.ZilleProjectsApp.class));
     }
 
     private class ExportRIexcelTask extends org.jdesktop.application.Task<Object, Void> {
-        String url="";
+
+        String url = "";
+
         ExportRIexcelTask(org.jdesktop.application.Application app) {
             // Runs on the EDT.  Copy GUI state that
             // doInBackground() depends on from parameters
             // to ExportRIexcelTask fields, here.
             super(app);
         }
-        @Override protected Object doInBackground() {
-            ReportesDAO rdao= new ReportesDAO();
+
+        @Override
+        protected Object doInBackground() {
+            ReportesDAO rdao = new ReportesDAO();
             rdao.conectar();
-            url=rdao.reportRIexcel(ri.getRI_ID(), ri.getRI_num());
+            url = rdao.reportRIexcel(ri.getRI_ID(), ri.getRI_num());
             return null;  // return your result
         }
-        @Override protected void succeeded(Object result) {
+
+        @Override
+        protected void succeeded(Object result) {
             OpcionPanel.showMessageDialog(null, url, "Exportación a Excel.", OpcionPanel.INFORMATION_MESSAGE);
         }
     }
-
-    
-
-    
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JDialog ABMRiItemDialog;
     private javax.swing.JButton Cerrar;
     private javax.swing.JButton addItemRI;
     private javax.swing.JButton addRI;
@@ -1270,17 +1687,36 @@ public class JDRI extends javax.swing.JDialog {
     private javax.swing.JButton btnModificar;
     private javax.swing.JButton btnObra;
     private javax.swing.JTextField buscarRI;
+    private javax.swing.JTextField cantidad;
     private com.toedter.calendar.JDateChooser dateNuevaAlarma;
+    private javax.swing.JTextField detalle;
+    private javax.swing.JButton editItemRI;
     private javax.swing.JButton editRI;
+    private com.toedter.calendar.JDateChooser fechaEmision;
+    private com.toedter.calendar.JDateChooser fechaEntrega;
+    private com.toedter.calendar.JDateChooser fechaNecesidad;
+    private com.toedter.calendar.JDateChooser fechaOc;
+    private javax.swing.JButton guardarRiItem;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton4;
     private javax.swing.JDialog jDialog1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JList jListDeObra;
     private javax.swing.JList jListaDeRI;
     private javax.swing.JPanel jPanel1;
@@ -1289,12 +1725,17 @@ public class JDRI extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JLabel lblNombreObra;
     private javax.swing.JLabel lblStatus;
+    private javax.swing.JTextField numeroOC;
+    private javax.swing.JTextArea observaciones;
+    private javax.swing.JTextField proveedor;
     private javax.swing.JButton remItemRI;
     private javax.swing.JButton remRI;
     private javax.swing.JLabel riNum;
@@ -1303,14 +1744,16 @@ public class JDRI extends javax.swing.JDialog {
     private javax.swing.JTextArea txtObservaciones;
     private javax.swing.JTextField txtRI_Num;
     private javax.swing.JTextField txtSolicitante;
+    private javax.swing.JTextField unidad;
     // End of variables declaration//GEN-END:variables
     private DefaultListModel listaDeRI = new DefaultListModel();
     private RI ri = new RI();
-    private ArrayList<RiItem> riItemes= new ArrayList<RiItem>();
+    private RiItem selected = new RiItem();
+    private ArrayList<RiItem> riItemes = new ArrayList<RiItem>();
     private DefaultListModel listaDeObras = new DefaultListModel();
     private Obras obraSelect = new Obras();
-    private String query ="";
+    private String query = "";
     private boolean isEdit = false;
     private TablaRIItemModel modelItems = new TablaRIItemModel();
-    private CellTextEditor editor= new CellTextEditor(true);
+    private CellTextEditor editor = new CellTextEditor(true);
 }

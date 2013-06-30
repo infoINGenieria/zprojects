@@ -21,7 +21,6 @@ import net.sf.jasperreports.view.JasperViewer;
 import java.awt.Dialog.ModalExclusionType;
 import java.net.URL;
 import java.sql.Connection;
-import java.util.Collection;
 import java.util.Collections;
 
 /**

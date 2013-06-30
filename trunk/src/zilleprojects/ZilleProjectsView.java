@@ -32,6 +32,7 @@ import Vista.DialogPanel;
 import Vista.OpcionPanel;
 import Vista.PanelAlarma;
 import Vista.PanelAzul;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.Toolkit;
@@ -59,6 +60,7 @@ import javax.swing.Timer;
 import javax.swing.Icon;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
+import javax.swing.UIManager;
 import org.jdesktop.application.Task;
 
 
@@ -86,6 +88,7 @@ public class ZilleProjectsView extends FrameView {
         super(app);
 
         initComponents();
+        UIManager.getDefaults().put("jTextFiled.disabledText",Color.RED);
         getFrame().setIconImage(icono);
         panelAlarmas.setVisible(false);
         
@@ -539,16 +542,6 @@ public class ZilleProjectsView extends FrameView {
             JFrame mainFrame = ZilleProjectsApp.getApplication().getMainFrame();
             gestionOperario = new JDEmpleadoGestion(mainFrame, true);
             gestionOperario.setLocationRelativeTo(mainFrame);
-            FuncionDAO fdao = new FuncionDAO();
-            fdao.conectar();
-            ArrayList<Funcion> func = fdao.cargarTodos();
-            JDEmpleadoGestion.funCombo.removeAllElements();
-            for (int i = 0; i < func.size(); i++) {
-                JDEmpleadoGestion.funCombo.addElement((Funcion) func.get(i));
-
-            }
-
-
             ZilleProjectsApp.getApplication().show(gestionOperario);
         } 
 
@@ -1027,7 +1020,7 @@ public class ZilleProjectsView extends FrameView {
             //Buscar las VTO_SEGURO con fecha proximo 20 días.
             alarmas = edao.getAlarmasEquipos(dia, proximo);
             //Buscar las VtO_CARNET con fecha proximo 20 días.
-            alarmas.addAll(odao.getAlarmasEquipos(dia, proximo));
+            alarmas.addAll(odao.getAlarmasOperarios(dia, proximo));
             //Luego, buscar las alarmas para hoy, y cuyo fecha previa sea antes o igual a hoy.
             AlarmasDAO adao = new AlarmasDAO();
             adao.conectar();

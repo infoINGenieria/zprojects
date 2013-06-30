@@ -12,6 +12,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  *
@@ -35,14 +36,14 @@ public class RIDAO {
         try {          
             conector.setAutoCommit(false);
             query = "insert into ri (OBRAID, RI_NUM, "
-                    + "OBSERVACIONES, SOLICITANTE) "
-                    + "values ( ?, ?, ?, ?)";
+                    + "OBSERVACIONES, SOLICITANTE, FECHA_CREACION) "
+                    + "values ( ?, ?, ?, ?, ?)";
             PreparedStatement ps = conector.prepareStatement(query);     
             ps.setInt(1, ri.getObraID());
             ps.setString(2, ri.getRI_num());    
             ps.setString(3, ri.getObservaciones());
             ps.setString(4, ri.getSolicitante());
-            
+            ps.setDate(5, FechaUtil.getFechatoDB(new Date()));
             ps.executeUpdate();
             ResultSet generatedKeys = ps.getGeneratedKeys();
 
@@ -158,10 +159,10 @@ public class RIDAO {
     
     public ArrayList<RI> cargarTodos() {
         String query = null;
-        ArrayList<RI> alarmas = new ArrayList<RI>();
+        ArrayList<RI> ris = new ArrayList<RI>();
         try {
             query = "select ri.*, OB.codigo from ri "
-                    + "LEFT JOIN obras OB ON ri.obraID = OB.id order by fecha_necesidad asc";
+                    + "LEFT JOIN obras OB ON ri.obraID = OB.id order by fecha_creacion asc";
             PreparedStatement ps = conector.prepareStatement(query);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
@@ -172,15 +173,16 @@ public class RIDAO {
                 ri.setObservaciones(rs.getString("OBSERVACIONES"));
                 ri.setSolicitante(rs.getString("SOLICITANTE"));
                 ri.setCodigoObra(rs.getString("CODIGO"));
-                alarmas.add(ri);
+                ri.setFecha_creacion(rs.getDate("FECHA_CREACION"));
+                ris.add(ri);
             }
             rs.close();
             ps.close();
 
         } catch (SQLException ex) {
-            System.out.print("Falló al cargar las alarmas " +ex.getMessage()+ "\n");
+            System.out.print("Falló al cargar las ri " +ex.getMessage()+ "\n");
         }
-        return alarmas;
+        return ris;
 
     } 
     
@@ -190,7 +192,7 @@ public class RIDAO {
         try {
             query = "select ri.*, OB.codigo from ri "
                     + "LEFT JOIN obras OB ON ri.obraID = OB.id where "
-                    + "ri.RIID = "+RI_ID+ " order by fecha_necesidad asc";
+                    + "ri.RIID = "+RI_ID+ " order by fecha_creacion asc";
             PreparedStatement ps = conector.prepareStatement(query);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
@@ -201,7 +203,7 @@ public class RIDAO {
                 ri.setObservaciones(rs.getString("OBSERVACIONES"));
                 ri.setSolicitante(rs.getString("SOLICITANTE"));
                 ri.setCodigoObra(rs.getString("CODIGO"));
-                
+                ri.setFecha_creacion(rs.getDate("FECHA_CREACION"));
             }
             rs.close();
             ps.close();
@@ -215,15 +217,14 @@ public class RIDAO {
     
     public ArrayList<RI> find(String q) {
         String query = null;
-        ArrayList<RI> alarmas = new ArrayList<RI>();
+        ArrayList<RI> ris = new ArrayList<RI>();
         try {
             query = "select ri.*, OB.codigo from ri "
                     + "LEFT JOIN obras OB ON ri.obraID = OB.id where "
                     + "ri.RI_NUM like '%"+q+"%' or "
                     + "OB.codigo like '%"+q+"%' or "
-                    + "ri.solicitante like '%"+q+"%' or "
-                    + "ri.proveedor like '%"+q+"%' "
-                    + "order by fecha_necesidad asc";
+                    + "ri.solicitante like '%"+q+"%' "
+                    + "order by fecha_creacion asc";
             PreparedStatement ps = conector.prepareStatement(query);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
@@ -234,7 +235,8 @@ public class RIDAO {
                 ri.setObservaciones(rs.getString("OBSERVACIONES"));
                 ri.setSolicitante(rs.getString("SOLICITANTE"));
                 ri.setCodigoObra(rs.getString("CODIGO"));
-                alarmas.add(ri);
+                ri.setFecha_creacion(rs.getDate("FECHA_CREACION"));
+                ris.add(ri);
             }
             rs.close();
             ps.close();
@@ -242,150 +244,7 @@ public class RIDAO {
         } catch (SQLException ex) {
             System.out.print("Falló al cargar los ri: " +ex.getMessage()+ "\n");
         }
-        return alarmas;
+        return ris;
 
     } 
-    
-    
-    /*RI ITEM*/
-    /*
-    public int guardarItem(RiItem ri) {
-        int r = 0;
-        String query = null;
-
-        try {          
-            query = "insert into RI (RIID, CANTIDAD, "
-                    + "UNIDAD, DETALLE, OBSERVACION) "
-                    + "values ( ?, ?, ?, ?, ?,)";
-            PreparedStatement ps = conector.prepareStatement(query);     
-            ps.setInt(1, ri.getRiId());
-            ps.setString(2, ri.getCantidad());
-            ps.setString(3, ri.getUnidad());
-            ps.setString(4, ri.getDetalle());
-            ps.setString(5, ri.getObservacion());
-
-            ps.executeUpdate();
-            ResultSet generatedKeys = ps.getGeneratedKeys();
-
-            if (generatedKeys.next()) {
-                r = generatedKeys.getInt(1);
-            }
-            generatedKeys.close();
-            ps.close();
-
-        } catch (SQLException ex) {
-            r = 0;
-        }
-        return r;
-    }
-    
-    public int modificarItem(RiItem ri) {
-        int r = 0;
-        String query = null;
-
-        try {
-            query = "update RIITEM set RIID=?, CANTIDAD=?, "
-                    + "UNIDAD=?, DETALLE=?, OBSERVACION=? where RIITEMID = " +ri.getRiItemId();
-            PreparedStatement ps = conector.prepareStatement(query);
-            ps.setInt(1, ri.getRiId());
-            ps.setString(2, ri.getCantidad());
-            ps.setString(3, ri.getUnidad());
-            ps.setString(4, ri.getDetalle());
-            ps.setString(5, ri.getObservacion());
-            
-            ps.executeUpdate();
-            ResultSet generatedKeys = ps.getGeneratedKeys();
-
-            if (generatedKeys.next()) {
-                r = generatedKeys.getInt(1);
-            }else{
-                r= ri.getRiItemId();           
-            }
-            generatedKeys.close();
-            ps.close();
-
-        } catch (SQLException ex) {
-            r = 0;
-        }
-        return r;
-    }
-    
-    public boolean borrarItem(RiItem ri) {
-
-        boolean r =false;
-        try {
-            //conector.setAutoCommit(false);
-            String query = "delete from RIITEM where RIITEMID = ?";
-            PreparedStatement ps = conector.prepareStatement(query);
-            ps.setInt(1, ri.getRiItemId());
-            int rs = ps.executeUpdate();
-            
-            
-            //conector.commit();
-            ps.close();
-            
-            //conector.setAutoCommit(true);
-            r=true;
-
-        } catch (SQLException ex) {
-            r = false;
-        }
-
-        return r;
-    }
-    
-    public ArrayList<RiItem> cargarAllItem(int idId) {
-        String query = null;
-        ArrayList<RiItem> riItems = new ArrayList<RiItem>();
-        try {
-            query = "select * from RIITEM where RIID = "+idId;
-            PreparedStatement ps = conector.prepareStatement(query);
-            ResultSet rs = ps.executeQuery();
-            while (rs.next()) {
-                RiItem ri = new RiItem();
-                ri.setRiItemId(rs.getInt("RIITEMID"));
-                ri.setRiId(rs.getInt("RIID"));
-                ri.setCantidad(rs.getString("CANTIDAD"));
-                ri.setUnidad(rs.getString("UNIDAD"));
-                ri.setDetalle(rs.getString("DETALLE"));
-                ri.setObservacion(rs.getString("OBSERVACION"));
-                
-                riItems.add(ri);
-            }
-            rs.close();
-            ps.close();
-
-        } catch (SQLException ex) {
-            System.out.print("Falló al cargar las Ri " +ex.getMessage()+ "\n");
-        }
-        return riItems;
-
-    } 
-    
-    public RiItem findItemById(int riITemId) {
-        String query = null;
-        RiItem ri = new RiItem();
-        try {
-            query = "select * from RIITEM where RIITEMID = "+riITemId;
-            PreparedStatement ps = conector.prepareStatement(query);
-            ResultSet rs = ps.executeQuery();
-            while (rs.next()) {
-                
-                ri.setRiItemId(rs.getInt("RIITEMID"));
-                ri.setRiId(rs.getInt("RIID"));
-                ri.setCantidad(rs.getString("CANTIDAD"));
-                ri.setUnidad(rs.getString("UNIDAD"));
-                ri.setDetalle(rs.getString("DETALLE"));
-                ri.setObservacion(rs.getString("OBSERVACION"));
-                
-            }
-            rs.close();
-            ps.close();
-
-        } catch (SQLException ex) {
-            System.out.print("Falló al cargar los ri: " +ex.getMessage()+ "\n");
-        }
-        return ri;
-
-    } */
 }

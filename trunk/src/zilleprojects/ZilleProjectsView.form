@@ -66,7 +66,7 @@
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="botonGrandeSalir" linkSize="10" min="-2" pref="129" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="loginOut" pref="276" max="32767" attributes="1"/>
+                      <Component id="loginOut" pref="270" max="32767" attributes="1"/>
                       <EmptySpace min="-2" pref="426" max="-2" attributes="0"/>
                   </Group>
               </Group>

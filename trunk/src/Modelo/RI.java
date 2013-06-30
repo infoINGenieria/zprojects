@@ -4,14 +4,16 @@
  */
 package Modelo;
 
+import java.util.Date;
+
 /**
  *
  * @author matuuar
  */
 public class RI {
-    int RI_ID, obraID;
-    String RI_num, observaciones, codigoObra, solicitante;
-    
+    private int RI_ID, obraID;
+    private String RI_num, observaciones, codigoObra, solicitante;
+    private Date fecha_creacion;
     
     public RI() {
     }
@@ -19,6 +21,14 @@ public class RI {
     @Override
     public String toString() {
         return "["+RI_num + "] "+codigoObra+" - "+solicitante;
+    }
+
+    public Date getFecha_creacion() {
+        return fecha_creacion;
+    }
+
+    public void setFecha_creacion(Date fecha_creacion) {
+        this.fecha_creacion = fecha_creacion;
     }
 
     @Override

@@ -5,6 +5,7 @@
 package DAO;
 
 import Modelo.RiItem;
+import Utils.FechaUtil;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -38,16 +39,23 @@ public class RIItemDAO {
         String query = null;
 
         try {
-            /*`riItemId , riId, cantidad, unidad, detalle, observacion
-            */
+            
             query = "insert into ri_item (riId, cantidad, unidad,"
-                    + " detalle, observacion) values ( ?, ?, ?, ?, ?)";
+                    + " detalle, observacion, oc_num, proveedor, "
+                    +" fecha_entrega, fecha_oc, fecha_emision, fecha_necesidad"
+                    +") values ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement ps = conector.prepareStatement(query);
             ps.setInt(1, it.getRiId());
             ps.setString(2, it.getCantidad());
             ps.setString(3, it.getUnidad());
             ps.setString(4, it.getDetalle());
             ps.setString(5, it.getObservacion());
+            ps.setString(6, it.getOC_num());
+            ps.setString(7, it.getProveedor());
+            ps.setDate(8, FechaUtil.getFechatoDB( it.getFecha_entrega()));
+            ps.setDate(9, FechaUtil.getFechatoDB(it.getFecha_oc()));
+            ps.setDate(10, FechaUtil.getFechatoDB(it.getFecha_emision()));
+            ps.setDate(11, FechaUtil.getFechatoDB(it.getFecha_necesidad()));
             ps.executeUpdate();
             ResultSet generatedKeys = ps.getGeneratedKeys();
 
@@ -70,14 +78,21 @@ public class RIItemDAO {
              /*`riItemId , riId, cantidad, unidad, detalle, observacion
             */
             String query = "update ri_item set riId=?, cantidad=?, unidad=?,"
-                    + " detalle=?, observacion=? where riItemId = ?";
+                    + " detalle=?, observacion=?, oc_num=?, proveedor=?, fecha_entrega=?, "
+                    + " fecha_oc=?, fecha_emision=?, fecha_necesidad=? where riItemId = ?";
             PreparedStatement ps = conector.prepareStatement(query);
             ps.setInt(1, it.getRiId());
             ps.setString(2, it.getCantidad());
             ps.setString(3, it.getUnidad());
             ps.setString(4, it.getDetalle());
             ps.setString(5, it.getObservacion());
-            ps.setInt(6, it.getRiItemId());
+            ps.setString(6, it.getOC_num());
+            ps.setString(7, it.getProveedor());
+            ps.setDate(8, FechaUtil.getFechatoDB( it.getFecha_entrega()));
+            ps.setDate(9, FechaUtil.getFechatoDB(it.getFecha_oc()));
+            ps.setDate(10, FechaUtil.getFechatoDB(it.getFecha_emision()));
+            ps.setDate(11, FechaUtil.getFechatoDB(it.getFecha_necesidad()));
+            ps.setInt(12, it.getRiItemId());
             ps.executeUpdate();
             ResultSet rs = ps.getGeneratedKeys();
             if (rs.next()) {
@@ -92,9 +107,7 @@ public class RIItemDAO {
 
         return r;
     }
-    /*`N_INTERNO` `VEHICULO`  `MARCA`   `MODELO`  `AÑO`  `DOMINIO` 
-    */
-
+    
     public ArrayList<RiItem> cargarTodos(int riId) {
         String query = null;
         ArrayList<RiItem> riItems = new ArrayList<RiItem>();
@@ -110,7 +123,12 @@ public class RIItemDAO {
                 it.setUnidad(rs.getString("unidad"));
                 it.setDetalle(rs.getString("detalle"));
                 it.setObservacion(rs.getString("observacion"));
-                
+                it.setOC_num(rs.getString("oc_num"));
+                it.setProveedor(rs.getString("proveedor"));
+                it.setFecha_entrega(rs.getDate("fecha_entrega"));
+                it.setFecha_oc(rs.getDate("fecha_oc"));
+                it.setFecha_emision(rs.getDate("fecha_emision"));
+                it.setFecha_necesidad(rs.getDate("fecha_necesidad"));
                 riItems.add(it);
             }
             rs.close();
@@ -138,6 +156,12 @@ public class RIItemDAO {
                 it.setUnidad(rs.getString("unidad"));
                 it.setDetalle(rs.getString("detalle"));
                 it.setObservacion(rs.getString("observacion"));
+                it.setOC_num(rs.getString("oc_num"));
+                it.setProveedor(rs.getString("proveedor"));
+                it.setFecha_entrega(rs.getDate("fecha_entrega"));
+                it.setFecha_oc(rs.getDate("fecha_oc"));
+                it.setFecha_emision(rs.getDate("fecha_emision"));
+                it.setFecha_necesidad(rs.getDate("fecha_necesidad"));
             }
             rs.close();
             ps.close();

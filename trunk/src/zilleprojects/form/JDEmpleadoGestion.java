@@ -32,6 +32,15 @@ public class JDEmpleadoGestion extends javax.swing.JDialog {
     public JDEmpleadoGestion(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        recargarListaEmpledos();
+        FuncionDAO fdao = new FuncionDAO();
+        fdao.conectar();
+        ArrayList<Funcion> func = fdao.cargarTodos();
+        funcionCombo.removeAllElements();
+        for (int i = 0; i < func.size(); i++) {
+            funcionCombo.addElement((Funcion) func.get(i));
+
+        }
     }
 
     /** This method is called from within the constructor to
@@ -44,35 +53,14 @@ public class JDEmpleadoGestion extends javax.swing.JDialog {
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
 
-        modificar = new javax.swing.JDialog();
-        jPanel3 = new Vista.PanelAzul();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        modificarPanel = new javax.swing.JPanel();
-        jLabel6 = new javax.swing.JLabel();
-        nlegajo1 = new javax.swing.JTextField();
-        jLabel7 = new javax.swing.JLabel();
-        cuil1 = new javax.swing.JTextField();
-        jLabel8 = new javax.swing.JLabel();
-        nombre1 = new javax.swing.JTextField();
-        jLabel9 = new javax.swing.JLabel();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        observaciones1 = new javax.swing.JTextArea();
-        jLabel11 = new javax.swing.JLabel();
-        comboFuncModif = new javax.swing.JComboBox();
-        desaChechMod = new javax.swing.JCheckBox();
-        jLabel13 = new javax.swing.JLabel();
-        vto_carnet = new com.toedter.calendar.JDateChooser();
-        idText = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        agregarFuncion2 = new javax.swing.JButton();
         panelAzul = new PanelAzul();
         jPanel1 = new javax.swing.JPanel();
         buscarEmpleado = new javax.swing.JTextField();
-        buscarBoton = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         listaEmpleados = new javax.swing.JList();
-        alertas = new javax.swing.JLabel();
+        botonModificar = new javax.swing.JButton();
+        botonEliminar = new javax.swing.JButton();
+        botonEliminar1 = new javax.swing.JButton();
         nuevoOperario = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         nlegajo = new javax.swing.JTextField();
@@ -87,265 +75,39 @@ public class JDEmpleadoGestion extends javax.swing.JDialog {
         comboFuncion = new javax.swing.JComboBox();
         jButton3 = new javax.swing.JButton();
         desaCheck = new javax.swing.JCheckBox();
-        vto_carnet_nuevo = new com.toedter.calendar.JDateChooser();
+        vto_carnet = new com.toedter.calendar.JDateChooser();
         jLabel12 = new javax.swing.JLabel();
-        botonAgrgar = new javax.swing.JButton();
-        botonLimpiar = new javax.swing.JButton();
-        jPanel2 = new javax.swing.JPanel();
-        botonRecargar = new javax.swing.JButton();
-        botonEliminar = new javax.swing.JButton();
-        botonModificar = new javax.swing.JButton();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        vto_psicofisico = new com.toedter.calendar.JDateChooser();
+        vto_cargagral = new com.toedter.calendar.JDateChooser();
+        vto_otros1 = new com.toedter.calendar.JDateChooser();
+        vto_otros3 = new com.toedter.calendar.JDateChooser();
+        vto_cargapeligrosa = new com.toedter.calendar.JDateChooser();
+        vto_otros2 = new com.toedter.calendar.JDateChooser();
+        descripcion1 = new javax.swing.JTextField();
+        descripcion3 = new javax.swing.JTextField();
+        descripcion2 = new javax.swing.JTextField();
         botonSalir = new javax.swing.JButton();
-
-        modificar.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(zilleprojects.ZilleProjectsApp.class).getContext().getResourceMap(JDEmpleadoGestion.class);
-        modificar.setTitle(resourceMap.getString("modificar.title")); // NOI18N
-        modificar.setMinimumSize(new java.awt.Dimension(478, 322));
-        modificar.setModal(true);
-        modificar.setName("modificar"); // NOI18N
-        modificar.setResizable(false);
-
-        jPanel3.setMinimumSize(new java.awt.Dimension(479, 300));
-        jPanel3.setName("jPanel3"); // NOI18N
-        jPanel3.setPreferredSize(new java.awt.Dimension(479, 300));
-
-        jButton1.setIcon(resourceMap.getIcon("jButton1.icon")); // NOI18N
-        jButton1.setText(resourceMap.getString("jButton1.text")); // NOI18N
-        jButton1.setName("jButton1"); // NOI18N
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
-        javax.swing.ActionMap actionMap = org.jdesktop.application.Application.getInstance(zilleprojects.ZilleProjectsApp.class).getContext().getActionMap(JDEmpleadoGestion.class, this);
-        jButton2.setAction(actionMap.get("modificarOperario")); // NOI18N
-        jButton2.setIcon(resourceMap.getIcon("jButton2.icon")); // NOI18N
-        jButton2.setText(resourceMap.getString("jButton2.text")); // NOI18N
-        jButton2.setName("jButton2"); // NOI18N
-
-        modificarPanel.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        modificarPanel.setToolTipText(resourceMap.getString("modificarPanel.toolTipText")); // NOI18N
-        modificarPanel.setName("modificarPanel"); // NOI18N
-        modificarPanel.setOpaque(false);
-        modificarPanel.setLayout(new java.awt.GridBagLayout());
-
-        jLabel6.setText(resourceMap.getString("jLabel6.text")); // NOI18N
-        jLabel6.setName("jLabel6"); // NOI18N
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
-        gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
-        modificarPanel.add(jLabel6, gridBagConstraints);
-
-        nlegajo1.setName("nlegajo1"); // NOI18N
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.ipadx = 103;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
-        modificarPanel.add(nlegajo1, gridBagConstraints);
-
-        jLabel7.setText(resourceMap.getString("jLabel7.text")); // NOI18N
-        jLabel7.setName("jLabel7"); // NOI18N
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
-        gridBagConstraints.insets = new java.awt.Insets(2, 10, 0, 0);
-        modificarPanel.add(jLabel7, gridBagConstraints);
-
-        cuil1.setName("cuil1"); // NOI18N
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 5;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.ipadx = 99;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(2, 10, 0, 17);
-        modificarPanel.add(cuil1, gridBagConstraints);
-
-        jLabel8.setText(resourceMap.getString("jLabel8.text")); // NOI18N
-        jLabel8.setName("jLabel8"); // NOI18N
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
-        gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
-        modificarPanel.add(jLabel8, gridBagConstraints);
-
-        nombre1.setName("nombre1"); // NOI18N
-        nombre1.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                nombre1FocusLost(evt);
-            }
-        });
-        nombre1.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                nombre1KeyTyped(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridwidth = 6;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.ipadx = 285;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(6, 10, 0, 17);
-        modificarPanel.add(nombre1, gridBagConstraints);
-
-        jLabel9.setText(resourceMap.getString("jLabel9.text")); // NOI18N
-        jLabel9.setName("jLabel9"); // NOI18N
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
-        gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
-        modificarPanel.add(jLabel9, gridBagConstraints);
-
-        jScrollPane3.setName("jScrollPane3"); // NOI18N
-
-        observaciones1.setColumns(20);
-        observaciones1.setRows(3);
-        observaciones1.setTabSize(4);
-        observaciones1.setName("observaciones1"); // NOI18N
-        jScrollPane3.setViewportView(observaciones1);
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.gridwidth = 6;
-        gridBagConstraints.gridheight = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.ipadx = 223;
-        gridBagConstraints.ipady = 50;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(6, 10, 0, 17);
-        modificarPanel.add(jScrollPane3, gridBagConstraints);
-
-        jLabel11.setText(resourceMap.getString("jLabel11.text")); // NOI18N
-        jLabel11.setName("jLabel11"); // NOI18N
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 4;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
-        gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
-        modificarPanel.add(jLabel11, gridBagConstraints);
-
-        comboFuncModif.setModel(funCombo);
-        comboFuncModif.setName("comboFuncModif"); // NOI18N
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 4;
-        gridBagConstraints.gridwidth = 6;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHEAST;
-        gridBagConstraints.insets = new java.awt.Insets(6, 10, 0, 17);
-        modificarPanel.add(comboFuncModif, gridBagConstraints);
-
-        desaChechMod.setText(resourceMap.getString("desaChechMod.text")); // NOI18N
-        desaChechMod.setName("desaChechMod"); // NOI18N
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 6;
-        gridBagConstraints.gridy = 5;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.insets = new java.awt.Insets(3, 10, 0, 17);
-        modificarPanel.add(desaChechMod, gridBagConstraints);
-
-        jLabel13.setText(resourceMap.getString("jLabel13.text")); // NOI18N
-        jLabel13.setName("jLabel13"); // NOI18N
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 5;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
-        gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
-        modificarPanel.add(jLabel13, gridBagConstraints);
-
-        vto_carnet.setName("vto_carnet"); // NOI18N
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 5;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.FIRST_LINE_START;
-        gridBagConstraints.insets = new java.awt.Insets(6, 10, 0, 0);
-        modificarPanel.add(vto_carnet, gridBagConstraints);
-
-        idText.setText(resourceMap.getString("idText.text")); // NOI18N
-        idText.setName("idText"); // NOI18N
-
-        jLabel10.setText(resourceMap.getString("jLabel10.text")); // NOI18N
-        jLabel10.setName("jLabel10"); // NOI18N
-
-        agregarFuncion2.setAction(actionMap.get("agregarFuncion")); // NOI18N
-        agregarFuncion2.setIcon(resourceMap.getIcon("agregarFuncion2.icon")); // NOI18N
-        agregarFuncion2.setText(resourceMap.getString("agregarFuncion2.text")); // NOI18N
-        agregarFuncion2.setName("agregarFuncion2"); // NOI18N
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(modificarPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 459, Short.MAX_VALUE)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel10)
-                        .addGap(10, 10, 10)
-                        .addComponent(idText, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 82, Short.MAX_VALUE)
-                        .addComponent(agregarFuncion2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton1)))
-                .addContainerGap())
-        );
-
-        jPanel3Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jButton1, jButton2});
-
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(modificarPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(jLabel10)
-                    .addComponent(idText)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2)
-                    .addComponent(agregarFuncion2))
-                .addContainerGap())
-        );
-
-        jPanel3Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jButton1, jButton2});
-
-        javax.swing.GroupLayout modificarLayout = new javax.swing.GroupLayout(modificar.getContentPane());
-        modificar.getContentPane().setLayout(modificarLayout);
-        modificarLayout.setHorizontalGroup(
-            modificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        modificarLayout.setVerticalGroup(
-            modificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 281, Short.MAX_VALUE)
-        );
+        jPanel2 = new javax.swing.JPanel();
+        btnCancelar = new javax.swing.JButton();
+        btnModificar = new javax.swing.JButton();
+        btnGuardar = new javax.swing.JButton();
+        jLabel17 = new javax.swing.JLabel();
+        operarioId = new javax.swing.JLabel();
+        alertas = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(zilleprojects.ZilleProjectsApp.class).getContext().getResourceMap(JDEmpleadoGestion.class);
         setTitle(resourceMap.getString("Form.title")); // NOI18N
         setLocationByPlatform(true);
+        setMinimumSize(new java.awt.Dimension(952, 501));
         setModal(true);
         setName("Form"); // NOI18N
         setResizable(false);
 
+        panelAzul.setMinimumSize(new java.awt.Dimension(952, 466));
         panelAzul.setName("panelAzul"); // NOI18N
 
         jPanel1.setName("jPanel1"); // NOI18N
@@ -361,39 +123,35 @@ public class JDEmpleadoGestion extends javax.swing.JDialog {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 buscarEmpleadoFocusGained(evt);
             }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                buscarEmpleadoFocusLost(evt);
+            }
+        });
+        buscarEmpleado.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                buscarEmpleadoKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                buscarEmpleadoKeyReleased(evt);
+            }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridwidth = 3;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.ipadx = 170;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel1.add(buscarEmpleado, gridBagConstraints);
-
-        buscarBoton.setAction(actionMap.get("buscar")); // NOI18N
-        buscarBoton.setIcon(resourceMap.getIcon("buscarBoton.icon")); // NOI18N
-        buscarBoton.setText(resourceMap.getString("buscarBoton.text")); // NOI18N
-        buscarBoton.setName("buscarBoton"); // NOI18N
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridheight = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 4);
-        jPanel1.add(buscarBoton, gridBagConstraints);
 
         jScrollPane1.setName("jScrollPane1"); // NOI18N
 
-        listaEmpleados.setModel(empList);
+        listaEmpleados.setModel(empleadosList);
         listaEmpleados.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         listaEmpleados.setName("listaEmpleados"); // NOI18N
-        listaEmpleados.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                listaEmpleadosMouseClicked(evt);
+        listaEmpleados.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                listaEmpleadosValueChanged(evt);
             }
         });
         jScrollPane1.setViewportView(listaEmpleados);
@@ -403,25 +161,59 @@ public class JDEmpleadoGestion extends javax.swing.JDialog {
         gridBagConstraints.gridy = 2;
         gridBagConstraints.gridwidth = 3;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.ipadx = 248;
-        gridBagConstraints.ipady = 140;
+        gridBagConstraints.ipady = 200;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(6, 0, 12, 6);
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel1.add(jScrollPane1, gridBagConstraints);
 
-        alertas.setForeground(resourceMap.getColor("alertas.foreground")); // NOI18N
-        alertas.setText(resourceMap.getString("alertas.text")); // NOI18N
-        alertas.setName("alertas"); // NOI18N
+        botonModificar.setIcon(resourceMap.getIcon("botonModificar.icon")); // NOI18N
+        botonModificar.setText(resourceMap.getString("botonModificar.text")); // NOI18N
+        botonModificar.setName("botonModificar"); // NOI18N
+        botonModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonModificarActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.ipadx = 30;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        jPanel1.add(botonModificar, gridBagConstraints);
+
+        botonEliminar.setIcon(resourceMap.getIcon("botonEliminar.icon")); // NOI18N
+        botonEliminar.setText(resourceMap.getString("botonEliminar.text")); // NOI18N
+        botonEliminar.setName("botonEliminar"); // NOI18N
+        botonEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonEliminarActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.gridwidth = 3;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        jPanel1.add(alertas, gridBagConstraints);
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.ipadx = 30;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        jPanel1.add(botonEliminar, gridBagConstraints);
 
-        nuevoOperario.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(resourceMap.getColor("nuevoOperario.border.border.lineColor"), 1, true), resourceMap.getString("nuevoOperario.border.title"), javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, resourceMap.getColor("nuevoOperario.border.titleColor"))); // NOI18N
+        javax.swing.ActionMap actionMap = org.jdesktop.application.Application.getInstance(zilleprojects.ZilleProjectsApp.class).getContext().getActionMap(JDEmpleadoGestion.class, this);
+        botonEliminar1.setAction(actionMap.get("eliminarEmpleado")); // NOI18N
+        botonEliminar1.setIcon(resourceMap.getIcon("botonEliminar1.icon")); // NOI18N
+        botonEliminar1.setText(resourceMap.getString("botonEliminar1.text")); // NOI18N
+        botonEliminar1.setName("botonEliminar1"); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.ipadx = 30;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        jPanel1.add(botonEliminar1, gridBagConstraints);
+
+        nuevoOperario.setBorder(new javax.swing.border.LineBorder(resourceMap.getColor("nuevoOperario.border.lineColor"), 1, true)); // NOI18N
         nuevoOperario.setToolTipText(resourceMap.getString("nuevoOperario.toolTipText")); // NOI18N
         nuevoOperario.setName("nuevoOperario"); // NOI18N
         nuevoOperario.setOpaque(false);
@@ -432,20 +224,22 @@ public class JDEmpleadoGestion extends javax.swing.JDialog {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
-        gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         nuevoOperario.add(jLabel2, gridBagConstraints);
 
         nlegajo.setText(resourceMap.getString("nlegajo.text")); // NOI18N
+        nlegajo.setDisabledTextColor(resourceMap.getColor("nlegajo.disabledTextColor")); // NOI18N
         nlegajo.setName("nlegajo"); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.ipadx = 103;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
+        gridBagConstraints.weightx = 1.2;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         nuevoOperario.add(nlegajo, gridBagConstraints);
 
         jLabel3.setText(resourceMap.getString("jLabel3.text")); // NOI18N
@@ -453,19 +247,21 @@ public class JDEmpleadoGestion extends javax.swing.JDialog {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
-        gridBagConstraints.insets = new java.awt.Insets(2, 10, 0, 0);
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         nuevoOperario.add(jLabel3, gridBagConstraints);
 
         cuil.setText(resourceMap.getString("cuil.text")); // NOI18N
+        cuil.setDisabledTextColor(resourceMap.getColor("nlegajo.disabledTextColor")); // NOI18N
         cuil.setName("cuil"); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.ipadx = 99;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(2, 10, 0, 0);
+        gridBagConstraints.weightx = 1.2;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         nuevoOperario.add(cuil, gridBagConstraints);
 
         jLabel4.setText(resourceMap.getString("jLabel4.text")); // NOI18N
@@ -473,11 +269,13 @@ public class JDEmpleadoGestion extends javax.swing.JDialog {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
-        gridBagConstraints.insets = new java.awt.Insets(12, 10, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         nuevoOperario.add(jLabel4, gridBagConstraints);
 
         nombre.setText(resourceMap.getString("nombre.text")); // NOI18N
+        nombre.setDisabledTextColor(resourceMap.getColor("nlegajo.disabledTextColor")); // NOI18N
         nombre.setName("nombre"); // NOI18N
         nombre.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
@@ -492,11 +290,10 @@ public class JDEmpleadoGestion extends javax.swing.JDialog {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridwidth = 4;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.ipadx = 285;
+        gridBagConstraints.gridwidth = 5;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(2, 10, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         nuevoOperario.add(nombre, gridBagConstraints);
 
         jLabel5.setText(resourceMap.getString("jLabel5.text")); // NOI18N
@@ -504,28 +301,31 @@ public class JDEmpleadoGestion extends javax.swing.JDialog {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
-        gridBagConstraints.insets = new java.awt.Insets(12, 10, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         nuevoOperario.add(jLabel5, gridBagConstraints);
 
         jScrollPane2.setName("jScrollPane2"); // NOI18N
 
-        observaciones.setColumns(20);
-        observaciones.setRows(3);
+        observaciones.setColumns(25);
+        observaciones.setRows(6);
         observaciones.setTabSize(4);
+        observaciones.setDisabledTextColor(resourceMap.getColor("nlegajo.disabledTextColor")); // NOI18N
         observaciones.setName("observaciones"); // NOI18N
+        observaciones.setPreferredSize(new java.awt.Dimension(295, 90));
         jScrollPane2.setViewportView(observaciones);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
-        gridBagConstraints.gridwidth = 4;
+        gridBagConstraints.gridwidth = 5;
         gridBagConstraints.gridheight = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.ipadx = 223;
-        gridBagConstraints.ipady = 50;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(2, 10, 0, 0);
+        gridBagConstraints.weightx = 120.0;
+        gridBagConstraints.weighty = 80.0;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         nuevoOperario.add(jScrollPane2, gridBagConstraints);
 
         jLabel1.setText(resourceMap.getString("jLabel1.text")); // NOI18N
@@ -533,11 +333,12 @@ public class JDEmpleadoGestion extends javax.swing.JDialog {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 4;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
-        gridBagConstraints.insets = new java.awt.Insets(12, 10, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         nuevoOperario.add(jLabel1, gridBagConstraints);
 
-        comboFuncion.setModel(funCombo);
+        comboFuncion.setModel(funcionCombo);
         comboFuncion.setName("comboFuncion"); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
@@ -545,7 +346,7 @@ public class JDEmpleadoGestion extends javax.swing.JDialog {
         gridBagConstraints.gridwidth = 4;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHEAST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 0);
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         nuevoOperario.add(comboFuncion, gridBagConstraints);
 
         jButton3.setAction(actionMap.get("agregarFuncion")); // NOI18N
@@ -555,7 +356,8 @@ public class JDEmpleadoGestion extends javax.swing.JDialog {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 5;
         gridBagConstraints.gridy = 4;
-        gridBagConstraints.insets = new java.awt.Insets(0, 5, 0, 0);
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         nuevoOperario.add(jButton3, gridBagConstraints);
 
         desaCheck.setText(resourceMap.getString("desaCheck.text")); // NOI18N
@@ -563,70 +365,141 @@ public class JDEmpleadoGestion extends javax.swing.JDialog {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 5;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(2, 10, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         nuevoOperario.add(desaCheck, gridBagConstraints);
 
-        vto_carnet_nuevo.setName("vto_carnet_nuevo"); // NOI18N
+        vto_carnet.setName("vto_carnet"); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 5;
         gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(2, 10, 0, 0);
-        nuevoOperario.add(vto_carnet_nuevo, gridBagConstraints);
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        nuevoOperario.add(vto_carnet, gridBagConstraints);
 
         jLabel12.setText(resourceMap.getString("jLabel12.text")); // NOI18N
         jLabel12.setName("jLabel12"); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 5;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         nuevoOperario.add(jLabel12, gridBagConstraints);
 
-        botonAgrgar.setAction(actionMap.get("agregarOperarios")); // NOI18N
-        botonAgrgar.setIcon(resourceMap.getIcon("botonAgrgar.icon")); // NOI18N
-        botonAgrgar.setText(resourceMap.getString("botonAgrgar.text")); // NOI18N
-        botonAgrgar.setName("botonAgrgar"); // NOI18N
+        jLabel14.setText(resourceMap.getString("jLabel14.text")); // NOI18N
+        jLabel14.setName("jLabel14"); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 5;
+        gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 6;
-        nuevoOperario.add(botonAgrgar, gridBagConstraints);
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        nuevoOperario.add(jLabel14, gridBagConstraints);
 
-        botonLimpiar.setAction(actionMap.get("limpiar")); // NOI18N
-        botonLimpiar.setIcon(resourceMap.getIcon("botonLimpiar.icon")); // NOI18N
-        botonLimpiar.setText(resourceMap.getString("botonLimpiar.text")); // NOI18N
-        botonLimpiar.setName("botonLimpiar"); // NOI18N
+        jLabel15.setText(resourceMap.getString("jLabel15.text")); // NOI18N
+        jLabel15.setName("jLabel15"); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        nuevoOperario.add(jLabel15, gridBagConstraints);
+
+        jLabel16.setText(resourceMap.getString("jLabel16.text")); // NOI18N
+        jLabel16.setName("jLabel16"); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 7;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        nuevoOperario.add(jLabel16, gridBagConstraints);
+
+        vto_psicofisico.setName("vto_psicofisico"); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        nuevoOperario.add(vto_psicofisico, gridBagConstraints);
+
+        vto_cargagral.setName("vto_cargagral"); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 6;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
-        nuevoOperario.add(botonLimpiar, gridBagConstraints);
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        nuevoOperario.add(vto_cargagral, gridBagConstraints);
 
-        jPanel2.setBackground(resourceMap.getColor("jPanel2.background")); // NOI18N
-        jPanel2.setName("jPanel2"); // NOI18N
-        jPanel2.setOpaque(false);
+        vto_otros1.setName("vto_otros1"); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 7;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        nuevoOperario.add(vto_otros1, gridBagConstraints);
 
-        botonRecargar.setAction(actionMap.get("verTodos")); // NOI18N
-        botonRecargar.setIcon(resourceMap.getIcon("botonRecargar.icon")); // NOI18N
-        botonRecargar.setText(resourceMap.getString("botonRecargar.text")); // NOI18N
-        botonRecargar.setName("botonRecargar"); // NOI18N
+        vto_otros3.setName("vto_otros3"); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 8;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        nuevoOperario.add(vto_otros3, gridBagConstraints);
 
-        botonEliminar.setAction(actionMap.get("eliminarEmpleado")); // NOI18N
-        botonEliminar.setIcon(resourceMap.getIcon("botonEliminar.icon")); // NOI18N
-        botonEliminar.setText(resourceMap.getString("botonEliminar.text")); // NOI18N
-        botonEliminar.setName("botonEliminar"); // NOI18N
+        vto_cargapeligrosa.setName("vto_cargapeligrosa"); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 7;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        nuevoOperario.add(vto_cargapeligrosa, gridBagConstraints);
 
-        botonModificar.setIcon(resourceMap.getIcon("botonModificar.icon")); // NOI18N
-        botonModificar.setText(resourceMap.getString("botonModificar.text")); // NOI18N
-        botonModificar.setName("botonModificar"); // NOI18N
-        botonModificar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonModificarActionPerformed(evt);
-            }
-        });
+        vto_otros2.setName("vto_otros2"); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 8;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        nuevoOperario.add(vto_otros2, gridBagConstraints);
+
+        descripcion1.setText(resourceMap.getString("descripcion1.text")); // NOI18N
+        descripcion1.setDisabledTextColor(resourceMap.getColor("nlegajo.disabledTextColor")); // NOI18N
+        descripcion1.setName("descripcion1"); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 7;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        nuevoOperario.add(descripcion1, gridBagConstraints);
+
+        descripcion3.setText(resourceMap.getString("descripcion3.text")); // NOI18N
+        descripcion3.setDisabledTextColor(resourceMap.getColor("nlegajo.disabledTextColor")); // NOI18N
+        descripcion3.setName("descripcion3"); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 8;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        nuevoOperario.add(descripcion3, gridBagConstraints);
+
+        descripcion2.setText(resourceMap.getString("descripcion2.text")); // NOI18N
+        descripcion2.setDisabledTextColor(resourceMap.getColor("nlegajo.disabledTextColor")); // NOI18N
+        descripcion2.setName("descripcion2"); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 8;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        nuevoOperario.add(descripcion2, gridBagConstraints);
 
         botonSalir.setIcon(resourceMap.getIcon("botonSalir.icon")); // NOI18N
         botonSalir.setText(resourceMap.getString("botonSalir.text")); // NOI18N
@@ -637,63 +510,113 @@ public class JDEmpleadoGestion extends javax.swing.JDialog {
             }
         });
 
+        jPanel2.setName("jPanel2"); // NOI18N
+
+        btnCancelar.setIcon(resourceMap.getIcon("btnCancelar.icon")); // NOI18N
+        btnCancelar.setText(resourceMap.getString("btnCancelar.text")); // NOI18N
+        btnCancelar.setName("btnCancelar"); // NOI18N
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
+
+        btnModificar.setAction(actionMap.get("modificarOperario")); // NOI18N
+        btnModificar.setIcon(resourceMap.getIcon("btnModificar.icon")); // NOI18N
+        btnModificar.setText(resourceMap.getString("btnModificar.text")); // NOI18N
+        btnModificar.setName("btnModificar"); // NOI18N
+
+        btnGuardar.setAction(actionMap.get("agregarOperarios")); // NOI18N
+        btnGuardar.setIcon(resourceMap.getIcon("btnGuardar.icon")); // NOI18N
+        btnGuardar.setText(resourceMap.getString("btnGuardar.text")); // NOI18N
+        btnGuardar.setName("btnGuardar"); // NOI18N
+
+        jLabel17.setText(resourceMap.getString("jLabel17.text")); // NOI18N
+        jLabel17.setName("jLabel17"); // NOI18N
+
+        operarioId.setFont(resourceMap.getFont("operarioId.font")); // NOI18N
+        operarioId.setForeground(resourceMap.getColor("operarioId.foreground")); // NOI18N
+        operarioId.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        operarioId.setText(resourceMap.getString("operarioId.text")); // NOI18N
+        operarioId.setName("operarioId"); // NOI18N
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(botonRecargar)
+                .addComponent(jLabel17)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(botonEliminar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(botonModificar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(botonSalir)
-                .addContainerGap(130, Short.MAX_VALUE))
+                .addComponent(operarioId, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnGuardar)
+                .addGap(18, 18, 18)
+                .addComponent(btnModificar)
+                .addGap(18, 18, 18)
+                .addComponent(btnCancelar)
+                .addContainerGap(46, Short.MAX_VALUE))
         );
-
-        jPanel2Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {botonEliminar, botonModificar, botonRecargar, botonSalir});
-
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(botonRecargar)
-                    .addComponent(botonEliminar)
-                    .addComponent(botonModificar)
-                    .addComponent(botonSalir))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnGuardar)
+                        .addComponent(btnModificar)
+                        .addComponent(btnCancelar))
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                        .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(operarioId, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel2Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {botonEliminar, botonModificar, botonSalir});
+        jPanel2Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jLabel17, operarioId});
+
+        alertas.setForeground(resourceMap.getColor("alertas.foreground")); // NOI18N
+        alertas.setText(resourceMap.getString("alertas.text")); // NOI18N
+        alertas.setName("alertas"); // NOI18N
 
         javax.swing.GroupLayout panelAzulLayout = new javax.swing.GroupLayout(panelAzul);
         panelAzul.setLayout(panelAzulLayout);
         panelAzulLayout.setHorizontalGroup(
             panelAzulLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelAzulLayout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addContainerGap()
                 .addGroup(panelAzulLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(nuevoOperario, javax.swing.GroupLayout.DEFAULT_SIZE, 528, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                    .addGroup(panelAzulLayout.createSequentialGroup()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(panelAzulLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(nuevoOperario, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 622, Short.MAX_VALUE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelAzulLayout.createSequentialGroup()
+                                .addComponent(alertas, javax.swing.GroupLayout.DEFAULT_SIZE, 503, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(botonSalir)))
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelAzulLayout.createSequentialGroup()
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(12, 12, 12))))
         );
         panelAzulLayout.setVerticalGroup(
             panelAzulLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelAzulLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(panelAzulLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, 0, 0, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelAzulLayout.createSequentialGroup()
-                        .addComponent(nuevoOperario, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(panelAzulLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 477, Short.MAX_VALUE)
+                    .addGroup(panelAzulLayout.createSequentialGroup()
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(18, Short.MAX_VALUE))
+                        .addComponent(nuevoOperario, javax.swing.GroupLayout.DEFAULT_SIZE, 373, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(panelAzulLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(botonSalir)
+                            .addComponent(alertas, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap())
         );
+
+        panelAzulLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {alertas, botonSalir});
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -714,7 +637,10 @@ public class JDEmpleadoGestion extends javax.swing.JDialog {
     }//GEN-LAST:event_botonSalirActionPerformed
 
     private void buscarEmpleadoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_buscarEmpleadoFocusGained
-        this.getRootPane().setDefaultButton(buscarBoton);
+        if (buscarEmpleado.getText().equals("Buscar empleados...")) {
+            buscarEmpleado.setText("");
+        } else {
+        }
     }//GEN-LAST:event_buscarEmpleadoFocusGained
 
     private void nombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nombreKeyTyped
@@ -730,35 +656,58 @@ public class JDEmpleadoGestion extends javax.swing.JDialog {
 
     }//GEN-LAST:event_nombreFocusLost
 
-    private void nombre1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_nombre1FocusLost
-        if (!nombre1.getText().isEmpty()) {
-            nombre1.setText(nombre1.getText().toUpperCase());
-        }
-    }//GEN-LAST:event_nombre1FocusLost
-
-    private void nombre1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nombre1KeyTyped
-        if (!nombre1.getText().isEmpty()) {
-            nombre1.setText(nombre1.getText().toUpperCase());
-        }
-    }//GEN-LAST:event_nombre1KeyTyped
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        modificar.dispose();
-    }//GEN-LAST:event_jButton1ActionPerformed
-
     private void botonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonModificarActionPerformed
-        mostrarEdicionEmpleado();
+        if (obtenerDatosDeList()) {
+            isEdit = true;
+            desbloquearCampos(true);
+            desbloquearBoton(1);
+        }
 
     }//GEN-LAST:event_botonModificarActionPerformed
 
-private void listaEmpleadosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listaEmpleadosMouseClicked
-    if (evt.getClickCount() == 2) // Se mira si es doble click
-    {
-        mostrarEdicionEmpleado();
-        //int posicion = listaEmpleados.locationToIndex(evt.getPoint());
-        //System.out.println("La posicion es " + posicion);
-    }
-}//GEN-LAST:event_listaEmpleadosMouseClicked
+    private void buscarEmpleadoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_buscarEmpleadoKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_buscarEmpleadoKeyPressed
+
+    private void buscarEmpleadoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_buscarEmpleadoKeyReleased
+        if (buscarEmpleado.getText().length() >= 3) {
+            query = buscarEmpleado.getText();
+            buscar().execute();
+        }
+        if (buscarEmpleado.getText().length() == 0) {
+            recargarListaEmpledos();
+        }
+    }//GEN-LAST:event_buscarEmpleadoKeyReleased
+
+    private void buscarEmpleadoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_buscarEmpleadoFocusLost
+        if (buscarEmpleado.getText().isEmpty()) {
+            buscarEmpleado.setText("Buscar empleados...");
+        } 
+    }//GEN-LAST:event_buscarEmpleadoFocusLost
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        limpiar();
+        isEdit = false;
+        if (obtenerDatosDeList()) {
+            desbloquearCampos(false);
+            desbloquearBoton(3);
+        }
+    }//GEN-LAST:event_btnCancelarActionPerformed
+
+    private void botonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarActionPerformed
+        isEdit = true;
+        limpiar();
+        desbloquearCampos(true);
+        desbloquearBoton(0);
+    }//GEN-LAST:event_botonEliminarActionPerformed
+
+    private void listaEmpleadosValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_listaEmpleadosValueChanged
+        isEdit = false;
+        if (obtenerDatosDeList()) {
+            desbloquearCampos(false);
+            desbloquearBoton(3);
+        }
+    }//GEN-LAST:event_listaEmpleadosValueChanged
 
     /**
      * @param args the command line arguments
@@ -781,29 +730,129 @@ private void listaEmpleadosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FI
             }
         });
     }
+    
+    
+    /******************************************************************/
+    public void desbloquearCampos(boolean b) {
+                   
+        nlegajo.setEnabled(b);
+        cuil.setEnabled(b);
+        nombre.setEnabled(b);
+        observaciones.setEnabled(b);
+        comboFuncion.setEnabled(b);
+        desaCheck.setEnabled(b);
+        vto_carnet.setEnabled(b);
+        vto_psicofisico.setEnabled(b);
+        vto_cargagral.setEnabled(b);
+        vto_cargapeligrosa.setEnabled(b);
+        vto_otros1.setEnabled(b);
+        vto_otros2.setEnabled(b);
+        vto_otros3.setEnabled(b);
+        descripcion1.setEnabled(b);
+        descripcion2.setEnabled(b);
+        descripcion3.setEnabled(b);
+        alertas.setText(null);
+        
+    }
 
-    public void mostrarEdicionEmpleado() {
-        if (listaEmpleados.getSelectedValue() != null) {
-            Operario op = (Operario) listaEmpleados.getSelectedValue();
-            nlegajo1.setText(op.getN_legajo());
-            cuil1.setText(op.getCuil());
-            nombre1.setText(op.getNombre());
-            observaciones1.setText(op.getObservaciones());
-            comboFuncModif.setSelectedItem(new Funcion(op.getFuncion()));
-            desaChechMod.setSelected(op.isDesarraigo());
-            if(op.getVto_carnet()!=null){
-                vto_carnet.setDate(op.getVto_carnet());
-            }
-            else{
-                vto_carnet.setDate(null);
-            }
-            idText.setText(op.getId() + "");
-            modificar.setSize(478, 252);
-            modificar.setLocationRelativeTo(this);
-            modificar.setVisible(true);
-            
+    public void desbloquearBoton(int opcion) {
+        /**
+         * 0: Desbloquear boton Crear
+         * 1: Desbloquear boton Modificar
+         * */
+        switch (opcion) {
+            case 0:
+                btnGuardar.setEnabled(true);
+                btnCancelar.setEnabled(true);
+                btnModificar.setEnabled(false);
+                break;
+            case 1:
+                btnGuardar.setEnabled(false);
+                btnCancelar.setEnabled(true);
+                btnModificar.setEnabled(true);
+                break;
+            default:
+                btnGuardar.setEnabled(false);
+                btnCancelar.setEnabled(false);
+                btnModificar.setEnabled(false);
         }
     }
+
+    public boolean obtenerDatosDeList() {
+
+        if (!empleadosList.isEmpty()) {
+            if (listaEmpleados.isSelectionEmpty()) {
+                opSelected = (Operario) empleadosList.get(0);
+            } else {
+                opSelected = (Operario) empleadosList.get(listaEmpleados.getSelectedIndex());
+            }
+            setDatosDeEmpleado(opSelected);
+            return true;
+        }
+        return false;
+    }
+
+    public void setDatosDeEmpleado(Operario op) {
+        operarioId.setText(op.getId()+"");
+        nlegajo.setText(op.getN_legajo());
+        cuil.setText(op.getCuil());
+        nombre.setText(op.getNombre());
+        observaciones.setText(op.getObservaciones());
+        comboFuncion.setSelectedItem(new Funcion(op.getFuncion()));
+        desaCheck.setSelected(op.isDesarraigo());
+        vto_carnet.setDate(op.getVto_carnet());
+        vto_psicofisico.setDate(op.getVto_psicofisico());
+        vto_cargagral.setDate(op.getVto_cargagral());
+        vto_cargapeligrosa.setDate(op.getVto_cargapeligrosa());
+        vto_otros1.setDate(op.getVto_otros1());
+        vto_otros2.setDate(op.getVto_otros2());
+        vto_otros3.setDate(op.getVto_otros3());
+        descripcion1.setText(op.getDescripcion_vto1());
+        descripcion2.setText(op.getDescripcion_vto2());
+        descripcion3.setText(op.getDescripcion_vto3());
+        alertas.setText(null);
+        
+    }
+
+
+    private void setListDeEmpleado(ArrayList<Operario> list) {
+        empleadosList.clear();
+        for (Operario l : list) {
+            empleadosList.addElement(l);
+        }
+        listaEmpleados.setModel(empleadosList);
+    }
+    
+    
+    public void limpiar() {
+        opSelected = new Operario();
+        nlegajo.setText("");
+        cuil.setText("");
+        nombre.setText("");
+        observaciones.setText("");
+        comboFuncion.setSelectedIndex(0);
+        desaCheck.setSelected(false);
+        vto_carnet.setDate(null);
+        vto_psicofisico.setDate(null);
+        vto_cargagral.setDate(null);
+        vto_cargapeligrosa.setDate(null);
+        vto_otros1.setDate(null);
+        vto_otros2.setDate(null);
+        vto_otros3.setDate(null);
+        descripcion1.setText(null);
+        descripcion2.setText(null);
+        descripcion3.setText(null);
+        operarioId.setText("####");
+        alertas.setText(null);
+    }
+    
+    private void recargarListaEmpledos() {
+        verTodos().execute();
+    }
+    
+    /********************************************************************/
+
+    
 
     @Action
     public Task buscar() {
@@ -813,9 +862,8 @@ private void listaEmpleadosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FI
         return new BuscarTask(org.jdesktop.application.Application.getInstance(zilleprojects.ZilleProjectsApp.class));
     }
 
+    
     private class BuscarTask extends org.jdesktop.application.Task<Object, Void> {
-
-        String q = buscarEmpleado.getText();
 
         BuscarTask(org.jdesktop.application.Application app) {
             // Runs on the EDT.  Copy GUI state that
@@ -831,21 +879,24 @@ private void listaEmpleadosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FI
             // the Swing GUI from here.
             OperarioDAO odao = new OperarioDAO();
             odao.conectar();
-            empleados = odao.buscar(q);
+            empleados = odao.buscar(query);
             return null;  // return your result
         }
 
         @Override
         protected void succeeded(Object result) {
+            
             if (empleados.isEmpty()) {
+                empleadosList.removeAllElements();
+                limpiar();
                 alertas.setText("No hay datos coincidentes.");
 
             } else {
-                empList.removeAllElements();
+                empleadosList.removeAllElements();
                 for (int i = 0; i < empleados.size(); i++) {
-                    empList.addElement((Operario) empleados.get(i));
+                    empleadosList.addElement((Operario) empleados.get(i));
                 }
-                listaEmpleados.setModel(empList);
+                listaEmpleados.setModel(empleadosList);
             }
         }
     }
@@ -854,7 +905,6 @@ private void listaEmpleadosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FI
     public Task verTodos() {
         return new VerTodosTask(org.jdesktop.application.Application.getInstance(zilleprojects.ZilleProjectsApp.class));
     }
-
     private class VerTodosTask extends org.jdesktop.application.Task<Object, Void> {
 
         VerTodosTask(org.jdesktop.application.Application app) {
@@ -878,11 +928,11 @@ private void listaEmpleadosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FI
                 alertas.setText("No hay datos coincidentes.");
 
             } else {
-                empList.removeAllElements();
+                empleadosList.removeAllElements();
                 for (int i = 0; i < empleados.size(); i++) {
-                    empList.addElement((Operario) empleados.get(i));
+                    empleadosList.addElement((Operario) empleados.get(i));
                 }
-                listaEmpleados.setModel(empList);
+                listaEmpleados.setModel(empleadosList);
                 alertas.setText("");
             }
         }
@@ -890,17 +940,17 @@ private void listaEmpleadosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FI
 
     @Action
     public Task eliminarEmpleado() {
-        String nombreEmp = ((Operario) listaEmpleados.getSelectedValue()).getNombre();
-        if (OpcionPanel.NO_OPTION == OpcionPanel.showConfirmDialog(rootPane, "Se eliminará la información de: \n"
-                + nombreEmp, "¿Está seguro/a que desea continuar?", OpcionPanel.YES_NO_OPTION)) {
+        if(opSelected.getId()==0){
+            return null;
+        }
+        if(OpcionPanel.NO_OPTION == OpcionPanel.showConfirmDialog(rootPane, "Se eliminará la información de: \n"
+                + opSelected.getNombre(), "\n¿Está seguro/a que desea continuar?", OpcionPanel.YES_NO_OPTION)) {
             return null;
         }
         return new EliminarEmpleadoTask(org.jdesktop.application.Application.getInstance(zilleprojects.ZilleProjectsApp.class));
     }
-
     private class EliminarEmpleadoTask extends org.jdesktop.application.Task<Object, Void> {
 
-        Operario op = (Operario) listaEmpleados.getSelectedValue();
 
         EliminarEmpleadoTask(org.jdesktop.application.Application app) {
             // Runs on the EDT.  Copy GUI state that
@@ -913,29 +963,21 @@ private void listaEmpleadosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FI
         protected Object doInBackground() {
             OperarioDAO odao = new OperarioDAO();
             odao.conectar();
-            return odao.borrar(op);  // return your result
+            return odao.borrar(opSelected);  // return your result
         }
 
         @Override
         protected void succeeded(Object result) {
             Boolean r = (Boolean) result;
             if (r) {
-                empList.removeElement(op);
+                empleadosList.removeElement(opSelected);
+                limpiar();
                 alertas.setText("Eliminación realizada");
             } else {
                 OpcionPanel.showMessageDialog(null, "Ocurrió un error. \nIntente nuevamente.", "Error", OpcionPanel.ERROR_MESSAGE);
             }
         }
-    }
-
-    @Action
-    public void limpiar() {
-        nlegajo.setText("");
-        cuil.setText("");
-        nombre.setText("");
-        observaciones.setText("");
-        alertas.setText(null);
-    }
+    } 
 
     @Action
     public Task agregarOperarios() {
@@ -943,43 +985,50 @@ private void listaEmpleadosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FI
             alertas.setText("El campo NOMBRE es obligatorio.");
             return null;
         }
+        opSelected = new Operario();
+        opSelected.setNombre(nombre.getText());
+        opSelected.setN_legajo(nlegajo.getText());
+        opSelected.setFuncion(((Funcion)funcionCombo.getSelectedItem()).getId());
+        opSelected.setObservaciones(observaciones.getText());
+        opSelected.setDesarraigo(desaCheck.isSelected());
+        opSelected.setCuil(cuil.getText());
+        opSelected.setVto_carnet(vto_carnet.getDate());
+        opSelected.setVto_psicofisico(vto_psicofisico.getDate());
+        opSelected.setVto_cargagral(vto_cargagral.getDate());
+        opSelected.setVto_cargapeligrosa(vto_cargapeligrosa.getDate());
+        opSelected.setVto_otros1(vto_otros1.getDate());
+        opSelected.setVto_otros2(vto_otros2.getDate());
+        opSelected.setVto_otros3(vto_otros3.getDate());
+        opSelected.setDescripcion_vto1(descripcion1.getText());
+        opSelected.setDescripcion_vto2(descripcion2.getText());
+        opSelected.setDescripcion_vto3(descripcion3.getText());
         return new AgregarOperariosTask(org.jdesktop.application.Application.getInstance(zilleprojects.ZilleProjectsApp.class));
     }
-
     private class AgregarOperariosTask extends org.jdesktop.application.Task<Object, Void> {
-
-        Operario op = new Operario(nombre.getText());
         int r = -1;
-
         AgregarOperariosTask(org.jdesktop.application.Application app) {
             // Runs on the EDT.  Copy GUI state that
             // doInBackground() depends on from parameters
             // to AgregarOperariosTask fields, here.
             super(app);
-            op.setCuil(cuil.getText());
-            op.setN_legajo(nlegajo.getText());
-            op.setObservaciones(observaciones.getText());
-            op.setFuncion(((Funcion)comboFuncion.getSelectedItem()).getId());
-            op.setDesarraigo(desaCheck.isSelected());
-            if(vto_carnet_nuevo.getDate()!=null) op.setVto_carnet(vto_carnet_nuevo.getDate());
-            else op.setVto_carnet(null);
         }
 
         @Override
         protected Object doInBackground() {
             OperarioDAO odao = new OperarioDAO();
             odao.conectar();
-            r = odao.guardar(op);
+            r = odao.guardar(opSelected);
             return null;  // return your result
         }
 
         @Override
         protected void succeeded(Object result) {
             if (r > 0) {
-                op.setId(r);
-                empList.addElement(op);
+                opSelected.setId(r);
+                empleadosList.addElement(opSelected);
                 alertas.setText("Operación realizada con éxito.");
                 limpiar();
+                listaEmpleados.setSelectedValue(opSelected, true);
             } else {
                 OpcionPanel.showMessageDialog(null, "Ocurrió un error. \nIntente nuevamente.", "Error", OpcionPanel.ERROR_MESSAGE);
             }
@@ -988,16 +1037,29 @@ private void listaEmpleadosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FI
 
     @Action
     public Task modificarOperario() {
-        if (nombre1.getText().isEmpty()) {
+        if (nombre.getText().isEmpty()) {
             alertas.setText("El campo NOMBRE es obligatorio.");
             return null;
         }
+        opSelected.setNombre(nombre.getText());
+        opSelected.setN_legajo(nlegajo.getText());
+        opSelected.setFuncion(((Funcion)funcionCombo.getSelectedItem()).getId());
+        opSelected.setObservaciones(observaciones.getText());
+        opSelected.setDesarraigo(desaCheck.isSelected());
+        opSelected.setCuil(cuil.getText());
+        opSelected.setVto_carnet(vto_carnet.getDate());
+        opSelected.setVto_psicofisico(vto_psicofisico.getDate());
+        opSelected.setVto_cargagral(vto_cargagral.getDate());
+        opSelected.setVto_cargapeligrosa(vto_cargapeligrosa.getDate());
+        opSelected.setVto_otros1(vto_otros1.getDate());
+        opSelected.setVto_otros2(vto_otros2.getDate());
+        opSelected.setVto_otros3(vto_otros3.getDate());
+        opSelected.setDescripcion_vto1(descripcion1.getText());
+        opSelected.setDescripcion_vto2(descripcion2.getText());
+        opSelected.setDescripcion_vto3(descripcion3.getText());
         return new ModificarOperarioTask(org.jdesktop.application.Application.getInstance(zilleprojects.ZilleProjectsApp.class));
     }
-
     private class ModificarOperarioTask extends org.jdesktop.application.Task<Object, Void> {
-
-        Operario op = (Operario) listaEmpleados.getSelectedValue();
         int r = -1;
 
         ModificarOperarioTask(org.jdesktop.application.Application app) {
@@ -1005,32 +1067,35 @@ private void listaEmpleadosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FI
             // doInBackground() depends on from parameters
             // to ModificarOperarioTask fields, here.
             super(app);
-            op.setNombre(nombre1.getText());
-            op.setN_legajo(nlegajo1.getText());
-            op.setObservaciones(observaciones1.getText());
-            op.setCuil(cuil1.getText());
-            op.setFuncion(((Funcion)comboFuncion.getSelectedItem()).getId());
-            op.setDesarraigo(desaChechMod.isSelected());
-            op.setVto_carnet(vto_carnet.getDate());
+            
         }
 
         @Override
         protected Object doInBackground() {
             OperarioDAO odao = new OperarioDAO();
             odao.conectar();
-            r = odao.modificar(op);
+            r = odao.modificar(opSelected);
             return null;  // return your result
         }
 
         @Override
         protected void succeeded(Object result) {
+            isEdit = false;
             if (r == 0) {
-                modificar.dispose();
                 alertas.setText("Datos guardados.");
-
+                
+                if (obtenerDatosDeList()) {
+                    desbloquearCampos(false);
+                    desbloquearBoton(3);
+                }
             } else {
-                OpcionPanel.showMessageDialog(null, "Ocurrió un error. \nIntente nuevamente.", "Error", OpcionPanel.ERROR_MESSAGE);
+                OpcionPanel.showMessageDialog(null, "Ocurrió un error al procesar la solicitud.", "Error", OpcionPanel.ERROR_MESSAGE);
+                recargarListaEmpledos();
+                limpiar();
             }
+                
+
+            
         }
     }
     
@@ -1042,7 +1107,6 @@ private void listaEmpleadosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FI
         }
         return new AgregarFuncionTask(org.jdesktop.application.Application.getInstance(zilleprojects.ZilleProjectsApp.class));
     }
-
     private class AgregarFuncionTask extends org.jdesktop.application.Task<Object, Void> {
 
         Funcion fun = new Funcion(newFc);
@@ -1070,69 +1134,65 @@ private void listaEmpleadosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FI
         protected void succeeded(Object result) {
             if (r >= 0) {
                 fun.setId(r);
-                funCombo.addElement(fun);
+                funcionCombo.addElement(fun);
             } else {
                 OpcionPanel.showMessageDialog(null, "Compruebe que ya no exista una \nfunción con ese nombre.", "Error", OpcionPanel.ERROR_MESSAGE);
             }
         }
     }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton agregarFuncion2;
     private javax.swing.JLabel alertas;
-    private javax.swing.JButton botonAgrgar;
     private javax.swing.JButton botonEliminar;
-    private javax.swing.JButton botonLimpiar;
+    private javax.swing.JButton botonEliminar1;
     private javax.swing.JButton botonModificar;
-    private javax.swing.JButton botonRecargar;
     private javax.swing.JButton botonSalir;
-    private javax.swing.JButton buscarBoton;
+    private javax.swing.JButton btnCancelar;
+    private javax.swing.JButton btnGuardar;
+    private javax.swing.JButton btnModificar;
     private javax.swing.JTextField buscarEmpleado;
-    private javax.swing.JComboBox comboFuncModif;
     private javax.swing.JComboBox comboFuncion;
     private javax.swing.JTextField cuil;
-    private javax.swing.JTextField cuil1;
-    private javax.swing.JCheckBox desaChechMod;
     private javax.swing.JCheckBox desaCheck;
-    private javax.swing.JLabel idText;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JTextField descripcion1;
+    private javax.swing.JTextField descripcion2;
+    private javax.swing.JTextField descripcion3;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JList listaEmpleados;
-    private javax.swing.JDialog modificar;
-    private javax.swing.JPanel modificarPanel;
     private javax.swing.JTextField nlegajo;
-    private javax.swing.JTextField nlegajo1;
     private javax.swing.JTextField nombre;
-    private javax.swing.JTextField nombre1;
     private javax.swing.JPanel nuevoOperario;
     private javax.swing.JTextArea observaciones;
-    private javax.swing.JTextArea observaciones1;
+    private javax.swing.JLabel operarioId;
     private javax.swing.JPanel panelAzul;
+    private com.toedter.calendar.JDateChooser vto_cargagral;
+    private com.toedter.calendar.JDateChooser vto_cargapeligrosa;
     private com.toedter.calendar.JDateChooser vto_carnet;
-    private com.toedter.calendar.JDateChooser vto_carnet_nuevo;
+    private com.toedter.calendar.JDateChooser vto_otros1;
+    private com.toedter.calendar.JDateChooser vto_otros2;
+    private com.toedter.calendar.JDateChooser vto_otros3;
+    private com.toedter.calendar.JDateChooser vto_psicofisico;
     // End of variables declaration//GEN-END:variables
+    
+    static DefaultListModel empleadosList = new DefaultListModel();
     ArrayList<Operario> empleados = new ArrayList<Operario>();
-    //static ArrayList<Funcion> funciones = new ArrayList<Funcion>();
-    public static DefaultComboBoxModel funCombo = new DefaultComboBoxModel();
-    static DefaultListModel empList = new DefaultListModel();
+    static DefaultComboBoxModel funcionCombo = new DefaultComboBoxModel();
+    private Operario opSelected = new Operario();
     String newFc="";
+    String query ="";
+    boolean isEdit= false;
 }

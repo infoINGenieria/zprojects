@@ -54,6 +54,9 @@ public class FechaUtil {
   }
   
   public static Date getFecha(String str){
+      /**
+       * Parse Date from String en dd-MM-yyyy
+       */
       try{
       SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT_HUMAN);
       return sdf.parse(str);
