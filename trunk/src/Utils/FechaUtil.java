@@ -45,7 +45,10 @@ public class FechaUtil {
   
   public static String getFecha(Date d){
       SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT_HUMAN);
-      return sdf.format(d);
+      if(d!=null)
+        return sdf.format(d);
+      return null;
+      
   }
   
   public static String getFechaSQL(Date d){
