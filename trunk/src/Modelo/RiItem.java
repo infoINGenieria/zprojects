@@ -13,13 +13,21 @@ import java.util.Date;
 public class RiItem {
     
     private int riItemId, riId;
-    String OC_num, proveedor;
-    Date fecha_necesidad, fecha_emision, fecha_oc, fecha_entrega;
-    private String cantidad, unidad, detalle, observacion;
+    private String OC_num, proveedor;
+    private Date fecha_necesidad, fecha_emision, fecha_oc, fecha_entrega;
+    private String cantidad, unidad, detalle, observacion, valor;
 
     public RiItem() {
         fecha_necesidad = new Date();
         fecha_emision = new Date();
+    }
+
+    public String getValor() {
+        return valor;
+    }
+
+    public void setValor(String valor) {
+        this.valor = valor;
     }
 
 

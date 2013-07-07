@@ -141,7 +141,7 @@ public class JDEmpleadoGestion extends javax.swing.JDialog {
         gridBagConstraints.gridwidth = 3;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gridBagConstraints.insets = null;
         jPanel1.add(buscarEmpleado, gridBagConstraints);
 
         jScrollPane1.setName("jScrollPane1"); // NOI18N
@@ -165,7 +165,7 @@ public class JDEmpleadoGestion extends javax.swing.JDialog {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gridBagConstraints.insets = null;
         jPanel1.add(jScrollPane1, gridBagConstraints);
 
         botonModificar.setIcon(resourceMap.getIcon("botonModificar.icon")); // NOI18N
@@ -181,7 +181,7 @@ public class JDEmpleadoGestion extends javax.swing.JDialog {
         gridBagConstraints.gridy = 0;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.ipadx = 30;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gridBagConstraints.insets = null;
         jPanel1.add(botonModificar, gridBagConstraints);
 
         botonEliminar.setIcon(resourceMap.getIcon("botonEliminar.icon")); // NOI18N
@@ -197,7 +197,7 @@ public class JDEmpleadoGestion extends javax.swing.JDialog {
         gridBagConstraints.gridy = 0;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.ipadx = 30;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gridBagConstraints.insets = null;
         jPanel1.add(botonEliminar, gridBagConstraints);
 
         javax.swing.ActionMap actionMap = org.jdesktop.application.Application.getInstance(zilleprojects.ZilleProjectsApp.class).getContext().getActionMap(JDEmpleadoGestion.class, this);
@@ -210,7 +210,7 @@ public class JDEmpleadoGestion extends javax.swing.JDialog {
         gridBagConstraints.gridy = 0;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.ipadx = 30;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gridBagConstraints.insets = null;
         jPanel1.add(botonEliminar1, gridBagConstraints);
 
         nuevoOperario.setBorder(new javax.swing.border.LineBorder(resourceMap.getColor("nuevoOperario.border.lineColor"), 1, true)); // NOI18N
@@ -226,7 +226,7 @@ public class JDEmpleadoGestion extends javax.swing.JDialog {
         gridBagConstraints.gridy = 0;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gridBagConstraints.insets = null;
         nuevoOperario.add(jLabel2, gridBagConstraints);
 
         nlegajo.setText(resourceMap.getString("nlegajo.text")); // NOI18N
@@ -239,7 +239,7 @@ public class JDEmpleadoGestion extends javax.swing.JDialog {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.weightx = 1.2;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gridBagConstraints.insets = null;
         nuevoOperario.add(nlegajo, gridBagConstraints);
 
         jLabel3.setText(resourceMap.getString("jLabel3.text")); // NOI18N
@@ -248,7 +248,7 @@ public class JDEmpleadoGestion extends javax.swing.JDialog {
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gridBagConstraints.insets = null;
         nuevoOperario.add(jLabel3, gridBagConstraints);
 
         cuil.setText(resourceMap.getString("cuil.text")); // NOI18N
@@ -261,7 +261,7 @@ public class JDEmpleadoGestion extends javax.swing.JDialog {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.weightx = 1.2;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gridBagConstraints.insets = null;
         nuevoOperario.add(cuil, gridBagConstraints);
 
         jLabel4.setText(resourceMap.getString("jLabel4.text")); // NOI18N
@@ -271,7 +271,7 @@ public class JDEmpleadoGestion extends javax.swing.JDialog {
         gridBagConstraints.gridy = 1;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gridBagConstraints.insets = null;
         nuevoOperario.add(jLabel4, gridBagConstraints);
 
         nombre.setText(resourceMap.getString("nombre.text")); // NOI18N
@@ -293,7 +293,7 @@ public class JDEmpleadoGestion extends javax.swing.JDialog {
         gridBagConstraints.gridwidth = 5;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gridBagConstraints.insets = null;
         nuevoOperario.add(nombre, gridBagConstraints);
 
         jLabel5.setText(resourceMap.getString("jLabel5.text")); // NOI18N
@@ -303,7 +303,7 @@ public class JDEmpleadoGestion extends javax.swing.JDialog {
         gridBagConstraints.gridy = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gridBagConstraints.insets = null;
         nuevoOperario.add(jLabel5, gridBagConstraints);
 
         jScrollPane2.setName("jScrollPane2"); // NOI18N
@@ -325,7 +325,7 @@ public class JDEmpleadoGestion extends javax.swing.JDialog {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.weightx = 120.0;
         gridBagConstraints.weighty = 80.0;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gridBagConstraints.insets = null;
         nuevoOperario.add(jScrollPane2, gridBagConstraints);
 
         jLabel1.setText(resourceMap.getString("jLabel1.text")); // NOI18N
@@ -335,7 +335,7 @@ public class JDEmpleadoGestion extends javax.swing.JDialog {
         gridBagConstraints.gridy = 4;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gridBagConstraints.insets = null;
         nuevoOperario.add(jLabel1, gridBagConstraints);
 
         comboFuncion.setModel(funcionCombo);
@@ -346,7 +346,7 @@ public class JDEmpleadoGestion extends javax.swing.JDialog {
         gridBagConstraints.gridwidth = 4;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHEAST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gridBagConstraints.insets = null;
         nuevoOperario.add(comboFuncion, gridBagConstraints);
 
         jButton3.setAction(actionMap.get("agregarFuncion")); // NOI18N
@@ -357,7 +357,7 @@ public class JDEmpleadoGestion extends javax.swing.JDialog {
         gridBagConstraints.gridx = 5;
         gridBagConstraints.gridy = 4;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gridBagConstraints.insets = null;
         nuevoOperario.add(jButton3, gridBagConstraints);
 
         desaCheck.setText(resourceMap.getString("desaCheck.text")); // NOI18N
@@ -367,7 +367,7 @@ public class JDEmpleadoGestion extends javax.swing.JDialog {
         gridBagConstraints.gridy = 5;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gridBagConstraints.insets = null;
         nuevoOperario.add(desaCheck, gridBagConstraints);
 
         vto_carnet.setName("vto_carnet"); // NOI18N
@@ -377,7 +377,7 @@ public class JDEmpleadoGestion extends javax.swing.JDialog {
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gridBagConstraints.insets = null;
         nuevoOperario.add(vto_carnet, gridBagConstraints);
 
         jLabel12.setText(resourceMap.getString("jLabel12.text")); // NOI18N
@@ -387,7 +387,7 @@ public class JDEmpleadoGestion extends javax.swing.JDialog {
         gridBagConstraints.gridy = 5;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gridBagConstraints.insets = null;
         nuevoOperario.add(jLabel12, gridBagConstraints);
 
         jLabel14.setText(resourceMap.getString("jLabel14.text")); // NOI18N
@@ -396,7 +396,7 @@ public class JDEmpleadoGestion extends javax.swing.JDialog {
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 6;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gridBagConstraints.insets = null;
         nuevoOperario.add(jLabel14, gridBagConstraints);
 
         jLabel15.setText(resourceMap.getString("jLabel15.text")); // NOI18N
@@ -405,7 +405,7 @@ public class JDEmpleadoGestion extends javax.swing.JDialog {
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 6;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gridBagConstraints.insets = null;
         nuevoOperario.add(jLabel15, gridBagConstraints);
 
         jLabel16.setText(resourceMap.getString("jLabel16.text")); // NOI18N
@@ -414,7 +414,7 @@ public class JDEmpleadoGestion extends javax.swing.JDialog {
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 7;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gridBagConstraints.insets = null;
         nuevoOperario.add(jLabel16, gridBagConstraints);
 
         vto_psicofisico.setName("vto_psicofisico"); // NOI18N
@@ -423,7 +423,7 @@ public class JDEmpleadoGestion extends javax.swing.JDialog {
         gridBagConstraints.gridy = 6;
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gridBagConstraints.insets = null;
         nuevoOperario.add(vto_psicofisico, gridBagConstraints);
 
         vto_cargagral.setName("vto_cargagral"); // NOI18N
@@ -432,7 +432,7 @@ public class JDEmpleadoGestion extends javax.swing.JDialog {
         gridBagConstraints.gridy = 6;
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gridBagConstraints.insets = null;
         nuevoOperario.add(vto_cargagral, gridBagConstraints);
 
         vto_otros1.setName("vto_otros1"); // NOI18N
@@ -441,7 +441,7 @@ public class JDEmpleadoGestion extends javax.swing.JDialog {
         gridBagConstraints.gridy = 7;
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gridBagConstraints.insets = null;
         nuevoOperario.add(vto_otros1, gridBagConstraints);
 
         vto_otros3.setName("vto_otros3"); // NOI18N
@@ -450,7 +450,7 @@ public class JDEmpleadoGestion extends javax.swing.JDialog {
         gridBagConstraints.gridy = 8;
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gridBagConstraints.insets = null;
         nuevoOperario.add(vto_otros3, gridBagConstraints);
 
         vto_cargapeligrosa.setName("vto_cargapeligrosa"); // NOI18N
@@ -459,7 +459,7 @@ public class JDEmpleadoGestion extends javax.swing.JDialog {
         gridBagConstraints.gridy = 7;
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gridBagConstraints.insets = null;
         nuevoOperario.add(vto_cargapeligrosa, gridBagConstraints);
 
         vto_otros2.setName("vto_otros2"); // NOI18N
@@ -468,7 +468,7 @@ public class JDEmpleadoGestion extends javax.swing.JDialog {
         gridBagConstraints.gridy = 8;
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gridBagConstraints.insets = null;
         nuevoOperario.add(vto_otros2, gridBagConstraints);
 
         descripcion1.setText(resourceMap.getString("descripcion1.text")); // NOI18N
@@ -478,7 +478,7 @@ public class JDEmpleadoGestion extends javax.swing.JDialog {
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 7;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gridBagConstraints.insets = null;
         nuevoOperario.add(descripcion1, gridBagConstraints);
 
         descripcion3.setText(resourceMap.getString("descripcion3.text")); // NOI18N
@@ -488,7 +488,7 @@ public class JDEmpleadoGestion extends javax.swing.JDialog {
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 8;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gridBagConstraints.insets = null;
         nuevoOperario.add(descripcion3, gridBagConstraints);
 
         descripcion2.setText(resourceMap.getString("descripcion2.text")); // NOI18N
@@ -498,7 +498,7 @@ public class JDEmpleadoGestion extends javax.swing.JDialog {
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 8;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gridBagConstraints.insets = null;
         nuevoOperario.add(descripcion2, gridBagConstraints);
 
         botonSalir.setIcon(resourceMap.getIcon("botonSalir.icon")); // NOI18N
@@ -511,6 +511,7 @@ public class JDEmpleadoGestion extends javax.swing.JDialog {
         });
 
         jPanel2.setName("jPanel2"); // NOI18N
+        jPanel2.setOpaque(false);
 
         btnCancelar.setIcon(resourceMap.getIcon("btnCancelar.icon")); // NOI18N
         btnCancelar.setText(resourceMap.getString("btnCancelar.text")); // NOI18N
@@ -589,9 +590,9 @@ public class JDEmpleadoGestion extends javax.swing.JDialog {
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(panelAzulLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(nuevoOperario, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 622, Short.MAX_VALUE)
+                            .addComponent(nuevoOperario, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 648, Short.MAX_VALUE)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelAzulLayout.createSequentialGroup()
-                                .addComponent(alertas, javax.swing.GroupLayout.DEFAULT_SIZE, 503, Short.MAX_VALUE)
+                                .addComponent(alertas, javax.swing.GroupLayout.DEFAULT_SIZE, 551, Short.MAX_VALUE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(botonSalir)))
                         .addContainerGap())
@@ -604,7 +605,7 @@ public class JDEmpleadoGestion extends javax.swing.JDialog {
             .addGroup(panelAzulLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(panelAzulLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 477, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 481, Short.MAX_VALUE)
                     .addGroup(panelAzulLayout.createSequentialGroup()
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)

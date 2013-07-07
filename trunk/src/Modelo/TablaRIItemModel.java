@@ -84,10 +84,12 @@ public class TablaRIItemModel  extends AbstractTableModel {
             case 7: 
                 return aux.getFecha_oc();
             case 8:
-                return aux.getFecha_entrega();
+                return aux.getValor();
             case 9:
-                return aux.getEstado();
+                return aux.getFecha_entrega();
             case 10:
+                return aux.getEstado();
+            case 11:
                 return aux.getObservacion();
                 
             default:
@@ -106,7 +108,7 @@ public class TablaRIItemModel  extends AbstractTableModel {
                 return Date.class;
             case 7:
                 return Date.class;
-            case 8:
+            case 9:
                 return Date.class;
             default:            
                 return String.class;
@@ -136,10 +138,12 @@ public class TablaRIItemModel  extends AbstractTableModel {
             case 7:
                 return "Fecha OC";
             case 8:
-                return "Fecha Entrega";
+                return "Valor OC";
             case 9:
-                return "Estado";
+                return "Fecha Entrega";
             case 10:
+                return "Estado";
+            case 11:
                 return "Observaciones";
             default:
                 return null;
@@ -186,11 +190,14 @@ public class TablaRIItemModel  extends AbstractTableModel {
                     aux.setFecha_oc(FechaUtil.getFecha(value.toString()));
                     break;
                 case 8:
-                    aux.setFecha_entrega(FechaUtil.getFecha(value.toString()));
+                    aux.setValor(value.toString());
                     break;
                 case 9:
+                    aux.setFecha_entrega(FechaUtil.getFecha(value.toString()));
                     break;
                 case 10:
+                    break;
+                case 11:
                     aux.setObservacion((String)value);
                     break;
 
@@ -225,7 +232,7 @@ public class TablaRIItemModel  extends AbstractTableModel {
 
     @Override
     public int getColumnCount() {
-        return 11;
+        return 12;
     }
 
     @Override

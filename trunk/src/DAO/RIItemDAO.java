@@ -42,8 +42,8 @@ public class RIItemDAO {
             
             query = "insert into ri_item (riId, cantidad, unidad,"
                     + " detalle, observacion, oc_num, proveedor, "
-                    +" fecha_entrega, fecha_oc, fecha_emision, fecha_necesidad"
-                    +") values ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                    +" fecha_entrega, fecha_oc, fecha_emision, fecha_necesidad,"
+                    +" valor) values ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement ps = conector.prepareStatement(query);
             ps.setInt(1, it.getRiId());
             ps.setString(2, it.getCantidad());
@@ -56,6 +56,7 @@ public class RIItemDAO {
             ps.setDate(9, FechaUtil.getFechatoDB(it.getFecha_oc()));
             ps.setDate(10, FechaUtil.getFechatoDB(it.getFecha_emision()));
             ps.setDate(11, FechaUtil.getFechatoDB(it.getFecha_necesidad()));
+            ps.setString(12, it.getValor());
             ps.executeUpdate();
             ResultSet generatedKeys = ps.getGeneratedKeys();
 
@@ -79,7 +80,7 @@ public class RIItemDAO {
             */
             String query = "update ri_item set riId=?, cantidad=?, unidad=?,"
                     + " detalle=?, observacion=?, oc_num=?, proveedor=?, fecha_entrega=?, "
-                    + " fecha_oc=?, fecha_emision=?, fecha_necesidad=? where riItemId = ?";
+                    + " fecha_oc=?, fecha_emision=?, fecha_necesidad=?, valor=? where riItemId = ?";
             PreparedStatement ps = conector.prepareStatement(query);
             ps.setInt(1, it.getRiId());
             ps.setString(2, it.getCantidad());
@@ -92,7 +93,8 @@ public class RIItemDAO {
             ps.setDate(9, FechaUtil.getFechatoDB(it.getFecha_oc()));
             ps.setDate(10, FechaUtil.getFechatoDB(it.getFecha_emision()));
             ps.setDate(11, FechaUtil.getFechatoDB(it.getFecha_necesidad()));
-            ps.setInt(12, it.getRiItemId());
+            ps.setString(12, it.getValor());
+            ps.setInt(13, it.getRiItemId());
             ps.executeUpdate();
             ResultSet rs = ps.getGeneratedKeys();
             if (rs.next()) {
@@ -129,6 +131,7 @@ public class RIItemDAO {
                 it.setFecha_oc(rs.getDate("fecha_oc"));
                 it.setFecha_emision(rs.getDate("fecha_emision"));
                 it.setFecha_necesidad(rs.getDate("fecha_necesidad"));
+                it.setValor(rs.getString("valor"));
                 riItems.add(it);
             }
             rs.close();
@@ -162,6 +165,7 @@ public class RIItemDAO {
                 it.setFecha_oc(rs.getDate("fecha_oc"));
                 it.setFecha_emision(rs.getDate("fecha_emision"));
                 it.setFecha_necesidad(rs.getDate("fecha_necesidad"));
+                it.setValor(rs.getString("valor"));
             }
             rs.close();
             ps.close();
