@@ -23,6 +23,7 @@ public class FechaUtil {
   public static final String DATE_FORMAT_HUMAN = "dd-MM-yyyy";
   public static final String DATE_FORMAT_SQL = "yyyy-MM-dd";
   public static final String DAY_FORMAT_HUMAN = "EEEE";
+  public static final String DATE_FORMAT_EXCEL = "dd/MM/yyyy";
 
   public static String getDay(){
       Calendar cal = Calendar.getInstance();
@@ -45,6 +46,13 @@ public class FechaUtil {
   
   public static String getFecha(Date d){
       SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT_HUMAN);
+      if(d!=null)
+        return sdf.format(d);
+      return null;
+      
+  }
+  public static String getFecha(Date d, final String formato){
+      SimpleDateFormat sdf = new SimpleDateFormat(formato);
       if(d!=null)
         return sdf.format(d);
       return null;

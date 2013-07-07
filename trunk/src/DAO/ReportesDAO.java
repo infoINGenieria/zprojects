@@ -802,7 +802,7 @@ public class ReportesDAO {
         HSSFSheet mySheet = myWorkBook.createSheet("Planilla de seguimiento de RI y OC");
         //Style
             HSSFCellStyle amarillo = myWorkBook.createCellStyle();
-            amarillo.setFillForegroundColor(HSSFColor.YELLOW.index);
+            amarillo.setFillForegroundColor(HSSFColor.GREY_25_PERCENT.index);
             amarillo.setFillPattern(HSSFCellStyle.SOLID_FOREGROUND);
             amarillo.setBorderBottom((short)14);
             amarillo.setBorderLeft((short)14);
@@ -814,49 +814,57 @@ public class ReportesDAO {
            
             
             HSSFCellStyle azul = myWorkBook.createCellStyle();
-            azul.setFillForegroundColor(HSSFColor.LIGHT_BLUE.index);
+            azul.setFillForegroundColor(HSSFColor.BLUE_GREY.index);
             azul.setFillPattern(HSSFCellStyle.SOLID_FOREGROUND);
             azul.setAlignment(HSSFCellStyle.ALIGN_CENTER);
             azul.setVerticalAlignment(HSSFCellStyle.VERTICAL_CENTER);
-            azul.setBorderBottom((short)14);
+            /*azul.setBorderBottom((short)14);
             azul.setBorderLeft((short)14);
             azul.setBorderRight((short)14);
-            azul.setBorderTop((short)14);
+            azul.setBorderTop((short)14);*/
             azul.setWrapText(true);
             
             
             HSSFCellStyle normal = myWorkBook.createCellStyle();
             normal.setAlignment(HSSFCellStyle.ALIGN_CENTER);
             normal.setVerticalAlignment(HSSFCellStyle.VERTICAL_CENTER);
-            normal.setWrapText(true);
-            normal.setBorderBottom((short)4);
-            normal.setBorderLeft((short)14);
-            normal.setBorderRight((short)14);
-            normal.setBorderTop((short)4);
+            normal.setWrapText(false);
+            
             
             HSSFCellStyle verde = myWorkBook.createCellStyle();
-            verde.setFillForegroundColor(HSSFColor.LIGHT_GREEN.index);
+            verde.setFillForegroundColor(HSSFColor.SEA_GREEN.index);
             verde.setFillPattern(HSSFCellStyle.SOLID_FOREGROUND);
             verde.setAlignment(HSSFCellStyle.ALIGN_CENTER);
             verde.setVerticalAlignment(HSSFCellStyle.VERTICAL_CENTER);
             verde.setWrapText(true);
-            verde.setBorderBottom((short)14);
+            /*verde.setBorderBottom((short)14);
             verde.setBorderLeft((short)14);
             verde.setBorderRight((short)14);
-            verde.setBorderTop((short)14);
-                int i = 0;
+            verde.setBorderTop((short)14);*/
+            
+                int i = 1;
             
             //ENCABEZADOS
             
             HSSFRow myRow = mySheet.getRow(i);
-            if (myRow == null) { myRow = mySheet.createRow(i); }  
+            if (myRow == null) { myRow = mySheet.createRow(i); } 
             HSSFCell myCell = myRow.createCell(0);
-            mySheet.addMergedRegion(new CellRangeAddress(0,6,0,0));
-
-            myCell.setCellValue(new HSSFRichTextString("CARGA DE DETALLE DE REQUERIMIENTO DE COMPRA"));
+            myCell.setCellValue(new HSSFRichTextString("FECHA"));
             myCell.setCellStyle(amarillo);
+            myCell = myRow.createCell(1);
+            myCell.setCellValue(new HSSFRichTextString(FechaUtil.getFecha(new Date(), FechaUtil.DATE_FORMAT_EXCEL)));
+            myCell.setCellStyle(amarillo);
+            i= i+2;
+            myRow = mySheet.getRow(i);
+            if (myRow == null) { myRow = mySheet.createRow(i); } 
+            mySheet.addMergedRegion(new CellRangeAddress(i,i,0,6));
+            myRow.setHeight((short)600);
+            myCell = myRow.createCell(0);
+            myCell.setCellValue(new HSSFRichTextString("CARGA DE DETALLE DE REQUERIMIENTO DE COMPRA"));
+            myCell.setCellStyle(azul);
             myCell = myRow.createCell(7);
-            mySheet.addMergedRegion(new CellRangeAddress(7,13,0,0));
+            mySheet.addMergedRegion(new CellRangeAddress(i,i,7,13));
+            myRow.setHeight((short)600);
             myCell.setCellValue(new HSSFRichTextString("SEGUIMIENTO Y CONTROL DE ÓRDENES DE COMPRA"));
             myCell.setCellStyle(verde);
             //Siguiente renglón
@@ -868,8 +876,14 @@ public class ReportesDAO {
             int h = 0;
             for(String item:cabecera){
                 myCell = myRow.createCell(h);
+                myRow.setHeight((short)600);
+                
                 myCell.setCellValue(new HSSFRichTextString(item));
-                myCell.setCellStyle(amarillo);
+                if (h < 7){
+                myCell.setCellStyle(azul);
+                }else{
+                    myCell.setCellStyle(verde);
+                }
                 h++;
             }
          
@@ -897,68 +911,54 @@ public class ReportesDAO {
                 for (int j=0;j<10;j++){
                     myCell = myRow.createCell(j);  
                     if(j==2 || j==6 || j==8){
-                        Date dato = null;
-                        myCell.setCellValue(new HSSFRichTextString(FechaUtil.getFecha(rs.getDate(columna[j]))));
+                        myCell.setCellValue(new HSSFRichTextString(
+                                FechaUtil.getFecha(rs.getDate(columna[j]), FechaUtil.DATE_FORMAT_EXCEL)));
                     }else{
                         myCell.setCellValue(new HSSFRichTextString(rs.getString(columna[j])));
                     }
+                    myCell.setCellStyle(normal);
                     
                 }
                 //valor
                 myCell = myRow.createCell(10);
                 myCell.setCellValue(new HSSFRichTextString(""));
+                myCell.setCellStyle(normal);
                 //fecha entrega
                 myCell = myRow.createCell(11);
-                myCell.setCellValue(new HSSFRichTextString(FechaUtil.getFecha(rs.getDate("fecha_entrega"))));
-                //"               SI(D2="";" ";SI(K2="";H2-($O$2);+H2-K2))"
-                //Agenda compras =SI(D61="";" ";SI(K61="";H61-($O$2);+H61-K61))
-                HSSFCell myCellF = myRow.createCell(12);
-                String formula = "IF(D"+i+"=\"\";\" \";IF(K"+i+"=\"\";H"+i+"-($O$2);+H"+i+"-K"+i+"))";
+                myCell.setCellValue(new HSSFRichTextString(
+                        FechaUtil.getFecha(rs.getDate("fecha_entrega"), FechaUtil.DATE_FORMAT_EXCEL)));
+                myCell.setCellStyle(normal);
+                
                 try{
-                myCellF.setCellFormula(formula);
+                     //Agenda compras =SI(D61="";" ";SI(K61="";H61-($O$2);+H61-K61))
+                    HSSFCell myCellF = myRow.createCell(12);
+                    int j = i+1;
+                    String formula = "IF(C"+j+"=\"\",\" \",IF(I"+j+"=\"\",G"+j+"-($B$2),+G"+j+"-I"+j+"))";
+                    myCellF.setCellFormula(formula);
+                    myCellF.setCellStyle(normal);
+                    //Agenda Entrega =SI(D61=0;" ";SI(N61=0;H61-$O$2;H61-N61))
+                    HSSFCell myCellF2 = myRow.createCell(13);
+                    formula = "IF(C"+j+"=0,\" \",IF(L"+j+"=0,G"+j+"-$B$2,G"+j+"-L"+j+"))";
+                    myCellF2.setCellFormula(formula);
+                    myCellF2.setCellStyle(normal);
+                    HSSFFormulaEvaluator evaluador = new HSSFFormulaEvaluator(myWorkBook) ;
+                    evaluador.evaluate(myCellF);
+                    evaluador.evaluate(myCellF2);
                 }catch(Exception ex){
                     System.out.println(ex.getMessage());
                 }
-                //Agenda Entrega =SI(D61=0;" ";SI(N61=0;H61-$O$2;H61-N61))
-                HSSFCell myCellF2 = myRow.createCell(13);
-                formula = "SI(D"+i+"=0;\" \";SI(N"+i+"=0;H"+i+"-$O$2;H"+i+"-N"+i+"))";
-                myCellF2.setCellFormula(formula);
-                HSSFFormulaEvaluator evaluador = new HSSFFormulaEvaluator(myWorkBook) ;
-                evaluador.evaluate(myCellF);
-                evaluador.evaluate(myCellF2);
-                
-             /*   
-            //Total
-                HSSFCell myCellF = myRow.createCell(1);
-                int i2= i+1;
-                String formula = "SUM(C"+i2+":AA"+i2+")";
-                myCellF.setCellFormula(formula);
-            //Obras
-                for (int j = 0; j < obrasIDlist.size(); j++) {
-                    String subq = "select count(PD.obra) as cantidad FROM partediario PD WHERE PD.fecha <= '"
-                            + FechaUtil.getFechaSQL(hasta) + "' AND PD.fecha >= '" + FechaUtil.getFechaSQL(desde)
-                            + "' AND PD.situacion =1 AND PD.obra = " + obrasIDlist.get(j).getId() + " and PD.operario = "
-                            + rs.getInt("id");
-                    ps = conector.prepareStatement(subq);
-                    ResultSet rs2 = ps.executeQuery();
-                    myCell = myRow.createCell(j + 2);
-                    
-                    int value = 0;
-                    if (rs2.next()) {
-                        value = rs2.getInt("cantidad");
-                    }
-                    myCell.setCellValue(value);
-                    
-                }
-                
-                contador++;
-              * */
-              
             }
             
+            for (int b = 0; b < 14; b++){
+                if(b == 1 ||b == 13){
+                    mySheet.setColumnWidth(b, 7000);
+                }else if(b==4 || b==5){
+                    mySheet.setColumnWidth(b, 4000);
+                }else
+                    mySheet.autoSizeColumn((short)b); //ajusta el ancho de la primera columna  
+            }   
             
-            
-            mySheet.createFreezePane(0,2);
+            mySheet.createFreezePane(0,5);
             FileOutputStream out = new FileOutputStream(dest);
             myWorkBook.write(out);
             Desktop.getDesktop().open(new File(dest));
