@@ -795,7 +795,8 @@ public class ReportesDAO {
         //10
         String[] columna = {
             "RI_NUM", "codigo", "fecha_emision", "detalle", "unidad",
-            "cantidad", "fecha_necesidad", "oc_num", "fecha_oc", "proveedor"            
+            "cantidad", "fecha_necesidad", "oc_num", "fecha_oc", "proveedor",
+            "valor", "fecha_entrega"
         };
         //POIFSFileSystem fs = new POIFSFileSystem(new InputStream() {})
         HSSFWorkbook myWorkBook = new HSSFWorkbook();
@@ -908,9 +909,9 @@ public class ReportesDAO {
                 if (myRow == null) {
                     myRow = mySheet.createRow(i);
                 }
-                for (int j=0;j<10;j++){
+                for (int j=0;j<12;j++){
                     myCell = myRow.createCell(j);  
-                    if(j==2 || j==6 || j==8){
+                    if(j==2 || j==6 || j==8 || j==11){
                         myCell.setCellValue(new HSSFRichTextString(
                                 FechaUtil.getFecha(rs.getDate(columna[j]), FechaUtil.DATE_FORMAT_EXCEL)));
                     }else{
@@ -919,15 +920,7 @@ public class ReportesDAO {
                     myCell.setCellStyle(normal);
                     
                 }
-                //valor
-                myCell = myRow.createCell(10);
-                myCell.setCellValue(new HSSFRichTextString(""));
-                myCell.setCellStyle(normal);
-                //fecha entrega
-                myCell = myRow.createCell(11);
-                myCell.setCellValue(new HSSFRichTextString(
-                        FechaUtil.getFecha(rs.getDate("fecha_entrega"), FechaUtil.DATE_FORMAT_EXCEL)));
-                myCell.setCellStyle(normal);
+               
                 
                 try{
                      //Agenda compras =SI(D61="";" ";SI(K61="";H61-($O$2);+H61-K61))
