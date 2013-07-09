@@ -703,6 +703,7 @@ public class ParteDiarioDAO {
                     break;
 
             }
+            query+= " order by fecha desc";
             PreparedStatement ps = conector.prepareStatement(query);
 
             ResultSet rs = ps.executeQuery();
@@ -751,6 +752,7 @@ public class ParteDiarioDAO {
                     break;
 
             }
+            query+= " order by fecha desc";
             PreparedStatement ps = conector.prepareStatement(query);
 
             ResultSet rs = ps.executeQuery();
@@ -788,6 +790,7 @@ public class ParteDiarioDAO {
         try {
 
             query += " P.fecha = '" + q1 + "' and P.obra = " + q2 + " and P.operario = " + q3;
+            query+= " order by fecha desc";
             PreparedStatement ps = conector.prepareStatement(query);
 
             ResultSet rs = ps.executeQuery();
@@ -902,6 +905,7 @@ public class ParteDiarioDAO {
         try {
 
             query += " P.numero like '%" + q1 + "%'";
+            query+= " order by fecha desc";
             PreparedStatement ps = conector.prepareStatement(query);
 
             ResultSet rs = ps.executeQuery();
