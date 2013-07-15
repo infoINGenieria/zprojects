@@ -931,7 +931,7 @@ public class ReportesDAO {
                     myCellF.setCellStyle(normal);
                     //Agenda Entrega =SI(D61=0;" ";SI(N61=0;H61-$O$2;H61-N61))
                     HSSFCell myCellF2 = myRow.createCell(13);
-                    formula = "IF(C"+j+"=0,\" \",IF(L"+j+"=0,G"+j+"-$B$2,G"+j+"-L"+j+"))";
+                    formula = "IF(C"+j+"=\"\",\" \",IF(L"+j+"=\"\",G"+j+"-$B$2,G"+j+"-L"+j+"))";
                     myCellF2.setCellFormula(formula);
                     myCellF2.setCellStyle(normal);
                     HSSFFormulaEvaluator evaluador = new HSSFFormulaEvaluator(myWorkBook) ;
