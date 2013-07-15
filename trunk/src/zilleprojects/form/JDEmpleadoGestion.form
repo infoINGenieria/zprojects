@@ -63,7 +63,7 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="nuevoOperario" alignment="1" max="32767" attributes="1"/>
                               <Group type="102" alignment="1" attributes="0">
-                                  <Component id="alertas" pref="556" max="32767" attributes="0"/>
+                                  <Component id="alertas" pref="562" max="32767" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="botonSalir" min="-2" max="-2" attributes="0"/>
                               </Group>
@@ -253,28 +253,33 @@
                                   <Component id="vto_cargapeligrosa" linkSize="10" alignment="0" min="-2" pref="114" max="-2" attributes="0"/>
                                   <Component id="vto_otros2" linkSize="10" alignment="0" min="-2" pref="114" max="-2" attributes="0"/>
                               </Group>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" attributes="0">
-                                      <EmptySpace min="-2" pref="146" max="-2" attributes="0"/>
-                                      <Component id="desaCheck" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" attributes="0">
-                                      <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
-                                      <Component id="jLabel15" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="10" pref="10" max="10" attributes="0"/>
-                                      <Component id="vto_cargagral" min="-2" pref="225" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" attributes="0">
-                                      <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
-                                      <Component id="descripcion1" min="-2" pref="126" max="-2" attributes="0"/>
-                                      <EmptySpace min="10" pref="10" max="10" attributes="0"/>
-                                      <Component id="vto_otros1" min="-2" pref="225" max="-2" attributes="0"/>
-                                  </Group>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Group type="102" attributes="0">
                                       <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                                       <Component id="descripcion3" min="-2" pref="126" max="-2" attributes="0"/>
                                       <EmptySpace min="10" pref="10" max="10" attributes="0"/>
-                                      <Component id="vto_otros3" min="-2" pref="225" max="-2" attributes="0"/>
+                                      <Component id="vto_otros3" linkSize="11" min="-2" pref="225" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                          <Component id="jLabel15" max="32767" attributes="1"/>
+                                          <Component id="descripcion1" alignment="1" pref="126" max="32767" attributes="1"/>
+                                      </Group>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <EmptySpace min="10" pref="10" max="10" attributes="0"/>
+                                              <Component id="vto_otros1" linkSize="11" min="-2" pref="225" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Group type="102" alignment="1" attributes="0">
+                                              <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                                              <Component id="vto_cargagral" linkSize="11" min="-2" pref="225" max="-2" attributes="0"/>
+                                          </Group>
+                                      </Group>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="1">
+                                      <EmptySpace min="-2" pref="146" max="-2" attributes="0"/>
+                                      <Component id="desaCheck" linkSize="11" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
@@ -305,7 +310,7 @@
                               <Component id="cuil" min="-2" pref="225" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -341,14 +346,14 @@
                           <Component id="vto_carnet" min="-2" max="-2" attributes="0"/>
                           <Component id="desaCheck" min="-2" pref="27" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="10" pref="10" max="10" attributes="0"/>
+                      <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jLabel14" min="-2" pref="27" max="-2" attributes="0"/>
                           <Component id="vto_psicofisico" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel15" min="-2" pref="27" max="-2" attributes="0"/>
                           <Component id="vto_cargagral" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel15" min="-2" pref="27" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="10" pref="10" max="10" attributes="0"/>
+                      <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jLabel16" min="-2" pref="27" max="-2" attributes="0"/>
                           <Component id="vto_cargapeligrosa" min="-2" max="-2" attributes="0"/>

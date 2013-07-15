@@ -243,7 +243,7 @@
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                       <Component id="btnGuardar" linkSize="7" min="-2" pref="131" max="-2" attributes="1"/>
                                   </Group>
-                                  <Component id="alertasText" pref="442" max="32767" attributes="1"/>
+                                  <Component id="alertasText" pref="446" max="32767" attributes="1"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="1" attributes="0">
@@ -304,45 +304,45 @@
                               <Group type="102" attributes="1">
                                   <Component id="nInternoText" min="-2" pref="140" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jLabel3" min="-2" pref="142" max="-2" attributes="0"/>
+                                  <Component id="jLabel3" linkSize="10" min="-2" pref="142" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
-                                  <Component id="marcaText" pref="147" max="32767" attributes="0"/>
+                                  <Component id="marcaText" pref="149" max="32767" attributes="0"/>
                               </Group>
                               <Group type="102" attributes="0">
                                   <Component id="descripcionVto3" min="-2" pref="294" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
-                                  <Component id="vtoOtros3" pref="147" max="32767" attributes="0"/>
+                                  <EmptySpace pref="14" max="32767" attributes="1"/>
+                                  <Component id="vtoOtros3" linkSize="9" min="-2" pref="147" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" attributes="0">
                                   <Component id="descripcionVto1" min="-2" pref="294" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
-                                  <Component id="vtoOtros1" pref="147" max="32767" attributes="0"/>
+                                  <EmptySpace pref="14" max="32767" attributes="1"/>
+                                  <Component id="vtoOtros1" linkSize="9" min="-2" pref="147" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="descripcionVto2" min="-2" pref="294" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
-                                  <Component id="vtoOtros2" pref="147" max="32767" attributes="0"/>
+                                  <EmptySpace pref="14" max="32767" attributes="1"/>
+                                  <Component id="vtoOtros2" linkSize="9" min="-2" pref="147" max="-2" attributes="0"/>
                               </Group>
-                              <Component id="modeloText" alignment="1" pref="451" max="32767" attributes="1"/>
-                              <Component id="equipoText" alignment="1" pref="451" max="32767" attributes="1"/>
+                              <Component id="modeloText" alignment="1" pref="455" max="32767" attributes="1"/>
+                              <Component id="equipoText" alignment="1" pref="455" max="32767" attributes="1"/>
                               <Component id="IDequipos" alignment="0" min="-2" pref="138" max="-2" attributes="0"/>
-                              <Group type="102" alignment="0" attributes="0">
+                              <Group type="102" alignment="0" max="-2" attributes="0">
                                   <Group type="103" groupAlignment="1" max="-2" attributes="0">
                                       <Component id="añoText" alignment="0" max="32767" attributes="1"/>
                                       <Component id="vtoVt" alignment="0" pref="140" max="32767" attributes="1"/>
                                   </Group>
-                                  <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                       <Group type="102" alignment="0" attributes="0">
                                           <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
-                                          <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
-                                          <Component id="vto_seguro" pref="147" max="32767" attributes="0"/>
+                                          <Component id="jLabel8" linkSize="10" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace max="32767" attributes="1"/>
+                                          <Component id="vto_seguro" linkSize="9" min="-2" pref="147" max="-2" attributes="0"/>
                                       </Group>
                                       <Group type="102" attributes="0">
                                           <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="jLabel7" min="-2" pref="142" max="-2" attributes="0"/>
-                                          <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
-                                          <Component id="dominioText" pref="147" max="32767" attributes="0"/>
+                                          <Component id="jLabel7" linkSize="10" min="-2" pref="142" max="-2" attributes="0"/>
+                                          <EmptySpace max="32767" attributes="1"/>
+                                          <Component id="dominioText" linkSize="9" min="-2" pref="147" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
