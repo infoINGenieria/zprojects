@@ -36,7 +36,8 @@ public class ObrasDAO {
         try {
         
             query = "insert into obras (CODIGO, OBRA, CONTRATO, COMITENTE,"
-                    + " CUIT, LUGAR, PLAZO, FECHA_INICIO, RESPONSABLE) values "
+                    + " CUIT, LUGAR, PLAZO, FECHA_INICIO, RESPONSABLE, TIENE_COMIDA, "
+                    + "TIENE_VIANDA, TIENE_DESARRAIGO, LIMITE_VIANDA_DOBLE) values "
                     + "(?, ?, ?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement ps = conector.prepareStatement(query);
             ps.setString(1, obra.getCodigo());
@@ -52,6 +53,10 @@ public class ObrasDAO {
                 ps.setDate(8, null);
             }
             ps.setString(9,obra.getResponsable());
+            ps.setBoolean(10, obra.isTieneComida());
+            ps.setBoolean(11, obra.isTieneVianda());
+            ps.setBoolean(12, obra.isTieneDesarraigo());
+            ps.setDouble(13, obra.getLimiteViandaDoble());
             ps.executeUpdate();
             ResultSet generatedKeys = ps.getGeneratedKeys();
             r=1;
@@ -72,7 +77,9 @@ public class ObrasDAO {
         int r = -1;
         try {
             String query = "update obras set CODIGO=?, OBRA=?, CONTRATO=?, COMITENTE=?,"
-                    + " CUIT=?, LUGAR=?, PLAZO=?, FECHA_INICIO=?, RESPONSABLE=? where ID = ?";
+                    + " CUIT=?, LUGAR=?, PLAZO=?, FECHA_INICIO=?, RESPONSABLE=?,"
+                    + " TIENE_COMIDA=?, TIENE_VIANDA=?, TIENE_DESARRAIGO=?,"
+                    + " LIMITE_VIANDA_DOBLE=? where ID = ?";
             PreparedStatement ps = conector.prepareStatement(query);
             ps.setString(1, obra.getCodigo());
             ps.setString(2, obra.getObra());
@@ -87,7 +94,11 @@ public class ObrasDAO {
                 ps.setDate(8, null);
             }
             ps.setString(9, obra.getResponsable());
-            ps.setInt(10, obra.getId());
+            ps.setBoolean(10, obra.isTieneComida());
+            ps.setBoolean(11, obra.isTieneVianda());
+            ps.setBoolean(12, obra.isTieneDesarraigo());
+            ps.setDouble(13, obra.getLimiteViandaDoble());
+            ps.setInt(14, obra.getId());
             ps.executeUpdate();
             ResultSet rs = ps.getGeneratedKeys();
             r=0;
@@ -122,6 +133,11 @@ public class ObrasDAO {
                 obra.setPlazo(rs.getString("PLAZO"));
                 obra.setFecha_inicio(rs.getDate("FECHA_INICIO"));
                 obra.setResponsable(rs.getString("RESPONSABLE"));
+                obra.setTieneComida(rs.getBoolean(("TIENE_COMIDA")));
+                obra.setTieneVianda(rs.getBoolean(("TIENE_VIANDA")));
+                obra.setTieneDesarraigo(rs.getBoolean(("TIENE_DESARRAIGO")));
+                obra.setLimiteViandaDoble(rs.getDouble(("LIMITE_VIANDA_DOBLE")));
+                
                 obras.add(obra);
             }
             rs.close();
@@ -180,6 +196,10 @@ public class ObrasDAO {
                 obra.setPlazo(rs.getString("PLAZO"));
                 obra.setFecha_inicio(rs.getDate("FECHA_INICIO"));
                 obra.setResponsable(rs.getString("RESPONSABLE"));
+                obra.setTieneComida(rs.getBoolean(("TIENE_COMIDA")));
+                obra.setTieneVianda(rs.getBoolean(("TIENE_VIANDA")));
+                obra.setTieneDesarraigo(rs.getBoolean(("TIENE_DESARRAIGO")));
+                obra.setLimiteViandaDoble(rs.getDouble(("LIMITE_VIANDA_DOBLE")));
                 
             }
             rs.close();

@@ -15,6 +15,8 @@ public class Obras {
             int id;
             String codigo, obra, contrato, comitente, cuit, lugar, plazo, responsable;
             Date fecha_inicio;
+            boolean tieneComida, tieneVianda, tieneDesarraigo;
+            double limiteViandaDoble;
 
     @Override
     public boolean equals(Object obj) {
@@ -49,13 +51,54 @@ public class Obras {
     public void setResponsable(String responsable) {
         this.responsable = responsable;
     }
+
+    public double getLimiteViandaDoble() {
+        return limiteViandaDoble;
+    }
+
+    public void setLimiteViandaDoble(double limiteViandaDoble) {
+        this.limiteViandaDoble = limiteViandaDoble;
+    }
+
+    public boolean isTieneComida() {
+        return tieneComida;
+    }
+
+    public void setTieneComida(boolean tieneComida) {
+        this.tieneComida = tieneComida;
+    }
+
+    public boolean isTieneDesarraigo() {
+        return tieneDesarraigo;
+    }
+
+    public void setTieneDesarraigo(boolean tieneDesarraigo) {
+        this.tieneDesarraigo = tieneDesarraigo;
+    }
+
+    public boolean isTieneVianda() {
+        return tieneVianda;
+    }
+
+    public void setTieneVianda(boolean tieneVianda) {
+        this.tieneVianda = tieneVianda;
+    }
     
     
 
     public Obras(String codigo) {
         this.codigo = codigo;
+        this.tieneComida = true;
+        this.tieneDesarraigo = true;
+        this.tieneVianda = true;
+        this.limiteViandaDoble = 2;
     }
-    public Obras(){}
+    public Obras(){
+        this.tieneComida = true;
+        this.tieneDesarraigo = true;
+        this.tieneVianda = true;
+        this.limiteViandaDoble = 2;
+    }
     
    
 
