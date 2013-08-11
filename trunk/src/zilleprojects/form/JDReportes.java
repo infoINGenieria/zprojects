@@ -69,7 +69,6 @@ public class JDReportes extends javax.swing.JDialog {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        java.awt.GridBagConstraints gridBagConstraints;
 
         informeHorasDialog = new javax.swing.JDialog();
         jPanel2 = new PanelAzul();
@@ -590,7 +589,6 @@ public class JDReportes extends javax.swing.JDialog {
         jPanel12.setBorder(javax.swing.BorderFactory.createLineBorder(resourceMap.getColor("jPanel12.border.lineColor"))); // NOI18N
         jPanel12.setMinimumSize(new java.awt.Dimension(291, 206));
         jPanel12.setName("jPanel12"); // NOI18N
-        jPanel12.setLayout(new java.awt.GridBagLayout());
 
         cerrarBusquedaObras.setIcon(resourceMap.getIcon("cerrarBusquedaObras.icon")); // NOI18N
         cerrarBusquedaObras.setText(resourceMap.getString("cerrarBusquedaObras.text")); // NOI18N
@@ -600,25 +598,11 @@ public class JDReportes extends javax.swing.JDialog {
                 cerrarBusquedaObrasActionPerformed(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.ipadx = 20;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        jPanel12.add(cerrarBusquedaObras, gridBagConstraints);
 
         selectObrasButton.setAction(actionMap.get("seleccionarObra")); // NOI18N
         selectObrasButton.setIcon(resourceMap.getIcon("selectObrasButton.icon")); // NOI18N
         selectObrasButton.setText(resourceMap.getString("selectObrasButton.text")); // NOI18N
         selectObrasButton.setName("selectObrasButton"); // NOI18N
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.ipadx = 30;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        jPanel12.add(selectObrasButton, gridBagConstraints);
 
         jScrollPane7.setName("jScrollPane7"); // NOI18N
 
@@ -626,23 +610,29 @@ public class JDReportes extends javax.swing.JDialog {
         listaDeObras.setName("listaDeObras"); // NOI18N
         jScrollPane7.setViewportView(listaDeObras);
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.ipadx = 20;
-        gridBagConstraints.ipady = 40;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        jPanel12.add(jScrollPane7, gridBagConstraints);
+        javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
+        jPanel12.setLayout(jPanel12Layout);
+        jPanel12Layout.setHorizontalGroup(
+            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(jPanel12Layout.createSequentialGroup()
+                .addComponent(selectObrasButton, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cerrarBusquedaObras, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        jPanel12Layout.setVerticalGroup(
+            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel12Layout.createSequentialGroup()
+                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(selectObrasButton)
+                    .addComponent(cerrarBusquedaObras)))
+        );
 
         javax.swing.GroupLayout selectObraDialogLayout = new javax.swing.GroupLayout(selectObraDialog.getContentPane());
         selectObraDialog.getContentPane().setLayout(selectObraDialogLayout);
         selectObraDialogLayout.setHorizontalGroup(
             selectObraDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, 291, Short.MAX_VALUE)
+            .addComponent(jPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         selectObraDialogLayout.setVerticalGroup(
             selectObraDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -829,7 +819,6 @@ public class JDReportes extends javax.swing.JDialog {
         jPanel24.setBorder(javax.swing.BorderFactory.createLineBorder(resourceMap.getColor("jPanel24.border.lineColor"))); // NOI18N
         jPanel24.setMinimumSize(new java.awt.Dimension(291, 206));
         jPanel24.setName("jPanel24"); // NOI18N
-        jPanel24.setLayout(new java.awt.GridBagLayout());
 
         cerrarBusquedaPlataformas.setIcon(resourceMap.getIcon("cerrarBusquedaPlataformas.icon")); // NOI18N
         cerrarBusquedaPlataformas.setText(resourceMap.getString("cerrarBusquedaPlataformas.text")); // NOI18N
@@ -839,25 +828,11 @@ public class JDReportes extends javax.swing.JDialog {
                 cerrarBusquedaPlataformasActionPerformed(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.ipadx = 20;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        jPanel24.add(cerrarBusquedaPlataformas, gridBagConstraints);
 
         selectPlataformasButton.setAction(actionMap.get("seleccionarPlataforma")); // NOI18N
         selectPlataformasButton.setIcon(resourceMap.getIcon("selectPlataformasButton.icon")); // NOI18N
         selectPlataformasButton.setText(resourceMap.getString("selectPlataformasButton.text")); // NOI18N
         selectPlataformasButton.setName("selectPlataformasButton"); // NOI18N
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.ipadx = 30;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        jPanel24.add(selectPlataformasButton, gridBagConstraints);
 
         jScrollPane8.setName("jScrollPane8"); // NOI18N
 
@@ -865,23 +840,29 @@ public class JDReportes extends javax.swing.JDialog {
         listaDePlataformas.setName("listaDePlataformas"); // NOI18N
         jScrollPane8.setViewportView(listaDePlataformas);
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.ipadx = 20;
-        gridBagConstraints.ipady = 40;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        jPanel24.add(jScrollPane8, gridBagConstraints);
+        javax.swing.GroupLayout jPanel24Layout = new javax.swing.GroupLayout(jPanel24);
+        jPanel24.setLayout(jPanel24Layout);
+        jPanel24Layout.setHorizontalGroup(
+            jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(jPanel24Layout.createSequentialGroup()
+                .addComponent(selectPlataformasButton, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cerrarBusquedaPlataformas, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        jPanel24Layout.setVerticalGroup(
+            jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel24Layout.createSequentialGroup()
+                .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(selectPlataformasButton)
+                    .addComponent(cerrarBusquedaPlataformas)))
+        );
 
         javax.swing.GroupLayout selectPlataformaDialogLayout = new javax.swing.GroupLayout(selectPlataformaDialog.getContentPane());
         selectPlataformaDialog.getContentPane().setLayout(selectPlataformaDialogLayout);
         selectPlataformaDialogLayout.setHorizontalGroup(
             selectPlataformaDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel24, javax.swing.GroupLayout.DEFAULT_SIZE, 291, Short.MAX_VALUE)
+            .addComponent(jPanel24, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         selectPlataformaDialogLayout.setVerticalGroup(
             selectPlataformaDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1343,7 +1324,7 @@ public class JDReportes extends javax.swing.JDialog {
                 .addComponent(jPanel15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(198, 198, 198))
+                .addGap(211, 211, 211))
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addGap(12, 12, 12)
                 .addComponent(jPanel14, javax.swing.GroupLayout.DEFAULT_SIZE, 716, Short.MAX_VALUE)
