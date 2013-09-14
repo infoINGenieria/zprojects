@@ -1510,14 +1510,8 @@ public class JDGestionarParte extends javax.swing.JDialog {
                 r = -10;
                 return null;
             }
-            reg.calcular(perfil);
-            if (pd.isDesarraigo() || op.isDesarraigo()) {
-                System.out.println("PD" + pd.isDesarraigo());
-                System.out.println("OP" + op.isDesarraigo());
-                reg.calcularVianda(true);
-            } else {
-                reg.calcularVianda(false);
-            }
+            //evaluo el desarraigo del parte diario y el desarraigo del operario
+            reg.calcular(perfil, (pd.isDesarraigo()| op.isDesarraigo()));
             r = pdao.actualizar(pd, reg, re, datosTr);
             return null;  // return your result
         }

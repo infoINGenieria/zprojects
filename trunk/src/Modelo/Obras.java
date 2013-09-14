@@ -4,6 +4,7 @@
  */
 package Modelo;
 
+import java.sql.Time;
 import java.util.Date;
 
 /**
@@ -54,6 +55,11 @@ public class Obras {
 
     public double getLimiteViandaDoble() {
         return limiteViandaDoble;
+    }
+    public Time getLimiteViandaDobleInTime(){
+        String hora = (""+((int)limiteViandaDoble));
+        hora = hora.substring(hora.length()-1);
+        return Time.valueOf("0"+ hora +":00:00");
     }
 
     public void setLimiteViandaDoble(double limiteViandaDoble) {

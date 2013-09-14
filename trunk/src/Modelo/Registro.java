@@ -41,13 +41,17 @@ public final class Registro {
         
 
     }
-    public void calcular(Perfiles p){
+    public void calcular(Perfiles p, boolean desarraigo){
         esEspecialHoy();
         calcularTotalHs();
         calcularHsAlmuerzo();
         calcularHsViaje();
         calcularHsTarea();
         diferenciaDeHS(p);
+        
+        //Si la obra tiene Desarraigo y desarraigo es true
+        calcularVianda(p, p.getObra().isTieneDesarraigo() & desarraigo);
+       
     }
 
     public void calcularEspecial(MyTime op, Perfiles perfil) {
@@ -171,19 +175,27 @@ public final class Registro {
         
     }
     
-    public void calcularVianda(boolean desa){
+    public void calcularVianda(Perfiles p, boolean desa){
         if(desa){
             comida=0;
             vianda=0;
             vianda_desa=1;
         }else{
-            comida=1;
+            if(p.getObra().isTieneComida())
+                comida=1;
+            
             vianda_desa=0;
-            Time t = Time.valueOf("10:00:00");
-            if(hs_tarea.compareTo(t) < 0 ){
-                vianda=0;
-            }else{
-                vianda=1;
+            MyTime time = new MyTime();
+            Time t = Time.valueOf("22:00:00");
+            t = time.restarTime(t, hs_normal);
+            t = time.restarTime(t, p.getObra().getLimiteViandaDobleInTime());
+            t = time.restarTime(Time.valueOf("22:00:00"), t);
+            if(p.getObra().isTieneVianda()){
+                if(hs_tarea.compareTo(t) < 0 ){
+                    vianda=0;
+                }else{
+                    vianda=1;
+                }
             }
         }
         

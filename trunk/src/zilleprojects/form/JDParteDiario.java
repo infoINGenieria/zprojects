@@ -1210,7 +1210,8 @@ private void selectEquipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
             pd.setMultifuncion(multifuncionCheck.isSelected());
             pd.setDesarraigo(isDesarrango.isSelected());
             pd.setIdSituacion(1);
-            
+            //pasamos la obra seleccionada al perfil
+            perfil.setObra((Obras) comboObra.getSelectedItem());
             regEq.setIdEquipo(((Equipos) comboEquipos.getSelectedItem()).getId());
             regEq.setDatosCarga(isTransporte.isSelected());
             regEq.setIniHoro(inicialHorometroText.getText());
@@ -1254,12 +1255,8 @@ private void selectEquipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                 rPD=-10;
                 return null;
             }
-            reg.calcular(perfil);
-            if(pd.isDesarraigo() || ((Operario) comboOperario.getSelectedItem()).isDesarraigo() ){
-                reg.calcularVianda(true);
-            }else{
-                reg.calcularVianda(false);
-            }
+            //evaluo el desarraigo del parte diario y el desarraigo del operario
+            reg.calcular(perfil, (pd.isDesarraigo()| ((Operario) comboOperario.getSelectedItem()).isDesarraigo()));
             
             rPD = pdao.guardar(pd, reg, regEq, datosTr);
             //creo la OT si se chequeo el checkbox

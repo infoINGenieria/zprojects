@@ -651,7 +651,7 @@ public class JDObrasGestion extends javax.swing.JDialog {
         chkTieneDesarraigo.setText(resourceMap.getString("chkTieneDesarraigo.text")); // NOI18N
         chkTieneDesarraigo.setName("chkTieneDesarraigo"); // NOI18N
 
-        pinLimiteViandaDoble.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(2), Integer.valueOf(0), null, Integer.valueOf(1)));
+        pinLimiteViandaDoble.setModel(new javax.swing.SpinnerNumberModel(2, 0, 8, 1));
         pinLimiteViandaDoble.setName("limite_vianda_doble"); // NOI18N
 
         jLabel21.setText(resourceMap.getString("jLabel21.text")); // NOI18N
@@ -711,7 +711,7 @@ public class JDObrasGestion extends javax.swing.JDialog {
         capaLayout.setVerticalGroup(
             capaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(capaLayout.createSequentialGroup()
-                .addContainerGap(28, Short.MAX_VALUE)
+                .addContainerGap(27, Short.MAX_VALUE)
                 .addGroup(capaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -911,7 +911,7 @@ public class JDObrasGestion extends javax.swing.JDialog {
             aux.setTieneVianda(chlTieneVianda.isSelected());
             aux.setTieneDesarraigo(chkTieneDesarraigo.isSelected());
             if(pinLimiteViandaDoble.isEnabled()){
-                double limite = (Double) pinLimiteViandaDoble.getValue();
+                double limite = (Integer)pinLimiteViandaDoble.getValue();
                 aux.setLimiteViandaDoble(limite);
             } else{
                 aux.setLimiteViandaDoble(0);

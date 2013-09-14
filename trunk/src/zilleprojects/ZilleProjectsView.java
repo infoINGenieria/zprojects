@@ -76,6 +76,7 @@ import zilleprojects.form.JDRI;
 import zilleprojects.form.JDRemoverParte;
 import zilleprojects.form.JDReportes;
 import zilleprojects.form.JDReportesAnteriores;
+import zilleprojects.form.JDSemaforos;
 
 /**
  * The application's main frame.
@@ -602,6 +603,18 @@ public class ZilleProjectsView extends FrameView {
         } 
 
     }
+    
+    @Action
+    public void mostrarJDSemaforosDialog() {
+        if (verificarCredenciales("Administrador")) {
+            JFrame mainFrame = ZilleProjectsApp.getApplication().getMainFrame();
+            semaforosDialog = new JDSemaforos(mainFrame, true);
+            semaforosDialog.setLocationRelativeTo(mainFrame);   
+            ZilleProjectsApp.getApplication().show(semaforosDialog);
+        } 
+
+    }
+    
     @Action
     public void mostrarJDRIDialog() {
        
@@ -1103,6 +1116,7 @@ public class ZilleProjectsView extends FrameView {
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenuItem8 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
+        jMenuItem9 = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
         jMenuItem6 = new javax.swing.JMenuItem();
         jMenuItem7 = new javax.swing.JMenuItem();
@@ -1258,7 +1272,7 @@ public class ZilleProjectsView extends FrameView {
                 .addContainerGap()
                 .addComponent(jButton2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 427, Short.MAX_VALUE))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 433, Short.MAX_VALUE))
         );
 
         jPanel3.setName("jPanel3"); // NOI18N
@@ -1391,6 +1405,16 @@ public class ZilleProjectsView extends FrameView {
         jMenuItem4.setName("jMenuItem4"); // NOI18N
         EmpleadosMenu.add(jMenuItem4);
 
+        jMenuItem9.setAction(actionMap.get("mostrarJDSemaforosDialog")); // NOI18N
+        jMenuItem9.setText(resourceMap.getString("jMenuItem9.text")); // NOI18N
+        jMenuItem9.setName("jMenuItem9"); // NOI18N
+        jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem9ActionPerformed(evt);
+            }
+        });
+        EmpleadosMenu.add(jMenuItem9);
+
         menuBar.add(EmpleadosMenu);
 
         jMenu5.setText(resourceMap.getString("jMenu5.text")); // NOI18N
@@ -1475,7 +1499,7 @@ public class ZilleProjectsView extends FrameView {
             .addGroup(statusPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(statusMessageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 453, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 351, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 353, Short.MAX_VALUE)
                 .addComponent(progressBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(3, 3, 3)
                 .addComponent(statusAnimationLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -1837,7 +1861,7 @@ public class ZilleProjectsView extends FrameView {
                                 .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel8Layout.createSequentialGroup()
                                     .addComponent(empleadoText, javax.swing.GroupLayout.PREFERRED_SIZE, 403, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(18, 18, 18)
-                                    .addComponent(botonBuscarEmpleado, javax.swing.GroupLayout.DEFAULT_SIZE, 46, Short.MAX_VALUE))
+                                    .addComponent(botonBuscarEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 46, Short.MAX_VALUE))
                                 .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel8Layout.createSequentialGroup()
                                     .addComponent(fechaChoose, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
@@ -2077,6 +2101,10 @@ private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         userText1.requestFocusInWindow();
     }//GEN-LAST:event_loginDialogoWindowActivated
 
+    private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem9ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BotonGrandeLogin;
     private javax.swing.JMenu EmpleadosMenu;
@@ -2131,6 +2159,7 @@ private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;
+    private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -2180,6 +2209,7 @@ private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     private JDOrdenTrabajo ordenDeTrabajo;
     private JDAlarmas alarmaDialog;
     private JDRI reqInt;
+    private JDSemaforos semaforosDialog;
     LeerXML configDB = new LeerXML();
     static Conexion conn;
     static Connection link2db;

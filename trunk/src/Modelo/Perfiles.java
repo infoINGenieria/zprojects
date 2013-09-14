@@ -13,10 +13,11 @@ import java.sql.Time;
  */
 public class Perfiles {
 
-    static int id;
-    static String nombre;
-    static Time sabEsp_i, sabEsp_f, domEsp_i, domEsp_f;
-    static Time feriado_i, feriado_f, hs_normal;
+     int id;
+     String nombre;
+     Time sabEsp_i, sabEsp_f, domEsp_i, domEsp_f;
+     Time feriado_i, feriado_f, hs_normal;
+     Obras obra;
 
     public Perfiles() {
         id=0;
@@ -28,23 +29,27 @@ public class Perfiles {
         feriado_i=Time.valueOf("00:00:00");
         feriado_f=Time.valueOf("23:59:59");
         hs_normal=Time.valueOf("08:00:00");
-    
+            
     }
 
+    public  Obras getObra() {
+        return obra;
+    }
+
+    public  void setObra(Obras obra) {
+        this.obra = obra;
+    }
 
     public Perfiles(int id) {
-        Perfiles.id = id;
+        this.id = id;
     }
-
-   
-    
 
     public Time getHs_normal() {
         return hs_normal;
     }
 
     public void setHs_normal(Time hs_normal) {
-        Perfiles.hs_normal = hs_normal;
+        this.hs_normal = hs_normal;
     }
     
     
@@ -53,7 +58,7 @@ public class Perfiles {
     }
 
     public void setDomEsp_f(Time domEsp_f) {
-        Perfiles.domEsp_f = domEsp_f;
+        this.domEsp_f = domEsp_f;
     }
 
     public Time getDomEsp_i() {
@@ -61,7 +66,7 @@ public class Perfiles {
     }
 
     public void setDomEsp_i(Time domEsp_i) {
-        Perfiles.domEsp_i = domEsp_i;
+        this.domEsp_i = domEsp_i;
     }
 
     public Time getFeriado_f() {
@@ -69,7 +74,7 @@ public class Perfiles {
     }
 
     public void setFeriado_f(Time feriado_f) {
-        Perfiles.feriado_f = feriado_f;
+        this.feriado_f = feriado_f;
     }
 
     public Time getFeriado_i() {
@@ -77,17 +82,15 @@ public class Perfiles {
     }
 
     public void setFeriado_i(Time feriado_i) {
-        Perfiles.feriado_i = feriado_i;
+        this.feriado_i = feriado_i;
     }
-
-    
 
     public int getId() {
         return id;
     }
 
     public void setId(int id) {
-        Perfiles.id = id;
+        this.id = id;
     }
 
     public String getNombre() {
@@ -95,7 +98,7 @@ public class Perfiles {
     }
 
     public void setNombre(String nombre) {
-        Perfiles.nombre = nombre;
+        this.nombre = nombre;
     }
 
     public Time getSabEsp_f() {
@@ -103,7 +106,7 @@ public class Perfiles {
     }
 
     public void setSabEsp_f(Time sabEsp_f) {
-        Perfiles.sabEsp_f = sabEsp_f;
+        this.sabEsp_f = sabEsp_f;
     }
 
     public Time getSabEsp_i() {
@@ -111,10 +114,8 @@ public class Perfiles {
     }
 
     public void setSabEsp_i(Time sabEsp_i) {
-        Perfiles.sabEsp_i = sabEsp_i;
+        this.sabEsp_i = sabEsp_i;
     }
-
-   
 
     @Override
     public boolean equals(Object obj) {
@@ -125,7 +126,7 @@ public class Perfiles {
             return false;
         }
         final Perfiles other = (Perfiles) obj;
-        if (Perfiles.id != Perfiles.id) {
+        if (this.id != other.id) {
             return false;
         }
         return true;
@@ -134,13 +135,9 @@ public class Perfiles {
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 41 * hash + Perfiles.id;
+        hash = 11 * hash + this.id;
         return hash;
     }
-
-    
-
-    
 
     @Override
     public String toString(){
