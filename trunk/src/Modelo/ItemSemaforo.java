@@ -5,20 +5,31 @@
 package Modelo;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 
 /**
  *
  * @author matuuar
  */
-public class ItemSemaforo {
+public class ItemSemaforo  implements Comparable<ItemSemaforo>{
     
     private String nombre;
-    private int total;
+    private int total, operarioId;
     private Date ultimaEntrega, desdePeriodo, hastaPeriodo;
     private boolean alertar;
     private ArrayList<ParteDiario> partes = new ArrayList<ParteDiario>();
+    
 
+    public int getOperarioId() {
+        return operarioId;
+    }
+
+    public void setOperarioId(int operarioId) {
+        this.operarioId = operarioId;
+    }
+
+    
     public String getNombre() {
         return nombre;
     }
@@ -75,10 +86,9 @@ public class ItemSemaforo {
         this.hastaPeriodo = hastaPeriodo;
     }
 
-    public ItemSemaforo(String nombre, int total, Date ultimaEntrega) {
+    public ItemSemaforo(int operarioId, String nombre) {
         this.nombre = nombre;
-        this.total = total;
-        this.ultimaEntrega = ultimaEntrega;
+        this.operarioId = operarioId;
     }
 
     public ItemSemaforo() {
@@ -123,13 +133,47 @@ public class ItemSemaforo {
     }
     
     public boolean comprobar(Date limite){
-        if (limite.compareTo(ultimaEntrega) < 0){
+        Calendar calen = Calendar.getInstance();
+        calen.set(1990, 1, 1);
+        ultimaEntrega = calen.getTime();
+        this.total = 0;
+        for(ParteDiario part: partes){
+            this.total++;
+            if(ultimaEntrega.compareTo(part.getFecha()) < 0){
+                ultimaEntrega = part.getFecha();
+            }
+        }
+        if (limite.compareTo(ultimaEntrega) > 0){
             alertar = true;
         }else{
             alertar = false;
             
         }
+        if(ultimaEntrega.compareTo(calen.getTime()) == 0){
+            ultimaEntrega = null;
+            alertar = true;
+        }
         return alertar;
     } 
+    
+   
+
+    @Override
+    public int compareTo(ItemSemaforo o) {
+        if (this.alertar ==  o.alertar ){
+            if(this.nombre.compareToIgnoreCase(o.nombre) < 0) {
+                return -1;
+            }else if (this.nombre.compareToIgnoreCase(o.nombre) > 0){
+                return 1;
+            }else{
+                return 0;
+            }
+        } else if(this.alertar == true){
+            return -1;
+        } else if(o.alertar == true){
+            return 1;
+        } 
+        return 0;
+    }
     
 }

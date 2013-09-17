@@ -68,10 +68,12 @@ public class TablaSemaforoModel extends AbstractTableModel {
         switch (col)
         {
             case 0:
-                return aux.getNombre();
+                return aux.isAlertar();
             case 1:
-                return aux.getTotal();
+                return aux.getNombre();
             case 2:
+                return aux.getTotal();
+            case 3:
                 return aux.getUltimaEntrega();
             default:
                 return null;
@@ -83,6 +85,8 @@ public class TablaSemaforoModel extends AbstractTableModel {
     public Class getColumnClass(int columnIndex) {
         switch (columnIndex)
         {
+            case 0:
+                return Boolean.class;
             case 1:
                 return Integer.class;
             case 2:
@@ -99,10 +103,12 @@ public class TablaSemaforoModel extends AbstractTableModel {
        switch (columnIndex)
         {
             case 0:
-                return "NOMBRE";
+                return "¿ATRASADO?";
             case 1:
-                return "TOTAL";
+                return "NOMBRE";
             case 2:
+                return "TOTAL";
+            case 3:
                 return "ÚLTIMA ENTREGA";
             default:
                 return null;
@@ -125,12 +131,15 @@ public class TablaSemaforoModel extends AbstractTableModel {
             switch (col)
             {
                 case 0:
-                    aux.setNombre(value.toString());
+                    aux.setAlertar((Boolean) value);
                     break;
                 case 1:
-                    aux.setTotal((Integer)value);
+                    aux.setNombre(value.toString());
                     break;
                 case 2:
+                    aux.setTotal((Integer)value);
+                    break;
+                case 3:
                     aux.setUltimaEntrega(FechaUtil.getFecha(value.toString()));
                     break;
 
@@ -165,7 +174,7 @@ public class TablaSemaforoModel extends AbstractTableModel {
 
     @Override
     public int getColumnCount() {
-        return 3;
+        return 4;
     }
 
     @Override

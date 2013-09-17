@@ -15,9 +15,19 @@ import DAO.ParteDiarioDAO;
 import Modelo.ItemSemaforo;
 import Modelo.Operario;
 import Modelo.TablaSemaforoModel;
+import Utils.FechaUtil;
+import com.sun.jmx.remote.util.OrderClassLoaders;
+import java.awt.Color;
+import java.awt.Component;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Collections;
+import java.util.Date;
+import java.util.GregorianCalendar;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableCellRenderer;
 import org.jdesktop.application.Action;
 import org.jdesktop.application.Task;
 
@@ -28,11 +38,14 @@ import org.jdesktop.application.Task;
 public class JDSemaforos extends javax.swing.JDialog {
 
     Image icono = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/zilleprojects/resources/icono.png"));
-    Task cargar= CargarDatosOperarios();
+    
     /** Creates new form JDSemaforos */
     public JDSemaforos(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        
+        configurarFechas();
+        Task cargar= CargarDatosOperarios();
         cargar.execute();
     }
 
@@ -52,10 +65,11 @@ public class JDSemaforos extends javax.swing.JDialog {
         jLabel2 = new javax.swing.JLabel();
         dateHastaPeriodo = new com.toedter.calendar.JDateChooser();
         jLabel3 = new javax.swing.JLabel();
-        pinDiasTolerancia = new com.toedter.components.JSpinField();
         jLabel4 = new javax.swing.JLabel();
         dateFechaLimite = new com.toedter.calendar.JDateChooser();
         btnComprobar = new javax.swing.JButton();
+        pinDiasTolerancia = new javax.swing.JSpinner();
+        chkOrdenarAtrasados = new javax.swing.JCheckBox();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblSemaforo = new javax.swing.JTable();
@@ -67,42 +81,102 @@ public class JDSemaforos extends javax.swing.JDialog {
         jPanel1.setName("jPanel1"); // NOI18N
 
         jPanel2.setName("jPanel2"); // NOI18N
-        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(zilleprojects.ZilleProjectsApp.class).getContext().getResourceMap(JDSemaforos.class);
         jLabel1.setText(resourceMap.getString("jLabel1.text")); // NOI18N
         jLabel1.setName("jLabel1"); // NOI18N
-        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 139, 19));
 
         dateDesdePeriodo.setName("dateDesdePeriodo"); // NOI18N
-        jPanel2.add(dateDesdePeriodo, new org.netbeans.lib.awtextra.AbsoluteConstraints(159, 0, 139, -1));
 
         jLabel2.setText(resourceMap.getString("jLabel2.text")); // NOI18N
         jLabel2.setName("jLabel2"); // NOI18N
-        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(318, 0, 30, 19));
 
         dateHastaPeriodo.setName("dateHastaPeriodo"); // NOI18N
-        jPanel2.add(dateHastaPeriodo, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 0, 139, -1));
 
         jLabel3.setText(resourceMap.getString("jLabel3.text")); // NOI18N
         jLabel3.setName("jLabel3"); // NOI18N
-        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 39, 139, 19));
-
-        pinDiasTolerancia.setName("pinDiasTolerancia"); // NOI18N
-        jPanel2.add(pinDiasTolerancia, new org.netbeans.lib.awtextra.AbsoluteConstraints(159, 39, 50, -1));
 
         jLabel4.setText(resourceMap.getString("jLabel4.text")); // NOI18N
         jLabel4.setName("jLabel4"); // NOI18N
-        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 40, 100, 19));
 
         dateFechaLimite.setName("dateFechaLimite"); // NOI18N
-        jPanel2.add(dateFechaLimite, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 40, 139, -1));
+        dateFechaLimite.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                dateFechaLimitePropertyChange(evt);
+            }
+        });
 
         javax.swing.ActionMap actionMap = org.jdesktop.application.Application.getInstance(zilleprojects.ZilleProjectsApp.class).getContext().getActionMap(JDSemaforos.class, this);
         btnComprobar.setAction(actionMap.get("ComprobarEntregas")); // NOI18N
         btnComprobar.setText(resourceMap.getString("btnComprobar.text")); // NOI18N
         btnComprobar.setName("btnComprobar"); // NOI18N
-        jPanel2.add(btnComprobar, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 0, 120, 60));
+
+        pinDiasTolerancia.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(3), Integer.valueOf(0), null, Integer.valueOf(1)));
+        pinDiasTolerancia.setName("pinDiasTolerancia"); // NOI18N
+        pinDiasTolerancia.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                pinDiasToleranciaStateChanged(evt);
+            }
+        });
+
+        chkOrdenarAtrasados.setText(resourceMap.getString("chkOrdenarAtrasados.text")); // NOI18N
+        chkOrdenarAtrasados.setToolTipText(resourceMap.getString("chkOrdenarAtrasados.toolTipText")); // NOI18N
+        chkOrdenarAtrasados.setName("chkOrdenarAtrasados"); // NOI18N
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addComponent(pinDiasTolerancia)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(dateDesdePeriodo, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(dateHastaPeriodo, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnComprobar, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(dateFechaLimite, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(chkOrdenarAtrasados)))
+                .addGap(24, 24, 24))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(dateDesdePeriodo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(dateHastaPeriodo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnComprobar))
+                .addGap(8, 8, 8)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(chkOrdenarAtrasados)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(pinDiasTolerancia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(dateFechaLimite, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        dateDesdePeriodo.setDate(new Date());
+        dateHastaPeriodo.setDate(new Date());
+        //dateFechaLimite.setDate(new Date());
 
         jPanel3.setName("jPanel3"); // NOI18N
 
@@ -111,59 +185,89 @@ public class JDSemaforos extends javax.swing.JDialog {
         tblSemaforo.setModel(model);
         tblSemaforo.setName("tblSemaforo"); // NOI18N
         jScrollPane1.setViewportView(tblSemaforo);
+        tblSemaforo.setDefaultRenderer(Object.class, new DefaultTableCellRenderer()
+            {
+                @Override
+                public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column)
+                {
+                    final Component c = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+                    //Obtengo el model
+                    ItemSemaforo sema = ((TablaSemaforoModel)tblSemaforo.getModel()).getFila(row);
+                    if(sema.isAlertar()){
+                        c.setBackground(Color.RED);
+                    }else{
+                        c.setBackground(Color.GREEN);
+                    }
+                    return c;
+                }
+            });
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 637, Short.MAX_VALUE)
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
+            javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+            jPanel3.setLayout(jPanel3Layout);
+            jPanel3Layout.setHorizontalGroup(
+                jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel3Layout.createSequentialGroup()
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 696, Short.MAX_VALUE)
+                    .addContainerGap())
+            );
+            jPanel3Layout.setVerticalGroup(
+                jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel3Layout.createSequentialGroup()
+                    .addComponent(jScrollPane1)
+                    .addContainerGap())
+            );
 
-        lblStatus.setText(resourceMap.getString("lblStatus.text")); // NOI18N
-        lblStatus.setName("lblStatus"); // NOI18N
+            lblStatus.setText(resourceMap.getString("lblStatus.text")); // NOI18N
+            lblStatus.setName("lblStatus"); // NOI18N
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lblStatus, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 637, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 637, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 64, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
+            javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+            jPanel1.setLayout(jPanel1Layout);
+            jPanel1Layout.setHorizontalGroup(
+                jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(lblStatus, javax.swing.GroupLayout.DEFAULT_SIZE, 708, Short.MAX_VALUE)
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 708, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addContainerGap())
+            );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+            jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jPanel2, jPanel3});
 
-        pack();
-    }// </editor-fold>//GEN-END:initComponents
+            jPanel1Layout.setVerticalGroup(
+                jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(lblStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap())
+            );
+
+            javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+            getContentPane().setLayout(layout);
+            layout.setHorizontalGroup(
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            );
+            layout.setVerticalGroup(
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            );
+
+            pack();
+        }// </editor-fold>//GEN-END:initComponents
+
+    private void pinDiasToleranciaStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_pinDiasToleranciaStateChanged
+        ActualizarFechasTolerancia(1);
+    }//GEN-LAST:event_pinDiasToleranciaStateChanged
+
+    private void dateFechaLimitePropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_dateFechaLimitePropertyChange
+        ActualizarFechasTolerancia(2);
+    }//GEN-LAST:event_dateFechaLimitePropertyChange
 
     /**
      * @param args the command line arguments
@@ -210,6 +314,7 @@ public class JDSemaforos extends javax.swing.JDialog {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnComprobar;
+    private javax.swing.JCheckBox chkOrdenarAtrasados;
     private com.toedter.calendar.JDateChooser dateDesdePeriodo;
     private com.toedter.calendar.JDateChooser dateFechaLimite;
     private com.toedter.calendar.JDateChooser dateHastaPeriodo;
@@ -222,18 +327,75 @@ public class JDSemaforos extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblStatus;
-    private com.toedter.components.JSpinField pinDiasTolerancia;
+    private javax.swing.JSpinner pinDiasTolerancia;
     private javax.swing.JTable tblSemaforo;
     // End of variables declaration//GEN-END:variables
     TablaSemaforoModel model = new TablaSemaforoModel();
-
+    ArrayList<ItemSemaforo> semaforosList= new ArrayList<ItemSemaforo>();
 
     @Action
     public Task ComprobarEntregas() {
         return new ComprobarEntregasTask(org.jdesktop.application.Application.getInstance(zilleprojects.ZilleProjectsApp.class));
     }
 
+    private void configurarFechas() {
+        ConfigurarPeriodoInicial();
+        ActualizarFechasTolerancia(1);
+        
+    }
+    
+    private void ConfigurarPeriodoInicial(){
+       
+        Date hoy = new Date();
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(hoy);
+        int dias = calendar.get(Calendar.DATE);
+        int mes = calendar.get(Calendar.MONTH);
+        int año = calendar.get(Calendar.YEAR);
+        if(dias < 21){
+            mes -= 8;
+        }else{
+            mes -= 7;
+        }
+        calendar.set(año, mes, 21);
+        dateDesdePeriodo.setDate(calendar.getTime());
+        calendar.set(año, mes + 7, 20);
+        dateHastaPeriodo.setDate(calendar.getTime());
+    }
+    
+    private void ActualizarFechasTolerancia(int tipo){
+        // tipo = 1 actualizar fecha segundo dias
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(new Date());
+        if(tipo == 1){
+            int dias = (Integer) pinDiasTolerancia.getValue();
+            calendar.add(Calendar.DATE, -dias);
+            dateFechaLimite.setDate(calendar.getTime());
+        }
+        // tipo = 2 actualizar dias segun fecha
+        if (tipo == 2){
+            Date hoy = calendar.getTime();
+            Date time = dateFechaLimite.getDate();
+            if(time == null){
+                time = new Date();
+            }
+            calendar.setTime(time);
+            int pin = FechaUtil.diferenciasDeFechas(time, hoy);
+            if(pin >= 0)
+                pinDiasTolerancia.setValue(pin);
+            else{
+                pinDiasTolerancia.setValue(0);
+                ActualizarFechasTolerancia(1);
+            }
+        }
+    }
+
     private class ComprobarEntregasTask extends org.jdesktop.application.Task<Object, Void> {
+        ArrayList<ItemSemaforo> semaforos = new ArrayList<ItemSemaforo>();
+        Date periodoDesde = dateDesdePeriodo.getDate();
+        Date periodoHasta = dateHastaPeriodo.getDate();
+        Date fechaLimite = dateFechaLimite.getDate();
+        boolean ordenar= chkOrdenarAtrasados.isSelected();
         ComprobarEntregasTask(org.jdesktop.application.Application app) {
             // Runs on the EDT.  Copy GUI state that
             // doInBackground() depends on from parameters
@@ -244,21 +406,38 @@ public class JDSemaforos extends javax.swing.JDialog {
             // Your Task's code here.  This method runs
             // on a background thread, so don't reference
             // the Swing GUI from here.
+            ParteDiarioDAO pdao = new ParteDiarioDAO();
+            pdao.conectar();
+            for(ItemSemaforo sema: semaforosList){
+                sema.setPartes(pdao.buscarEntreFechasPorEmpleado(sema.getOperarioId(), periodoDesde, periodoHasta));
+                
+                sema.comprobar(fechaLimite);
+                semaforos.add(sema);
+            }
+            if (ordenar) Collections.sort(semaforos);
             return null;  // return your result
         }
         @Override protected void succeeded(Object result) {
             // Runs on the EDT.  Update the GUI based on
             // the result computed by doInBackground().
+            model = new TablaSemaforoModel();
+            for(ItemSemaforo item: semaforos){
+                model.addRegistro(item);
+            }
+            tblSemaforo.setModel(model);
         }
     }
     
     @Action
-    public Task CargarDatosOperarios() {
+    public final Task CargarDatosOperarios() {
         return new CargarDatosOperariosTask(org.jdesktop.application.Application.getInstance(zilleprojects.ZilleProjectsApp.class));
     }
 
     private class CargarDatosOperariosTask extends org.jdesktop.application.Task<Object, Void> {
         ArrayList<ItemSemaforo> semaforos = new ArrayList<ItemSemaforo>();
+        Date periodoDesde = dateDesdePeriodo.getDate();
+        Date periodoHasta = dateHastaPeriodo.getDate();
+        Date fechaLimite = dateFechaLimite.getDate();
         CargarDatosOperariosTask(org.jdesktop.application.Application app) {
             // Runs on the EDT.  Copy GUI state that
             // doInBackground() depends on from parameters
@@ -274,9 +453,12 @@ public class JDSemaforos extends javax.swing.JDialog {
             pdao.conectar();
             odao.conectar();
             for(Operario operario: odao.cargarTodos()){
-                ItemSemaforo sema = new ItemSemaforo(operario.getNombre());
+                ItemSemaforo sema = new ItemSemaforo(operario.getId(), operario.getNombre());
+                sema.setPartes(pdao.buscarEntreFechasPorEmpleado(operario.getId(), periodoDesde, periodoHasta));
+                sema.comprobar(fechaLimite);
                 semaforos.add(sema);
             }
+            semaforosList = semaforos;
             return null;  // return your result
         }
         @Override protected void succeeded(Object result) {

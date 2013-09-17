@@ -8,6 +8,7 @@ import Modelo.Materiales;
 import Modelo.ParteDiario;
 import Modelo.Registro;
 import Modelo.RegistroEquipo;
+import Utils.FechaUtil;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -924,6 +925,42 @@ public class ParteDiarioDAO {
                 pd.setIdSituacion(rs.getInt("SITUACION"));
                 pd.setDesarraigo(rs.getBoolean("DESARRAIGO"));
                 pd.setNombreO(rs.getString("NOMBRE"));
+                partes.add(pd);
+            }
+            rs.close();
+            ps.close();
+
+        } catch (SQLException ex) {
+            System.out.print("Falló al cargar los Obras.\n");
+        }
+        return partes;
+
+    }
+    
+    public ArrayList<ParteDiario> buscarEntreFechasPorEmpleado(int operarioId, Date fechaDesde, Date fechaHasta) {
+        String query = "select * from partediario where operario = ? and "
+                + "fecha <= ? and fecha >= ?";
+        ArrayList<ParteDiario> partes = new ArrayList<ParteDiario>();
+        try {
+            PreparedStatement ps = conector.prepareStatement(query);
+            ps.setInt(1, operarioId);
+            ps.setDate(2, FechaUtil.getFechatoDB(fechaHasta));
+            ps.setDate(3, FechaUtil.getFechatoDB(fechaDesde));
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                ParteDiario pd = new ParteDiario();
+                pd.setId(rs.getInt("ID"));
+                pd.setNumero(rs.getString("NUMERO"));
+                pd.setIdOperario(rs.getInt("OPERARIO"));
+                pd.setIdFuncion(rs.getInt("FUNCION"));
+                pd.setFecha(rs.getDate("FECHA"));
+                pd.setIdObra(rs.getInt("OBRA"));
+                pd.setIdHorario(rs.getInt("HORARIO"));
+                pd.setIdEquipo(rs.getInt("EQUIPO"));
+                pd.setObservaciones(rs.getString("OBSERVACIONES"));
+                pd.setMultifuncion(rs.getBoolean("MULTIFUNCION"));
+                pd.setIdSituacion(rs.getInt("SITUACION"));
+                pd.setDesarraigo(rs.getBoolean("DESARRAIGO"));
                 partes.add(pd);
             }
             rs.close();
