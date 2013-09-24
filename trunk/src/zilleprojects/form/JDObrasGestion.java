@@ -97,10 +97,12 @@ public class JDObrasGestion extends javax.swing.JDialog {
         alertasObras = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         chkTieneComida = new javax.swing.JCheckBox();
-        chlTieneVianda = new javax.swing.JCheckBox();
+        chkTieneVianda = new javax.swing.JCheckBox();
         chkTieneDesarraigo = new javax.swing.JCheckBox();
         pinLimiteViandaDoble = new javax.swing.JSpinner();
         jLabel21 = new javax.swing.JLabel();
+        chkTieneRegistro = new javax.swing.JCheckBox();
+        chkTieneEquipo = new javax.swing.JCheckBox();
 
         org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(zilleprojects.ZilleProjectsApp.class).getContext().getResourceMap(JDObrasGestion.class);
         agregarObra.setTitle(resourceMap.getString("agregarObra.title")); // NOI18N
@@ -606,11 +608,11 @@ public class JDObrasGestion extends javax.swing.JDialog {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, 151, Short.MAX_VALUE)
-                    .addComponent(nuevaObra, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 151, Short.MAX_VALUE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 151, Short.MAX_VALUE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 151, Short.MAX_VALUE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 151, Short.MAX_VALUE))
+                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE)
+                    .addComponent(nuevaObra, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE)
+                    .addComponent(jButton3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -626,7 +628,7 @@ public class JDObrasGestion extends javax.swing.JDialog {
                 .addComponent(jButton2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton1)
-                .addContainerGap(86, Short.MAX_VALUE))
+                .addContainerGap(74, Short.MAX_VALUE))
         );
 
         alertasObras.setForeground(resourceMap.getColor("alertasObras.foreground")); // NOI18N
@@ -640,11 +642,11 @@ public class JDObrasGestion extends javax.swing.JDialog {
         chkTieneComida.setText(resourceMap.getString("chkTieneComida.text")); // NOI18N
         chkTieneComida.setName("chkTieneComida"); // NOI18N
 
-        chlTieneVianda.setText(resourceMap.getString("chlTieneVianda.text")); // NOI18N
-        chlTieneVianda.setName("chlTieneVianda"); // NOI18N
-        chlTieneVianda.addItemListener(new java.awt.event.ItemListener() {
+        chkTieneVianda.setText(resourceMap.getString("chkTieneVianda.text")); // NOI18N
+        chkTieneVianda.setName("chkTieneVianda"); // NOI18N
+        chkTieneVianda.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                chlTieneViandaItemStateChanged(evt);
+                chkTieneViandaItemStateChanged(evt);
             }
         });
 
@@ -657,6 +659,12 @@ public class JDObrasGestion extends javax.swing.JDialog {
         jLabel21.setText(resourceMap.getString("jLabel21.text")); // NOI18N
         jLabel21.setName("jLabel21"); // NOI18N
 
+        chkTieneRegistro.setText(resourceMap.getString("chkTieneRegistro.text")); // NOI18N
+        chkTieneRegistro.setName("chkTieneRegistro"); // NOI18N
+
+        chkTieneEquipo.setText(resourceMap.getString("chkTieneEquipo.text")); // NOI18N
+        chkTieneEquipo.setName("chkTieneEquipo"); // NOI18N
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
@@ -665,30 +673,39 @@ public class JDObrasGestion extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addComponent(chkTieneComida)
-                        .addGap(102, 102, 102)
-                        .addComponent(chkTieneDesarraigo))
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(chkTieneVianda)
+                            .addComponent(chkTieneComida))
+                        .addGap(143, 143, 143)
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(chkTieneDesarraigo)
+                            .addGroup(jPanel5Layout.createSequentialGroup()
+                                .addComponent(pinLimiteViandaDoble, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel21, javax.swing.GroupLayout.DEFAULT_SIZE, 246, Short.MAX_VALUE))))
                     .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addComponent(chlTieneVianda)
-                        .addGap(105, 105, 105)
-                        .addComponent(pinLimiteViandaDoble, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel21, javax.swing.GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE)))
+                        .addComponent(chkTieneRegistro)
+                        .addGap(41, 41, 41)
+                        .addComponent(chkTieneEquipo)))
                 .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(chkTieneComida)
                     .addComponent(chkTieneDesarraigo))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(chlTieneVianda)
-                    .addComponent(jLabel21)
-                    .addComponent(pinLimiteViandaDoble, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(chkTieneVianda)
+                    .addComponent(pinLimiteViandaDoble, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel21))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(chkTieneRegistro)
+                    .addComponent(chkTieneEquipo))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout capaLayout = new javax.swing.GroupLayout(capa);
@@ -696,30 +713,28 @@ public class JDObrasGestion extends javax.swing.JDialog {
         capaLayout.setHorizontalGroup(
             capaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(capaLayout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(capaLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(capaLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(alertasObras, javax.swing.GroupLayout.DEFAULT_SIZE, 630, Short.MAX_VALUE)
+                .addGroup(capaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(capaLayout.createSequentialGroup()
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(alertasObras, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 630, Short.MAX_VALUE))
                 .addContainerGap())
         );
         capaLayout.setVerticalGroup(
             capaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(capaLayout.createSequentialGroup()
-                .addContainerGap(27, Short.MAX_VALUE)
-                .addGroup(capaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap()
+                .addGroup(capaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(alertasObras, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(25, 25, 25))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -730,7 +745,7 @@ public class JDObrasGestion extends javax.swing.JDialog {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(capa, javax.swing.GroupLayout.DEFAULT_SIZE, 493, Short.MAX_VALUE)
+            .addComponent(capa, javax.swing.GroupLayout.DEFAULT_SIZE, 525, Short.MAX_VALUE)
         );
 
         pack();
@@ -763,9 +778,9 @@ public class JDObrasGestion extends javax.swing.JDialog {
         
     }//GEN-LAST:event_nuevaObraActionPerformed
 
-    private void chlTieneViandaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_chlTieneViandaItemStateChanged
-        pinLimiteViandaDoble.setEnabled(chlTieneVianda.isSelected());
-    }//GEN-LAST:event_chlTieneViandaItemStateChanged
+    private void chkTieneViandaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_chkTieneViandaItemStateChanged
+        pinLimiteViandaDoble.setEnabled(chkTieneVianda.isSelected());
+    }//GEN-LAST:event_chkTieneViandaItemStateChanged
 
     /**
      * @param args the command line arguments
@@ -802,8 +817,10 @@ public class JDObrasGestion extends javax.swing.JDialog {
         }
         responsableText.setText(o.getResponsable());
         chkTieneComida.setSelected(o.isTieneComida());
-        chlTieneVianda.setSelected(o.isTieneVianda());
+        chkTieneVianda.setSelected(o.isTieneVianda());
         chkTieneDesarraigo.setSelected(o.isTieneDesarraigo());
+        chkTieneRegistro.setSelected(o.isTieneRegistro());
+        chkTieneEquipo.setSelected(o.isTieneEquipo());
         int limite = (int) o.getLimiteViandaDoble();
         pinLimiteViandaDoble.setValue(limite);
         alertasObras.setText(null);
@@ -823,8 +840,10 @@ public class JDObrasGestion extends javax.swing.JDialog {
         fechaInicio1.setDate(null);
         responsableText.setText("");
         chkTieneComida.setSelected(true);
-        chlTieneVianda.setSelected(true);
+        chkTieneVianda.setSelected(true);
         chkTieneDesarraigo.setSelected(true);
+        chkTieneRegistro.setSelected(true);
+        chkTieneEquipo.setSelected(true);
         pinLimiteViandaDoble.setValue(2);
         
     }
@@ -908,8 +927,11 @@ public class JDObrasGestion extends javax.swing.JDialog {
             }
             aux.setResponsable(responsableText.getText());
             aux.setTieneComida(chkTieneComida.isSelected());
-            aux.setTieneVianda(chlTieneVianda.isSelected());
+            aux.setTieneVianda(chkTieneVianda.isSelected());
             aux.setTieneDesarraigo(chkTieneDesarraigo.isSelected());
+            aux.setTieneRegistro(chkTieneRegistro.isSelected());
+            aux.setTieneEquipo(chkTieneEquipo.isSelected());
+            
             if(pinLimiteViandaDoble.isEnabled()){
                 double limite = (Integer)pinLimiteViandaDoble.getValue();
                 aux.setLimiteViandaDoble(limite);
@@ -984,8 +1006,10 @@ public class JDObrasGestion extends javax.swing.JDialog {
                 o.setFecha_inicio(fechaInicio1.getDate());
             }
             o.setTieneComida(chkTieneComida.isSelected());
-            o.setTieneVianda(chlTieneVianda.isSelected());
+            o.setTieneVianda(chkTieneVianda.isSelected());
             o.setTieneDesarraigo(chkTieneDesarraigo.isSelected());
+            o.setTieneRegistro(chkTieneRegistro.isSelected());
+            o.setTieneEquipo(chkTieneEquipo.isSelected());
             if(pinLimiteViandaDoble.isEnabled()){
                 Double limite = (Double) pinLimiteViandaDoble.getValue();
                 o.setLimiteViandaDoble(limite);
@@ -1023,7 +1047,9 @@ public class JDObrasGestion extends javax.swing.JDialog {
     private javax.swing.JPanel capa;
     private javax.swing.JCheckBox chkTieneComida;
     private javax.swing.JCheckBox chkTieneDesarraigo;
-    private javax.swing.JCheckBox chlTieneVianda;
+    private javax.swing.JCheckBox chkTieneEquipo;
+    private javax.swing.JCheckBox chkTieneRegistro;
+    private javax.swing.JCheckBox chkTieneVianda;
     private javax.swing.JTextField codigoText;
     private javax.swing.JTextField codigoText1;
     private javax.swing.JComboBox comboObras;

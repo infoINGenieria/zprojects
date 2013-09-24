@@ -31,6 +31,7 @@ import Modelo.TablaHorarioIngresoModel;
 import Utils.EditorDeCeldasString;
 import Vista.OpcionPanel;
 import Vista.PanelAzul;
+import java.awt.Component;
 import java.awt.Image;
 import java.awt.Toolkit;
 
@@ -42,12 +43,10 @@ import java.util.List;
 import javax.swing.DefaultCellEditor;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
-import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JTable;
 import org.jdesktop.application.Action;
 import org.jdesktop.application.Task;
-import org.omg.CORBA.SetOverrideTypeHelper;
 import zilleprojects.ZilleProjectsApp;
 
 /**
@@ -63,6 +62,7 @@ public class JDParteDiario extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         setIconImage(icono);
+        setConfiguracionObra();
     }
 
     /** This method is called from within the constructor to
@@ -120,7 +120,7 @@ public class JDParteDiario extends javax.swing.JDialog {
         tablaHorario = new javax.swing.JTable();
         cerrarParteBoton = new javax.swing.JButton();
         guardarParteBoton = new javax.swing.JButton();
-        jPanel2 = new javax.swing.JPanel();
+        equipoPanel = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         comboEquipos = new javax.swing.JComboBox();
         jPanel4 = new javax.swing.JPanel();
@@ -528,6 +528,11 @@ public class JDParteDiario extends javax.swing.JDialog {
         comboObra.setMinimumSize(new java.awt.Dimension(48, 28));
         comboObra.setName("comboObra"); // NOI18N
         comboObra.setPreferredSize(new java.awt.Dimension(48, 28));
+        comboObra.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboObraActionPerformed(evt);
+            }
+        });
 
         jLabel5.setText(resourceMap.getString("jLabel5.text")); // NOI18N
         jLabel5.setName("jLabel5"); // NOI18N
@@ -565,7 +570,7 @@ public class JDParteDiario extends javax.swing.JDialog {
                         .addComponent(fechaParte, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(multifuncionCheck)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 97, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 118, Short.MAX_VALUE)
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(numPre, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -577,7 +582,7 @@ public class JDParteDiario extends javax.swing.JDialog {
                         .addComponent(jButton2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(isDesarrango)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 111, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 133, Short.MAX_VALUE)
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(comboObra, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -612,7 +617,7 @@ public class JDParteDiario extends javax.swing.JDialog {
 
         generalPanelLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {comboFuncion, comboObra, jButton2, jLabel3, jLabel4});
 
-        horarioPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true), resourceMap.getString("horarioPanel.border.title"))); // NOI18N
+        horarioPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(-16777216,true), 1, true), resourceMap.getString("horarioPanel.border.title"))); // NOI18N
         horarioPanel.setName("horarioPanel"); // NOI18N
         horarioPanel.setOpaque(false);
 
@@ -639,7 +644,7 @@ public class JDParteDiario extends javax.swing.JDialog {
             horarioPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(horarioPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1010, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1011, Short.MAX_VALUE)
                 .addContainerGap())
         );
         horarioPanelLayout.setVerticalGroup(
@@ -663,9 +668,9 @@ public class JDParteDiario extends javax.swing.JDialog {
         guardarParteBoton.setText(resourceMap.getString("guardarParteBoton.text")); // NOI18N
         guardarParteBoton.setName("guardarParteBoton"); // NOI18N
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true), resourceMap.getString("jPanel2.border.title"), javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, resourceMap.getColor("jPanel2.border.titleColor"))); // NOI18N
-        jPanel2.setName("jPanel2"); // NOI18N
-        jPanel2.setOpaque(false);
+        equipoPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(-16777216,true), 1, true), resourceMap.getString("equipoPanel.border.title"), 0, 0, null, resourceMap.getColor("equipoPanel.border.titleColor"))); // NOI18N
+        equipoPanel.setName("equipoPanel"); // NOI18N
+        equipoPanel.setOpaque(false);
 
         jLabel6.setText(resourceMap.getString("jLabel6.text")); // NOI18N
         jLabel6.setName("jLabel6"); // NOI18N
@@ -770,28 +775,28 @@ public class JDParteDiario extends javax.swing.JDialog {
         botonBuscarEquipoMostrar.setToolTipText(resourceMap.getString("botonBuscarEquipoMostrar.toolTipText")); // NOI18N
         botonBuscarEquipoMostrar.setName("botonBuscarEquipoMostrar"); // NOI18N
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+        javax.swing.GroupLayout equipoPanelLayout = new javax.swing.GroupLayout(equipoPanel);
+        equipoPanel.setLayout(equipoPanelLayout);
+        equipoPanelLayout.setHorizontalGroup(
+            equipoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(equipoPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(equipoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(equipoPanelLayout.createSequentialGroup()
                         .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(12, 12, 12)
-                        .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, 370, Short.MAX_VALUE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, 371, Short.MAX_VALUE))
+                    .addGroup(equipoPanelLayout.createSequentialGroup()
                         .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(comboEquipos, 0, 565, Short.MAX_VALUE)
+                        .addComponent(comboEquipos, 0, 589, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(botonBuscarEquipoMostrar)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(equipoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(equipoPanelLayout.createSequentialGroup()
                         .addComponent(isTransporte)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(cargarDatosTransporte, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -799,21 +804,21 @@ public class JDParteDiario extends javax.swing.JDialog {
                 .addContainerGap())
         );
 
-        jPanel2Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jPanel4, jPanel5});
+        equipoPanelLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jPanel4, jPanel5});
 
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+        equipoPanelLayout.setVerticalGroup(
+            equipoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(equipoPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(equipoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(equipoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel6)
                         .addComponent(comboEquipos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(isTransporte)
                         .addComponent(cargarDatosTransporte))
                     .addComponent(botonBuscarEquipoMostrar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(equipoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, 89, Short.MAX_VALUE)
                     .addComponent(jPanel6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 89, Short.MAX_VALUE)
                     .addComponent(jPanel5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -821,9 +826,9 @@ public class JDParteDiario extends javax.swing.JDialog {
                 .addGap(12, 12, 12))
         );
 
-        jPanel2Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {cargarDatosTransporte, comboEquipos});
+        equipoPanelLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {cargarDatosTransporte, comboEquipos});
 
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true), resourceMap.getString("jPanel3.border.title"), javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, resourceMap.getColor("jPanel3.border.titleColor"))); // NOI18N
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(-16777216,true), 1, true), resourceMap.getString("jPanel3.border.title"), 0, 0, null, resourceMap.getColor("jPanel3.border.titleColor"))); // NOI18N
         jPanel3.setName("jPanel3"); // NOI18N
         jPanel3.setOpaque(false);
 
@@ -853,8 +858,8 @@ public class JDParteDiario extends javax.swing.JDialog {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(isCrearOT)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 55, Short.MAX_VALUE))
-                .addGap(12, 12, 12))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 46, Short.MAX_VALUE))
+                .addGap(14, 14, 14))
         );
 
         outText.setForeground(resourceMap.getColor("outText.foreground")); // NOI18N
@@ -870,13 +875,13 @@ public class JDParteDiario extends javax.swing.JDialog {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(generalPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(outText, javax.swing.GroupLayout.DEFAULT_SIZE, 742, Short.MAX_VALUE)
+                        .addComponent(outText, javax.swing.GroupLayout.DEFAULT_SIZE, 743, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(guardarParteBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(cerrarParteBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(horarioPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(equipoPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -887,7 +892,7 @@ public class JDParteDiario extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(horarioPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(equipoPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -895,7 +900,7 @@ public class JDParteDiario extends javax.swing.JDialog {
                     .addComponent(guardarParteBoton)
                     .addComponent(cerrarParteBoton)
                     .addComponent(outText, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(12, 12, 12))
+                .addGap(14, 14, 14))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -1055,6 +1060,10 @@ private void selectEquipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
     }
 }//GEN-LAST:event_selectEquipoActionPerformed
 
+    private void comboObraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboObraActionPerformed
+        setConfiguracionObra();
+    }//GEN-LAST:event_comboObraActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1088,6 +1097,28 @@ private void selectEquipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
         t.setDefaultEditor(String.class, editorEnteros);
     }
 
+    private void setConfiguracionObra(){
+        obra = ((Obras)comboObra.getSelectedItem());
+        for (Component c: horarioPanel.getComponents()){
+            c.setEnabled(obra.isTieneRegistro());
+        }
+        tablaHorario.setEnabled(obra.isTieneRegistro());
+        comboFuncion.setEnabled(obra.isTieneRegistro());
+        isDesarrango.setEnabled(obra.isTieneRegistro());
+        multifuncionCheck.setEnabled(obra.isTieneRegistro());
+        for (Component c: equipoPanel.getComponents()){
+            if(c instanceof javax.swing.JPanel){
+                for(Component cc: ((javax.swing.JPanel) c).getComponents()){
+                    cc.setEnabled(obra.isTieneEquipo());
+                }
+            }else{
+                c.setEnabled(obra.isTieneEquipo());
+            }
+        }
+        TareaAsignadaText.setEnabled(obra.isTieneEquipo());
+        isCrearOT.setEnabled(obra.isTieneEquipo());
+    }
+    
     private void multifuncionCheck(final int i) {
         java.awt.EventQueue.invokeLater(new Runnable() {
 
@@ -1120,6 +1151,7 @@ private void selectEquipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
         return new AgregarFuncionTask(org.jdesktop.application.Application.getInstance(zilleprojects.ZilleProjectsApp.class));
     }
 
+    
     private class AgregarFuncionTask extends org.jdesktop.application.Task<Object, Void> {
 
         Funcion fun = new Funcion(newFc);
@@ -1171,12 +1203,14 @@ private void selectEquipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
     @Action
     public Task guardarParteDiario() {
         if (OpcionPanel.YES_OPTION == OpcionPanel.showConfirmDialog(this, "¿Desea guardar?", "Guardando...", OpcionPanel.YES_NO_OPTION)) {
-
-
-            if (fechaParte.getDate() == null || numPre.getText().isEmpty() || numPro.getText().isEmpty()
-                    || !horarioCompleto()) {
+            if (fechaParte.getDate() == null || numPre.getText().isEmpty() || numPro.getText().isEmpty()){
                 OpcionPanel.showMessageDialog(this, "Falta completar algunos campos", "Datos imcompletos", OpcionPanel.ERROR_MESSAGE);
                 return null;
+                
+            }
+            if(obra.isTieneRegistro() && !horarioCompleto()){
+                OpcionPanel.showMessageDialog(this, "Complete los horarios, son requeridos para la obra seleccionada", "Datos imcompletos", OpcionPanel.ERROR_MESSAGE);
+                return null;  
             }
         } else {
             return null;
@@ -1187,7 +1221,7 @@ private void selectEquipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
     private class GuardarParteDiarioTask extends org.jdesktop.application.Task<Object, Void> {
 
         ParteDiario pd = new ParteDiario();
-        Registro reg = tablaModel.getFila(0);
+        Registro reg = new Registro();
         Materiales mat = new Materiales();
         RegistroEquipo regEq = new RegistroEquipo();
         public ArrayList<Materiales> datosTr = new ArrayList<Materiales>();
@@ -1201,49 +1235,55 @@ private void selectEquipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
             // doInBackground() depends on from parameters
             // to GuardarParteDiarioTask fields, here.
             super(app);
+            //pasamos la obra seleccionada al perfil
+            perfil.setObra(obra);
             pd.setFecha(fechaParte.getDate());
             pd.setIdOperario(((Operario) comboOperario.getSelectedItem()).getId());
-            pd.setIdFuncion(((Funcion) comboFuncion.getSelectedItem()).getId());
-            pd.setIdObra(((Obras) comboObra.getSelectedItem()).getId());
+            pd.setIdObra(obra.getId());
             pd.setNumero(numPre.getText(), numPro.getText());
             pd.setObservaciones(observacionesText.getText());
-            pd.setMultifuncion(multifuncionCheck.isSelected());
-            pd.setDesarraigo(isDesarrango.isSelected());
             pd.setIdSituacion(1);
-            //pasamos la obra seleccionada al perfil
-            perfil.setObra((Obras) comboObra.getSelectedItem());
-            regEq.setIdEquipo(((Equipos) comboEquipos.getSelectedItem()).getId());
-            regEq.setDatosCarga(isTransporte.isSelected());
-            regEq.setIniHoro(inicialHorometroText.getText());
-            regEq.setFinHoro(finalHorometroText.getText());
-            regEq.setIniOdo(inicialOdometroText.getText());
-            regEq.setFinOdo(finalOdometroText.getText());
-            regEq.setCantCombustible(cantidadLitrosText.getText());
-            regEq.setEstacionServicioID(((EstacionServicio)estacionesCombo.getSelectedItem()).getEstacionServicioID());
-            regEq.setTarea(TareaAsignadaText.getText());
-            if (regEq.isDatosCarga()) {
-                datosTr = regDatosTransp;
+            // Depende del perfil
+            if(obra.isTieneRegistro()){
+                pd.setIdFuncion(((Funcion) comboFuncion.getSelectedItem()).getId());
+                pd.setMultifuncion(multifuncionCheck.isSelected());
+                pd.setDesarraigo(isDesarrango.isSelected());
+                reg = tablaModel.getFila(0);
+                GregorianCalendar gc = new GregorianCalendar();
+                gc.setTime(fechaParte.getDate());
+                reg.setFecha(reg.getStringWFecha(gc));
             }
-            creandoOT = isCrearOT.isSelected();
-            if(creandoOT){
-                
-                ot.setDetalleServicio(pd.getObservaciones());
-                ot.setFecha(pd.getFecha());
-                ot.setFechaApertura(pd.getFecha());
-                ot.setHs(regEq.getFinHoro());
-                ot.setKm(regEq.getFinOdo());
-                ot.setSolicitante(((Operario) comboOperario.getSelectedItem()).getNombre());
-                
-                ot.setnInternoID(regEq.getIdEquipo());
-                ot.setnInterno(((Equipos) comboEquipos.getSelectedItem()).getN_interno());
-                ot.setMantenimiento("CORRECTIVO");
-                
+            if(obra.isTieneEquipo()){
+                regEq.setIdEquipo(((Equipos) comboEquipos.getSelectedItem()).getId());
+                regEq.setDatosCarga(isTransporte.isSelected());
+                regEq.setIniHoro(inicialHorometroText.getText());
+                regEq.setFinHoro(finalHorometroText.getText());
+                regEq.setIniOdo(inicialOdometroText.getText());
+                regEq.setFinOdo(finalOdometroText.getText());
+                regEq.setCantCombustible(cantidadLitrosText.getText());
+                regEq.setEstacionServicioID(((EstacionServicio)estacionesCombo.getSelectedItem()).getEstacionServicioID());
+                regEq.setTarea(TareaAsignadaText.getText());
+                if (regEq.isDatosCarga()) {
+                    datosTr = regDatosTransp;
+                }
+            
+                creandoOT = isCrearOT.isSelected();
+                if(creandoOT){
+
+                    ot.setDetalleServicio(pd.getObservaciones());
+                    ot.setFecha(pd.getFecha());
+                    ot.setFechaApertura(pd.getFecha());
+                    ot.setHs(regEq.getFinHoro());
+                    ot.setKm(regEq.getFinOdo());
+                    ot.setSolicitante(((Operario) comboOperario.getSelectedItem()).getNombre());
+
+                    ot.setnInternoID(regEq.getIdEquipo());
+                    ot.setnInterno(((Equipos) comboEquipos.getSelectedItem()).getN_interno());
+                    ot.setMantenimiento("CORRECTIVO");
+
+                }
             }
-
-            GregorianCalendar gc = new GregorianCalendar();
-            gc.setTime(fechaParte.getDate());
-            reg.setFecha(reg.getStringWFecha(gc));
-
+            
 
         }
 
@@ -1258,7 +1298,7 @@ private void selectEquipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
             //evaluo el desarraigo del parte diario y el desarraigo del operario
             reg.calcular(perfil, (pd.isDesarraigo()| ((Operario) comboOperario.getSelectedItem()).isDesarraigo()));
             
-            rPD = pdao.guardar(pd, reg, regEq, datosTr);
+            rPD = pdao.guardar(perfil, pd, reg, regEq, datosTr);
             //creo la OT si se chequeo el checkbox
             if(creandoOT){
                 OrdenTrabajoDAO otDao = new OrdenTrabajoDAO();
@@ -1305,6 +1345,7 @@ private void selectEquipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
         fechaParte.setDate(new Date());
         //comboFuncion.setSelectedIndex(0);
         comboObra.setSelectedIndex(0);
+        setConfiguracionObra();
         comboOperario.setSelectedIndex(0);
         numPre.setText("");
         numPro.setText("");
@@ -1447,6 +1488,7 @@ private void selectEquipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
     private javax.swing.JComboBox comboObra;
     private javax.swing.JComboBox comboOperario;
     private javax.swing.JDialog datosTransporteDialog;
+    private javax.swing.JPanel equipoPanel;
     private javax.swing.JComboBox estacionesCombo;
     private javax.swing.JButton exitDialog;
     private javax.swing.JButton exitDialogEq;
@@ -1477,7 +1519,6 @@ private void selectEquipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
@@ -1527,4 +1568,5 @@ private void selectEquipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
     static public Materiales mat = new Materiales();
     static public RegistroEquipo regEq = new RegistroEquipo();
     static public ArrayList<Materiales> datosTr = new ArrayList<Materiales>();
+    static public Obras obra = new Obras();
 }

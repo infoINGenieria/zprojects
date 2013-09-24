@@ -37,8 +37,9 @@ public class ObrasDAO {
         
             query = "insert into obras (CODIGO, OBRA, CONTRATO, COMITENTE,"
                     + " CUIT, LUGAR, PLAZO, FECHA_INICIO, RESPONSABLE, TIENE_COMIDA, "
-                    + "TIENE_VIANDA, TIENE_DESARRAIGO, LIMITE_VIANDA_DOBLE) values "
-                    + "(?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                    + "TIENE_VIANDA, TIENE_DESARRAIGO, LIMITE_VIANDA_DOBLE, "
+                    + "TIENE_REGISTRO, TIENE_EQUIPO) values "
+                    + "(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement ps = conector.prepareStatement(query);
             ps.setString(1, obra.getCodigo());
             ps.setString(2, obra.getObra());
@@ -57,6 +58,8 @@ public class ObrasDAO {
             ps.setBoolean(11, obra.isTieneVianda());
             ps.setBoolean(12, obra.isTieneDesarraigo());
             ps.setDouble(13, obra.getLimiteViandaDoble());
+            ps.setBoolean(14, obra.isTieneRegistro());
+            ps.setBoolean(15, obra.isTieneEquipo());
             ps.executeUpdate();
             ResultSet generatedKeys = ps.getGeneratedKeys();
             r=1;
@@ -79,7 +82,8 @@ public class ObrasDAO {
             String query = "update obras set CODIGO=?, OBRA=?, CONTRATO=?, COMITENTE=?,"
                     + " CUIT=?, LUGAR=?, PLAZO=?, FECHA_INICIO=?, RESPONSABLE=?,"
                     + " TIENE_COMIDA=?, TIENE_VIANDA=?, TIENE_DESARRAIGO=?,"
-                    + " LIMITE_VIANDA_DOBLE=? where ID = ?";
+                    + " LIMITE_VIANDA_DOBLE=? , TIENE_REGISTRO=?, "
+                    + " TIENE_EQUIPO=? where ID = ?";
             PreparedStatement ps = conector.prepareStatement(query);
             ps.setString(1, obra.getCodigo());
             ps.setString(2, obra.getObra());
@@ -98,7 +102,9 @@ public class ObrasDAO {
             ps.setBoolean(11, obra.isTieneVianda());
             ps.setBoolean(12, obra.isTieneDesarraigo());
             ps.setDouble(13, obra.getLimiteViandaDoble());
-            ps.setInt(14, obra.getId());
+            ps.setBoolean(14, obra.isTieneRegistro());
+            ps.setBoolean(15, obra.isTieneEquipo());
+            ps.setInt(16, obra.getId());
             ps.executeUpdate();
             ResultSet rs = ps.getGeneratedKeys();
             r=0;
@@ -137,7 +143,8 @@ public class ObrasDAO {
                 obra.setTieneVianda(rs.getBoolean(("TIENE_VIANDA")));
                 obra.setTieneDesarraigo(rs.getBoolean(("TIENE_DESARRAIGO")));
                 obra.setLimiteViandaDoble(rs.getDouble(("LIMITE_VIANDA_DOBLE")));
-                
+                obra.setTieneRegistro(rs.getBoolean("TIENE_REGISTRO"));
+                obra.setTieneEquipo(rs.getBoolean("TIENE_EQUIPO"));
                 obras.add(obra);
             }
             rs.close();
@@ -200,7 +207,8 @@ public class ObrasDAO {
                 obra.setTieneVianda(rs.getBoolean(("TIENE_VIANDA")));
                 obra.setTieneDesarraigo(rs.getBoolean(("TIENE_DESARRAIGO")));
                 obra.setLimiteViandaDoble(rs.getDouble(("LIMITE_VIANDA_DOBLE")));
-                
+                obra.setTieneRegistro(rs.getBoolean("TIENE_REGISTRO"));
+                obra.setTieneEquipo(rs.getBoolean("TIENE_EQUIPO"));
             }
             rs.close();
             ps.close();

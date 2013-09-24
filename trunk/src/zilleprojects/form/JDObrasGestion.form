@@ -399,7 +399,7 @@
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="capa" alignment="0" pref="493" max="32767" attributes="0"/>
+          <Component id="capa" alignment="0" pref="525" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
   </Layout>
@@ -425,18 +425,16 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <Component id="jPanel2" min="-2" max="-2" attributes="1"/>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="jPanel3" max="32767" attributes="1"/>
-              </Group>
-              <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jPanel5" max="32767" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-              </Group>
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="alertasObras" pref="630" max="32767" attributes="1"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="jPanel5" alignment="1" max="32767" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="jPanel2" min="-2" max="-2" attributes="1"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Component id="jPanel3" max="32767" attributes="1"/>
+                      </Group>
+                      <Component id="alertasObras" alignment="1" pref="630" max="32767" attributes="1"/>
+                  </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -444,16 +442,16 @@
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace pref="27" max="32767" attributes="0"/>
-                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                      <Component id="jPanel3" alignment="0" max="32767" attributes="1"/>
-                      <Component id="jPanel2" alignment="0" max="32767" attributes="1"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="jPanel3" min="-2" max="-2" attributes="1"/>
+                      <Component id="jPanel2" min="-2" max="-2" attributes="1"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="jPanel5" min="-2" max="-2" attributes="0"/>
+                  <Component id="jPanel5" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="alertasObras" min="-2" pref="21" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -793,11 +791,11 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jButton4" alignment="0" pref="151" max="32767" attributes="1"/>
-                          <Component id="nuevaObra" alignment="1" pref="151" max="32767" attributes="1"/>
-                          <Component id="jButton3" alignment="1" pref="151" max="32767" attributes="1"/>
-                          <Component id="jButton2" alignment="1" pref="151" max="32767" attributes="1"/>
-                          <Component id="jButton1" alignment="1" pref="151" max="32767" attributes="1"/>
+                          <Component id="jButton4" alignment="0" pref="127" max="32767" attributes="1"/>
+                          <Component id="nuevaObra" alignment="1" pref="127" max="32767" attributes="1"/>
+                          <Component id="jButton3" alignment="1" pref="127" max="32767" attributes="1"/>
+                          <Component id="jButton2" alignment="1" pref="127" max="32767" attributes="1"/>
+                          <Component id="jButton1" alignment="1" pref="127" max="32767" attributes="1"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -816,7 +814,7 @@
                       <Component id="jButton2" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jButton1" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="86" max="32767" attributes="0"/>
+                      <EmptySpace pref="74" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -905,17 +903,25 @@
                   <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="chkTieneComida" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="102" max="-2" attributes="0"/>
-                              <Component id="chkTieneDesarraigo" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="chkTieneVianda" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="chkTieneComida" alignment="0" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="143" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="chkTieneDesarraigo" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="pinLimiteViandaDoble" min="-2" pref="58" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="jLabel21" pref="246" max="32767" attributes="0"/>
+                                  </Group>
+                              </Group>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="chlTieneVianda" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="105" max="-2" attributes="0"/>
-                              <Component id="pinLimiteViandaDoble" min="-2" pref="58" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jLabel21" pref="288" max="32767" attributes="0"/>
+                              <Component id="chkTieneRegistro" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
+                              <Component id="chkTieneEquipo" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
@@ -926,17 +932,22 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="chkTieneComida" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="chkTieneDesarraigo" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="2" attributes="0">
+                          <Component id="chkTieneComida" alignment="2" min="-2" max="-2" attributes="0"/>
+                          <Component id="chkTieneDesarraigo" alignment="2" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="chlTieneVianda" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel21" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="pinLimiteViandaDoble" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="2" attributes="0">
+                          <Component id="chkTieneVianda" alignment="2" min="-2" max="-2" attributes="0"/>
+                          <Component id="pinLimiteViandaDoble" alignment="2" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel21" alignment="2" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="2" attributes="0">
+                          <Component id="chkTieneRegistro" alignment="2" min="-2" max="-2" attributes="0"/>
+                          <Component id="chkTieneEquipo" alignment="2" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace pref="19" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -948,13 +959,13 @@
                 <Property name="name" type="java.lang.String" value="chkTieneComida" noResource="true"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JCheckBox" name="chlTieneVianda">
+            <Component class="javax.swing.JCheckBox" name="chkTieneVianda">
               <Properties>
-                <Property name="text" type="java.lang.String" resourceKey="chlTieneVianda.text"/>
-                <Property name="name" type="java.lang.String" value="chlTieneVianda" noResource="true"/>
+                <Property name="text" type="java.lang.String" resourceKey="chkTieneVianda.text"/>
+                <Property name="name" type="java.lang.String" value="chkTieneVianda" noResource="true"/>
               </Properties>
               <Events>
-                <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="chlTieneViandaItemStateChanged"/>
+                <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="chkTieneViandaItemStateChanged"/>
               </Events>
             </Component>
             <Component class="javax.swing.JCheckBox" name="chkTieneDesarraigo">
@@ -975,6 +986,18 @@
               <Properties>
                 <Property name="text" type="java.lang.String" resourceKey="jLabel21.text"/>
                 <Property name="name" type="java.lang.String" value="jLabel21" noResource="true"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="chkTieneRegistro">
+              <Properties>
+                <Property name="text" type="java.lang.String" resourceKey="chkTieneRegistro.text"/>
+                <Property name="name" type="java.lang.String" value="chkTieneRegistro" noResource="true"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="chkTieneEquipo">
+              <Properties>
+                <Property name="text" type="java.lang.String" resourceKey="chkTieneEquipo.text"/>
+                <Property name="name" type="java.lang.String" value="chkTieneEquipo" noResource="true"/>
               </Properties>
             </Component>
           </SubComponents>

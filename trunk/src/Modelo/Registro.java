@@ -42,16 +42,17 @@ public final class Registro {
 
     }
     public void calcular(Perfiles p, boolean desarraigo){
-        esEspecialHoy();
-        calcularTotalHs();
-        calcularHsAlmuerzo();
-        calcularHsViaje();
-        calcularHsTarea();
-        diferenciaDeHS(p);
-        
-        //Si la obra tiene Desarraigo y desarraigo es true
-        calcularVianda(p, p.getObra().isTieneDesarraigo() & desarraigo);
-       
+        if(p.obra.isTieneRegistro()){
+            esEspecialHoy();
+            calcularTotalHs();
+            calcularHsAlmuerzo();
+            calcularHsViaje();
+            calcularHsTarea();
+            diferenciaDeHS(p);
+
+            //Si la obra tiene Desarraigo y desarraigo es true
+            calcularVianda(p, p.getObra().isTieneDesarraigo() & desarraigo);
+        }
     }
 
     public void calcularEspecial(MyTime op, Perfiles perfil) {

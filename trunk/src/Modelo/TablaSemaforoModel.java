@@ -103,7 +103,7 @@ public class TablaSemaforoModel extends AbstractTableModel {
        switch (columnIndex)
         {
             case 0:
-                return "¿ATRASADO?";
+                return "";
             case 1:
                 return "NOMBRE";
             case 2:

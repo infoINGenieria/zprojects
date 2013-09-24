@@ -6,6 +6,7 @@ package DAO;
 
 import Modelo.Materiales;
 import Modelo.ParteDiario;
+import Modelo.Perfiles;
 import Modelo.Registro;
 import Modelo.RegistroEquipo;
 import Utils.FechaUtil;
@@ -149,14 +150,14 @@ public class ParteDiarioDAO {
         return r;
     }
 
-    public int guardar(ParteDiario pd, Registro reg, RegistroEquipo regEq, ArrayList<Materiales> datosTr) {
+    public int guardar(Perfiles p, ParteDiario pd, Registro reg, RegistroEquipo regEq, ArrayList<Materiales> datosTr) {
         int r = -1;
         String query = null;
 
         try {
             conector.setAutoCommit(false);
-            // ID ESPECIAL HS_SALIDA HS_LLEGADA HS_INICIO HS_FIN HS_IALMUERZO HS_FALMUERZO
-            // DIA FECHA HS NORMAL HS_VIAJE HS_ALMUERZO HS_50 HS_100 HS_TOTAL
+            //Si tiene registros
+            if(p.obra.isTieneRegistro()){
             // Ingresamos los horarios
             query = "insert into registro (ID, ESPECIAL, HS_SALIDA, HS_LLEGADA, HS_INICIO, "
                     + "HS_FIN, HS_IALMUERZO, HS_FALMUERZO, DIA, FECHA, HS_NORMAL,"
@@ -195,93 +196,115 @@ public class ParteDiarioDAO {
                 return -1;
             }
             pd.setIdHorario(reg.getId());
-
-            // ingresamos los datos del equipamiento si corresponde
-            // ID EQUIPO INI_HORO FIN_HORO INI_ODO FIN_ODO CANT_COMBUSTIBLE EST_SERVICIO TAREA DATOS_CARGA
-            query = "insert into registro_equipo (ID, EQUIPO, INI_HORO, FIN_HORO, "
-                    + "INI_ODO, FIN_ODO, CANT_COMBUSTIBLE, IDSERVICIO, TAREA, DATOS_CARGA)"
-                    + " values (NULL,?,?,?,?,?,?,?,?,?)";
-
-            PreparedStatement regEquipos = conector.prepareStatement(query);
-            if (regEq.getIdEquipo() != 0) {
-                regEquipos.setInt(1, regEq.getIdEquipo());
-                regEquipos.setString(2, regEq.getIniHoro());
-                regEquipos.setString(3, regEq.getFinHoro());
-                regEquipos.setString(4, regEq.getIniOdo());
-                regEquipos.setString(5, regEq.getFinOdo());
-                regEquipos.setString(6, regEq.getCantCombustible());
-                regEquipos.setInt(7, regEq.getEstacionServicioID());
-                regEquipos.setString(8, regEq.getTarea());
-                regEquipos.setBoolean(9, regEq.isDatosCarga());
-                regEquipos.executeUpdate();
-                generatedKeys = regEquipos.getGeneratedKeys();
-                if (generatedKeys.next()) {
-                    regEq.setId(generatedKeys.getInt(1));
-                }
-                if (regEq.getId() == 0) {
-                    deshacer();
-                    return -1;
-                }
+            registros.close();
+            generatedKeys.close();
             }
+            
+            // Si el perfil tiene equipos
+            if(p.obra.isTieneEquipo()){
+                // ingresamos los datos del equipamiento si corresponde
+                // ID EQUIPO INI_HORO FIN_HORO INI_ODO FIN_ODO CANT_COMBUSTIBLE EST_SERVICIO TAREA DATOS_CARGA
+                query = "insert into registro_equipo (ID, EQUIPO, INI_HORO, FIN_HORO, "
+                        + "INI_ODO, FIN_ODO, CANT_COMBUSTIBLE, IDSERVICIO, TAREA, DATOS_CARGA)"
+                        + " values (NULL,?,?,?,?,?,?,?,?,?)";
 
-            pd.setIdEquipo(regEq.getId());
-
-            //ingresamos los datos de transporte si corresponde
-            query = " insert into materiales (ID, MATERIAL, CANTIDAD, DISTANCIA, "
-                    + "VIAJES, CANTERA_CARGADERO, ID_REGISTROEQUIPO ) "
-                    + "values (NULL, ?,?,?,?,?,?)";
-            PreparedStatement mat = conector.prepareStatement(query);
-            if (regEq.isDatosCarga() || regEq.getIdEquipo() != 1) { //corresponde cargar datos de transporte?
-
-                mat = conector.prepareStatement(query);
-                for (int i = 0; i < datosTr.size(); i++) {
-                    Materiales m = (Materiales) datosTr.get(i);
-                    mat.setString(1, m.getMaterial());
-                    mat.setString(2, m.getCantidad());
-                    mat.setString(3, m.getDistancia());
-                    mat.setString(4, m.getViajes());
-                    mat.setString(5, m.getCantera_cargadero());
-                    mat.setInt(6, regEq.getId());
-
-                    mat.executeUpdate();
-                    generatedKeys = mat.getGeneratedKeys();
+                PreparedStatement regEquipos = conector.prepareStatement(query);
+                if (regEq.getIdEquipo() != 0) {
+                    regEquipos.setInt(1, regEq.getIdEquipo());
+                    regEquipos.setString(2, regEq.getIniHoro());
+                    regEquipos.setString(3, regEq.getFinHoro());
+                    regEquipos.setString(4, regEq.getIniOdo());
+                    regEquipos.setString(5, regEq.getFinOdo());
+                    regEquipos.setString(6, regEq.getCantCombustible());
+                    regEquipos.setInt(7, regEq.getEstacionServicioID());
+                    regEquipos.setString(8, regEq.getTarea());
+                    regEquipos.setBoolean(9, regEq.isDatosCarga());
+                    regEquipos.executeUpdate();
+                    ResultSet generatedKeys = regEquipos.getGeneratedKeys();
                     if (generatedKeys.next()) {
-                        m.setId(generatedKeys.getInt(1));
+                        regEq.setId(generatedKeys.getInt(1));
                     }
-                    if (m.getId() == 0) {
+                    if (regEq.getId() == 0) {
                         deshacer();
                         return -1;
                     }
+                    regEquipos.close();
+                    generatedKeys.close();
+                }
+
+                pd.setIdEquipo(regEq.getId());
+            
+            
+                //ingresamos los datos de transporte si corresponde
+                query = " insert into materiales (ID, MATERIAL, CANTIDAD, DISTANCIA, "
+                        + "VIAJES, CANTERA_CARGADERO, ID_REGISTROEQUIPO ) "
+                        + "values (NULL, ?,?,?,?,?,?)";
+                PreparedStatement mat = conector.prepareStatement(query);
+                if (regEq.isDatosCarga() || regEq.getIdEquipo() != 1) { //corresponde cargar datos de transporte?
+
+                    mat = conector.prepareStatement(query);
+                    for (int i = 0; i < datosTr.size(); i++) {
+                        Materiales m = (Materiales) datosTr.get(i);
+                        mat.setString(1, m.getMaterial());
+                        mat.setString(2, m.getCantidad());
+                        mat.setString(3, m.getDistancia());
+                        mat.setString(4, m.getViajes());
+                        mat.setString(5, m.getCantera_cargadero());
+                        mat.setInt(6, regEq.getId());
+
+                        mat.executeUpdate();
+                        ResultSet generatedKeys = mat.getGeneratedKeys();
+                        if (generatedKeys.next()) {
+                            m.setId(generatedKeys.getInt(1));
+                        }
+                        if (m.getId() == 0) {
+                            deshacer();
+                            return -1;
+                        }
+                        mat.close();
+                        generatedKeys.close();
+                    }
                 }
             }
-
+            
+            
             //ID NUMERO OPERARIO FUNCION FECHA OBRA HORARIO EQUIPO OBSERVACIONES
-            query = "insert into partediario (ID, NUMERO, OPERARIO, FUNCION, FECHA,"
-                    + " OBRA, HORARIO, EQUIPO, OBSERVACIONES, MULTIFUNCION,"
-                    + " SITUACION, DESARRAIGO) values (NULL, ?,?,?,?,?,?,?,?,?,?,?)";
+            query = "insert into partediario (ID, NUMERO, OPERARIO, FECHA, OBRA, "
+                    + "OBSERVACIONES, SITUACION";
+            if(p.obra.isTieneRegistro()) query+= ", FUNCION, HORARIO, DESARRAIGO, MULTIFUNCION";
+            if(p.obra.isTieneEquipo()) query+= ", EQUIPO";
+            query+= ") values (NULL, ?,?,?,?,?,?";
+            if(p.obra.isTieneRegistro()) query += ",?,?,?,?";
+            if(p.obra.isTieneEquipo()) query+= ",?";
+            query+= ")";
             PreparedStatement partes = conector.prepareStatement(query);
-            partes.setString(1, pd.getNumero());
-            partes.setInt(2, pd.getIdOperario());
-            partes.setInt(3, pd.getIdFuncion());
-            partes.setDate(4, new java.sql.Date(pd.getFecha().getTime()));
-            partes.setInt(5, pd.getIdObra());
-            partes.setInt(6, pd.getIdHorario());
-            partes.setInt(7, pd.getIdEquipo());
-            partes.setString(8, pd.getObservaciones());
-            partes.setBoolean(9, pd.isMultifuncion());
-            partes.setInt(10, pd.getIdSituacion());
-            partes.setBoolean(11, pd.isDesarraigo());
+            int i = 1;
+            partes.setString(i++, pd.getNumero());
+            partes.setInt(i++, pd.getIdOperario());
+            partes.setDate(i++, new java.sql.Date(pd.getFecha().getTime()));
+            partes.setInt(i++, pd.getIdObra());
+            partes.setString(i++, pd.getObservaciones());
+            partes.setInt(i++, pd.getIdSituacion());
+            
+            if(p.obra.isTieneRegistro()){
+                partes.setInt(i++, pd.getIdFuncion());
+                partes.setInt(i++, pd.getIdHorario());
+                partes.setBoolean(i++, pd.isDesarraigo());
+                partes.setBoolean(i++, pd.isMultifuncion());
+            }
+            if(p.obra.isTieneEquipo())
+                partes.setInt(i++, pd.getIdEquipo());
             partes.executeUpdate();
-            generatedKeys = partes.getGeneratedKeys();
+            ResultSet generatedKeys = partes.getGeneratedKeys();
             if (generatedKeys.next()) {
                 r = generatedKeys.getInt(1);
             }
             conector.commit();
             generatedKeys.close();
-            registros.close();
+            
             partes.close();
-            mat.close();
-            regEquipos.close();
+            
+            
             conector.setAutoCommit(true);
 
 
@@ -292,158 +315,171 @@ public class ParteDiarioDAO {
         return r;
     }
 
-    public int actualizar(ParteDiario pd, Registro reg, RegistroEquipo regEq, ArrayList<Materiales> datosTr) {
+    public int actualizar(Perfiles perfil, ParteDiario pd, Registro reg, RegistroEquipo regEq, ArrayList<Materiales> datosTr) {
         int r = -1;
         String query = null;
 
         try {
             conector.setAutoCommit(false);
-            // ID ESPECIAL HS_SALIDA HS_LLEGADA HS_INICIO HS_FIN HS_IALMUERZO HS_FALMUERZO
-            // DIA FECHA HS NORMAL HS_VIAJE HS_ALMUERZO HS_50 HS_100 HS_TOTAL
-            // Ingresamos los horarios
-            if (reg.getId() != 0) {
-                query = "update registro set ESPECIAL=?, HS_SALIDA=?, HS_LLEGADA=?, HS_INICIO=?, "
-                        + "HS_FIN=?, HS_IALMUERZO=?, HS_FALMUERZO=?, DIA=?, FECHA=?, HS_NORMAL=?,"
-                        + " HS_VIAJE=?, HS_ALMUERZO=?, HS_50=?, HS_100=?, HS_TOTAL=?, HS_TAREA=?,"
-                        + " COMIDA=?, VIANDA=?, VIANDA_DESA=? where ID =" + reg.getId();
-            } else {
-                query = "insert into registro (ID, ESPECIAL, HS_SALIDA, HS_LLEGADA, HS_INICIO, "
-                        + "HS_FIN, HS_IALMUERZO, HS_FALMUERZO, DIA, FECHA, HS_NORMAL,"
-                        + " HS_VIAJE, HS_ALMUERZO, HS_50, HS_100, HS_TOTAL, HS_TAREA, "
-                        + "COMIDA, VIANDA, VIANDA_DESA) values "
-                        + "(NULL, ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-            }
-            PreparedStatement registros = conector.prepareStatement(query);
-            registros.setBoolean(1, reg.isEspecial());
-            registros.setTime(2, reg.getHs_salida());
-            registros.setTime(3, reg.getHs_llegada());
-            registros.setTime(4, reg.getHs_inicio());
-            registros.setTime(5, reg.getHs_fin());
-            registros.setTime(6, reg.getHs_ialmuerzo());
-            registros.setTime(7, reg.getHs_falmuerzo());
-            registros.setString(8, reg.getDia());
-            registros.setString(9, reg.getFecha());
-            registros.setTime(10, reg.getHs_normal());
-            registros.setTime(11, reg.getHs_viaje());
-            registros.setTime(12, reg.getHs_almuerzo());
-            registros.setTime(13, reg.getHs_50());
-            registros.setTime(14, reg.getHs_100());
-            registros.setTime(15, reg.getTotal_hs());
-            registros.setTime(16, reg.getHs_tarea());
-            registros.setInt(17, reg.getComida());
-            registros.setInt(18, reg.getVianda());
-            registros.setInt(19, reg.getVianda_desa());
-
-
-            registros.executeUpdate();
-            ResultSet generatedKeys = registros.getGeneratedKeys();
-            if (generatedKeys.next()) {
-                reg.setId(generatedKeys.getInt(1));
-            }
-            if (reg.getId() == 0) {
-                deshacer();
-                return -1;
-            }
-            pd.setIdHorario(reg.getId());
-
-            // ingresamos los datos del equipamiento si corresponde
-            // ID EQUIPO INI_HORO FIN_HORO INI_ODO FIN_ODO CANT_COMBUSTIBLE EST_SERVICIO TAREA DATOS_CARGA
-            if (regEq.getId() != 0) {
-                query = "update registro_equipo set EQUIPO=?, INI_HORO=?, FIN_HORO=?, "
-                        + "INI_ODO=?, FIN_ODO=?, CANT_COMBUSTIBLE=?, IDSERVICIO=?, TAREA=?, "
-                        + "DATOS_CARGA=? where ID =" + regEq.getId();
-            } else {
-                query = "insert into registro_equipo (ID, EQUIPO, INI_HORO, FIN_HORO, "
-                        + "INI_ODO, FIN_ODO, CANT_COMBUSTIBLE, IDSERVICIO, TAREA, DATOS_CARGA)"
-                        + " values (NULL,?,?,?,?,?,?,?,?,?)";
-            }
-            PreparedStatement regEquipos = conector.prepareStatement(query);
-            if (regEq.getIdEquipo() != 0) {
-                regEquipos.setInt(1, regEq.getIdEquipo());
-                regEquipos.setString(2, regEq.getIniHoro());
-                regEquipos.setString(3, regEq.getFinHoro());
-                regEquipos.setString(4, regEq.getIniOdo());
-                regEquipos.setString(5, regEq.getFinOdo());
-                regEquipos.setString(6, regEq.getCantCombustible());
-                regEquipos.setInt(7, regEq.getEstacionServicioID());
-                regEquipos.setString(8, regEq.getTarea());
-                regEquipos.setBoolean(9, regEq.isDatosCarga());
-                regEquipos.executeUpdate();
-                generatedKeys = regEquipos.getGeneratedKeys();
-                if (generatedKeys.next()) {
-                    regEq.setId(generatedKeys.getInt(1));
+            if(perfil.obra.isTieneRegistro()){
+                // ID ESPECIAL HS_SALIDA HS_LLEGADA HS_INICIO HS_FIN HS_IALMUERZO HS_FALMUERZO
+                // DIA FECHA HS NORMAL HS_VIAJE HS_ALMUERZO HS_50 HS_100 HS_TOTAL
+                // Ingresamos los horarios
+                if (reg.getId() != 0) {
+                    query = "update registro set ESPECIAL=?, HS_SALIDA=?, HS_LLEGADA=?, HS_INICIO=?, "
+                            + "HS_FIN=?, HS_IALMUERZO=?, HS_FALMUERZO=?, DIA=?, FECHA=?, HS_NORMAL=?,"
+                            + " HS_VIAJE=?, HS_ALMUERZO=?, HS_50=?, HS_100=?, HS_TOTAL=?, HS_TAREA=?,"
+                            + " COMIDA=?, VIANDA=?, VIANDA_DESA=? where ID =" + reg.getId();
+                } else {
+                    query = "insert into registro (ID, ESPECIAL, HS_SALIDA, HS_LLEGADA, HS_INICIO, "
+                            + "HS_FIN, HS_IALMUERZO, HS_FALMUERZO, DIA, FECHA, HS_NORMAL,"
+                            + " HS_VIAJE, HS_ALMUERZO, HS_50, HS_100, HS_TOTAL, HS_TAREA, "
+                            + "COMIDA, VIANDA, VIANDA_DESA) values "
+                            + "(NULL, ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
                 }
-                if (regEq.getId() == 0) {
+                PreparedStatement registros = conector.prepareStatement(query);
+                registros.setBoolean(1, reg.isEspecial());
+                registros.setTime(2, reg.getHs_salida());
+                registros.setTime(3, reg.getHs_llegada());
+                registros.setTime(4, reg.getHs_inicio());
+                registros.setTime(5, reg.getHs_fin());
+                registros.setTime(6, reg.getHs_ialmuerzo());
+                registros.setTime(7, reg.getHs_falmuerzo());
+                registros.setString(8, reg.getDia());
+                registros.setString(9, reg.getFecha());
+                registros.setTime(10, reg.getHs_normal());
+                registros.setTime(11, reg.getHs_viaje());
+                registros.setTime(12, reg.getHs_almuerzo());
+                registros.setTime(13, reg.getHs_50());
+                registros.setTime(14, reg.getHs_100());
+                registros.setTime(15, reg.getTotal_hs());
+                registros.setTime(16, reg.getHs_tarea());
+                registros.setInt(17, reg.getComida());
+                registros.setInt(18, reg.getVianda());
+                registros.setInt(19, reg.getVianda_desa());
+
+
+                registros.executeUpdate();
+                ResultSet generatedKeys = registros.getGeneratedKeys();
+                if (generatedKeys.next()) {
+                    reg.setId(generatedKeys.getInt(1));
+                }
+                if (reg.getId() == 0) {
                     deshacer();
                     return -1;
                 }
+                generatedKeys.close();
+                registros.close();
+                pd.setIdHorario(reg.getId());
             }
-
-            pd.setIdEquipo(regEq.getId());
-
-            if (regEq.isDatosCarga() || regEq.getIdEquipo() != 1) { //corresponde cargar datos de transporte?
-                PreparedStatement mat = conector.prepareStatement(query);
-                for (int i = 0; i < datosTr.size(); i++) {
-                    Materiales m = (Materiales) datosTr.get(i);
-                    if (m.getId() != 0) {
-                        query = "update materiales set MATERIAL=?, CANTIDAD=?, DISTANCIA=?, "
-                                + "VIAJES=?, CANTERA_CARGADERO=?, ID_REGISTROEQUIPO=?"
-                                + " where ID =" + m.getId();
-                    } else {
-                        query = " insert into materiales (ID, MATERIAL, CANTIDAD, DISTANCIA, "
-                                + "VIAJES, CANTERA_CARGADERO, ID_REGISTROEQUIPO ) "
-                                + "values (NULL, ?,?,?,?,?,?)";
-                    }
-
-                    mat = conector.prepareStatement(query);
-
-                    mat.setString(1, m.getMaterial());
-                    mat.setString(2, m.getCantidad());
-                    mat.setString(3, m.getDistancia());
-                    mat.setString(4, m.getViajes());
-                    mat.setString(5, m.getCantera_cargadero());
-                    mat.setInt(6, regEq.getId());
-
-                    mat.executeUpdate();
-                    generatedKeys = mat.getGeneratedKeys();
+            if(perfil.obra.isTieneEquipo()){
+                // ingresamos los datos del equipamiento si corresponde
+                // ID EQUIPO INI_HORO FIN_HORO INI_ODO FIN_ODO CANT_COMBUSTIBLE EST_SERVICIO TAREA DATOS_CARGA
+                if (regEq.getId() != 0) {
+                    query = "update registro_equipo set EQUIPO=?, INI_HORO=?, FIN_HORO=?, "
+                            + "INI_ODO=?, FIN_ODO=?, CANT_COMBUSTIBLE=?, IDSERVICIO=?, TAREA=?, "
+                            + "DATOS_CARGA=? where ID =" + regEq.getId();
+                } else {
+                    query = "insert into registro_equipo (ID, EQUIPO, INI_HORO, FIN_HORO, "
+                            + "INI_ODO, FIN_ODO, CANT_COMBUSTIBLE, IDSERVICIO, TAREA, DATOS_CARGA)"
+                            + " values (NULL,?,?,?,?,?,?,?,?,?)";
+                }
+                PreparedStatement regEquipos = conector.prepareStatement(query);
+                if (regEq.getIdEquipo() != 0) {
+                    regEquipos.setInt(1, regEq.getIdEquipo());
+                    regEquipos.setString(2, regEq.getIniHoro());
+                    regEquipos.setString(3, regEq.getFinHoro());
+                    regEquipos.setString(4, regEq.getIniOdo());
+                    regEquipos.setString(5, regEq.getFinOdo());
+                    regEquipos.setString(6, regEq.getCantCombustible());
+                    regEquipos.setInt(7, regEq.getEstacionServicioID());
+                    regEquipos.setString(8, regEq.getTarea());
+                    regEquipos.setBoolean(9, regEq.isDatosCarga());
+                    regEquipos.executeUpdate();
+                    ResultSet generatedKeys = regEquipos.getGeneratedKeys();
                     if (generatedKeys.next()) {
-                        m.setId(generatedKeys.getInt(1));
+                        regEq.setId(generatedKeys.getInt(1));
                     }
-                    if (m.getId() == 0) {
+                    if (regEq.getId() == 0) {
                         deshacer();
                         return -1;
                     }
-                }//for
-                mat.close();
+                    generatedKeys.close();
+                    
+                }
+                regEquipos.close();
+                pd.setIdEquipo(regEq.getId());
 
-            } // if
+                if (regEq.isDatosCarga() || regEq.getIdEquipo() != 1) { //corresponde cargar datos de transporte?
+                    PreparedStatement mat = conector.prepareStatement(query);
+                    for (int i = 0; i < datosTr.size(); i++) {
+                        Materiales m = (Materiales) datosTr.get(i);
+                        if (m.getId() != 0) {
+                            query = "update materiales set MATERIAL=?, CANTIDAD=?, DISTANCIA=?, "
+                                    + "VIAJES=?, CANTERA_CARGADERO=?, ID_REGISTROEQUIPO=?"
+                                    + " where ID =" + m.getId();
+                        } else {
+                            query = " insert into materiales (ID, MATERIAL, CANTIDAD, DISTANCIA, "
+                                    + "VIAJES, CANTERA_CARGADERO, ID_REGISTROEQUIPO ) "
+                                    + "values (NULL, ?,?,?,?,?,?)";
+                        }
 
+                        mat = conector.prepareStatement(query);
 
-            query = "update partediario set NUMERO=?, OPERARIO=?, FUNCION=?, FECHA=?,"
-                    + " OBRA=?, HORARIO=?, EQUIPO=?, OBSERVACIONES=?, MULTIFUNCION=?, "
-                    + "DESARRAIGO=? where ID =" + pd.getId();
+                        mat.setString(1, m.getMaterial());
+                        mat.setString(2, m.getCantidad());
+                        mat.setString(3, m.getDistancia());
+                        mat.setString(4, m.getViajes());
+                        mat.setString(5, m.getCantera_cargadero());
+                        mat.setInt(6, regEq.getId());
+
+                        mat.executeUpdate();
+                        ResultSet generatedKeys = mat.getGeneratedKeys();
+                        if (generatedKeys.next()) {
+                            m.setId(generatedKeys.getInt(1));
+                        }
+                        if (m.getId() == 0) {
+                            deshacer();
+                            return -1;
+                        }
+                        generatedKeys.close();
+                    }//for
+                    mat.close();
+
+                } // if
+            }
+
+            query = "update partediario set NUMERO=?, OPERARIO=?, OBRA=?, FECHA=?, OBSERVACIONES=?";
+            if(perfil.obra.isTieneRegistro()) query += ", FUNCION=?, HORARIO=?, MULTIFUNCION=?, DESARRAIGO=?";
+            else query += ", FUNCION=NULL, HORARIO=NULL, MULTIFUNCION=NULL, DESARRAIGO=NULL";
+            if(perfil.obra.isTieneEquipo()) query +=", EQUIPO=?";
+            else query += ", EQUIPO=NULL";
+            query += " where ID =" + pd.getId();
             PreparedStatement partes = conector.prepareStatement(query);
-            partes.setString(1, pd.getNumero());
-            partes.setInt(2, pd.getIdOperario());
-            partes.setInt(3, pd.getIdFuncion());
-            partes.setDate(4, new java.sql.Date(pd.getFecha().getTime()));
-            partes.setInt(5, pd.getIdObra());
-            partes.setInt(6, pd.getIdHorario());
-            partes.setInt(7, pd.getIdEquipo());
-            partes.setString(8, pd.getObservaciones());
-            partes.setBoolean(9, pd.isMultifuncion());
-            partes.setBoolean(10, pd.isDesarraigo());
+            int i = 1;
+            partes.setString(i++, pd.getNumero());
+            partes.setInt(i++, pd.getIdOperario());
+            partes.setInt(i++, pd.getIdObra());
+            
+            partes.setDate(i++, new java.sql.Date(pd.getFecha().getTime()));
+            partes.setString(i++, pd.getObservaciones());
+            if(perfil.obra.isTieneRegistro()){
+                partes.setInt(i++, pd.getIdFuncion());
+                partes.setInt(i++, pd.getIdHorario());
+                partes.setBoolean(i++, pd.isMultifuncion());
+                partes.setBoolean(i++, pd.isDesarraigo());
+            }
+            if(perfil.obra.isTieneEquipo()){
+                partes.setInt(i++, pd.getIdEquipo());
+            }
             partes.executeUpdate();
-            generatedKeys = partes.getGeneratedKeys();
+            ResultSet generatedKeys = partes.getGeneratedKeys();
             if (generatedKeys.next()) {
                 r = generatedKeys.getInt(1);
             }
             conector.commit();
-            generatedKeys.close();
-            registros.close();
+            generatedKeys.close();         
             partes.close();
-
-            regEquipos.close();
             conector.setAutoCommit(true);
             r = pd.getId();
 

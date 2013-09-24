@@ -32,6 +32,7 @@ import Modelo.TablaHorarioIngresoModel;
 import Utils.EditorDeCeldasString;
 import Vista.OpcionPanel;
 import Vista.PanelAzul;
+import java.awt.Component;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -53,6 +54,9 @@ public class JDGestionarParte extends javax.swing.JDialog {
     public JDGestionarParte(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        
+        setConfiguracionObra();
+        
     }
 
     /** This method is called from within the constructor to
@@ -114,7 +118,7 @@ public class JDGestionarParte extends javax.swing.JDialog {
         multifuncionCheck = new javax.swing.JCheckBox();
         lblOperario = new javax.swing.JLabel();
         lblObra = new javax.swing.JLabel();
-        comboFunciones = new javax.swing.JComboBox();
+        comboFuncion = new javax.swing.JComboBox();
         selectObra = new javax.swing.JButton();
         isDesarraigo = new javax.swing.JCheckBox();
         horarioPanel = new javax.swing.JPanel();
@@ -122,7 +126,7 @@ public class JDGestionarParte extends javax.swing.JDialog {
         tablaHorario = new javax.swing.JTable();
         cerrarParteBoton = new javax.swing.JButton();
         guardarParteBoton = new javax.swing.JButton();
-        jPanel2 = new javax.swing.JPanel();
+        equipoPanel = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
@@ -298,7 +302,7 @@ public class JDGestionarParte extends javax.swing.JDialog {
         jPanel9Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {botonQuery, query1});
 
         jPanel15.setName("jPanel15"); // NOI18N
-        jPanel15.setLayout(new java.awt.GridLayout());
+        jPanel15.setLayout(new java.awt.GridLayout(1, 0));
 
         selectRow.setIcon(resourceMap.getIcon("selectRow.icon")); // NOI18N
         selectRow.setText(resourceMap.getString("selectRow.text")); // NOI18N
@@ -419,7 +423,7 @@ public class JDGestionarParte extends javax.swing.JDialog {
         jPanel11Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {botonQueryEq, queryEq});
 
         jPanel14.setName("jPanel14"); // NOI18N
-        jPanel14.setLayout(new java.awt.GridLayout());
+        jPanel14.setLayout(new java.awt.GridLayout(1, 0));
 
         selectEquipo.setIcon(resourceMap.getIcon("selectEquipo.icon")); // NOI18N
         selectEquipo.setText(resourceMap.getString("selectEquipo.text")); // NOI18N
@@ -629,11 +633,11 @@ public class JDGestionarParte extends javax.swing.JDialog {
         lblObra.setMaximumSize(new java.awt.Dimension(300, 29));
         lblObra.setName("lblObra"); // NOI18N
 
-        comboFunciones.setModel(funciones);
-        comboFunciones.setName("comboFunciones"); // NOI18N
-        comboFunciones.addActionListener(new java.awt.event.ActionListener() {
+        comboFuncion.setModel(funciones);
+        comboFuncion.setName("comboFuncion"); // NOI18N
+        comboFuncion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                comboFuncionesActionPerformed(evt);
+                comboFuncionActionPerformed(evt);
             }
         });
 
@@ -674,7 +678,7 @@ public class JDGestionarParte extends javax.swing.JDialog {
                         .addContainerGap()
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(comboFunciones, 0, 268, Short.MAX_VALUE)
+                        .addComponent(comboFuncion, 0, 268, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -703,7 +707,7 @@ public class JDGestionarParte extends javax.swing.JDialog {
                     .addComponent(numPro, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(generalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(comboFunciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(comboFuncion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton2)
                     .addComponent(isDesarraigo)
                     .addComponent(lblObra, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -760,9 +764,9 @@ public class JDGestionarParte extends javax.swing.JDialog {
         guardarParteBoton.setText(resourceMap.getString("guardarParteBoton.text")); // NOI18N
         guardarParteBoton.setName("guardarParteBoton"); // NOI18N
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(-16777216,true), 1, true), resourceMap.getString("jPanel2.border.title"))); // NOI18N
-        jPanel2.setName("jPanel2"); // NOI18N
-        jPanel2.setOpaque(false);
+        equipoPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(-16777216,true), 1, true), resourceMap.getString("equipoPanel.border.title"))); // NOI18N
+        equipoPanel.setName("equipoPanel"); // NOI18N
+        equipoPanel.setOpaque(false);
 
         jLabel6.setText(resourceMap.getString("jLabel6.text")); // NOI18N
         jLabel6.setName("jLabel6"); // NOI18N
@@ -863,14 +867,14 @@ public class JDGestionarParte extends javax.swing.JDialog {
         lblEquipo.setText(resourceMap.getString("lblEquipo.text")); // NOI18N
         lblEquipo.setName("lblEquipo"); // NOI18N
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+        javax.swing.GroupLayout equipoPanelLayout = new javax.swing.GroupLayout(equipoPanel);
+        equipoPanel.setLayout(equipoPanelLayout);
+        equipoPanelLayout.setHorizontalGroup(
+            equipoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(equipoPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(equipoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(equipoPanelLayout.createSequentialGroup()
                         .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(lblEquipo, javax.swing.GroupLayout.DEFAULT_SIZE, 516, Short.MAX_VALUE)
@@ -880,7 +884,7 @@ public class JDGestionarParte extends javax.swing.JDialog {
                         .addComponent(isTransporte)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(cargarDatosTransporte, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
+                    .addGroup(equipoPanelLayout.createSequentialGroup()
                         .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -891,19 +895,19 @@ public class JDGestionarParte extends javax.swing.JDialog {
                 .addContainerGap())
         );
 
-        jPanel2Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jPanel4, jPanel5});
+        equipoPanelLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jPanel4, jPanel5});
 
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+        equipoPanelLayout.setVerticalGroup(
+            equipoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(equipoPanelLayout.createSequentialGroup()
+                .addGroup(equipoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(jLabel6)
                     .addComponent(lblEquipo, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(isTransporte)
                     .addComponent(cargarDatosTransporte)
                     .addComponent(botonBuscarEquipoMostrar))
                 .addGap(7, 7, 7)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(equipoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, 89, Short.MAX_VALUE)
                     .addComponent(jPanel7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 89, Short.MAX_VALUE)
                     .addComponent(jPanel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 89, Short.MAX_VALUE)
@@ -911,7 +915,7 @@ public class JDGestionarParte extends javax.swing.JDialog {
                 .addContainerGap())
         );
 
-        jPanel2Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jPanel4, jPanel5, jPanel6, jPanel7});
+        equipoPanelLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jPanel4, jPanel5, jPanel6, jPanel7});
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(-16777216,true), 1, true), resourceMap.getString("jPanel3.border.title"))); // NOI18N
         jPanel3.setName("jPanel3"); // NOI18N
@@ -960,7 +964,7 @@ public class JDGestionarParte extends javax.swing.JDialog {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.LEADING, 0, 968, Short.MAX_VALUE)
+                            .addComponent(equipoPanel, javax.swing.GroupLayout.Alignment.LEADING, 0, 968, Short.MAX_VALUE)
                             .addComponent(generalPanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(horarioPanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(8, 8, 8)))
@@ -973,7 +977,7 @@ public class JDGestionarParte extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(horarioPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(equipoPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -981,7 +985,7 @@ public class JDGestionarParte extends javax.swing.JDialog {
                     .addComponent(outText, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(guardarParteBoton)
                     .addComponent(cerrarParteBoton))
-                .addGap(18, 18, 18))
+                .addGap(20, 20, 20))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -1036,12 +1040,12 @@ public class JDGestionarParte extends javax.swing.JDialog {
     }//GEN-LAST:event_cerrarInfoTransporteActionPerformed
 
     private void aceptarInfoTransporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aceptarInfoTransporteActionPerformed
-        mat = new ArrayList<Materiales>();
+        listMaterialesParteDiario = new ArrayList<Materiales>();
         for (int i = 0; i < tdt.getRowCount(); i++) {
             Materiales m = tdt.getFila(i);
             if (m.isOk()) {
                 isTransporte.setSelected(true);
-                mat.add(m);
+                listMaterialesParteDiario.add(m);
             }
         }
 
@@ -1072,8 +1076,8 @@ public class JDGestionarParte extends javax.swing.JDialog {
         if (listEmpl.isEmpty() || listaEmpleados.isSelectionEmpty()) {
             //nothing         
         } else {
-            op = (Operario) listaEmpleados.getSelectedValue();
-            lblOperario.setText(op.toString());
+            operario = (Operario) listaEmpleados.getSelectedValue();
+            lblOperario.setText(operario.toString());
             buscarEmpleado.dispose();
             query1.setText("");
             listEmpl.removeAllElements();
@@ -1106,8 +1110,12 @@ public class JDGestionarParte extends javax.swing.JDialog {
         if (listEq.isEmpty() || listaEquipo.isSelectionEmpty()) {
             //nothing
         } else {
-            eq = (Equipos) listaEquipo.getSelectedValue();
-            lblEquipo.setText(eq.toString());
+            equipo = (Equipos) listaEquipo.getSelectedValue();
+            if(equipo != null){
+                lblEquipo.setText(equipo.toString());
+            }else{
+                lblEquipo.setText("Ninguno");
+            }
             buscarEquipo.dispose();
             queryEq.setText("");
             listEq.removeAllElements();
@@ -1122,16 +1130,16 @@ public class JDGestionarParte extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_formWindowActivated
 
-    private void comboFuncionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboFuncionesActionPerformed
+    private void comboFuncionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboFuncionActionPerformed
         outText.setText("");
-        int func = op.getFuncion();
-        if (func != ((Funcion) comboFunciones.getSelectedItem()).getId() && !multifuncionCheck.isSelected()) {
+        int func = operario.getFuncion();
+        if (func != ((Funcion) comboFuncion.getSelectedItem()).getId() && !multifuncionCheck.isSelected()) {
             multifuncionCheck(1);
         }
-        if (func == ((Funcion) comboFunciones.getSelectedItem()).getId() && multifuncionCheck.isSelected()) {
+        if (func == ((Funcion) comboFuncion.getSelectedItem()).getId() && multifuncionCheck.isSelected()) {
             multifuncionCheck(2);
         }
-    }//GEN-LAST:event_comboFuncionesActionPerformed
+    }//GEN-LAST:event_comboFuncionActionPerformed
 
     private void cerrarBusquedaObraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cerrarBusquedaObraActionPerformed
         selectObraDialog.dispose();
@@ -1179,6 +1187,34 @@ public class JDGestionarParte extends javax.swing.JDialog {
                 dialog.setVisible(true);
             }
         });
+    }
+    
+    private void setConfiguracionObra(){
+        
+        for (Component c: horarioPanel.getComponents()){
+            c.setEnabled(obra.isTieneRegistro());
+        }
+        tablaHorario.setEnabled(obra.isTieneRegistro());
+        if(obra.isTieneRegistro()) {
+            if(tablaModel.getRowCount()== 0){
+                tablaModel.addRegistro(new Registro());
+            }
+            tablaHorario.setModel(tablaModel);
+        }
+        comboFuncion.setEnabled(obra.isTieneRegistro());
+        isDesarraigo.setEnabled(obra.isTieneRegistro());
+        multifuncionCheck.setEnabled(obra.isTieneRegistro());
+        for (Component c: equipoPanel.getComponents()){
+            if(c instanceof javax.swing.JPanel){
+                for(Component cc: ((javax.swing.JPanel) c).getComponents()){
+                    cc.setEnabled(obra.isTieneEquipo());
+                }
+            }else{
+                c.setEnabled(obra.isTieneEquipo());
+            }
+        }
+        tareaAsignadaText.setEnabled(obra.isTieneEquipo());
+        
     }
 
     private void establecerEditorDeString(JTable t) {
@@ -1397,62 +1433,75 @@ public class JDGestionarParte extends javax.swing.JDialog {
     static public void CargarTodo(DefaultComboBoxModel f, ParteDiario pd,
             Operario op, ArrayList<Funcion> fcs, Obras ob, Equipos eq, RegistroEquipo re, Registro r,
             ArrayList<Materiales> mat, DefaultComboBoxModel estaciones) {
-            JDGestionarParte.funciones = f;
-            JDGestionarParte.pd = pd;
-            JDGestionarParte.op = op;
-            JDGestionarParte.fcs = fcs;
-            JDGestionarParte.ob = ob;
-            JDGestionarParte.eq = eq;
-            JDGestionarParte.re = re;
-            JDGestionarParte.r = r;
-            JDGestionarParte.mat = mat;
+            JDGestionarParte.parteDiario = pd;
+            JDGestionarParte.operario = op;
+            JDGestionarParte.funcionesList = fcs;
             JDGestionarParte.estaciones = estaciones;
-            
-
+            JDGestionarParte.obra = ob;
+            JDGestionarParte.funciones = f;
+            if(ob.isTieneEquipo()){
+                JDGestionarParte.equipo = eq;
+                JDGestionarParte.registroEquipo = re;
+                JDGestionarParte.listMaterialesParteDiario = mat;
+            }
+            if(ob.isTieneRegistro()){
+                
+                JDGestionarParte.registroHorario = r;
+            }
     }
 
     private void cargarLosDatos() {
-        lblOperario.setText(op.toString());
-        fechaParte.setDate(pd.getFecha());
-        multifuncionCheck.setSelected(pd.isMultifuncion());
-        isDesarraigo.setSelected(pd.isDesarraigo());
-        numPre.setText(pd.getNumeroPre());
-        numPro.setText(pd.getNumeroPos());
-        comboFunciones.setSelectedItem(new Funcion(pd.getIdFuncion()));
-        lblObra.setText(ob.toString());
-        tablaModel.addRegistro(r);
-        lblEquipo.setText(eq.toString());
-        finalHorometroText.setText(re.getFinHoro());
-        inicialHorometroText.setText(re.getIniHoro());
-        finalOdometroText.setText(re.getFinOdo());
-        inicialOdometroText.setText(re.getIniOdo());
-        cantidadLitrosText.setText(re.getCantCombustible());
-        estacionesCombo.setSelectedItem(new EstacionServicio(re.getEstacionServicioID()));
-        tareaAsignadaText.setText(re.getTarea());
-        isTransporte.setSelected(re.isDatosCarga());
-        observacionesText.setText(pd.getObservaciones());
-        tdt = new TablaDatosTransporte();
-        for (int i = 0; i < mat.size(); i++) {
-            Materiales m = (Materiales) mat.get(i);
-            m.setOk(true);
-            tdt.addRegistro((m));
+        lblOperario.setText(operario.toString());
+        fechaParte.setDate(parteDiario.getFecha());      
+        numPre.setText(parteDiario.getNumeroPre());
+        numPro.setText(parteDiario.getNumeroPos());      
+        lblObra.setText(obra.toString());
+        observacionesText.setText(parteDiario.getObservaciones());
+        
+        if(obra.isTieneEquipo()){
+            lblEquipo.setText(equipo.toString());
+            finalHorometroText.setText(registroEquipo.getFinHoro());
+            inicialHorometroText.setText(registroEquipo.getIniHoro());
+            finalOdometroText.setText(registroEquipo.getFinOdo());
+            inicialOdometroText.setText(registroEquipo.getIniOdo());
+            cantidadLitrosText.setText(registroEquipo.getCantCombustible());
+            estacionesCombo.setSelectedItem(new EstacionServicio(registroEquipo.getEstacionServicioID()));
+            tareaAsignadaText.setText(registroEquipo.getTarea());
+            isTransporte.setSelected(registroEquipo.isDatosCarga()); 
+            tdt = new TablaDatosTransporte();
+            for (int i = 0; i < listMaterialesParteDiario.size(); i++) {
+                Materiales m = (Materiales) listMaterialesParteDiario.get(i);
+                m.setOk(true);
+                tdt.addRegistro((m));
 
+            }
+            for (int i = 0; i < 4 - listMaterialesParteDiario.size(); i++) {
+                tdt.addRegistro(new Materiales());
+            }
+        }else{
+            lblEquipo.setText("Ninguno");
         }
-        for (int i = 0; i < 4 - mat.size(); i++) {
-            tdt.addRegistro(new Materiales());
+        
+        if(obra.isTieneRegistro()){
+            tablaModel.addRegistro(registroHorario);
+            comboFuncion.setSelectedItem(new Funcion(parteDiario.getIdFuncion()));
+            multifuncionCheck.setSelected(parteDiario.isMultifuncion());
+            isDesarraigo.setSelected(parteDiario.isDesarraigo());
         }
         carga = false;
     }
 
     @Action
     public Task guardarParteDiario() {
-        if (OpcionPanel.YES_OPTION == OpcionPanel.showConfirmDialog(this, "¿Desea actualizar estos datos?", "Guardando...", OpcionPanel.YES_NO_OPTION)) {
-
-
-            if (fechaParte.getDate() == null || numPre.getText().isEmpty() || numPro.getText().isEmpty()
-                    || !horarioCompleto()) {
+        if (OpcionPanel.YES_OPTION == OpcionPanel.showConfirmDialog(this, "¿Desea guardar?", "Guardando...", OpcionPanel.YES_NO_OPTION)) {
+            if (fechaParte.getDate() == null || numPre.getText().isEmpty() || numPro.getText().isEmpty()){
                 OpcionPanel.showMessageDialog(this, "Falta completar algunos campos", "Datos imcompletos", OpcionPanel.ERROR_MESSAGE);
                 return null;
+                
+            }
+            if(obra.isTieneRegistro() && !horarioCompleto()){
+                OpcionPanel.showMessageDialog(this, "Complete los horarios, son requeridos para la obra seleccionada", "Datos imcompletos", OpcionPanel.ERROR_MESSAGE);
+                return null;  
             }
         } else {
             return null;
@@ -1461,8 +1510,7 @@ public class JDGestionarParte extends javax.swing.JDialog {
     }
 
     private class GuardarParteDiarioTask extends org.jdesktop.application.Task<Object, Void> {
-
-        Registro reg = tablaModel.getFila(0);
+        Registro reg = new Registro();
         ArrayList<Materiales> datosTr = new ArrayList<Materiales>();
         int r = -1;
 
@@ -1471,48 +1519,48 @@ public class JDGestionarParte extends javax.swing.JDialog {
             // doInBackground() depends on from parameters
             // to GuardarParteDiarioTask fields, here.
             super(app);
-            pd.setFecha(fechaParte.getDate());
-            pd.setIdOperario(op.getId());
-            pd.setIdFuncion(((Funcion) comboFunciones.getSelectedItem()).getId());
-            pd.setIdObra(ob.getId());
-            pd.setNumero(numPre.getText(), numPro.getText());
-            pd.setObservaciones(observacionesText.getText());
-            pd.setMultifuncion(multifuncionCheck.isSelected());
-            pd.setDesarraigo(isDesarraigo.isSelected());
-            //cargando registro Equipo si tiene seleccionado alguna
-            //if (((Equipos) comboEquipos.getSelectedItem()).getId() != 1) {
-            re.setIdEquipo(eq.getId());
-            re.setDatosCarga(isTransporte.isSelected());
-            re.setIniHoro(inicialHorometroText.getText());
-            re.setFinHoro(finalHorometroText.getText());
-            re.setIniOdo(inicialOdometroText.getText());
-            re.setFinOdo(finalOdometroText.getText());
-            re.setCantCombustible(cantidadLitrosText.getText());
-            re.setEstacionServicioID(((EstacionServicio)estacionesCombo.getSelectedItem()).getEstacionServicioID());
-            re.setTarea(tareaAsignadaText.getText());
-            if (re.isDatosCarga()) {
-                datosTr = mat;
+            perfil.obra = obra;
+            parteDiario.setFecha(fechaParte.getDate());
+            parteDiario.setIdOperario(operario.getId());
+            parteDiario.setIdObra(obra.getId());
+            parteDiario.setNumero(numPre.getText(), numPro.getText());
+            parteDiario.setObservaciones(observacionesText.getText());
+            if(obra.isTieneRegistro()){
+                parteDiario.setIdFuncion(((Funcion) comboFuncion.getSelectedItem()).getId());
+                parteDiario.setMultifuncion(multifuncionCheck.isSelected());
+                parteDiario.setDesarraigo(isDesarraigo.isSelected());
+                reg = tablaModel.getFila(0);
+                GregorianCalendar gc = new GregorianCalendar();
+                gc.setTime(fechaParte.getDate());
+                reg.setFecha(reg.getStringWFecha(gc));
             }
-            // }
-
-            GregorianCalendar gc = new GregorianCalendar();
-            gc.setTime(fechaParte.getDate());
-            reg.setFecha(reg.getStringWFecha(gc));
-
-
+            if(obra.isTieneEquipo()){
+                registroEquipo.setIdEquipo(equipo.getId());
+                registroEquipo.setDatosCarga(isTransporte.isSelected());
+                registroEquipo.setIniHoro(inicialHorometroText.getText());
+                registroEquipo.setFinHoro(finalHorometroText.getText());
+                registroEquipo.setIniOdo(inicialOdometroText.getText());
+                registroEquipo.setFinOdo(finalOdometroText.getText());
+                registroEquipo.setCantCombustible(cantidadLitrosText.getText());
+                registroEquipo.setEstacionServicioID(((EstacionServicio)estacionesCombo.getSelectedItem()).getEstacionServicioID());
+                registroEquipo.setTarea(tareaAsignadaText.getText());
+                if (registroEquipo.isDatosCarga()) {
+                    datosTr = listMaterialesParteDiario;
+                }
+            }
         }
 
         @Override
         protected Object doInBackground() {
             ParteDiarioDAO pdao = new ParteDiarioDAO();
             pdao.conectar();
-            if (pdao.numeroExistsMof(pd.getId(), pd.getNumero())) {
+            if (pdao.numeroExistsMof(parteDiario.getId(), parteDiario.getNumero())) {
                 r = -10;
                 return null;
             }
             //evaluo el desarraigo del parte diario y el desarraigo del operario
-            reg.calcular(perfil, (pd.isDesarraigo()| op.isDesarraigo()));
-            r = pdao.actualizar(pd, reg, re, datosTr);
+            reg.calcular(perfil, (parteDiario.isDesarraigo()| operario.isDesarraigo()));
+            r = pdao.actualizar(perfil, parteDiario, reg, registroEquipo, datosTr);
             return null;  // return your result
         }
 
@@ -1571,10 +1619,11 @@ public class JDGestionarParte extends javax.swing.JDialog {
         if (listObras.isEmpty() || listaDeObras.isSelectionEmpty()) {
             //nothing
         } else {
-            ob = (Obras) listaDeObras.getSelectedValue();
-            lblObra.setText(ob.toString());
+            obra = (Obras) listaDeObras.getSelectedValue();
+            
+            lblObra.setText(obra.toString());
             selectObraDialog.dispose();
-
+            setConfiguracionObra();
         }
 
     }
@@ -1624,9 +1673,10 @@ public class JDGestionarParte extends javax.swing.JDialog {
     private javax.swing.JButton cerrarBusquedaObra;
     private javax.swing.JButton cerrarInfoTransporte;
     private javax.swing.JButton cerrarParteBoton;
-    private javax.swing.JComboBox comboFunciones;
+    private javax.swing.JComboBox comboFuncion;
     private javax.swing.JDialog datosTransporteDialog;
     private javax.swing.JButton eliminarMateriales;
+    private javax.swing.JPanel equipoPanel;
     private javax.swing.JComboBox estacionesCombo;
     private javax.swing.JButton exitDialog;
     private javax.swing.JButton exitDialogEq;
@@ -1661,7 +1711,6 @@ public class JDGestionarParte extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel14;
     private javax.swing.JPanel jPanel15;
     private javax.swing.JPanel jPanel16;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
@@ -1707,14 +1756,14 @@ public class JDGestionarParte extends javax.swing.JDialog {
     /*Necesario para editar un parte*/
     static public DefaultComboBoxModel funciones = new DefaultComboBoxModel();
     static public DefaultComboBoxModel estaciones = new DefaultComboBoxModel();
-    static public ParteDiario pd = new ParteDiario();
-    static public Operario op = new Operario();
-    static public ArrayList<Funcion> fcs = new ArrayList<Funcion>();
-    static public Obras ob = new Obras();
-    static public Equipos eq = new Equipos();
-    static public RegistroEquipo re = new RegistroEquipo();
-    static public Registro r = new Registro();
-    static public ArrayList<Materiales> mat = new ArrayList<Materiales>();
+    static public ParteDiario parteDiario = new ParteDiario();
+    static public Operario operario = new Operario();
+    static public ArrayList<Funcion> funcionesList = new ArrayList<Funcion>();
+    static public Obras obra = new Obras();
+    static public Equipos equipo = new Equipos();
+    static public RegistroEquipo registroEquipo = new RegistroEquipo();
+    static public Registro registroHorario = new Registro();
+    static public ArrayList<Materiales> listMaterialesParteDiario = new ArrayList<Materiales>();
     /*fin*/
     public String newFc = "";
     public List<String[]> materialesList = new ArrayList<String[]>();

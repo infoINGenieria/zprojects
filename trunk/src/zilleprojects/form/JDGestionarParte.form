@@ -728,7 +728,7 @@
                       <Group type="102" alignment="0" attributes="0">
                           <Group type="103" groupAlignment="1" attributes="0">
                               <Component id="jPanel3" alignment="0" max="32767" attributes="2"/>
-                              <Component id="jPanel2" alignment="0" min="0" pref="968" max="32767" attributes="2"/>
+                              <Component id="equipoPanel" alignment="0" min="0" pref="968" max="32767" attributes="2"/>
                               <Component id="generalPanel" alignment="0" max="32767" attributes="3"/>
                               <Component id="horarioPanel" alignment="0" max="32767" attributes="2"/>
                           </Group>
@@ -746,7 +746,7 @@
                   <EmptySpace min="-2" max="-2" attributes="0"/>
                   <Component id="horarioPanel" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" max="-2" attributes="0"/>
-                  <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
+                  <Component id="equipoPanel" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" max="-2" attributes="0"/>
                   <Component id="jPanel3" max="32767" attributes="0"/>
                   <EmptySpace min="-2" max="-2" attributes="0"/>
@@ -755,7 +755,7 @@
                       <Component id="guardarParteBoton" alignment="2" min="-2" max="-2" attributes="0"/>
                       <Component id="cerrarParteBoton" alignment="2" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -796,7 +796,7 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="comboFunciones" pref="268" max="32767" attributes="0"/>
+                              <Component id="comboFuncion" pref="268" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jButton2" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
@@ -830,7 +830,7 @@
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="2" attributes="0">
-                          <Component id="comboFunciones" alignment="2" min="-2" max="-2" attributes="0"/>
+                          <Component id="comboFuncion" alignment="2" min="-2" max="-2" attributes="0"/>
                           <Component id="jButton2" alignment="2" min="-2" max="-2" attributes="0"/>
                           <Component id="isDesarraigo" alignment="2" min="-2" max="-2" attributes="0"/>
                           <Component id="lblObra" alignment="2" min="-2" pref="29" max="-2" attributes="0"/>
@@ -936,15 +936,15 @@
                 <Property name="name" type="java.lang.String" value="lblObra" noResource="true"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JComboBox" name="comboFunciones">
+            <Component class="javax.swing.JComboBox" name="comboFuncion">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
                   <Connection code="funciones" type="code"/>
                 </Property>
-                <Property name="name" type="java.lang.String" value="comboFunciones" noResource="true"/>
+                <Property name="name" type="java.lang.String" value="comboFuncion" noResource="true"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="comboFuncionesActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="comboFuncionActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JButton" name="selectObra">
@@ -1052,7 +1052,7 @@
             <Property name="name" type="java.lang.String" value="guardarParteBoton" noResource="true"/>
           </Properties>
         </Component>
-        <Container class="javax.swing.JPanel" name="jPanel2">
+        <Container class="javax.swing.JPanel" name="equipoPanel">
           <Properties>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
@@ -1060,11 +1060,11 @@
                   <Border PropertyName="innerBorder" info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                     <LineBorder roundedCorners="true"/>
                   </Border>
-                  <Property name="titleX" resourceKey="jPanel2.border.title"/>
+                  <Property name="titleX" resourceKey="equipoPanel.border.title"/>
                 </TitledBorder>
               </Border>
             </Property>
-            <Property name="name" type="java.lang.String" value="jPanel2" noResource="true"/>
+            <Property name="name" type="java.lang.String" value="equipoPanel" noResource="true"/>
             <Property name="opaque" type="boolean" value="false"/>
           </Properties>
 

@@ -17,7 +17,7 @@ public class Perfiles {
      String nombre;
      Time sabEsp_i, sabEsp_f, domEsp_i, domEsp_f;
      Time feriado_i, feriado_f, hs_normal;
-     Obras obra;
+     public Obras obra;
 
     public Perfiles() {
         id=0;

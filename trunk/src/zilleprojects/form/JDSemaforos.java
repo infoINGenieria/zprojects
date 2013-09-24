@@ -16,7 +16,6 @@ import Modelo.ItemSemaforo;
 import Modelo.Operario;
 import Modelo.TablaSemaforoModel;
 import Utils.FechaUtil;
-import com.sun.jmx.remote.util.OrderClassLoaders;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Image;
@@ -25,7 +24,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
-import java.util.GregorianCalendar;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 import org.jdesktop.application.Action;
@@ -47,6 +45,7 @@ public class JDSemaforos extends javax.swing.JDialog {
         configurarFechas();
         Task cargar= CargarDatosOperarios();
         cargar.execute();
+        
     }
 
     /** This method is called from within the constructor to
@@ -182,7 +181,6 @@ public class JDSemaforos extends javax.swing.JDialog {
 
         jScrollPane1.setName("jScrollPane1"); // NOI18N
 
-        tblSemaforo.setModel(model);
         tblSemaforo.setName("tblSemaforo"); // NOI18N
         jScrollPane1.setViewportView(tblSemaforo);
         tblSemaforo.setDefaultRenderer(Object.class, new DefaultTableCellRenderer()
@@ -194,13 +192,15 @@ public class JDSemaforos extends javax.swing.JDialog {
                     //Obtengo el model
                     ItemSemaforo sema = ((TablaSemaforoModel)tblSemaforo.getModel()).getFila(row);
                     if(sema.isAlertar()){
-                        c.setBackground(Color.RED);
+                        c.setBackground(Color.decode("#aa6655"));
                     }else{
-                        c.setBackground(Color.GREEN);
+                        c.setBackground(Color.decode("#669955"));
                     }
                     return c;
                 }
             });
+
+            setCustomModel(model);
 
             javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
             jPanel3.setLayout(jPanel3Layout);
@@ -312,6 +312,25 @@ public class JDSemaforos extends javax.swing.JDialog {
             }
         });
     }
+    
+    
+    private void setCustomModel(TablaSemaforoModel model){
+        tblSemaforo.setModel(model);
+        tblSemaforo.getColumnModel().getColumn(0).setResizable(false);
+        tblSemaforo.getColumnModel().getColumn(1).setResizable(false);
+        tblSemaforo.getColumnModel().getColumn(2).setResizable(false);
+        tblSemaforo.getColumnModel().getColumn(3).setResizable(false);
+        tblSemaforo.getColumnModel().setColumnSelectionAllowed(false);
+        tblSemaforo.setRowHeight(20);
+        tblSemaforo.getColumnModel().getColumn(0).setMaxWidth(3);
+        tblSemaforo.getColumnModel().getColumn(0).setWidth(3);
+        tblSemaforo.getColumnModel().getColumn(1).setMinWidth(400);
+        tblSemaforo.getColumnModel().getColumn(1).setWidth(400);
+        tblSemaforo.getColumnModel().getColumn(2).setMaxWidth(80);
+        tblSemaforo.getColumnModel().getColumn(2).setMinWidth(79);
+        tblSemaforo.getColumnModel().getColumn(2).setWidth(80);
+        
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnComprobar;
     private javax.swing.JCheckBox chkOrdenarAtrasados;
@@ -353,13 +372,11 @@ public class JDSemaforos extends javax.swing.JDialog {
         int mes = calendar.get(Calendar.MONTH);
         int año = calendar.get(Calendar.YEAR);
         if(dias < 21){
-            mes -= 8;
-        }else{
-            mes -= 7;
+            mes -= 1;
         }
         calendar.set(año, mes, 21);
         dateDesdePeriodo.setDate(calendar.getTime());
-        calendar.set(año, mes + 7, 20);
+        calendar.set(año, mes + 1, 20);
         dateHastaPeriodo.setDate(calendar.getTime());
     }
     
@@ -424,7 +441,7 @@ public class JDSemaforos extends javax.swing.JDialog {
             for(ItemSemaforo item: semaforos){
                 model.addRegistro(item);
             }
-            tblSemaforo.setModel(model);
+            setCustomModel(model);
         }
     }
     
@@ -464,11 +481,12 @@ public class JDSemaforos extends javax.swing.JDialog {
         @Override protected void succeeded(Object result) {
             // Runs on the EDT.  Update the GUI based on
             // the result computed by doInBackground().
+            
             model = new TablaSemaforoModel();
             for(ItemSemaforo item: semaforos){
                 model.addRegistro(item);
             }
-            tblSemaforo.setModel(model);
+            setCustomModel(model);
         }
     }
 

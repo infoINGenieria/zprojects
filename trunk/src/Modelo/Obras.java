@@ -16,7 +16,7 @@ public class Obras {
             int id;
             String codigo, obra, contrato, comitente, cuit, lugar, plazo, responsable;
             Date fecha_inicio;
-            boolean tieneComida, tieneVianda, tieneDesarraigo;
+            boolean tieneComida, tieneVianda, tieneDesarraigo, tieneRegistro, tieneEquipo;
             double limiteViandaDoble;
 
     @Override
@@ -44,6 +44,24 @@ public class Obras {
         hash = 29 * hash + (this.codigo != null ? this.codigo.hashCode() : 0);
         return hash;
     }
+
+    public boolean isTieneEquipo() {
+        return tieneEquipo;
+    }
+
+    public void setTieneEquipo(boolean tieneEquipo) {
+        this.tieneEquipo = tieneEquipo;
+    }
+
+    public boolean isTieneRegistro() {
+        return tieneRegistro;
+    }
+
+    public void setTieneRegistro(boolean tieneRegistro) {
+        this.tieneRegistro = tieneRegistro;
+    }
+    
+    
 
     public String getResponsable() {
         return responsable;
