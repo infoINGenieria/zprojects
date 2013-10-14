@@ -1483,6 +1483,8 @@ public class JDGestionarParte extends javax.swing.JDialog {
         }
         
         if(obra.isTieneRegistro()){
+            
+            //tablaModel = new TablaHorarioIngresoModel();
             tablaModel.addRegistro(registroHorario);
             comboFuncion.setSelectedItem(new Funcion(parteDiario.getIdFuncion()));
             multifuncionCheck.setSelected(parteDiario.isMultifuncion());

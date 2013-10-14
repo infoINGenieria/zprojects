@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="ec209d02-8e23-436a-8dfb-e030a7592556">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="2"/>
 	<parameter name="desde_f" class="java.util.Date"/>
 	<parameter name="hasta_f" class="java.util.Date"/>
-	<parameter name="subreport" class="net.sf.jasperreports.engine.JasperReport"/>
+	<parameter name="subreport" class="net.sf.jasperreports.engine.JasperReport" isForPrompting="false"/>
 	<parameter name="urlimagenZille" class="java.lang.String"/>
 	<parameter name="urlimagenMF" class="java.lang.String"/>
 	<parameter name="idobra" class="java.lang.Integer"/>
 	<parameter name="subreport2" class="net.sf.jasperreports.engine.JasperReport"/>
 	<queryString>
-		<![CDATA[SELECT  PD.fecha, 
+		<![CDATA[SELECT  PD.fecha,
 OB.codigo AS COD_OBRA, OB.obra AS NOM_OBRA
 FROM partediario PD
 LEFT JOIN obras OB ON PD.obra = OB.id
@@ -37,42 +40,42 @@ ORDER BY OB.codigo desc,  PD.fecha ASC]]>
 	<pageHeader>
 		<band height="54" splitType="Stretch">
 			<textField isStretchWithOverflow="true">
-				<reportElement mode="Opaque" x="248" y="20" width="306" height="19"/>
+				<reportElement uuid="53240e21-72a4-4d65-9bc1-1b06e3655ba0" mode="Opaque" x="248" y="20" width="306" height="19"/>
 				<textElement textAlignment="Right" verticalAlignment="Top">
 					<font size="15" isBold="true"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{COD_OBRA}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{COD_OBRA}]]></textFieldExpression>
 			</textField>
 			<image isUsingCache="false" evaluationTime="Report">
-				<reportElement mode="Opaque" x="0" y="0" width="216" height="54"/>
-				<imageExpression class="java.lang.String"><![CDATA[$P{urlimagenZille}]]></imageExpression>
+				<reportElement uuid="d89134ec-9f69-47da-bd9a-0d953b211275" mode="Opaque" x="0" y="0" width="216" height="54"/>
+				<imageExpression><![CDATA[$P{urlimagenZille}]]></imageExpression>
 			</image>
 			<textField pattern="dd-MMM-yyyy">
-				<reportElement mode="Opaque" x="306" y="39" width="89" height="15"/>
+				<reportElement uuid="6fc6888d-f13a-482a-a564-f454a1ed9b9a" mode="Opaque" x="306" y="39" width="89" height="15"/>
 				<textElement verticalAlignment="Middle"/>
-				<textFieldExpression class="java.util.Date"><![CDATA[$P{desde_f}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$P{desde_f}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement mode="Opaque" x="262" y="39" width="44" height="15"/>
+				<reportElement uuid="0531725a-37ec-414b-9d59-394be91653db" mode="Opaque" x="262" y="39" width="44" height="15"/>
 				<textElement verticalAlignment="Middle">
 					<font isUnderline="true"/>
 				</textElement>
 				<text><![CDATA[Desde:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="408" y="39" width="40" height="15"/>
+				<reportElement uuid="868e10c2-67e9-48c4-92b9-85287d6f2d98" mode="Opaque" x="408" y="39" width="40" height="15"/>
 				<textElement verticalAlignment="Middle">
 					<font isUnderline="true"/>
 				</textElement>
 				<text><![CDATA[Hasta:]]></text>
 			</staticText>
 			<textField pattern="dd-MMM-yyyy">
-				<reportElement mode="Opaque" x="448" y="39" width="107" height="15"/>
+				<reportElement uuid="0fc3bac6-157e-4fda-bd83-afc82508b165" mode="Opaque" x="448" y="39" width="107" height="15"/>
 				<textElement verticalAlignment="Middle"/>
-				<textFieldExpression class="java.util.Date"><![CDATA[$P{hasta_f}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$P{hasta_f}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="306" y="1" width="248" height="19"/>
+				<reportElement uuid="ae18df23-bbc8-4db5-a4da-57103af0c8a9" x="306" y="1" width="248" height="19"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font size="14" isBold="true"/>
 				</textElement>
@@ -86,24 +89,24 @@ ORDER BY OB.codigo desc,  PD.fecha ASC]]>
 	<detail>
 		<band height="51" splitType="Stretch">
 			<textField>
-				<reportElement x="216" y="0" width="339" height="20"/>
+				<reportElement uuid="435cc8c7-71f8-45d2-8258-616e5ced46da" x="216" y="0" width="339" height="20"/>
 				<textElement verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{NOM_OBRA}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{NOM_OBRA}]]></textFieldExpression>
 			</textField>
 			<textField pattern="dd MMMMM yyyy">
-				<reportElement x="0" y="0" width="119" height="20"/>
+				<reportElement uuid="569abb10-0cad-4f43-ad4f-7fd040649cec" x="0" y="0" width="119" height="20"/>
 				<textElement verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
-				<textFieldExpression class="java.util.Date"><![CDATA[$F{fecha}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{fecha}]]></textFieldExpression>
 			</textField>
 			<line>
-				<reportElement x="0" y="21" width="555" height="1"/>
+				<reportElement uuid="e456e90e-3cf0-4898-afa2-a69d09dabd88" x="0" y="21" width="555" height="1"/>
 			</line>
 			<subreport>
-				<reportElement x="13" y="20" width="542" height="31"/>
+				<reportElement uuid="e9169ed5-e125-404f-a57c-7dc7e41a39b1" x="13" y="20" width="542" height="31"/>
 				<subreportParameter name="fecha">
 					<subreportParameterExpression><![CDATA[$F{fecha}]]></subreportParameterExpression>
 				</subreportParameter>
@@ -117,7 +120,7 @@ ORDER BY OB.codigo desc,  PD.fecha ASC]]>
 					<subreportParameterExpression><![CDATA[$P{idobra}]]></subreportParameterExpression>
 				</subreportParameter>
 				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
-				<subreportExpression class="net.sf.jasperreports.engine.JasperReport"><![CDATA[$P{subreport}]]></subreportExpression>
+				<subreportExpression><![CDATA[$P{subreport}]]></subreportExpression>
 			</subreport>
 		</band>
 	</detail>
@@ -127,17 +130,17 @@ ORDER BY OB.codigo desc,  PD.fecha ASC]]>
 	<pageFooter>
 		<band height="20" splitType="Stretch">
 			<textField>
-				<reportElement x="423" y="0" width="80" height="20"/>
+				<reportElement uuid="f3b86955-55d9-46e6-b644-67d140753b91" x="423" y="0" width="80" height="20"/>
 				<textElement textAlignment="Right"/>
-				<textFieldExpression class="java.lang.String"><![CDATA["Página "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Página "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
 			</textField>
 			<textField evaluationTime="Report">
-				<reportElement x="503" y="0" width="52" height="20"/>
+				<reportElement uuid="949259da-70db-4d28-bbd8-6c3877fdc227" x="503" y="0" width="52" height="20"/>
 				<textElement/>
-				<textFieldExpression class="java.lang.String"><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="13" y="0" width="174" height="20"/>
+				<reportElement uuid="5d2ebbab-84b8-4c3a-a185-29ed887b4bb1" x="13" y="0" width="174" height="20"/>
 				<textElement verticalAlignment="Middle"/>
 				<text><![CDATA[Zille SRL]]></text>
 			</staticText>

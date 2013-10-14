@@ -109,6 +109,7 @@ public class Equipos {
     }
     @Override
     public String toString(){
+        if(id==0) return "";
         return n_interno + " "+equipos +" "+ marca + "(" + modelo + ")";
     }
 

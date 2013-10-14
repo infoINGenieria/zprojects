@@ -39,7 +39,7 @@ public class ObrasDAO {
                     + " CUIT, LUGAR, PLAZO, FECHA_INICIO, RESPONSABLE, TIENE_COMIDA, "
                     + "TIENE_VIANDA, TIENE_DESARRAIGO, LIMITE_VIANDA_DOBLE, "
                     + "TIENE_REGISTRO, TIENE_EQUIPO) values "
-                    + "(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                    + "(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement ps = conector.prepareStatement(query);
             ps.setString(1, obra.getCodigo());
             ps.setString(2, obra.getObra());
@@ -71,6 +71,8 @@ public class ObrasDAO {
 
         } catch (SQLException ex) {
             r = -1;
+        } catch (Exception ex){
+            r=0;
         }
         return r;
     }

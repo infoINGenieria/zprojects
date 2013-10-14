@@ -31,14 +31,20 @@ public class TablaHorarioIngresoModel  extends AbstractTableModel {
 
     public void addRegistro (Registro r)
     {
-        // Añade la persona al modelo
-        datos.add (r);
-
         TableModelEvent evento;
-        evento = new TableModelEvent (this, this.getRowCount()-1,
-            this.getRowCount()-1, TableModelEvent.ALL_COLUMNS,
-            TableModelEvent.INSERT);
-
+        if(datos.size()== 0){
+            datos.add (r);        
+            evento = new TableModelEvent (this, this.getRowCount()-1,
+                this.getRowCount()-1, TableModelEvent.ALL_COLUMNS,
+                TableModelEvent.INSERT);
+        }
+        else{
+            datos.removeAll(datos);
+            datos.add (r);        
+            evento = new TableModelEvent (this, this.getRowCount()-1,
+                this.getRowCount()-1, TableModelEvent.ALL_COLUMNS,
+                TableModelEvent.UPDATE);
+        }
         avisaSuscriptores (evento);
          
     }

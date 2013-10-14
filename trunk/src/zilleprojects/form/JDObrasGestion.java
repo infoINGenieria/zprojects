@@ -1005,17 +1005,12 @@ public class JDObrasGestion extends javax.swing.JDialog {
             if(fechaInicio1.getDate()!=null){
                 o.setFecha_inicio(fechaInicio1.getDate());
             }
-            o.setTieneComida(chkTieneComida.isSelected());
-            o.setTieneVianda(chkTieneVianda.isSelected());
-            o.setTieneDesarraigo(chkTieneDesarraigo.isSelected());
-            o.setTieneRegistro(chkTieneRegistro.isSelected());
-            o.setTieneEquipo(chkTieneEquipo.isSelected());
-            if(pinLimiteViandaDoble.isEnabled()){
-                Double limite = (Double) pinLimiteViandaDoble.getValue();
-                o.setLimiteViandaDoble(limite);
-            } else{
-                o.setLimiteViandaDoble(0);
-            }
+            o.setTieneComida(true);
+            o.setTieneVianda(true);
+            o.setTieneDesarraigo(true);
+            o.setTieneRegistro(true);
+            o.setTieneEquipo(true);
+            o.setLimiteViandaDoble(2);
         }
         @Override protected Object doInBackground() {
             ObrasDAO odao= new ObrasDAO();

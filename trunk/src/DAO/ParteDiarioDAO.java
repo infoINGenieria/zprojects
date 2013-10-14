@@ -638,7 +638,8 @@ public class ParteDiarioDAO {
         String query = null;
         ArrayList<Registro> array = new ArrayList<Registro>();
         try {
-            query = "SELECT R.* FROM partediario PD, registro R WHERE PD.operario = ?"
+            query = "SELECT R.* FROM partediario PD LEFT JOIN registro R ON PD.horario = R.ID"
+                    + " WHERE PD.operario = ?"
                     + " and PD.horario = R.ID and PD.fecha <= ? and PD.fecha >= ?";
             PreparedStatement ps = conector.prepareStatement(query);
             ps.setInt(1, id_operario);
@@ -648,26 +649,28 @@ public class ParteDiarioDAO {
 
             while (rs.next()) {
                 Registro r = new Registro();
-                r.setId(rs.getInt("ID"));
-                r.setEspecial(rs.getBoolean("ESPECIAL"));
-                r.setHs_salida(rs.getTime("HS_SALIDA"));
-                r.setHs_llegada(rs.getTime("HS_LLEGADA"));
-                r.setHs_inicio(rs.getTime("HS_INICIO"));
-                r.setHs_fin(rs.getTime("HS_FIN"));
-                r.setHs_ialmuerzo(rs.getTime("HS_IALMUERZO"));
-                r.setHs_falmuerzo(rs.getTime("HS_FALMUERZO"));
-                r.setDia(rs.getString("DIA"));
-                r.setFecha(rs.getString("FECHA"));
-                r.setHs_normal(rs.getTime("HS_NORMAL"));
-                r.setHs_viaje(rs.getTime("HS_VIAJE"));
-                r.setHs_almuerzo(rs.getTime("HS_ALMUERZO"));
-                r.setHs_50(rs.getTime("HS_50"));
-                r.setHs_100(rs.getTime("HS_100"));
-                r.setTotal_hs(rs.getTime("HS_TOTAL"));
-                r.setHs_tarea(rs.getTime("HS_TAREA"));
-                r.setComida(rs.getInt("COMIDA"));
-                r.setVianda(rs.getInt("VIANDA"));
-                r.setVianda_desa(rs.getInt("VIANDA_DESA"));
+                if(rs.getInt("ID")!=0){
+                    r.setId(rs.getInt("ID"));
+                    r.setEspecial(rs.getBoolean("ESPECIAL"));
+                    r.setHs_salida(rs.getTime("HS_SALIDA"));
+                    r.setHs_llegada(rs.getTime("HS_LLEGADA"));
+                    r.setHs_inicio(rs.getTime("HS_INICIO"));
+                    r.setHs_fin(rs.getTime("HS_FIN"));
+                    r.setHs_ialmuerzo(rs.getTime("HS_IALMUERZO"));
+                    r.setHs_falmuerzo(rs.getTime("HS_FALMUERZO"));
+                    r.setDia(rs.getString("DIA"));
+                    r.setFecha(rs.getString("FECHA"));
+                    r.setHs_normal(rs.getTime("HS_NORMAL"));
+                    r.setHs_viaje(rs.getTime("HS_VIAJE"));
+                    r.setHs_almuerzo(rs.getTime("HS_ALMUERZO"));
+                    r.setHs_50(rs.getTime("HS_50"));
+                    r.setHs_100(rs.getTime("HS_100"));
+                    r.setTotal_hs(rs.getTime("HS_TOTAL"));
+                    r.setHs_tarea(rs.getTime("HS_TAREA"));
+                    r.setComida(rs.getInt("COMIDA"));
+                    r.setVianda(rs.getInt("VIANDA"));
+                    r.setVianda_desa(rs.getInt("VIANDA_DESA"));
+                }
                 array.add(r);
 
 
