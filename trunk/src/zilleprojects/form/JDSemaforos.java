@@ -365,19 +365,8 @@ public class JDSemaforos extends javax.swing.JDialog {
     
     private void ConfigurarPeriodoInicial(){
        
-        Date hoy = new Date();
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTime(hoy);
-        int dias = calendar.get(Calendar.DATE);
-        int mes = calendar.get(Calendar.MONTH);
-        int año = calendar.get(Calendar.YEAR);
-        if(dias < 21){
-            mes -= 1;
-        }
-        calendar.set(año, mes, 21);
-        dateDesdePeriodo.setDate(calendar.getTime());
-        calendar.set(año, mes + 1, 20);
-        dateHastaPeriodo.setDate(calendar.getTime());
+        dateDesdePeriodo.setDate(FechaUtil.inicioPeriodo());
+        dateHastaPeriodo.setDate(FechaUtil.finPeriodo());
     }
     
     private void ActualizarFechasTolerancia(int tipo){

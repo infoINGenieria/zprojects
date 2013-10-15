@@ -27,6 +27,7 @@ import Modelo.ObrasTablaInforme;
 import Modelo.Operario;
 import Modelo.Periodo;
 import Modelo.Registro;
+import Utils.FechaUtil;
 import Vista.OpcionPanel;
 import Vista.PanelAzul;
 import java.awt.Desktop;
@@ -59,6 +60,8 @@ public class JDReportes extends javax.swing.JDialog {
     public JDReportes(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        desdeFechaFiltro.setDate(FechaUtil.inicioPeriodo());
+        hastaFechaFiltro.setDate(FechaUtil.finPeriodo());
     }
 
     /** This method is called from within the constructor to
@@ -1804,7 +1807,6 @@ public class JDReportes extends javax.swing.JDialog {
         //nothing
     } else {
         operarioSelect = (Operario) listaEmpleados.getSelectedValue();
-        
         operariosCombo.setSelectedItem(operarioSelect);
         operariosCombo1.setSelectedItem(operarioSelect);
         lblOperarioSelected.setText(operarioSelect.toString());
@@ -2018,8 +2020,19 @@ public class JDReportes extends javax.swing.JDialog {
             for(int i=0;i<opArr.size();i++){
                 operarios.addElement((Operario)opArr.get(i));
             }
+           
+           if(desdeFechaFiltro.getDate()!=null){
+               desdeFecha.setDate(desdeFechaFiltro.getDate());
+           }else{
+               desdeFecha.setDate(FechaUtil.inicioPeriodo());
+           }
+           if(hastaFechaFiltro.getDate()!=null){
+               hastaFecha.setDate(hastaFechaFiltro.getDate());
+           }else{
+               hastaFecha.setDate(FechaUtil.finPeriodo());
+           }
            informeHorasDialog.setLocationRelativeTo(null);
-            informeHorasDialog.setVisible(true);
+           informeHorasDialog.setVisible(true);
         }
     }
     

@@ -159,6 +159,44 @@ public class ObrasDAO {
 
     }
 
+    
+    public ArrayList<Obras> cargarObrasParteDiarioMasivo() {
+        String query = null;
+        ArrayList<Obras> obras = new ArrayList<Obras>();
+        try {
+            query = "select * from obras where tiene_registro is false and tiene_equipo is false";
+            PreparedStatement ps = conector.prepareStatement(query);
+            ResultSet rs = ps.executeQuery();
+            //ID CODIGO OBRA CONTRATO COMITENTE CUIT LUGAR PLAZO FECHA_INICIO
+            while (rs.next()) {
+                Obras obra = new Obras();
+                obra.setId(rs.getInt("ID"));
+                obra.setCodigo(rs.getString("CODIGO"));
+                obra.setObra(rs.getString("OBRA"));
+                obra.setContrato(rs.getString("CONTRATO"));
+                obra.setComitente(rs.getString("COMITENTE"));
+                obra.setCuit(rs.getString("CUIT"));
+                obra.setLugar(rs.getString("LUGAR"));
+                obra.setPlazo(rs.getString("PLAZO"));
+                obra.setFecha_inicio(rs.getDate("FECHA_INICIO"));
+                obra.setResponsable(rs.getString("RESPONSABLE"));
+                obra.setTieneComida(rs.getBoolean(("TIENE_COMIDA")));
+                obra.setTieneVianda(rs.getBoolean(("TIENE_VIANDA")));
+                obra.setTieneDesarraigo(rs.getBoolean(("TIENE_DESARRAIGO")));
+                obra.setLimiteViandaDoble(rs.getDouble(("LIMITE_VIANDA_DOBLE")));
+                obra.setTieneRegistro(rs.getBoolean("TIENE_REGISTRO"));
+                obra.setTieneEquipo(rs.getBoolean("TIENE_EQUIPO"));
+                obras.add(obra);
+            }
+            rs.close();
+            ps.close();
+
+        } catch (SQLException ex) {
+            System.out.print("Falló al cargar los Obras.\n");
+        }
+        return obras;
+
+    }
    
     public boolean borrar(Obras obra) {
 

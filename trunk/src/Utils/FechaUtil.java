@@ -122,4 +122,41 @@ public class FechaUtil {
         cal.add(Calendar.DATE, -dias);
         return new java.util.Date(cal.getTimeInMillis());
     }
+  
+  public static java.util.Date inicioPeriodo(){
+      return inicioPeriodo(new Date());
+  }
+  
+  public static java.util.Date inicioPeriodo(Date fecha){
+        
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(fecha);
+        int dias = calendar.get(Calendar.DATE);
+        int mes = calendar.get(Calendar.MONTH);
+        int año = calendar.get(Calendar.YEAR);
+        if(dias < 21){
+            mes -= 1;
+        }
+        calendar.set(año, mes, 21);
+        return calendar.getTime();
+        
+  }
+  
+  public static Date finPeriodo(){
+      return finPeriodo(new Date());
+  }
+  
+  public static Date finPeriodo(Date fecha){
+      Calendar calendar = Calendar.getInstance();
+      calendar.setTime(fecha);
+      int dias = calendar.get(Calendar.DATE);
+        int mes = calendar.get(Calendar.MONTH);
+        int año = calendar.get(Calendar.YEAR);
+        if(dias < 21){
+            mes -= 1;
+      }
+      calendar.set(año, mes + 1, 20);
+      return calendar.getTime();
+  }
+  
 }

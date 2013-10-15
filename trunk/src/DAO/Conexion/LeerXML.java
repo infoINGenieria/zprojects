@@ -73,8 +73,12 @@ public class LeerXML {
                 conn.setHost(raiz.getChild("dbhost").getText());
                 conn.setDbuser(raiz.getChild("dbuser").getText());
                 conn.setDbpass(raiz.getChild("dbpass").getText());
-
-
+                conn.setVersion(raiz.getChild("version").getText());
+                try{ 
+                    zilleprojects.ZilleProjectsView.version = Double.parseDouble(conn.getVersion());
+                }catch(NumberFormatException e){
+                    zilleprojects.ZilleProjectsView.version = 0;
+                }
             }
         
             
@@ -100,6 +104,7 @@ public class LeerXML {
                 raiz.getChild("dbhost").setText(host);
                 raiz.getChild("dbuser").setText(user);
                 raiz.getChild("dbpass").setText(pass);
+              
 
             }
 
@@ -113,6 +118,40 @@ public class LeerXML {
         } catch (Exception e) {
             return false;
         }
+            
+            
+            
+        } else {
+            conn.setResult(3);
+            return false;
+        }
+        return true;
+        
+    }
+    
+    public boolean actualizarVersion(Double version )  {
+        
+        conn.setWhere(readXML());
+        if (conn.isWhere()) {
+        Element raiz=doc.getRootElement();
+           // List nodos=raiz.getChildren("datos");
+            //Iterator i = raiz.iterator();
+            if(raiz.getName().equals("datos")){
+                //Element e= (Element)i.next();
+                //Tomo el nodo hijo, y guardo los datos en el objeto conn
+                raiz.getChild("version").setText(version.toString());
+            }
+
+            try {
+                XMLOutputter out = new XMLOutputter();
+                FileOutputStream file = new FileOutputStream("db.xml");
+                out.output(doc, file);
+                file.flush();
+                file.close();
+                //out.output(doc, System.out);
+            } catch (Exception e) {
+               return false;
+            }
             
             
             

@@ -313,7 +313,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem1">
               <Properties>
                 <Property name="action" type="javax.swing.Action" editor="org.netbeans.modules.swingapp.ActionEditor">
-                  <action class="zilleprojects.ZilleProjectsView" id="mostrarSituacionesExtras" methodName="mostrarSituacionesExtras"/>
+                  <action class="zilleprojects.ZilleProjectsView" id="mostrarParteDiarioMasivo" methodName="mostrarParteDiarioMasivo"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" resourceKey="jMenuItem1.icon"/>
                 <Property name="text" type="java.lang.String" resourceKey="jMenuItem1.text"/>
@@ -399,6 +399,7 @@
                 <Property name="action" type="javax.swing.Action" editor="org.netbeans.modules.swingapp.ActionEditor">
                   <action class="zilleprojects.ZilleProjectsView" id="mostrarJDSemaforosDialog" methodName="mostrarJDSemaforosDialog"/>
                 </Property>
+                <Property name="icon" type="javax.swing.Icon" resourceKey="jMenuItem9.icon"/>
                 <Property name="text" type="java.lang.String" resourceKey="jMenuItem9.text"/>
                 <Property name="name" type="java.lang.String" value="jMenuItem9" noResource="true"/>
               </Properties>
@@ -938,7 +939,7 @@
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
-                      <Component id="jPanel5" pref="90" max="32767" attributes="0"/>
+                      <Component id="jPanel5" pref="92" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="outText" min="-2" pref="15" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
@@ -1088,38 +1089,50 @@
                   <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                              <Component id="jScrollPane1" alignment="0" max="32767" attributes="1"/>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="1" attributes="0">
-                                      <Component id="comboSituaciones" alignment="0" max="32767" attributes="1"/>
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <Component id="empleadoText" min="-2" pref="403" max="-2" attributes="0"/>
-                                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                                          <Component id="botonBuscarEmpleado" pref="46" max="32767" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <Component id="empleadoText" pref="389" max="32767" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="botonBuscarEmpleado" min="-2" pref="37" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Component id="comboObrasParteMasivo" alignment="1" min="-2" pref="438" max="-2" attributes="1"/>
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <Group type="103" groupAlignment="1" attributes="0">
+                                          <Component id="jLabel8" alignment="1" min="-2" max="-2" attributes="0"/>
+                                          <Group type="102" alignment="1" attributes="1">
+                                              <Component id="fechaChoose" linkSize="5" min="-2" pref="164" max="-2" attributes="0"/>
+                                              <EmptySpace pref="20" max="32767" attributes="0"/>
+                                              <Component id="isHasta" min="-2" max="-2" attributes="0"/>
+                                          </Group>
                                       </Group>
-                                      <Group type="102" alignment="0" attributes="1">
-                                          <Component id="fechaChoose" linkSize="5" min="-2" pref="164" max="-2" attributes="0"/>
-                                          <EmptySpace pref="61" max="32767" attributes="0"/>
-                                          <Component id="isHasta" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                                          <Component id="hastaDateChoose" linkSize="5" min="-2" pref="142" max="-2" attributes="0"/>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="txtNumeroParte" min="-2" pref="61" max="-2" attributes="0"/>
+                                          <Component id="hastaDateChoose" linkSize="5" alignment="0" min="-2" pref="142" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
-                              <Group type="102" alignment="1" attributes="0">
-                                  <Component id="guardarParteEspecial" linkSize="4" min="-2" pref="144" max="-2" attributes="0"/>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="cerrarSituacionDialog" linkSize="4" min="-2" pref="124" max="-2" attributes="0"/>
-                              </Group>
                           </Group>
-                          <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel7" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel4" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                              <Component id="jLabel7" alignment="0" max="32767" attributes="1"/>
+                              <Component id="jLabel3" alignment="0" max="32767" attributes="1"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace pref="361" max="32767" attributes="0"/>
+                              <Component id="txtNumeroParte2" min="-2" pref="94" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="jScrollPane1" alignment="1" pref="565" max="32767" attributes="1"/>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="guardarParteEspecial" linkSize="4" min="-2" pref="144" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="cerrarSituacionDialog" linkSize="4" min="-2" pref="124" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -1129,26 +1142,33 @@
                       <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="2" attributes="0">
                           <Component id="jLabel5" alignment="2" min="-2" max="-2" attributes="0"/>
-                          <Component id="empleadoText" linkSize="6" alignment="2" min="-2" pref="28" max="-2" attributes="0"/>
                           <Component id="botonBuscarEmpleado" linkSize="6" alignment="2" min="-2" max="-2" attributes="0"/>
+                          <Component id="empleadoText" linkSize="6" alignment="2" min="-2" pref="28" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="2" attributes="0">
                           <Component id="jLabel3" alignment="2" min="-2" max="-2" attributes="0"/>
-                          <Component id="comboSituaciones" linkSize="6" alignment="2" min="-2" pref="34" max="-2" attributes="0"/>
+                          <Component id="comboObrasParteMasivo" linkSize="6" alignment="2" min="-2" pref="34" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="2" attributes="0">
                           <Component id="jLabel7" alignment="2" min="-2" max="-2" attributes="0"/>
-                          <Component id="fechaChoose" linkSize="6" alignment="2" min="-2" max="-2" attributes="0"/>
                           <Component id="isHasta" alignment="2" min="-2" max="-2" attributes="0"/>
                           <Component id="hastaDateChoose" linkSize="6" alignment="2" min="-2" max="-2" attributes="0"/>
+                          <Component id="fechaChoose" linkSize="6" alignment="2" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="txtNumeroParte2" linkSize="6" pref="34" max="32767" attributes="1"/>
+                          <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                              <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtNumeroParte" linkSize="6" alignment="3" pref="34" max="32767" attributes="1"/>
+                          </Group>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="jScrollPane1" min="-2" pref="122" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="cerrarSituacionDialog" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="guardarParteEspecial" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -1159,12 +1179,12 @@
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JComboBox" name="comboSituaciones">
+            <Component class="javax.swing.JComboBox" name="comboObrasParteMasivo">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                  <Connection code="situaciones" type="code"/>
+                  <Connection code="centroDeCostoMasivo" type="code"/>
                 </Property>
-                <Property name="name" type="java.lang.String" value="comboSituaciones" noResource="true"/>
+                <Property name="name" type="java.lang.String" value="comboObrasParteMasivo" noResource="true"/>
               </Properties>
             </Component>
             <Container class="javax.swing.JScrollPane" name="jScrollPane1">
@@ -1211,7 +1231,7 @@
             <Component class="javax.swing.JButton" name="guardarParteEspecial">
               <Properties>
                 <Property name="action" type="javax.swing.Action" editor="org.netbeans.modules.swingapp.ActionEditor">
-                  <action class="zilleprojects.ZilleProjectsView" id="GuardarParteExtra" methodName="GuardarParteExtra"/>
+                  <action class="zilleprojects.ZilleProjectsView" id="GuardarParteMasivo" methodName="GuardarParteMasivo"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" resourceKey="guardarParteEspecial.icon"/>
                 <Property name="text" type="java.lang.String" resourceKey="guardarParteEspecial.text"/>
@@ -1265,6 +1285,24 @@
               <Properties>
                 <Property name="enabled" type="boolean" value="false"/>
                 <Property name="name" type="java.lang.String" value="hastaDateChoose" noResource="true"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel8">
+              <Properties>
+                <Property name="text" type="java.lang.String" resourceKey="jLabel8.text"/>
+                <Property name="name" type="java.lang.String" value="jLabel8" noResource="true"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="txtNumeroParte">
+              <Properties>
+                <Property name="text" type="java.lang.String" resourceKey="txtNumeroParte.text"/>
+                <Property name="name" type="java.lang.String" value="txtNumeroParte" noResource="true"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="txtNumeroParte2">
+              <Properties>
+                <Property name="text" type="java.lang.String" resourceKey="txtNumeroParte2.text"/>
+                <Property name="name" type="java.lang.String" value="txtNumeroParte2" noResource="true"/>
               </Properties>
             </Component>
           </SubComponents>

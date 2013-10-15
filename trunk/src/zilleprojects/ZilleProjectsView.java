@@ -7,13 +7,13 @@ import DAO.AlarmasDAO;
 import Vista.DialogImgZille;
 import DAO.Conexion.Conexion;
 import DAO.Conexion.LeerXML;
+import DAO.Conexion.Update;
 import DAO.EquiposDAO;
 import DAO.EstacionServicioDAO;
 import DAO.FuncionDAO;
 import DAO.ObrasDAO;
 import DAO.OperarioDAO;
 import DAO.ParteDiarioDAO;
-import DAO.SituacionDAO;
 import DAO.UsuarioDAO;
 import Modelo.Alarma;
 import Modelo.Equipos;
@@ -23,7 +23,6 @@ import Modelo.ItemAlarma;
 import Modelo.Obras;
 import Modelo.Operario;
 import Modelo.ParteDiario;
-import Modelo.Situacion;
 import Modelo.TablaAlarmasModel;
 import Modelo.Usuario;
 import Utils.FechaUtil;
@@ -84,7 +83,7 @@ import zilleprojects.form.JDSemaforos;
 public class ZilleProjectsView extends FrameView {
 
     Image icono = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/zilleprojects/resources/icono.png"));
-
+    public static double version =1.0;
     public ZilleProjectsView(SingleFrameApplication app) {
         super(app);
 
@@ -167,14 +166,16 @@ public class ZilleProjectsView extends FrameView {
         ZilleProjectsApp.getApplication().show(aboutBox);
     }
     
-    private void resetearSituacionExtra() {
+    private void resetearParteDiarioMasivo() {
         empleadoText.setText("Seleccione un empleado");
         fechaChoose.setDate(null);
         isHasta.setSelected(false);
         hastaDateChoose.setDate(null);
         observacionesTexto.setText(null);
-        comboSituaciones.setSelectedIndex(0);
-        empleadoExtra= new Operario();
+        txtNumeroParte.setText(null);
+        txtNumeroParte2.setText(null);
+        comboObrasParteMasivo.setSelectedIndex(0);
+        empleadoMasivo= new Operario();
         
     }
     public void backUp() {
@@ -250,7 +251,7 @@ public class ZilleProjectsView extends FrameView {
     }
 
     /*******************************************************************
-     * Configuracion de la base de datos, lectura de la canfiguracion,
+     * Configuración de la base de datos, lectura de la configuracion,
      * inicio de sesion.
      * ******************************************************************
      * 
@@ -368,7 +369,8 @@ public class ZilleProjectsView extends FrameView {
             conn.setHost("");
             conn = configDB.config();
             link2db = Conexion.getConexion();
-
+            
+            
         } else {
             if (conn == null || conn.getDbname().equals("none")) {
                 conn = configDB.config();
@@ -384,7 +386,8 @@ public class ZilleProjectsView extends FrameView {
                 statusMessageLabel.setText("No conectado. Revise la configuración a la Base de Datos.");
                 return 0;
             case 1:
-                statusMessageLabel.setText("Conexión exitosa.");
+                statusMessageLabel.setText("Conexión exitosa. Comprobando si existe una nueva versión...");
+                VerificarNuevaVersion().execute();
                 return 1;
             case 2:
                 statusMessageLabel.setText("No conectado. Datos de conexión incorrectos.");
@@ -431,9 +434,38 @@ public class ZilleProjectsView extends FrameView {
         userText.setText("");
         passText.setText("");
     }
+    
+    
+    ///
+@Action
+    public Task VerificarNuevaVersion() {
+        return new VerificarNuevaVersionTask(getApplication());
+    }
 
+    private class VerificarNuevaVersionTask extends org.jdesktop.application.Task<Object, Void> {
+
+        VerificarNuevaVersionTask(org.jdesktop.application.Application app) {
+
+            super(app);
+        }
+
+        @Override
+        protected Object doInBackground() {
+            Update.isLastVersion(configDB);
+            return null;  // return your result
+        }
+
+        @Override
+        protected void succeeded(Object result) {
+
+
+        }
+    }
+    
+    
+    ///
     @Action
-    public Task configurarConnDialog() {
+    public Task ConfigurarConnDialog() {
         return new ConfigurarConnDialogTask(getApplication());
     }
 
@@ -637,32 +669,34 @@ public class ZilleProjectsView extends FrameView {
 
     
     @Action
-    public Task GuardarParteExtra() {
-        if(empleadoExtra.getId()!=0 && fechaChoose.getDate()!=null){
+    public Task GuardarParteMasivo() {
+        if(empleadoMasivo.getId()!=0 && fechaChoose.getDate()!=null){
             if (OpcionPanel.YES_OPTION==
                 OpcionPanel.showConfirmDialog(null, "¿Desea continuar?", "Guardar", OpcionPanel.YES_NO_OPTION)) {
                 if(isHasta.isSelected() && fechaChoose.getDate().compareTo(hastaDateChoose.getDate()) >0){
                     OpcionPanel.showMessageDialog(null, "La fecha \"Hasta\" es anterior a \"Desde\"", "Error en las fechas!", OpcionPanel.ERROR_MESSAGE);
                     return null;
                 }
-                return new GuardarParteExtraTask(getApplication());
+                return new GuardarParteMasivoTask(getApplication());
                 
         }
         }            
             return null;
         
     }
-    private class GuardarParteExtraTask extends org.jdesktop.application.Task<Object, Void> {
+    private class GuardarParteMasivoTask extends org.jdesktop.application.Task<Object, Void> {
         Date hasta=null;
        ParteDiario pd= new ParteDiario();
        int i=0;
-        GuardarParteExtraTask(org.jdesktop.application.Application app) {
+        GuardarParteMasivoTask(org.jdesktop.application.Application app) {
 
             super(app);
             pd.setFecha(fechaChoose.getDate());
-            pd.setIdOperario(empleadoExtra.getId());
-            pd.setIdSituacion(((Situacion)comboSituaciones.getSelectedItem()).getId());
+            pd.setIdOperario(empleadoMasivo.getId());
+            pd.setIdObra(((Obras)comboObrasParteMasivo.getSelectedItem()).getId());
+            //pd.setIdSituacion(((Situacion)comboObrasParteMasivo.getSelectedItem()).getId());
             pd.setObservaciones(observacionesTexto.getText());
+            pd.setNumero(txtNumeroParte.getText(), txtNumeroParte2.getText());
             if(isHasta.isSelected()){
                 
                 hasta=hastaDateChoose.getDate();
@@ -685,8 +719,8 @@ public class ZilleProjectsView extends FrameView {
         protected void succeeded(Object result) {
             if(i>=0){
                 OpcionPanel.showMessageDialog(null, "Se guardaron los datos correctamente", "Hecho!", OpcionPanel.INFORMATION_MESSAGE);
-                SituacionExtra.dispose();
-                resetearSituacionExtra();
+                //SituacionExtra.dispose();
+                resetearParteDiarioMasivo();
                 
             }else{
                 OpcionPanel.showMessageDialog(null, "Ocurrió un error. \n i="+i, "Error!", OpcionPanel.ERROR_MESSAGE);
@@ -754,45 +788,60 @@ public class ZilleProjectsView extends FrameView {
     }
     
     @Action
-    public Task mostrarSituacionesExtras() {
+    public Task mostrarParteDiarioMasivo() {
         if (!verificarCredenciales("Administrador")) {
             return null;
         } else {
-            return new SituacionesExtrasTask(getApplication());
+            return new ParteDiarioMasivoTask(getApplication());
+        }
+    }
+
+    private class MostrarParteDiarioMasivoTask extends org.jdesktop.application.Task<Object, Void> {
+        MostrarParteDiarioMasivoTask(org.jdesktop.application.Application app) {
+            // Runs on the EDT.  Copy GUI state that
+            // doInBackground() depends on from parameters
+            // to MostrarParteDiarioMasivoTask fields, here.
+            super(app);
+        }
+        @Override protected Object doInBackground() {
+            // Your Task's code here.  This method runs
+            // on a background thread, so don't reference
+            // the Swing GUI from here.
+            return null;  // return your result
+        }
+        @Override protected void succeeded(Object result) {
+            // Runs on the EDT.  Update the GUI based on
+            // the result computed by doInBackground().
         }
     }
 
     
-    private class SituacionesExtrasTask extends org.jdesktop.application.Task<Object, Void> {
+    private class ParteDiarioMasivoTask extends org.jdesktop.application.Task<Object, Void> {
 
-        ArrayList<Situacion> sit = new ArrayList<Situacion>();
+        ArrayList<Obras> obras = new ArrayList<Obras>();
        
-        SituacionesExtrasTask(org.jdesktop.application.Application app) {
+        ParteDiarioMasivoTask(org.jdesktop.application.Application app) {
 
             super(app);
         }
 
         @Override
         protected Object doInBackground() {
-            SituacionDAO sdao = new SituacionDAO();
-            sdao.conectar();
-            sit=sdao.cargarTodos();
+            ObrasDAO odao = new ObrasDAO();
+            odao.conectar();
+            obras=odao.cargarObrasParteDiarioMasivo();
             return null;
         }
 
         @Override
         protected void succeeded(Object result) {
             
-            if (!sit.isEmpty()) {
-                situaciones.removeAllElements();
-                Situacion s= new Situacion();
-                for (int i = 0; i < sit.size(); i++) {
-                    s=(Situacion)sit.get(i);
-                    if(s.getId()!=1){ //no cargo a normal, porque es la situacion en la cual se carga un parte
-                        situaciones.addElement(s);
-                    }
+            if (!obras.isEmpty()) {
+                centroDeCostoMasivo.removeAllElements();
+                Obras s= new Obras();
+                for (int i = 0; i < obras.size(); i++) {
+                    centroDeCostoMasivo.addElement((Obras)obras.get(i));
                 }
-                
             }
             
             
@@ -1159,7 +1208,7 @@ public class ZilleProjectsView extends FrameView {
         botonLogin = new javax.swing.JButton();
         SituacionExtra = new javax.swing.JDialog();
         jPanel8 = new PanelAzul();
-        comboSituaciones = new javax.swing.JComboBox();
+        comboObrasParteMasivo = new javax.swing.JComboBox();
         jScrollPane1 = new javax.swing.JScrollPane();
         observacionesTexto = new javax.swing.JTextArea();
         jLabel3 = new javax.swing.JLabel();
@@ -1173,6 +1222,9 @@ public class ZilleProjectsView extends FrameView {
         fechaChoose = new com.toedter.calendar.JDateChooser();
         isHasta = new javax.swing.JCheckBox();
         hastaDateChoose = new com.toedter.calendar.JDateChooser();
+        jLabel8 = new javax.swing.JLabel();
+        txtNumeroParte = new javax.swing.JTextField();
+        txtNumeroParte2 = new javax.swing.JTextField();
         buscarEmpleado = new javax.swing.JDialog();
         jPanel9 = new PanelAzul();
         exitDialog = new javax.swing.JButton();
@@ -1356,7 +1408,7 @@ public class ZilleProjectsView extends FrameView {
         removerParteMenu.setName("removerParteMenu"); // NOI18N
         jMenu4.add(removerParteMenu);
 
-        jMenuItem1.setAction(actionMap.get("mostrarSituacionesExtras")); // NOI18N
+        jMenuItem1.setAction(actionMap.get("mostrarParteDiarioMasivo")); // NOI18N
         jMenuItem1.setIcon(resourceMap.getIcon("jMenuItem1.icon")); // NOI18N
         jMenuItem1.setText(resourceMap.getString("jMenuItem1.text")); // NOI18N
         jMenuItem1.setName("jMenuItem1"); // NOI18N
@@ -1406,6 +1458,7 @@ public class ZilleProjectsView extends FrameView {
         EmpleadosMenu.add(jMenuItem4);
 
         jMenuItem9.setAction(actionMap.get("mostrarJDSemaforosDialog")); // NOI18N
+        jMenuItem9.setIcon(resourceMap.getIcon("jMenuItem9.icon")); // NOI18N
         jMenuItem9.setText(resourceMap.getString("jMenuItem9.text")); // NOI18N
         jMenuItem9.setName("jMenuItem9"); // NOI18N
         jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
@@ -1786,8 +1839,8 @@ public class ZilleProjectsView extends FrameView {
         jPanel8.setMinimumSize(new java.awt.Dimension(400, 300));
         jPanel8.setName("jPanel8"); // NOI18N
 
-        comboSituaciones.setModel(situaciones);
-        comboSituaciones.setName("comboSituaciones"); // NOI18N
+        comboObrasParteMasivo.setModel(centroDeCostoMasivo);
+        comboObrasParteMasivo.setName("comboObrasParteMasivo"); // NOI18N
 
         jScrollPane1.setName("jScrollPane1"); // NOI18N
 
@@ -1811,7 +1864,7 @@ public class ZilleProjectsView extends FrameView {
             }
         });
 
-        guardarParteEspecial.setAction(actionMap.get("GuardarParteExtra")); // NOI18N
+        guardarParteEspecial.setAction(actionMap.get("GuardarParteMasivo")); // NOI18N
         guardarParteEspecial.setIcon(resourceMap.getIcon("guardarParteEspecial.icon")); // NOI18N
         guardarParteEspecial.setText(resourceMap.getString("guardarParteEspecial.text")); // NOI18N
         guardarParteEspecial.setName("guardarParteEspecial"); // NOI18N
@@ -1844,6 +1897,15 @@ public class ZilleProjectsView extends FrameView {
         hastaDateChoose.setEnabled(false);
         hastaDateChoose.setName("hastaDateChoose"); // NOI18N
 
+        jLabel8.setText(resourceMap.getString("jLabel8.text")); // NOI18N
+        jLabel8.setName("jLabel8"); // NOI18N
+
+        txtNumeroParte.setText(resourceMap.getString("txtNumeroParte.text")); // NOI18N
+        txtNumeroParte.setName("txtNumeroParte"); // NOI18N
+
+        txtNumeroParte2.setText(resourceMap.getString("txtNumeroParte2.text")); // NOI18N
+        txtNumeroParte2.setName("txtNumeroParte2"); // NOI18N
+
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
         jPanel8Layout.setHorizontalGroup(
@@ -1851,31 +1913,39 @@ public class ZilleProjectsView extends FrameView {
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel8Layout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addGap(53, 53, 53)
+                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel8Layout.createSequentialGroup()
+                                .addComponent(empleadoText, javax.swing.GroupLayout.DEFAULT_SIZE, 389, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(botonBuscarEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(comboObrasParteMasivo, javax.swing.GroupLayout.PREFERRED_SIZE, 438, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel8Layout.createSequentialGroup()
+                                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel8)
+                                    .addGroup(jPanel8Layout.createSequentialGroup()
+                                        .addComponent(fechaChoose, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                                        .addComponent(isHasta)))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtNumeroParte, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(hastaDateChoose, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel8Layout.createSequentialGroup()
-                            .addComponent(jLabel5)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(comboSituaciones, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel8Layout.createSequentialGroup()
-                                    .addComponent(empleadoText, javax.swing.GroupLayout.PREFERRED_SIZE, 403, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(botonBuscarEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 46, Short.MAX_VALUE))
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel8Layout.createSequentialGroup()
-                                    .addComponent(fechaChoose, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
-                                    .addComponent(isHasta)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(hastaDateChoose, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGroup(jPanel8Layout.createSequentialGroup()
-                            .addComponent(guardarParteEspecial, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(cerrarSituacionDialog, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel7)
-                    .addComponent(jLabel4))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel8Layout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 361, Short.MAX_VALUE)
+                        .addComponent(txtNumeroParte2, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 565, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
+                        .addComponent(guardarParteEspecial, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(cerrarSituacionDialog, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
 
         jPanel8Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {cerrarSituacionDialog, guardarParteEspecial});
@@ -1888,30 +1958,35 @@ public class ZilleProjectsView extends FrameView {
                 .addGap(24, 24, 24)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(jLabel5)
-                    .addComponent(empleadoText, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botonBuscarEmpleado))
+                    .addComponent(botonBuscarEmpleado)
+                    .addComponent(empleadoText, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(jLabel3)
-                    .addComponent(comboSituaciones, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(comboObrasParteMasivo, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(jLabel7)
-                    .addComponent(fechaChoose, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(isHasta)
-                    .addComponent(hastaDateChoose, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel4)
+                    .addComponent(hastaDateChoose, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(fechaChoose, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtNumeroParte2, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
+                    .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel4)
+                        .addComponent(jLabel8)
+                        .addComponent(txtNumeroParte, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cerrarSituacionDialog)
                     .addComponent(guardarParteEspecial))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel8Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {botonBuscarEmpleado, comboSituaciones, empleadoText, fechaChoose, hastaDateChoose});
+        jPanel8Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {botonBuscarEmpleado, comboObrasParteMasivo, empleadoText, fechaChoose, hastaDateChoose, txtNumeroParte, txtNumeroParte2});
 
         javax.swing.GroupLayout SituacionExtraLayout = new javax.swing.GroupLayout(SituacionExtra.getContentPane());
         SituacionExtra.getContentPane().setLayout(SituacionExtraLayout);
@@ -2067,8 +2142,8 @@ public class ZilleProjectsView extends FrameView {
          if (listEmpl.isEmpty() || listaEmpleados.isSelectionEmpty()) {
              //nothing
          } else {
-             empleadoExtra = ((Operario) listaEmpleados.getSelectedValue());
-             empleadoText.setText(empleadoExtra.toString());
+             empleadoMasivo = ((Operario) listaEmpleados.getSelectedValue());
+             empleadoText.setText(empleadoMasivo.toString());
              buscarEmpleado.dispose();
              findEmpleadoText.setText("");
              listEmpl.removeAllElements();
@@ -2077,7 +2152,7 @@ public class ZilleProjectsView extends FrameView {
 
     private void cerrarSituacionDialogActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cerrarSituacionDialogActionPerformed
 
-        resetearSituacionExtra();
+        resetearParteDiarioMasivo();
          SituacionExtra.dispose();     
 }//GEN-LAST:event_cerrarSituacionDialogActionPerformed
 
@@ -2118,7 +2193,7 @@ private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     private javax.swing.JButton cerrarLogin;
     private javax.swing.JButton cerrarSituacionDialog;
     private javax.swing.JButton clearText;
-    private javax.swing.JComboBox comboSituaciones;
+    private javax.swing.JComboBox comboObrasParteMasivo;
     private javax.swing.JMenuItem configurarConexion;
     private javax.swing.JDialog configurarConnDialog;
     private javax.swing.JTextField dbText;
@@ -2147,6 +2222,7 @@ private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu4;
@@ -2189,6 +2265,8 @@ private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     private javax.swing.JLabel statusAnimationLabel;
     private javax.swing.JLabel statusMessageLabel;
     private javax.swing.JPanel statusPanel;
+    private javax.swing.JTextField txtNumeroParte;
+    private javax.swing.JTextField txtNumeroParte2;
     private javax.swing.JTextField userText;
     private javax.swing.JTextField userText1;
     // End of variables declaration//GEN-END:variables
@@ -2215,9 +2293,9 @@ private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     static Connection link2db;
     static boolean inicio = false;
     static public DefaultComboBoxModel dcbm;
-    static public DefaultComboBoxModel situaciones= new DefaultComboBoxModel();
+    static public DefaultComboBoxModel centroDeCostoMasivo= new DefaultComboBoxModel();
     private JDReportes generarInforme;
-    private Operario empleadoExtra= new Operario();
+    private Operario empleadoMasivo= new Operario();
     DefaultListModel listEmpl = new DefaultListModel();
     private static TablaAlarmasModel modelAlarma = new TablaAlarmasModel();
     private String resultBKP= "";

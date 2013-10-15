@@ -61,20 +61,23 @@ public class ParteDiarioDAO {
 
     public boolean numeroExistsMof(int id, String num) {
         /*retorna true si no debe modificarse*/
-        boolean r = false;
-        Integer i = new Integer(0);
+        boolean r = true;
         String query = "";
         try {
-            query = "SELECT * FROM partediario WHERE NUMERO LIKE ?";
+            query = "SELECT NUMERO FROM partediario WHERE ID = ?";
             PreparedStatement ps = conector.prepareStatement(query);
-            ps.setString(1, num);
-            ResultSet rs = ps.executeQuery();
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();    
             if (rs.next()) {
-                i = rs.getInt("ID");
-
-                if (id != i) {
-                    r = true;
+                String codigo = rs.getString("NUMERO");
+                //El numero no se modificó
+                if(codigo.equals(num)){ 
+                    r = false;
+                //El número se modificó
+                }else{ 
+                    r = numeroExistsNew(num);
                 }
+                
             }
             rs.close();
             ps.close();
@@ -869,12 +872,13 @@ public class ParteDiarioDAO {
         try {
             conector.setAutoCommit(false);
             query = "insert into partediario ( OPERARIO, FECHA,"
-                    + " OBSERVACIONES, SITUACION) values (?,?,?,?)";
+                    + " OBSERVACIONES, OBRA, NUMERO) values (?,?,?,?,?)";
             PreparedStatement partes = conector.prepareStatement(query);
             partes.setInt(1, pd.getIdOperario());
             partes.setDate(2, new java.sql.Date(pd.getFecha().getTime()));
             partes.setString(3, pd.getObservaciones());
-            partes.setInt(4, pd.getIdSituacion());
+            partes.setInt(4, pd.getIdObra());
+            partes.setString(5, pd.getNumero());
             partes.executeUpdate();
             ResultSet generatedKeys = partes.getGeneratedKeys();
             if (generatedKeys.next()) {
@@ -901,7 +905,7 @@ public class ParteDiarioDAO {
         try {
             conector.setAutoCommit(false);
             query = "insert into partediario ( OPERARIO, FECHA,"
-                    + " OBSERVACIONES, SITUACION) values (?,?,?,?)";
+                    + " OBSERVACIONES, OBRA, NUMERO) values (?,?,?,?,?)";
             PreparedStatement partes = conector.prepareStatement(query);
             ResultSet generatedKeys = null;
             while (pd.getFecha().compareTo(hasta) <= 0) {
@@ -909,7 +913,8 @@ public class ParteDiarioDAO {
                 partes.setInt(1, pd.getIdOperario());
                 partes.setDate(2, new java.sql.Date(pd.getFecha().getTime()));
                 partes.setString(3, pd.getObservaciones());
-                partes.setInt(4, pd.getIdSituacion());
+                partes.setInt(4, pd.getIdObra());
+                partes.setString(5, pd.getNumero());
                 partes.executeUpdate();
                 generatedKeys = partes.getGeneratedKeys();
                 if (generatedKeys.next()) {
