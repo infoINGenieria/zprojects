@@ -6,7 +6,6 @@ package zilleprojects;
 import java.awt.Component;
 import java.util.EventObject;
 import javax.swing.JOptionPane;
-import javax.swing.UIManager;
 import org.jdesktop.application.Application;
 import org.jdesktop.application.SingleFrameApplication;
 
@@ -16,6 +15,7 @@ import org.jdesktop.application.SingleFrameApplication;
  */
 public class ZilleProjectsApp extends SingleFrameApplication {
 
+    public static double VERSION = 0.1;
     /**
      * At startup create and show the main frame of the application.
      */
@@ -23,6 +23,7 @@ public class ZilleProjectsApp extends SingleFrameApplication {
     protected void startup() {
         addExitListener(new ExitListener() {
 
+            @Override
             public boolean canExit(EventObject e) {
                 boolean bOkToExit = false;
                 Component source = (Component) e.getSource();
@@ -33,10 +34,12 @@ public class ZilleProjectsApp extends SingleFrameApplication {
                 return bOkToExit;
             }
 
+            @Override
             public void willExit(EventObject event) {
             }
         });
-
+        
+        
         show(new ZilleProjectsView(this));
     }
 
@@ -62,9 +65,9 @@ public class ZilleProjectsApp extends SingleFrameApplication {
      */
     public static void main(String[] args) {
         
-            launch(ZilleProjectsApp.class, args); 
-    }
+        
+        launch(ZilleProjectsApp.class, args); 
+    }  
     
-
     
 }

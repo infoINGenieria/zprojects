@@ -31,7 +31,6 @@ import Vista.DialogPanel;
 import Vista.OpcionPanel;
 import Vista.PanelAlarma;
 import Vista.PanelAzul;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.Toolkit;
@@ -48,6 +47,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -59,7 +59,6 @@ import javax.swing.Timer;
 import javax.swing.Icon;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
-import javax.swing.UIManager;
 import org.jdesktop.application.Task;
 
 
@@ -83,12 +82,11 @@ import zilleprojects.form.JDSemaforos;
 public class ZilleProjectsView extends FrameView {
 
     Image icono = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/zilleprojects/resources/icono.png"));
-    public static double version =1.0;
+
     public ZilleProjectsView(SingleFrameApplication app) {
         super(app);
 
         initComponents();
-        UIManager.getDefaults().put("jTextFiled.disabledText",Color.RED);
         getFrame().setIconImage(icono);
         panelAlarmas.setVisible(false);
         
@@ -443,7 +441,7 @@ public class ZilleProjectsView extends FrameView {
     }
 
     private class VerificarNuevaVersionTask extends org.jdesktop.application.Task<Object, Void> {
-
+        boolean isLast=false;
         VerificarNuevaVersionTask(org.jdesktop.application.Application app) {
 
             super(app);
@@ -451,13 +449,17 @@ public class ZilleProjectsView extends FrameView {
 
         @Override
         protected Object doInBackground() {
-            Update.isLastVersion(configDB);
+            isLast = Update.isLastVersion(configDB);
             return null;  // return your result
         }
 
         @Override
         protected void succeeded(Object result) {
-
+            if(isLast){
+                statusMessageLabel.setText("Esta es la última versión.");
+            }else{
+                statusMessageLabel.setText("Hay una nueva versión, se está descargando. ");
+            }
 
         }
     }
@@ -793,25 +795,6 @@ public class ZilleProjectsView extends FrameView {
             return null;
         } else {
             return new ParteDiarioMasivoTask(getApplication());
-        }
-    }
-
-    private class MostrarParteDiarioMasivoTask extends org.jdesktop.application.Task<Object, Void> {
-        MostrarParteDiarioMasivoTask(org.jdesktop.application.Application app) {
-            // Runs on the EDT.  Copy GUI state that
-            // doInBackground() depends on from parameters
-            // to MostrarParteDiarioMasivoTask fields, here.
-            super(app);
-        }
-        @Override protected Object doInBackground() {
-            // Your Task's code here.  This method runs
-            // on a background thread, so don't reference
-            // the Swing GUI from here.
-            return null;  // return your result
-        }
-        @Override protected void succeeded(Object result) {
-            // Runs on the EDT.  Update the GUI based on
-            // the result computed by doInBackground().
         }
     }
 
