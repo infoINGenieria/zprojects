@@ -49,10 +49,10 @@ public final class Registro {
             calcularHsViaje();
             calcularHsTarea();
             diferenciaDeHS(p);
-
-            //Si la obra tiene Desarraigo y desarraigo es true
-            calcularVianda(p, p.getObra().isTieneDesarraigo() & desarraigo);
         }
+                          //Si la obra tiene Desarraigo y desarraigo es true
+        calcularVianda(p, p.getObra().isTieneDesarraigo() & desarraigo);
+        
     }
 
     public void calcularEspecial(MyTime op, Perfiles perfil) {
@@ -171,7 +171,7 @@ public final class Registro {
             hs_almuerzoDividido = op.restarTime(hs_falmuerzo, ini);
             opc= 3;
         }
-        System.out.println("Almuerzo: "+opc);
+        //System.out.println("Almuerzo: "+opc);
         return opc;
         
     }
@@ -182,21 +182,27 @@ public final class Registro {
             vianda=0;
             vianda_desa=1;
         }else{
-            if(p.getObra().isTieneComida())
-                comida=1;
-            
             vianda_desa=0;
-            MyTime time = new MyTime();
-            Time t = Time.valueOf("22:00:00");
-            t = time.restarTime(t, hs_normal);
-            t = time.restarTime(t, p.getObra().getLimiteViandaDobleInTime());
-            t = time.restarTime(Time.valueOf("22:00:00"), t);
+            if(p.getObra().isTieneComida()){
+                comida=1;
+            }else{
+                comida = 0;
+            }
             if(p.getObra().isTieneVianda()){
+                
+                MyTime time = new MyTime();
+                Time t = Time.valueOf("22:00:00");
+                t = time.restarTime(t, hs_normal);
+                t = time.restarTime(t, p.getObra().getLimiteViandaDobleInTime());
+                t = time.restarTime(Time.valueOf("22:00:00"), t);
                 if(hs_tarea.compareTo(t) < 0 ){
                     vianda=0;
                 }else{
                     vianda=1;
                 }
+                
+            }else{
+                vianda = 0;
             }
         }
         

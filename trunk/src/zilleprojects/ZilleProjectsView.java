@@ -7,7 +7,7 @@ import DAO.AlarmasDAO;
 import Vista.DialogImgZille;
 import DAO.Conexion.Conexion;
 import DAO.Conexion.LeerXML;
-import DAO.Conexion.Update;
+
 import DAO.EquiposDAO;
 import DAO.EstacionServicioDAO;
 import DAO.FuncionDAO;
@@ -449,7 +449,7 @@ public class ZilleProjectsView extends FrameView {
 
         @Override
         protected Object doInBackground() {
-            isLast = Update.isLastVersion(configDB);
+            //isLast = Update.isLastVersion(configDB);
             return null;  // return your result
         }
 
