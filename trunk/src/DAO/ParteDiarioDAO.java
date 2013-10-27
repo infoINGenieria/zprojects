@@ -164,9 +164,9 @@ public class ParteDiarioDAO {
             // Ingresamos los horarios
             query = "insert into registro (ID, ESPECIAL, HS_SALIDA, HS_LLEGADA, HS_INICIO, "
                     + "HS_FIN, HS_IALMUERZO, HS_FALMUERZO, DIA, FECHA, HS_NORMAL,"
-                    + " HS_VIAJE, HS_ALMUERZO, HS_50, HS_100, HS_TOTAL, HS_TAREA, "
-                    + "COMIDA, VIANDA, VIANDA_DESA) values "
-                    + "(NULL, ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+                    + " HS_VIAJE, HS_ALMUERZO, HS_50, HS_100, HS_TOTAL, HS_TAREA "
+                    + ") values "
+                    + "(NULL, ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
             PreparedStatement registros = conector.prepareStatement(query);
             registros.setBoolean(1, reg.isEspecial());
             registros.setTime(2, reg.getHs_salida());
@@ -184,10 +184,6 @@ public class ParteDiarioDAO {
             registros.setTime(14, reg.getHs_100());
             registros.setTime(15, reg.getTotal_hs());
             registros.setTime(16, reg.getHs_tarea());
-            registros.setInt(17, reg.getComida());
-            registros.setInt(18, reg.getVianda());
-            registros.setInt(19, reg.getVianda_desa());
-
 
             registros.executeUpdate();
             ResultSet generatedKeys = registros.getGeneratedKeys();
@@ -273,10 +269,10 @@ public class ParteDiarioDAO {
             
             //ID NUMERO OPERARIO FUNCION FECHA OBRA HORARIO EQUIPO OBSERVACIONES
             query = "insert into partediario (ID, NUMERO, OPERARIO, FECHA, OBRA, "
-                    + "OBSERVACIONES, SITUACION";
+                    + "OBSERVACIONES, SITUACION, COMIDA, VIANDA, VIANDA_DESA";
             if(p.obra.isTieneRegistro()) query+= ", FUNCION, HORARIO, DESARRAIGO, MULTIFUNCION";
             if(p.obra.isTieneEquipo()) query+= ", EQUIPO";
-            query+= ") values (NULL, ?,?,?,?,?,?";
+            query+= ") values (NULL, ?,?,?,?,?,?,?,?,?";
             if(p.obra.isTieneRegistro()) query += ",?,?,?,?";
             if(p.obra.isTieneEquipo()) query+= ",?";
             query+= ")";
@@ -288,6 +284,9 @@ public class ParteDiarioDAO {
             partes.setInt(i++, pd.getIdObra());
             partes.setString(i++, pd.getObservaciones());
             partes.setInt(i++, pd.getIdSituacion());
+            partes.setInt(i++, pd.getComida());
+            partes.setInt(i++, pd.getVianda());
+            partes.setInt(i++, pd.getVianda_desa());
             
             if(p.obra.isTieneRegistro()){
                 partes.setInt(i++, pd.getIdFuncion());
@@ -331,14 +330,14 @@ public class ParteDiarioDAO {
                 if (reg.getId() != 0) {
                     query = "update registro set ESPECIAL=?, HS_SALIDA=?, HS_LLEGADA=?, HS_INICIO=?, "
                             + "HS_FIN=?, HS_IALMUERZO=?, HS_FALMUERZO=?, DIA=?, FECHA=?, HS_NORMAL=?,"
-                            + " HS_VIAJE=?, HS_ALMUERZO=?, HS_50=?, HS_100=?, HS_TOTAL=?, HS_TAREA=?,"
-                            + " COMIDA=?, VIANDA=?, VIANDA_DESA=? where ID =" + reg.getId();
+                            + " HS_VIAJE=?, HS_ALMUERZO=?, HS_50=?, HS_100=?, HS_TOTAL=?, HS_TAREA=?"
+                            + " where ID =" + reg.getId();
                 } else {
                     query = "insert into registro (ID, ESPECIAL, HS_SALIDA, HS_LLEGADA, HS_INICIO, "
                             + "HS_FIN, HS_IALMUERZO, HS_FALMUERZO, DIA, FECHA, HS_NORMAL,"
-                            + " HS_VIAJE, HS_ALMUERZO, HS_50, HS_100, HS_TOTAL, HS_TAREA, "
-                            + "COMIDA, VIANDA, VIANDA_DESA) values "
-                            + "(NULL, ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+                            + " HS_VIAJE, HS_ALMUERZO, HS_50, HS_100, HS_TOTAL, HS_TAREA "
+                            + ") values "
+                            + "(NULL, ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
                 }
                 PreparedStatement registros = conector.prepareStatement(query);
                 registros.setBoolean(1, reg.isEspecial());
@@ -357,9 +356,6 @@ public class ParteDiarioDAO {
                 registros.setTime(14, reg.getHs_100());
                 registros.setTime(15, reg.getTotal_hs());
                 registros.setTime(16, reg.getHs_tarea());
-                registros.setInt(17, reg.getComida());
-                registros.setInt(18, reg.getVianda());
-                registros.setInt(19, reg.getVianda_desa());
 
 
                 registros.executeUpdate();
@@ -452,7 +448,8 @@ public class ParteDiarioDAO {
                 } // if
             }
 
-            query = "update partediario set NUMERO=?, OPERARIO=?, OBRA=?, FECHA=?, OBSERVACIONES=?";
+            query = "update partediario set NUMERO=?, OPERARIO=?, OBRA=?, FECHA=?, OBSERVACIONES=?, "
+                    + "COMIDA=?, VIANDA=?, VIANDA_DESA=?";
             if(perfil.obra.isTieneRegistro()) query += ", FUNCION=?, HORARIO=?, MULTIFUNCION=?, DESARRAIGO=?";
             else query += ", FUNCION=NULL, HORARIO=NULL, MULTIFUNCION=NULL, DESARRAIGO=NULL";
             if(perfil.obra.isTieneEquipo()) query +=", EQUIPO=?";
@@ -466,6 +463,9 @@ public class ParteDiarioDAO {
             
             partes.setDate(i++, new java.sql.Date(pd.getFecha().getTime()));
             partes.setString(i++, pd.getObservaciones());
+            partes.setInt(i++, pd.getComida());
+            partes.setInt(i++, pd.getVianda());
+            partes.setInt(i++, pd.getVianda_desa());
             if(perfil.obra.isTieneRegistro()){
                 partes.setInt(i++, pd.getIdFuncion());
                 partes.setInt(i++, pd.getIdHorario());
@@ -552,10 +552,6 @@ public class ParteDiarioDAO {
                 r.setHs_100(rs.getTime("HS_100"));
                 r.setTotal_hs(rs.getTime("HS_TOTAL"));
                 r.setHs_tarea(rs.getTime("HS_TAREA"));
-                r.setComida(rs.getInt("COMIDA"));
-                r.setVianda(rs.getInt("VIANDA"));
-                r.setVianda_desa(rs.getInt("VIANDA_DESA"));
-
 
 
             }
@@ -670,9 +666,6 @@ public class ParteDiarioDAO {
                     r.setHs_100(rs.getTime("HS_100"));
                     r.setTotal_hs(rs.getTime("HS_TOTAL"));
                     r.setHs_tarea(rs.getTime("HS_TAREA"));
-                    r.setComida(rs.getInt("COMIDA"));
-                    r.setVianda(rs.getInt("VIANDA"));
-                    r.setVianda_desa(rs.getInt("VIANDA_DESA"));
                 }
                 array.add(r);
 
@@ -765,6 +758,9 @@ public class ParteDiarioDAO {
                 pd.setIdSituacion(rs.getInt("SITUACION"));
                 pd.setDesarraigo(rs.getBoolean("DESARRAIGO"));
                 pd.setNombreO(rs.getString("NOMBRE"));
+                pd.setComida(rs.getInt("COMIDA"));
+                pd.setVianda(rs.getInt("VIANDA"));
+                pd.setVianda_desa(rs.getInt("VIANDA_DESA"));
                 partes.add(pd);
             }
             rs.close();
@@ -814,6 +810,9 @@ public class ParteDiarioDAO {
                 pd.setIdSituacion(rs.getInt("SITUACION"));
                 pd.setDesarraigo(rs.getBoolean("DESARRAIGO"));
                 pd.setNombreO(rs.getString("NOMBRE"));
+                pd.setComida(rs.getInt("COMIDA"));
+                pd.setVianda(rs.getInt("VIANDA"));
+                pd.setVianda_desa(rs.getInt("VIANDA_DESA"));
                 partes.add(pd);
             }
             rs.close();
@@ -852,6 +851,9 @@ public class ParteDiarioDAO {
                 pd.setIdSituacion(rs.getInt("SITUACION"));
                 pd.setDesarraigo(rs.getBoolean("DESARRAIGO"));
                 pd.setNombreO(rs.getString("NOMBRE"));
+                pd.setComida(rs.getInt("COMIDA"));
+                pd.setVianda(rs.getInt("VIANDA"));
+                pd.setVianda_desa(rs.getInt("VIANDA_DESA"));
                 partes.add(pd);
             }
             rs.close();
@@ -872,13 +874,16 @@ public class ParteDiarioDAO {
         try {
             conector.setAutoCommit(false);
             query = "insert into partediario ( OPERARIO, FECHA,"
-                    + " OBSERVACIONES, OBRA, NUMERO) values (?,?,?,?,?)";
+                    + " OBSERVACIONES, OBRA, NUMERO, COMIDA, VIANDA, VIANDA_DESA) values (?,?,?,?,?,?,?,?)";
             PreparedStatement partes = conector.prepareStatement(query);
             partes.setInt(1, pd.getIdOperario());
             partes.setDate(2, new java.sql.Date(pd.getFecha().getTime()));
             partes.setString(3, pd.getObservaciones());
             partes.setInt(4, pd.getIdObra());
             partes.setString(5, pd.getNumero());
+            partes.setInt(6, pd.getComida());
+            partes.setInt(7, pd.getVianda());
+            partes.setInt(8, pd.getVianda_desa());
             partes.executeUpdate();
             ResultSet generatedKeys = partes.getGeneratedKeys();
             if (generatedKeys.next()) {
@@ -905,7 +910,7 @@ public class ParteDiarioDAO {
         try {
             conector.setAutoCommit(false);
             query = "insert into partediario ( OPERARIO, FECHA,"
-                    + " OBSERVACIONES, OBRA, NUMERO) values (?,?,?,?,?)";
+                    + " OBSERVACIONES, OBRA, NUMERO, COMIDA, VIANDA, VIANDA_DESA) values (?,?,?,?,?,?,?,?)";
             PreparedStatement partes = conector.prepareStatement(query);
             ResultSet generatedKeys = null;
             while (pd.getFecha().compareTo(hasta) <= 0) {
@@ -915,6 +920,10 @@ public class ParteDiarioDAO {
                 partes.setString(3, pd.getObservaciones());
                 partes.setInt(4, pd.getIdObra());
                 partes.setString(5, pd.getNumero());
+                partes.setInt(6, pd.getComida());
+                partes.setInt(7, pd.getVianda());
+                partes.setInt(8, pd.getVianda_desa());
+                
                 partes.executeUpdate();
                 generatedKeys = partes.getGeneratedKeys();
                 if (generatedKeys.next()) {
@@ -969,6 +978,9 @@ public class ParteDiarioDAO {
                 pd.setIdSituacion(rs.getInt("SITUACION"));
                 pd.setDesarraigo(rs.getBoolean("DESARRAIGO"));
                 pd.setNombreO(rs.getString("NOMBRE"));
+                pd.setComida(rs.getInt("COMIDA"));
+                pd.setVianda(rs.getInt("VIANDA"));
+                pd.setVianda_desa(rs.getInt("VIANDA_DESA"));
                 partes.add(pd);
             }
             rs.close();
@@ -1005,6 +1017,9 @@ public class ParteDiarioDAO {
                 pd.setMultifuncion(rs.getBoolean("MULTIFUNCION"));
                 pd.setIdSituacion(rs.getInt("SITUACION"));
                 pd.setDesarraigo(rs.getBoolean("DESARRAIGO"));
+                pd.setComida(rs.getInt("COMIDA"));
+                pd.setVianda(rs.getInt("VIANDA"));
+                pd.setVianda_desa(rs.getInt("VIANDA_DESA"));
                 partes.add(pd);
             }
             rs.close();

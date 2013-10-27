@@ -661,6 +661,11 @@ public class JDObrasGestion extends javax.swing.JDialog {
 
         chkTieneRegistro.setText(resourceMap.getString("chkTieneRegistro.text")); // NOI18N
         chkTieneRegistro.setName("chkTieneRegistro"); // NOI18N
+        chkTieneRegistro.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                chkTieneRegistroItemStateChanged(evt);
+            }
+        });
 
         chkTieneEquipo.setText(resourceMap.getString("chkTieneEquipo.text")); // NOI18N
         chkTieneEquipo.setName("chkTieneEquipo"); // NOI18N
@@ -682,7 +687,7 @@ public class JDObrasGestion extends javax.swing.JDialog {
                             .addGroup(jPanel5Layout.createSequentialGroup()
                                 .addComponent(pinLimiteViandaDoble, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel21, javax.swing.GroupLayout.DEFAULT_SIZE, 246, Short.MAX_VALUE))))
+                                .addComponent(jLabel21, javax.swing.GroupLayout.DEFAULT_SIZE, 258, Short.MAX_VALUE))))
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addComponent(chkTieneRegistro)
                         .addGap(41, 41, 41)
@@ -705,7 +710,7 @@ public class JDObrasGestion extends javax.swing.JDialog {
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(chkTieneRegistro)
                     .addComponent(chkTieneEquipo))
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout capaLayout = new javax.swing.GroupLayout(capa);
@@ -781,6 +786,15 @@ public class JDObrasGestion extends javax.swing.JDialog {
     private void chkTieneViandaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_chkTieneViandaItemStateChanged
         pinLimiteViandaDoble.setEnabled(chkTieneVianda.isSelected());
     }//GEN-LAST:event_chkTieneViandaItemStateChanged
+
+private void chkTieneRegistroItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_chkTieneRegistroItemStateChanged
+    boolean puerta = chkTieneRegistro.isSelected();
+    chkTieneVianda.setEnabled(puerta);
+    pinLimiteViandaDoble.setEnabled(puerta);
+    if(!puerta){
+        chkTieneVianda.setSelected(puerta);
+    }
+}//GEN-LAST:event_chkTieneRegistroItemStateChanged
 
     /**
      * @param args the command line arguments

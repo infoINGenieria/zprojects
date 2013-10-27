@@ -21,7 +21,6 @@ public class Conexion {
      static String dbname = "zilleprojects";
      static String dbuser = "zille";
      static String dbpass = "InfoIngenieria";
-     static String version = "1.0";
      static boolean where= false;
      static Connection conexion = null;
      static int result=0;
@@ -129,13 +128,4 @@ public class Conexion {
         Conexion.where = where;
     }
     
-    public void setVersion(String version){
-        Conexion.version = version;
-    }
-    
-    public String getVersion(){
-        return Conexion.version;
-    }
-
-
 }

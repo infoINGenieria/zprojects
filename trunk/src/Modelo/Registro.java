@@ -16,14 +16,12 @@ import java.util.GregorianCalendar;
  */
 public final class Registro {
 
-    int id, comida, vianda, vianda_desa;
+    int id;
     boolean especial = false;
     Time hs_salida, hs_llegada, hs_inicio, hs_fin,
             hs_ialmuerzo, hs_falmuerzo;
     Time hs_normal, hs_viaje, hs_almuerzo, hs_50, hs_100, total_hs, hs_tarea, hs_almuerzoDividido;
     String dia, fecha;
-
-    
 
     public Registro() {
     }
@@ -50,8 +48,7 @@ public final class Registro {
             calcularHsTarea();
             diferenciaDeHS(p);
         }
-                          //Si la obra tiene Desarraigo y desarraigo es true
-        calcularVianda(p, p.getObra().isTieneDesarraigo() & desarraigo);
+        
         
     }
 
@@ -176,37 +173,7 @@ public final class Registro {
         
     }
     
-    public void calcularVianda(Perfiles p, boolean desa){
-        if(desa){
-            comida=0;
-            vianda=0;
-            vianda_desa=1;
-        }else{
-            vianda_desa=0;
-            if(p.getObra().isTieneComida()){
-                comida=1;
-            }else{
-                comida = 0;
-            }
-            if(p.getObra().isTieneVianda()){
-                
-                MyTime time = new MyTime();
-                Time t = Time.valueOf("22:00:00");
-                t = time.restarTime(t, hs_normal);
-                t = time.restarTime(t, p.getObra().getLimiteViandaDobleInTime());
-                t = time.restarTime(Time.valueOf("22:00:00"), t);
-                if(hs_tarea.compareTo(t) < 0 ){
-                    vianda=0;
-                }else{
-                    vianda=1;
-                }
-                
-            }else{
-                vianda = 0;
-            }
-        }
-        
-    }
+    
 
     public void diferenciaDeHS(Perfiles perfil) {
         this.hs_normal = perfil.getHs_normal();
@@ -295,14 +262,6 @@ public final class Registro {
         return hs_tarea;
     }
 
-    public int getComida() {
-        return comida;
-    }
-
-    public void setComida(int comida) {
-        this.comida = comida;
-    }
-
     public Time getHs_almuerzoDividido() {
         return hs_almuerzoDividido;
     }
@@ -311,21 +270,6 @@ public final class Registro {
         this.hs_almuerzoDividido = hs_almuerzoDividido;
     }
 
-    public int getVianda() {
-        return vianda;
-    }
-
-    public void setVianda(int vianda) {
-        this.vianda = vianda;
-    }
-
-    public int getVianda_desa() {
-        return vianda_desa;
-    }
-
-    public void setVianda_desa(int vianda_desa) {
-        this.vianda_desa = vianda_desa;
-    }
 
     public void setHs_tarea(Time hs_tarea) {
         this.hs_tarea = hs_tarea;

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="fc3970cf-bbc4-4de7-814d-efb15194bf3c">
 	<property name="ireport.zoom" value="1.3310000000000004"/>
-	<property name="ireport.x" value="215"/>
+	<property name="ireport.x" value="434"/>
 	<property name="ireport.y" value="0"/>
 	<parameter name="id_informe" class="java.lang.Integer">
 		<defaultValueExpression><![CDATA[new Integer(1)]]></defaultValueExpression>
@@ -10,7 +10,7 @@
 	<parameter name="urlimagenZilleBg" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[SELECT
-R.hs_tarea, R.hs_50, R.hs_100, R.hs_viaje,R.comida, R.vianda, R.vianda_desa,
+R.hs_tarea, R.hs_50, R.hs_100, R.hs_viaje,PD.comida, PD.vianda, PD.vianda_desa,
 PD.fecha, PD.multifuncion AS multi, PD.observaciones,
 OB.codigo AS COD_OBRA,
 O.nombre AS NOM_OP,

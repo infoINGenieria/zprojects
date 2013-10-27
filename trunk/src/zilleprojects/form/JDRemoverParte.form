@@ -53,10 +53,10 @@
               <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jScrollPane1" alignment="0" pref="572" max="32767" attributes="0"/>
+                      <Component id="jScrollPane1" alignment="0" pref="583" max="32767" attributes="0"/>
                       <Component id="jPanel2" alignment="0" max="32767" attributes="1"/>
                       <Group type="102" alignment="0" attributes="0">
-                          <Component id="alertasTexto" pref="223" max="32767" attributes="0"/>
+                          <Component id="alertasTexto" pref="259" max="32767" attributes="0"/>
                           <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                           <Component id="modificarParteBoton" linkSize="1" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -109,8 +109,8 @@
                       </Group>
                       <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="comboEmpleados" alignment="0" pref="467" max="32767" attributes="0"/>
-                          <Component id="comboObra" alignment="0" pref="467" max="32767" attributes="1"/>
+                          <Component id="comboEmpleados" alignment="0" pref="469" max="32767" attributes="0"/>
+                          <Component id="comboObra" alignment="0" pref="469" max="32767" attributes="1"/>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="chooserFecha" min="-2" pref="184" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -154,7 +154,6 @@
                 <Property name="selected" type="boolean" value="true"/>
                 <Property name="text" type="java.lang.String" resourceKey="checkFecha.text"/>
                 <Property name="name" type="java.lang.String" value="checkFecha" noResource="true"/>
-                <Property name="opaque" type="boolean" value="false"/>
               </Properties>
               <Events>
                 <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="checkFechaItemStateChanged"/>
@@ -169,7 +168,6 @@
               <Properties>
                 <Property name="text" type="java.lang.String" resourceKey="checkObra.text"/>
                 <Property name="name" type="java.lang.String" value="checkObra" noResource="true"/>
-                <Property name="opaque" type="boolean" value="false"/>
               </Properties>
               <Events>
                 <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="checkObraItemStateChanged"/>
@@ -188,7 +186,6 @@
               <Properties>
                 <Property name="text" type="java.lang.String" resourceKey="checkEmpleado.text"/>
                 <Property name="name" type="java.lang.String" value="checkEmpleado" noResource="true"/>
-                <Property name="opaque" type="boolean" value="false"/>
               </Properties>
               <Events>
                 <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="checkEmpleadoItemStateChanged"/>

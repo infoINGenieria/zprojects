@@ -12,6 +12,7 @@
 		<![CDATA[SELECT
 R.*,
 PD.fecha AS fec, PD.multifuncion AS multi, PD.observaciones,
+PD.comida, PD.vianda, PD.vianda_desa,
 O.nombre AS NOM_OP,
 IH.*,
 S.situacion, S.id AS id_sit,

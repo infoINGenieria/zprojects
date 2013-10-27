@@ -1264,7 +1264,7 @@ public class JDGestionarParte extends javax.swing.JDialog {
     }
 
     private void verificarFechaEspecial() {
-        System.out.println("Verificarndo fechas especiales");
+        System.out.println("Verificando fechas especiales");
         GregorianCalendar gc = new GregorianCalendar();
         gc.setTime(fechaParte.getDate());
         if (gc.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY) {
@@ -1560,8 +1560,10 @@ public class JDGestionarParte extends javax.swing.JDialog {
                 r = -10;
                 return null;
             }
+            boolean desa = (parteDiario.isDesarraigo()| operario.isDesarraigo());
             //evaluo el desarraigo del parte diario y el desarraigo del operario
-            reg.calcular(perfil, (parteDiario.isDesarraigo()| operario.isDesarraigo()));
+            reg.calcular(perfil, desa);
+            parteDiario.calcularVianda(perfil, reg, desa);
             r = pdao.actualizar(perfil, parteDiario, reg, registroEquipo, datosTr);
             return null;  // return your result
         }

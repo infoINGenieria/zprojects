@@ -8,6 +8,7 @@ import Vista.DialogImgZille;
 import DAO.Conexion.Conexion;
 import DAO.Conexion.LeerXML;
 
+import DAO.Conexion.Update;
 import DAO.EquiposDAO;
 import DAO.EstacionServicioDAO;
 import DAO.FuncionDAO;
@@ -23,6 +24,7 @@ import Modelo.ItemAlarma;
 import Modelo.Obras;
 import Modelo.Operario;
 import Modelo.ParteDiario;
+import Modelo.Perfiles;
 import Modelo.TablaAlarmasModel;
 import Modelo.Usuario;
 import Utils.FechaUtil;
@@ -31,6 +33,8 @@ import Vista.DialogPanel;
 import Vista.OpcionPanel;
 import Vista.PanelAlarma;
 import Vista.PanelAzul;
+import java.awt.Color;
+import java.awt.Desktop;
 import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.Toolkit;
@@ -47,7 +51,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.PrintWriter;
+import java.net.URI;
 import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -59,6 +63,7 @@ import javax.swing.Timer;
 import javax.swing.Icon;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
+import javax.swing.SwingConstants;
 import org.jdesktop.application.Task;
 
 
@@ -82,6 +87,7 @@ import zilleprojects.form.JDSemaforos;
 public class ZilleProjectsView extends FrameView {
 
     Image icono = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/zilleprojects/resources/icono.png"));
+    public static boolean isLastVersion = true;
 
     public ZilleProjectsView(SingleFrameApplication app) {
         super(app);
@@ -89,6 +95,7 @@ public class ZilleProjectsView extends FrameView {
         initComponents();
         getFrame().setIconImage(icono);
         panelAlarmas.setVisible(false);
+        VerificarNuevaVersion().execute();
         
         // status bar initialization - message timeout, idle icon and busy animation, etc
         ResourceMap resourceMap = getResourceMap();
@@ -154,6 +161,25 @@ public class ZilleProjectsView extends FrameView {
         this.getRootPane().setDefaultButton(BotonGrandeLogin);
     }
 
+    
+    class OpenUrlAction implements ActionListener {
+      @Override public void actionPerformed(ActionEvent e) {
+          try{
+              final URI uri = new URI("http://matiasvarela.com.ar/shared/zille/ZilleProjects.jar");
+              open(uri);
+          }catch (Exception ex) {}
+      }
+    }
+    private static void open(URI uri) {
+    if (Desktop.isDesktopSupported()) {
+      try {
+        Desktop.getDesktop().browse(uri);
+      } catch (IOException e) { OpcionPanel.showMessageDialog(null, "Por favor, descargue la última versión desde el siguiente link:\nhttp://matiasvarela.com.ar/shared/zille/ZilleProjects.jar"); }
+    } else { 
+        OpcionPanel.showMessageDialog(null, "Por favor, descargue la última versión desde el siguiente link:\nhttp://matiasvarela.com.ar/shared/zille/ZilleProjects.jar");
+    }
+  }
+    
     @Action
     public void showAboutBox() {
         if (aboutBox == null) {
@@ -384,8 +410,7 @@ public class ZilleProjectsView extends FrameView {
                 statusMessageLabel.setText("No conectado. Revise la configuración a la Base de Datos.");
                 return 0;
             case 1:
-                statusMessageLabel.setText("Conexión exitosa. Comprobando si existe una nueva versión...");
-                VerificarNuevaVersion().execute();
+                statusMessageLabel.setText("Conexión exitosa.");
                 return 1;
             case 2:
                 statusMessageLabel.setText("No conectado. Datos de conexión incorrectos.");
@@ -436,12 +461,12 @@ public class ZilleProjectsView extends FrameView {
     
     ///
 @Action
-    public Task VerificarNuevaVersion() {
+    public final Task VerificarNuevaVersion() {
         return new VerificarNuevaVersionTask(getApplication());
     }
 
     private class VerificarNuevaVersionTask extends org.jdesktop.application.Task<Object, Void> {
-        boolean isLast=false;
+        
         VerificarNuevaVersionTask(org.jdesktop.application.Application app) {
 
             super(app);
@@ -449,20 +474,72 @@ public class ZilleProjectsView extends FrameView {
 
         @Override
         protected Object doInBackground() {
-            //isLast = Update.isLastVersion(configDB);
+            isLastVersion = Update.isLastVersion(configDB);
             return null;  // return your result
         }
 
         @Override
         protected void succeeded(Object result) {
-            if(isLast){
-                statusMessageLabel.setText("Esta es la última versión.");
+            if(isLastVersion){
+                btnDescargarVersion.setVisible(false);
+                lblVersion.setText("Version: "+ZilleProjectsApp.VERSION+". Esta es la última versión.");
             }else{
-                statusMessageLabel.setText("Hay una nueva versión, se está descargando. ");
+                lblVersion.setText("Version: "+ZilleProjectsApp.VERSION+". Hay una nueva versión. ");
+                btnDescargarVersion.setVisible(true);
             }
 
         }
     }
+    
+    
+    
+    /**/
+    
+//    @Action
+//    public Task DescargarNuevaVersionDialog() {
+//        if(isLastVersion){
+//            OpcionPanel.showMessageDialog(null, "La versión actual es la última versión disponible." + , "Sistema actualizado", OpcionPanel.INFORMATION_MESSAGE);
+//            return null;
+//        }
+//        return new DescargarNuevaVersionDialogTask(getApplication());
+//    }
+//
+//    private class DescargarNuevaVersionDialogTask extends org.jdesktop.application.Task<Object, Void> {
+//        boolean descargado = false;
+//        DescargarNuevaVersionDialogTask(org.jdesktop.application.Application app) {
+//            
+//            super(app);
+//            lblVersion.setText(lblVersion.getText()+ " Descargando...");
+//        }
+//
+//        @Override
+//        protected Object doInBackground() {
+//            try{
+//            Download newExceutable = new Download(new URL("http://matiasvarela.com.ar/shared/zille/ZilleProjects.jar"),
+//                                                            "NuevaVersion");
+//            newExceutable.run();   
+//            descargado = true;
+//            }catch(Exception e){
+//                descargado = false;
+//            }
+//        
+//            return null;  // return your result
+//        }
+//
+//        @Override
+//        protected void succeeded(Object result) {
+//            if(descargado){
+//                OpcionPanel.showMessageDialog(null, "Nueva versión descargada. Se encuentra dentro de la carpeta 'NuevaVersion'.", "Nueva versión", OpcionPanel.INFORMATION_MESSAGE);
+//            }else{
+//                OpcionPanel.showMessageDialog(null, "Error al descargar la nueva versión. Intente nuevamente", "Error en la conexión", OpcionPanel.ERROR_MESSAGE);
+//            }
+//
+//        }
+//    }
+    
+    
+    
+    /**/
     
     
     ///
@@ -699,6 +776,12 @@ public class ZilleProjectsView extends FrameView {
             //pd.setIdSituacion(((Situacion)comboObrasParteMasivo.getSelectedItem()).getId());
             pd.setObservaciones(observacionesTexto.getText());
             pd.setNumero(txtNumeroParte.getText(), txtNumeroParte2.getText());
+            boolean desa = (pd.isDesarraigo()| empleadoMasivo.isDesarraigo());
+
+            //Si la obra tiene Desarraigo y desarraigo es true
+            Perfiles p = new Perfiles();
+            p.setObra(((Obras)comboObrasParteMasivo.getSelectedItem()));
+            pd.calcularVianda(p, null, desa);
             if(isHasta.isSelected()){
                 
                 hasta=hastaDateChoose.getDate();
@@ -1132,6 +1215,8 @@ public class ZilleProjectsView extends FrameView {
         jTable1 = new javax.swing.JTable();
         jButton2 = new javax.swing.JButton();
         jPanel3 = new DialogImgZille();
+        lblVersion = new javax.swing.JLabel();
+        btnDescargarVersion = new javax.swing.JButton();
         menuBar = new javax.swing.JMenuBar();
         javax.swing.JMenu fileMenu = new javax.swing.JMenu();
         iniciarSesion = new javax.swing.JMenuItem();
@@ -1298,8 +1383,8 @@ public class ZilleProjectsView extends FrameView {
             .addGroup(panelAlarmasLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(panelAlarmasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 520, Short.MAX_VALUE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING)))
+                    .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 559, Short.MAX_VALUE)))
         );
         panelAlarmasLayout.setVerticalGroup(
             panelAlarmasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1307,7 +1392,7 @@ public class ZilleProjectsView extends FrameView {
                 .addContainerGap()
                 .addComponent(jButton2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 433, Short.MAX_VALUE))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 425, Short.MAX_VALUE))
         );
 
         jPanel3.setName("jPanel3"); // NOI18N
@@ -1317,12 +1402,26 @@ public class ZilleProjectsView extends FrameView {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 428, Short.MAX_VALUE)
+            .addGap(0, 389, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 149, Short.MAX_VALUE)
         );
+
+        lblVersion.setFont(lblVersion.getFont().deriveFont(lblVersion.getFont().getStyle() | java.awt.Font.BOLD, lblVersion.getFont().getSize()+2));
+        lblVersion.setText(resourceMap.getString("lblVersion.text")); // NOI18N
+        lblVersion.setName("lblVersion"); // NOI18N
+
+        btnDescargarVersion.setText("<HTML><FONT color=\"#000099\"><U>Descargar la última versión del sistema.</U></FONT></HTML>");
+        btnDescargarVersion.setName("btnDescargarVersion"); // NOI18N
+        btnDescargarVersion.setVisible(false);
+        btnDescargarVersion.setHorizontalAlignment(SwingConstants.CENTER);
+        btnDescargarVersion.setBorderPainted(false);
+        btnDescargarVersion.setOpaque(false);
+        btnDescargarVersion.setBackground(Color.WHITE);
+        btnDescargarVersion.setToolTipText("Descargar nueva versión");
+        btnDescargarVersion.addActionListener(new OpenUrlAction());
 
         javax.swing.GroupLayout mainPanelLayout = new javax.swing.GroupLayout(mainPanel);
         mainPanel.setLayout(mainPanelLayout);
@@ -1330,7 +1429,12 @@ public class ZilleProjectsView extends FrameView {
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 428, Short.MAX_VALUE)
+                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 389, Short.MAX_VALUE)
+                    .addComponent(btnDescargarVersion, javax.swing.GroupLayout.PREFERRED_SIZE, 386, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(mainPanelLayout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addComponent(lblVersion, javax.swing.GroupLayout.PREFERRED_SIZE, 374, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(panelAlarmas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
@@ -1344,10 +1448,12 @@ public class ZilleProjectsView extends FrameView {
                 .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(mainPanelLayout.createSequentialGroup()
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(344, 344, 344))
-                    .addGroup(mainPanelLayout.createSequentialGroup()
-                        .addComponent(panelAlarmas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 251, Short.MAX_VALUE)
+                        .addComponent(btnDescargarVersion, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(lblVersion, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(panelAlarmas, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         menuBar.setBackground(resourceMap.getColor("menuBar.background")); // NOI18N
@@ -1362,7 +1468,7 @@ public class ZilleProjectsView extends FrameView {
         iniciarSesion.setName("iniciarSesion"); // NOI18N
         fileMenu.add(iniciarSesion);
 
-        configurarConexion.setAction(actionMap.get("configurarConnDialog")); // NOI18N
+        configurarConexion.setAction(actionMap.get("ConfigurarConnDialog")); // NOI18N
         configurarConexion.setIcon(resourceMap.getIcon("configurarConexion.icon")); // NOI18N
         configurarConexion.setText(resourceMap.getString("configurarConexion.text")); // NOI18N
         configurarConexion.setName("configurarConexion"); // NOI18N
@@ -1535,7 +1641,7 @@ public class ZilleProjectsView extends FrameView {
             .addGroup(statusPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(statusMessageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 453, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 353, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 351, Short.MAX_VALUE)
                 .addComponent(progressBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(3, 3, 3)
                 .addComponent(statusAnimationLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -1791,7 +1897,7 @@ public class ZilleProjectsView extends FrameView {
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)
+                .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 92, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(outText, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -2172,6 +2278,7 @@ private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     private javax.swing.JButton botonGrandeSalir;
     private javax.swing.JButton botonLogin;
     private javax.swing.JButton botonQuery;
+    private javax.swing.JButton btnDescargarVersion;
     private javax.swing.JDialog buscarEmpleado;
     private javax.swing.JButton cerrarLogin;
     private javax.swing.JButton cerrarSituacionDialog;
@@ -2231,6 +2338,7 @@ private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JTable jTable1;
+    private javax.swing.JLabel lblVersion;
     private javax.swing.JList listaEmpleados;
     private javax.swing.JDialog loginDialogo;
     private javax.swing.JLabel loginOut;

@@ -2158,7 +2158,7 @@ public class JDReportes extends javax.swing.JDialog {
             int res = 0;
             
             ArrayList<Registro> registros= pd.traerRegistroEntre(ih.getId_operario(), ih.getDesdeF(), ih.getHastaF());
-            if(!registros.isEmpty()){
+            //if(!registros.isEmpty()){
                 //calcular los tiempos de cada registro
                 for(int o=0;o<registros.size();o++){
                     ih.tomarElTiempo(registros.get(o));  
@@ -2174,9 +2174,9 @@ public class JDReportes extends javax.swing.JDialog {
                 if(mostrarInforme){
                     ihDAO.registrosHoras(ih);
                 }
-            }else{
-                return 0;
-            }
+//            }else{
+//                return 0;
+//            }
             return res;
             
     }
@@ -2891,8 +2891,8 @@ public class JDReportes extends javax.swing.JDialog {
 
     @Action
     public Task generarInformeCustom() {
-        if(countObrasSelected() > 24){
-            OpcionPanel.showMessageDialog(null, "El límite máximo de obras seleccionadas es 24.", "Aviso",OpcionPanel.INFORMATION_MESSAGE);
+        if(countObrasSelected() > 50){
+            OpcionPanel.showMessageDialog(null, "El límite máximo de obras seleccionadas es 50.", "Aviso",OpcionPanel.INFORMATION_MESSAGE);
             return null;
         }
         if(desdeFechaFiltro.getDate() == null || hastaFechaFiltro.getDate() == null){

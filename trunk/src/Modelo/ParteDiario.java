@@ -4,6 +4,8 @@
  */
 package Modelo;
 
+import Utils.MyTime;
+import java.sql.Time;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Formatter;
@@ -15,7 +17,7 @@ import java.util.GregorianCalendar;
  */
 public class ParteDiario {
 
-    int id, idOperario, idFuncion, idObra, idHorario, idEquipo, idSituacion;
+    int id, idOperario, idFuncion, idObra, idHorario, idEquipo, idSituacion, comida, vianda, vianda_desa;
     Date fecha;
     String numero, observaciones, nombreO;
     boolean multifuncion, desarraigo;
@@ -38,6 +40,30 @@ public class ParteDiario {
 
     public void setDesarraigo(boolean desarraigo) {
         this.desarraigo = desarraigo;
+    }
+
+    public int getComida() {
+        return comida;
+    }
+
+    public void setComida(int comida) {
+        this.comida = comida;
+    }
+
+    public int getVianda() {
+        return vianda;
+    }
+
+    public void setVianda(int vianda) {
+        this.vianda = vianda;
+    }
+
+    public int getVianda_desa() {
+        return vianda_desa;
+    }
+
+    public void setVianda_desa(int vianda_desa) {
+        this.vianda_desa = vianda_desa;
     }
     
     
@@ -172,5 +198,41 @@ public class ParteDiario {
 
     public void setObservaciones(String observaciones) {
         this.observaciones = observaciones;
+    }
+    
+    public void calcularVianda(Perfiles p, Registro r, boolean desa){
+        desa = p.getObra().isTieneDesarraigo() & desa;
+        if(desa){
+            comida=0;
+            vianda=0;
+            vianda_desa=1;
+        }else{
+            vianda_desa=0;
+            if(p.getObra().isTieneComida()){
+                comida=1;
+            }else{
+                comida = 0;
+            }
+            if(p.getObra().isTieneVianda()){
+                if(r == null){
+                    vianda = 0;
+                }else{
+                    MyTime time = new MyTime();
+                    Time t = Time.valueOf("22:00:00");
+                    t = time.restarTime(t, r.hs_normal);
+                    t = time.restarTime(t, p.getObra().getLimiteViandaDobleInTime());
+                    t = time.restarTime(Time.valueOf("22:00:00"), t);
+                    if(r.hs_tarea.compareTo(t) < 0 ){
+                        vianda=0;
+                    }else{
+                        vianda=1;
+                    }
+                }
+                
+            }else{
+                vianda = 0;
+            }
+        }
+        
     }
 }

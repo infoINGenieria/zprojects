@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="842" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="842" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="9e7c41ab-deab-4a1a-9ea8-1927e02b07bc">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
@@ -8,7 +8,7 @@
 	</parameter>
 	<queryString>
 		<![CDATA[SELECT
-R.comida, R.vianda, R.vianda_desa,
+PD.comida, PD.vianda, PD.vianda_desa,
 IH.*
 FROM partediario PD
 INNER JOIN operarios O ON PD.operario = O.id
@@ -92,133 +92,133 @@ where IH.id = $P{id_reporte} and  PD.fecha <= IH.hasta_f and PD.fecha >= IH.desd
 	<summary>
 		<band height="64" splitType="Stretch">
 			<staticText>
-				<reportElement x="121" y="44" width="76" height="20"/>
+				<reportElement uuid="8c69e963-0aba-40be-88e4-f6eafdf46f00" x="121" y="44" width="76" height="20"/>
 				<textElement verticalAlignment="Middle">
 					<font isUnderline="true"/>
 				</textElement>
 				<text><![CDATA[Multifunción:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="627" y="24" width="83" height="20"/>
+				<reportElement uuid="ab47d030-fc90-4ef2-8cf5-b403fd8aa997" x="627" y="24" width="83" height="20"/>
 				<textElement verticalAlignment="Middle">
 					<font isUnderline="true"/>
 				</textElement>
 				<text><![CDATA[Hs Trabajadas:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="284" y="24" width="80" height="20"/>
+				<reportElement uuid="e96eb140-9cd4-44bb-8413-76bf52f73938" x="284" y="24" width="80" height="20"/>
 				<textElement verticalAlignment="Middle">
 					<font isUnderline="true"/>
 				</textElement>
 				<text><![CDATA[Horas al 50%:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="450" y="24" width="87" height="20"/>
+				<reportElement uuid="14cf66a9-0dda-4778-b046-26184768ef7c" x="450" y="24" width="87" height="20"/>
 				<textElement verticalAlignment="Middle">
 					<font isUnderline="true"/>
 				</textElement>
 				<text><![CDATA[Horas al 100%:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="1" y="0" width="120" height="24"/>
+				<reportElement uuid="245d357f-0530-43ef-8819-f604506a21e3" x="1" y="0" width="120" height="24"/>
 				<textElement>
 					<font fontName="SansSerif" size="16" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Totales:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="121" y="24" width="76" height="20"/>
+				<reportElement uuid="e259a2be-7d99-45db-8702-49c1c2c8e7c9" x="121" y="24" width="76" height="20"/>
 				<textElement verticalAlignment="Middle">
 					<font isUnderline="true"/>
 				</textElement>
 				<text><![CDATA[Total Hs Viaje:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="197" y="44" width="87" height="20"/>
+				<reportElement uuid="5c253c5e-ee4c-441a-8072-2b52f9b0f0f0" x="197" y="44" width="87" height="20"/>
 				<textElement verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{MULTI_FC}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="197" y="24" width="87" height="20"/>
+				<reportElement uuid="d3b064d7-f803-4e24-ab28-9e3f721604ac" x="197" y="24" width="87" height="20"/>
 				<textElement verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{TOTAL_HS_VIAJE}+" Hs."]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="364" y="24" width="86" height="20"/>
+				<reportElement uuid="0e682c60-b9b4-4b05-897d-f911b9f5e6ae" x="364" y="24" width="86" height="20"/>
 				<textElement verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{TOTAL_50}+" Hs."]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="537" y="24" width="90" height="20"/>
+				<reportElement uuid="4b717838-218e-4de6-bbea-c47a9944c296" x="537" y="24" width="90" height="20"/>
 				<textElement verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{TOTAL_100}+" Hs."]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="710" y="24" width="89" height="20"/>
+				<reportElement uuid="de774b85-f85f-40fd-8aa2-7557d26a45d1" x="710" y="24" width="89" height="20"/>
 				<textElement verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{TOTAL_TAREA}+" Hs."]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="121" y="0" width="76" height="24"/>
+				<reportElement uuid="2f49548f-bde5-4aeb-9740-b8da7df6e7c0" x="121" y="0" width="76" height="24"/>
 				<textElement verticalAlignment="Middle">
 					<font isUnderline="true"/>
 				</textElement>
 				<text><![CDATA[Obras:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="197" y="0" width="602" height="24"/>
+				<reportElement uuid="9ab1e80a-9861-4e6c-87a2-414fb7c5cbc4" x="197" y="0" width="602" height="24"/>
 				<textElement verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{X100OBRA}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="364" y="44" width="86" height="20"/>
+				<reportElement uuid="42d386b3-6767-4fc1-a720-ed3e72266626" x="364" y="44" width="86" height="20"/>
 				<textElement verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$V{comida_1}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="537" y="44" width="90" height="20"/>
+				<reportElement uuid="8f04b71a-9ace-4824-9fcd-607146bcca5f" x="537" y="44" width="90" height="20"/>
 				<textElement verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$V{vianda_1}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="736" y="44" width="63" height="20"/>
+				<reportElement uuid="9e6c33de-71a1-4b26-880c-c79be6be1ea4" x="736" y="44" width="63" height="20"/>
 				<textElement verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$V{vianda_desa_1}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="284" y="44" width="80" height="20"/>
+				<reportElement uuid="0cc6e682-8872-47f8-b9f9-75d6c60538f1" x="284" y="44" width="80" height="20"/>
 				<textElement verticalAlignment="Middle">
 					<font isUnderline="true"/>
 				</textElement>
 				<text><![CDATA[Almuerzos:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="450" y="44" width="87" height="20"/>
+				<reportElement uuid="dd036cae-3285-4aa3-a429-0578077a4d61" x="450" y="44" width="87" height="20"/>
 				<textElement verticalAlignment="Middle">
 					<font isUnderline="true"/>
 				</textElement>
 				<text><![CDATA[Viandas:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="627" y="44" width="109" height="20"/>
+				<reportElement uuid="aae2a906-1225-4960-b99f-1aec6b9a32e4" x="627" y="44" width="109" height="20"/>
 				<textElement verticalAlignment="Middle">
 					<font isUnderline="true"/>
 				</textElement>

@@ -1295,9 +1295,11 @@ private void selectEquipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                 rPD=-10;
                 return null;
             }
+            boolean desa = (pd.isDesarraigo()| ((Operario) comboOperario.getSelectedItem()).isDesarraigo());
             //evaluo el desarraigo del parte diario y el desarraigo del operario
-            reg.calcular(perfil, (pd.isDesarraigo()| ((Operario) comboOperario.getSelectedItem()).isDesarraigo()));
-            
+            reg.calcular(perfil, desa);
+            //Si la obra tiene Desarraigo y desarraigo es true
+            pd.calcularVianda(perfil, reg, desa);
             rPD = pdao.guardar(perfil, pd, reg, regEq, datosTr);
             //creo la OT si se chequeo el checkbox
             if(creandoOT){

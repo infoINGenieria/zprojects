@@ -914,7 +914,7 @@
                                   <Group type="102" alignment="0" attributes="0">
                                       <Component id="pinLimiteViandaDoble" min="-2" pref="58" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jLabel21" pref="246" max="32767" attributes="0"/>
+                                      <Component id="jLabel21" pref="258" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
@@ -947,7 +947,7 @@
                           <Component id="chkTieneRegistro" alignment="2" min="-2" max="-2" attributes="0"/>
                           <Component id="chkTieneEquipo" alignment="2" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="17" max="32767" attributes="0"/>
+                      <EmptySpace pref="29" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -993,6 +993,9 @@
                 <Property name="text" type="java.lang.String" resourceKey="chkTieneRegistro.text"/>
                 <Property name="name" type="java.lang.String" value="chkTieneRegistro" noResource="true"/>
               </Properties>
+              <Events>
+                <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="chkTieneRegistroItemStateChanged"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JCheckBox" name="chkTieneEquipo">
               <Properties>

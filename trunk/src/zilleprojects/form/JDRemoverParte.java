@@ -465,40 +465,77 @@ private void SalirBotonGestionPartesActionPerformed(java.awt.event.ActionEvent e
                 + "(Horarios, Datos de equipo, materiales)", "¿Está seguro/a?", OpcionPanel.YES_NO_OPTION)) {
             return null;
         }
+        if (listaDePartes.getSelectedValues().length== 0){
+            alertasTexto.setText("Debe seleccionar al menos un parte diario.");
+            return null;
+        }
         return new EliminarParteDiarioTask(org.jdesktop.application.Application.getInstance(zilleprojects.ZilleProjectsApp.class));
     }
 
     private class EliminarParteDiarioTask extends org.jdesktop.application.Task<Object, Void> {
 
-        boolean r = false;
-        ParteDiario pd;
+        boolean[] array_result; 
+        int cantidadSelec = 0;
+        //ParteDiario pd;
+        ArrayList<ParteDiario> partes= new ArrayList<ParteDiario>();
 
         EliminarParteDiarioTask(org.jdesktop.application.Application app) {
             // Runs on the EDT.  Copy GUI state that
             // doInBackground() depends on from parameters
             // to EliminarParteDiarioTask fields, here.
             super(app);
-            pd = (ParteDiario) listaDePartes.getSelectedValue();
+            for(Object p:  listaDePartes.getSelectedValues()){
+                partes.add((ParteDiario) p);
+            }
+            cantidadSelec = listaDePartes.getSelectedValues().length;
+            array_result = new boolean[cantidadSelec];
+            alertasTexto.setText(null);
         }
 
         @Override
         protected Object doInBackground() {
             ParteDiarioDAO pdao = new ParteDiarioDAO();
             pdao.conectar();
-            r = pdao.eliminar(pd);
+            int i = 0;
+            for(ParteDiario pd: partes){
+                array_result[i] = pdao.eliminar(pd);
+                i++;
+            }
             return null;  // return your result
         }
 
         @Override
         protected void succeeded(Object result) {
-            if (r) {
-                partesModel.removeElement(pd);
-                alertasTexto.setText("Se eliminó correctamente");
-                //restablecerDialog();
-
-            } else {
-                OpcionPanel.showMessageDialog(null, "Ocurrió un error! \nIntente nuevamente.", "ERROR", OpcionPanel.ERROR_MESSAGE);
+            int exitos = 0;
+            int fracazos = 0;
+            for(int i = 0; i < cantidadSelec; i++){
+                            
+                if(array_result[i]){
+                    partesModel.removeElement(partes.get(i));
+                    exitos++;
+                }else{
+                    fracazos++;   
+                }
             }
+            String msgResultado="Resultados de la eliminación:";
+            String titulo = "";
+            int tipoMensaje=0;
+            if(exitos!=0){
+                msgResultado+="\n - "+exitos+" parte diarios eliminados.";
+                tipoMensaje = OpcionPanel.INFORMATION_MESSAGE;
+                titulo = "RESULTADOS";
+            }
+            if(fracazos!=0){
+                msgResultado+= "\n - "+fracazos+" parte diarios seleccionados NO fueron eliminados.";
+                tipoMensaje = OpcionPanel.INFORMATION_MESSAGE;
+                titulo = "RESULTADOS";
+            }
+            if(exitos==0 && fracazos == 0){
+                tipoMensaje = OpcionPanel.ERROR;
+                msgResultado+= "\n Ocurrió un error. Intente nuevamente.";
+            }
+            OpcionPanel.showMessageDialog(null, msgResultado, titulo, tipoMensaje);
+            
         }
     }
 

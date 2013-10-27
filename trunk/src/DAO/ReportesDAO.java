@@ -754,9 +754,15 @@ public class ReportesDAO {
                 if (myCell == null) {
                     myCell = myRow.createCell(c+2);
                 }
-                //Esto es magía. 
                 //Paso el char a int, lo incremento y lo vuelvo a char.
-                char col1 = (char)((int)col+(c+2));
+                int columnaInt = (int)col;
+                String col1;
+                if((columnaInt+c+2) >= 91){
+                    col1 = "A"+(char) ((columnaInt+(c)-24));
+                }else{
+                    col1 = ""+(char)(columnaInt+(c+2));
+                }
+                
                 formula = "SUM("+col1+"3:"+col1+(contador+2)+")";
                 myCell.setCellFormula(formula);
                 if((c+2) % 2 == 0){

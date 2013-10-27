@@ -4,48 +4,71 @@
  */
 package DAO.Conexion;
 
-import Utils.Download;
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.FileReader;
-import java.net.MalformedURLException;
+import java.io.InputStream;
 import java.net.URL;
-
 
 /**
  *
  * @author matuuar
  */
 public class Update {
-    
-    public static boolean isLastVersion(LeerXML config){
-        boolean isLast=true;
-        try{
-            Download down = new Download(new URL("http://matiasvarela.com.ar/shared/zille/version.txt"));
-            down.run();   
-            File f= new File("version.txt");
-            if(f.canRead()){
+
+    public static boolean isLastVersion(LeerXML config) {
+        boolean isLast = true;
+        try {
+            // Function called
+            long startTime = System.currentTimeMillis();
+            // Open connection
+            System.out.println("Connecting...");
+            URL url = new URL("http://matiasvarela.com.ar/shared/zille/version.txt");
+            url.openConnection();
+
+            // Download routine
+            InputStream reader = url.openStream();
+            FileOutputStream writer = new FileOutputStream("version.txt");
+
+            byte[] buffer = new byte[1024];
+            int totalBytesRead = 0;
+            int bytesRead = 0;
+
+            while ((bytesRead = reader.read(buffer)) > 0) {
+                writer.write(buffer, 0, bytesRead);
+                buffer = new byte[1024];
+                totalBytesRead += bytesRead;
+            }
+
+            // Download finished
+            long endTime = System.currentTimeMillis();
+
+            // Output download information
+            System.out.println("Done.");
+            System.out.println((new Integer(totalBytesRead).toString()) + " bytes read.");
+            System.out.println("It took " + (new Long(endTime - startTime).toString()) + " milliseconds.");
+
+            // Close input and output streams
+            writer.close();
+            reader.close();
+            File f = new File("version.txt");
+            if (f.canRead()) {
                 String contenido = getArchivo(f.getAbsolutePath());
-                try{
+                try {
                     double _version = Double.parseDouble(contenido);
-                    if (zilleprojects.ZilleProjectsApp.VERSION < _version){
-//                        Download newExceutable = new Download(new URL(
-//                                "http://matiasvarela.com.ar/shared/zille/ZilleProjects.jar"),
-//                                "NuevaVersion");
-//                        newExceutable.run();
+                    if (zilleprojects.ZilleProjectsApp.VERSION < _version) {
                         isLast = false;
                     }
-                }catch (NumberFormatException e){
+                } catch (NumberFormatException e) {
                 }
             }
-        }catch(MalformedURLException e){
-            return true;
+        } catch (Exception ex) {
         }
         return isLast;
     }
-    
-    
-     public static String getArchivo(String ruta) {
+
+    public static String getArchivo(String ruta) {
         FileReader fr = null;
         BufferedReader br = null;
         //Cadena de texto donde se guardara el contenido del archivo

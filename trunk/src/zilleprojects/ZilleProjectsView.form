@@ -17,8 +17,15 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace min="-2" max="-2" attributes="0"/>
-                  <Component id="jPanel3" pref="428" max="32767" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="jPanel3" pref="389" max="32767" attributes="0"/>
+                      <Component id="btnDescargarVersion" alignment="0" min="-2" pref="386" max="-2" attributes="0"/>
+                      <Group type="102" attributes="0">
+                          <EmptySpace min="12" pref="12" max="12" attributes="0"/>
+                          <Component id="lblVersion" min="-2" pref="374" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="panelAlarmas" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
@@ -34,13 +41,14 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
                           <Component id="jPanel3" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="344" max="-2" attributes="0"/>
+                          <EmptySpace pref="251" max="32767" attributes="0"/>
+                          <Component id="btnDescargarVersion" min="-2" pref="34" max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Component id="lblVersion" min="-2" pref="31" max="-2" attributes="0"/>
                       </Group>
-                      <Group type="102" attributes="0">
-                          <Component id="panelAlarmas" max="32767" attributes="2"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="panelAlarmas" alignment="1" max="32767" attributes="2"/>
                   </Group>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -144,19 +152,19 @@
                   <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jScrollPane2" pref="520" max="32767" attributes="0"/>
                           <Component id="jButton2" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="jScrollPane2" alignment="1" pref="559" max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
+                  <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jButton2" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jScrollPane2" pref="427" max="32767" attributes="0"/>
+                      <Component id="jScrollPane2" pref="425" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -212,7 +220,7 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="428" max="32767" attributes="0"/>
+                  <EmptySpace min="0" pref="389" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
@@ -222,6 +230,28 @@
             </DimensionLayout>
           </Layout>
         </Container>
+        <Component class="javax.swing.JLabel" name="lblVersion">
+          <Properties>
+            <Property name="font" type="java.awt.Font" noResource="true" editor="org.netbeans.modules.form.editors2.FontEditor">
+              <FontInfo relative="true">
+                <Font bold="true" component="lblVersion" property="font" relativeSize="true" size="2"/>
+              </FontInfo>
+            </Property>
+            <Property name="text" type="java.lang.String" resourceKey="lblVersion.text"/>
+            <Property name="name" type="java.lang.String" value="lblVersion" noResource="true"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="btnDescargarVersion">
+          <Properties>
+            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="&quot;&lt;HTML&gt;&lt;FONT color=\&quot;#000099\&quot;&gt;&lt;U&gt;Descargar la &#xfa;ltima versi&#xf3;n del sistema.&lt;/U&gt;&lt;/FONT&gt;&lt;/HTML&gt;&quot;" type="code"/>
+            </Property>
+            <Property name="name" type="java.lang.String" value="btnDescargarVersion" noResource="true"/>
+          </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="btnDescargarVersion.setVisible(false);&#xa;btnDescargarVersion.setHorizontalAlignment(SwingConstants.CENTER);&#xa;btnDescargarVersion.setBorderPainted(false);&#xa;btnDescargarVersion.setOpaque(false);&#xa;btnDescargarVersion.setBackground(Color.WHITE);&#xa;btnDescargarVersion.setToolTipText(&quot;Descargar nueva versi&#xf3;n&quot;);&#xa;btnDescargarVersion.addActionListener(new OpenUrlAction());"/>
+          </AuxValues>
+        </Component>
       </SubComponents>
     </Container>
     <Container class="javax.swing.JMenuBar" name="menuBar">
@@ -259,7 +289,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="configurarConexion">
               <Properties>
                 <Property name="action" type="javax.swing.Action" editor="org.netbeans.modules.swingapp.ActionEditor">
-                  <action class="zilleprojects.EscuelaArgentinaView" id="configurarConnDialog" methodName="configurarConnDialog"/>
+                  <action class="zilleprojects.ZilleProjectsView" id="ConfigurarConnDialog" methodName="ConfigurarConnDialog"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" resourceKey="configurarConexion.icon"/>
                 <Property name="text" type="java.lang.String" resourceKey="configurarConexion.text"/>
@@ -968,8 +998,8 @@
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.DesignGridLayout">
                 <Property name="columns" type="int" value="2"/>
-                <Property name="horizontalGap" type="int" value="10"/>
                 <Property name="rows" type="int" value="2"/>
+                <Property name="horizontalGap" type="int" value="10"/>
                 <Property name="verticalGap" type="int" value="10"/>
               </Layout>
               <SubComponents>
@@ -1094,7 +1124,7 @@
                               <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="1" attributes="0">
                                   <Group type="102" alignment="1" attributes="0">
-                                      <Component id="empleadoText" pref="389" max="32767" attributes="0"/>
+                                      <Component id="empleadoText" pref="397" max="32767" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Component id="botonBuscarEmpleado" min="-2" pref="37" max="-2" attributes="0"/>
                                   </Group>
@@ -1104,7 +1134,7 @@
                                           <Component id="jLabel8" alignment="1" min="-2" max="-2" attributes="0"/>
                                           <Group type="102" alignment="1" attributes="1">
                                               <Component id="fechaChoose" linkSize="5" min="-2" pref="164" max="-2" attributes="0"/>
-                                              <EmptySpace pref="20" max="32767" attributes="0"/>
+                                              <EmptySpace pref="37" max="32767" attributes="0"/>
                                               <Component id="isHasta" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
@@ -1122,7 +1152,7 @@
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace pref="361" max="32767" attributes="0"/>
+                              <EmptySpace pref="375" max="32767" attributes="0"/>
                               <Component id="txtNumeroParte2" min="-2" pref="94" max="-2" attributes="0"/>
                           </Group>
                           <Component id="jScrollPane1" alignment="1" pref="565" max="32767" attributes="1"/>
