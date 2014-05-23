@@ -1,6 +1,310 @@
 <?xml version="1.1" encoding="UTF-8" ?>
 
 <Form version="1.5" maxVersion="1.7" type="org.netbeans.modules.form.forminfo.JDialogFormInfo">
+  <NonVisualComponents>
+    <Container class="javax.swing.JDialog" name="vencimientos">
+      <Properties>
+        <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+          <Dimension value="[839, 285]"/>
+        </Property>
+        <Property name="modal" type="boolean" value="true"/>
+        <Property name="name" type="java.lang.String" value="vencimientos" noResource="true"/>
+      </Properties>
+
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Component id="jPanel4" alignment="1" max="32767" attributes="0"/>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Component id="jPanel4" min="-2" pref="263" max="-2" attributes="0"/>
+          </Group>
+        </DimensionLayout>
+      </Layout>
+      <SubComponents>
+        <Container class="javax.swing.JPanel" name="jPanel4">
+          <Properties>
+            <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+              <Dimension value="[839, 285]"/>
+            </Property>
+            <Property name="name" type="java.lang.String" value="jPanel4" noResource="true"/>
+          </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new PanelAzul()"/>
+          </AuxValues>
+
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jLabel6" pref="666" max="32767" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="jButton2" min="-2" pref="131" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="jPanel3" pref="815" max="32767" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="-2" pref="218" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="2" attributes="0">
+                          <Component id="jButton2" alignment="2" pref="33" max="32767" attributes="1"/>
+                          <Component id="jLabel6" alignment="2" min="-2" pref="30" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="jPanel3" min="-2" pref="190" max="-2" attributes="0"/>
+                          <EmptySpace pref="61" max="32767" attributes="0"/>
+                      </Group>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+          </Layout>
+          <SubComponents>
+            <Container class="javax.swing.JPanel" name="jPanel3">
+              <Properties>
+                <Property name="name" type="java.lang.String" value="jPanel3" noResource="true"/>
+                <Property name="opaque" type="boolean" value="false"/>
+              </Properties>
+
+              <Layout class="org.netbeans.modules.form.compat2.layouts.DesignGridLayout">
+                <Property name="columns" type="int" value="3"/>
+                <Property name="rows" type="int" value="4"/>
+                <Property name="horizontalGap" type="int" value="15"/>
+                <Property name="verticalGap" type="int" value="15"/>
+              </Layout>
+              <SubComponents>
+                <Component class="javax.swing.JLabel" name="jLabel12">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" resourceKey="jLabel12.text"/>
+                    <Property name="name" type="java.lang.String" value="jLabel12" noResource="true"/>
+                  </Properties>
+                </Component>
+                <Component class="com.toedter.calendar.JDateChooser" name="vto_carnet">
+                  <Properties>
+                    <Property name="name" type="java.lang.String" value="vto_carnet" noResource="true"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="jLabel14">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" resourceKey="jLabel14.text"/>
+                    <Property name="name" type="java.lang.String" value="jLabel14" noResource="true"/>
+                  </Properties>
+                </Component>
+                <Component class="com.toedter.calendar.JDateChooser" name="vto_psicofisico">
+                  <Properties>
+                    <Property name="name" type="java.lang.String" value="vto_psicofisico" noResource="true"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="jLabel16">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" resourceKey="jLabel16.text"/>
+                    <Property name="name" type="java.lang.String" value="jLabel16" noResource="true"/>
+                  </Properties>
+                </Component>
+                <Component class="com.toedter.calendar.JDateChooser" name="vto_cargapeligrosa">
+                  <Properties>
+                    <Property name="name" type="java.lang.String" value="vto_cargapeligrosa" noResource="true"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="jLabel15">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" resourceKey="jLabel15.text"/>
+                    <Property name="name" type="java.lang.String" value="jLabel15" noResource="true"/>
+                  </Properties>
+                </Component>
+                <Component class="com.toedter.calendar.JDateChooser" name="vto_cargagral">
+                  <Properties>
+                    <Property name="name" type="java.lang.String" value="vto_cargagral" noResource="true"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="descripcion2">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" resourceKey="descripcion2.text"/>
+                    <Property name="disabledTextColor" type="java.awt.Color" resourceKey="nlegajo.disabledTextColor"/>
+                    <Property name="name" type="java.lang.String" value="descripcion2" noResource="true"/>
+                  </Properties>
+                </Component>
+                <Component class="com.toedter.calendar.JDateChooser" name="vto_otros2">
+                  <Properties>
+                    <Property name="name" type="java.lang.String" value="vto_otros2" noResource="true"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="descripcion3">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" resourceKey="descripcion3.text"/>
+                    <Property name="disabledTextColor" type="java.awt.Color" resourceKey="nlegajo.disabledTextColor"/>
+                    <Property name="name" type="java.lang.String" value="descripcion3" noResource="true"/>
+                  </Properties>
+                </Component>
+                <Component class="com.toedter.calendar.JDateChooser" name="vto_otros3">
+                  <Properties>
+                    <Property name="name" type="java.lang.String" value="vto_otros3" noResource="true"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="descripcion1">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" resourceKey="descripcion1.text"/>
+                    <Property name="disabledTextColor" type="java.awt.Color" resourceKey="nlegajo.disabledTextColor"/>
+                    <Property name="name" type="java.lang.String" value="descripcion1" noResource="true"/>
+                  </Properties>
+                </Component>
+                <Component class="com.toedter.calendar.JDateChooser" name="vto_otros1">
+                  <Properties>
+                    <Property name="name" type="java.lang.String" value="vto_otros1" noResource="true"/>
+                  </Properties>
+                </Component>
+              </SubComponents>
+            </Container>
+            <Component class="javax.swing.JButton" name="jButton2">
+              <Properties>
+                <Property name="text" type="java.lang.String" resourceKey="btnCancelar.text"/>
+                <Property name="name" type="java.lang.String" value="btnCancelar" noResource="true"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton2ActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel6">
+              <Properties>
+                <Property name="foreground" type="java.awt.Color" resourceKey="lblStatusVencimientos.foreground"/>
+                <Property name="text" type="java.lang.String" resourceKey="lblStatusVencimientos.text"/>
+                <Property name="name" type="java.lang.String" value="lblStatusVencimientos" noResource="true"/>
+              </Properties>
+            </Component>
+          </SubComponents>
+        </Container>
+      </SubComponents>
+    </Container>
+    <Container class="javax.swing.JDialog" name="epp">
+      <Properties>
+        <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+          <Dimension value="[650, 390]"/>
+        </Property>
+        <Property name="modal" type="boolean" value="true"/>
+        <Property name="name" type="java.lang.String" value="epp" noResource="true"/>
+      </Properties>
+
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Component id="jPanel5" alignment="0" pref="365" max="32767" attributes="0"/>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Component id="jPanel5" pref="350" max="32767" attributes="0"/>
+          </Group>
+        </DimensionLayout>
+      </Layout>
+      <SubComponents>
+        <Container class="javax.swing.JPanel" name="jPanel5">
+          <Properties>
+            <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+              <Dimension value="[650, 390]"/>
+            </Property>
+            <Property name="name" type="java.lang.String" value="jPanel5" noResource="true"/>
+            <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+              <Dimension value="[650, 390]"/>
+            </Property>
+          </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new PanelAzul()"/>
+          </AuxValues>
+
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jScrollPane3" alignment="1" pref="341" max="32767" attributes="0"/>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="btnGuardarEPP" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="btnCerrar" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jScrollPane3" min="-2" pref="295" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="btnCerrar" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnGuardarEPP" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="32767" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+          </Layout>
+          <SubComponents>
+            <Component class="javax.swing.JButton" name="btnCerrar">
+              <Properties>
+                <Property name="text" type="java.lang.String" resourceKey="btnCerrar.text"/>
+                <Property name="name" type="java.lang.String" value="btnCerrar" noResource="true"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCerrarActionPerformed"/>
+              </Events>
+            </Component>
+            <Container class="javax.swing.JScrollPane" name="jScrollPane3">
+              <Properties>
+                <Property name="name" type="java.lang.String" value="jScrollPane3" noResource="true"/>
+              </Properties>
+              <AuxValues>
+                <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+              </AuxValues>
+
+              <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+              <SubComponents>
+                <Component class="javax.swing.JTable" name="tablaEpps">
+                  <Properties>
+                    <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="new EPPTableModel()" type="code"/>
+                    </Property>
+                    <Property name="name" type="java.lang.String" value="tablaEpps" noResource="true"/>
+                  </Properties>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new JTableCustom()"/>
+                  </AuxValues>
+                </Component>
+              </SubComponents>
+            </Container>
+            <Component class="javax.swing.JButton" name="btnGuardarEPP">
+              <Properties>
+                <Property name="action" type="javax.swing.Action" editor="org.netbeans.modules.swingapp.ActionEditor">
+                  <action class="zilleprojects.form.JDEmpleadoGestion" id="guardarEPP" methodName="guardarEPP"/>
+                </Property>
+                <Property name="text" type="java.lang.String" resourceKey="btnGuardarEPP.text"/>
+                <Property name="name" type="java.lang.String" value="btnGuardarEPP" noResource="true"/>
+              </Properties>
+            </Component>
+          </SubComponents>
+        </Container>
+      </SubComponents>
+    </Container>
+  </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="2"/>
     <Property name="title" type="java.lang.String" resourceKey="Form.title"/>
@@ -55,26 +359,24 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
-                  <EmptySpace max="-2" attributes="0"/>
+                  <EmptySpace min="-2" max="-2" attributes="0"/>
+                  <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="0" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jPanel2" alignment="1" min="-2" max="-2" attributes="1"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="nuevoOperario" alignment="1" max="32767" attributes="1"/>
-                              <Group type="102" alignment="1" attributes="0">
-                                  <Component id="alertas" pref="562" max="32767" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="botonSalir" min="-2" max="-2" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="alertas" pref="781" max="32767" attributes="0"/>
+                                  <EmptySpace min="-2" max="-2" attributes="0"/>
+                                  <Component id="botonSalir" min="-2" pref="135" max="-2" attributes="0"/>
                               </Group>
+                              <Component id="nuevoOperario" alignment="0" max="32767" attributes="1"/>
                           </Group>
-                          <EmptySpace max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="1" attributes="0">
-                          <Component id="jPanel2" min="-2" max="-2" attributes="1"/>
-                          <EmptySpace min="12" pref="12" max="12" attributes="0"/>
                       </Group>
                   </Group>
+                  <EmptySpace min="-2" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -83,15 +385,15 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jPanel1" alignment="0" pref="481" max="32767" attributes="1"/>
+                      <Component id="jPanel1" alignment="0" max="32767" attributes="1"/>
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="nuevoOperario" pref="373" max="32767" attributes="1"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="botonSalir" linkSize="7" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="alertas" linkSize="7" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                          <Component id="nuevoOperario" min="-2" pref="362" max="-2" attributes="1"/>
+                          <EmptySpace pref="21" max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Component id="botonSalir" min="-2" max="-2" attributes="0"/>
+                              <Component id="alertas" min="-2" pref="34" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -118,10 +420,10 @@
                               <EmptySpace min="10" pref="10" max="10" attributes="0"/>
                               <Component id="botonModificar" linkSize="9" min="-2" pref="66" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
-                              <Component id="botonEliminar1" linkSize="9" min="-2" pref="62" max="-2" attributes="0"/>
+                              <Component id="botonEliminar1" linkSize="9" min="-2" pref="75" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="buscarEmpleado" min="-2" pref="258" max="-2" attributes="0"/>
-                          <Component id="jScrollPane1" min="-2" max="-2" attributes="0"/>
+                          <Component id="buscarEmpleado" linkSize="15" min="-2" pref="258" max="-2" attributes="0"/>
+                          <Component id="jScrollPane1" linkSize="15" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -129,7 +431,7 @@
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <EmptySpace min="5" pref="5" max="5" attributes="0"/>
+                      <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="botonEliminar" min="-2" max="-2" attributes="0"/>
                           <Component id="botonModificar" min="-2" max="-2" attributes="0"/>
@@ -137,8 +439,8 @@
                       </Group>
                       <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                       <Component id="buscarEmpleado" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="10" pref="10" max="10" attributes="0"/>
-                      <Component id="jScrollPane1" min="-2" pref="385" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                      <Component id="jScrollPane1" pref="378" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -159,7 +461,6 @@
               <Events>
                 <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="buscarEmpleadoFocusGained"/>
                 <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="buscarEmpleadoFocusLost"/>
-                <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="buscarEmpleadoKeyPressed"/>
                 <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="buscarEmpleadoKeyReleased"/>
               </Events>
             </Component>
@@ -237,136 +538,120 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <EmptySpace min="5" pref="5" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
+                              <EmptySpace min="12" pref="12" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jLabel12" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel14" min="-2" pref="145" max="-2" attributes="0"/>
-                                  <Component id="jLabel16" min="-2" pref="145" max="-2" attributes="0"/>
-                                  <Component id="descripcion2" min="-2" pref="145" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="vto_carnet" linkSize="10" alignment="0" min="-2" pref="114" max="-2" attributes="0"/>
-                                  <Component id="vto_psicofisico" linkSize="10" alignment="0" min="-2" pref="114" max="-2" attributes="0"/>
-                                  <Component id="vto_cargapeligrosa" linkSize="10" alignment="0" min="-2" pref="114" max="-2" attributes="0"/>
-                                  <Component id="vto_otros2" linkSize="10" alignment="0" min="-2" pref="114" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Group type="102" attributes="0">
+                                  <Group type="102" alignment="0" max="-2" attributes="0">
+                                      <Component id="jLabel1" min="-2" pref="200" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
-                                      <Component id="descripcion3" min="-2" pref="126" max="-2" attributes="0"/>
-                                      <EmptySpace min="10" pref="10" max="10" attributes="0"/>
-                                      <Component id="vto_otros3" linkSize="11" min="-2" pref="225" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Group type="102" attributes="0">
+                                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                                  <Component id="comboFuncion" alignment="0" pref="339" max="32767" attributes="1"/>
+                                                  <Component id="btnVacaciones" alignment="0" max="32767" attributes="1"/>
+                                                  <Component id="btnVencimientos" alignment="0" max="32767" attributes="1"/>
+                                              </Group>
+                                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                              <Group type="103" groupAlignment="0" attributes="0">
+                                                  <Group type="102" attributes="0">
+                                                      <Component id="btnMasFuncion" min="-2" max="-2" attributes="0"/>
+                                                      <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                                                      <Component id="desaCheck" min="-2" pref="113" max="-2" attributes="0"/>
+                                                      <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
+                                                  </Group>
+                                                  <Component id="btnEPP" pref="296" max="32767" attributes="1"/>
+                                              </Group>
+                                          </Group>
+                                          <Group type="102" attributes="0">
+                                              <Component id="dateIngreso" min="-2" pref="200" max="-2" attributes="0"/>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Component id="txtAntiguedad" min="-2" pref="25" max="-2" attributes="0"/>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Component id="lblanti" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace pref="106" max="32767" attributes="0"/>
+                                              <Component id="lblanti1" min="-2" pref="161" max="-2" attributes="0"/>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Component id="txtDiasVacaciones" min="-2" pref="28" max="-2" attributes="0"/>
+                                          </Group>
+                                      </Group>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                          <Component id="jLabel15" max="32767" attributes="1"/>
-                                          <Component id="descripcion1" alignment="1" pref="126" max="32767" attributes="1"/>
+                                          <Component id="jLabel5" alignment="0" max="32767" attributes="1"/>
+                                          <Component id="jLabel4" alignment="0" max="32767" attributes="1"/>
+                                          <Component id="jLabel2" alignment="0" pref="153" max="32767" attributes="1"/>
                                       </Group>
+                                      <EmptySpace min="57" pref="57" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Group type="102" alignment="0" attributes="0">
-                                              <EmptySpace min="10" pref="10" max="10" attributes="0"/>
-                                              <Component id="vto_otros1" linkSize="11" min="-2" pref="225" max="-2" attributes="0"/>
-                                          </Group>
-                                          <Group type="102" alignment="1" attributes="0">
+                                              <Component id="nlegajo" min="-2" pref="245" max="-2" attributes="0"/>
                                               <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
-                                              <Component id="vto_cargagral" linkSize="11" min="-2" pref="225" max="-2" attributes="0"/>
+                                              <Component id="jLabel3" min="-2" pref="200" max="-2" attributes="0"/>
+                                              <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                                              <Component id="cuil" pref="227" max="32767" attributes="0"/>
                                           </Group>
+                                          <Component id="nombre" pref="692" max="32767" attributes="0"/>
+                                          <Component id="jScrollPane2" pref="692" max="32767" attributes="0"/>
                                       </Group>
-                                  </Group>
-                                  <Group type="102" alignment="0" attributes="1">
-                                      <EmptySpace min="-2" pref="146" max="-2" attributes="0"/>
-                                      <Component id="desaCheck" linkSize="11" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
-                          <Group type="102" attributes="0">
-                              <Component id="jLabel1" min="-2" pref="145" max="-2" attributes="0"/>
-                              <EmptySpace min="10" pref="10" max="10" attributes="0"/>
-                              <Component id="comboFuncion" min="-2" pref="362" max="-2" attributes="0"/>
-                              <EmptySpace min="10" pref="10" max="10" attributes="0"/>
-                              <Component id="jButton3" min="-2" pref="113" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" attributes="0">
-                              <Component id="jLabel5" min="-2" pref="145" max="-2" attributes="0"/>
-                              <EmptySpace min="10" pref="10" max="10" attributes="0"/>
-                              <Component id="jScrollPane2" min="-2" pref="485" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" attributes="0">
-                              <Component id="jLabel4" min="-2" pref="145" max="-2" attributes="0"/>
-                              <EmptySpace min="10" pref="10" max="10" attributes="0"/>
-                              <Component id="nombre" min="-2" pref="485" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" attributes="0">
-                              <Component id="jLabel2" min="-2" pref="145" max="-2" attributes="0"/>
-                              <EmptySpace min="10" pref="10" max="10" attributes="0"/>
-                              <Component id="nlegajo" min="-2" pref="114" max="-2" attributes="0"/>
-                              <EmptySpace min="10" pref="10" max="10" attributes="0"/>
-                              <Component id="jLabel3" min="-2" pref="126" max="-2" attributes="0"/>
-                              <EmptySpace min="10" pref="10" max="10" attributes="0"/>
-                              <Component id="cuil" min="-2" pref="225" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jLabel7" min="-2" pref="200" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="5" pref="5" max="5" attributes="0"/>
+                  <Group type="102" max="-2" attributes="0">
+                      <EmptySpace min="12" pref="12" max="12" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jLabel2" min="-2" pref="27" max="-2" attributes="0"/>
-                          <Component id="nlegajo" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel3" min="-2" pref="27" max="-2" attributes="0"/>
-                          <Component id="cuil" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel3" min="-2" pref="24" max="-2" attributes="0"/>
+                          <Component id="cuil" min="-2" pref="24" max="-2" attributes="0"/>
+                          <Component id="jLabel2" min="-2" pref="24" max="-2" attributes="0"/>
+                          <Component id="nlegajo" min="-2" pref="24" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="10" pref="10" max="10" attributes="0"/>
+                      <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jLabel4" min="-2" pref="27" max="-2" attributes="0"/>
-                          <Component id="nombre" min="-2" max="-2" attributes="0"/>
+                          <Component id="nombre" min="-2" pref="24" max="-2" attributes="0"/>
+                          <Component id="jLabel4" min="-2" pref="24" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="10" pref="10" max="10" attributes="0"/>
+                      <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
                           <Component id="jScrollPane2" min="-2" pref="93" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="10" pref="10" max="10" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jLabel1" min="-2" pref="36" max="-2" attributes="0"/>
-                          <Component id="comboFuncion" min="-2" pref="36" max="-2" attributes="0"/>
-                          <Component id="jButton3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="10" pref="10" max="10" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jLabel12" min="-2" pref="27" max="-2" attributes="0"/>
-                          <Component id="vto_carnet" min="-2" max="-2" attributes="0"/>
-                          <Component id="desaCheck" min="-2" pref="27" max="-2" attributes="0"/>
+                          <Component id="jLabel5" min="-2" pref="24" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jLabel14" min="-2" pref="27" max="-2" attributes="0"/>
-                          <Component id="vto_psicofisico" min="-2" max="-2" attributes="0"/>
-                          <Component id="vto_cargagral" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel15" min="-2" pref="27" max="-2" attributes="0"/>
+                          <Component id="jLabel1" min="-2" pref="24" max="-2" attributes="0"/>
+                          <Component id="comboFuncion" min="-2" pref="24" max="-2" attributes="0"/>
+                          <Component id="btnMasFuncion" min="-2" pref="24" max="-2" attributes="0"/>
+                          <Component id="desaCheck" min="-2" pref="24" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jLabel16" min="-2" pref="27" max="-2" attributes="0"/>
-                          <Component id="vto_cargapeligrosa" min="-2" max="-2" attributes="0"/>
-                          <Component id="descripcion1" min="-2" max="-2" attributes="0"/>
-                          <Component id="vto_otros1" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                              <Component id="lblanti" linkSize="14" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
+                              <Component id="txtDiasVacaciones" linkSize="14" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
+                              <Component id="lblanti1" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="txtAntiguedad" linkSize="14" min="-2" pref="24" max="-2" attributes="0"/>
+                          <Component id="jLabel7" alignment="0" pref="24" max="32767" attributes="1"/>
+                          <Component id="dateIngreso" alignment="0" pref="24" max="32767" attributes="1"/>
                       </Group>
-                      <EmptySpace min="10" pref="10" max="10" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="descripcion2" min="-2" max="-2" attributes="0"/>
-                          <Component id="vto_otros2" min="-2" max="-2" attributes="0"/>
-                          <Component id="descripcion3" min="-2" max="-2" attributes="0"/>
-                          <Component id="vto_otros3" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="btnVencimientos" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnEPP" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="btnVacaciones" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -382,12 +667,15 @@
               <Properties>
                 <Property name="text" type="java.lang.String" resourceKey="nlegajo.text"/>
                 <Property name="disabledTextColor" type="java.awt.Color" resourceKey="nlegajo.disabledTextColor"/>
+                <Property name="enabled" type="boolean" value="false"/>
                 <Property name="name" type="java.lang.String" value="nlegajo" noResource="true"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel3">
               <Properties>
+                <Property name="horizontalAlignment" type="int" value="4"/>
                 <Property name="text" type="java.lang.String" resourceKey="jLabel3.text"/>
+                <Property name="horizontalTextPosition" type="int" value="4"/>
                 <Property name="name" type="java.lang.String" value="jLabel3" noResource="true"/>
               </Properties>
             </Component>
@@ -395,6 +683,7 @@
               <Properties>
                 <Property name="text" type="java.lang.String" resourceKey="cuil.text"/>
                 <Property name="disabledTextColor" type="java.awt.Color" resourceKey="nlegajo.disabledTextColor"/>
+                <Property name="enabled" type="boolean" value="false"/>
                 <Property name="name" type="java.lang.String" value="cuil" noResource="true"/>
               </Properties>
             </Component>
@@ -408,6 +697,7 @@
               <Properties>
                 <Property name="text" type="java.lang.String" resourceKey="nombre.text"/>
                 <Property name="disabledTextColor" type="java.awt.Color" resourceKey="nlegajo.disabledTextColor"/>
+                <Property name="enabled" type="boolean" value="false"/>
                 <Property name="name" type="java.lang.String" value="nombre" noResource="true"/>
               </Properties>
               <Events>
@@ -437,6 +727,7 @@
                     <Property name="rows" type="int" value="6"/>
                     <Property name="tabSize" type="int" value="4"/>
                     <Property name="disabledTextColor" type="java.awt.Color" resourceKey="nlegajo.disabledTextColor"/>
+                    <Property name="enabled" type="boolean" value="false"/>
                     <Property name="name" type="java.lang.String" value="observaciones" noResource="true"/>
                     <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                       <Dimension value="[295, 90]"/>
@@ -459,100 +750,93 @@
                 <Property name="name" type="java.lang.String" value="comboFuncion" noResource="true"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton3">
+            <Component class="javax.swing.JButton" name="btnMasFuncion">
               <Properties>
                 <Property name="action" type="javax.swing.Action" editor="org.netbeans.modules.swingapp.ActionEditor">
                   <action class="zilleprojects.form.JDEmpleadoGestion" id="agregarFuncion" methodName="agregarFuncion"/>
                 </Property>
-                <Property name="icon" type="javax.swing.Icon" resourceKey="jButton3.icon"/>
-                <Property name="text" type="java.lang.String" resourceKey="jButton3.text"/>
-                <Property name="name" type="java.lang.String" value="jButton3" noResource="true"/>
+                <Property name="icon" type="javax.swing.Icon" resourceKey="btnMasFuncion.icon"/>
+                <Property name="text" type="java.lang.String" resourceKey="btnMasFuncion.text"/>
+                <Property name="enabled" type="boolean" value="false"/>
+                <Property name="name" type="java.lang.String" value="btnMasFuncion" noResource="true"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JCheckBox" name="desaCheck">
               <Properties>
                 <Property name="text" type="java.lang.String" resourceKey="desaCheck.text"/>
+                <Property name="enabled" type="boolean" value="false"/>
                 <Property name="name" type="java.lang.String" value="desaCheck" noResource="true"/>
               </Properties>
             </Component>
-            <Component class="com.toedter.calendar.JDateChooser" name="vto_carnet">
+            <Component class="javax.swing.JButton" name="btnVencimientos">
               <Properties>
-                <Property name="name" type="java.lang.String" value="vto_carnet" noResource="true"/>
+                <Property name="action" type="javax.swing.Action" editor="org.netbeans.modules.swingapp.ActionEditor">
+                  <action class="zilleprojects.form.JDEmpleadoGestion" id="showVencimientos" methodName="showVencimientos"/>
+                </Property>
+                <Property name="text" type="java.lang.String" resourceKey="btnVencimientos.text"/>
+                <Property name="enabled" type="boolean" value="false"/>
+                <Property name="name" type="java.lang.String" value="btnVencimientos" noResource="true"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel12">
+            <Component class="javax.swing.JButton" name="btnVacaciones">
               <Properties>
-                <Property name="text" type="java.lang.String" resourceKey="jLabel12.text"/>
-                <Property name="name" type="java.lang.String" value="jLabel12" noResource="true"/>
+                <Property name="text" type="java.lang.String" resourceKey="btnVacaciones.text"/>
+                <Property name="enabled" type="boolean" value="false"/>
+                <Property name="name" type="java.lang.String" value="btnVacaciones" noResource="true"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel14">
+            <Component class="javax.swing.JButton" name="btnEPP">
               <Properties>
-                <Property name="text" type="java.lang.String" resourceKey="jLabel14.text"/>
-                <Property name="name" type="java.lang.String" value="jLabel14" noResource="true"/>
+                <Property name="action" type="javax.swing.Action" editor="org.netbeans.modules.swingapp.ActionEditor">
+                  <action class="zilleprojects.form.JDEmpleadoGestion" id="showEPP" methodName="showEPP"/>
+                </Property>
+                <Property name="text" type="java.lang.String" resourceKey="btnEPP.text"/>
+                <Property name="enabled" type="boolean" value="false"/>
+                <Property name="name" type="java.lang.String" value="btnEPP" noResource="true"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel15">
+            <Component class="javax.swing.JLabel" name="jLabel7">
               <Properties>
-                <Property name="text" type="java.lang.String" resourceKey="jLabel15.text"/>
-                <Property name="name" type="java.lang.String" value="jLabel15" noResource="true"/>
+                <Property name="text" type="java.lang.String" resourceKey="jLabel7.text"/>
+                <Property name="name" type="java.lang.String" value="jLabel7" noResource="true"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel16">
+            <Component class="com.toedter.calendar.JDateChooser" name="dateIngreso">
               <Properties>
-                <Property name="text" type="java.lang.String" resourceKey="jLabel16.text"/>
-                <Property name="name" type="java.lang.String" value="jLabel16" noResource="true"/>
+                <Property name="enabled" type="boolean" value="false"/>
+                <Property name="name" type="java.lang.String" value="dateIngreso" noResource="true"/>
+              </Properties>
+              <Events>
+                <EventHandler event="propertyChange" listener="java.beans.PropertyChangeListener" parameters="java.beans.PropertyChangeEvent" handler="dateIngresoPropertyChange"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JLabel" name="lblanti">
+              <Properties>
+                <Property name="text" type="java.lang.String" resourceKey="lblanti.text"/>
+                <Property name="name" type="java.lang.String" value="lblanti" noResource="true"/>
               </Properties>
             </Component>
-            <Component class="com.toedter.calendar.JDateChooser" name="vto_psicofisico">
+            <Component class="javax.swing.JLabel" name="txtAntiguedad">
               <Properties>
-                <Property name="name" type="java.lang.String" value="vto_psicofisico" noResource="true"/>
+                <Property name="font" type="java.awt.Font" resourceKey="txtAntiguedad.font"/>
+                <Property name="horizontalAlignment" type="int" value="0"/>
+                <Property name="text" type="java.lang.String" resourceKey="txtAntiguedad.text"/>
+                <Property name="name" type="java.lang.String" value="txtAntiguedad" noResource="true"/>
               </Properties>
             </Component>
-            <Component class="com.toedter.calendar.JDateChooser" name="vto_cargagral">
+            <Component class="javax.swing.JLabel" name="txtDiasVacaciones">
               <Properties>
-                <Property name="name" type="java.lang.String" value="vto_cargagral" noResource="true"/>
+                <Property name="font" type="java.awt.Font" resourceKey="txtDiasVacaciones.font"/>
+                <Property name="horizontalAlignment" type="int" value="4"/>
+                <Property name="text" type="java.lang.String" resourceKey="txtDiasVacaciones.text"/>
+                <Property name="name" type="java.lang.String" value="txtDiasVacaciones" noResource="true"/>
               </Properties>
             </Component>
-            <Component class="com.toedter.calendar.JDateChooser" name="vto_otros1">
+            <Component class="javax.swing.JLabel" name="lblanti1">
               <Properties>
-                <Property name="name" type="java.lang.String" value="vto_otros1" noResource="true"/>
-              </Properties>
-            </Component>
-            <Component class="com.toedter.calendar.JDateChooser" name="vto_otros3">
-              <Properties>
-                <Property name="name" type="java.lang.String" value="vto_otros3" noResource="true"/>
-              </Properties>
-            </Component>
-            <Component class="com.toedter.calendar.JDateChooser" name="vto_cargapeligrosa">
-              <Properties>
-                <Property name="name" type="java.lang.String" value="vto_cargapeligrosa" noResource="true"/>
-              </Properties>
-            </Component>
-            <Component class="com.toedter.calendar.JDateChooser" name="vto_otros2">
-              <Properties>
-                <Property name="name" type="java.lang.String" value="vto_otros2" noResource="true"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JTextField" name="descripcion1">
-              <Properties>
-                <Property name="text" type="java.lang.String" resourceKey="descripcion1.text"/>
-                <Property name="disabledTextColor" type="java.awt.Color" resourceKey="nlegajo.disabledTextColor"/>
-                <Property name="name" type="java.lang.String" value="descripcion1" noResource="true"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JTextField" name="descripcion3">
-              <Properties>
-                <Property name="text" type="java.lang.String" resourceKey="descripcion3.text"/>
-                <Property name="disabledTextColor" type="java.awt.Color" resourceKey="nlegajo.disabledTextColor"/>
-                <Property name="name" type="java.lang.String" value="descripcion3" noResource="true"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JTextField" name="descripcion2">
-              <Properties>
-                <Property name="text" type="java.lang.String" resourceKey="descripcion2.text"/>
-                <Property name="disabledTextColor" type="java.awt.Color" resourceKey="nlegajo.disabledTextColor"/>
-                <Property name="name" type="java.lang.String" value="descripcion2" noResource="true"/>
+                <Property name="horizontalAlignment" type="int" value="4"/>
+                <Property name="text" type="java.lang.String" resourceKey="lblanti1.text"/>
+                <Property name="name" type="java.lang.String" value="lblanti1" noResource="true"/>
               </Properties>
             </Component>
           </SubComponents>
@@ -580,14 +864,14 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jLabel17" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="operarioId" min="-2" pref="110" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="operarioId" min="-2" pref="220" max="-2" attributes="0"/>
+                      <EmptySpace pref="199" max="32767" attributes="0"/>
                       <Component id="btnGuardar" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="btnModificar" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="btnCancelar" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="46" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -595,16 +879,12 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                              <Component id="btnGuardar" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="btnModificar" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="btnCancelar" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="103" groupAlignment="2" attributes="0">
-                              <Component id="jLabel17" linkSize="6" alignment="2" min="-2" pref="20" max="-2" attributes="0"/>
-                              <Component id="operarioId" linkSize="6" alignment="2" min="-2" pref="25" max="-2" attributes="0"/>
-                          </Group>
+                      <Group type="103" groupAlignment="2" attributes="0">
+                          <Component id="jLabel17" linkSize="6" alignment="2" min="-2" pref="20" max="-2" attributes="0"/>
+                          <Component id="operarioId" linkSize="6" alignment="2" min="-2" pref="25" max="-2" attributes="0"/>
+                          <Component id="btnGuardar" alignment="2" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnModificar" alignment="2" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnCancelar" alignment="2" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
@@ -663,7 +943,9 @@
           <Properties>
             <Property name="foreground" type="java.awt.Color" resourceKey="alertas.foreground"/>
             <Property name="text" type="java.lang.String" resourceKey="alertas.text"/>
+            <Property name="verticalAlignment" type="int" value="1"/>
             <Property name="name" type="java.lang.String" value="alertas" noResource="true"/>
+            <Property name="verticalTextPosition" type="int" value="1"/>
           </Properties>
         </Component>
       </SubComponents>

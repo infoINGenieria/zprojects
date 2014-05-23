@@ -12,6 +12,7 @@ package zilleprojects.form;
 
 import DAO.ObrasDAO;
 import Modelo.Obras;
+import Utils.Permisos;
 import Vista.OpcionPanel;
 import Vista.PanelAzul;
 import java.util.ArrayList;
@@ -611,7 +612,7 @@ public class JDObrasGestion extends javax.swing.JDialog {
                     .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE)
                     .addComponent(nuevaObra, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE)
                     .addComponent(jButton3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 127, Short.MAX_VALUE)
                     .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -638,6 +639,7 @@ public class JDObrasGestion extends javax.swing.JDialog {
 
         jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(resourceMap.getColor("jPanel5.border.border.lineColor"), 1, true), resourceMap.getString("jPanel5.border.title"))); // NOI18N
         jPanel5.setName("jPanel5"); // NOI18N
+        jPanel5.setOpaque(false);
 
         chkTieneComida.setText(resourceMap.getString("chkTieneComida.text")); // NOI18N
         chkTieneComida.setName("chkTieneComida"); // NOI18N
@@ -687,7 +689,7 @@ public class JDObrasGestion extends javax.swing.JDialog {
                             .addGroup(jPanel5Layout.createSequentialGroup()
                                 .addComponent(pinLimiteViandaDoble, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel21, javax.swing.GroupLayout.DEFAULT_SIZE, 258, Short.MAX_VALUE))))
+                                .addComponent(jLabel21, javax.swing.GroupLayout.DEFAULT_SIZE, 247, Short.MAX_VALUE))))
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addComponent(chkTieneRegistro)
                         .addGap(41, 41, 41)
@@ -710,7 +712,7 @@ public class JDObrasGestion extends javax.swing.JDialog {
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(chkTieneRegistro)
                     .addComponent(chkTieneEquipo))
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addContainerGap(41, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout capaLayout = new javax.swing.GroupLayout(capa);
@@ -864,6 +866,7 @@ private void chkTieneRegistroItemStateChanged(java.awt.event.ItemEvent evt) {//G
 
     @Action
     public Task eliminarObra() {
+        if(!Permisos.verificarCredenciales("Administrador")) return null;
         if (OpcionPanel.NO_OPTION == OpcionPanel.showConfirmDialog(null, "¿Desea eliminar los datos seleccionado.\n"
                 + "No será pusible recuperalos.", "Confirmar", OpcionPanel.YES_NO_OPTION)) {
             return null;

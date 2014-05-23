@@ -13,6 +13,7 @@ package zilleprojects.form;
 import DAO.AlarmasDAO;
 import Modelo.Alarma;
 import Utils.FechaUtil;
+import Utils.Permisos;
 import Vista.OpcionPanel;
 import Vista.PanelAzul;
 import java.awt.Image;
@@ -615,6 +616,7 @@ private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
 
     @Action
     public Task eliminarAlarma() {
+        if(!Permisos.verificarCredenciales("Administrador")) return null;
         if(alActual.getAlarmaID() == 0) return  null;
         if(OpcionPanel.NO_OPTION == OpcionPanel.showConfirmDialog(null, "¿Realmente desea quitar esta alarma del sistema?", "Confirmar eliminación", OpcionPanel.YES_NO_OPTION)){
             return null;

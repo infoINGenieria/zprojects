@@ -4,6 +4,7 @@
  */
 package DAO;
 
+import Modelo.EPPOperario;
 import Modelo.ItemAlarma;
 import Modelo.Operario;
 import Utils.FechaUtil;
@@ -40,8 +41,8 @@ public class OperarioDAO {
             query = "insert into operarios (N_LEGAJO, NOMBRE, CUIL, OBSERVACIONES, " +
                     "FUNCION, DESARRAIGO, VTO_CARNET, VTO_PSICOFISICO, VTO_CARGAGRAL, "+
                     "VTO_CARGAPELIGROSA, DESCRIPCION_VTO1, DESCRIPCION_VTO2, " +
-                    "DESCRIPCION_VTO3, VTO_OTROS1, VTO_OTROS2, VTO_OTROS3) values "
-                    + "(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                    "DESCRIPCION_VTO3, VTO_OTROS1, VTO_OTROS2, VTO_OTROS3, FECHA_INGRESO) values "
+                    + "(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement ps = conector.prepareStatement(query);
             ps.setString(1, op.getN_legajo());
             ps.setString(2, op.getNombre());
@@ -59,6 +60,7 @@ public class OperarioDAO {
             ps.setDate(14, FechaUtil.getFechatoDB(op.getVto_otros1()));
             ps.setDate(15, FechaUtil.getFechatoDB(op.getVto_otros2()));
             ps.setDate(16, FechaUtil.getFechatoDB(op.getVto_otros3()));
+            ps.setDate(17, FechaUtil.getFechatoDB(op.getFecha_ingreso()));
             ps.executeUpdate();
             ResultSet generatedKeys = ps.getGeneratedKeys();
             r=1;
@@ -82,7 +84,8 @@ public class OperarioDAO {
                     + "OBSERVACIONES=?, FUNCION=?, DESARRAIGO=?, VTO_CARNET =?, " +
                     "VTO_PSICOFISICO=?, VTO_CARGAGRAL=?, "+
                     "VTO_CARGAPELIGROSA=?, DESCRIPCION_VTO1=?, DESCRIPCION_VTO2=?, " +
-                    "DESCRIPCION_VTO3=?, VTO_OTROS1=?, VTO_OTROS2=?, VTO_OTROS3=? where ID = ?";
+                    "DESCRIPCION_VTO3=?, VTO_OTROS1=?, VTO_OTROS2=?, VTO_OTROS3=?, "
+                    + "FECHA_INGRESO=? where ID = ?";
             PreparedStatement ps = conector.prepareStatement(query);
             ps.setString(1, op.getN_legajo());
             ps.setString(2, op.getNombre());
@@ -100,7 +103,8 @@ public class OperarioDAO {
             ps.setDate(14, FechaUtil.getFechatoDB(op.getVto_otros1()));
             ps.setDate(15, FechaUtil.getFechatoDB(op.getVto_otros2()));
             ps.setDate(16, FechaUtil.getFechatoDB(op.getVto_otros3()));
-            ps.setInt(17, op.getId());
+            ps.setDate(17, FechaUtil.getFechatoDB(op.getFecha_ingreso()));
+            ps.setInt(18, op.getId());
             
             ps.executeUpdate();
             ResultSet rs = ps.getGeneratedKeys();
@@ -142,6 +146,7 @@ public class OperarioDAO {
                 op.setVto_otros1(rs.getDate("VTO_OTROS1"));
                 op.setVto_otros2(rs.getDate("VTO_OTROS2"));
                 op.setVto_otros3(rs.getDate("VTO_OTROS3"));
+                op.setFecha_ingreso(rs.getDate("FECHA_INGRESO"));
                 empleados.add(op);
             }
             rs.close();
@@ -185,6 +190,7 @@ public class OperarioDAO {
                 op.setVto_otros1(rs.getDate("VTO_OTROS1"));
                 op.setVto_otros2(rs.getDate("VTO_OTROS2"));
                 op.setVto_otros3(rs.getDate("VTO_OTROS3"));
+                op.setFecha_ingreso(rs.getDate("FECHA_INGRESO"));
                 empleados.add(op);
             }
             rs.close();
@@ -225,6 +231,7 @@ public class OperarioDAO {
                 op.setVto_otros1(rs.getDate("VTO_OTROS1"));
                 op.setVto_otros2(rs.getDate("VTO_OTROS2"));
                 op.setVto_otros3(rs.getDate("VTO_OTROS3"));
+                op.setFecha_ingreso(rs.getDate("FECHA_INGRESO"));
             }
             rs.close();
             ps.close();
@@ -393,5 +400,150 @@ public class OperarioDAO {
             System.out.print("Falló al cargar las alarmas de los empleados.\n");
         }
         return alarmas;
+    }
+    
+    
+    
+    public int guardarEPP(EPPOperario epp) {
+        int r = -1;
+        String query = null;
+
+        try {
+            if(epp.getId()!=0){
+                query = "update epp_operarions set EPP_ID=?, OPERARIO_ID=?, "
+                        + "VALOR=?, TIPO=? where ID ="+ epp.getId();
+            }else{
+                query = "insert into epp_operarios (EPP_ID, OPERARIO_ID, VALOR, TIPO) "
+                        + "values (?,?,?,?) ";
+            
+            }
+            PreparedStatement ps = conector.prepareStatement(query);
+            ps.setInt(1, epp.getEppId());
+            ps.setInt(2, epp.getOperarioId());
+            ps.setString(3, epp.getValor());
+            ps.setInt(4, epp.getTipo());
+            
+            ps.executeUpdate();
+            ResultSet generatedKeys = ps.getGeneratedKeys();
+            
+            if (generatedKeys.next()) {
+                r = generatedKeys.getInt(1);
+            }
+            
+            generatedKeys.close();
+            ps.close();
+
+        } catch (SQLException ex) {
+            r = -1;
+        }
+        return r;
+    }
+
+    
+ 
+
+    public ArrayList<EPPOperario> cargarTodos(int operarioId) {
+        String query = null;
+        ArrayList<EPPOperario> fcs = new ArrayList<EPPOperario>();
+        try {
+            query = "select * from epp_operarios where operario_id = ?";
+            PreparedStatement ps = conector.prepareStatement(query);
+            ps.setInt(1, operarioId);
+            ResultSet rs = ps.executeQuery();
+            
+            while (rs.next()) {
+                EPPOperario epp = new EPPOperario();
+                epp.setId(rs.getInt("ID"));
+                epp.setEppId(rs.getInt("EPP_ID"));
+                epp.setOperarioId(rs.getInt("OPERARIO_ID"));
+                epp.setValor(rs.getString("VALOR"));
+                epp.setTipo(rs.getInt("TIPO"));
+                fcs.add(epp);
+            }
+            rs.close();
+            ps.close();
+
+        } catch (SQLException ex) {
+            System.out.print("Falló al cargar las EPP del operario.\n");
+        }
+        return fcs;
+
+    }
+    
+    public boolean borrar(EPPOperario epp) {
+
+        boolean r =false;
+        try {
+            
+            String query = "delete from epp_operarios where ID = ? ";
+            PreparedStatement ps = conector.prepareStatement(query);
+            ps.setInt(1, epp.getId());
+                       
+            ps.executeUpdate();
+            ResultSet rs = ps.getGeneratedKeys();
+            if (rs.next()) {
+                r=true;
+            }
+            ps.close();
+            rs.close();
+            r=true;
+
+        } catch (SQLException ex) {
+            r = false;
+        }
+
+        return r;
+    }
+    
+    public EPPOperario findById(int id) {
+        String query = null;
+        EPPOperario epp = new EPPOperario();
+        try {
+            query = "select * from epp_operarios where ID = "+id;
+            PreparedStatement ps = conector.prepareStatement(query);
+            ResultSet rs = ps.executeQuery();
+            
+            while (rs.next()) {  
+                epp.setId(rs.getInt("ID"));
+                epp.setEppId(rs.getInt("EPP_ID"));
+                epp.setOperarioId(rs.getInt("OPERARIO_ID"));
+                epp.setTipo(rs.getInt("TIPO"));
+                epp.setValor(rs.getString("VALOR"));
+            }
+            rs.close();
+            ps.close();
+
+        } catch (SQLException ex) {
+            System.out.print("Falló al cargar el EPP del operario\n");
+        }
+        return epp;
+
+    }
+    
+    public EPPOperario findByIds(int operario_id, int epp_id) {
+        String query = null;
+        EPPOperario epp = new EPPOperario();
+        try {
+            query = "select * from epp_operarios where EPP_ID = ? and OPERARIO_ID = ?";
+            PreparedStatement ps = conector.prepareStatement(query);
+            ps.setInt(1, epp_id);
+            ps.setInt(2, operario_id);
+            ResultSet rs = ps.executeQuery();
+            
+            while (rs.next()) {  
+                epp.setId(rs.getInt("ID"));
+                epp.setEppId(rs.getInt("EPP_ID"));
+                epp.setOperarioId(rs.getInt("OPERARIO_ID"));
+                epp.setTipo(rs.getInt("TIPO"));
+                epp.setValor(rs.getString("VALOR"));
+            }
+            rs.close();
+            ps.close();
+
+        } catch (SQLException ex) {
+            System.out.print("Falló al cargar el EPP del operario\n");
+        }
+        return epp;
+
     }
 }

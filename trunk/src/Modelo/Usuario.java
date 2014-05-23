@@ -4,93 +4,118 @@
  */
 package Modelo;
 
-
 /**
  *
- * @author matuuar
+ * @author m4tuu
  */
+public class Usuario extends EntidadAbstracta{
+    private int id_user;
+    private String user;
+    private String pass;
+    private String rol;
+    private String error;
 
-public class Usuario {
-    private static Usuario INSTANCE = null;
-    private static int id_user;
-    private static String user;
-    private static String pass;
-    private static String rol;
-    private static String error="";
-
-
-    private Usuario() {
-    }
-
-    private synchronized static void inicia(){
-        if (INSTANCE ==null){
-            if (user ==null){
-                throw new IllegalArgumentException("Antes de llamar a este método se debe llamar setUsuario");
-            }
-            INSTANCE = new Usuario();
-          }
-    }
-
-    private synchronized static void cierra(){
-        INSTANCE=null;
-    }
-    public static void setId_user(int id_user) {
-        inicia();
-        Usuario.id_user = id_user;
-    }
-
-    public static void setPass(String pass) {
-        inicia();
-       
-        Usuario.pass = pass;
-    }
-
-    public static void setRol(String rol) {
-
-        inicia();
-        Usuario.rol = rol;
-    }
-
-    public static void setUser(String user) {
-        cierra();
-        Usuario.user = user;
-        inicia();
-    }
-
-    public static int getId_user() {
-        inicia();
+    public int getId_user() {
         return id_user;
     }
 
-    public static String getPass() {
-        inicia();
+    public void setId_user(int id_user) {
+        this.id_user = id_user;
+    }
+
+    public String getPass() {
         return pass;
     }
 
-    public static String getRol() {
-        inicia();
+    public void setPass(String pass) {
+        this.pass = pass;
+    }
+
+    public String getRol() {
         return rol;
     }
 
-    public static String getUser() {
-        inicia();
+    public void setRol(String rol) {
+        this.rol = rol;
+    }
+
+    public String getUser() {
         return user;
     }
 
-    public static String getError() {
+    public void setUser(String user) {
+        this.user = user;
+    }
+
+    public String getError() {
         return error;
     }
 
-    public static void setError(String error) {
-        Usuario.error = error;
+    public void setError(String error) {
+        this.error = error;
     }
 
-    
+    public Usuario() {
+        this.error = this.pass = this.user = "";
+    }
 
+    public Usuario(String user, String pass, String rol) {
+        this.user = user;
+        this.pass = pass;
+        this.rol = rol;
+    }
 
-    
-  
-    
-    
+    public Usuario(String user, String pass) {
+        this.user = user;
+        this.pass = pass;
+    }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Usuario other = (Usuario) obj;
+        if ((this.user == null) ? (other.user != null) : !this.user.equals(other.user)) {
+            return false;
+        }
+        
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 23 * hash + (this.user != null ? this.user.hashCode() : 0);
+        return hash;
+    }
+    
+    public boolean validate(){
+        error = "";
+        if(this.user.isEmpty()){
+            error += "El campo Nombre de usuario no puede dejarse en blanco.;";
+        }
+        if(this.pass.isEmpty() && this.id_user == 0){
+            error += "El campo Contraseña no puede dejarse en blanco.;";
+        }
+        if(this.rol.isEmpty()){
+            error += "El campo Rol no puede dejarse en blanco.;";
+        }
+        if(error.isEmpty()) return true;
+        return false;
+    }
+    
+    public String[] getErrores(){
+        return error.split(";");
+    }
+
+    @Override
+    public String toString() {
+        return user;
+    }
+    
+    
 }

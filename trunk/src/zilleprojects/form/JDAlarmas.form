@@ -64,7 +64,7 @@
                           <Component id="btnQuitarAlarma" linkSize="3" pref="72" max="32767" attributes="0"/>
                           <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
                       </Group>
-                      <Component id="txtBuscarAlarmas" alignment="0" pref="258" max="32767" attributes="1"/>
+                      <Component id="txtBuscarAlarmas" alignment="0" pref="259" max="32767" attributes="1"/>
                       <Component id="jScrollPane1" alignment="0" max="32767" attributes="2"/>
                   </Group>
                   <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
@@ -78,7 +78,7 @@
                       </Group>
                       <Component id="jPanel2" alignment="1" min="-2" max="-2" attributes="0"/>
                       <Group type="102" alignment="1" attributes="0">
-                          <Component id="lblResultados" pref="330" max="32767" attributes="0"/>
+                          <Component id="lblResultados" pref="365" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jButton1" min="-2" pref="139" max="-2" attributes="0"/>
                       </Group>
@@ -107,7 +107,7 @@
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="90" max="32767" attributes="0"/>
+                          <EmptySpace pref="112" max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="2" attributes="0">
                               <Component id="lblResultados" alignment="2" min="-2" pref="27" max="-2" attributes="0"/>
                               <Component id="jButton1" alignment="2" min="-2" max="-2" attributes="0"/>
@@ -116,7 +116,7 @@
                       <Group type="102" attributes="0">
                           <EmptySpace min="54" pref="54" max="54" attributes="0"/>
                           <Component id="txtBuscarAlarmas" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="24" max="32767" attributes="0"/>
+                          <EmptySpace pref="30" max="32767" attributes="0"/>
                           <Component id="jScrollPane1" min="-2" pref="285" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -184,7 +184,7 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="txtNombre" pref="364" max="32767" attributes="0"/>
+                          <Component id="txtNombre" pref="385" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>

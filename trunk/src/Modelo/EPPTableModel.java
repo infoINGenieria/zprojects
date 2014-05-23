@@ -11,13 +11,14 @@ import javax.swing.table.AbstractTableModel;
 
 /**
  *
- * @author matuuar
+ * @author m4tuu
  */
-public class ObrasTablaInforme extends AbstractTableModel  {
+public class EPPTableModel extends AbstractTableModel{
+
     private LinkedList datos = new LinkedList();
     private LinkedList listeners = new LinkedList();
 
-    public ObrasTablaInforme(){
+    public EPPTableModel(){
         super();
     }
     
@@ -25,11 +26,10 @@ public class ObrasTablaInforme extends AbstractTableModel  {
         datos.clear();
         TableModelEvent evento;
         evento = new TableModelEvent(this);
-        avisaSuscriptores (evento);
-        
+        avisaSuscriptores (evento);     
     }
     
-    public void addRegistro (ItemObra item)
+    public void add (EPPItem item)
     {
         datos.add (item);
 
@@ -37,12 +37,11 @@ public class ObrasTablaInforme extends AbstractTableModel  {
         evento = new TableModelEvent (this, this.getRowCount()-1,
             this.getRowCount()-1, TableModelEvent.ALL_COLUMNS,
             TableModelEvent.INSERT);
-
         avisaSuscriptores (evento);
          
     }
     
-    public void delRegistro (ItemObra item)
+    public void delete (EPPItem item)
     {
         datos.remove(item);
 
@@ -50,43 +49,35 @@ public class ObrasTablaInforme extends AbstractTableModel  {
         evento = new TableModelEvent (this, this.getRowCount()-1,
             this.getRowCount()-1, TableModelEvent.ALL_COLUMNS,
             TableModelEvent.DELETE);
-
-        avisaSuscriptores (evento);
-         
+        avisaSuscriptores (evento);  
     }
     
 
     @Override
     public Object getValueAt(int row, int col) {
-       ItemObra aux;
+       EPPItem aux;
        
-        aux = (ItemObra)(datos.get(row));
+        aux = (EPPItem)(datos.get(row));
 
         switch (col)
         {
             case 0:
-                return aux.isSelected();
+                return aux.getNombre();
             case 1:
-                return aux.getCodigo();
+                return aux.getMedida();
             case 2:
-                return aux.getObra();
+                return aux.getValorCombo();
             case 3:
-                return aux.getResponsable();
+                return aux.getValorInt();
             default:
                 return null;
         }
-
-
     }
+    
     @Override
-    public Class getColumnClass(int columnIndex) {
-        switch (columnIndex)
-        {
-            case 0:          
-                return Boolean.class;
-            default:            
-                return String.class;
-        }
+    public Class getColumnClass(int columnIndex) { 
+        if(columnIndex == 3) return Integer.class;
+        return String.class;
     }
     
     @Override
@@ -96,19 +87,19 @@ public class ObrasTablaInforme extends AbstractTableModel  {
        switch (columnIndex)
         {
             case 0:
-                return "";
+                return "NOMBRE";
             case 1:
-                return "Código";
+                return "MEDIDA";
             case 2:
-                return "Nombre";
+                return "TALLE";
             case 3:
-                return "Responsable";
+                return "NÚMERO";
             default:
                 return null;
         }
     }
     
-    public void insertarFila(ItemObra value, int row) {
+    public void insertarFila(EPPItem value, int row) {
         datos.remove(row);
         datos.add(row, value);
         TableModelEvent evento = new TableModelEvent (this, row, row, TableModelEvent.ALL_COLUMNS);
@@ -117,34 +108,30 @@ public class ObrasTablaInforme extends AbstractTableModel  {
     
     @Override
     public void setValueAt(Object value, int row, int col) {
-        ItemObra aux;
+        EPPItem aux;
 
-        aux = (ItemObra)(datos.get(row));
+        aux = (EPPItem)(datos.get(row));
         try{
             switch (col)
             {
                 case 0:
-                    aux.setSelected(Boolean.parseBoolean(value.toString()));
+                    aux.setNombre(value.toString());
                     break;
                 case 1:
-                    aux.setCodigo(value.toString());
+                    aux.setMedida(value.toString());
                     break;
                 case 2:
-                    aux.setObra((String)value);
+                    aux.valores.setValor(value.toString());
                     break;
                 case 3:
-                    aux.setResponsable((String)value);
+                    aux.valores.setValor(value.toString());
                     break;
-
             }
-        }catch(IllegalArgumentException ex){
-        
-
-    }
+        } catch(IllegalArgumentException ex){ 
+            System.err.println(ex.getMessage());
+        }
         TableModelEvent evento = new TableModelEvent (this, row, row, col);
         avisaSuscriptores (evento);
-
-
     }
     
       @Override
@@ -152,18 +139,21 @@ public class ObrasTablaInforme extends AbstractTableModel  {
         return datos.size();
     }
 
-    public ItemObra getFila(int row){
-        return (ItemObra)(datos.get(row));
+    public EPPItem getFila(int row){
+        return (EPPItem)(datos.get(row));
     }
     
     @Override
     public boolean isCellEditable(int row, int col) {
-            if(col == 0) return true;
+        EPPItem aux = (EPPItem) datos.get(row);
+        if(aux.getEpp().tieneTalle()){
+            if(col == 2) return true;
             return false;
-        }
-        
-        
-    
+        }else{
+            if(col == 3) return true;
+            return false;
+        }     
+    }
 
     @Override
     public int getColumnCount() {
@@ -183,7 +173,6 @@ public class ObrasTablaInforme extends AbstractTableModel  {
         listeners.remove(l);
     }
 
-
     private void avisaSuscriptores (TableModelEvent evento)
     {
         int i;
@@ -193,5 +182,4 @@ public class ObrasTablaInforme extends AbstractTableModel  {
         for (i=0; i<listeners.size(); i++)
             ((TableModelListener)listeners.get(i)).tableChanged(evento);
     }
-
 }

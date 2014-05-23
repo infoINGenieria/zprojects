@@ -4,6 +4,7 @@
  */
 package Modelo;
 
+import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -15,7 +16,7 @@ public class Operario {
     int id, funcion;
     String n_legajo, nombre, cuil, observaciones, descripcion_vto1, descripcion_vto2,descripcion_vto3;
     boolean desarraigo;
-    Date vto_carnet, vto_psicofisico, vto_cargagral, vto_cargapeligrosa, vto_otros1, vto_otros2, vto_otros3;
+    Date vto_carnet, vto_psicofisico, vto_cargagral, vto_cargapeligrosa, vto_otros1, vto_otros2, vto_otros3, fecha_ingreso;
 
     public boolean isDesarraigo() {
         return desarraigo;
@@ -190,7 +191,48 @@ public class Operario {
     public void setVto_psicofisico(Date vto_psicofisico) {
         this.vto_psicofisico = vto_psicofisico;
     }
+
+    public Date getFecha_ingreso() {
+        return fecha_ingreso;
+    }
+
+    public void setFecha_ingreso(Date fecha_ingreso) {
+        this.fecha_ingreso = fecha_ingreso;
+    }
     
+    public int getAniosAntiguedad(){
+        if(this.fecha_ingreso != null){
+            return CalcularAniosAntiguedad(this.fecha_ingreso);
+        }
+        return 0;
+    }
+    public int getDiasVacaciones(){
+        if(this.fecha_ingreso != null){
+            return DiasVacaciones(this.fecha_ingreso);
+        }
+        return 0;
+    }
     
+    public int CalcularAniosAntiguedad(Date fecha){
+        if(fecha == null) return 0;
+        Calendar cal = Calendar.getInstance();
+        Calendar hoy = Calendar.getInstance();
+        cal.setTime(fecha);
+        hoy.setTime(new Date());
+        int anios = hoy.get(Calendar.YEAR) - cal.get(Calendar.YEAR);
+        if(hoy.get(Calendar.MONTH) < cal.get(Calendar.MONTH)){
+            anios--;
+        }else if(hoy.get(Calendar.MONTH) == cal.get(Calendar.MONTH) &&
+                hoy.get(Calendar.DATE) < cal.get(Calendar.DATE)){
+            anios--;
+        }
+        if(anios < 0) return 0;
+        return anios;
+    }
+    
+    public int DiasVacaciones(Date fecha){
+        int antiguedad = CalcularAniosAntiguedad(fecha);
+        return ParametrosSistema.rangosVacaciones.getDiasDeVacaciones(antiguedad);
+    }
                      
 }

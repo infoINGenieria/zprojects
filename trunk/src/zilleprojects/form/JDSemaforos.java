@@ -16,6 +16,8 @@ import Modelo.ItemSemaforo;
 import Modelo.Operario;
 import Modelo.TablaSemaforoModel;
 import Utils.FechaUtil;
+import Vista.JDialogCustom;
+import Vista.PanelAzul;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Image;
@@ -33,7 +35,7 @@ import org.jdesktop.application.Task;
  *
  * @author matuuar
  */
-public class JDSemaforos extends javax.swing.JDialog {
+public class JDSemaforos extends JDialogCustom {
 
     Image icono = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/zilleprojects/resources/icono.png"));
     
@@ -41,9 +43,9 @@ public class JDSemaforos extends javax.swing.JDialog {
     public JDSemaforos(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        
+        Info("Recopilando datos. Espere por favor...");
         configurarFechas();
-        Task cargar= CargarDatosOperarios();
+        Task cargar= CargarDatosOperarios(); 
         cargar.execute();
         
     }
@@ -57,7 +59,7 @@ public class JDSemaforos extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
+        jPanel1 = new PanelAzul();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         dateDesdePeriodo = new com.toedter.calendar.JDateChooser();
@@ -75,11 +77,14 @@ public class JDSemaforos extends javax.swing.JDialog {
         lblStatus = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(732, 541));
         setName("Form"); // NOI18N
 
+        jPanel1.setMinimumSize(new java.awt.Dimension(732, 541));
         jPanel1.setName("jPanel1"); // NOI18N
 
         jPanel2.setName("jPanel2"); // NOI18N
+        jPanel2.setOpaque(false);
 
         org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(zilleprojects.ZilleProjectsApp.class).getContext().getResourceMap(JDSemaforos.class);
         jLabel1.setText(resourceMap.getString("jLabel1.text")); // NOI18N
@@ -178,6 +183,7 @@ public class JDSemaforos extends javax.swing.JDialog {
         //dateFechaLimite.setDate(new Date());
 
         jPanel3.setName("jPanel3"); // NOI18N
+        jPanel3.setOpaque(false);
 
         jScrollPane1.setName("jScrollPane1"); // NOI18N
 
@@ -206,15 +212,11 @@ public class JDSemaforos extends javax.swing.JDialog {
             jPanel3.setLayout(jPanel3Layout);
             jPanel3Layout.setHorizontalGroup(
                 jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel3Layout.createSequentialGroup()
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 696, Short.MAX_VALUE)
-                    .addContainerGap())
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 708, Short.MAX_VALUE)
             );
             jPanel3Layout.setVerticalGroup(
                 jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel3Layout.createSequentialGroup()
-                    .addComponent(jScrollPane1)
-                    .addContainerGap())
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 415, Short.MAX_VALUE)
             );
 
             lblStatus.setText(resourceMap.getString("lblStatus.text")); // NOI18N
@@ -232,9 +234,6 @@ public class JDSemaforos extends javax.swing.JDialog {
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 708, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addContainerGap())
             );
-
-            jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jPanel2, jPanel3});
-
             jPanel1Layout.setVerticalGroup(
                 jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()

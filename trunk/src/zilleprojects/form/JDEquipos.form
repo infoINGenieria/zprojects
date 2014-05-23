@@ -119,9 +119,9 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="2" attributes="0">
                           <Component id="addEquipo" alignment="2" pref="37" max="32767" attributes="1"/>
-                          <Component id="editEquipo" alignment="2" pref="37" max="32767" attributes="1"/>
+                          <Component id="editEquipo" linkSize="6" alignment="2" pref="37" max="32767" attributes="1"/>
                           <Component id="delEquipo" linkSize="6" alignment="2" min="-2" max="-2" attributes="1"/>
-                          <Component id="todosAutos" alignment="2" min="-2" pref="34" max="-2" attributes="1"/>
+                          <Component id="todosAutos" linkSize="6" alignment="2" min="-2" pref="34" max="-2" attributes="1"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jScrollPane1" pref="413" max="32767" attributes="0"/>
@@ -232,10 +232,10 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
+                  <Group type="102" alignment="0" max="-2" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jPanel3" alignment="0" max="32767" attributes="2"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="jPanel3" alignment="0" max="32767" attributes="1"/>
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="1" attributes="0">
                                   <Group type="102" attributes="0">
@@ -243,7 +243,7 @@
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                       <Component id="btnGuardar" linkSize="7" min="-2" pref="131" max="-2" attributes="1"/>
                                   </Group>
-                                  <Component id="alertasText" pref="446" max="32767" attributes="1"/>
+                                  <Component id="alertasText" pref="447" max="32767" attributes="1"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="1" attributes="0">
@@ -302,7 +302,7 @@
                           <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" attributes="1">
-                                  <Component id="nInternoText" min="-2" pref="140" max="-2" attributes="0"/>
+                                  <Component id="nInternoText" linkSize="11" min="-2" pref="140" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="jLabel3" linkSize="10" min="-2" pref="142" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
@@ -310,26 +310,26 @@
                               </Group>
                               <Group type="102" attributes="0">
                                   <Component id="descripcionVto3" min="-2" pref="294" max="-2" attributes="0"/>
-                                  <EmptySpace pref="14" max="32767" attributes="1"/>
+                                  <EmptySpace pref="17" max="32767" attributes="1"/>
                                   <Component id="vtoOtros3" linkSize="9" min="-2" pref="147" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" attributes="0">
                                   <Component id="descripcionVto1" min="-2" pref="294" max="-2" attributes="0"/>
-                                  <EmptySpace pref="14" max="32767" attributes="1"/>
+                                  <EmptySpace pref="17" max="32767" attributes="1"/>
                                   <Component id="vtoOtros1" linkSize="9" min="-2" pref="147" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="descripcionVto2" min="-2" pref="294" max="-2" attributes="0"/>
-                                  <EmptySpace pref="14" max="32767" attributes="1"/>
+                                  <EmptySpace pref="17" max="32767" attributes="1"/>
                                   <Component id="vtoOtros2" linkSize="9" min="-2" pref="147" max="-2" attributes="0"/>
                               </Group>
-                              <Component id="modeloText" alignment="1" pref="455" max="32767" attributes="1"/>
-                              <Component id="equipoText" alignment="1" pref="455" max="32767" attributes="1"/>
+                              <Component id="modeloText" alignment="1" pref="458" max="32767" attributes="1"/>
+                              <Component id="equipoText" alignment="1" pref="458" max="32767" attributes="1"/>
                               <Component id="IDequipos" alignment="0" min="-2" pref="138" max="-2" attributes="0"/>
                               <Group type="102" alignment="0" max="-2" attributes="0">
                                   <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                      <Component id="añoText" alignment="0" max="32767" attributes="1"/>
-                                      <Component id="vtoVt" alignment="0" pref="140" max="32767" attributes="1"/>
+                                      <Component id="añoText" linkSize="11" alignment="0" max="32767" attributes="1"/>
+                                      <Component id="vtoVt" linkSize="11" alignment="0" pref="140" max="32767" attributes="1"/>
                                   </Group>
                                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                       <Group type="102" alignment="0" attributes="0">
@@ -454,7 +454,7 @@
                               <Component id="vtoOtros3" min="-2" max="-2" attributes="0"/>
                               <Component id="descripcionVto3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="25" max="32767" attributes="0"/>
+                          <EmptySpace pref="27" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>

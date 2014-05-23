@@ -30,7 +30,7 @@ public class ComboEditorCelda extends DefaultCellEditor {
 
         JComboBox combo = (JComboBox) getComponent();
         combo.removeAllItems();
-        String[] valores = values.get(row);
+        String[] valores = values.get(0);
 
         for (int i = 0; i < valores.length; i++) {
             combo.addItem(valores[i]);

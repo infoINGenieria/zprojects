@@ -5,7 +5,7 @@
 package DAO;
 
 import Modelo.Usuario;
-import java.sql.Connection;
+import Modelo.UsuarioLogged;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -16,54 +16,50 @@ import java.util.ArrayList;
  *
  * @author matuuar
  */
-public class UsuarioDAO {
-     Connection conector;
-    
+public class UsuarioDAO extends AbstractDAO{
+     
     public UsuarioDAO(){  
 }
-    public void conectar() {
-        try {
-            conector=ConectorDB.getConector();
-        }catch (Exception ex){}
-    }
+
     
     public int login() {
+        
         String query;
         System.out.println("Verificando credenciales");
         try {
-            query = "select * from usuario where USER = ? and PASS = MD5(?) ";
+            query = "select * from usuario where USER = ? and PASS = MD5(?) and fechabaja is null ";
             PreparedStatement ps = conector.prepareStatement(query);
 
-            ps.setString(1, Usuario.getUser());
-            ps.setString(2, Usuario.getPass());
+            ps.setString(1, UsuarioLogged.getUser());
+            ps.setString(2, UsuarioLogged.getPass());
             
             ResultSet executeQuery = ps.executeQuery();
             executeQuery.next();
 
             if (executeQuery.getInt("ID") > 0) {
-               Usuario.setId_user(executeQuery.getInt("ID"));
-                Usuario.setUser(executeQuery.getString("USER"));
-                Usuario.setRol(executeQuery.getString("ROL"));
-                Usuario.setPass(executeQuery.getString("PASS"));
+                UsuarioLogged.setId_user(executeQuery.getInt("ID"));
+                UsuarioLogged.setUser(executeQuery.getString("USER"));
+                UsuarioLogged.setRol(executeQuery.getString("ROL"));
+                UsuarioLogged.setPass(executeQuery.getString("PASS"));
             }
             executeQuery.close();
             ps.close();
-            System.out.println("Usuario conectado: "+Usuario.getUser());
-            return Usuario.getId_user();
+            System.out.println("Usuario conectado: "+UsuarioLogged.getUser());
+            return UsuarioLogged.getId_user();
         } catch (SQLException ex) {
-            return Usuario.getId_user();
+            return UsuarioLogged.getId_user();
         }
     }
-
-    public int guardar(String user, String pass, String rol) {
+    
+    public int guardar(Usuario user) {
         int r = 0;
         String query = null;
 
         try {
-            query = "SELECT id FROM usuario WHERE user = ? and pass = md5(?)";
+            query = "SELECT id FROM usuario WHERE user = ? and fechabaja is null";
             PreparedStatement ps1 = conector.prepareStatement(query);
-            ps1.setString(1, user);
-            ps1.setString(2, pass);
+            ps1.setString(1, user.getUser());
+           
             ResultSet rs = ps1.executeQuery();
             if (rs.next()) {
                 ps1.close();
@@ -72,9 +68,9 @@ public class UsuarioDAO {
             } else {
                 query = "insert into usuario (USER, PASS, ROL) values (?, md5(?), ?)";
                 PreparedStatement ps = conector.prepareStatement(query);
-                ps.setString(1, user);
-                ps.setString(2, pass);
-                ps.setString(3, rol);
+                ps.setString(1, user.getUser());
+                ps.setString(2, user.getPass());
+                ps.setString(3, user.getRol());
                 ps.executeUpdate();
                 ResultSet generatedKeys = ps.getGeneratedKeys();
 
@@ -89,31 +85,26 @@ public class UsuarioDAO {
         }
         return r;
     }
-
-    public int modificar(String user, String passold, String pass, String rol) {
+    
+    public int modificar(Usuario user) {
 
         int r = 0;
         try {
-            String query = "SELECT id FROM usuario WHERE user = ? and pass = md5(?)";
+            String query = "";
+            if(user.getPass()==null || user.getPass().isEmpty())
+                    query = "update usuario set USER=?, ROL=? where ID =" + user.getId_user();
+                else
+                    query = "update usuario set USER=?, ROL=?, PASS=md5(?) where ID =" + user.getId_user();
             PreparedStatement ps = conector.prepareStatement(query);
-            ps.setString(1, user);
-            ps.setString(2, passold);
-            ResultSet rs = ps.executeQuery();
-            if (rs.next()) {
-                r = rs.getInt("ID_USUARIO");
-                query = "update usuario set PASS=md5(?), ROL=? where ID =" + r;
-                ps = conector.prepareStatement(query);
-                ps.setString(1, pass);
-                ps.setString(2, rol);
-                ps.executeUpdate();
-                rs = ps.getGeneratedKeys();
-                if (rs.next()) {
-                    r = rs.getInt(1);
-                }
-
-            } else{  //si la clave no corresponde al usuario
-                r=-1;
-            }
+            ps.setString(1, user.getUser());
+            ps.setString(2, user.getRol());
+            if (!(user.getPass()==null || user.getPass().isEmpty())) ps.setString(3, user.getPass());
+            ps.executeUpdate();
+            ResultSet rs = ps.getGeneratedKeys();
+            
+            
+            r = user.getId_user();
+            
             ps.close();
             rs.close();
 
@@ -121,21 +112,20 @@ public class UsuarioDAO {
             r = 0;
         }
 
-    return r ;
-}
+        return r ;
+    }
 
-    public ArrayList<String> cargarUser(){
+    public ArrayList<String> cargarUserString(){
         String query=null;
         ArrayList<String> nombres= new ArrayList<String>();
         try{
-            query="select user from usuario";
+            query="select user from usuario where fechabaja is null";
             PreparedStatement ps=conector.prepareStatement(query);
             ResultSet rs=ps.executeQuery();
             while(rs.next()){
                 String user=rs.getString("USER");
                 nombres.add(user);
             }
-
          rs.close();
          ps.close();
 
@@ -145,5 +135,74 @@ public class UsuarioDAO {
         return nombres;
 
     }
+
+    public ArrayList<Usuario> filtrarUsuariosTabla(String query) {
+        
+        ArrayList<Usuario> usuarios= new ArrayList<Usuario>();
+        try{
+            query="select * from usuario where fechabaja is null and (user like '%" + query + "%' or"
+                    + " rol like '%" + query + "%')";
+            PreparedStatement ps=conector.prepareStatement(query);
+            ResultSet rs=ps.executeQuery();
+            while(rs.next()){
+                Usuario user = new Usuario();
+                user.setId_user(rs.getInt("ID"));
+                user.setUser(rs.getString("USER"));
+                user.setRol(rs.getString("ROL"));
+                usuarios.add(user);
+            }
+
+         rs.close();
+         ps.close();
+
+        } catch (SQLException ex) {
+            System.out.print("Falló al cargar los usuarios.\n");
+        }
+        return usuarios;
+    }
     
+    public ArrayList<Usuario> cargarUser(){
+        String query=null;
+        ArrayList<Usuario> usuarios= new ArrayList<Usuario>();
+        try{
+            query="select * from usuario where fechabaja is null";
+            PreparedStatement ps=conector.prepareStatement(query);
+            ResultSet rs=ps.executeQuery();
+            while(rs.next()){
+                Usuario user = new Usuario();
+                user.setId_user(rs.getInt("ID"));
+                user.setUser(rs.getString("USER"));
+                user.setRol(rs.getString("ROL"));
+                usuarios.add(user);
+            }
+
+         rs.close();
+         ps.close();
+
+        } catch (SQLException ex) {
+            System.out.print("Falló al cargar los usuarios.\n");
+        }
+        return usuarios;
+
+    }
+
+    public boolean darDeBaja(Usuario usuarioSeleccionado) {
+        try{
+            PreparedStatement ps = conector.prepareStatement("update usuario set fechabaja = NOW() where id = ?");
+            ps.setInt(1, usuarioSeleccionado.getId_user());
+            ps.executeUpdate();
+            ResultSet rs = ps.getGeneratedKeys();
+            if (rs.next()) {
+               
+            }
+            ps.close();
+            rs.close();
+            
+        }catch(Exception ex){
+            return false;
+        }
+        return true;
+    }
 }
+    
+    

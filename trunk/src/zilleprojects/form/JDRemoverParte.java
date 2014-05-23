@@ -25,6 +25,7 @@ import Modelo.Operario;
 import Modelo.ParteDiario;
 import Modelo.Registro;
 import Modelo.RegistroEquipo;
+import Utils.Permisos;
 import Vista.OpcionPanel;
 import Vista.PanelAzul;
 import java.awt.Image;
@@ -460,6 +461,7 @@ private void SalirBotonGestionPartesActionPerformed(java.awt.event.ActionEvent e
 
     @Action
     public Task eliminarParteDiario() {
+        if(!Permisos.verificarCredenciales("Administrador")) return null;
         if (OpcionPanel.NO_OPTION == OpcionPanel.showConfirmDialog(this, "¿Realmente desea eliminar este parte diario\n"
                 + "y todos los registros relacionados?\n"
                 + "(Horarios, Datos de equipo, materiales)", "¿Está seguro/a?", OpcionPanel.YES_NO_OPTION)) {

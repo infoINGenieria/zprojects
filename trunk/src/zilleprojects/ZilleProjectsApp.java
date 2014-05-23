@@ -27,7 +27,7 @@ public class ZilleProjectsApp extends SingleFrameApplication {
             public boolean canExit(EventObject e) {
                 boolean bOkToExit = false;
                 Component source = (Component) e.getSource();
-                bOkToExit = JOptionPane.showConfirmDialog(source,
+                bOkToExit = JOptionPane.showConfirmDialog(null,
                         "¿Realmente desea salir?", "Salir?", 0)
                         == JOptionPane.YES_OPTION;
 

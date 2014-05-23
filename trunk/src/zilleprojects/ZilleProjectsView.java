@@ -23,12 +23,14 @@ import Modelo.Funcion;
 import Modelo.ItemAlarma;
 import Modelo.Obras;
 import Modelo.Operario;
+import Modelo.ParametrosSistema;
 import Modelo.ParteDiario;
 import Modelo.Perfiles;
 import Modelo.TablaAlarmasModel;
-import Modelo.Usuario;
+import Modelo.UsuarioLogged;
 import Utils.FechaUtil;
 import Utils.ImageIconTable;
+import Utils.Permisos;
 import Vista.DialogPanel;
 import Vista.OpcionPanel;
 import Vista.PanelAlarma;
@@ -80,6 +82,7 @@ import zilleprojects.form.JDRemoverParte;
 import zilleprojects.form.JDReportes;
 import zilleprojects.form.JDReportesAnteriores;
 import zilleprojects.form.JDSemaforos;
+import zilleprojects.form.UsuariosDialog;
 
 /**
  * The application's main frame.
@@ -286,15 +289,6 @@ public class ZilleProjectsView extends FrameView {
         return new IniciarSesionTask(getApplication());
     }
 
-    private void notLogin() {
-        OpcionPanel.showConfirmDialog(null, "Debe iniciar una sesión e \nidentificarse en el sistema.", "Usuario no identificado", -1, OpcionPanel.ERROR_MESSAGE);
-    }
-     private void sinPermisos() {
-        OpcionPanel.showConfirmDialog(null, "No tiene permisos para acceder \na esta área del sistema.", "Usuario no autorizado", -1, OpcionPanel.ERROR_MESSAGE);
-    }
-
-    
-
     private class IniciarSesionTask extends org.jdesktop.application.Task<Object, Void> {
 
         IniciarSesionTask(org.jdesktop.application.Application app) {
@@ -337,10 +331,10 @@ public class ZilleProjectsView extends FrameView {
             // to LoginUserTask fields, here.
             super(app);
             ZilleProjectsView.inicio = false;
-            Usuario.setUser(userText1.getText());
-            Usuario.setPass(String.valueOf(passText1.getPassword()));
-            Usuario.setId_user(0);
-            Usuario.setRol("");
+            UsuarioLogged.setUser(userText1.getText());
+            UsuarioLogged.setPass(String.valueOf(passText1.getPassword()));
+            UsuarioLogged.setId_user(0);
+            UsuarioLogged.setRol("");
         }
 
         @Override
@@ -357,22 +351,23 @@ public class ZilleProjectsView extends FrameView {
 
         @Override
         protected void succeeded(Object result) {
-            if (Usuario.getId_user() != 0) {
+            if (UsuarioLogged.getId_user() != 0) {
 
-                //OpcionPanel.showMessageDialog(loginDialogo, "Bienvenido " + Usuario.getUser() + "!", "Sesión iniciada", OpcionPanel.INFORMATION_MESSAGE);
+                //OpcionPanel.showMessageDialog(loginDialogo, "Bienvenido " + UsuarioLogged.getUser() + "!", "Sesión iniciada", OpcionPanel.INFORMATION_MESSAGE);
                 ZilleProjectsView.inicio = true;
                 //loginPanel.setVisible(false);
                 BotonGrandeLogin.setEnabled(false);
                 
-                loginOut.setText("Identificado como " + Usuario.getUser());
+                loginOut.setText("Identificado como " + UsuarioLogged.getUser());
                 iniciarSesion.setEnabled(false);
-                if(verificarCredenciales("Administrador")){
+                if(Permisos.verificarCredenciales("Administrador,De Carga")){
                     //luego del login, se realiza el backup de la db
                     backUp();
                     // y se verifican las alarmas
                     //AlarmasTask al = new AlarmasTask();
                     //al.start();
                     verificarAlarmas().execute();
+                    CargarParametros().execute();
                 }
                 loginDialogo.dispose();
                 
@@ -435,20 +430,7 @@ public class ZilleProjectsView extends FrameView {
      */
     
 
-    public boolean verificarCredenciales(String rol) {
-        if (inicio) {
-            if (Usuario.getRol().equals("Administrador")) {
-                return true;
-            }else if (Usuario.getRol().equals(rol)) {
-                return true;
-            }else{
-                sinPermisos();
-            }
-        } else{
-            notLogin();
-        }
-        return false;
-    }
+    
 
     @Action
     public void limpiarDatosConfigDB() {
@@ -491,56 +473,30 @@ public class ZilleProjectsView extends FrameView {
         }
     }
     
-    
-    
-    /**/
-    
-//    @Action
-//    public Task DescargarNuevaVersionDialog() {
-//        if(isLastVersion){
-//            OpcionPanel.showMessageDialog(null, "La versión actual es la última versión disponible." + , "Sistema actualizado", OpcionPanel.INFORMATION_MESSAGE);
-//            return null;
-//        }
-//        return new DescargarNuevaVersionDialogTask(getApplication());
-//    }
-//
-//    private class DescargarNuevaVersionDialogTask extends org.jdesktop.application.Task<Object, Void> {
-//        boolean descargado = false;
-//        DescargarNuevaVersionDialogTask(org.jdesktop.application.Application app) {
-//            
-//            super(app);
-//            lblVersion.setText(lblVersion.getText()+ " Descargando...");
-//        }
-//
-//        @Override
-//        protected Object doInBackground() {
-//            try{
-//            Download newExceutable = new Download(new URL("http://matiasvarela.com.ar/shared/zille/ZilleProjects.jar"),
-//                                                            "NuevaVersion");
-//            newExceutable.run();   
-//            descargado = true;
-//            }catch(Exception e){
-//                descargado = false;
-//            }
-//        
-//            return null;  // return your result
-//        }
-//
-//        @Override
-//        protected void succeeded(Object result) {
-//            if(descargado){
-//                OpcionPanel.showMessageDialog(null, "Nueva versión descargada. Se encuentra dentro de la carpeta 'NuevaVersion'.", "Nueva versión", OpcionPanel.INFORMATION_MESSAGE);
-//            }else{
-//                OpcionPanel.showMessageDialog(null, "Error al descargar la nueva versión. Intente nuevamente", "Error en la conexión", OpcionPanel.ERROR_MESSAGE);
-//            }
-//
-//        }
-//    }
-    
-    
-    
-    /**/
-    
+    @Action
+    public final Task CargarParametros() {
+        return new CargarParametrosTask(getApplication());
+    }
+
+    private class CargarParametrosTask extends org.jdesktop.application.Task<Object, Void> {
+        
+        CargarParametrosTask(org.jdesktop.application.Application app) {
+
+            super(app);
+        }
+
+        @Override
+        protected Object doInBackground() {
+            ParametrosSistema.CargarParametros();
+            return null;  // return your result
+        }
+
+        @Override
+        protected void succeeded(Object result) {
+
+        }
+    }
+        
     
     ///
     @Action
@@ -614,7 +570,7 @@ public class ZilleProjectsView extends FrameView {
 
     @Action
     public Task RespaldarDB() {
-        if (!verificarCredenciales("Administrador")) {
+        if (!Permisos.verificarCredenciales("Administrador")) {
             return null;
         } else {
             return new RespaldarDBTask(getApplication());
@@ -650,7 +606,7 @@ public class ZilleProjectsView extends FrameView {
      */
     @Action
     public void mostrarGestionOperario() {
-        if (verificarCredenciales("Administrador")) {
+        if (Permisos.verificarCredenciales("Administrador, De Carga")) {
             JFrame mainFrame = ZilleProjectsApp.getApplication().getMainFrame();
             gestionOperario = new JDEmpleadoGestion(mainFrame, true);
             gestionOperario.setLocationRelativeTo(mainFrame);
@@ -662,7 +618,7 @@ public class ZilleProjectsView extends FrameView {
     
     @Action
     public void mostrarGenerarInforme() {
-        if (verificarCredenciales("Consultor")) {
+        if (Permisos.verificarCredenciales("Administrador")) {
             JFrame mainFrame = ZilleProjectsApp.getApplication().getMainFrame();
             generarInforme = new JDReportes(mainFrame, true);
             generarInforme.setLocationRelativeTo(null);
@@ -672,7 +628,7 @@ public class ZilleProjectsView extends FrameView {
     }
     @Action
     public void mostrarInformesAnteriores() {
-        if (verificarCredenciales("Consultor")) {
+        if (Permisos.verificarCredenciales("Administrador")) {
             JFrame mainFrame = ZilleProjectsApp.getApplication().getMainFrame();
             informesAnteriores = new JDReportesAnteriores(mainFrame, true);
             informesAnteriores.setLocationRelativeTo(null);
@@ -683,7 +639,7 @@ public class ZilleProjectsView extends FrameView {
 
     @Action
     public void mostrarModificarEquipo() {
-        if (verificarCredenciales("Administrador")) {
+        if (Permisos.verificarCredenciales("Administrador,De Carga")) {
             JFrame mainFrame = ZilleProjectsApp.getApplication().getMainFrame();
             modificarEquipo = new JDEquipos(mainFrame, true);
             modificarEquipo.setLocationRelativeTo(mainFrame);
@@ -694,7 +650,7 @@ public class ZilleProjectsView extends FrameView {
     
     @Action
     public void mostrarOrdenDeTrabajo() {
-        if (verificarCredenciales("Administrador")) {
+        if (Permisos.verificarCredenciales("Administrador,De Carga")) {
             JFrame mainFrame = ZilleProjectsApp.getApplication().getMainFrame();
             ordenDeTrabajo = new JDOrdenTrabajo(mainFrame, true);
             ordenDeTrabajo.setLocationRelativeTo(mainFrame);   
@@ -706,7 +662,7 @@ public class ZilleProjectsView extends FrameView {
     @Action
     public void mostrarAlarmasDialog() {
        
-        if (verificarCredenciales("Administrador")) {
+        if (Permisos.verificarCredenciales("Administrador,De Carga")) {
             JFrame mainFrame = ZilleProjectsApp.getApplication().getMainFrame();
             alarmaDialog = new JDAlarmas(mainFrame, true);
             alarmaDialog.setLocationRelativeTo(mainFrame);   
@@ -717,7 +673,7 @@ public class ZilleProjectsView extends FrameView {
     
     @Action
     public void mostrarJDSemaforosDialog() {
-        if (verificarCredenciales("Administrador")) {
+        if (Permisos.verificarCredenciales("Administrador,De Carga")) {
             JFrame mainFrame = ZilleProjectsApp.getApplication().getMainFrame();
             semaforosDialog = new JDSemaforos(mainFrame, true);
             semaforosDialog.setLocationRelativeTo(mainFrame);   
@@ -727,9 +683,21 @@ public class ZilleProjectsView extends FrameView {
     }
     
     @Action
+    public void MostrarDialogoUsuarios() {
+        if (Permisos.verificarCredenciales("Administrador")) {
+            JFrame mainFrame = ZilleProjectsApp.getApplication().getMainFrame();
+            usuarios = new UsuariosDialog(mainFrame, true);
+            usuarios.setLocationRelativeTo(null);
+            
+            usuarios.setMinimumSize(new Dimension(550, 400));
+            ZilleProjectsApp.getApplication().show(usuarios);
+        }
+    }
+    
+    @Action
     public void mostrarJDRIDialog() {
        
-        if (verificarCredenciales("Administrador")) {
+        if (Permisos.verificarCredenciales("Administrador,De Carga")) {
             JFrame mainFrame = ZilleProjectsApp.getApplication().getMainFrame();
             reqInt = new JDRI(mainFrame, true, this);
             reqInt.setLocationRelativeTo(mainFrame);   
@@ -817,7 +785,7 @@ public class ZilleProjectsView extends FrameView {
 
     @Action
     public Task mostrarRemoverParte() {
-        if (!verificarCredenciales("Administrador")) {
+        if (!Permisos.verificarCredenciales("Administrador,De Carga")) {
             return null;
         } else {
             return new mostrarRemoverParteTask(getApplication());
@@ -874,7 +842,7 @@ public class ZilleProjectsView extends FrameView {
     
     @Action
     public Task mostrarParteDiarioMasivo() {
-        if (!verificarCredenciales("Administrador")) {
+        if (!Permisos.verificarCredenciales("Administrador,De Carga")) {
             return null;
         } else {
             return new ParteDiarioMasivoTask(getApplication());
@@ -919,7 +887,7 @@ public class ZilleProjectsView extends FrameView {
 
     @Action
     public void mostrarObras() {
-        if (verificarCredenciales("Administrador")) {
+        if (Permisos.verificarCredenciales("Administrador")) {
             JFrame mainFrame = ZilleProjectsApp.getApplication().getMainFrame();
             obrasDialog = new JDObrasGestion(mainFrame, true);
             obrasDialog.setLocationRelativeTo(mainFrame);
@@ -938,7 +906,7 @@ public class ZilleProjectsView extends FrameView {
 
     @Action
     public Task mostrarIngresarParte() {
-        if (!verificarCredenciales("Administrador")) {
+        if (!Permisos.verificarCredenciales("Administrador,De Carga")) {
             return null;
         }
         return new mostrarIngresarParteTask(getApplication());
@@ -1066,7 +1034,7 @@ public class ZilleProjectsView extends FrameView {
     
     @Action
     public Task mostrarEstacionesServicio() {
-        if (!verificarCredenciales("Administrador")) {
+        if (!Permisos.verificarCredenciales("Administrador,De Carga")) {
             return null;
         } else {
             return new EstacionesServicioTask(getApplication());
@@ -1196,6 +1164,11 @@ public class ZilleProjectsView extends FrameView {
         }
     }
 
+    
+    
+    
+    
+    
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -1234,6 +1207,7 @@ public class ZilleProjectsView extends FrameView {
         jMenuItem8 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItem9 = new javax.swing.JMenuItem();
+        menuUsuarios = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
         jMenuItem6 = new javax.swing.JMenuItem();
         jMenuItem7 = new javax.swing.JMenuItem();
@@ -1392,7 +1366,7 @@ public class ZilleProjectsView extends FrameView {
                 .addContainerGap()
                 .addComponent(jButton2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 425, Short.MAX_VALUE))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 433, Short.MAX_VALUE))
         );
 
         jPanel3.setName("jPanel3"); // NOI18N
@@ -1448,7 +1422,7 @@ public class ZilleProjectsView extends FrameView {
                 .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(mainPanelLayout.createSequentialGroup()
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 251, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 259, Short.MAX_VALUE)
                         .addComponent(btnDescargarVersion, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(lblVersion, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -1505,7 +1479,7 @@ public class ZilleProjectsView extends FrameView {
 
         menuBar.add(jMenu4);
 
-        EmpleadosMenu.setAction(actionMap.get("mostrarEstaciones")); // NOI18N
+        EmpleadosMenu.setAction(actionMap.get("mostrarGestionOperario")); // NOI18N
         EmpleadosMenu.setText(resourceMap.getString("EmpleadosMenu.text")); // NOI18N
         EmpleadosMenu.setMargin(new java.awt.Insets(0, 10, 5, 10));
         EmpleadosMenu.setName("EmpleadosMenu"); // NOI18N
@@ -1556,6 +1530,12 @@ public class ZilleProjectsView extends FrameView {
             }
         });
         EmpleadosMenu.add(jMenuItem9);
+
+        menuUsuarios.setAction(actionMap.get("MostrarDialogoUsuarios")); // NOI18N
+        menuUsuarios.setIcon(resourceMap.getIcon("menuUsuarios.icon")); // NOI18N
+        menuUsuarios.setText(resourceMap.getString("menuUsuarios.text")); // NOI18N
+        menuUsuarios.setName("menuUsuarios"); // NOI18N
+        EmpleadosMenu.add(menuUsuarios);
 
         menuBar.add(EmpleadosMenu);
 
@@ -1641,7 +1621,7 @@ public class ZilleProjectsView extends FrameView {
             .addGroup(statusPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(statusMessageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 453, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 351, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 353, Short.MAX_VALUE)
                 .addComponent(progressBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(3, 3, 3)
                 .addComponent(statusAnimationLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -1732,53 +1712,69 @@ public class ZilleProjectsView extends FrameView {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel12, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel13, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel19, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel21, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(3, 3, 3)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(dbText, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(hostText, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(userText, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(passText, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)))
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addComponent(clearText, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addComponent(guardarDatos, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel12, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel13, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel19, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel21, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(3, 3, 3)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(dbText, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE)
+                            .addComponent(hostText, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE)
+                            .addComponent(userText, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE)
+                            .addComponent(passText, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jButton1)
+                        .addGap(18, 18, 18)
+                        .addComponent(clearText)
+                        .addGap(18, 18, 18)
+                        .addComponent(guardarDatos, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(50, 50, 50))
         );
+
+        jPanel2Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {dbText, hostText, passText, userText});
+
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(5, 5, 5)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(4, 4, 4)
+                        .addGap(9, 9, 9)
                         .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(dbText, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(5, 5, 5)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(hostText, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(4, 4, 4)
-                        .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(5, 5, 5)
+                        .addGap(5, 5, 5)
+                        .addComponent(dbText, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(userText, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(4, 4, 4)
-                        .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(5, 5, 5)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(passText, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(10, 10, 10)
+                        .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(4, 4, 4)
-                        .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(10, 10, 10)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(hostText, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(userText, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(16, 16, 16)
+                        .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(passText, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(guardarDatos, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(clearText, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(guardarDatos, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
@@ -1786,16 +1782,15 @@ public class ZilleProjectsView extends FrameView {
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 320, Short.MAX_VALUE)
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 415, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
-                .addGap(16, 16, 16))
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 224, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout configurarConnDialogLayout = new javax.swing.GroupLayout(configurarConnDialog.getContentPane());
@@ -2007,29 +2002,29 @@ public class ZilleProjectsView extends FrameView {
                         .addGap(53, 53, 53)
                         .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel8Layout.createSequentialGroup()
-                                .addComponent(empleadoText, javax.swing.GroupLayout.DEFAULT_SIZE, 389, Short.MAX_VALUE)
+                                .addComponent(empleadoText, javax.swing.GroupLayout.DEFAULT_SIZE, 406, Short.MAX_VALUE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(botonBuscarEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(comboObrasParteMasivo, javax.swing.GroupLayout.PREFERRED_SIZE, 438, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel8Layout.createSequentialGroup()
                                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jLabel8)
                                     .addGroup(jPanel8Layout.createSequentialGroup()
                                         .addComponent(fechaChoose, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
                                         .addComponent(isHasta)))
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(txtNumeroParte, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(hastaDateChoose, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                    .addComponent(hastaDateChoose, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(comboObrasParteMasivo, 0, 455, Short.MAX_VALUE)))
                     .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel8Layout.createSequentialGroup()
                         .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 361, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 378, Short.MAX_VALUE)
                         .addComponent(txtNumeroParte2, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 565, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 582, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
                         .addComponent(guardarParteEspecial, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -2345,6 +2340,7 @@ private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     private javax.swing.JPanel mainPanel;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenuItem menuGenerarInforme;
+    private javax.swing.JMenuItem menuUsuarios;
     private javax.swing.JTextArea observacionesTexto;
     private javax.swing.JLabel outText;
     private javax.swing.JPanel panelAlarmas;
@@ -2379,10 +2375,11 @@ private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     private JDAlarmas alarmaDialog;
     private JDRI reqInt;
     private JDSemaforos semaforosDialog;
+    private UsuariosDialog usuarios;
     LeerXML configDB = new LeerXML();
     static Conexion conn;
     static Connection link2db;
-    static boolean inicio = false;
+    public static boolean inicio = false;
     static public DefaultComboBoxModel dcbm;
     static public DefaultComboBoxModel centroDeCostoMasivo= new DefaultComboBoxModel();
     private JDReportes generarInforme;
