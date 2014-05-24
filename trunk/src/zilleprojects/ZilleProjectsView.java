@@ -168,7 +168,7 @@ public class ZilleProjectsView extends FrameView {
     class OpenUrlAction implements ActionListener {
       @Override public void actionPerformed(ActionEvent e) {
           try{
-              final URI uri = new URI("http://matiasvarela.com.ar/shared/zille/ZilleProjects.jar");
+              final URI uri = new URI("http://matiasvarela.com.ar/static/shared/zille/ZilleProjects.jar");
               open(uri);
           }catch (Exception ex) {}
       }
@@ -177,9 +177,11 @@ public class ZilleProjectsView extends FrameView {
     if (Desktop.isDesktopSupported()) {
       try {
         Desktop.getDesktop().browse(uri);
-      } catch (IOException e) { OpcionPanel.showMessageDialog(null, "Por favor, descargue la última versión desde el siguiente link:\nhttp://matiasvarela.com.ar/shared/zille/ZilleProjects.jar"); }
+      } catch (IOException e) { OpcionPanel.showMessageDialog(null, "Por favor, descargue la última versión desde "
+              + "el siguiente link:\nhttp://matiasvarela.com.ar/static/shared/zille/ZilleProjects.jar"); }
     } else { 
-        OpcionPanel.showMessageDialog(null, "Por favor, descargue la última versión desde el siguiente link:\nhttp://matiasvarela.com.ar/shared/zille/ZilleProjects.jar");
+        OpcionPanel.showMessageDialog(null, "Por favor, descargue la última versión desde el siguiente "
+                + "link:\nhttp://matiasvarela.com.ar/static/shared/zille/ZilleProjects.jar");
     }
   }
     
@@ -419,18 +421,6 @@ public class ZilleProjectsView extends FrameView {
                 return -1;
         }
     }
-
-    /**Funcion que devuelve
-     * la conexion a la db
-     * para ser usada por el resto de las clases.
-     * 
-     * @return Connection to DB
-     * public static Connection link() {
-     *   return link2db; }
-     */
-    
-
-    
 
     @Action
     public void limpiarDatosConfigDB() {

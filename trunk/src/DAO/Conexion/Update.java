@@ -24,7 +24,7 @@ public class Update {
             long startTime = System.currentTimeMillis();
             // Open connection
             System.out.println("Connecting...");
-            URL url = new URL("http://matiasvarela.com.ar/shared/zille/version.txt");
+            URL url = new URL("http://matiasvarela.com.ar/static/shared/zille/version.txt");
             url.openConnection();
 
             // Download routine
