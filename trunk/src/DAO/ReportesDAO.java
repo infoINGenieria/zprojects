@@ -23,13 +23,14 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import net.sf.jasperreports.engine.JRException;
-import net.sf.jasperreports.engine.JRExporterParameter;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.export.JRXlsExporter;
-import net.sf.jasperreports.engine.export.JRXlsExporterParameter;
 import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.export.SimpleExporterInput;
+import net.sf.jasperreports.export.SimpleOutputStreamExporterOutput;
+import net.sf.jasperreports.export.SimpleXlsReportConfiguration;
 import net.sf.jasperreports.view.JasperViewer;
 import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFCellStyle;
@@ -40,7 +41,6 @@ import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.hssf.util.HSSFColor;
 import org.apache.poi.ss.util.CellRangeAddress;
-
 /**
  *
  * @author matuu
@@ -96,7 +96,7 @@ public class ReportesDAO {
         }
     }
     */
-    public void reportEquipo(Date desde, Date hasta, int idEquipo) {
+    public JasperPrint reportEquipo(Date desde, Date hasta, int idEquipo) {
         try {
 
             URL master = null;
@@ -120,30 +120,14 @@ public class ReportesDAO {
                 System.out.println("No se encuentra el archivo subreport.");
                 //System.exit(2);
             }
-            
-            
             JasperReport masterReport = (JasperReport) JRLoader.loadObject(master);
             JasperReport report = (JasperReport) JRLoader.loadObject(subreport);
             parametro.put("subreport", report);
             JasperPrint jasperPrint = JasperFillManager.fillReport(masterReport, parametro, conector);
-            //JasperPrintManager.printReport(jasperPrint, false);
-            
-            JasperViewer jviewer = new JasperViewer(jasperPrint, false);
-            jviewer.setModalExclusionType(ModalExclusionType.APPLICATION_EXCLUDE);
-            jviewer.setTitle("Informe");
-            jviewer.setVisible(true);
-            
-            
-            //Exporta el informe a PDF
-//            String destFileNamePdf= getClass().getResource("/prueba.pdf").toString();
-            //Creación del PDF
-//            JasperExportManager.exportReportToPdfFile(jasperPrint, destFileNamePdf);
-            
-            
-            
-
+            return jasperPrint;
         } catch (JRException j) {
             System.out.print(j.getMessage());
+            return null;
         }
     }
     
@@ -187,7 +171,7 @@ public class ReportesDAO {
      
     }
     
-    public void reportPersEqXObra(Date desde, Date hasta, int idObra) {
+    public JasperPrint reportPersEqXObra(Date desde, Date hasta, int idObra) {
         try {
 
             URL master = null;
@@ -224,20 +208,15 @@ public class ReportesDAO {
             parametro.put("subreport", subReport);
             parametro.put("subreport2", subReport2);
             JasperPrint jasperPrint = JasperFillManager.fillReport(masterReport, parametro, conector);
-            //JasperPrintManager.printReport(jasperPrint, false);
-            JasperViewer jviewer = new JasperViewer(jasperPrint, false);
-
-            jviewer.setModalExclusionType(ModalExclusionType.APPLICATION_EXCLUDE);
-            jviewer.setTitle("Informe");
-
-            jviewer.setVisible(true);
+            return jasperPrint;
 
         } catch (JRException j) {
             System.out.print(j.getMessage());
+            return null;
         }
     }
     
-    public void reportEqMatXObra(Date desde, Date hasta, int idObra) {
+    public JasperPrint reportEqMatXObra(Date desde, Date hasta, int idObra) {
         try {
 
             URL master = null;
@@ -275,21 +254,16 @@ public class ReportesDAO {
             JasperReport subReport2 = (JasperReport) JRLoader.loadObject(subreport2);
             parametro.put("subreport2", subReport2);
             JasperPrint jasperPrint = JasperFillManager.fillReport(masterReport, parametro, conector);
-            //JasperPrintManager.printReport(jasperPrint, false);
-            JasperViewer jviewer = new JasperViewer(jasperPrint, false);
-
-            jviewer.setModalExclusionType(ModalExclusionType.APPLICATION_EXCLUDE);
-            jviewer.setTitle("Informe");
-
-            jviewer.setVisible(true);
+           return jasperPrint;
 
         } catch (JRException j) {
             System.out.print(j.getMessage());
+            return null;
         }
     }
     
     
-    public void reportRegistrosResumen(String periodo){
+    public JasperPrint reportRegistrosResumen(String periodo){
         try {
 
             URL master = null;
@@ -314,20 +288,15 @@ public class ReportesDAO {
             JasperReport subReport = (JasperReport) JRLoader.loadObject(subreport);
             parametro.put("subreport", subReport);
             JasperPrint jasperPrint = JasperFillManager.fillReport(masterReport, parametro, conector);
-            //JasperPrintManager.printReport(jasperPrint, false);
-            JasperViewer jviewer = new JasperViewer(jasperPrint, false);
-
-            jviewer.setModalExclusionType(ModalExclusionType.APPLICATION_EXCLUDE);
-            jviewer.setTitle("Informe");
-
-            jviewer.setVisible(true);
+            return jasperPrint;
 
         } catch (JRException j) {
             System.out.print(j.getMessage());
+            return null;
         }
     }
     
-    public void reportCombustibleObra(Date desde, Date hasta, int idObra){
+    public JasperPrint reportCombustibleObra(Date desde, Date hasta, int idObra){
         try {
 
             URL master = null;
@@ -354,20 +323,15 @@ public class ReportesDAO {
             JasperReport subReport = (JasperReport) JRLoader.loadObject(subreport);
             parametro.put("subreport", subReport);
             JasperPrint jasperPrint = JasperFillManager.fillReport(masterReport, parametro, conector);
-            //JasperPrintManager.printReport(jasperPrint, false);
-            JasperViewer jviewer = new JasperViewer(jasperPrint, false);
-
-            jviewer.setModalExclusionType(ModalExclusionType.APPLICATION_EXCLUDE);
-            jviewer.setTitle("Informe");
-
-            jviewer.setVisible(true);
+            return jasperPrint;
 
         } catch (JRException j) {
             System.out.print(j.getMessage());
+            return null;
         }
     }
     
-    public void reportCombustibleResumen(Date desde, Date hasta){
+    public JasperPrint reportCombustibleResumen(Date desde, Date hasta){
         try {
 
             URL master = null;
@@ -384,19 +348,14 @@ public class ReportesDAO {
             }
             JasperReport masterReport = (JasperReport) JRLoader.loadObject(master);
             JasperPrint jasperPrint = JasperFillManager.fillReport(masterReport, parametro, conector);
-            //JasperPrintManager.printReport(jasperPrint, false);
-            JasperViewer jviewer = new JasperViewer(jasperPrint, false);
-
-            jviewer.setModalExclusionType(ModalExclusionType.APPLICATION_EXCLUDE);
-            jviewer.setTitle("Informe");
-
-            jviewer.setVisible(true);
+           return jasperPrint;
 
         } catch (JRException j) {
             System.out.print(j.getMessage());
         }
+        return null;
     }
-    public void reportCombustibleEquipo(Date desde, Date hasta, int idEquipo){
+    public JasperPrint reportCombustibleEquipo(Date desde, Date hasta, int idEquipo){
         try {
 
             URL master = null;
@@ -423,20 +382,15 @@ public class ReportesDAO {
             JasperReport subReport = (JasperReport) JRLoader.loadObject(subreport);
             parametro.put("subreport", subReport);
             JasperPrint jasperPrint = JasperFillManager.fillReport(masterReport, parametro, conector);
-            //JasperPrintManager.printReport(jasperPrint, false);
-            JasperViewer jviewer = new JasperViewer(jasperPrint, false);
-
-            jviewer.setModalExclusionType(ModalExclusionType.APPLICATION_EXCLUDE);
-            jviewer.setTitle("Informe");
-
-            jviewer.setVisible(true);
+           return jasperPrint;
 
         } catch (JRException j) {
             System.out.print(j.getMessage());
         }
+        return null;
     }
     
-    public void reportCombustibleEestacion(Date desde, Date hasta, int idEstacion){
+    public JasperPrint reportCombustibleEestacion(Date desde, Date hasta, int idEstacion){
         try {
 
             URL master = null;
@@ -472,16 +426,11 @@ public class ReportesDAO {
             parametro.put("subreport", subReport);
             parametro.put("subreport2", subReport2);
             JasperPrint jasperPrint = JasperFillManager.fillReport(masterReport, parametro, conector);
-            //JasperPrintManager.printReport(jasperPrint, false);
-            JasperViewer jviewer = new JasperViewer(jasperPrint, false);
-
-            jviewer.setModalExclusionType(ModalExclusionType.APPLICATION_EXCLUDE);
-            jviewer.setTitle("Informe");
-
-            jviewer.setVisible(true);
+            return jasperPrint;
 
         } catch (JRException j) {
             System.out.print(j.getMessage());
+            return null;
         }
     }
     
@@ -502,11 +451,11 @@ public class ReportesDAO {
             JasperReport masterReport = (JasperReport) JRLoader.loadObject(master);
             JasperPrint jasperPrint = JasperFillManager.fillReport(masterReport, parametro, conector);          
             //Exporta el informe a excel
-            JRXlsExporter exporterXLS = new JRXlsExporter();
-            exporterXLS.setParameter(JRXlsExporterParameter.JASPER_PRINT,  jasperPrint);
-            exporterXLS.setParameter(JRXlsExporterParameter.IS_DETECT_CELL_TYPE, Boolean.TRUE);
-            exporterXLS.setParameter(JRXlsExporterParameter.IS_WHITE_PAGE_BACKGROUND, Boolean.FALSE);
-            exporterXLS.setParameter(JRXlsExporterParameter.IS_REMOVE_EMPTY_SPACE_BETWEEN_ROWS, Boolean.TRUE);
+            
+            JRXlsExporter exporter = new JRXlsExporter();
+            exporter.setExporterInput(new SimpleExporterInput(jasperPrint));
+            
+
             String soName = System.getProperty("os.name").toUpperCase();
             String archivo="OT"+idOT +" ("+ interno+ ").xls";
             //String command = "start " +archivo ;
@@ -526,8 +475,13 @@ public class ReportesDAO {
                     archivo=folder.getAbsoluteFile()+"\\"+archivo;
                     //command = "start " +archivo ;
             }
-            exporterXLS.setParameter(JRExporterParameter.OUTPUT_FILE_NAME, archivo);
-            exporterXLS.exportReport();
+            exporter.setExporterOutput(new SimpleOutputStreamExporterOutput(archivo));
+            SimpleXlsReportConfiguration configuration = new SimpleXlsReportConfiguration();
+            configuration.setOnePagePerSheet(true);
+            configuration.setDetectCellType(true);
+            configuration.setCollapseRowSpan(false);
+            exporter.setConfiguration(configuration);
+            exporter.exportReport();
             Desktop.getDesktop().open(new File(archivo));
             result="Se ha exportado correctamente la órden de trabajo.\n"
                     + "Archivo: "+archivo;
@@ -559,11 +513,8 @@ public class ReportesDAO {
             JasperReport masterReport = (JasperReport) JRLoader.loadObject(master);
             JasperPrint jasperPrint = JasperFillManager.fillReport(masterReport, parametro, conector);          
             //Exporta el informe a excel
-            JRXlsExporter exporterXLS = new JRXlsExporter();
-            exporterXLS.setParameter(JRXlsExporterParameter.JASPER_PRINT,  jasperPrint);
-            exporterXLS.setParameter(JRXlsExporterParameter.IS_DETECT_CELL_TYPE, Boolean.TRUE);
-            exporterXLS.setParameter(JRXlsExporterParameter.IS_WHITE_PAGE_BACKGROUND, Boolean.FALSE);
-            exporterXLS.setParameter(JRXlsExporterParameter.IS_REMOVE_EMPTY_SPACE_BETWEEN_ROWS, Boolean.TRUE);
+            JRXlsExporter exporter = new JRXlsExporter();
+            exporter.setExporterInput(new SimpleExporterInput(jasperPrint));
             String soName = System.getProperty("os.name").toUpperCase();
             String archivo="RI"+riid +"("+ ri_num+ ").xls";
             //String command = "start " +archivo ;
@@ -583,8 +534,13 @@ public class ReportesDAO {
                     archivo=folder.getAbsoluteFile()+"\\"+archivo;
                     //command = "start " +archivo ;
             }
-            exporterXLS.setParameter(JRExporterParameter.OUTPUT_FILE_NAME, archivo);
-            exporterXLS.exportReport();
+            exporter.setExporterOutput(new SimpleOutputStreamExporterOutput(archivo));
+            SimpleXlsReportConfiguration configuration = new SimpleXlsReportConfiguration();
+            configuration.setOnePagePerSheet(true);
+            configuration.setDetectCellType(true);
+            configuration.setCollapseRowSpan(false);
+            exporter.setConfiguration(configuration);
+            exporter.exportReport();
             Desktop.getDesktop().open(new File(archivo));
             result="Se ha exportado correctamente el Requerimirnto Interno "+ri_num+".\n"
                     + "Archivo: "+archivo;
@@ -967,5 +923,53 @@ public class ReportesDAO {
         } catch (Exception e) {
         }
         return false;
+    }
+
+    public JasperPrint InformeVencimientosOperario() {
+        try {
+
+            URL master = null;
+            Map parametro = new HashMap();
+            parametro.put("urlimagenZille", getClass().getResource("/Reportes/zille.png").toString());
+            
+           
+            master = getClass().getResource("/Reportes/persona/Operario-Vencimiento.jasper");
+            System.out.println("Cargando desde: " + master);
+            if (master == null) {
+                System.out.println("No se encuentra el archivo master.");
+                //System.exit(2);
+            }
+            JasperReport masterReport = (JasperReport) JRLoader.loadObject(master);
+            JasperPrint jasperPrint = JasperFillManager.fillReport(masterReport, parametro, conector);
+            return jasperPrint;
+        } catch (JRException j) {
+            System.out.print(j.getMessage());
+        }
+        return null;
+    }
+
+    public JasperPrint InformeAlarmasProximas(Date fechaLimite) {
+        try {
+
+            URL master = null;
+            Map parametro = new HashMap();
+            parametro.put("urlimagenZille", getClass().getResource("/Reportes/zille.png").toString());
+            parametro.put("hoy", new Date());
+            parametro.put("fecha_limite", fechaLimite);
+           
+            master = getClass().getResource("/Reportes/persona/Alarmas-Proximas.jasper");
+            System.out.println("Cargando desde: " + master);
+            if (master == null) {
+                System.out.println("No se encuentra el archivo master.");
+                //System.exit(2);
+            }
+            JasperReport masterReport = (JasperReport) JRLoader.loadObject(master);
+            JasperPrint jasperPrint = JasperFillManager.fillReport(masterReport, parametro, conector);
+            return jasperPrint;
+            
+        } catch (JRException j) {
+            System.out.print(j.getMessage());
+        }
+        return null;
     }
 }

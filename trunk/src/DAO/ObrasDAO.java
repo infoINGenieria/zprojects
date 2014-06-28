@@ -38,8 +38,8 @@ public class ObrasDAO {
             query = "insert into obras (CODIGO, OBRA, CONTRATO, COMITENTE,"
                     + " CUIT, LUGAR, PLAZO, FECHA_INICIO, RESPONSABLE, TIENE_COMIDA, "
                     + "TIENE_VIANDA, TIENE_DESARRAIGO, LIMITE_VIANDA_DOBLE, "
-                    + "TIENE_REGISTRO, TIENE_EQUIPO) values "
-                    + "(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                    + "TIENE_REGISTRO, TIENE_EQUIPO, DESCUENTA_DIAS) values "
+                    + "(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement ps = conector.prepareStatement(query);
             ps.setString(1, obra.getCodigo());
             ps.setString(2, obra.getObra());
@@ -60,6 +60,7 @@ public class ObrasDAO {
             ps.setDouble(13, obra.getLimiteViandaDoble());
             ps.setBoolean(14, obra.isTieneRegistro());
             ps.setBoolean(15, obra.isTieneEquipo());
+            ps.setBoolean(16, obra.isDescuentaDias());
             ps.executeUpdate();
             ResultSet generatedKeys = ps.getGeneratedKeys();
             r=1;
@@ -85,7 +86,7 @@ public class ObrasDAO {
                     + " CUIT=?, LUGAR=?, PLAZO=?, FECHA_INICIO=?, RESPONSABLE=?,"
                     + " TIENE_COMIDA=?, TIENE_VIANDA=?, TIENE_DESARRAIGO=?,"
                     + " LIMITE_VIANDA_DOBLE=? , TIENE_REGISTRO=?, "
-                    + " TIENE_EQUIPO=? where ID = ?";
+                    + " TIENE_EQUIPO=?, DESCUENTA_DIAS=? where ID = ?";
             PreparedStatement ps = conector.prepareStatement(query);
             ps.setString(1, obra.getCodigo());
             ps.setString(2, obra.getObra());
@@ -106,7 +107,8 @@ public class ObrasDAO {
             ps.setDouble(13, obra.getLimiteViandaDoble());
             ps.setBoolean(14, obra.isTieneRegistro());
             ps.setBoolean(15, obra.isTieneEquipo());
-            ps.setInt(16, obra.getId());
+            ps.setBoolean(16, obra.isDescuentaDias());
+            ps.setInt(17, obra.getId());
             ps.executeUpdate();
             ResultSet rs = ps.getGeneratedKeys();
             r=0;
@@ -147,6 +149,7 @@ public class ObrasDAO {
                 obra.setLimiteViandaDoble(rs.getDouble(("LIMITE_VIANDA_DOBLE")));
                 obra.setTieneRegistro(rs.getBoolean("TIENE_REGISTRO"));
                 obra.setTieneEquipo(rs.getBoolean("TIENE_EQUIPO"));
+                obra.setDescuentaDias(rs.getBoolean("DESCUENTA_DIAS"));
                 obras.add(obra);
             }
             rs.close();
@@ -186,6 +189,7 @@ public class ObrasDAO {
                 obra.setLimiteViandaDoble(rs.getDouble(("LIMITE_VIANDA_DOBLE")));
                 obra.setTieneRegistro(rs.getBoolean("TIENE_REGISTRO"));
                 obra.setTieneEquipo(rs.getBoolean("TIENE_EQUIPO"));
+                obra.setDescuentaDias(rs.getBoolean("DESCUENTA_DIAS"));
                 obras.add(obra);
             }
             rs.close();
@@ -249,6 +253,7 @@ public class ObrasDAO {
                 obra.setLimiteViandaDoble(rs.getDouble(("LIMITE_VIANDA_DOBLE")));
                 obra.setTieneRegistro(rs.getBoolean("TIENE_REGISTRO"));
                 obra.setTieneEquipo(rs.getBoolean("TIENE_EQUIPO"));
+                obra.setDescuentaDias(rs.getBoolean("DESCUENTA_DIAS"));
             }
             rs.close();
             ps.close();
