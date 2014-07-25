@@ -1194,23 +1194,65 @@ private void selectEquipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                     || aux.getHs_ialmuerzo().toString().isEmpty() || aux.getHs_falmuerzo().toString().isEmpty()) {
                 return false;
             }
+            
         } catch (NullPointerException ex) {
             return false;
         }
         return true;
     }
+    
+    public String horarioCorrecto(){
+        Registro aux = tablaModel.getFila(0);
+        try {
+        // Además de estar completo, un horario no puede ser anterior al que lo precede.
+            if(aux.getHs_salida().after(aux.getHs_inicio())) {
+                return  "La hora de HS SALIDA no puede ser posterior a la de HS INICIO TAREAS";
+            }
+            if(aux.getHs_inicio().after(aux.getHs_ialmuerzo())){
+                return "La hora de HS INICIO TAREAS no puede ser posterior a la de HS ARMUERZO";
+            }if(aux.getHs_ialmuerzo().after(aux.getHs_falmuerzo())){
+                return "La hora de HS ALMUERZO no puede ser posterior a la de HS FIN ALMUERZO";
+            }if(aux.getHs_falmuerzo().after(aux.getHs_fin())){
+                return "La hora de HS FIN ALMUERZO no puede ser posterior a la de HS FIN TAREAS";
+            }if(aux.getHs_fin().after(aux.getHs_llegada())){
+                return "La hora de HS FIN TAREAS no puede ser posterior a la de HS LLEGADA";
+            }
+            return "";
+        }catch (NullPointerException ex) {
+            return "NO";
+        }catch(Exception ex){
+            return "NO";        
+        }
+    }
 
     @Action
     public Task guardarParteDiario() {
+        outText.setText("");
         if (OpcionPanel.YES_OPTION == OpcionPanel.showConfirmDialog(this, "¿Desea guardar?", "Guardando...", OpcionPanel.YES_NO_OPTION)) {
             if (fechaParte.getDate() == null || numPre.getText().isEmpty() || numPro.getText().isEmpty()){
-                OpcionPanel.showMessageDialog(this, "Falta completar algunos campos", "Datos imcompletos", OpcionPanel.ERROR_MESSAGE);
+                OpcionPanel.showMessageDialog(this, "Falta completar algunos campos", "Datos incompletos", OpcionPanel.ERROR_MESSAGE);
                 return null;
                 
             }
             if(obra.isTieneRegistro() && !horarioCompleto()){
-                OpcionPanel.showMessageDialog(this, "Complete los horarios, son requeridos para la obra seleccionada", "Datos imcompletos", OpcionPanel.ERROR_MESSAGE);
+                OpcionPanel.showMessageDialog(this, "Complete los horarios, son requeridos para la obra seleccionada", "Datos incompletos", OpcionPanel.ERROR_MESSAGE);
                 return null;  
+            }
+            String valid = horarioCorrecto();
+            if(!valid.isEmpty()){
+                OpcionPanel.showMessageDialog(this, valid, "Datos incompletos", OpcionPanel.ERROR_MESSAGE);
+                return null;  
+            }
+            Calendar cal = Calendar.getInstance();
+            cal.setTime(new Date());
+            cal.add(Calendar.DATE, -30);
+            if(fechaParte.getDate().before(cal.getTime())){
+                if(OpcionPanel.YES_OPTION != OpcionPanel.showConfirmDialog(this, 
+                        "La fecha seleccionada tiene más de 30 días.\n¿Desea continuar?", "Advertencia", 
+                        OpcionPanel.YES_NO_OPTION, OpcionPanel.QUESTION_MESSAGE)){
+                    return null; 
+                }
+                 
             }
         } else {
             return null;
@@ -1295,6 +1337,10 @@ private void selectEquipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                 rPD=-10;
                 return null;
             }
+            if(pdao.validar(pd)){
+                rPD=-11;
+                return null;
+            }
             boolean desa = (pd.isDesarraigo()| ((Operario) comboOperario.getSelectedItem()).isDesarraigo());
             //evaluo el desarraigo del parte diario y el desarraigo del operario
             reg.calcular(perfil, desa);
@@ -1316,15 +1362,19 @@ private void selectEquipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                 OpcionPanel.showMessageDialog(null, "¡No se pudo guardar!\n"
                         + "Existe un parte diario\n"
                         + "almacenado con ese número de talón.", "Error", OpcionPanel.ERROR_MESSAGE);
-            }else {
-            if (rPD < 0) {
+            }if(rPD == -11){
                 OpcionPanel.showMessageDialog(null, "¡No se pudo guardar!\n"
-                        + "Intente nuevamente.", "Error", OpcionPanel.ERROR_MESSAGE);
-            } else {
-                resetearForm();
-                outText.setText("Datos guardados.");
+                        + "Existe un parte diario almacenado\n"
+                        + "para este día y operario.", "Error", OpcionPanel.ERROR_MESSAGE);
+            }else {
+                if (rPD < 0) {
+                    OpcionPanel.showMessageDialog(null, "¡No se pudo guardar!\n"
+                            + "Intente nuevamente.", "Error", OpcionPanel.ERROR_MESSAGE);
+                } else {
+                    resetearForm();
+                    outText.setText("Datos guardados.");
 
-            }
+                }
             }
             if(creandoOT){
                 if(rOT==-1){

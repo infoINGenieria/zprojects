@@ -328,7 +328,7 @@ public class InformesHorasDAO {
      * 
      */
     
-    public void registrosHoras(InformesHoras i)  {
+    public JasperPrint registrosHoras(InformesHoras i)  {
         try {
             
             URL archivo = null;
@@ -345,13 +345,8 @@ public class InformesHorasDAO {
                 JasperReport masterReport = (JasperReport) JRLoader.loadObject(archivo);
 
                 JasperPrint jasperPrint = JasperFillManager.fillReport(masterReport, parametro, conector);
-                //JasperPrintManager.printReport(jasperPrint, false);
-                JasperViewer jviewer = new JasperViewer(jasperPrint, false);
-
-                jviewer.setModalExclusionType(ModalExclusionType.APPLICATION_EXCLUDE);
-                jviewer.setTitle("Informe");
-
-                jviewer.setVisible(true);
+                
+                return jasperPrint;
 
         }catch (JRException j){
             j.getMessage();
@@ -360,10 +355,10 @@ public class InformesHorasDAO {
         } catch( NullPointerException ex) {
         } catch ( IllegalArgumentException ex){
         } 
-        
+        return null;
         
     }
-    public void registrosDetalleHora(InformesHoras i)  {
+    public JasperPrint registrosDetalleHora(InformesHoras i)  {
         try {
             
             URL archivo = null;
@@ -377,25 +372,14 @@ public class InformesHorasDAO {
                 System.out.println("No se encuentra el archivo.");
                 //System.exit(2);
             }
-                JasperReport masterReport = (JasperReport) JRLoader.loadObject(archivo);
+            JasperReport masterReport = (JasperReport) JRLoader.loadObject(archivo);
 
-                JasperPrint jasperPrint = JasperFillManager.fillReport(masterReport, parametro, conector);
-                //JasperPrintManager.printReport(jasperPrint, false);
-                JasperViewer jviewer = new JasperViewer(jasperPrint, false);
-
-                jviewer.setModalExclusionType(ModalExclusionType.APPLICATION_EXCLUDE);
-                jviewer.setTitle("Informe");
-
-                jviewer.setVisible(true);
-                 //Exporta el informe a PDF
-                //String destFileNamePdf= "prueba.pdf";
-                //Creación del PDF
-                //JasperExportManager.exportReportToPdfFile(jasperPrint, destFileNamePdf);
-                
+            JasperPrint jasperPrint = JasperFillManager.fillReport(masterReport, parametro, conector);
+            return jasperPrint;
 
         }catch (JRException j){
             j.getMessage();
-        
+            return null;
         } 
     }
     public JasperPrint registrosDetalleHora2Excel(InformesHoras i)  {

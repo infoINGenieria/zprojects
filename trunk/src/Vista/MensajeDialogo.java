@@ -95,6 +95,8 @@ public class MensajeDialogo extends javax.swing.JDialog {
         txtMensaje.setRows(3);
         txtMensaje.setWrapStyleWord(true);
         txtMensaje.setBorder(null);
+        txtMensaje.setDoubleBuffered(true);
+        txtMensaje.setEnabled(false);
         txtMensaje.setFocusable(false);
         txtMensaje.setName("txtMensaje"); // NOI18N
         txtMensaje.setRequestFocusEnabled(false);
@@ -146,7 +148,7 @@ public class MensajeDialogo extends javax.swing.JDialog {
                     .addComponent(btnCerrar)
                     .addComponent(txtTitulo))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 47, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 67, Short.MAX_VALUE)
                 .addContainerGap())
         );
 

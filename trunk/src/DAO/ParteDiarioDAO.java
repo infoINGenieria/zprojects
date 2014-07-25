@@ -36,6 +36,27 @@ public class ParteDiarioDAO {
         } catch (Exception ex) {
         }
     }
+    
+    public boolean validar(ParteDiario pd){
+        boolean r = false;
+        String query="";
+        try{
+            query = "select id from partediario where operario ? and fecha = ?";
+            PreparedStatement ps = conector.prepareStatement(query);
+            ps.setInt(1, pd.getIdOperario());
+            ps.setDate(2, FechaUtil.getFechatoDB(pd.getFecha()));
+            ResultSet rs = ps.executeQuery();
+            if(rs.next()){
+                r = true;
+            }
+            rs.close();
+            ps.close();
+            
+        }catch(Exception ex){
+            
+        }
+        return r;
+    }
 
     public boolean numeroExistsNew(String num) {
         /*retorna true si no debe modificarse*/
@@ -1031,4 +1052,47 @@ public class ParteDiarioDAO {
         return partes;
 
     }
+    
+    public int CalcularFrancos(int operarioId){
+        int cantidad = 0;
+        String query = "select distinct count(pd.id) as francos from partediario pd "+
+                "inner join registro r on r.id = pd.horario "+
+                "inner join obras o on  o.id = pd.obra "+
+                "where pd.operario = ? and r.especial is true and o.descuenta_dias is false";
+        try{
+            PreparedStatement ps = conector.prepareStatement(query);
+            ps.setInt(1, operarioId);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                 cantidad = rs.getInt("francos");
+            }
+            ps.close();
+            rs.close();
+            return cantidad;
+        }catch(Exception ex){
+            return cantidad;
+        }
+    }
+    
+    public int CalcularDiasDevueltos(int operarioId){
+        int cantidad = 0;
+        String query = "select distinct count(pd.id) as devuelto from partediario pd "+
+                "inner join obras o on  o.id = pd.obra "+
+                "where pd.operario = ? and o.descuenta_dias = true";
+        try{
+            PreparedStatement ps = conector.prepareStatement(query);
+            ps.setInt(1, operarioId);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                 cantidad = rs.getInt("devuelto");
+            }
+            ps.close();
+            rs.close();
+            return cantidad;
+        }catch(Exception ex){
+            return cantidad;
+        }
+    }
+    
+    
 }
