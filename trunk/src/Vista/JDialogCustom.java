@@ -16,7 +16,7 @@ import javax.swing.JDialog;
 public class JDialogCustom extends JDialog{
 
     Frame parentFrame;
-    Image icono = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/zilleprojects/resources/icono.png"));
+    protected Image icono = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/zilleprojects/resources/icono.png"));
     
     
     public JDialogCustom(java.awt.Frame parent, boolean modal) {

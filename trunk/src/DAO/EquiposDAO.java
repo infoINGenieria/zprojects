@@ -7,6 +7,7 @@ package DAO;
 import Modelo.Equipos;
 import Modelo.ItemAlarma;
 import Utils.FechaUtil;
+import ViewModel.ItemAlarmaBean;
 import java.sql.Connection;
 
 import java.sql.PreparedStatement;
@@ -330,6 +331,16 @@ public class EquiposDAO {
         }
         return equipos;
 
+    }
+    public ArrayList<ItemAlarmaBean> getAlarmasEquiposForReport(java.util.Date inicio, java.util.Date limite){
+        //TODO: arreglar esto
+        ArrayList<ItemAlarma> alarmas = new ArrayList<ItemAlarma>();
+        ArrayList<ItemAlarmaBean> itemes = new ArrayList<ItemAlarmaBean>();
+        alarmas = getAlarmasEquipos(inicio, limite);
+        for(ItemAlarma item: alarmas){
+            itemes.add(new ItemAlarmaBean(item.getFecha(), null/*item.getFecha()*/, item.getMensaje(), "Alarma automática por vencimiento."));
+        }
+        return itemes;
     }
     
     public ArrayList<ItemAlarma> getAlarmasEquipos(java.util.Date inicio, java.util.Date fin){

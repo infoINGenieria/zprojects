@@ -21,6 +21,9 @@ public class Alarma {
     }
 
     public void setNombre(String nombre) {
+        if(nombre.length()>128){
+            nombre = nombre.substring(0, 125) + "...";
+        }
         this.nombre = nombre;
     }
 
@@ -50,6 +53,7 @@ public class Alarma {
     }
 
     public Date getFecha_previa() {
+        if(fecha_previa == null) return fecha;
         return fecha_previa;
     }
 
@@ -89,7 +93,11 @@ public class Alarma {
 
     @Override
     public String toString() {
-        return nombre + " ("+FechaUtil.getFecha(fecha)+")";
+        String _nombre = nombre;
+        if(nombre.length()>32){
+            _nombre = nombre.substring(0, 32) + "...";
+        }
+        return _nombre + " ("+FechaUtil.getFecha(fecha)+")";
     }
     
     

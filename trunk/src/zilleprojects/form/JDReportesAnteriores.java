@@ -16,9 +16,12 @@ import DAO.ParteDiarioDAO;
 import Modelo.InformesHoras;
 import Modelo.Operario;
 import Modelo.Registro;
+import Utils.UtilReport;
+import Vista.JDialogCustom;
 import Vista.PanelAzul;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
+import net.sf.jasperreports.engine.JasperPrint;
 import org.jdesktop.application.Action;
 import org.jdesktop.application.Task;
 
@@ -26,12 +29,13 @@ import org.jdesktop.application.Task;
  *
  * @author matuu
  */
-public class JDReportesAnteriores extends javax.swing.JDialog {
-
+public class JDReportesAnteriores extends JDialogCustom {
+     java.awt.Frame parent;
     /** Creates new form JDReportesAnteriores */
     public JDReportesAnteriores(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        this.parent = parent;
     }
 
     /** This method is called from within the constructor to
@@ -485,16 +489,23 @@ public class JDReportesAnteriores extends javax.swing.JDialog {
             ih.CalcularValoresHoras();
             res=idao.guardar(ih);
             if(res>=0){
-                idao.registrosHoras(ih);
+                return idao.registrosHoras(ih);
             }
             return null;  // return your result
         }
         @Override protected void succeeded(Object result) {
             if(res>=0){
-                //listReport.clear();
+                try{
+                    JasperPrint jp = (JasperPrint) result;
+                    UtilReport.MostrarDialogSeleccion(parent, jp);
+                }catch(Exception ex){
+                    Error("No se pudo generar el informe.");
+                }
             }else{
-                alert.setText("Error: no pudo generarse el informe.");
+                Error("Error: no pudo generarse el informe.");
             }
+            
+            
             
         }
     }

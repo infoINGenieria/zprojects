@@ -6,6 +6,7 @@ package DAO;
 
 import Modelo.Obras;
 import Utils.FechaUtil;
+import ViewModel.ItemAlarmaBean;
 import java.awt.Desktop;
 import java.awt.Dialog.ModalExclusionType;
 import java.io.File;
@@ -17,7 +18,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
@@ -26,6 +30,7 @@ import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import net.sf.jasperreports.engine.export.JRXlsExporter;
 import net.sf.jasperreports.engine.util.JRLoader;
 import net.sf.jasperreports.export.SimpleExporterInput;
@@ -927,7 +932,7 @@ public class ReportesDAO {
 
     public JasperPrint InformeVencimientosOperario() {
         try {
-
+            
             URL master = null;
             Map parametro = new HashMap();
             parametro.put("urlimagenZille", getClass().getResource("/Reportes/zille.png").toString());
@@ -940,6 +945,8 @@ public class ReportesDAO {
                 //System.exit(2);
             }
             JasperReport masterReport = (JasperReport) JRLoader.loadObject(master);
+            
+            
             JasperPrint jasperPrint = JasperFillManager.fillReport(masterReport, parametro, conector);
             return jasperPrint;
         } catch (JRException j) {
@@ -950,21 +957,39 @@ public class ReportesDAO {
 
     public JasperPrint InformeAlarmasProximas(Date fechaLimite) {
         try {
+            ArrayList<ItemAlarmaBean> data = new ArrayList<ItemAlarmaBean>();
+            // Busco alarmas proximas 
+            AlarmasDAO aDao = new AlarmasDAO();
+            aDao.conectar();
+            data.addAll(aDao.findAlarmasAntesDe(fechaLimite));
+            // Busco fecha de vencimientos próximas
+            Date hoy = new Date();
+            hoy = FechaUtil.resetTime(hoy);
+ 
 
-            URL master = null;
-            Map parametro = new HashMap();
-            parametro.put("urlimagenZille", getClass().getResource("/Reportes/zille.png").toString());
-            parametro.put("hoy", new Date());
-            parametro.put("fecha_limite", fechaLimite);
-           
-            master = getClass().getResource("/Reportes/persona/Alarmas-Proximas.jasper");
+            EquiposDAO edao=new EquiposDAO();
+            edao.conectar();
+            OperarioDAO odao = new OperarioDAO();
+            odao.conectar();    
+            //Buscar las VTO_VT con fecha prximo 20 dias.
+            //Buscar las VTO_SEGURO con fecha proximo 20 días.
+            ArrayList<ItemAlarmaBean> equipos = edao.getAlarmasEquiposForReport(hoy, fechaLimite);
+            if(equipos != null && !equipos.isEmpty()) data.addAll(equipos);
+            //Buscar las VtO_CARNET con fecha proximo 20 días.
+            ArrayList<ItemAlarmaBean> operarios = odao.getAlarmasOperariosForReport(hoy, fechaLimite);
+            data.addAll(operarios);
+            
+            Collections.sort(data);
+            
+            URL master = getClass().getResource("/Reportes/persona/Alarmas-Proximas.jasper");
             System.out.println("Cargando desde: " + master);
             if (master == null) {
                 System.out.println("No se encuentra el archivo master.");
                 //System.exit(2);
             }
             JasperReport masterReport = (JasperReport) JRLoader.loadObject(master);
-            JasperPrint jasperPrint = JasperFillManager.fillReport(masterReport, parametro, conector);
+            JasperPrint jasperPrint = JasperFillManager.fillReport(masterReport, null, 
+                new JRBeanCollectionDataSource(data));
             return jasperPrint;
             
         } catch (JRException j) {

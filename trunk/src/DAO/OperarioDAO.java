@@ -9,6 +9,7 @@ import Modelo.EPPOperario;
 import Modelo.ItemAlarma;
 import Modelo.Operario;
 import Utils.FechaUtil;
+import ViewModel.ItemAlarmaBean;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -269,6 +270,15 @@ public class OperarioDAO {
         return r;
     }
     
+    public ArrayList<ItemAlarmaBean> getAlarmasOperariosForReport(java.util.Date inicio, java.util.Date fin){
+        //TODO: arreglar esto
+        ArrayList<ItemAlarma> alarmas = getAlarmasOperarios(inicio, fin);
+        ArrayList<ItemAlarmaBean> itemes = new ArrayList<ItemAlarmaBean>();
+        for(ItemAlarma item: alarmas){
+            itemes.add(new ItemAlarmaBean(item.getFecha(), null, item.getMensaje(), "Alarma automática por vencimiento."));
+        }
+        return itemes;
+    }
     
     public ArrayList<ItemAlarma> getAlarmasOperarios(java.util.Date inicio, java.util.Date fin){
         ArrayList<ItemAlarma> alarmas = new ArrayList<ItemAlarma>();

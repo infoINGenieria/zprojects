@@ -5,23 +5,20 @@
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="2"/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Localhost"/>
-	<parameter name="urlimagenZille" class="java.lang.String"/>
-	<parameter name="fecha_limite" class="java.util.Date"/>
-	<parameter name="hoy" class="java.util.Date"/>
 	<queryString language="SQL">
-		<![CDATA[SELECT fecha, comentario, nombre, fecha_previa FROM alarma WHERE fecha >=  $P{hoy}  and fecha <= $P{fecha_limite} ]]>
+		<![CDATA[]]>
 	</queryString>
-	<field name="fecha" class="java.sql.Date">
-		<fieldDescription><![CDATA[]]></fieldDescription>
+	<field name="fecha" class="java.util.Date">
+		<fieldDescription><![CDATA[fecha]]></fieldDescription>
 	</field>
 	<field name="comentario" class="java.lang.String">
-		<fieldDescription><![CDATA[]]></fieldDescription>
+		<fieldDescription><![CDATA[comentario]]></fieldDescription>
 	</field>
-	<field name="nombre" class="java.lang.String">
-		<fieldDescription><![CDATA[]]></fieldDescription>
+	<field name="mensaje" class="java.lang.String">
+		<fieldDescription><![CDATA[mensaje]]></fieldDescription>
 	</field>
-	<field name="fecha_previa" class="java.sql.Date">
-		<fieldDescription><![CDATA[]]></fieldDescription>
+	<field name="fechaPrevia" class="java.util.Date">
+		<fieldDescription><![CDATA[fechaPrevia]]></fieldDescription>
 	</field>
 	<background>
 		<band height="802" splitType="Stretch"/>
@@ -30,14 +27,10 @@
 		<band splitType="Stretch"/>
 	</title>
 	<pageHeader>
-		<band height="54" splitType="Stretch">
-			<image isUsingCache="false" evaluationTime="Report">
-				<reportElement mode="Opaque" x="0" y="0" width="216" height="54" uuid="d89134ec-9f69-47da-bd9a-0d953b211275"/>
-				<imageExpression><![CDATA[$P{urlimagenZille}]]></imageExpression>
-			</image>
+		<band height="30" splitType="Stretch">
 			<staticText>
-				<reportElement mode="Transparent" x="216" y="1" width="339" height="53" forecolor="#424242" backcolor="#D4D4D4" uuid="ae18df23-bbc8-4db5-a4da-57103af0c8a9"/>
-				<textElement textAlignment="Right" verticalAlignment="Middle" markup="none">
+				<reportElement mode="Transparent" x="0" y="0" width="555" height="30" forecolor="#424242" backcolor="#D4D4D4" uuid="ae18df23-bbc8-4db5-a4da-57103af0c8a9"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
 					<font size="20" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Reporte de alarmas próximas]]></text>
@@ -45,9 +38,9 @@
 		</band>
 	</pageHeader>
 	<columnHeader>
-		<band height="24" splitType="Stretch">
+		<band height="25" splitType="Stretch">
 			<staticText>
-				<reportElement mode="Opaque" x="0" y="0" width="100" height="24" forecolor="#000000" backcolor="#F2F2F2" uuid="9701aaa6-cf41-4b1a-b3b3-f1d95b5b672a">
+				<reportElement mode="Opaque" x="0" y="0" width="106" height="24" forecolor="#000000" backcolor="#F2F2F2" uuid="9701aaa6-cf41-4b1a-b3b3-f1d95b5b672a">
 					<property name="local_mesure_unitwidth" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
@@ -59,14 +52,14 @@
 				<text><![CDATA[Fecha]]></text>
 			</staticText>
 			<staticText>
-				<reportElement stretchType="RelativeToTallestObject" mode="Opaque" x="410" y="0" width="144" height="24" forecolor="#000000" backcolor="#CCE8FF" uuid="ebfe6800-9f82-4764-86dd-4132c09b0c3b"/>
+				<reportElement stretchType="RelativeToTallestObject" mode="Opaque" x="410" y="0" width="145" height="24" forecolor="#000000" backcolor="#F2F2F2" uuid="ebfe6800-9f82-4764-86dd-4132c09b0c3b"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
 					<font fontName="SansSerif" size="10" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 				</textElement>
 				<text><![CDATA[Comentario]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="200" y="0" width="210" height="24" forecolor="#000000" backcolor="#F2F2F2" uuid="3ebda931-7759-4c50-a7ed-aaa74d518a68">
+				<reportElement mode="Opaque" x="216" y="0" width="194" height="24" forecolor="#000000" backcolor="#F2F2F2" uuid="3ebda931-7759-4c50-a7ed-aaa74d518a68">
 					<property name="local_mesure_unitwidth" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
@@ -76,7 +69,7 @@
 				<text><![CDATA[Nombre]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="100" y="0" width="100" height="24" forecolor="#000000" backcolor="#CCE8FF" uuid="56346d60-40d5-418d-8a17-aa72f339b326">
+				<reportElement mode="Opaque" x="106" y="0" width="110" height="24" forecolor="#000000" backcolor="#F2F2F2" uuid="56346d60-40d5-418d-8a17-aa72f339b326">
 					<property name="local_mesure_unitwidth" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
@@ -86,36 +79,44 @@
 				<text><![CDATA[Fecha Previa]]></text>
 			</staticText>
 			<line>
-				<reportElement x="0" y="23" width="555" height="1" uuid="e456e90e-3cf0-4898-afa2-a69d09dabd88"/>
+				<reportElement x="0" y="24" width="555" height="1" uuid="e456e90e-3cf0-4898-afa2-a69d09dabd88"/>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
 			</line>
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="41" splitType="Stretch">
+		<band height="31" splitType="Stretch">
 			<line>
-				<reportElement x="0" y="39" width="555" height="1" uuid="63b08d3f-0ddb-4166-998d-84e059f02396"/>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="30" width="555" height="1" forecolor="#808080" uuid="63b08d3f-0ddb-4166-998d-84e059f02396"/>
+				<graphicElement>
+					<pen lineStyle="Dotted"/>
+				</graphicElement>
 			</line>
-			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement mode="Opaque" x="0" y="0" width="100" height="40" backcolor="#F2F2F2" uuid="f43b7b89-ff35-415f-8d9d-96dedded7bee"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+			<textField isStretchWithOverflow="true" pattern="dd/MM/yyyy" isBlankWhenNull="true">
+				<reportElement mode="Transparent" x="0" y="0" width="106" height="30" backcolor="#F2F2F2" uuid="f43b7b89-ff35-415f-8d9d-96dedded7bee"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{fecha}]]></textFieldExpression>
 			</textField>
-			<textField isBlankWhenNull="true">
-				<reportElement mode="Opaque" x="200" y="0" width="210" height="40" forecolor="#000000" backcolor="#F2F2F2" uuid="4b687ed6-9640-40d1-86ce-39f583acd978"/>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement mode="Transparent" x="216" y="0" width="194" height="30" forecolor="#000000" backcolor="#F2F2F2" uuid="4b687ed6-9640-40d1-86ce-39f583acd978"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle" rotation="None" markup="none">
 					<font fontName="SansSerif" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{mensaje}]]></textFieldExpression>
 			</textField>
-			<textField isBlankWhenNull="true">
-				<reportElement mode="Opaque" x="100" y="0" width="100" height="40" forecolor="#000000" backcolor="#CCE8FF" uuid="86b7befb-57e6-4679-ae6c-ec36493b7807"/>
+			<textField isStretchWithOverflow="true" pattern="dd/MM/yyyy" isBlankWhenNull="true">
+				<reportElement mode="Transparent" x="106" y="0" width="110" height="30" forecolor="#000000" backcolor="#CCE8FF" uuid="86b7befb-57e6-4679-ae6c-ec36493b7807"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
-					<font fontName="SansSerif" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<font fontName="SansSerif" size="9" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{fecha_previa}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{fechaPrevia}]]></textFieldExpression>
 			</textField>
-			<textField isBlankWhenNull="true">
-				<reportElement mode="Opaque" x="410" y="0" width="144" height="40" forecolor="#000000" backcolor="#CCE8FF" uuid="cabb81c8-91cf-4b1b-8c4f-f7d3da89cd19"/>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement mode="Transparent" x="410" y="0" width="145" height="30" forecolor="#000000" backcolor="#CCE8FF" uuid="cabb81c8-91cf-4b1b-8c4f-f7d3da89cd19"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle" rotation="None" markup="none">
 					<font fontName="SansSerif" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 				</textElement>
@@ -127,24 +128,24 @@
 		<band splitType="Stretch"/>
 	</columnFooter>
 	<pageFooter>
-		<band height="25" splitType="Stretch">
+		<band height="24" splitType="Stretch">
 			<textField>
-				<reportElement x="423" y="0" width="80" height="20" uuid="f3b86955-55d9-46e6-b644-67d140753b91"/>
+				<reportElement x="410" y="0" width="92" height="24" uuid="f3b86955-55d9-46e6-b644-67d140753b91"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA["Página "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
 			</textField>
 			<textField evaluationTime="Report">
-				<reportElement x="503" y="0" width="52" height="20" uuid="949259da-70db-4d28-bbd8-6c3877fdc227"/>
+				<reportElement x="502" y="0" width="53" height="24" uuid="949259da-70db-4d28-bbd8-6c3877fdc227"/>
 				<textElement verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="13" y="0" width="174" height="20" uuid="5d2ebbab-84b8-4c3a-a185-29ed887b4bb1"/>
-				<textElement verticalAlignment="Middle"/>
+				<reportElement x="0" y="0" width="216" height="24" uuid="5d2ebbab-84b8-4c3a-a185-29ed887b4bb1"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<text><![CDATA[Zille SRL - Movimiento de Suelo]]></text>
 			</staticText>
-			<textField evaluationTime="Report" pattern="MMMMM dd, yyyy">
-				<reportElement positionType="Float" x="241" y="0" width="140" height="20" uuid="087a44b4-e377-410e-954a-1081cce11861"/>
+			<textField evaluationTime="Report" pattern="MMM d, yyyy">
+				<reportElement positionType="Float" x="216" y="0" width="194" height="24" uuid="087a44b4-e377-410e-954a-1081cce11861"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>

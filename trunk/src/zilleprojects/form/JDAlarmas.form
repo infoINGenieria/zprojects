@@ -262,6 +262,7 @@
             </Component>
             <Component class="javax.swing.JTextField" name="txtNombre">
               <Properties>
+                <Property name="columns" type="int" value="128"/>
                 <Property name="text" type="java.lang.String" resourceKey="txtNombre.text"/>
                 <Property name="disabledTextColor" type="java.awt.Color" resourceKey="txtNombre.disabledTextColor"/>
                 <Property name="enabled" type="boolean" value="false"/>
@@ -355,6 +356,7 @@
             </Property>
             <Property name="icon" type="javax.swing.Icon" resourceKey="btnGuardar.icon"/>
             <Property name="text" type="java.lang.String" resourceKey="btnGuardar.text"/>
+            <Property name="enabled" type="boolean" value="false"/>
             <Property name="name" type="java.lang.String" value="btnGuardar" noResource="true"/>
           </Properties>
         </Component>
@@ -365,6 +367,7 @@
             </Property>
             <Property name="icon" type="javax.swing.Icon" resourceKey="btnModificar.icon"/>
             <Property name="text" type="java.lang.String" resourceKey="btnModificar.text"/>
+            <Property name="enabled" type="boolean" value="false"/>
             <Property name="name" type="java.lang.String" value="btnModificar" noResource="true"/>
           </Properties>
         </Component>

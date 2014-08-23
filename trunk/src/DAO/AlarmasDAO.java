@@ -6,6 +6,7 @@ package DAO;
 
 import Modelo.Alarma;
 import Utils.FechaUtil;
+import ViewModel.ItemAlarmaBean;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -207,26 +208,17 @@ public class AlarmasDAO {
         String query = null;
         
         Date hoy = new Date();
-        GregorianCalendar gc = new GregorianCalendar();
-        gc.setTime(hoy);
-        /*Seteo las horas, minutos etc en 0 para que al comparar con los date de sql
-         * filtren bien las fechas
-         */
-        gc.set(GregorianCalendar.MINUTE,0);
-        gc.set(GregorianCalendar.HOUR_OF_DAY,0);
-        gc.set(GregorianCalendar.SECOND,0);
-        gc.set(GregorianCalendar.MILLISECOND,0);
-        hoy = gc.getTime();
+        hoy = FechaUtil.resetTime(hoy);
         ArrayList<Alarma> alarmas = new ArrayList<Alarma>();
         try {
             query = "select * from alarma where fecha >='"+FechaUtil.getFechatoDB(hoy)+"' order by fecha asc";
             PreparedStatement ps = conector.prepareStatement(query);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                 if(     hoy.equals(rs.getDate("FECHA")) || 
-                         rs.getDate("FECHA_PREVIA") != null && (hoy.equals(rs.getDate("FECHA_PREVIA"))  ||
-                                                                hoy.after(rs.getDate("FECHA_PREVIA"))) 
-                    ) {
+                try{
+                Date fecha = FechaUtil.resetTime(FechaUtil.getFechaFromDB(rs.getDate("FECHA")));
+                Date previa = FechaUtil.getFechaFromDB(rs.getDate("FECHA_PREVIA"));
+                 if(hoy.equals(fecha) || (previa != null && (hoy.equals(previa)  || hoy.after(previa)))) {
                     Alarma al = new Alarma();
                     al.setAlarmaID(rs.getInt("ALARMAID"));
                     al.setRiID(rs.getInt("RI_ID"));
@@ -236,8 +228,39 @@ public class AlarmasDAO {
                     al.setNombre(rs.getString("NOMBRE"));
                     alarmas.add(al);
                  }
+                }catch(Exception ex){
+                    System.err.print("Falló al cargar la alarma : " +ex.getMessage()+ "\n");
+                }
                 
-                
+            }
+            rs.close();
+            ps.close();
+
+        } catch (SQLException ex) {
+            System.err.print("Falló al cargar las alarmas: " +ex.getMessage()+ "\n");
+        }
+        return alarmas;
+
+    } 
+   
+   public ArrayList<ItemAlarmaBean> findAlarmasAntesDe(Date limite) {
+        String query = null;
+        ArrayList<ItemAlarmaBean> alarmas = new ArrayList<ItemAlarmaBean>();
+        try {
+            query = "SELECT fecha, comentario, nombre, fecha_previa FROM alarma "
+                    + "WHERE fecha >=  ?  and fecha <= ?";
+            PreparedStatement ps = conector.prepareStatement(query);
+            ps.setDate(1, FechaUtil.getFechatoDB(new Date()));
+            ps.setDate(2, FechaUtil.getFechatoDB(limite));
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                 
+                ItemAlarmaBean al = new ItemAlarmaBean();
+                al.setFecha(rs.getDate("fecha"));
+                al.setFechaPrevia(rs.getDate("fecha_previa"));
+                al.setComentario(rs.getString("comentario"));
+                al.setMensaje(rs.getString("nombre"));
+                alarmas.add(al);             
             }
             rs.close();
             ps.close();
@@ -249,4 +272,5 @@ public class AlarmasDAO {
 
     } 
    
+   //SELECT fecha, comentario, nombre, fecha_previa FROM alarma WHERE fecha >=  $P{hoy}  and fecha <= $P{fecha_limite}
 }

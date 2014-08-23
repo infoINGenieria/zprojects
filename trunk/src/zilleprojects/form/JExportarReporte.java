@@ -74,6 +74,11 @@ public class JExportarReporte extends JDialogCustom {
         setName("Form"); // NOI18N
         setResizable(false);
         setUndecorated(true);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
+            }
+        });
 
         org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(zilleprojects.ZilleProjectsApp.class).getContext().getResourceMap(JExportarReporte.class);
         jPanel34.setBorder(javax.swing.BorderFactory.createLineBorder(resourceMap.getColor("jPanel34.border.lineColor"), 2)); // NOI18N
@@ -186,9 +191,19 @@ public class JExportarReporte extends JDialogCustom {
         dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+        if(report.getPages().isEmpty()){
+            Error("El reporte no tiene páginas.");
+            dispose();
+        }
+    }//GEN-LAST:event_formWindowActivated
+
     @Action
     public Task exportarXls() {
-        
+        if(report.getPages().isEmpty()){
+            Error("El reporte no tiene páginas.");
+            return null;
+        }
         return new ExportarXlsTask(org.jdesktop.application.Application.getInstance(zilleprojects.ZilleProjectsApp.class));
     }
 
@@ -212,7 +227,7 @@ public class JExportarReporte extends JDialogCustom {
             exporter.setExporterOutput(new SimpleOutputStreamExporterOutput(xls));
             SimpleXlsReportConfiguration configuration = new SimpleXlsReportConfiguration();
             configuration.setOnePagePerSheet(false);
-            configuration.setDetectCellType(true);
+            configuration.setDetectCellType(false);
             configuration.setCollapseRowSpan(false);
             configuration.setRemoveEmptySpaceBetweenRows(false);
             
@@ -248,6 +263,10 @@ public class JExportarReporte extends JDialogCustom {
 
     @Action
     public Task exportarPDF() {
+         if(report.getPages().isEmpty()){
+            Error("El reporte no tiene páginas.");
+            return null;
+        }
         return new ExportarPDFTask(org.jdesktop.application.Application.getInstance(zilleprojects.ZilleProjectsApp.class));
     }
 
@@ -313,6 +332,10 @@ public class JExportarReporte extends JDialogCustom {
 
     @Action
     public Task printReport() {
+         if(report.getPages().isEmpty()){
+            Error("El reporte no tiene páginas.");
+            return null;
+        }
         return new PrintReportTask(org.jdesktop.application.Application.getInstance(zilleprojects.ZilleProjectsApp.class));
     }
 
@@ -360,6 +383,10 @@ public class JExportarReporte extends JDialogCustom {
 
     @Action
     public Task viewReport() {
+         if(report.getPages().isEmpty()){
+            Error("El reporte no tiene páginas.");
+            return null;
+        }
         return new ViewReportTask(org.jdesktop.application.Application.getInstance(zilleprojects.ZilleProjectsApp.class));
     }
 
