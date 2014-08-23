@@ -37,7 +37,7 @@ public class ParametroDAO {
             ps.setString(1, param.getClave());
             ResultSet rs = ps.executeQuery();
             if(rs.next()){
-                query = "update parametro set (CLAVE_GRUPO=?, VALOR=?) where CLAVE=?";
+                query = "update parametro set CLAVE_GRUPO=?, VALOR=? where CLAVE=?";
             }else{
                 query = "insert into parametro (CLAVE_GRUPO, VALOR, CLAVE) "
                         + "values(?, ?, ?)";
@@ -132,5 +132,25 @@ public class ParametroDAO {
             
         }
         return parametros;
+    }
+     
+     public boolean Borrar(Parametro p) {
+        boolean r = false;
+        try {
+            String query = "delete from parametro where CLAVE = ? limit 1";
+            PreparedStatement ps = conector.prepareStatement(query);
+            ps.setString(1, p.getClave());
+            ps.executeUpdate();
+            ResultSet rs = ps.getGeneratedKeys();
+            if (rs.next()) {
+                r=true;
+            }
+            ps.close();
+            rs.close();
+            r=true;
+        } catch (SQLException ex) {
+            r = false;
+        }
+        return r;
     }
 }

@@ -924,6 +924,7 @@
                               <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
                               <Component id="chkTieneEquipo" min="-2" max="-2" attributes="0"/>
                           </Group>
+                          <Component id="chkDescuentaDias" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -948,7 +949,9 @@
                           <Component id="chkTieneRegistro" alignment="2" min="-2" max="-2" attributes="0"/>
                           <Component id="chkTieneEquipo" alignment="2" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="42" max="32767" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="chkDescuentaDias" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="14" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -1002,6 +1005,12 @@
               <Properties>
                 <Property name="text" type="java.lang.String" resourceKey="chkTieneEquipo.text"/>
                 <Property name="name" type="java.lang.String" value="chkTieneEquipo" noResource="true"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="chkDescuentaDias">
+              <Properties>
+                <Property name="text" type="java.lang.String" resourceKey="chkDescuentaDias.text"/>
+                <Property name="name" type="java.lang.String" value="chkDescuentaDias" noResource="true"/>
               </Properties>
             </Component>
           </SubComponents>

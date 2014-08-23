@@ -6,6 +6,7 @@ package Modelo;
 
 import DAO.ParametroDAO;
 import Utils.ArrayParametro;
+import java.util.ArrayList;
 
 /**
  *
@@ -13,8 +14,8 @@ import Utils.ArrayParametro;
  */
 public class ParametrosSistema {
     
-    static ArrayParametro parametros = new ArrayParametro();
-    static RangoVacaciones rangosVacaciones = new RangoVacaciones();
+    public static ArrayParametro parametros = new ArrayParametro();
+    public static RangoVacaciones rangosVacaciones = new RangoVacaciones();
     
     public static Parametro get(String clave){
         return parametros.Find(clave);
@@ -45,26 +46,25 @@ public class ParametrosSistema {
         }
     }
     
-    static class RangoVacaciones{
-        private int minDiasRango_1, minDiasRango_2,minDiasRango_3, minDiasRango_4;
-        private int maxDiasRango_1, maxDiasRango_2, maxDiasRango_3, maxDiasRango_4;
-        private  int diasRango1, diasRango2, diasRango3, diasRango4;
+    public static class RangoVacaciones{
+        private ArrayList<VacacionesRango> rangos = new ArrayList<VacacionesRango>();
         private boolean leidos = false;
         
         public void CargarRangos(){
-            minDiasRango_1 = getValorInt("MIN_DIAS_RANGO_1");
-            maxDiasRango_1 = getValorInt("MAX_DIAS_RANGO_1");
-            minDiasRango_2 = getValorInt("MIN_DIAS_RANGO_2");
-            maxDiasRango_2 = getValorInt("MAX_DIAS_RANGO_2");
-            minDiasRango_3 = getValorInt("MIN_DIAS_RANGO_3");
-            maxDiasRango_3 = getValorInt("MAX_DIAS_RANGO_3");
-            minDiasRango_4 = getValorInt("MIN_DIAS_RANGO_4");
-            maxDiasRango_4 = getValorInt("MAX_DIAS_RANGO_4");
-            diasRango1 = getValorInt("VACACIONES_DIAS_RANGO_1");
-            diasRango2 = getValorInt("VACACIONES_DIAS_RANGO_2");
-            diasRango3 = getValorInt("VACACIONES_DIAS_RANGO_3");
-            diasRango4 = getValorInt("VACACIONES_DIAS_RANGO_4");
+            for(int i = 1; i <= getValorInt("RANGO_CANTIDAD"); i ++)
+            {
+                int minDias, maxDias, cantidad;
+                minDias = getValorInt("MIN_DIAS_RANGO_" + i);
+                maxDias = getValorInt("MAX_DIAS_RANGO_" + i);
+                cantidad = getValorInt("VACACIONES_DIAS_RANGO_" + i);
+                rangos.add(new VacacionesRango(minDias, maxDias, cantidad));
+                
+            }
             leidos = true;
+        }
+        
+        public ArrayList<VacacionesRango> getRangos(){
+            return rangos;
         }
         
         public boolean Cargados(){
@@ -73,14 +73,11 @@ public class ParametrosSistema {
         
         public int getDiasDeVacaciones(int antiguedad){
         
-            if(minDiasRango_1 <= antiguedad && maxDiasRango_1 >= antiguedad){
-                    return diasRango1;
-            }else if(minDiasRango_2 <= antiguedad && maxDiasRango_2 >= antiguedad){
-                    return diasRango2;
-            }else if(minDiasRango_3 <= antiguedad && maxDiasRango_3 >= antiguedad){
-                    return diasRango3;
-            }else if(minDiasRango_4 <= antiguedad && maxDiasRango_4 >= antiguedad){
-                    return diasRango4;
+            for(VacacionesRango vr: rangos){
+                int cant = vr.getCantidadDiasSegunAntiguedad(antiguedad);
+                if(cant != -1){
+                    return cant;
+                }
             }
             return 0;
         }

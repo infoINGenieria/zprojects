@@ -76,6 +76,8 @@ import zilleprojects.form.JDEquipos;
 import zilleprojects.form.JDEstacionServicio;
 import zilleprojects.form.JDObrasGestion;
 import zilleprojects.form.JDOrdenTrabajo;
+import zilleprojects.form.JDParametros;
+import zilleprojects.form.JDParametrosSistema;
 import zilleprojects.form.JDParteDiario;
 import zilleprojects.form.JDRI;
 import zilleprojects.form.JDRemoverParte;
@@ -696,6 +698,19 @@ public class ZilleProjectsView extends FrameView {
 
     }
     
+    @Action
+    public void mostrarJDParametros() {
+       
+        if (Permisos.verificarCredenciales("Administrador")) {
+            JFrame mainFrame = ZilleProjectsApp.getApplication().getMainFrame();
+            JDParametrosSistema jdparam = new JDParametrosSistema(mainFrame, true);
+            jdparam.setLocationRelativeTo(mainFrame);   
+            jdparam.setSize(300, 600);
+            ZilleProjectsApp.getApplication().show(jdparam);
+        } 
+
+    }
+    
     
     @Action
     public void mostrarBusquedaEmpleado() {
@@ -1085,17 +1100,10 @@ public class ZilleProjectsView extends FrameView {
         protected Object doInBackground()  {
             
             Date dia = new Date();
+            dia = FechaUtil.resetTime(dia);
             GregorianCalendar gc = new GregorianCalendar();
-            
             gc.setTime(dia);
-            /*Seteo las horas, minutos etc en 0 para que al comparar con los date de sql
-             * filtren bien las fechas
-             */
-            gc.set(GregorianCalendar.MINUTE,0);
-            gc.set(GregorianCalendar.HOUR_OF_DAY,0);
-            gc.set(GregorianCalendar.SECOND,0);
-            gc.set(GregorianCalendar.MILLISECOND,0);
-            dia = gc.getTime();
+            //TODO: cambiar 20 por parametro
             gc.add(GregorianCalendar.DATE, 20);
             Date proximo = gc.getTime();
             EquiposDAO edao=new EquiposDAO();
@@ -1119,19 +1127,13 @@ public class ZilleProjectsView extends FrameView {
             if(alarmas.size()>0 || alarmasList.size() > 0){
                 //Crear dialogos para cada alarma actividad, y incorporar las alarmas item. 
                 for(Alarma al:alarmasList){
-                    if(alarmasDialogo){
-                        JFrame mainFrame = ZilleProjectsApp.getApplication().getMainFrame();
-                        JDAlarmaActividad aAct = new JDAlarmaActividad(mainFrame,  true, al);
-                        aAct.setLocationRelativeTo(null);
-                        ZilleProjectsApp.getApplication().show(aAct);
-                    }
                     ItemAlarma aux = new ItemAlarma();
                     aux.setFecha(al.getFecha());
                     aux.setTipo(0);
                     aux.setMensaje(al.getNombre()+": "+al.getComentario());
                     alarmas.add(aux);
                 }
-                alarmasDialogo=false;
+                //alarmasDialogo=false;
                 modelAlarma.clean();
                 //Ordeno la lista segun la fecha
                 Collections.sort(alarmas);
@@ -1148,6 +1150,14 @@ public class ZilleProjectsView extends FrameView {
                 jTable1.getColumnModel().getColumn(1).setMaxWidth(102);
                 
                 panelAlarmas.setVisible(true);
+                for(Alarma al:alarmasList){
+                    JFrame mainFrame = ZilleProjectsApp.getApplication().getMainFrame();
+                    JDAlarmaActividad aAct = new JDAlarmaActividad(mainFrame,  true, al);
+                    aAct.setLocationRelativeTo(null);
+                    ZilleProjectsApp.getApplication().show(aAct);
+                    
+                }
+                
             }else {
                 panelAlarmas.setVisible(false);
             }
@@ -1198,6 +1208,7 @@ public class ZilleProjectsView extends FrameView {
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItem9 = new javax.swing.JMenuItem();
         menuUsuarios = new javax.swing.JMenuItem();
+        jMenuItem10 = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
         jMenuItem6 = new javax.swing.JMenuItem();
         jMenuItem7 = new javax.swing.JMenuItem();
@@ -1526,6 +1537,11 @@ public class ZilleProjectsView extends FrameView {
         menuUsuarios.setText(resourceMap.getString("menuUsuarios.text")); // NOI18N
         menuUsuarios.setName("menuUsuarios"); // NOI18N
         EmpleadosMenu.add(menuUsuarios);
+
+        jMenuItem10.setAction(actionMap.get("mostrarJDParametros")); // NOI18N
+        jMenuItem10.setText(resourceMap.getString("jMenuItem10.text")); // NOI18N
+        jMenuItem10.setName("jMenuItem10"); // NOI18N
+        EmpleadosMenu.add(jMenuItem10);
 
         menuBar.add(EmpleadosMenu);
 
@@ -2303,6 +2319,7 @@ private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem10;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;

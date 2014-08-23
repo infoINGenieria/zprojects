@@ -42,6 +42,13 @@
   <SubComponents>
     <Container class="javax.swing.JPanel" name="jPanel1">
       <Properties>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+            <LineBorder thickness="2">
+              <Property name="color" resourceKey="jPanel1.border.lineColor"/>
+            </LineBorder>
+          </Border>
+        </Property>
         <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[300, 200]"/>
         </Property>
@@ -60,18 +67,18 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="1" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="1" attributes="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="jPanel2" alignment="0" max="32767" attributes="0"/>
+                      <Component id="jScrollPane1" alignment="0" pref="451" max="32767" attributes="0"/>
                       <Component id="btnAceptarAlarma" alignment="1" min="-2" pref="132" max="-2" attributes="1"/>
-                      <Component id="jScrollPane1" linkSize="2" alignment="0" min="-2" pref="451" max="-2" attributes="0"/>
-                      <Component id="nombreAlarma" alignment="0" pref="451" max="32767" attributes="0"/>
-                      <Group type="102" alignment="1" attributes="0">
+                      <Component id="nombreAlarma" alignment="0" min="-2" pref="451" max="-2" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
                           <Component id="jLabel2" min="-2" max="-2" attributes="1"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="RIID" pref="360" max="32767" attributes="0"/>
+                          <Component id="RIID" pref="353" max="32767" attributes="0"/>
                       </Group>
-                      <Component id="jPanel2" linkSize="2" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -86,13 +93,13 @@
                   <Component id="jScrollPane1" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="2" attributes="0">
-                      <Component id="RIID" linkSize="1" alignment="2" min="-2" pref="15" max="-2" attributes="0"/>
-                      <Component id="jLabel2" linkSize="1" alignment="2" min="-2" max="-2" attributes="0"/>
+                      <Component id="RIID" alignment="2" min="-2" pref="21" max="-2" attributes="0"/>
+                      <Component id="jLabel2" alignment="2" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="btnAceptarAlarma" pref="53" max="32767" attributes="0"/>
+                  <Component id="btnAceptarAlarma" pref="59" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -175,18 +182,13 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <EmptySpace min="12" pref="12" max="12" attributes="0"/>
-                              <Component id="fechaReprogramada" min="-2" pref="131" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" attributes="0">
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="isReprogramar" min="-2" pref="131" max="-2" attributes="0"/>
-                          </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                          <Component id="isReprogramar" max="32767" attributes="1"/>
+                          <Component id="fechaReprogramada" alignment="1" pref="135" max="32767" attributes="1"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jScrollPane2" pref="288" max="32767" attributes="0"/>
+                      <Component id="jScrollPane2" pref="284" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -200,10 +202,10 @@
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="isReprogramar" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="fechaReprogramada" min="-2" max="-2" attributes="0"/>
+                              <Component id="fechaReprogramada" pref="23" max="32767" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -214,7 +216,6 @@
                 <Property name="background" type="java.awt.Color" resourceKey="isReprogramar.background"/>
                 <Property name="text" type="java.lang.String" resourceKey="isReprogramar.text"/>
                 <Property name="name" type="java.lang.String" value="isReprogramar" noResource="true"/>
-                <Property name="opaque" type="boolean" value="true"/>
               </Properties>
               <Events>
                 <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="isReprogramarItemStateChanged"/>

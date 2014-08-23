@@ -4,10 +4,12 @@
  */
 package DAO;
 
+import Modelo.DatosFrancoOperario;
 import Modelo.EPPOperario;
 import Modelo.ItemAlarma;
 import Modelo.Operario;
 import Utils.FechaUtil;
+import ViewModel.ItemAlarmaBean;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -268,6 +270,15 @@ public class OperarioDAO {
         return r;
     }
     
+    public ArrayList<ItemAlarmaBean> getAlarmasOperariosForReport(java.util.Date inicio, java.util.Date fin){
+        //TODO: arreglar esto
+        ArrayList<ItemAlarma> alarmas = getAlarmasOperarios(inicio, fin);
+        ArrayList<ItemAlarmaBean> itemes = new ArrayList<ItemAlarmaBean>();
+        for(ItemAlarma item: alarmas){
+            itemes.add(new ItemAlarmaBean(item.getFecha(), null, item.getMensaje(), "Alarma automática por vencimiento."));
+        }
+        return itemes;
+    }
     
     public ArrayList<ItemAlarma> getAlarmasOperarios(java.util.Date inicio, java.util.Date fin){
         ArrayList<ItemAlarma> alarmas = new ArrayList<ItemAlarma>();
@@ -544,6 +555,84 @@ public class OperarioDAO {
             System.out.print("Falló al cargar el EPP del operario\n");
         }
         return epp;
+
+    }
+    
+    public int guardarDatosFranco(DatosFrancoOperario dfo) {
+        int r = -1;
+        String query = null;
+
+        try {
+            PreparedStatement ps = conector.prepareStatement("select id from franco_licencia "
+                    + "where operario_id = " + dfo.getOperarioId());
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                dfo.setId(rs.getInt("ID"));
+            }
+            
+            if(dfo.getId()==0)
+                query = "insert into franco_licencia (OPERARIO_ID, AJUSTE, PAGADOS, "
+                    + "SOLICITADOS1, SOLICITADOS2, ENTRA1, ENTRA2, SALE1, SALE2) values "
+                    + "(?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            else
+                query = "update franco_licencia set OPERARIO_ID=?, AJUSTE=?, "
+                        + "PAGADOS=?, SOLICITADOS1=?, SOLICITADOS2=?, ENTRA1=?, "
+                        + "ENTRA2=?, SALE1=?, SALE2=? where ID=?";
+            ps = conector.prepareStatement(query);
+            ps.setInt(1, dfo.getOperarioId());
+            ps.setInt(2, dfo.getAjuste());
+            ps.setInt(3, dfo.getPagados());
+            ps.setInt(4, dfo.getSolicitados1());
+            ps.setInt(5, dfo.getSolicitados2());
+            ps.setDate(6, FechaUtil.getFechatoDB(dfo.getEntra1()));
+            ps.setDate(7, FechaUtil.getFechatoDB(dfo.getEntra2()));
+            ps.setDate(8, FechaUtil.getFechatoDB(dfo.getSale1()));
+            ps.setDate(9, FechaUtil.getFechatoDB(dfo.getSale2()));
+            if(dfo.getId()!=0) ps.setInt(10, dfo.getId());
+            ps.executeUpdate();
+            ResultSet generatedKeys = ps.getGeneratedKeys();
+            r=1;
+            if (generatedKeys.next()) {
+                r = generatedKeys.getInt(1);
+            }
+            generatedKeys.close();
+            ps.close();
+
+        } catch (SQLException ex) {
+            r = -1;
+        }
+        return r;
+    }
+    
+    public DatosFrancoOperario findDatosFrancoById(int operario_id) {
+        String query = null;
+        DatosFrancoOperario dfo = new DatosFrancoOperario();
+        try {
+            query = "select * from franco_licencia where OPERARIO_ID = ?";
+            PreparedStatement ps = conector.prepareStatement(query);
+            ps.setInt(1, operario_id);
+            ResultSet rs = ps.executeQuery();
+            
+            while (rs.next()) {  
+                dfo.setId(rs.getInt("ID"));
+                dfo.setOperarioId(rs.getInt("OPERARIO_ID"));
+                dfo.setAjuste(rs.getInt("AJUSTE"));
+                dfo.setPagados(rs.getInt("PAGADOS"));
+                dfo.setSolicitados1(rs.getInt("SOLICITADOS1"));
+                dfo.setSolicitados2(rs.getInt("SOLICITADOS2"));
+                dfo.setEntra1(FechaUtil.getFechaFromDB(rs.getDate("ENTRA1")));
+                dfo.setEntra2(FechaUtil.getFechaFromDB(rs.getDate("ENTRA2")));
+                dfo.setSale1(FechaUtil.getFechaFromDB(rs.getDate("SALE1")));
+                dfo.setSale2(FechaUtil.getFechaFromDB(rs.getDate("SALE2")));
+                
+            }
+            rs.close();
+            ps.close();
+
+        } catch (SQLException ex) {
+            System.out.print("Falló al cargar los datos de franco del operario\n");
+        }
+        return dfo;
 
     }
 }

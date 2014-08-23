@@ -104,6 +104,7 @@ public class JDObrasGestion extends javax.swing.JDialog {
         jLabel21 = new javax.swing.JLabel();
         chkTieneRegistro = new javax.swing.JCheckBox();
         chkTieneEquipo = new javax.swing.JCheckBox();
+        chkDescuentaDias = new javax.swing.JCheckBox();
 
         org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(zilleprojects.ZilleProjectsApp.class).getContext().getResourceMap(JDObrasGestion.class);
         agregarObra.setTitle(resourceMap.getString("agregarObra.title")); // NOI18N
@@ -672,6 +673,9 @@ public class JDObrasGestion extends javax.swing.JDialog {
         chkTieneEquipo.setText(resourceMap.getString("chkTieneEquipo.text")); // NOI18N
         chkTieneEquipo.setName("chkTieneEquipo"); // NOI18N
 
+        chkDescuentaDias.setText(resourceMap.getString("chkDescuentaDias.text")); // NOI18N
+        chkDescuentaDias.setName("chkDescuentaDias"); // NOI18N
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
@@ -693,7 +697,8 @@ public class JDObrasGestion extends javax.swing.JDialog {
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addComponent(chkTieneRegistro)
                         .addGap(41, 41, 41)
-                        .addComponent(chkTieneEquipo)))
+                        .addComponent(chkTieneEquipo))
+                    .addComponent(chkDescuentaDias))
                 .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
@@ -712,7 +717,9 @@ public class JDObrasGestion extends javax.swing.JDialog {
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(chkTieneRegistro)
                     .addComponent(chkTieneEquipo))
-                .addContainerGap(41, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(chkDescuentaDias)
+                .addContainerGap(14, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout capaLayout = new javax.swing.GroupLayout(capa);
@@ -804,10 +811,12 @@ private void chkTieneRegistroItemStateChanged(java.awt.event.ItemEvent evt) {//G
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
 
+            @Override
             public void run() {
                 JDObrasGestion dialog = new JDObrasGestion(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
 
+                    @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
                         System.exit(0);
                     }
@@ -837,6 +846,7 @@ private void chkTieneRegistroItemStateChanged(java.awt.event.ItemEvent evt) {//G
         chkTieneDesarraigo.setSelected(o.isTieneDesarraigo());
         chkTieneRegistro.setSelected(o.isTieneRegistro());
         chkTieneEquipo.setSelected(o.isTieneEquipo());
+        chkDescuentaDias.setSelected(o.isDescuentaDias());
         int limite = (int) o.getLimiteViandaDoble();
         pinLimiteViandaDoble.setValue(limite);
         alertasObras.setText(null);
@@ -860,6 +870,7 @@ private void chkTieneRegistroItemStateChanged(java.awt.event.ItemEvent evt) {//G
         chkTieneDesarraigo.setSelected(true);
         chkTieneRegistro.setSelected(true);
         chkTieneEquipo.setSelected(true);
+        chkDescuentaDias.setSelected(false);
         pinLimiteViandaDoble.setValue(2);
         
     }
@@ -948,6 +959,7 @@ private void chkTieneRegistroItemStateChanged(java.awt.event.ItemEvent evt) {//G
             aux.setTieneDesarraigo(chkTieneDesarraigo.isSelected());
             aux.setTieneRegistro(chkTieneRegistro.isSelected());
             aux.setTieneEquipo(chkTieneEquipo.isSelected());
+            aux.setDescuentaDias(chkDescuentaDias.isSelected());
             
             if(pinLimiteViandaDoble.isEnabled()){
                 double limite = (Integer)pinLimiteViandaDoble.getValue();
@@ -1028,6 +1040,7 @@ private void chkTieneRegistroItemStateChanged(java.awt.event.ItemEvent evt) {//G
             o.setTieneRegistro(true);
             o.setTieneEquipo(true);
             o.setLimiteViandaDoble(2);
+            o.setDescuentaDias(false);
         }
         @Override protected Object doInBackground() {
             ObrasDAO odao= new ObrasDAO();
@@ -1057,6 +1070,7 @@ private void chkTieneRegistroItemStateChanged(java.awt.event.ItemEvent evt) {//G
     private javax.swing.JLabel alertasObras;
     private javax.swing.JButton cancelarAgregarObra;
     private javax.swing.JPanel capa;
+    private javax.swing.JCheckBox chkDescuentaDias;
     private javax.swing.JCheckBox chkTieneComida;
     private javax.swing.JCheckBox chkTieneDesarraigo;
     private javax.swing.JCheckBox chkTieneEquipo;

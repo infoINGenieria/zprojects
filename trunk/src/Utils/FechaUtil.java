@@ -159,4 +159,17 @@ public class FechaUtil {
       return calendar.getTime();
   }
   
+  
+  public static Date resetTime(Date fecha){
+        GregorianCalendar gc = new GregorianCalendar();
+        gc.setTime(fecha);
+        /*Seteo las horas, minutos etc en 0 para que al comparar con los date de sql
+         * filtren bien las fechas
+         */
+        gc.set(GregorianCalendar.MINUTE,0);
+        gc.set(GregorianCalendar.HOUR_OF_DAY,0);
+        gc.set(GregorianCalendar.SECOND,0);
+        gc.set(GregorianCalendar.MILLISECOND,0);
+        return gc.getTime();
+  }
 }

@@ -16,7 +16,8 @@ public class Obras {
             int id;
             String codigo, obra, contrato, comitente, cuit, lugar, plazo, responsable;
             Date fecha_inicio;
-            boolean tieneComida, tieneVianda, tieneDesarraigo, tieneRegistro, tieneEquipo;
+            boolean tieneComida, tieneVianda, tieneDesarraigo, tieneRegistro, tieneEquipo,
+                    descuentaDias;
             double limiteViandaDoble;
 
     @Override
@@ -59,6 +60,14 @@ public class Obras {
 
     public void setTieneRegistro(boolean tieneRegistro) {
         this.tieneRegistro = tieneRegistro;
+    }
+
+    public boolean isDescuentaDias() {
+        return descuentaDias;
+    }
+
+    public void setDescuentaDias(boolean descuentaDias) {
+        this.descuentaDias = descuentaDias;
     }
     
     
@@ -116,12 +125,14 @@ public class Obras {
         this.tieneDesarraigo = true;
         this.tieneVianda = true;
         this.limiteViandaDoble = 2;
+        
     }
     public Obras(){
         this.tieneComida = true;
         this.tieneDesarraigo = true;
         this.tieneVianda = true;
         this.limiteViandaDoble = 2;
+        this.descuentaDias = false;
     }
     
    
