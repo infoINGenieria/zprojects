@@ -346,99 +346,133 @@ public class EquiposDAO {
     public ArrayList<ItemAlarma> getAlarmasEquipos(java.util.Date inicio, java.util.Date fin){
         ArrayList<ItemAlarma> alarmas = new ArrayList<ItemAlarma>();
         try {
+//            String query = "select distinct * from equipos where "
+//                    + "(VTO_VTV >= ? and VTO_VTV <= ?) or "
+//                    + "(VTO_SEGURO >= ? and VTO_SEGURO <= ?) or "
+//                    + "(VTO_OTROS1 >= ? and VTO_OTROS1 <= ?) or "
+//                    + "(VTO_OTROS2 >= ? and VTO_OTROS2 <= ?) or "
+//                    + "(VTO_OTROS3 >= ? and VTO_OTROS3 <= ?)";
             String query = "select distinct * from equipos where "
-                    + "(VTO_VTV >= ? and VTO_VTV <= ?) or "
-                    + "(VTO_SEGURO >= ? and VTO_SEGURO <= ?) or "
-                    + "(VTO_OTROS1 >= ? and VTO_OTROS1 <= ?) or "
-                    + "(VTO_OTROS2 >= ? and VTO_OTROS2 <= ?) or "
-                    + "(VTO_OTROS3 >= ? and VTO_OTROS3 <= ?)";
+                    + "VTO_VTV <= ? or "
+                    + "VTO_SEGURO <= ? or "
+                    + "VTO_OTROS1 <= ? or "
+                    + "VTO_OTROS2 <= ? or "
+                    + "VTO_OTROS3 <= ?";
             PreparedStatement ps = conector.prepareStatement(query);
-            java.sql.Date inicioDB = FechaUtil.getFechatoDB(inicio);
+            //java.sql.Date inicioDB = FechaUtil.getFechatoDB(inicio);
             java.sql.Date finDB = FechaUtil.getFechatoDB(fin);
-            ps.setDate(1, inicioDB);
+            //ps.setDate(1, inicioDB);
+            ps.setDate(1, finDB);
+            //ps.setDate(3, inicioDB);
             ps.setDate(2, finDB);
-            ps.setDate(3, inicioDB);
+            //ps.setDate(5, inicioDB);
+            ps.setDate(3, finDB);
+            //ps.setDate(7, inicioDB);
             ps.setDate(4, finDB);
-            ps.setDate(5, inicioDB);
-            ps.setDate(6, finDB);
-            ps.setDate(7, inicioDB);
-            ps.setDate(8, finDB);
-            ps.setDate(9, inicioDB);
-            ps.setDate(10, finDB);
+            //ps.setDate(9, inicioDB);
+            ps.setDate(5, finDB);
             
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                
                 java.util.Date vt = FechaUtil.getFechaFromDB(rs.getDate("VTO_VTV"));
                 
-                
-                if(vt!=null && vt.after(inicio) && vt.before(fin)){ //vt se encuentra en el rango
+                if(vt!=null && vt.before(fin)){ //vt se encuentra en el rango
                     ItemAlarma al = new ItemAlarma();
-                    if(vt.equals(inicio)) {
-                        al.setTipo(1);
-                    }else {
-                        al.setTipo(0);
-                    }
-                    al.setFecha(vt);
-                    al.setMensaje("La VTV del equipo "+rs.getString("N_INTERNO")+" vence el "+FechaUtil.getFecha(vt));
+                    if (vt.before(inicio)) {
+                        al.setTipo(2);
+                        al.setMensaje("La VTV del equipo "+rs.getString("N_INTERNO")+" se venció el "+FechaUtil.getFecha(vt));
+                    } else {
+                        al.setMensaje("La VTV del equipo "+rs.getString("N_INTERNO")+" vence el "+FechaUtil.getFecha(vt));
+                        if(vt.equals(inicio)) {
+                            al.setTipo(1);
+                        }else {
+                            al.setTipo(0);
+                        }
+                    }                   
+                    al.setFecha(vt);                   
                     alarmas.add(al);
                 }
+                
                 java.util.Date seg = FechaUtil.getFechaFromDB(rs.getDate("VTO_SEGURO"));
-                if(seg != null && seg.after(inicio) && seg.before(fin)){ //seg se encuentra en el rango
+                if(seg != null && seg.before(fin)){ //seg se encuentra en el rango
                     ItemAlarma al = new ItemAlarma();
-                    if(seg.equals(inicio)) {
-                        al.setTipo(1);
-                    }else {
-                        al.setTipo(0);
-                    }
+                    if (seg.before(inicio)) {
+                        al.setTipo(2);
+                        al.setMensaje("El seguro del equipo "+rs.getString("N_INTERNO")+" se venció el "+FechaUtil.getFecha(seg));
+                    } else {
+                        al.setMensaje("El seguro del equipo "+rs.getString("N_INTERNO")+" vence el "+FechaUtil.getFecha(seg));
+                        if(seg.equals(inicio)) {
+                            al.setTipo(1);
+                        }else {
+                            al.setTipo(0);
+                        }
+                    }       
                     al.setFecha(seg);
-                    al.setMensaje("El seguro del equipo "+rs.getString("N_INTERNO")+" vence el "+FechaUtil.getFecha(seg));
                     alarmas.add(al);
                 }
                 
                 java.util.Date otros1 = FechaUtil.getFechaFromDB(rs.getDate("VTO_OTROS1"));
-                if(otros1 != null && otros1.after(inicio) && otros1.before(fin)){ //seg se encuentra en el rango
+                if(otros1 != null && otros1.before(fin)){ //seg se encuentra en el rango
                     ItemAlarma al = new ItemAlarma();
-                    if(otros1.equals(inicio)) {
-                        al.setTipo(1);
-                    }else {
-                        al.setTipo(0);
-                    }
-                    al.setFecha(otros1);
-                    al.setMensaje(rs.getString("DESCRIPCION_VTO1")+" del equipo "+rs.getString("N_INTERNO")+" vence el "+FechaUtil.getFecha(otros1));
+                    if (otros1.before(inicio)) {
+                        al.setTipo(2);
+                        al.setMensaje(rs.getString("DESCRIPCION_VTO1")+" del equipo "
+                                +rs.getString("N_INTERNO")+" se venció el "+FechaUtil.getFecha(otros1));
+                    } else {
+                        al.setMensaje(rs.getString("DESCRIPCION_VTO1")+" del equipo "
+                                +rs.getString("N_INTERNO")+" vence el "+FechaUtil.getFecha(otros1));
+                        if(otros1.equals(inicio)) {
+                            al.setTipo(1);
+                        }else {
+                            al.setTipo(0);
+                        }
+                    }                   
+                    al.setFecha(otros1);                 
                     alarmas.add(al);
                 }
+                
                 java.util.Date otros2 = FechaUtil.getFechaFromDB(rs.getDate("VTO_OTROS2"));
-                if(otros2 != null && otros2.after(inicio) && otros2.before(fin)){ //seg se encuentra en el rango
+                if(otros2 != null && otros2.before(fin)){ //seg se encuentra en el rango
                     ItemAlarma al = new ItemAlarma();
-                    if(otros2.equals(inicio)) {
-                        al.setTipo(1);
-                    }else {
-                        al.setTipo(0);
+                    if (otros2.before(inicio)) {
+                        otros2.setTime(2);
+                        al.setMensaje(rs.getString("DESCRIPCION_VTO2")+" del equipo "
+                            +rs.getString("N_INTERNO")+" se venció el "+FechaUtil.getFecha(otros2));
+                    } else {
+                        al.setMensaje(rs.getString("DESCRIPCION_VTO2")+" del equipo "
+                            +rs.getString("N_INTERNO")+" vence el "+FechaUtil.getFecha(otros2));
+                        if(otros2.equals(inicio)) {
+                            al.setTipo(1);
+                        }else {
+                            al.setTipo(0);
+                        }
                     }
-                    al.setFecha(otros2);
-                    al.setMensaje(rs.getString("DESCRIPCION_VTO2")+" del equipo "+rs.getString("N_INTERNO")+" vence el "+FechaUtil.getFecha(otros2));
+                    al.setFecha(otros2);                   
                     alarmas.add(al);
                 }
+                
                 java.util.Date otros3 = FechaUtil.getFechaFromDB(rs.getDate("VTO_OTROS3"));
                 if(otros3 != null && otros3.after(inicio) && otros3.before(fin)){ //seg se encuentra en el rango
                     ItemAlarma al = new ItemAlarma();
-                    if(otros3.equals(inicio)) {
-                        al.setTipo(1);
-                    }else {
-                        al.setTipo(0);
+                    if (otros3.before(inicio)) {
+                        otros3.setTime(2);
+                        al.setMensaje(rs.getString("DESCRIPCION_VTO3")+" del equipo "
+                            +rs.getString("N_INTERNO")+" se venció el "+FechaUtil.getFecha(otros3));
+                    } else {
+                        al.setMensaje(rs.getString("DESCRIPCION_VTO3")+" del equipo "
+                            +rs.getString("N_INTERNO")+" vence el "+FechaUtil.getFecha(otros3));
+                        if(otros3.equals(inicio)) {
+                            al.setTipo(1);
+                        }else {
+                            al.setTipo(0);
+                        }
                     }
-                    al.setFecha(otros3);
-                    al.setMensaje(rs.getString("DESCRIPCION_VTO3")+" del equipo "+rs.getString("N_INTERNO")+" vence el "+FechaUtil.getFecha(otros3));
+                    al.setFecha(otros3);                 
                     alarmas.add(al);
                 }
-                
-                
-           
             }
             rs.close();
-            ps.close();
-            
+            ps.close();           
         }catch (SQLException ex){
             System.out.print("Falló al cargar las alarmas de los equipos.\n");
         }

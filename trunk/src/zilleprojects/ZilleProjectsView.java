@@ -30,6 +30,7 @@ import Modelo.TablaAlarmasModel;
 import Modelo.UsuarioLogged;
 import Utils.FechaUtil;
 import Utils.ImageIconTable;
+import Utils.LabelResaltadoTable;
 import Utils.Permisos;
 import Vista.DialogPanel;
 import Vista.OpcionPanel;
@@ -76,7 +77,6 @@ import zilleprojects.form.JDEquipos;
 import zilleprojects.form.JDEstacionServicio;
 import zilleprojects.form.JDObrasGestion;
 import zilleprojects.form.JDOrdenTrabajo;
-import zilleprojects.form.JDParametros;
 import zilleprojects.form.JDParametrosSistema;
 import zilleprojects.form.JDParteDiario;
 import zilleprojects.form.JDRI;
@@ -610,7 +610,7 @@ public class ZilleProjectsView extends FrameView {
     
     @Action
     public void mostrarGenerarInforme() {
-        if (Permisos.verificarCredenciales("Administrador")) {
+        if (Permisos.verificarCredenciales("Administrador,De Carga")) {
             JFrame mainFrame = ZilleProjectsApp.getApplication().getMainFrame();
             generarInforme = new JDReportes(mainFrame, true);
             generarInforme.setLocationRelativeTo(null);
@@ -1104,7 +1104,7 @@ public class ZilleProjectsView extends FrameView {
             GregorianCalendar gc = new GregorianCalendar();
             gc.setTime(dia);
             //TODO: cambiar 20 por parametro
-            gc.add(GregorianCalendar.DATE, 20);
+            gc.add(GregorianCalendar.DATE, ParametrosSistema.getValorInt("DIAS_AVISO_ALARMA"));
             Date proximo = gc.getTime();
             EquiposDAO edao=new EquiposDAO();
             edao.conectar();
@@ -1340,6 +1340,7 @@ public class ZilleProjectsView extends FrameView {
         jTable1.setName("jTable1"); // NOI18N
         jScrollPane2.setViewportView(jTable1);
         jTable1.getColumnModel().getColumn(0).setCellRenderer(new ImageIconTable());
+        jTable1.getColumnModel().getColumn(2).setCellRenderer(new LabelResaltadoTable());
 
         jButton2.setIcon(resourceMap.getIcon("jButton2.icon")); // NOI18N
         jButton2.setText(resourceMap.getString("jButton2.text")); // NOI18N

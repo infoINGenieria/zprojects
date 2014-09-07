@@ -284,129 +284,154 @@ public class OperarioDAO {
         ArrayList<ItemAlarma> alarmas = new ArrayList<ItemAlarma>();
         try {
             String query = "select distinct * from operarios where "
-                    + "VTO_CARNET between ? and ? or "
-                    + "VTO_PSICOFISICO between ? and ? or "
-                    + "VTO_CARGAGRAL between ? and ? or "
-                    + "VTO_CARGAPELIGROSA between ? and ? or "
-                    + "VTO_OTROS1 between ? and ? or "
-                    + "VTO_OTROS2 between ? and ? or "
-                    + "VTO_OTROS3 between ? and ?";
+                    + "VTO_CARNET <= ? or "
+                    + "VTO_PSICOFISICO <= ? or "
+                    + "VTO_CARGAGRAL <= ? or "
+                    + "VTO_CARGAPELIGROSA <= ? or "
+                    + "VTO_OTROS1 <= ? or "
+                    + "VTO_OTROS2 <= ? or "
+                    + "VTO_OTROS3 <= ?";
             PreparedStatement ps = conector.prepareStatement(query);
-            ps.setDate(1, FechaUtil.getFechatoDB(inicio));
+            ps.setDate(1, FechaUtil.getFechatoDB(fin));
             ps.setDate(2, FechaUtil.getFechatoDB(fin));
-            ps.setDate(3, FechaUtil.getFechatoDB(inicio));
+            ps.setDate(3, FechaUtil.getFechatoDB(fin));
             ps.setDate(4, FechaUtil.getFechatoDB(fin));
-            ps.setDate(5, FechaUtil.getFechatoDB(inicio));
+            ps.setDate(5, FechaUtil.getFechatoDB(fin));
             ps.setDate(6, FechaUtil.getFechatoDB(fin));
-            ps.setDate(7, FechaUtil.getFechatoDB(inicio));
-            ps.setDate(8, FechaUtil.getFechatoDB(fin));
-            ps.setDate(9, FechaUtil.getFechatoDB(inicio));
-            ps.setDate(10, FechaUtil.getFechatoDB(fin));
-            ps.setDate(11, FechaUtil.getFechatoDB(inicio));
-            ps.setDate(12, FechaUtil.getFechatoDB(fin));
-            ps.setDate(13, FechaUtil.getFechatoDB(inicio));
-            ps.setDate(14, FechaUtil.getFechatoDB(fin));
+            ps.setDate(7, FechaUtil.getFechatoDB(fin));
             
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 ///Para cada Fecha de vencimiento, creo una alarma
                 Date vt = rs.getDate("VTO_CARNET");
-                if(vt!=null && vt.compareTo(inicio)>=0 && vt.compareTo(fin)<=0){ //vt se encuentra en el rango
+                if(vt!=null && vt.before(fin)){ //vt se encuentra en el rango
                     ItemAlarma al = new ItemAlarma();
-                    if(vt.equals(inicio)) {
-                        al.setTipo(1);
-                    }else {
-                        al.setTipo(0);
+                    if (vt.before(inicio)){
+                        al.setMensaje("Venció el registro de conducir del empleado "+rs.getString("NOMBRE"));
+                        al.setTipo(2);
+                    } else {
+                        al.setMensaje("Vence el registro de conducir del empleado "+rs.getString("NOMBRE"));
+                        if(vt.equals(inicio)) {
+                            al.setTipo(1);
+                        }else {
+                            al.setTipo(0);
+                        }
                     }
                     al.setFecha(vt);
-                    al.setMensaje("Vence el registro de conducir del empleado "+rs.getString("NOMBRE"));
                     alarmas.add(al);
                 }
                 ///Para cada Fecha de vencimiento, creo una alarma
                 Date vtPF = rs.getDate("VTO_PSICOFISICO");
-                if(vtPF!=null && vtPF.compareTo(inicio)>=0 && vtPF.compareTo(fin)<=0){ //vtPF se encuentra en el rango
+                if(vtPF!=null && vtPF.before(fin)){ //vtPF se encuentra en el rango
                     ItemAlarma al = new ItemAlarma();
-                    if(vtPF.equals(inicio)) {
-                        al.setTipo(1);
+                    if (vtPF.before(inicio)) {
+                        al.setMensaje("Venció el psicofísico del empleado "+rs.getString("NOMBRE"));
+                        al.setTipo(2);
                     }else {
-                        al.setTipo(0);
+                        al.setMensaje("Vence el psicofísico del empleado "+rs.getString("NOMBRE"));
+                        if(vtPF.equals(inicio)) {
+                            al.setTipo(1);
+                        }else {
+                            al.setTipo(0);
+                        }
                     }
-                    al.setFecha(vtPF);
-                    al.setMensaje("Vence el psicofísico del empleado "+rs.getString("NOMBRE"));
+                    al.setFecha(vtPF);                   
                     alarmas.add(al);
                 }
                 ///Para cada Fecha de vencimiento, creo una alarma
                 Date vtCG = rs.getDate("VTO_CARGAGRAL");
-                if(vtCG!=null && vtCG.compareTo(inicio)>=0 && vtCG.compareTo(fin)<=0){ //vtCG se encuentra en el rango
+                if(vtCG!=null && vtCG.before(fin)){ //vtCG se encuentra en el rango
                     ItemAlarma al = new ItemAlarma();
-                    if(vtCG.equals(inicio)) {
-                        al.setTipo(1);
+                    if(vtCG.before(fin)) {
+                        al.setMensaje("Venció el registro de 'cargas generales' del empleado "+rs.getString("NOMBRE"));
+                        al.setTipo(2);
                     }else {
-                        al.setTipo(0);
+                        al.setMensaje("Vence el registro de 'cargas generales' del empleado "+rs.getString("NOMBRE"));
+                        if(vtCG.equals(inicio)) {
+                            al.setTipo(1);
+                        }else {
+                            al.setTipo(0);
+                        }
                     }
-                    al.setFecha(vtCG);
-                    al.setMensaje("Vence el registro de 'cargas generales' del empleado "+rs.getString("NOMBRE"));
+                    al.setFecha(vtCG);                  
                     alarmas.add(al);
                 }
                 ///Para cada Fecha de vencimiento, creo una alarma
                 Date vtoCP = rs.getDate("VTO_CARGAPELIGROSA");
-                if(vtoCP!=null && vtoCP.compareTo(inicio)>=0 && vtoCP.compareTo(fin)<=0){ //vtoCP se encuentra en el rango
+                if(vtoCP!=null && vtoCP.before(fin)){ //vtoCP se encuentra en el rango
                     ItemAlarma al = new ItemAlarma();
-                    if(vtoCP.equals(inicio)) {
-                        al.setTipo(1);
-                    }else {
-                        al.setTipo(0);
+                    if(vtoCP.before(inicio)) {
+                        al.setMensaje("Vence el registro de 'cargas peligrosas' del empleado "+rs.getString("NOMBRE"));
+                        al.setTipo(2);
+                    }else{
+                        al.setMensaje("Vence el registro de 'cargas peligrosas' del empleado "+rs.getString("NOMBRE"));
+                        if(vtoCP.equals(inicio)) {
+                            al.setTipo(1);
+                        }else {
+                            al.setTipo(0);
+                        }
                     }
-                    al.setFecha(vtoCP);
-                    al.setMensaje("Vence el registro de 'cargas peligrosas' del empleado "+rs.getString("NOMBRE"));
+                    al.setFecha(vtoCP);                  
                     alarmas.add(al);
                 }
                 ///Para cada Fecha de vencimiento, creo una alarma
                 Date vto1 = rs.getDate("VTO_OTROS1");
-                if(vto1!=null && vto1.compareTo(inicio)>=0 && vto1.compareTo(fin)<=0){ //vto1 se encuentra en el rango
+                if(vto1!=null && vto1.before(fin)){ //vto1 se encuentra en el rango
                     ItemAlarma al = new ItemAlarma();
-                    if(vto1.equals(inicio)) {
-                        al.setTipo(1);
-                    }else {
-                        al.setTipo(0);
+                    if(vto1.before(inicio)) {
+                        al.setMensaje("Venció '"+ rs.getString("DESCRIPCION_VTO1")+"' del empleado "+rs.getString("NOMBRE"));
+                        al.setTipo(2);
+                    }else{ 
+                        al.setMensaje("Vence '"+ rs.getString("DESCRIPCION_VTO1")+"' del empleado "+rs.getString("NOMBRE"));
+                        if(vto1.equals(inicio)) {
+                            al.setTipo(1);
+                        }else {
+                            al.setTipo(0);
+                        }
                     }
                     al.setFecha(vto1);
-                    al.setMensaje("Vence '"+ rs.getString("DESCRIPCION_VTO1")+"' del empleado "+rs.getString("NOMBRE"));
                     alarmas.add(al);
                 }
                 ///Para cada Fecha de vencimiento, creo una alarma
                 Date vto2 = rs.getDate("VTO_OTROS2");
-                if(vto2!=null && vto2.compareTo(inicio)>=0 && vto2.compareTo(fin)<=0){ //vto2 se encuentra en el rango
+                if(vto2!=null && vto2.before(fin)){ //vto2 se encuentra en el rango
                     ItemAlarma al = new ItemAlarma();
-                    if(vto2.equals(inicio)) {
-                        al.setTipo(1);
-                    }else {
-                        al.setTipo(0);
+                    if(vto2.before(inicio)){
+                        al.setTipo(2);
+                        al.setMensaje("Venció '"+rs.getString("DESCRIPCION_VTO2")+"' del empleado "+rs.getString("NOMBRE"));
+                    }else{
+                        al.setMensaje("Vence '"+rs.getString("DESCRIPCION_VTO2")+"' del empleado "+rs.getString("NOMBRE"));
+                        if(vto2.equals(inicio)) {
+                            al.setTipo(1);
+                        }else {
+                            al.setTipo(0);
+                        }
                     }
-                    al.setFecha(vto2);
-                    al.setMensaje("Vence '"+rs.getString("DESCRIPCION_VTO2")+"' del empleado "+rs.getString("NOMBRE"));
+                    al.setFecha(vto2);                 
                     alarmas.add(al);
                 }
                 ///Para cada Fecha de vencimiento, creo una alarma
                 Date vto3 = rs.getDate("VTO_OTROS3");
-                if(vto3!=null && vto3.compareTo(inicio)>=0 && vto3.compareTo(fin)<=0){ //vto3 se encuentra en el rango
+                if(vto3!=null && vto3.before(fin)){ //vto3 se encuentra en el rango
                     ItemAlarma al = new ItemAlarma();
-                    if(vto3.equals(inicio)) {
-                        al.setTipo(1);
+                    if(vto3.before(inicio)) {
+                        al.setMensaje("Vence '"+rs.getString("DESCRIPCION_VTO3")+"' del empleado "+rs.getString("NOMBRE"));
+                        al.setTipo(2);
                     }else {
-                        al.setTipo(0);
+                        al.setMensaje("Vence '"+rs.getString("DESCRIPCION_VTO3")+"' del empleado "+rs.getString("NOMBRE"));
+                        if(vto3.equals(inicio)) {
+                            al.setTipo(1);
+                        }else {
+                            al.setTipo(0);
+                        }
                     }
                     al.setFecha(vto3);
-                    al.setMensaje("Vence '"+rs.getString("DESCRIPCION_VTO3")+"' del empleado "+rs.getString("NOMBRE"));
+                    
                     alarmas.add(al);
                 }
-                
-                
-           
             }
             rs.close();
-            ps.close();
-            
+            ps.close();            
         }catch (SQLException ex){
             System.out.print("Falló al cargar las alarmas de los empleados.\n");
         }
