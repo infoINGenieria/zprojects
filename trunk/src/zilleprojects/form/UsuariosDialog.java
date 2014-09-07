@@ -188,6 +188,7 @@ public class UsuariosDialog extends JDialogCustom{
         getContentPane().setLayout(new java.awt.GridLayout(1, 1));
 
         jPanel1.setName("jPanel1"); // NOI18N
+        jPanel1.setPreferredSize(new java.awt.Dimension(926, 573));
 
         jLabel1.setFont(jLabel1.getFont().deriveFont(jLabel1.getFont().getStyle() | java.awt.Font.BOLD, jLabel1.getFont().getSize()+4));
         jLabel1.setLabelFor(this);

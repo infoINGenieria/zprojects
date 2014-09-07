@@ -2244,41 +2244,14 @@ public class JDReportes extends JDialogCustom {
     }
     
     private int calcularIH(ParteDiarioDAO pd, InformesHorasDAO ihDAO, Operario operario, String periodo, Date desdeF, Date hastaF, boolean mostrarInforme){
-        //Buscando todos los registros entre las fechas de ese operario
-            InformesHoras ih= new InformesHoras();
-            ih.setDesdeF(desdeF);
-            ih.setHastaF(hastaF);
-            ih.setId_operario(operario.getId());
-            ih.setPeriodo(periodo);
-            int res = 0;
-            
-            ArrayList<Registro> registros= pd.traerRegistroEntre(ih.getId_operario(), ih.getDesdeF(), ih.getHastaF());
-            //if(!registros.isEmpty()){
-                //calcular los tiempos de cada registro
-                for(int o=0;o<registros.size();o++){
-                    ih.tomarElTiempo(registros.get(o));  
-                }
-                //calcular el total de veces que tiene multifunción
-                int multi_fc=pd.contarMultifuncion(ih.getId_operario(), ih.getDesdeF(), ih.getHastaF());
-                //calcular los porcentajes de las obras
-                String x100Obra= pd.porcentajeObra(ih.getId_operario(), ih.getDesdeF(), ih.getHastaF());
-                ih.setMultiFc(multi_fc);
-                ih.setX100Obras(x100Obra);    
-                ih.CalcularValoresHoras();
-                res=ihDAO.guardar(ih);
-                if(mostrarInforme){
-                    JasperPrint jp = ihDAO.registrosHoras(ih);
-                    if(jp != null) {
-                        
-                        JExportarReporte exp = new JExportarReporte(this.parent, true, jp);
-                        exp.setLocationRelativeTo(null);
-                        exp.setVisible(true);
-                    }
-                }
-//            }else{
-//                return 0;
-//            }
-            return res;
+        Servicios.Reportes servicio = new Servicios.Reportes();
+        JasperPrint jp = servicio.GenerarInformeHorasByOperarioRango(pd, ihDAO, operario.getId(), periodo, desdeF, hastaF);
+        if(mostrarInforme && jp != null) {
+            JExportarReporte exp = new JExportarReporte(this.parent, true, jp);
+            exp.setLocationRelativeTo(null);
+            exp.setVisible(true);
+        }
+        return jp == null ? -1 : 1;
             
     }
     
