@@ -461,7 +461,6 @@ public class JDReportesAnteriores extends JDialogCustom {
 
     private class MostrarInformeGeneradoTask extends org.jdesktop.application.Task<Object, Void> {
         InformesHoras ih;
-        int res;
         MostrarInformeGeneradoTask(org.jdesktop.application.Application app) {
             // Runs on the EDT.  Copy GUI state that
             // doInBackground() depends on from parameters
@@ -470,31 +469,12 @@ public class JDReportesAnteriores extends JDialogCustom {
             ih = (InformesHoras)listReport.get(listaDeReportes.getSelectedIndex());
         }
         @Override protected Object doInBackground() {
-            InformesHorasDAO idao= new InformesHorasDAO();
-            ParteDiarioDAO pd = new ParteDiarioDAO();
-            pd.conectar();
-            idao.conectar();
-            //Buscando todos los registros entre las fechas de ese operario
-            ArrayList<Registro> registros= pd.traerRegistroEntre(ih.getId_operario(), ih.getDesdeF(), ih.getHastaF());
-            //calcular los tiempos de cada registro
-            for(int o=0;o<registros.size();o++){
-                ih.tomarElTiempo(registros.get(o));  
-            }
-            //calcular el total de veces que tiene multifunción
-            int multi_fc=pd.contarMultifuncion(ih.getId_operario(), ih.getDesdeF(), ih.getHastaF());
-            //calcular los porcentajes de las obras
-            String x100Obra= pd.porcentajeObra(ih.getId_operario(), ih.getDesdeF(), ih.getHastaF());
-            ih.setMultiFc(multi_fc);
-            ih.setX100Obras(x100Obra);    
-            ih.CalcularValoresHoras();
-            res=idao.guardar(ih);
-            if(res>=0){
-                return idao.registrosHoras(ih);
-            }
-            return null;  // return your result
+            Servicios.Reportes serv = new Servicios.Reportes();
+            return serv.GenerarInformeHorasByOperarioRango(ih.getId_operario(), ih.getPeriodo(), ih.getDesdeF(), ih.getHastaF());            
         }
         @Override protected void succeeded(Object result) {
-            if(res>=0){
+            
+            if(result != null){
                 try{
                     JasperPrint jp = (JasperPrint) result;
                     UtilReport.MostrarDialogSeleccion(parent, jp);
