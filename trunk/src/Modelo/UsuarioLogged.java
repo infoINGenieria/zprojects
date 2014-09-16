@@ -16,7 +16,7 @@ public class UsuarioLogged extends EntidadAbstracta{
     private static String user;
     private static String pass;
     private static String rol;
-    private static String error="";
+    private static String errorStatic="";
 
 
     private UsuarioLogged() {
@@ -77,12 +77,32 @@ public class UsuarioLogged extends EntidadAbstracta{
         return user;
     }
 
-    public static String getError() {
-        return error;
+    public static String getErrorStatic() {
+        return errorStatic;
     }
 
-    public static void setError(String error) {
-        UsuarioLogged.error = error;
+    public static void setErrorStatic(String error) {
+        UsuarioLogged.errorStatic = error;
+    }
+
+    @Override
+    public String[] getErrores() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public boolean validate() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public int getId() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public void setId(int id) {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     

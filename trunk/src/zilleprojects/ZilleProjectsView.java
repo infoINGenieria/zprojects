@@ -17,6 +17,7 @@ import DAO.OperarioDAO;
 import DAO.ParteDiarioDAO;
 import DAO.UsuarioDAO;
 import Modelo.Alarma;
+import Modelo.EntidadAbstracta;
 import Modelo.Equipos;
 import Modelo.EstacionServicio;
 import Modelo.Funcion;
@@ -36,6 +37,7 @@ import Vista.DialogPanel;
 import Vista.OpcionPanel;
 import Vista.PanelAlarma;
 import Vista.PanelAzul;
+import Vista.PanelEsquinaAzul;
 import java.awt.Color;
 import java.awt.Desktop;
 import java.awt.Dimension;
@@ -70,6 +72,8 @@ import javax.swing.SwingConstants;
 import org.jdesktop.application.Task;
 
 
+import zilleprojects.form.EPPDialog;
+import zilleprojects.form.FuncionDialog;
 import zilleprojects.form.JDAlarmaActividad;
 import zilleprojects.form.JDAlarmas;
 import zilleprojects.form.JDEmpleadoGestion;
@@ -699,6 +703,18 @@ public class ZilleProjectsView extends FrameView {
     }
     
     @Action
+    public void mostrarJDEPPDialog() {
+       
+        if (Permisos.verificarCredenciales("Administrador,De Carga")) {
+            JFrame mainFrame = ZilleProjectsApp.getApplication().getMainFrame();
+            EPPDialog eppD = new EPPDialog(mainFrame, true);
+            eppD.setLocationRelativeTo(mainFrame);   
+            ZilleProjectsApp.getApplication().show(eppD);
+        } 
+
+    }
+    
+    @Action
     public void mostrarJDParametros() {
        
         if (Permisos.verificarCredenciales("Administrador")) {
@@ -707,6 +723,18 @@ public class ZilleProjectsView extends FrameView {
             jdparam.setLocationRelativeTo(mainFrame);   
             jdparam.setSize(300, 600);
             ZilleProjectsApp.getApplication().show(jdparam);
+        } 
+
+    }
+    
+    @Action
+    public void mostrarJDFunciones() {
+       
+        if (Permisos.verificarCredenciales("Administrador")) {
+            JFrame mainFrame = ZilleProjectsApp.getApplication().getMainFrame();
+            FuncionDialog funDialog = new FuncionDialog(mainFrame, true);
+            funDialog.setLocationRelativeTo(mainFrame);   
+            ZilleProjectsApp.getApplication().show(funDialog);
         } 
 
     }
@@ -920,7 +948,7 @@ public class ZilleProjectsView extends FrameView {
     private class mostrarIngresarParteTask extends org.jdesktop.application.Task<Object, Void> {
 
         ArrayList<Operario> ops = new ArrayList<Operario>();
-        ArrayList<Funcion> fcs = new ArrayList<Funcion>();
+        ArrayList<EntidadAbstracta> fcs = new ArrayList<EntidadAbstracta>();
         ArrayList<Obras> obs = new ArrayList<Obras>();
         ArrayList<Equipos> eqs = new ArrayList<Equipos>();
         ArrayList<EstacionServicio> estaciones = new ArrayList<EstacionServicio>();
@@ -1178,8 +1206,8 @@ public class ZilleProjectsView extends FrameView {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        mainPanel = new javax.swing.JPanel();
-        jPanel6 = new DialogPanel();
+        mainPanel = new PanelEsquinaAzul();
+        jPanel6 = new javax.swing.JPanel();
         BotonGrandeLogin = new javax.swing.JButton();
         loginOut = new javax.swing.JLabel();
         botonGrandeSalir = new javax.swing.JButton();
@@ -1187,9 +1215,10 @@ public class ZilleProjectsView extends FrameView {
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jButton2 = new javax.swing.JButton();
-        jPanel3 = new DialogImgZille();
-        lblVersion = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
         btnDescargarVersion = new javax.swing.JButton();
+        lblVersion = new javax.swing.JLabel();
+        jPanel3 = new DialogImgZille();
         menuBar = new javax.swing.JMenuBar();
         javax.swing.JMenu fileMenu = new javax.swing.JMenu();
         iniciarSesion = new javax.swing.JMenuItem();
@@ -1208,7 +1237,10 @@ public class ZilleProjectsView extends FrameView {
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItem9 = new javax.swing.JMenuItem();
         menuUsuarios = new javax.swing.JMenuItem();
+        jMenuParam = new javax.swing.JMenu();
         jMenuItem10 = new javax.swing.JMenuItem();
+        menuIndumentaria = new javax.swing.JMenuItem();
+        jMenuItem11 = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
         jMenuItem6 = new javax.swing.JMenuItem();
         jMenuItem7 = new javax.swing.JMenuItem();
@@ -1283,6 +1315,7 @@ public class ZilleProjectsView extends FrameView {
 
         jPanel6.setMinimumSize(new java.awt.Dimension(728, 90));
         jPanel6.setName("jPanel6"); // NOI18N
+        jPanel6.setOpaque(false);
 
         javax.swing.ActionMap actionMap = org.jdesktop.application.Application.getInstance(zilleprojects.ZilleProjectsApp.class).getContext().getActionMap(ZilleProjectsView.class, this);
         BotonGrandeLogin.setAction(actionMap.get("iniciarSesion")); // NOI18N
@@ -1292,6 +1325,7 @@ public class ZilleProjectsView extends FrameView {
         BotonGrandeLogin.setText(resourceMap.getString("BotonGrandeLogin.text")); // NOI18N
         BotonGrandeLogin.setName("BotonGrandeLogin"); // NOI18N
 
+        loginOut.setFont(resourceMap.getFont("loginOut.font")); // NOI18N
         loginOut.setForeground(resourceMap.getColor("loginOut.foreground")); // NOI18N
         loginOut.setText(resourceMap.getString("loginOut.text")); // NOI18N
         loginOut.setName("loginOut"); // NOI18N
@@ -1312,8 +1346,8 @@ public class ZilleProjectsView extends FrameView {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(botonGrandeSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(loginOut, javax.swing.GroupLayout.DEFAULT_SIZE, 270, Short.MAX_VALUE)
-                .addGap(426, 426, 426))
+                .addComponent(loginOut, javax.swing.GroupLayout.DEFAULT_SIZE, 684, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         jPanel6Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {BotonGrandeLogin, botonGrandeSalir});
@@ -1322,10 +1356,11 @@ public class ZilleProjectsView extends FrameView {
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(loginOut, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(BotonGrandeLogin, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
-                    .addComponent(botonGrandeSalir, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(loginOut, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(BotonGrandeLogin, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
+                        .addComponent(botonGrandeSalir, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -1360,7 +1395,7 @@ public class ZilleProjectsView extends FrameView {
                 .addContainerGap()
                 .addGroup(panelAlarmasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 559, Short.MAX_VALUE)))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 497, Short.MAX_VALUE)))
         );
         panelAlarmasLayout.setVerticalGroup(
             panelAlarmasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1371,23 +1406,8 @@ public class ZilleProjectsView extends FrameView {
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 433, Short.MAX_VALUE))
         );
 
-        jPanel3.setName("jPanel3"); // NOI18N
-        jPanel3.setPreferredSize(new java.awt.Dimension(419, 149));
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 389, Short.MAX_VALUE)
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 149, Short.MAX_VALUE)
-        );
-
-        lblVersion.setFont(lblVersion.getFont().deriveFont(lblVersion.getFont().getStyle() | java.awt.Font.BOLD, lblVersion.getFont().getSize()+2));
-        lblVersion.setText(resourceMap.getString("lblVersion.text")); // NOI18N
-        lblVersion.setName("lblVersion"); // NOI18N
+        jPanel1.setName("jPanel1"); // NOI18N
+        jPanel1.setOpaque(false);
 
         btnDescargarVersion.setText("<HTML><FONT color=\"#000099\"><U>Descargar la última versión del sistema.</U></FONT></HTML>");
         btnDescargarVersion.setName("btnDescargarVersion"); // NOI18N
@@ -1399,18 +1419,62 @@ public class ZilleProjectsView extends FrameView {
         btnDescargarVersion.setToolTipText("Descargar nueva versión");
         btnDescargarVersion.addActionListener(new OpenUrlAction());
 
+        lblVersion.setFont(lblVersion.getFont().deriveFont(lblVersion.getFont().getStyle() | java.awt.Font.BOLD, lblVersion.getFont().getSize()+2));
+        lblVersion.setText(resourceMap.getString("lblVersion.text")); // NOI18N
+        lblVersion.setName("lblVersion"); // NOI18N
+
+        jPanel3.setName("jPanel3"); // NOI18N
+        jPanel3.setPreferredSize(new java.awt.Dimension(419, 149));
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 427, Short.MAX_VALUE)
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 149, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 427, Short.MAX_VALUE)
+                        .addContainerGap())
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnDescargarVersion, javax.swing.GroupLayout.DEFAULT_SIZE, 399, Short.MAX_VALUE)
+                            .addComponent(lblVersion, javax.swing.GroupLayout.DEFAULT_SIZE, 386, Short.MAX_VALUE))
+                        .addContainerGap(40, Short.MAX_VALUE))))
+        );
+
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnDescargarVersion, lblVersion});
+
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(223, Short.MAX_VALUE)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnDescargarVersion, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(lblVersion, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
         javax.swing.GroupLayout mainPanelLayout = new javax.swing.GroupLayout(mainPanel);
         mainPanel.setLayout(mainPanelLayout);
         mainPanelLayout.setHorizontalGroup(
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 389, Short.MAX_VALUE)
-                    .addComponent(btnDescargarVersion, javax.swing.GroupLayout.PREFERRED_SIZE, 386, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(mainPanelLayout.createSequentialGroup()
-                        .addGap(12, 12, 12)
-                        .addComponent(lblVersion, javax.swing.GroupLayout.PREFERRED_SIZE, 374, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(panelAlarmas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
@@ -1421,14 +1485,9 @@ public class ZilleProjectsView extends FrameView {
             .addGroup(mainPanelLayout.createSequentialGroup()
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(mainPanelLayout.createSequentialGroup()
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 259, Short.MAX_VALUE)
-                        .addComponent(btnDescargarVersion, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(lblVersion, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(panelAlarmas, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(panelAlarmas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -1539,12 +1598,32 @@ public class ZilleProjectsView extends FrameView {
         menuUsuarios.setName("menuUsuarios"); // NOI18N
         EmpleadosMenu.add(menuUsuarios);
 
+        menuBar.add(EmpleadosMenu);
+
+        jMenuParam.setText(resourceMap.getString("jMenuParam.text")); // NOI18N
+        jMenuParam.setName("jMenuParam"); // NOI18N
+
         jMenuItem10.setAction(actionMap.get("mostrarJDParametros")); // NOI18N
         jMenuItem10.setText(resourceMap.getString("jMenuItem10.text")); // NOI18N
         jMenuItem10.setName("jMenuItem10"); // NOI18N
-        EmpleadosMenu.add(jMenuItem10);
+        jMenuParam.add(jMenuItem10);
 
-        menuBar.add(EmpleadosMenu);
+        menuIndumentaria.setAction(actionMap.get("mostrarJDEPPDialog")); // NOI18N
+        menuIndumentaria.setText(resourceMap.getString("menuIndumentaria.text")); // NOI18N
+        menuIndumentaria.setName("menuIndumentaria"); // NOI18N
+        menuIndumentaria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuIndumentariaActionPerformed(evt);
+            }
+        });
+        jMenuParam.add(menuIndumentaria);
+
+        jMenuItem11.setAction(actionMap.get("mostrarJDFunciones")); // NOI18N
+        jMenuItem11.setText(resourceMap.getString("jMenuItem11.text")); // NOI18N
+        jMenuItem11.setName("jMenuItem11"); // NOI18N
+        jMenuParam.add(jMenuItem11);
+
+        menuBar.add(jMenuParam);
 
         jMenu5.setText(resourceMap.getString("jMenu5.text")); // NOI18N
         jMenu5.setMargin(new java.awt.Insets(0, 10, 5, 10));
@@ -2271,6 +2350,10 @@ private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem9ActionPerformed
 
+    private void menuIndumentariaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuIndumentariaActionPerformed
+        
+    }//GEN-LAST:event_menuIndumentariaActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BotonGrandeLogin;
     private javax.swing.JMenu EmpleadosMenu;
@@ -2321,6 +2404,7 @@ private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem10;
+    private javax.swing.JMenuItem jMenuItem11;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
@@ -2329,6 +2413,8 @@ private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenuItem jMenuItem9;
+    private javax.swing.JMenu jMenuParam;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -2348,6 +2434,7 @@ private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     private javax.swing.JPanel mainPanel;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenuItem menuGenerarInforme;
+    private javax.swing.JMenuItem menuIndumentaria;
     private javax.swing.JMenuItem menuUsuarios;
     private javax.swing.JTextArea observacionesTexto;
     private javax.swing.JLabel outText;

@@ -18,7 +18,7 @@ import javax.swing.table.AbstractTableModel;
 public class TablaSemaforoModel extends AbstractTableModel {
 
     private LinkedList datos = new LinkedList();
-    private LinkedList listeners = new LinkedList();
+    private LinkedList<TableModelListener> listeners = new LinkedList<TableModelListener>();
 
     public TablaSemaforoModel(){
         super();

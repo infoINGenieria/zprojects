@@ -19,7 +19,8 @@ import Modelo.DatosFrancoOperario;
 import Modelo.EPP;
 import Modelo.EPPItem;
 import Modelo.EPPOperario;
-import Modelo.EPPTableModel;
+import Modelo.EntidadAbstracta;
+import Modelo.tablemodel.EPPItemTableModel;
 import Modelo.Funcion;
 import Modelo.Operario;
 
@@ -52,7 +53,7 @@ public class JDEmpleadoGestion extends JDialogCustom {
         recargarListaEmpledos();
         FuncionDAO fdao = new FuncionDAO();
         fdao.conectar();
-        ArrayList<Funcion> func = fdao.cargarTodos();
+        ArrayList<EntidadAbstracta> func = fdao.cargarTodos();
         funcionCombo.removeAllElements();
         for (int i = 0; i < func.size(); i++) {
             funcionCombo.addElement((Funcion) func.get(i));
@@ -307,7 +308,7 @@ public class JDEmpleadoGestion extends JDialogCustom {
 
         jScrollPane3.setName("jScrollPane3"); // NOI18N
 
-        tablaEpps.setModel(new EPPTableModel());
+        tablaEpps.setModel(new EPPItemTableModel());
         tablaEpps.setName("tablaEpps"); // NOI18N
         jScrollPane3.setViewportView(tablaEpps);
 
@@ -1637,7 +1638,7 @@ private void dateIngresoPropertyChange(java.beans.PropertyChangeEvent evt) {//GE
 
     
     private class MostrarEppTask extends org.jdesktop.application.Task<Object, Void> {
-        ArrayList<EPP> epps;
+        ArrayList<EntidadAbstracta> epps;
         ArrayList<EPPOperario> eppValores = new ArrayList<EPPOperario>();
         MostrarEppTask(org.jdesktop.application.Application app) {
             // Runs on the EDT.  Copy GUI state that
@@ -1666,17 +1667,17 @@ private void dateIngresoPropertyChange(java.beans.PropertyChangeEvent evt) {//GE
                 
 
             } else {
-                EPPTableModel model = new EPPTableModel();
-                for(EPP epp:epps){
+                EPPItemTableModel model = new EPPItemTableModel();
+                for(EntidadAbstracta epp :epps){
                     EPPItem item = new EPPItem();
                     item.setOperario(opSelected);
-                    item.setEpp(epp);
-                    EPPOperario aux = new EPPOperario(opSelected.getId(), epp);
+                    item.setEpp((EPP)epp);
+                    EPPOperario aux = new EPPOperario(opSelected.getId(),(EPP) epp);
                     if(eppValores.contains(aux)){
                         aux = eppValores.get(eppValores.indexOf(aux));
                     }    
                     item.setValores(aux);
-                    model.add(item);
+                    model.addFila(item);
                 }
                 tablaEpps.setModel(model);
                 List<String[]> valores = new ArrayList<String[]>();
@@ -1706,7 +1707,7 @@ private void dateIngresoPropertyChange(java.beans.PropertyChangeEvent evt) {//GE
         return new GuardarEPPTask(org.jdesktop.application.Application.getInstance(zilleprojects.ZilleProjectsApp.class));
     }
     private class GuardarEPPTask extends org.jdesktop.application.Task<Object, Void> {
-        EPPTableModel model;
+        EPPItemTableModel model;
         
 
         GuardarEPPTask(org.jdesktop.application.Application app) {
@@ -1714,7 +1715,7 @@ private void dateIngresoPropertyChange(java.beans.PropertyChangeEvent evt) {//GE
             // doInBackground() depends on from parameters
             // to AgregarFuncionTask fields, here.
             super(app);
-            model = (EPPTableModel) tablaEpps.getModel();
+            model = (EPPItemTableModel) tablaEpps.getModel();
         }
 
         @Override
@@ -1725,7 +1726,7 @@ private void dateIngresoPropertyChange(java.beans.PropertyChangeEvent evt) {//GE
             OperarioDAO oDAO = new OperarioDAO();
             oDAO.conectar();
             for(int i = 0; i < model.getRowCount(); i++){
-                oDAO.guardarEPP(model.getFila(i).getValores());
+                oDAO.guardarEPP(((EPPItem)model.getFila(i)).getValores());
             }
             return null;  // return your result
         }

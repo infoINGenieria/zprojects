@@ -7,6 +7,7 @@ package Modelo;
 import DAO.ParametroDAO;
 import Utils.ArrayParametro;
 import java.util.ArrayList;
+import javax.swing.DefaultComboBoxModel;
 
 /**
  *
@@ -29,6 +30,15 @@ public class ParametrosSistema {
             }
         }
         return aux;
+    }
+    
+    public static DefaultComboBoxModel getComboModel(ArrayParametro array) {
+        
+        String[] elementos = new String[array.size()];
+        for(int i = 0; i < array.size(); i++) {
+            elementos[i] = array.get(i).valor;
+        }
+        return new DefaultComboBoxModel(elementos);
     }
     
     public static void CargarParametros(){

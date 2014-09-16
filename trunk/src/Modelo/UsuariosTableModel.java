@@ -5,7 +5,6 @@
 package Modelo;
 
 
-import java.util.Date;
 import java.util.LinkedList;
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
@@ -62,7 +61,7 @@ public class UsuariosTableModel extends AbstractTableModel{
         switch (col)
         {
             case 0:
-                return aux.getId_user();
+                return aux.getId();
             case 1:
                 return aux.getUser();
             case 2:
@@ -120,7 +119,7 @@ try{
         switch (col)
         {
             case 0:
-                aux.setId_user((Integer)value);
+                aux.setId((Integer)value);
                 break;
             case 1:
                 aux.setUser((String)value);
@@ -177,6 +176,7 @@ try{
 
 
 
+    @Override
     public int getColumnCount() {
         return 3;
     }

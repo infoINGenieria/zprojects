@@ -12,20 +12,16 @@
           <Dimension value="[996, 500]"/>
         </Property>
       </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new PanelEsquinaAzul()"/>
+      </AuxValues>
 
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jPanel3" pref="389" max="32767" attributes="0"/>
-                      <Component id="btnDescargarVersion" alignment="0" min="-2" pref="386" max="-2" attributes="0"/>
-                      <Group type="102" attributes="0">
-                          <EmptySpace min="12" pref="12" max="12" attributes="0"/>
-                          <Component id="lblVersion" min="-2" pref="374" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
+                  <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="panelAlarmas" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
@@ -37,15 +33,9 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
                   <Component id="jPanel6" min="-2" pref="60" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <Component id="jPanel3" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="259" max="32767" attributes="0"/>
-                          <Component id="btnDescargarVersion" min="-2" pref="34" max="-2" attributes="0"/>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="lblVersion" min="-2" pref="31" max="-2" attributes="0"/>
-                      </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="1" attributes="0">
+                      <Component id="jPanel1" max="32767" attributes="0"/>
                       <Component id="panelAlarmas" alignment="1" max="32767" attributes="2"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
@@ -60,22 +50,20 @@
               <Dimension value="[728, 90]"/>
             </Property>
             <Property name="name" type="java.lang.String" value="jPanel6" noResource="true"/>
+            <Property name="opaque" type="boolean" value="false"/>
           </Properties>
-          <AuxValues>
-            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new DialogPanel()"/>
-          </AuxValues>
 
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
+                      <EmptySpace min="-2" max="-2" attributes="0"/>
                       <Component id="BotonGrandeLogin" linkSize="10" min="-2" pref="95" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
                       <Component id="botonGrandeSalir" linkSize="10" min="-2" pref="129" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="loginOut" pref="270" max="32767" attributes="1"/>
-                      <EmptySpace min="-2" pref="426" max="-2" attributes="0"/>
+                      <Component id="loginOut" pref="684" max="32767" attributes="2"/>
+                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -83,10 +71,12 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                          <Component id="loginOut" alignment="0" max="32767" attributes="1"/>
-                          <Component id="BotonGrandeLogin" alignment="0" pref="36" max="32767" attributes="1"/>
-                          <Component id="botonGrandeSalir" alignment="0" max="32767" attributes="1"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Component id="loginOut" alignment="0" pref="36" max="32767" attributes="1"/>
+                          <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                              <Component id="BotonGrandeLogin" alignment="0" pref="36" max="32767" attributes="1"/>
+                              <Component id="botonGrandeSalir" alignment="0" max="32767" attributes="1"/>
+                          </Group>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
@@ -111,6 +101,7 @@
             </Component>
             <Component class="javax.swing.JLabel" name="loginOut">
               <Properties>
+                <Property name="font" type="java.awt.Font" resourceKey="loginOut.font"/>
                 <Property name="foreground" type="java.awt.Color" resourceKey="loginOut.foreground"/>
                 <Property name="text" type="java.lang.String" resourceKey="loginOut.text"/>
                 <Property name="name" type="java.lang.String" value="loginOut" noResource="true"/>
@@ -153,7 +144,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jButton2" alignment="1" min="-2" max="-2" attributes="0"/>
-                          <Component id="jScrollPane2" alignment="1" pref="559" max="32767" attributes="0"/>
+                          <Component id="jScrollPane2" alignment="1" pref="497" max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -206,52 +197,96 @@
             </Component>
           </SubComponents>
         </Container>
-        <Container class="javax.swing.JPanel" name="jPanel3">
+        <Container class="javax.swing.JPanel" name="jPanel1">
           <Properties>
-            <Property name="name" type="java.lang.String" value="jPanel3" noResource="true"/>
-            <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-              <Dimension value="[419, 149]"/>
-            </Property>
+            <Property name="name" type="java.lang.String" value="jPanel1" noResource="true"/>
+            <Property name="opaque" type="boolean" value="false"/>
           </Properties>
-          <AuxValues>
-            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new DialogImgZille()"/>
-          </AuxValues>
 
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="389" max="32767" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="jPanel3" pref="427" max="32767" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" max="-2" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="btnDescargarVersion" linkSize="14" alignment="0" pref="399" max="32767" attributes="1"/>
+                                  <Component id="lblVersion" linkSize="14" alignment="0" pref="386" max="32767" attributes="1"/>
+                              </Group>
+                              <EmptySpace pref="40" max="32767" attributes="0"/>
+                          </Group>
+                      </Group>
+                  </Group>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="149" max="32767" attributes="0"/>
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace pref="223" max="32767" attributes="0"/>
+                      <Component id="jPanel3" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="btnDescargarVersion" min="-2" pref="34" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="lblVersion" min="-2" pref="31" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
               </Group>
             </DimensionLayout>
           </Layout>
+          <SubComponents>
+            <Component class="javax.swing.JButton" name="btnDescargarVersion">
+              <Properties>
+                <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="&quot;&lt;HTML&gt;&lt;FONT color=\&quot;#000099\&quot;&gt;&lt;U&gt;Descargar la &#xfa;ltima versi&#xf3;n del sistema.&lt;/U&gt;&lt;/FONT&gt;&lt;/HTML&gt;&quot;" type="code"/>
+                </Property>
+                <Property name="name" type="java.lang.String" value="btnDescargarVersion" noResource="true"/>
+              </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="btnDescargarVersion.setVisible(false);&#xa;btnDescargarVersion.setHorizontalAlignment(SwingConstants.CENTER);&#xa;btnDescargarVersion.setBorderPainted(false);&#xa;btnDescargarVersion.setOpaque(false);&#xa;btnDescargarVersion.setBackground(Color.WHITE);&#xa;btnDescargarVersion.setToolTipText(&quot;Descargar nueva versi&#xf3;n&quot;);&#xa;btnDescargarVersion.addActionListener(new OpenUrlAction());"/>
+              </AuxValues>
+            </Component>
+            <Component class="javax.swing.JLabel" name="lblVersion">
+              <Properties>
+                <Property name="font" type="java.awt.Font" noResource="true" editor="org.netbeans.modules.form.editors2.FontEditor">
+                  <FontInfo relative="true">
+                    <Font bold="true" component="lblVersion" property="font" relativeSize="true" size="2"/>
+                  </FontInfo>
+                </Property>
+                <Property name="text" type="java.lang.String" resourceKey="lblVersion.text"/>
+                <Property name="name" type="java.lang.String" value="lblVersion" noResource="true"/>
+              </Properties>
+            </Component>
+            <Container class="javax.swing.JPanel" name="jPanel3">
+              <Properties>
+                <Property name="name" type="java.lang.String" value="jPanel3" noResource="true"/>
+                <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                  <Dimension value="[419, 149]"/>
+                </Property>
+              </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new DialogImgZille()"/>
+              </AuxValues>
+
+              <Layout>
+                <DimensionLayout dim="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <EmptySpace min="0" pref="427" max="32767" attributes="0"/>
+                  </Group>
+                </DimensionLayout>
+                <DimensionLayout dim="1">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <EmptySpace min="0" pref="149" max="32767" attributes="0"/>
+                  </Group>
+                </DimensionLayout>
+              </Layout>
+            </Container>
+          </SubComponents>
         </Container>
-        <Component class="javax.swing.JLabel" name="lblVersion">
-          <Properties>
-            <Property name="font" type="java.awt.Font" noResource="true" editor="org.netbeans.modules.form.editors2.FontEditor">
-              <FontInfo relative="true">
-                <Font bold="true" component="lblVersion" property="font" relativeSize="true" size="2"/>
-              </FontInfo>
-            </Property>
-            <Property name="text" type="java.lang.String" resourceKey="lblVersion.text"/>
-            <Property name="name" type="java.lang.String" value="lblVersion" noResource="true"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JButton" name="btnDescargarVersion">
-          <Properties>
-            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-              <Connection code="&quot;&lt;HTML&gt;&lt;FONT color=\&quot;#000099\&quot;&gt;&lt;U&gt;Descargar la &#xfa;ltima versi&#xf3;n del sistema.&lt;/U&gt;&lt;/FONT&gt;&lt;/HTML&gt;&quot;" type="code"/>
-            </Property>
-            <Property name="name" type="java.lang.String" value="btnDescargarVersion" noResource="true"/>
-          </Properties>
-          <AuxValues>
-            <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="btnDescargarVersion.setVisible(false);&#xa;btnDescargarVersion.setHorizontalAlignment(SwingConstants.CENTER);&#xa;btnDescargarVersion.setBorderPainted(false);&#xa;btnDescargarVersion.setOpaque(false);&#xa;btnDescargarVersion.setBackground(Color.WHITE);&#xa;btnDescargarVersion.setToolTipText(&quot;Descargar nueva versi&#xf3;n&quot;);&#xa;btnDescargarVersion.addActionListener(new OpenUrlAction());"/>
-          </AuxValues>
-        </Component>
       </SubComponents>
     </Container>
     <Container class="javax.swing.JMenuBar" name="menuBar">
@@ -447,6 +482,14 @@
                 <Property name="name" type="java.lang.String" value="menuUsuarios" noResource="true"/>
               </Properties>
             </MenuItem>
+          </SubComponents>
+        </Menu>
+        <Menu class="javax.swing.JMenu" name="jMenuParam">
+          <Properties>
+            <Property name="text" type="java.lang.String" resourceKey="jMenuParam.text"/>
+            <Property name="name" type="java.lang.String" value="jMenuParam" noResource="true"/>
+          </Properties>
+          <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem10">
               <Properties>
                 <Property name="action" type="javax.swing.Action" editor="org.netbeans.modules.swingapp.ActionEditor">
@@ -454,6 +497,27 @@
                 </Property>
                 <Property name="text" type="java.lang.String" resourceKey="jMenuItem10.text"/>
                 <Property name="name" type="java.lang.String" value="jMenuItem10" noResource="true"/>
+              </Properties>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="menuIndumentaria">
+              <Properties>
+                <Property name="action" type="javax.swing.Action" editor="org.netbeans.modules.swingapp.ActionEditor">
+                  <action class="zilleprojects.ZilleProjectsView" id="mostrarJDEPPDialog" methodName="mostrarJDEPPDialog"/>
+                </Property>
+                <Property name="text" type="java.lang.String" resourceKey="menuIndumentaria.text"/>
+                <Property name="name" type="java.lang.String" value="menuIndumentaria" noResource="true"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuIndumentariaActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem11">
+              <Properties>
+                <Property name="action" type="javax.swing.Action" editor="org.netbeans.modules.swingapp.ActionEditor">
+                  <action class="zilleprojects.ZilleProjectsView" id="mostrarJDFunciones" methodName="mostrarJDFunciones"/>
+                </Property>
+                <Property name="text" type="java.lang.String" resourceKey="jMenuItem11.text"/>
+                <Property name="name" type="java.lang.String" value="jMenuItem11" noResource="true"/>
               </Properties>
             </MenuItem>
           </SubComponents>

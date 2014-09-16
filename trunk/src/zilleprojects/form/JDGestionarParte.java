@@ -17,6 +17,7 @@ import DAO.FuncionDAO;
 import DAO.ObrasDAO;
 import DAO.OperarioDAO;
 import DAO.ParteDiarioDAO;
+import Modelo.EntidadAbstracta;
 import Modelo.Equipos;
 import Modelo.EstacionServicio;
 import Modelo.Funcion;
@@ -1431,7 +1432,7 @@ public class JDGestionarParte extends javax.swing.JDialog {
     }
 
     static public void CargarTodo(DefaultComboBoxModel f, ParteDiario pd,
-            Operario op, ArrayList<Funcion> fcs, Obras ob, Equipos eq, RegistroEquipo re, Registro r,
+            Operario op, ArrayList<EntidadAbstracta> fcs, Obras ob, Equipos eq, RegistroEquipo re, Registro r,
             ArrayList<Materiales> mat, DefaultComboBoxModel estaciones) {
             JDGestionarParte.parteDiario = pd;
             JDGestionarParte.operario = op;
@@ -1762,7 +1763,7 @@ public class JDGestionarParte extends javax.swing.JDialog {
     static public DefaultComboBoxModel estaciones = new DefaultComboBoxModel();
     static public ParteDiario parteDiario = new ParteDiario();
     static public Operario operario = new Operario();
-    static public ArrayList<Funcion> funcionesList = new ArrayList<Funcion>();
+    static public ArrayList<EntidadAbstracta> funcionesList = new ArrayList<EntidadAbstracta>();
     static public Obras obra = new Obras();
     static public Equipos equipo = new Equipos();
     static public RegistroEquipo registroEquipo = new RegistroEquipo();
