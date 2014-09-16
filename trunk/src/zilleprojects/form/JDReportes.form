@@ -53,9 +53,9 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="jButton5" pref="268" max="32767" attributes="0"/>
+                              <Component id="jButton5" pref="283" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jButton4" pref="148" max="32767" attributes="0"/>
+                              <Component id="jButton4" pref="164" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jButton3" min="-2" pref="122" max="-2" attributes="0"/>
                           </Group>
@@ -72,7 +72,7 @@
                                       <Component id="botonBuscarEmpleado" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="1" attributes="0">
-                                      <Component id="desdeFecha" pref="248" max="32767" attributes="1"/>
+                                      <Component id="desdeFecha" pref="272" max="32767" attributes="1"/>
                                       <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
                                       <Component id="jLabel6" min="-2" max="-2" attributes="1"/>
                                       <EmptySpace max="-2" attributes="0"/>
@@ -462,7 +462,7 @@
                               <Component id="botonBuscarEmpleado1" min="-2" max="-2" attributes="1"/>
                           </Group>
                           <Group type="102" attributes="0">
-                              <Component id="jScrollPane1" pref="417" max="32767" attributes="0"/>
+                              <Component id="jScrollPane1" pref="448" max="32767" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" attributes="0">
@@ -865,7 +865,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
-                              <Component id="queryEquipos" pref="391" max="32767" attributes="0"/>
+                              <Component id="queryEquipos" pref="371" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="buscarEquiposBoton" min="-2" max="-2" attributes="0"/>
                           </Group>
