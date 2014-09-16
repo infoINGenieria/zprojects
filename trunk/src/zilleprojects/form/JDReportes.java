@@ -2581,6 +2581,7 @@ public class JDReportes extends JDialogCustom {
            odao.conectar();
            ArrayList<InformesHoras> informes = ihDao.findByPeriodoDistinct(periodo);
            for(InformesHoras inform : informes){
+               // Actualizo los reportes
                calcularIH(pd, ihDao, odao.buscar(inform.getId_operario()), periodo, inform.getDesdeF(), inform.getHastaF(), false);
            }
            return rdao.reportRegistrosResumen(periodo);
