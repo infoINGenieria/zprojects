@@ -13,7 +13,7 @@ package zilleprojects.form;
 import DAO.ParametroDAO;
 import Modelo.Parametro;
 import Modelo.ParametrosSistema;
-import Modelo.TablaParametrosModel;
+import Modelo.tablemodel.TablaParametrosModel;
 import Vista.JDialogCustom;
 import Vista.OpcionPanel;
 import Vista.PanelAzul;
@@ -318,7 +318,7 @@ public class JDParametrosSistema extends JDialogCustom {
             p.setClave(txtClave.getText());
             p.setClaveGrupo(txtGrupoClave.getText());
             p.setValor(txtValor.getText());
-            tableModel.addRegistro(p);
+            tableModel.addFila(p);
             jdNuevoParametro.dispose();
         }
     }//GEN-LAST:event_btnAddNuevoActionPerformed
@@ -402,7 +402,7 @@ public class JDParametrosSistema extends JDialogCustom {
         ParametrosSistema.CargarParametros();
         tableModel.clean();
         for (Parametro p : ParametrosSistema.parametros) {
-            tableModel.addRegistro(p);
+            tableModel.addFila(p);
         }
     }
 
@@ -420,7 +420,7 @@ public class JDParametrosSistema extends JDialogCustom {
             ParametroDAO dao = new ParametroDAO();
             dao.conectar();
             for(int i = 0; i < tableModel.getRowCount(); i++) {
-                dao.guardar(tableModel.getFila(i));
+                dao.guardar((Parametro)tableModel.getFila(i));
             }
             return true;  // return your result
         }
@@ -489,14 +489,14 @@ public class JDParametrosSistema extends JDialogCustom {
             // the Swing GUI from here.
             ParametroDAO dao = new ParametroDAO();
             dao.conectar();
-            return  dao.Borrar(tableModel.getFila(jTable1.getSelectedRow()));
+            return  dao.Borrar((Parametro)tableModel.getFila(jTable1.getSelectedRow()));
         }
         @Override protected void succeeded(Object result) {
             // Runs on the EDT.  Update the GUI based on
             // the result computed by doInBackground().
             if ((Boolean) result) {
                 Success("Parámetro borrado");
-                tableModel.delRegistro(tableModel.getFila(jTable1.getSelectedRow()));
+                tableModel.delFila(tableModel.getFila(jTable1.getSelectedRow()));
             } else {
                 Error("Parámetro no borrado. Intentelo nuevamente");
             }
@@ -507,7 +507,7 @@ public class JDParametrosSistema extends JDialogCustom {
         if (jTable1.getSelectedRow() == -1) {
             return "";
         } else {
-            Parametro p = tableModel.getFila(jTable1.getSelectedRow());
+            Parametro p = (Parametro) tableModel.getFila(jTable1.getSelectedRow());
             return p.getClave() + (p.getClaveGrupo().isEmpty() ? " ": " (" + p.getClaveGrupo() + ") ") +
                     " -> " + p.getValor();
                     

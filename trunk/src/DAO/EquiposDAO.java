@@ -5,7 +5,7 @@
 package DAO;
 
 import Modelo.Equipos;
-import Modelo.ItemAlarma;
+import ViewModel.ItemAlarma;
 import Utils.FechaUtil;
 import ViewModel.ItemAlarmaBean;
 import java.sql.Connection;

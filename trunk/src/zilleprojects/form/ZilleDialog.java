@@ -78,7 +78,6 @@ public abstract class ZilleDialog extends JDialogCustom {
         org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(zilleprojects.ZilleProjectsApp.class).getContext().getResourceMap(ZilleDialog.class);
         setTitle(resourceMap.getString("Form.title")); // NOI18N
         setLocationByPlatform(true);
-        setModal(false);
         setName("Form"); // NOI18N
 
         wrap.setName("wrap"); // NOI18N
@@ -337,6 +336,7 @@ public abstract class ZilleDialog extends JDialogCustom {
                     getTableModel().addFila(c);
                 }
                 tblDatos.setModel(getTableModel());
+                configurarColumnas();
                 lblTotalEntidad.setText(String.valueOf(totalEntidad));
                 lblTotalFiltrado.setText(String.valueOf(totalFiltrado));
             } else {
@@ -382,6 +382,7 @@ public abstract class ZilleDialog extends JDialogCustom {
                 }
 
                 tblDatos.setModel(getTableModel());
+                configurarColumnas();
                 lblTotalFiltrado.setText(String.valueOf(totalFiltrado));
             } else {
                 OpcionPanel.showMessageDialog(null, "Falló la carga de " + getNombreEntidad() +". Intente nuevamente.",
@@ -436,11 +437,11 @@ public abstract class ZilleDialog extends JDialogCustom {
                     getTableModel().addFila(getEntidadAbstracta());
                     msg = "Éxito! Se agrego la entidad: " +getEntidadAbstracta();
                 }
-                tblDatos.setModel(getTableModel());
-                totalFiltrado = getTableModel().getRowCount();
-                lblTotalFiltrado.setText(String.valueOf(totalFiltrado));
+//                tblDatos.setModel(getTableModel());
+//                configurarColumnas();
                 getAMEntidad().dispose();
                 limpiarEntidadEdit();
+                cargarEntidades().execute();
                 Success("Éxito", msg);               
             } else {
                 Error("Error", "Falló la carga de " +getNombreEntidad() +
@@ -451,6 +452,20 @@ public abstract class ZilleDialog extends JDialogCustom {
     
     public JTable getTabla() {
         return tblDatos;
+    }
+    
+    public void setWidths(int[] valores) {
+        widths = valores;
+    }
+    
+    int[] widths = null;
+    
+    public void configurarColumnas() {
+        if (widths!= null) {
+            for(int i= 0; i < widths.length; i++) {
+                tblDatos.getColumnModel().getColumn(i).setWidth(widths[i]);
+            }
+        }
     }
 
     @Action

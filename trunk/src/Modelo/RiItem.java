@@ -10,9 +10,9 @@ import java.util.Date;
  *
  * @author matuuar
  */
-public class RiItem {
+public class RiItem extends EntidadAbstracta {
     
-    private int riItemId, riId;
+    private int id, riId;
     private String OC_num, proveedor;
     private Date fecha_necesidad, fecha_emision, fecha_oc, fecha_entrega;
     private String cantidad, unidad, detalle, observacion, valor;
@@ -63,12 +63,14 @@ public class RiItem {
         this.riId = riId;
     }
 
-    public int getRiItemId() {
-        return riItemId;
+    @Override
+    public int getId() {
+        return id;
     }
 
-    public void setRiItemId(int riItemId) {
-        this.riItemId = riItemId;
+    @Override
+    public void setId(int riItemId) {
+        this.id = riItemId;
     }
 
     public String getUnidad() {
@@ -88,7 +90,7 @@ public class RiItem {
             return false;
         }
         final RiItem other = (RiItem) obj;
-        if (this.riItemId != other.riItemId) {
+        if (this.id != other.id) {
             return false;
         }
         return true;
@@ -97,7 +99,7 @@ public class RiItem {
     @Override
     public int hashCode() {
         int hash = 5;
-        hash = 89 * hash + this.riItemId;
+        hash = 89 * hash + this.id;
         return hash;
     }
 
@@ -161,8 +163,18 @@ public class RiItem {
     public void setProveedor(String proveedor) {
         this.proveedor = proveedor;
     }
-    
-    
+
+    @Override
+    public boolean validate() {
+        if (riId == 0) {
+            error += "El item debe estar relacionado con un RI;";
+        }
+        if (cantidad.isEmpty()) {
+            error += "El campo cantidad no puede ser nulo;";
+        }
+        return error.isEmpty();
+    }
+
     
     
     

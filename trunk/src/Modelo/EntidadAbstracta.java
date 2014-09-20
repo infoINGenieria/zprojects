@@ -23,7 +23,7 @@ public abstract class EntidadAbstracta {
         this.fechabaja = fechabaja;
     }
         
-    public String getTipo(){
+    public String getTipoDeClase(){
         return this.getClass().getName();
     }
     

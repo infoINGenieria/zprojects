@@ -144,7 +144,7 @@ public class EPPDialog extends ZilleDialog{
 
     @Override
     protected String getNombreEntidad() {
-        return "EPP";
+        return "Indumentaria";
     }
 
     @Override

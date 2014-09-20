@@ -55,7 +55,7 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="lblStatus" alignment="0" pref="708" max="32767" attributes="0"/>
                       <Component id="jPanel3" alignment="0" min="-2" max="-2" attributes="1"/>
-                      <Component id="jPanel2" alignment="0" min="-2" pref="708" max="-2" attributes="2"/>
+                      <Component id="jPanel2" alignment="0" min="-2" max="-2" attributes="2"/>
                   </Group>
                   <EmptySpace min="-2" max="-2" attributes="0"/>
               </Group>
@@ -262,7 +262,7 @@
                     <Property name="name" type="java.lang.String" value="tblSemaforo" noResource="true"/>
                   </Properties>
                   <AuxValues>
-                    <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="tblSemaforo.setDefaultRenderer(Object.class, new DefaultTableCellRenderer()&#xa;{&#xa;    @Override&#xa;    public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column)&#xa;    {&#xa;        final Component c = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);&#xa;        //Obtengo el model&#xa;        ItemSemaforo sema = ((TablaSemaforoModel)tblSemaforo.getModel()).getFila(row);&#xa;        if(sema.isAlertar()){&#xa;        c.setBackground(Color.decode(&quot;#aa6655&quot;));&#xa;        }else{&#xa;        c.setBackground(Color.decode(&quot;#669955&quot;));    &#xa;        }&#xa;        return c;&#xa;    }&#xa;});&#xa;&#xa;setCustomModel(model);"/>
+                    <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="tblSemaforo.setDefaultRenderer(Object.class, new DefaultTableCellRenderer()&#xa;{&#xa;    @Override&#xa;    public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column)&#xa;    {&#xa;        final Component c = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);&#xa;        //Obtengo el model&#xa;        ItemSemaforo sema = (ItemSemaforo) ((TablaSemaforoModel)tblSemaforo.getModel()).getFila(row);&#xa;        if(sema.isAlertar()){&#xa;        c.setBackground(Color.decode(&quot;#aa6655&quot;));&#xa;        }else{&#xa;        c.setBackground(Color.decode(&quot;#669955&quot;));    &#xa;        }&#xa;        return c;&#xa;    }&#xa;});&#xa;&#xa;setCustomModel(model);"/>
                   </AuxValues>
                 </Component>
               </SubComponents>

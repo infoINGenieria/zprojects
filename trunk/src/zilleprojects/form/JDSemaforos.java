@@ -12,9 +12,9 @@ package zilleprojects.form;
 
 import DAO.OperarioDAO;
 import DAO.ParteDiarioDAO;
-import Modelo.ItemSemaforo;
+import ViewModel.ItemSemaforo;
 import Modelo.Operario;
-import Modelo.TablaSemaforoModel;
+import Modelo.tablemodel.TablaSemaforoModel;
 import Utils.FechaUtil;
 import Vista.JDialogCustom;
 import Vista.PanelAzul;
@@ -196,7 +196,7 @@ public class JDSemaforos extends JDialogCustom {
                 {
                     final Component c = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
                     //Obtengo el model
-                    ItemSemaforo sema = ((TablaSemaforoModel)tblSemaforo.getModel()).getFila(row);
+                    ItemSemaforo sema = (ItemSemaforo) ((TablaSemaforoModel)tblSemaforo.getModel()).getFila(row);
                     if(sema.isAlertar()){
                         c.setBackground(Color.decode("#aa6655"));
                     }else{
@@ -231,7 +231,7 @@ public class JDSemaforos extends JDialogCustom {
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(lblStatus, javax.swing.GroupLayout.DEFAULT_SIZE, 708, Short.MAX_VALUE)
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 708, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addContainerGap())
             );
             jPanel1Layout.setVerticalGroup(
@@ -427,7 +427,7 @@ public class JDSemaforos extends JDialogCustom {
             // the result computed by doInBackground().
             model = new TablaSemaforoModel();
             for(ItemSemaforo item: semaforos){
-                model.addRegistro(item);
+                model.addFila(item);
             }
             setCustomModel(model);
         }
@@ -472,7 +472,7 @@ public class JDSemaforos extends JDialogCustom {
             
             model = new TablaSemaforoModel();
             for(ItemSemaforo item: semaforos){
-                model.addRegistro(item);
+                model.addFila(item);
             }
             setCustomModel(model);
         }

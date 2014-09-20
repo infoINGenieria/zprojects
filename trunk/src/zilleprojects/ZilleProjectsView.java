@@ -21,13 +21,13 @@ import Modelo.EntidadAbstracta;
 import Modelo.Equipos;
 import Modelo.EstacionServicio;
 import Modelo.Funcion;
-import Modelo.ItemAlarma;
+import ViewModel.ItemAlarma;
 import Modelo.Obras;
 import Modelo.Operario;
 import Modelo.ParametrosSistema;
 import Modelo.ParteDiario;
 import Modelo.Perfiles;
-import Modelo.TablaAlarmasModel;
+import Modelo.tablemodel.TablaAlarmasModel;
 import Modelo.UsuarioLogged;
 import Utils.FechaUtil;
 import Utils.ImageIconTable;
@@ -1166,7 +1166,7 @@ public class ZilleProjectsView extends FrameView {
                 //Ordeno la lista segun la fecha
                 Collections.sort(alarmas);
                 for(ItemAlarma ia: alarmas){
-                    modelAlarma.addRegistro(ia);
+                    modelAlarma.addFila(ia);
                 }  
                 
                 jTable1.getColumnModel().getColumn(0).setWidth(28);

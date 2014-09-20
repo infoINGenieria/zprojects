@@ -16,10 +16,11 @@ import DAO.RIDAO;
 import DAO.RIItemDAO;
 import DAO.ReportesDAO;
 import Modelo.Alarma;
+import Modelo.EntidadAbstracta;
 import Modelo.Obras;
 import Modelo.RI;
 import Modelo.RiItem;
-import Modelo.TablaRIItemModel;
+import Modelo.tablemodel.TablaRIItemModel;
 import Utils.CellTextEditor;
 import Utils.EditorDeCeldasString;
 import Utils.Permisos;
@@ -1003,7 +1004,7 @@ public class JDRI extends javax.swing.JDialog {
     private void remItemRIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_remItemRIActionPerformed
         int opcion = tablaItems.getSelectedRow();
         if (opcion != -1) {
-            modelItems.delRegistro(opcion);
+            modelItems.delFila(modelItems.getFila(opcion));
         }
     }//GEN-LAST:event_remItemRIActionPerformed
 
@@ -1032,7 +1033,7 @@ public class JDRI extends javax.swing.JDialog {
         } else {
             int opcion = tablaItems.getSelectedRow();
             if (opcion != -1) {
-                selected = modelItems.getFila(opcion);
+                selected = (RiItem) modelItems.getFila(opcion);
             }
         }
     }//GEN-LAST:event_tablaItemsMouseClicked
@@ -1040,18 +1041,18 @@ public class JDRI extends javax.swing.JDialog {
     private void tablaItemsKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tablaItemsKeyPressed
         int opcion = tablaItems.getSelectedRow();
         if (opcion != -1) {
-            selected = modelItems.getFila(opcion);
+            selected = (RiItem) modelItems.getFila(opcion);
         }
     }//GEN-LAST:event_tablaItemsKeyPressed
 
     private void guardarRiItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarRiItemActionPerformed
         selected = getRiItemFromDialog(selected);
-        if (selected.getRiItemId() != 0) {
+        if (selected.getId() != 0) {
             //Modifico
             modelItems.insertarFila(selected, tablaItems.getSelectedRow());
         } else {
             //nuevo
-            modelItems.addRegistro(selected);
+            modelItems.addFila(selected);
         }
 
         ABMRiItemDialog.dispose();
@@ -1250,7 +1251,7 @@ public class JDRI extends javax.swing.JDialog {
         ArrayList<RiItem> list = riiDao.cargarTodos(req.getRI_ID());
         modelItems.clean();
         for (RiItem it : list) {
-            modelItems.addRegistro(it);
+            modelItems.addFila(it);
         }
         txtRI_Num.setText(req.getRI_num());
         lblNombreObra.setText(req.getCodigoObra());
@@ -1322,7 +1323,7 @@ public class JDRI extends javax.swing.JDialog {
         ri.setCodigoObra(obraSelect.getCodigo());
         for (int i = 0; i < modelItems.getRowCount(); i++) {
 
-            riItemes.add(modelItems.getFila(i));
+            riItemes.add((RiItem)modelItems.getFila(i));
         }
         return new GuardarRITask(org.jdesktop.application.Application.getInstance(zilleprojects.ZilleProjectsApp.class));
     }
@@ -1393,7 +1394,7 @@ public class JDRI extends javax.swing.JDialog {
         riItemes = new ArrayList<RiItem>();
         for (int i = 0; i < modelItems.getRowCount(); i++) {
 
-            riItemes.add(modelItems.getFila(i));
+            riItemes.add((RiItem)modelItems.getFila(i));
         }
         return new ModificarRITask(org.jdesktop.application.Application.getInstance(zilleprojects.ZilleProjectsApp.class));
     }

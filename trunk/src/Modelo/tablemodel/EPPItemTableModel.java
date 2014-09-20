@@ -4,7 +4,7 @@
  */
 package Modelo.tablemodel;
 
-import Modelo.EPPItem;
+import ViewModel.EPPItem;
 import javax.swing.event.TableModelEvent;
 
 /**

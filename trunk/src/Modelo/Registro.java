@@ -14,7 +14,7 @@ import java.util.GregorianCalendar;
  *
  * @author matu
  */
-public final class Registro {
+public final class Registro extends EntidadAbstracta {
 
     int id;
     boolean especial = false;
@@ -331,10 +331,12 @@ public final class Registro {
         this.hs_salida = hs_salida;
     }
 
+    @Override
     public int getId() {
         return id;
     }
 
+    @Override
     public void setId(int id) {
         this.id = id;
     }
@@ -401,5 +403,10 @@ public final class Registro {
 
     public void setHs_viaje(Time hs_viaje) {
         this.hs_viaje = hs_viaje;
+    }
+
+    @Override
+    public boolean validate() {
+        return true;
     }
 }

@@ -2,15 +2,16 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package Modelo;
+package ViewModel;
 
+import Modelo.EntidadAbstracta;
 import java.util.Date;
 
 /**
  *
  * @author Matu
  */
-public class ItemAlarma implements Comparable<ItemAlarma>{
+public class ItemAlarma extends EntidadAbstracta implements Comparable<ItemAlarma>{
     /*
      * 0 info
      * 1 warn
@@ -82,6 +83,27 @@ public class ItemAlarma implements Comparable<ItemAlarma>{
         } else {
             return 0;
         }
+    }
+
+    @Override
+    public boolean validate() {
+        if (this.fecha == null) {
+            this.error += "Fecha no puede ser nulo.;";
+        }
+        if (this.mensaje.isEmpty()) {
+            this.error += "El campo Mensaje no puede ser vacio.;";
+        }
+        return this.error.isEmpty();
+    }
+
+    @Override
+    public int getId() {
+        return 0;
+    }
+
+    @Override
+    public void setId(int id) {
+        
     }
     
     

@@ -10,6 +10,7 @@
  */
 package zilleprojects.form;
 
+import Modelo.EntidadAbstracta;
 import Modelo.Parametro;
 import Modelo.ParametrosSistema;
 import Modelo.VacacionesRango;
@@ -417,8 +418,8 @@ public class JDParametros extends javax.swing.JDialog {
     private void CargarTalles(){
         BoxLayout lay = new BoxLayout(jPanel7, BoxLayout.Y_AXIS);
         jPanel7.setLayout(lay);
-        for(Parametro p : ParametrosSistema.getGrupo("TALLE")){
-            jPanel7.add(addTalle(p));
+        for(EntidadAbstracta p : ParametrosSistema.getGrupo("TALLE")){
+            jPanel7.add(addTalle((Parametro)p));
         }
         jPanel7.repaint();
         jPanel7.revalidate();

@@ -2,8 +2,11 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package Modelo;
+package ViewModel;
 
+import Modelo.EntidadAbstracta;
+import Modelo.Operario;
+import Modelo.ParteDiario;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -12,7 +15,7 @@ import java.util.Date;
  *
  * @author matuuar
  */
-public class ItemSemaforo  implements Comparable<ItemSemaforo>{
+public class ItemSemaforo  extends EntidadAbstracta implements Comparable<ItemSemaforo>{
     
     private String nombre;
     private int total, operarioId;
@@ -174,6 +177,21 @@ public class ItemSemaforo  implements Comparable<ItemSemaforo>{
             return 1;
         } 
         return 0;
+    }
+
+    @Override
+    public boolean validate() {
+        return true;
+    }
+
+    @Override
+    public int getId() {
+        return 0;
+    }
+
+    @Override
+    public void setId(int id) {
+        
     }
     
 }

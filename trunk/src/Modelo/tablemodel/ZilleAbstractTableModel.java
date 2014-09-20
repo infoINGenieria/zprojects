@@ -25,17 +25,17 @@ public abstract class ZilleAbstractTableModel extends AbstractTableModel{
         return datos.size();
     }
     
-    @Override
-    public abstract int getColumnCount();
-    
-    @Override
-    public abstract Object getValueAt(int row, int col) ;
-    
-    @Override
-    public abstract Class getColumnClass(int columnIndex);
-    
-    @Override
-    public abstract String getColumnName(int columnIndex);
+//    @Override
+//    public abstract int getColumnCount();
+//    
+//    @Override
+//    public abstract Object getValueAt(int row, int col) ;
+//    
+//    @Override
+//    public abstract Class getColumnClass(int columnIndex);
+//    
+//    @Override
+//    public abstract String getColumnName(int columnIndex);
     
     
     public void addFila (EntidadAbstracta reg) { 
@@ -69,6 +69,14 @@ public abstract class ZilleAbstractTableModel extends AbstractTableModel{
             return (EntidadAbstracta)(datos.get(row));
         return null;
     }
+    
+    public void clean(){
+        datos.clear();
+        TableModelEvent evento;
+        evento = new TableModelEvent(this);
+        avisaSuscriptores (evento);
+        
+    } 
     
     @Override
     public void addTableModelListener(TableModelListener l) {

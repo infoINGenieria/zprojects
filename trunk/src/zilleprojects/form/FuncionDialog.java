@@ -32,6 +32,8 @@ public class FuncionDialog extends ZilleDialog {
         super(parent, modal);
         
         initComponents();
+        int[] width1 = {40}; 
+        setWidths(width1);
         
     }
 
@@ -189,7 +191,7 @@ public class FuncionDialog extends ZilleDialog {
 
     @Override
     protected Dimension getSizeMainWindow() {
-        return new Dimension(700, 450);
+        return new Dimension(900, 430);
     }
 
     @Override

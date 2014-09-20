@@ -28,8 +28,8 @@ import Modelo.ParteDiario;
 import Modelo.Perfiles;
 import Modelo.Registro;
 import Modelo.RegistroEquipo;
-import Modelo.TablaDatosTransporte;
-import Modelo.TablaHorarioIngresoModel;
+import Modelo.tablemodel.TablaDatosTransporte;
+import Modelo.tablemodel.TablaHorarioIngresoModel;
 import Utils.EditorDeCeldasString;
 import Vista.OpcionPanel;
 import Vista.PanelAzul;
@@ -1020,10 +1020,10 @@ public class JDGestionarParte extends javax.swing.JDialog {
     private void cargarDatosTransporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cargarDatosTransporteActionPerformed
 
         if (tdt.getRowCount() != 4) {
-            tdt.addRegistro(new Materiales("CALCAREO"));
-            tdt.addRegistro(new Materiales("ARENA"));
-            tdt.addRegistro(new Materiales("AGUA"));
-            tdt.addRegistro(new Materiales("OTROS"));
+            tdt.addFila(new Materiales("CALCAREO"));
+            tdt.addFila(new Materiales("ARENA"));
+            tdt.addFila(new Materiales("AGUA"));
+            tdt.addFila(new Materiales("OTROS"));
         }
 
         tablaTransporte.setModel(tdt);
@@ -1043,7 +1043,7 @@ public class JDGestionarParte extends javax.swing.JDialog {
     private void aceptarInfoTransporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aceptarInfoTransporteActionPerformed
         listMaterialesParteDiario = new ArrayList<Materiales>();
         for (int i = 0; i < tdt.getRowCount(); i++) {
-            Materiales m = tdt.getFila(i);
+            Materiales m = (Materiales) tdt.getFila(i);
             if (m.isOk()) {
                 isTransporte.setSelected(true);
                 listMaterialesParteDiario.add(m);
@@ -1198,7 +1198,7 @@ public class JDGestionarParte extends javax.swing.JDialog {
         tablaHorario.setEnabled(obra.isTieneRegistro());
         if(obra.isTieneRegistro()) {
             if(tablaModel.getRowCount()== 0){
-                tablaModel.addRegistro(new Registro());
+                tablaModel.addFila(new Registro());
             }
             tablaHorario.setModel(tablaModel);
         }
@@ -1269,15 +1269,15 @@ public class JDGestionarParte extends javax.swing.JDialog {
         GregorianCalendar gc = new GregorianCalendar();
         gc.setTime(fechaParte.getDate());
         if (gc.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY) {
-            Registro r1 = tablaModel.getFila(0);
+            Registro r1 = (Registro) tablaModel.getFila(0);
             r1.setEspecial(true);
             tablaModel.insertarFila(r1, 0);
         } else if (gc.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY) {
-            Registro r1 = tablaModel.getFila(0);
+            Registro r1 = (Registro) tablaModel.getFila(0);
             r1.setEspecial(true);
             tablaModel.insertarFila(r1, 0);
         } else {
-            Registro r1 = tablaModel.getFila(0);
+            Registro r1 = (Registro) tablaModel.getFila(0);
             r1.setEspecial(false);
             tablaModel.insertarFila(r1, 0);
         }
@@ -1418,7 +1418,7 @@ public class JDGestionarParte extends javax.swing.JDialog {
     }
 
     public boolean horarioCompleto() {
-        Registro aux = tablaModel.getFila(0);
+        Registro aux = (Registro) tablaModel.getFila(0);
         try {
             if (aux.getHs_salida().toString().isEmpty() || aux.getHs_llegada().toString().isEmpty()
                     || aux.getHs_inicio().toString().isEmpty() || aux.getHs_fin().toString().isEmpty()
@@ -1473,11 +1473,11 @@ public class JDGestionarParte extends javax.swing.JDialog {
             for (int i = 0; i < listMaterialesParteDiario.size(); i++) {
                 Materiales m = (Materiales) listMaterialesParteDiario.get(i);
                 m.setOk(true);
-                tdt.addRegistro((m));
+                tdt.addFila((m));
 
             }
             for (int i = 0; i < 4 - listMaterialesParteDiario.size(); i++) {
-                tdt.addRegistro(new Materiales());
+                tdt.addFila(new Materiales());
             }
         }else{
             lblEquipo.setText("Ninguno");
@@ -1486,7 +1486,7 @@ public class JDGestionarParte extends javax.swing.JDialog {
         if(obra.isTieneRegistro()){
             
             //tablaModel = new TablaHorarioIngresoModel();
-            tablaModel.addRegistro(registroHorario);
+            tablaModel.addFila(registroHorario);
             comboFuncion.setSelectedItem(new Funcion(parteDiario.getIdFuncion()));
             multifuncionCheck.setSelected(parteDiario.isMultifuncion());
             isDesarraigo.setSelected(parteDiario.isDesarraigo());
@@ -1532,7 +1532,7 @@ public class JDGestionarParte extends javax.swing.JDialog {
                 parteDiario.setIdFuncion(((Funcion) comboFuncion.getSelectedItem()).getId());
                 parteDiario.setMultifuncion(multifuncionCheck.isSelected());
                 parteDiario.setDesarraigo(isDesarraigo.isSelected());
-                reg = tablaModel.getFila(0);
+                reg = (Registro) tablaModel.getFila(0);
                 GregorianCalendar gc = new GregorianCalendar();
                 gc.setTime(fechaParte.getDate());
                 reg.setFecha(reg.getStringWFecha(gc));
@@ -1593,7 +1593,7 @@ public class JDGestionarParte extends javax.swing.JDialog {
 
     private class EliminarMaterialesTask extends org.jdesktop.application.Task<Object, Void> {
 
-        Materiales m = tdt.getFila(tablaTransporte.getSelectedRow());
+        Materiales m = (Materiales) tdt.getFila(tablaTransporte.getSelectedRow());
         boolean r = false;
 
         EliminarMaterialesTask(org.jdesktop.application.Application app) {
@@ -1612,7 +1612,7 @@ public class JDGestionarParte extends javax.swing.JDialog {
         @Override
         protected void succeeded(Object result) {
             if (r) {
-                tdt.delRegistro(m);
+                tdt.delFila(m);
             } else {
                 OpcionPanel.showMessageDialog(null, "Ocurrió un error al quitar el registro de materiales", "ERROR", JOptionPane.ERROR_MESSAGE);
             }

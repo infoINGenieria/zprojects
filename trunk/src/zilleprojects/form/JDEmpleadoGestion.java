@@ -17,7 +17,7 @@ import DAO.OperarioDAO;
 import DAO.ParteDiarioDAO;
 import Modelo.DatosFrancoOperario;
 import Modelo.EPP;
-import Modelo.EPPItem;
+import ViewModel.EPPItem;
 import Modelo.EPPOperario;
 import Modelo.EntidadAbstracta;
 import Modelo.tablemodel.EPPItemTableModel;
@@ -26,6 +26,7 @@ import Modelo.Operario;
 
 import Modelo.Parametro;
 import Modelo.ParametrosSistema;
+import Utils.ArrayParametro;
 import Utils.ComboEditorCelda;
 import Utils.Permisos;
 import Utils.SpinnerEditor;
@@ -1683,8 +1684,8 @@ private void dateIngresoPropertyChange(java.beans.PropertyChangeEvent evt) {//GE
                 List<String[]> valores = new ArrayList<String[]>();
                 String[] array = new String[ParametrosSistema.getGrupo("TALLE").size()];
                 int i = 0;
-                for(Parametro a:ParametrosSistema.getGrupo("TALLE")){
-                    array[i] = a.getValor();
+                for(EntidadAbstracta a:ParametrosSistema.getGrupo("TALLE")){
+                    array[i] = ((Parametro)a).getValor();
                     i++;
                 }
                 valores.add(array);
