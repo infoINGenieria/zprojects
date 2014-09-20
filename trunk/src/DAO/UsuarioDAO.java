@@ -4,6 +4,7 @@
  */
 package DAO;
 
+import Modelo.EntidadAbstracta;
 import Modelo.Usuario;
 import Modelo.UsuarioLogged;
 import java.sql.PreparedStatement;
@@ -16,7 +17,7 @@ import java.util.ArrayList;
  *
  * @author matuuar
  */
-public class UsuarioDAO extends AbstractDAO{
+public class UsuarioDAO extends AbstractDAO  { 
      
     public UsuarioDAO(){  
 }
@@ -51,10 +52,11 @@ public class UsuarioDAO extends AbstractDAO{
         }
     }
     
-    public int guardar(Usuario user) {
+    @Override
+    public int guardar(EntidadAbstracta entity) {
         int r = 0;
         String query = null;
-
+        Usuario user = (Usuario) entity;
         try {
             query = "SELECT id FROM usuario WHERE user = ? and fechabaja is null";
             PreparedStatement ps1 = conector.prepareStatement(query);
@@ -92,9 +94,9 @@ public class UsuarioDAO extends AbstractDAO{
         try {
             String query = "";
             if(user.getPass()==null || user.getPass().isEmpty())
-                    query = "update usuario set USER=?, ROL=? where ID =" + user.getId_user();
+                    query = "update usuario set USER=?, ROL=? where ID =" + user.getId();
                 else
-                    query = "update usuario set USER=?, ROL=?, PASS=md5(?) where ID =" + user.getId_user();
+                    query = "update usuario set USER=?, ROL=?, PASS=md5(?) where ID =" + user.getId();
             PreparedStatement ps = conector.prepareStatement(query);
             ps.setString(1, user.getUser());
             ps.setString(2, user.getRol());
@@ -103,7 +105,7 @@ public class UsuarioDAO extends AbstractDAO{
             ResultSet rs = ps.getGeneratedKeys();
             
             
-            r = user.getId_user();
+            r = user.getId();
             
             ps.close();
             rs.close();
@@ -146,7 +148,7 @@ public class UsuarioDAO extends AbstractDAO{
             ResultSet rs=ps.executeQuery();
             while(rs.next()){
                 Usuario user = new Usuario();
-                user.setId_user(rs.getInt("ID"));
+                user.setId(rs.getInt("ID"));
                 user.setUser(rs.getString("USER"));
                 user.setRol(rs.getString("ROL"));
                 usuarios.add(user);
@@ -170,7 +172,7 @@ public class UsuarioDAO extends AbstractDAO{
             ResultSet rs=ps.executeQuery();
             while(rs.next()){
                 Usuario user = new Usuario();
-                user.setId_user(rs.getInt("ID"));
+                user.setId(rs.getInt("ID"));
                 user.setUser(rs.getString("USER"));
                 user.setRol(rs.getString("ROL"));
                 usuarios.add(user);
@@ -189,7 +191,7 @@ public class UsuarioDAO extends AbstractDAO{
     public boolean darDeBaja(Usuario usuarioSeleccionado) {
         try{
             PreparedStatement ps = conector.prepareStatement("update usuario set fechabaja = NOW() where id = ?");
-            ps.setInt(1, usuarioSeleccionado.getId_user());
+            ps.setInt(1, usuarioSeleccionado.getId());
             ps.executeUpdate();
             ResultSet rs = ps.getGeneratedKeys();
             if (rs.next()) {
@@ -203,6 +205,28 @@ public class UsuarioDAO extends AbstractDAO{
         }
         return true;
     }
+
+    @Override
+    public int modificar(EntidadAbstracta entidad) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public boolean eliminar(EntidadAbstracta entidad) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public ArrayList<EntidadAbstracta> cargarTodos() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public ArrayList<EntidadAbstracta> filtrarPorTexto(String text) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    
 }
     
     

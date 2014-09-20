@@ -2,62 +2,24 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package Modelo;
+package Modelo.tablemodel;
 
+import ViewModel.ItemSemaforo;
 import Utils.FechaUtil;
 import java.util.Date;
-import java.util.LinkedList;
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
-import javax.swing.table.AbstractTableModel;
 
 /**
  *
  * @author matuuar
  */
-public class TablaSemaforoModel extends AbstractTableModel {
+public class TablaSemaforoModel extends ZilleAbstractTableModel {
 
-    private LinkedList datos = new LinkedList();
-    private LinkedList listeners = new LinkedList();
 
     public TablaSemaforoModel(){
         super();
     }
-    
-    public void clean(){
-        datos.clear();
-        TableModelEvent evento;
-        evento = new TableModelEvent(this);
-        avisaSuscriptores (evento);
-        
-    }
-    
-    public void addRegistro (ItemSemaforo item)
-    {
-        datos.add (item);
-
-        TableModelEvent evento;
-        evento = new TableModelEvent (this, this.getRowCount()-1,
-            this.getRowCount()-1, TableModelEvent.ALL_COLUMNS,
-            TableModelEvent.INSERT);
-
-        avisaSuscriptores (evento);
-         
-    }
-    
-    public void delRegistro (ItemSemaforo item)
-    {
-        datos.remove(item);
-
-        TableModelEvent evento;
-        evento = new TableModelEvent (this, this.getRowCount()-1,
-            this.getRowCount()-1, TableModelEvent.ALL_COLUMNS,
-            TableModelEvent.DELETE);
-
-        avisaSuscriptores (evento);
-         
-    }
-    
 
     @Override
     public Object getValueAt(int row, int col) {
@@ -115,12 +77,6 @@ public class TablaSemaforoModel extends AbstractTableModel {
         }
     }
     
-    public void insertarFila(ItemSemaforo value, int row) {
-        datos.remove(row);
-        datos.add(row, value);
-        TableModelEvent evento = new TableModelEvent (this, row, row, TableModelEvent.ALL_COLUMNS);
-        avisaSuscriptores (evento);
-    }
     
     @Override
     public void setValueAt(Object value, int row, int col) {
@@ -150,8 +106,6 @@ public class TablaSemaforoModel extends AbstractTableModel {
     }
         TableModelEvent evento = new TableModelEvent (this, row, row, col);
         avisaSuscriptores (evento);
-
-
     }
     
       @Override
@@ -159,47 +113,16 @@ public class TablaSemaforoModel extends AbstractTableModel {
         return datos.size();
     }
 
-    public ItemSemaforo getFila(int row){
-        return (ItemSemaforo)(datos.get(row));
-    }
     
     @Override
     public boolean isCellEditable(int row, int col) {
         
-            return false;
-        }
-        
-        
-    
-
+        return false;
+    }
+      
     @Override
     public int getColumnCount() {
         return 4;
     }
-
-    @Override
-    public void addTableModelListener(TableModelListener l) {
-        // Añade el suscriptor a la lista de suscriptores
-        listeners.add (l);
-    }
-
-
-    @Override
-    public void removeTableModelListener(TableModelListener l) {
-        // Elimina los suscriptores.
-        listeners.remove(l);
-    }
-
-
-    private void avisaSuscriptores (TableModelEvent evento)
-    {
-        int i;
-
-        // Bucle para todos los suscriptores en la lista, se llama al metodo
-        // tableChanged() de los mismos, pasándole el evento.
-        for (i=0; i<listeners.size(); i++)
-            ((TableModelListener)listeners.get(i)).tableChanged(evento);
-    }
-
 
 }

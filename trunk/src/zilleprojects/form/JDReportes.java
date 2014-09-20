@@ -20,13 +20,12 @@ import DAO.ReportesDAO;
 import Modelo.Equipos;
 import Modelo.EstacionServicio;
 import Modelo.InformesHoras;
-import Modelo.ItemObra;
-import Modelo.Mes;
+import ViewModel.ItemObra;
+import Utils.Mes;
 import Modelo.Obras;
-import Modelo.ObrasTablaInforme;
+import Modelo.tablemodel.ObrasTablaInforme;
 import Modelo.Operario;
 import Modelo.Periodo;
-import Modelo.Registro;
 import Utils.FechaUtil;
 import Utils.UtilReport;
 import Vista.JDialogCustom;
@@ -306,9 +305,9 @@ public class JDReportes extends JDialogCustom {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, 268, Short.MAX_VALUE)
+                        .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, 283, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE)
+                        .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -322,7 +321,7 @@ public class JDReportes extends JDialogCustom {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(botonBuscarEmpleado))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                .addComponent(desdeFecha, javax.swing.GroupLayout.DEFAULT_SIZE, 248, Short.MAX_VALUE)
+                                .addComponent(desdeFecha, javax.swing.GroupLayout.DEFAULT_SIZE, 272, Short.MAX_VALUE)
                                 .addGap(34, 34, 34)
                                 .addComponent(jLabel6)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -542,7 +541,7 @@ public class JDReportes extends JDialogCustom {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(botonBuscarEmpleado1))
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 417, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 448, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel4Layout.createSequentialGroup()
@@ -781,7 +780,7 @@ public class JDReportes extends JDialogCustom {
                 .addContainerGap()
                 .addGroup(jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel18Layout.createSequentialGroup()
-                        .addComponent(queryEquipos, javax.swing.GroupLayout.DEFAULT_SIZE, 391, Short.MAX_VALUE)
+                        .addComponent(queryEquipos, javax.swing.GroupLayout.DEFAULT_SIZE, 371, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(buscarEquiposBoton))
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 435, Short.MAX_VALUE)
@@ -1574,7 +1573,7 @@ public class JDReportes extends JDialogCustom {
         jScrollPane4.setName("jScrollPane4"); // NOI18N
 
         jTable1.setModel(modelObraSelected);
-        modelObraSelected.addRegistro(new ItemObra());
+        modelObraSelected.addFila(new ItemObra());
         jTable1.setName("jTable1"); // NOI18N
         jTable1.setOpaque(false);
         jScrollPane4.setViewportView(jTable1);
@@ -2090,7 +2089,7 @@ public class JDReportes extends JDialogCustom {
     private int countObrasSelected() {
         int count = 0;
         for(int i =0; i<modelObraSelected.getRowCount(); i++){
-            if(modelObraSelected.getFila(i).isSelected()){
+            if(((ItemObra)modelObraSelected.getFila(i)).isSelected()){
                 count++;
             }
         }
@@ -2977,7 +2976,7 @@ public class JDReportes extends JDialogCustom {
             for(Obras o : obrasListado){
                 ItemObra io = new ItemObra();
                 io.cast(o);
-                modelObraSelected.addRegistro(io);
+                modelObraSelected.addFila(io);
             }
             jTable1.getColumnModel().getColumn(0).setWidth(26);
             jTable1.getColumnModel().getColumn(0).setMaxWidth(35);
@@ -3077,7 +3076,7 @@ public class JDReportes extends JDialogCustom {
         private ArrayList<Obras> generarArrayIdObras() {
             ArrayList<Obras> aux = new ArrayList<Obras>();
             for(int i =0; i<modelObraSelected.getRowCount(); i++){
-                if(modelObraSelected.getFila(i).isSelected()){
+                if(((ItemObra)modelObraSelected.getFila(i)).isSelected()){
                     aux.add((Obras)modelObraSelected.getFila(i));
                 }
             }

@@ -2,16 +2,21 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package Modelo;
+package ViewModel;
+
+import Modelo.EPP;
+import Modelo.EPPOperario;
+import Modelo.EntidadAbstracta;
+import Modelo.Operario;
 
 /**
  *
  * @author m4tuu
  */
-public class EPPItem  implements Comparable<EPPItem>{
-    EPP epp;
-    EPPOperario valores;
-    Operario operario;
+public class EPPItem extends EntidadAbstracta implements Comparable<EPPItem>{
+    protected EPP epp;
+    protected EPPOperario valores;
+    protected Operario operario;
 
     public EPP getEpp() {
         return epp;
@@ -135,6 +140,21 @@ public class EPPItem  implements Comparable<EPPItem>{
     @Override
     public int compareTo(EPPItem t) {
         return epp.getNombre().compareTo(t.getEpp().getNombre());
+    }
+
+    @Override
+    public boolean validate() {
+        return true;
+    }
+
+    @Override
+    public int getId() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public void setId(int id) {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
     
     

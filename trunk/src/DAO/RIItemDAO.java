@@ -94,7 +94,7 @@ public class RIItemDAO {
             ps.setDate(10, FechaUtil.getFechatoDB(it.getFecha_emision()));
             ps.setDate(11, FechaUtil.getFechatoDB(it.getFecha_necesidad()));
             ps.setString(12, it.getValor());
-            ps.setInt(13, it.getRiItemId());
+            ps.setInt(13, it.getId());
             ps.executeUpdate();
             ResultSet rs = ps.getGeneratedKeys();
             if (rs.next()) {
@@ -119,7 +119,7 @@ public class RIItemDAO {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 RiItem it = new RiItem();
-                it.setRiItemId(rs.getInt("riItemId"));
+                it.setId(rs.getInt("riItemId"));
                 it.setRiId(rs.getInt("riId"));
                 it.setCantidad(rs.getString("cantidad"));
                 it.setUnidad(rs.getString("unidad"));
@@ -153,7 +153,7 @@ public class RIItemDAO {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 
-                it.setRiItemId(rs.getInt("riItemId"));
+                it.setId(rs.getInt("riItemId"));
                 it.setRiId(rs.getInt("riId"));
                 it.setCantidad(rs.getString("cantidad"));
                 it.setUnidad(rs.getString("unidad"));
@@ -184,7 +184,7 @@ public class RIItemDAO {
             
             String query = "delete from ri_item where riItemId = ? ";
             PreparedStatement ps = conector.prepareStatement(query);
-            ps.setInt(1, it.getRiItemId());
+            ps.setInt(1, it.getId());
             
             
             ps.executeUpdate();

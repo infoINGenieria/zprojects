@@ -8,14 +8,16 @@ package Modelo;
  *
  * @author m4tuu
  */
-public class EPP {
+public class EPP extends EntidadAbstracta {
     private int id;
     private String nombre, medida;
 
+    @Override
     public int getId() {
         return id;
     }
 
+    @Override
     public void setId(int id) {
         this.id = id;
     }
@@ -41,7 +43,9 @@ public class EPP {
         this.medida = medida;
     }
     
-    public EPP(){}
+    public EPP(){
+        this.nombre = "";
+        this.medida = "";}
 
     @Override
     public boolean equals(Object obj) {
@@ -72,5 +76,19 @@ public class EPP {
     
     public boolean tieneTalle(){
         return medida.toUpperCase().equals("TALLE");
+    }
+
+    @Override
+    public boolean validate() {
+        boolean r = true;
+        if (this.medida.isEmpty()) {
+            error += "El campo Medida es necesario;";
+            r = false;
+        }
+        if (this.nombre.isEmpty()) {
+            error += "El campo Nombre es necesario;";
+            r = false;
+        }
+        return r;
     }
 }

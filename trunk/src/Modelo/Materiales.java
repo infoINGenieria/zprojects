@@ -8,7 +8,7 @@ package Modelo;
  *
  * @author matuu
  */
-public class Materiales {
+public class Materiales extends EntidadAbstracta {
     int id, idRegistroEquipo;
     String material, cantidad, distancia, viajes,cantera_cargadero;
     boolean ok;
@@ -55,10 +55,12 @@ public class Materiales {
         this.distancia = distancia;
     }
 
+    @Override
     public int getId() {
         return id;
     }
 
+    @Override
     public void setId(int id) {
         this.id = id;
     }
@@ -85,6 +87,14 @@ public class Materiales {
 
     public void setViajes(String viajes) {
         this.viajes = viajes;
+    }
+
+    @Override
+    public boolean validate() {
+        if (idRegistroEquipo == 0) {
+            error += "Un material debe estar asociado a un Equipo;";
+        }
+        return error.isEmpty();
     }
     
     

@@ -106,7 +106,7 @@ public class ReportesDAO {
 
             URL master = null;
             URL subreport = null;
-            Map parametro = new HashMap();
+            HashMap<String, Object> parametro = new HashMap<String, Object>();
             parametro.put("urlimagenZille", getClass().getResource("/Reportes/zille.png").toString());
                        
             parametro.put("desde_f", desde);
@@ -141,7 +141,7 @@ public class ReportesDAO {
             
             URL master = null;
             URL subreport = null;
-            Map parametro = new HashMap();
+            HashMap<String, Object> parametro = new HashMap<String, Object>();
             parametro.put("urlimagenZille", getClass().getResource("/Reportes/zille.png").toString());
                        
             parametro.put("desde_f", desde);
@@ -182,7 +182,7 @@ public class ReportesDAO {
             URL master = null;
             URL subreport = null;
             URL subreport2 = null;
-            Map parametro = new HashMap();
+            HashMap<String, Object> parametro = new HashMap<String, Object>();
             parametro.put("urlimagenZille", getClass().getResource("/Reportes/zille.png").toString());
             parametro.put("urlimagenMF", getClass().getResource("/Reportes/mf.png").toString());
             
@@ -227,7 +227,7 @@ public class ReportesDAO {
             URL master = null;
             URL subreport = null;
             URL subreport2 = null;
-            Map parametro = new HashMap();
+            HashMap<String, Object> parametro = new HashMap<String, Object>();
             parametro.put("urlimagenZille", getClass().getResource("/Reportes/zille.png").toString());
             parametro.put("urlimagenMF", getClass().getResource("/Reportes/mf.png").toString());
             
@@ -273,7 +273,7 @@ public class ReportesDAO {
 
             URL master = null;
             URL subreport = null;
-            Map parametro = new HashMap();
+            HashMap<String, Object> parametro = new HashMap<String, Object>();
             parametro.put("urlimagenZille", getClass().getResource("/Reportes/zille.png").toString());
             parametro.put("urlimagenZilleBg", getClass().getResource("/Reportes/zille-bg.png").toString());
             parametro.put("periodo", periodo);
@@ -306,7 +306,7 @@ public class ReportesDAO {
 
             URL master = null;
             URL subreport = null;
-            Map parametro = new HashMap();
+            HashMap<String, Object> parametro = new HashMap<String, Object>();
             parametro.put("urlimagenZille", getClass().getResource("/Reportes/zille.png").toString());
             
             parametro.put("desde_f", desde);
@@ -340,7 +340,7 @@ public class ReportesDAO {
         try {
 
             URL master = null;
-            Map parametro = new HashMap();
+            HashMap<String, Object> parametro = new HashMap<String, Object>();
             parametro.put("urlimagenZille", getClass().getResource("/Reportes/zille.png").toString());
             
             parametro.put("desde_f", desde);
@@ -365,7 +365,7 @@ public class ReportesDAO {
 
             URL master = null;
             URL subreport = null;
-            Map parametro = new HashMap();
+            HashMap<String, Object> parametro = new HashMap<String, Object>();
             parametro.put("urlimagenZille", getClass().getResource("/Reportes/zille.png").toString());
             
             parametro.put("desde_f", desde);
@@ -401,7 +401,7 @@ public class ReportesDAO {
             URL master = null;
             URL subreport = null;
             URL subreport2 = null;
-            Map parametro = new HashMap();
+            HashMap<String, Object> parametro = new HashMap<String, Object>();
             parametro.put("urlimagenZille", getClass().getResource("/Reportes/zille.png").toString());
             
             parametro.put("desde_f", desde);
@@ -444,7 +444,7 @@ public class ReportesDAO {
         try {
 
             URL master = null;
-            Map parametro = new HashMap();
+            HashMap<String, Object> parametro = new HashMap<String, Object>();
             parametro.put("ordentrabajoid", idOT);
             master = getClass().getResource("/Reportes/ordenTrabajo/otReport.jasper");
             System.out.println("Cargando desde: " + master);
@@ -506,7 +506,7 @@ public class ReportesDAO {
         try {
 
             URL master = null;
-            Map parametro = new HashMap();
+            HashMap<String, Object> parametro = new HashMap<String, Object>();
             parametro.put("riid", riid);
             master = getClass().getResource("/Reportes/ri/ri.jasper");
             System.out.println("Cargando desde: " + master);
@@ -934,7 +934,7 @@ public class ReportesDAO {
         try {
             
             URL master = null;
-            Map parametro = new HashMap();
+            HashMap<String, Object> parametro = new HashMap<String, Object>();
             parametro.put("urlimagenZille", getClass().getResource("/Reportes/zille.png").toString());
             
            

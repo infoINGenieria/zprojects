@@ -2,56 +2,27 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package Modelo;
+package Modelo.tablemodel;
 
 
-import java.util.Date;
+import Modelo.Usuario;
 import java.util.LinkedList;
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
-import javax.swing.table.AbstractTableModel;
 
 
 /**
  *
  * @author matuu
  */
-public class UsuariosTableModel extends AbstractTableModel{
+public class UsuariosTableModel extends ZilleAbstractTableModel{
 
-    private LinkedList<Usuario> datos = new LinkedList<Usuario>();
-    private LinkedList<Object> listeners = new LinkedList<Object>();
 
     public UsuariosTableModel(){
         super();
 
     }
 
-    
-
-    public void addFila (Usuario user)
-    {
-        datos.add (user);
-
-        TableModelEvent evento;
-        evento = new TableModelEvent (this, this.getRowCount()-1,
-            this.getRowCount()-1, TableModelEvent.ALL_COLUMNS,
-            TableModelEvent.INSERT);
-
-        avisaSuscriptores (evento);
-
-    }
-    public void delFila (Usuario usuario)
-    {
-        datos.remove(usuario);
-
-        TableModelEvent evento;
-        evento = new TableModelEvent (this, this.getRowCount()-1,
-            this.getRowCount()-1, TableModelEvent.ALL_COLUMNS,
-            TableModelEvent.DELETE);
-
-        avisaSuscriptores (evento);
-
-    }
     
     @Override
     public Object getValueAt(int row, int col) {
@@ -62,7 +33,7 @@ public class UsuariosTableModel extends AbstractTableModel{
         switch (col)
         {
             case 0:
-                return aux.getId_user();
+                return aux.getId();
             case 1:
                 return aux.getUser();
             case 2:
@@ -105,13 +76,6 @@ public class UsuariosTableModel extends AbstractTableModel{
     }
 
 
-    public void insertarFila(Usuario value, int row) {
-        datos.remove(row);
-        datos.add(row, value);
-        TableModelEvent evento = new TableModelEvent (this, row, row, TableModelEvent.ALL_COLUMNS);
-        avisaSuscriptores (evento);
-    }
-
     @Override
     public void setValueAt(Object value, int row, int col) {
         Usuario aux;
@@ -120,7 +84,7 @@ try{
         switch (col)
         {
             case 0:
-                aux.setId_user((Integer)value);
+                aux.setId((Integer)value);
                 break;
             case 1:
                 aux.setUser((String)value);
@@ -156,12 +120,6 @@ try{
         return datos.size();
     }
 
-    public Usuario getFila(int row){
-        if(datos.size()!=0)
-            return (Usuario)(datos.get(row));
-        return null;
-    }
-
 
     /*
      * Don't need to implement this method unless your table's
@@ -177,31 +135,9 @@ try{
 
 
 
+    @Override
     public int getColumnCount() {
         return 3;
     }
 
-    @Override
-    public void addTableModelListener(TableModelListener l) {
-        // Añade el suscriptor a la lista de suscriptores
-        listeners.add (l);
-    }
-
-
-    @Override
-    public void removeTableModelListener(TableModelListener l) {
-        // Elimina los suscriptores.
-        listeners.remove(l);
-    }
-
-
-    private void avisaSuscriptores (TableModelEvent evento)
-    {
-        int i;
-
-        // Bucle para todos los suscriptores en la lista, se llama al metodo
-        // tableChanged() de los mismos, pasándole el evento.
-        for (i=0; i<listeners.size(); i++)
-            ((TableModelListener)listeners.get(i)).tableChanged(evento);
-    }
 }

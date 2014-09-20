@@ -4,7 +4,7 @@
  */
 package Utils;
 
-import Modelo.EPPTableModel;
+import Modelo.tablemodel.EPPItemTableModel;
 import java.awt.Color;
 import java.awt.Component;
 import javax.swing.JLabel;
@@ -25,7 +25,7 @@ public class StatusColumnCellEppRenderer extends DefaultTableCellRenderer {
 
 
     //Get the status for the current row.
-    EPPTableModel tableModel = (EPPTableModel) table.getModel();
+    EPPItemTableModel tableModel = (EPPItemTableModel) table.getModel();
     
     if (tableModel.isCellEditable(row, col)) {
         

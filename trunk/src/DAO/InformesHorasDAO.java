@@ -332,7 +332,7 @@ public class InformesHorasDAO {
         try {
             
             URL archivo = null;
-            Map parametro = new HashMap();
+            HashMap<String, Object> parametro = new HashMap<String, Object>();
             parametro.put("urlimagenZille", getClass().getResource("/Reportes/zille.png").toString());
             parametro.put("urlimagenZilleBg", getClass().getResource("/Reportes/zille-bg.png").toString());
             parametro.put("id_informe", i.getId());
@@ -362,7 +362,7 @@ public class InformesHorasDAO {
         try {
             
             URL archivo = null;
-            Map parametro = new HashMap();
+            HashMap<String, Object> parametro = new HashMap<String, Object>();
             parametro.put("urlimagenZille", getClass().getResource("/Reportes/zille.png").toString());
             parametro.put("urlimagenZilleBg", getClass().getResource("/Reportes/zille-bg.png").toString());
             parametro.put("id_informe", i.getId());
@@ -386,7 +386,7 @@ public class InformesHorasDAO {
         try {
             
             URL archivo = null;
-            Map parametro = new HashMap();
+            HashMap<String, Object> parametro = new HashMap<String, Object>();
             parametro.put("urlimagenZille", getClass().getResource("/Reportes/zille.png").toString());
             parametro.put("urlimagenZilleBg", getClass().getResource("/Reportes/zille-bg.png").toString());
             parametro.put("id_informe", i.getId());

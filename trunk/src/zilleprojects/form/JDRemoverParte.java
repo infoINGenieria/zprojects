@@ -16,6 +16,7 @@ import DAO.FuncionDAO;
 import DAO.ObrasDAO;
 import DAO.OperarioDAO;
 import DAO.ParteDiarioDAO;
+import Modelo.EntidadAbstracta;
 import Modelo.Equipos;
 import Modelo.EstacionServicio;
 import Modelo.Funcion;
@@ -558,7 +559,7 @@ private void SalirBotonGestionPartesActionPerformed(java.awt.event.ActionEvent e
 
         ParteDiario pd;
         Operario op = new Operario();
-        ArrayList<Funcion> fcs = new ArrayList<Funcion>();
+        ArrayList<EntidadAbstracta> fcs = new ArrayList<EntidadAbstracta>();
         Obras ob = new Obras();
         Equipos eq = new Equipos();
         RegistroEquipo re = new RegistroEquipo();

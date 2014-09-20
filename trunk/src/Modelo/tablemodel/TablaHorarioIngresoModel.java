@@ -3,35 +3,27 @@
  * and open the template in the editor.
  */
 
-package Modelo;
+package Modelo.tablemodel;
 
 
+import Modelo.EntidadAbstracta;
+import Modelo.Registro;
 import java.sql.Time;
-import java.util.LinkedList;
 import javax.swing.SwingUtilities;
 import javax.swing.event.TableModelEvent;
-import javax.swing.event.TableModelListener;
-import javax.swing.table.AbstractTableModel;
 
 /**
  *
  * @author matu
  */
-public class TablaHorarioIngresoModel  extends AbstractTableModel {
+public class TablaHorarioIngresoModel  extends ZilleAbstractTableModel {
 
-    private LinkedList datos = new LinkedList();
-    private LinkedList listeners = new LinkedList();
 
-    public TablaHorarioIngresoModel(){
-        super();
-        
-    }
-
-   
-
-    public void addRegistro (Registro r)
+    @Override
+    public void addFila (EntidadAbstracta reg)
     {
         TableModelEvent evento;
+        Registro r = (Registro) reg;
         if(datos.size()== 0){
             datos.add (r);        
             evento = new TableModelEvent (this, this.getRowCount()-1,
@@ -117,14 +109,6 @@ public class TablaHorarioIngresoModel  extends AbstractTableModel {
         }
     }
 
-
-    public void insertarFila(Registro value, int row) {
-        datos.remove(row);
-        datos.add(row, value);
-        TableModelEvent evento = new TableModelEvent (this, row, row, TableModelEvent.ALL_COLUMNS);
-        avisaSuscriptores (evento);
-    }
-
     @Override
     public void setValueAt(Object value, int row, int col) {
 Registro aux;
@@ -193,13 +177,10 @@ try{
             }else{
                 hora=Time.valueOf(entrada.concat(":00:00"));
             }
-
         }
-
         else{
             hora= Time.valueOf(entrada.replace('.', ':').concat(":00"));
         }
-        
         return hora;
        
     }
@@ -208,11 +189,6 @@ try{
         
         return datos.size();
     }
-
-    public Registro getFila(int row){
-        return (Registro)(datos.get(row));
-    }
-
 
     /*
      * Don't need to implement this method unless your table's
@@ -225,41 +201,13 @@ try{
         /*if (col < 1) {
             return false;
         } else {*/
-        
-        
             return true;
         }
         
-        
-    
-
+    @Override
     public int getColumnCount() {
         return 7;
-    }
-
-    @Override
-    public void addTableModelListener(TableModelListener l) {
-        // Añade el suscriptor a la lista de suscriptores
-        listeners.add (l);
-    }
-
-
-    @Override
-    public void removeTableModelListener(TableModelListener l) {
-        // Elimina los suscriptores.
-        listeners.remove(l);
-    }
-
-
-    private void avisaSuscriptores (TableModelEvent evento)
-    {
-        int i;
-
-        // Bucle para todos los suscriptores en la lista, se llama al metodo
-        // tableChanged() de los mismos, pasándole el evento.
-        for (i=0; i<listeners.size(); i++)
-            ((TableModelListener)listeners.get(i)).tableChanged(evento);
-    }
+    } 
 
 }
 

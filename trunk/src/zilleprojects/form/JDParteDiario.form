@@ -850,7 +850,7 @@
                     <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="tablaHorarioFocusLost"/>
                   </Events>
                   <AuxValues>
-                    <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="tablaModel.addRegistro(new Registro());&#xa;establecerEditorDeString(tablaHorario);&#xa;tablaHorario.setRowHeight(25);"/>
+                    <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="tablaModel.addFila(new Registro());&#xa;establecerEditorDeString(tablaHorario);&#xa;tablaHorario.setRowHeight(25);"/>
                   </AuxValues>
                 </Component>
               </SubComponents>
@@ -1212,7 +1212,7 @@
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="isCrearOT" min="-2" max="-2" attributes="0"/>
-                          <Component id="jScrollPane2" alignment="0" pref="49" max="32767" attributes="0"/>
+                          <Component id="jScrollPane2" alignment="0" pref="52" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
                   </Group>

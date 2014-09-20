@@ -11,7 +11,7 @@ import java.util.Date;
  *
  * @author matuu
  */
-public class Obras {
+public class Obras extends EntidadAbstracta {
     //ID 	CODIGO 	OBRA 	CONTRATO 	COMITENTE 	CUIT 	LUGAR 	PLAZO 	FECHA_INICIO
             int id;
             String codigo, obra, contrato, comitente, cuit, lugar, plazo, responsable;
@@ -177,10 +177,12 @@ public class Obras {
         this.fecha_inicio = fecha_inicio;
     }
 
+    @Override
     public int getId() {
         return id;
     }
 
+    @Override
     public void setId(int id) {
         this.id = id;
     }
@@ -217,6 +219,14 @@ public class Obras {
         }else{
             return codigo + " ("+responsable+")";
         }
+    }
+
+    @Override
+    public boolean validate() {
+        if (codigo.isEmpty()) {
+            error += "El código es oblogatorio;";
+        }
+        return error.isEmpty();
     }
             
     

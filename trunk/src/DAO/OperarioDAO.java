@@ -6,7 +6,7 @@ package DAO;
 
 import Modelo.DatosFrancoOperario;
 import Modelo.EPPOperario;
-import Modelo.ItemAlarma;
+import ViewModel.ItemAlarma;
 import Modelo.Operario;
 import Utils.FechaUtil;
 import ViewModel.ItemAlarmaBean;

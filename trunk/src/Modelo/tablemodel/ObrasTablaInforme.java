@@ -2,21 +2,18 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package Modelo;
+package Modelo.tablemodel;
 
-import java.util.LinkedList;
+import ViewModel.ItemObra;
 import javax.swing.event.TableModelEvent;
-import javax.swing.event.TableModelListener;
-import javax.swing.table.AbstractTableModel;
+
 
 /**
  *
  * @author matuuar
  */
-public class ObrasTablaInforme extends AbstractTableModel  {
-    private LinkedList datos = new LinkedList();
-    private LinkedList listeners = new LinkedList();
-
+public class ObrasTablaInforme extends ZilleAbstractTableModel  {
+   
     public ObrasTablaInforme(){
         super();
     }
@@ -29,33 +26,6 @@ public class ObrasTablaInforme extends AbstractTableModel  {
         
     }
     
-    public void addRegistro (ItemObra item)
-    {
-        datos.add (item);
-
-        TableModelEvent evento;
-        evento = new TableModelEvent (this, this.getRowCount()-1,
-            this.getRowCount()-1, TableModelEvent.ALL_COLUMNS,
-            TableModelEvent.INSERT);
-
-        avisaSuscriptores (evento);
-         
-    }
-    
-    public void delRegistro (ItemObra item)
-    {
-        datos.remove(item);
-
-        TableModelEvent evento;
-        evento = new TableModelEvent (this, this.getRowCount()-1,
-            this.getRowCount()-1, TableModelEvent.ALL_COLUMNS,
-            TableModelEvent.DELETE);
-
-        avisaSuscriptores (evento);
-         
-    }
-    
-
     @Override
     public Object getValueAt(int row, int col) {
        ItemObra aux;
@@ -108,12 +78,7 @@ public class ObrasTablaInforme extends AbstractTableModel  {
         }
     }
     
-    public void insertarFila(ItemObra value, int row) {
-        datos.remove(row);
-        datos.add(row, value);
-        TableModelEvent evento = new TableModelEvent (this, row, row, TableModelEvent.ALL_COLUMNS);
-        avisaSuscriptores (evento);
-    }
+    
     
     @Override
     public void setValueAt(Object value, int row, int col) {
@@ -152,9 +117,6 @@ public class ObrasTablaInforme extends AbstractTableModel  {
         return datos.size();
     }
 
-    public ItemObra getFila(int row){
-        return (ItemObra)(datos.get(row));
-    }
     
     @Override
     public boolean isCellEditable(int row, int col) {
@@ -170,28 +132,5 @@ public class ObrasTablaInforme extends AbstractTableModel  {
         return 4;
     }
 
-    @Override
-    public void addTableModelListener(TableModelListener l) {
-        // Añade el suscriptor a la lista de suscriptores
-        listeners.add (l);
-    }
-
-
-    @Override
-    public void removeTableModelListener(TableModelListener l) {
-        // Elimina los suscriptores.
-        listeners.remove(l);
-    }
-
-
-    private void avisaSuscriptores (TableModelEvent evento)
-    {
-        int i;
-
-        // Bucle para todos los suscriptores en la lista, se llama al metodo
-        // tableChanged() de los mismos, pasándole el evento.
-        for (i=0; i<listeners.size(); i++)
-            ((TableModelListener)listeners.get(i)).tableChanged(evento);
-    }
-
+    
 }

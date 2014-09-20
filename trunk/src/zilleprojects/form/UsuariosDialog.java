@@ -13,8 +13,7 @@ package zilleprojects.form;
 
 import DAO.UsuarioDAO;
 import Modelo.Usuario;
-import Modelo.UsuariosTableModel;
-import Utils.JElegirFecha;
+import Modelo.tablemodel.UsuariosTableModel;
 import Vista.JDialogCustom;
 import Vista.JTableCustom;
 import Vista.OpcionPanel;
@@ -355,11 +354,11 @@ public class UsuariosDialog extends JDialogCustom{
     }//GEN-LAST:event_btnCancelarUsuarioEditActionPerformed
 
     private void tblUsuariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblUsuarioesMouseClicked
-        usuarioSeleccionado = usuariosTableModel.getFila(tblUsuarios.getSelectedRow());
+        usuarioSeleccionado = (Usuario) usuariosTableModel.getFila(tblUsuarios.getSelectedRow());
     }//GEN-LAST:event_tblUsuarioesMouseClicked
 
     private void tblUsuariosKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tblUsuarioesKeyReleased
-        usuarioSeleccionado = usuariosTableModel.getFila(tblUsuarios.getSelectedRow());
+        usuarioSeleccionado = (Usuario) usuariosTableModel.getFila(tblUsuarios.getSelectedRow());
     }//GEN-LAST:event_tblUsuarioesKeyReleased
 
 
@@ -421,7 +420,7 @@ public class UsuariosDialog extends JDialogCustom{
                 // Solo actualizo la db si hubieron cambios en alguna columna
                 if ( e.getColumn() != -1){
                     int row = e.getFirstRow();
-                    Usuario usuario = usuariosTableModel.getFila(row);
+                    Usuario usuario = (Usuario) usuariosTableModel.getFila(row);
                     if(usuario != null){
                         if(udao.guardar(usuario)== 0)
                             
@@ -588,7 +587,7 @@ public class UsuariosDialog extends JDialogCustom{
         GuardarUsuarioTask(org.jdesktop.application.Application app) {
             super(app);
             
-            esUpdate = usuarioSeleccionado.getId_user() == 0 ? false : true;
+            esUpdate = usuarioSeleccionado.getId() == 0 ? false : true;
         }
 
         @Override
@@ -600,7 +599,7 @@ public class UsuariosDialog extends JDialogCustom{
             else{
                 int i = udao.guardar(usuarioSeleccionado);
                 if(i != 0){
-                    usuarioSeleccionado.setId_user(i);
+                    usuarioSeleccionado.setId(i);
                     guardadoOk = true;
                 }
             }
@@ -635,7 +634,7 @@ public class UsuariosDialog extends JDialogCustom{
     @Action
     public final Task EliminarUsuario() {
 
-        if(usuarioSeleccionado.getId_user()==0 || tblUsuarios.getSelectedRow() == -1){
+        if(usuarioSeleccionado.getId()==0 || tblUsuarios.getSelectedRow() == -1){
 
             super.Info("Eliminar", "Por favor, primero seleccione un usuario.");
             return null;
@@ -693,7 +692,7 @@ public class UsuariosDialog extends JDialogCustom{
     }
     @Action
     public void showModificarUsuario() {
-        if(tblUsuarios.getSelectedRow() == -1 || usuarioSeleccionado.getId_user() == 0){
+        if(tblUsuarios.getSelectedRow() == -1 || usuarioSeleccionado.getId() == 0){
             Info("Información", "Seleccione una fila primero.");
             return;
         }
@@ -709,7 +708,7 @@ public class UsuariosDialog extends JDialogCustom{
     @Action
     public void limpiarUsuarioEdit(){
         try{
-        usuarioSeleccionado = usuariosTableModel.getFila(tblUsuarios.getSelectedRow());
+        usuarioSeleccionado = (Usuario) usuariosTableModel.getFila(tblUsuarios.getSelectedRow());
         }catch(Exception ex){
             usuarioSeleccionado = new Usuario();
         }

@@ -5,7 +5,7 @@
 package DAO;
 
 import Modelo.EPP;
-import java.sql.Connection;
+import Modelo.EntidadAbstracta;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -15,21 +15,11 @@ import java.util.ArrayList;
  *
  * @author m4tuu
  */
-public class EPPDAO {
+public class EPPDAO extends AbstractDAO{
     
-    Connection conector;
-
-    public EPPDAO() {
-    }
-
-    public void conectar() {
-        try {
-            conector = ConectorDB.getConector();
-        } catch (Exception ex) {
-        }
-    }
     
-    public int guardar(EPP epp) {
+    @Override
+    public int guardar(EntidadAbstracta epp) {
         int r = -1;
         String query = null;
 
@@ -41,8 +31,8 @@ public class EPPDAO {
             
             }
             PreparedStatement ps = conector.prepareStatement(query);
-            ps.setString(1, epp.getNombre());
-            ps.setString(2, epp.getMedida());
+            ps.setString(1, ((EPP)epp).getNombre());
+            ps.setString(2, ((EPP)epp).getMedida());
             
             ps.executeUpdate();
             ResultSet generatedKeys = ps.getGeneratedKeys();
@@ -58,14 +48,13 @@ public class EPPDAO {
             r = -1;
         }
         return r;
-    }
-
-    
+    } 
  
 
-    public ArrayList<EPP> cargarTodos() {
+    @Override
+    public ArrayList<EntidadAbstracta> cargarTodos() {
         String query = null;
-        ArrayList<EPP> fcs = new ArrayList<EPP>();
+        ArrayList<EntidadAbstracta> fcs = new ArrayList<EntidadAbstracta>();
         try {
             query = "select * from epp";
             PreparedStatement ps = conector.prepareStatement(query);
@@ -88,7 +77,9 @@ public class EPPDAO {
 
     }
     
-    public boolean borrar(EPP epp) {
+    
+    @Override
+    public boolean eliminar(EntidadAbstracta epp) {
 
         boolean r =false;
         try {
@@ -112,6 +103,7 @@ public class EPPDAO {
 
         return r;
     }
+    
     
     public EPP findById(int id) {
         String query = null;
@@ -137,4 +129,38 @@ public class EPPDAO {
         return epp;
 
     }
+
+
+    @Override
+    public int modificar(EntidadAbstracta entidad) {
+        return guardar(entidad);
+    }
+    
+    @Override
+    public ArrayList<EntidadAbstracta> filtrarPorTexto(String text) {
+        String query = null;
+        ArrayList<EntidadAbstracta> fcs = new ArrayList<EntidadAbstracta>();
+        try {
+            query = "select * from epp where NOMBRE like ? or MEDIDA like ?";
+            PreparedStatement ps = conector.prepareStatement(query);
+            ps.setString(1, "%"+text+"%");
+            ps.setString(2, "%"+text+"%");
+            ResultSet rs = ps.executeQuery();
+            
+            while (rs.next()) {
+                EPP epp = new EPP();
+                epp.setId(rs.getInt("ID"));
+                epp.setNombre(rs.getString("NOMBRE"));
+                epp.setMedida(rs.getString("MEDIDA"));
+                fcs.add(epp);
+            }
+            rs.close();
+            ps.close();
+
+        } catch (SQLException ex) {
+            System.out.print("Falló al cargar las EPP\n");
+        }
+        return fcs;
+    }
+
 }

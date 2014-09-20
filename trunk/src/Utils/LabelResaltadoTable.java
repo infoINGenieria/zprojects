@@ -4,7 +4,8 @@
  */
 package Utils;
 
-import Modelo.TablaAlarmasModel;
+import Modelo.tablemodel.TablaAlarmasModel;
+import ViewModel.ItemAlarma;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
@@ -22,7 +23,7 @@ public class LabelResaltadoTable extends DefaultTableCellRenderer {
     public Component getTableCellRendererComponent(JTable table, Object value, 
     boolean isSelected, boolean hasFocus, int row, int column){
         Component cellComponent = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
-        switch(((TablaAlarmasModel)table.getModel()).getFila(row).getTipo()){
+        switch(((ItemAlarma)((TablaAlarmasModel)table.getModel()).getFila(row)).getTipo()){
             case 2:
                 cellComponent.setForeground(Color.RED);
                 cellComponent.setFont(new Font("Arial", Font.BOLD, 12));

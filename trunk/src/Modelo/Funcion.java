@@ -8,7 +8,7 @@ package Modelo;
  *
  * @author matuu
  */
-public class Funcion {
+public class Funcion extends EntidadAbstracta{
     
     int id;
     String funcion;
@@ -21,10 +21,12 @@ public class Funcion {
         this.funcion = funcion;
     }
 
+    @Override
     public int getId() {
         return id;
     }
 
+    @Override
     public void setId(int id) {
         this.id = id;
     }
@@ -63,6 +65,15 @@ public class Funcion {
     @Override
     public String toString(){
         return funcion;
+    }
+
+    @Override
+    public boolean validate() {
+        if (funcion.isEmpty()) {
+            error += "El nombre de la función es obligatorio;";
+            return false;
+        }
+        return true;
     }
     
     

@@ -13,13 +13,14 @@ public class Usuario extends EntidadAbstracta{
     private String user;
     private String pass;
     private String rol;
-    private String error;
 
-    public int getId_user() {
+    @Override
+    public int getId() {
         return id_user;
     }
 
-    public void setId_user(int id_user) {
+    @Override
+    public void setId(int id_user) {
         this.id_user = id_user;
     }
 
@@ -45,14 +46,6 @@ public class Usuario extends EntidadAbstracta{
 
     public void setUser(String user) {
         this.user = user;
-    }
-
-    public String getError() {
-        return error;
-    }
-
-    public void setError(String error) {
-        this.error = error;
     }
 
     public Usuario() {
@@ -93,6 +86,7 @@ public class Usuario extends EntidadAbstracta{
         return hash;
     }
     
+    @Override
     public boolean validate(){
         error = "";
         if(this.user.isEmpty()){
@@ -107,15 +101,13 @@ public class Usuario extends EntidadAbstracta{
         if(error.isEmpty()) return true;
         return false;
     }
-    
-    public String[] getErrores(){
-        return error.split(";");
-    }
 
     @Override
     public String toString() {
         return user;
     }
+
+    
     
     
 }

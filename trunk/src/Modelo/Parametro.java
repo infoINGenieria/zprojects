@@ -8,7 +8,7 @@ package Modelo;
  *
  * @author m4tuu
  */
-public class Parametro {
+public class Parametro extends EntidadAbstracta {
     
     String clave, claveGrupo, valor;
 
@@ -98,6 +98,30 @@ public class Parametro {
         int hash = 7;
         hash = 71 * hash + (this.clave != null ? this.clave.hashCode() : 0);
         return hash;
+    }
+
+    @Override
+    public boolean validate() {
+        if (clave.isEmpty()) {
+            error += "Clave es obligatorio;";
+        } 
+        if (claveGrupo.isEmpty()) {
+            error += "Clave de grupo es obligatorio;";
+        }
+        if (valor.isEmpty()) {
+            error += "Valor es obligatorio;";
+        }
+        return error.isEmpty();
+    }
+
+    @Override
+    public int getId() {
+        return 0;
+    }
+
+    @Override
+    public void setId(int id) {
+        
     }
     
     
