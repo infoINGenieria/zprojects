@@ -213,7 +213,7 @@ public class Operario {
         return 0;
     }
     
-    public int CalcularAniosAntiguedad(Date fecha){
+    public static int CalcularAniosAntiguedad(Date fecha){
         if(fecha == null) return 0;
         Calendar cal = Calendar.getInstance();
         Calendar hoy = Calendar.getInstance();
@@ -230,9 +230,17 @@ public class Operario {
         return anios;
     }
     
-    public int DiasVacaciones(Date fecha){
+    public static int DiasVacaciones(Date fecha){
         int antiguedad = CalcularAniosAntiguedad(fecha);
         return ParametrosSistema.rangosVacaciones.getDiasDeVacaciones(antiguedad);
     }
-                     
+            
+    public static int DiasVacacionesAnteriores(Date fecha) {
+        int antiguedad = CalcularAniosAntiguedad(fecha);
+        int contador = 0;
+        for (int i = 0; i < antiguedad; i++) {
+            contador += ParametrosSistema.rangosVacaciones.getDiasDeVacaciones(i);
+        }
+        return contador;
+    }
 }

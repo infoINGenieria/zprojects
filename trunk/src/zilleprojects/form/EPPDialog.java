@@ -227,10 +227,7 @@ public class EPPDialog extends ZilleDialog{
         return new Dimension(400, 200);
     }
 
-    @Override
-    protected Dimension getSizeMainWindow() {
-        return new Dimension(900, 430);
-    }
+    
     
    
 }

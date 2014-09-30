@@ -482,6 +482,16 @@
                 <Property name="name" type="java.lang.String" value="menuUsuarios" noResource="true"/>
               </Properties>
             </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem12">
+              <Properties>
+                <Property name="action" type="javax.swing.Action" editor="org.netbeans.modules.swingapp.ActionEditor">
+                  <action class="zilleprojects.ZilleProjectsView" id="MostrarFrancosYVacacionesDialog" methodName="MostrarFrancosYVacacionesDialog"/>
+                </Property>
+                <Property name="icon" type="javax.swing.Icon" resourceKey="jMenuItem12.icon"/>
+                <Property name="text" type="java.lang.String" resourceKey="jMenuItem12.text"/>
+                <Property name="name" type="java.lang.String" value="jMenuItem12" noResource="true"/>
+              </Properties>
+            </MenuItem>
           </SubComponents>
         </Menu>
         <Menu class="javax.swing.JMenu" name="jMenuParam">

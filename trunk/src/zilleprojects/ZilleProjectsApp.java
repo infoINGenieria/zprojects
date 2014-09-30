@@ -15,7 +15,7 @@ import org.jdesktop.application.SingleFrameApplication;
  */
 public class ZilleProjectsApp extends SingleFrameApplication {
 
-    public static double VERSION = 1.06;
+    public static double VERSION = 1.07;
     /**
      * At startup create and show the main frame of the application.
      */

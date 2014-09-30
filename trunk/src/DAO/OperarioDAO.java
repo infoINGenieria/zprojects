@@ -596,24 +596,25 @@ public class OperarioDAO {
             }
             
             if(dfo.getId()==0)
-                query = "insert into franco_licencia (OPERARIO_ID, AJUSTE, PAGADOS, "
+                query = "insert into franco_licencia (OPERARIO_ID, AJUSTE_FRANCOS, AJUSTE_LICENCIAS, PAGADOS, "
                     + "SOLICITADOS1, SOLICITADOS2, ENTRA1, ENTRA2, SALE1, SALE2) values "
-                    + "(?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                    + "(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             else
-                query = "update franco_licencia set OPERARIO_ID=?, AJUSTE=?, "
-                        + "PAGADOS=?, SOLICITADOS1=?, SOLICITADOS2=?, ENTRA1=?, "
+                query = "update franco_licencia set OPERARIO_ID=?, AJUSTE_FRANCOS=?, "
+                        + "AJUSTE_LICENCIAS=?, PAGADOS=?, SOLICITADOS1=?, SOLICITADOS2=?, ENTRA1=?, "
                         + "ENTRA2=?, SALE1=?, SALE2=? where ID=?";
             ps = conector.prepareStatement(query);
             ps.setInt(1, dfo.getOperarioId());
-            ps.setInt(2, dfo.getAjuste());
-            ps.setInt(3, dfo.getPagados());
-            ps.setInt(4, dfo.getSolicitados1());
-            ps.setInt(5, dfo.getSolicitados2());
-            ps.setDate(6, FechaUtil.getFechatoDB(dfo.getEntra1()));
-            ps.setDate(7, FechaUtil.getFechatoDB(dfo.getEntra2()));
-            ps.setDate(8, FechaUtil.getFechatoDB(dfo.getSale1()));
-            ps.setDate(9, FechaUtil.getFechatoDB(dfo.getSale2()));
-            if(dfo.getId()!=0) ps.setInt(10, dfo.getId());
+            ps.setInt(2, dfo.getAjusteFrancos());
+            ps.setInt(3, dfo.getAjusteLicencias());
+            ps.setInt(4, dfo.getPagados());
+            ps.setInt(5, dfo.getSolicitados1());
+            ps.setInt(6, dfo.getSolicitados2());
+            ps.setDate(7, FechaUtil.getFechatoDB(dfo.getEntra1()));
+            ps.setDate(8, FechaUtil.getFechatoDB(dfo.getEntra2()));
+            ps.setDate(9, FechaUtil.getFechatoDB(dfo.getSale1()));
+            ps.setDate(10, FechaUtil.getFechatoDB(dfo.getSale2()));
+            if(dfo.getId()!=0) ps.setInt(11, dfo.getId());
             ps.executeUpdate();
             ResultSet generatedKeys = ps.getGeneratedKeys();
             r=1;
@@ -641,7 +642,8 @@ public class OperarioDAO {
             while (rs.next()) {  
                 dfo.setId(rs.getInt("ID"));
                 dfo.setOperarioId(rs.getInt("OPERARIO_ID"));
-                dfo.setAjuste(rs.getInt("AJUSTE"));
+                dfo.setAjusteFrancos(rs.getInt("AJUSTE_FRANCOS"));
+                dfo.setAjusteLicencias(rs.getInt("AJUSTE_LICENCIAS"));
                 dfo.setPagados(rs.getInt("PAGADOS"));
                 dfo.setSolicitados1(rs.getInt("SOLICITADOS1"));
                 dfo.setSolicitados2(rs.getInt("SOLICITADOS2"));

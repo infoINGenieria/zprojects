@@ -6,6 +6,7 @@ package Modelo.tablemodel;
 
 import Modelo.EntidadAbstracta;
 import java.util.LinkedList;
+import java.util.List;
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
 import javax.swing.table.AbstractTableModel;
@@ -19,6 +20,10 @@ public abstract class ZilleAbstractTableModel extends AbstractTableModel{
     protected LinkedList<EntidadAbstracta> datos = new LinkedList<EntidadAbstracta>();
     protected LinkedList<TableModelListener> listeners = new LinkedList<TableModelListener>();
     
+    
+    public List<EntidadAbstracta> getData() {
+        return datos;
+    }
     
     @Override
     public int getRowCount() {   
@@ -34,8 +39,8 @@ public abstract class ZilleAbstractTableModel extends AbstractTableModel{
 //    @Override
 //    public abstract Class getColumnClass(int columnIndex);
 //    
-//    @Override
-//    public abstract String getColumnName(int columnIndex);
+   @Override
+   public abstract String getColumnName(int columnIndex);
     
     
     public void addFila (EntidadAbstracta reg) { 

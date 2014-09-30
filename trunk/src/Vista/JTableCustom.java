@@ -21,7 +21,8 @@ public class JTableCustom extends JTable{
         Component c = super.prepareRenderer(renderer, row, column);
         if (isRowSelected(row)) {
             c.setBackground(Color.decode("#87ceeb"));
-        } else {
+        } 
+        else {
             c.setBackground(Color.white);
         }
         return c;

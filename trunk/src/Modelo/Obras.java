@@ -17,7 +17,7 @@ public class Obras extends EntidadAbstracta {
             String codigo, obra, contrato, comitente, cuit, lugar, plazo, responsable;
             Date fecha_inicio;
             boolean tieneComida, tieneVianda, tieneDesarraigo, tieneRegistro, tieneEquipo,
-                    descuentaDias;
+                    descuentaFrancos, descuentaLicencias;
             double limiteViandaDoble;
 
     @Override
@@ -62,15 +62,13 @@ public class Obras extends EntidadAbstracta {
         this.tieneRegistro = tieneRegistro;
     }
 
-    public boolean isDescuentaDias() {
-        return descuentaDias;
+    public boolean isDescuentaFrancos() {
+        return descuentaFrancos;
     }
 
-    public void setDescuentaDias(boolean descuentaDias) {
-        this.descuentaDias = descuentaDias;
+    public void setDescuentaFrancos(boolean descuentaDias) {
+        this.descuentaFrancos = descuentaDias;
     }
-    
-    
 
     public String getResponsable() {
         return responsable;
@@ -132,7 +130,7 @@ public class Obras extends EntidadAbstracta {
         this.tieneDesarraigo = true;
         this.tieneVianda = true;
         this.limiteViandaDoble = 2;
-        this.descuentaDias = false;
+        this.descuentaFrancos = false;
     }
     
    
@@ -210,7 +208,15 @@ public class Obras extends EntidadAbstracta {
     public void setPlazo(String plazo) {
         this.plazo = plazo;
     }
-    
+
+
+    public boolean isDescuentaLicencias() {
+        return descuentaLicencias;
+    }
+
+    public void setDescuentaLicencias(boolean descuentaLicencias) {
+        this.descuentaLicencias = descuentaLicencias;
+    }
     
     @Override
     public String toString(){
