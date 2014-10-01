@@ -210,7 +210,7 @@ public class FrancosLicenciasDialog extends ZilleDialog {
             // the Swing GUI from here.
             
             FrancosLicenciasDAO dao = new FrancosLicenciasDAO();
-            dao.reportCustom(getTableModel().getData());
+            dao.ReporteXlsResumenFrancosLicencias(getTableModel().getData());
             return null;  // return your result
         }
         @Override protected void succeeded(Object result) {

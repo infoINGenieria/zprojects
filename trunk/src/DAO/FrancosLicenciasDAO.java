@@ -7,6 +7,8 @@ package DAO;
 import Modelo.DatosFrancoOperario;
 import Modelo.EntidadAbstracta;
 import Modelo.Operario;
+import Utils.FechaUtil;
+import ViewModel.ItemDetalleFrancosLicencias;
 import ViewModel.ItemFrancoLicencia;
 import java.awt.Desktop;
 import java.io.File;
@@ -15,6 +17,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -101,6 +104,7 @@ public class FrancosLicenciasDAO extends AbstractDAO {
                 todos.add(ifl);
             }
         } catch (Exception ex) {
+            
         }
         return todos;
     }
@@ -153,7 +157,7 @@ public class FrancosLicenciasDAO extends AbstractDAO {
         return ifl;
     }
     
-    public void reportCustom(List<EntidadAbstracta> data) {
+    public void ReporteXlsResumenFrancosLicencias(List<EntidadAbstracta> data) {
         String dest = "Francos&Licencias.xls";
         System.out.println("Cantidad de obras: "+data.size());
         //POIFSFileSystem fs = new POIFSFileSystem(new InputStream() {})
@@ -283,5 +287,45 @@ public class FrancosLicenciasDAO extends AbstractDAO {
         } catch (IOException ex) {
             Logger.getLogger(FrancosLicenciasDAO.class.getName()).log(Level.SEVERE, null, ex);
         } 
+    }
+    
+    public ArrayList<EntidadAbstracta> ReporteDetalles(int operarioId, boolean isFranco, boolean isLicencia, Date fecha){
+        ArrayList<EntidadAbstracta> todos = new ArrayList<EntidadAbstracta>();
+        String query = "";
+        String query1 ="", sep2 ="";
+        try {
+            query = "select pd.fecha, o.codigo, pd.numero from partediario pd "
+                    + "inner join obras o on o.id = pd.obra "
+                    + "where pd.operario = ? ";
+            if (isFranco && isLicencia) {
+                query1 = " and (o.descuenta_francos is true or o.descuenta_licencias is true) ";
+            } else if (isFranco) {
+                query1 = " and o.descuenta_francos is true ";
+            } else if (isLicencia) {
+                query1 = " and o.descuenta_licencias is true ";
+            }
+            query += query1;
+            if (fecha != null) {
+                query += " and pd.fecha >= ?";
+            }
+            query += " order by pd.fecha";
+            PreparedStatement ps = conector.prepareStatement(query);
+            ps.setInt(1, operarioId);
+            if (fecha != null)
+                ps.setDate(2, FechaUtil.getFechatoDB(fecha));
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                ItemDetalleFrancosLicencias aux = new ItemDetalleFrancosLicencias();
+                aux.setFecha(rs.getDate("pd.fecha"));
+                aux.setcCosto(rs.getString("o.codigo"));
+                aux.setNumeroParteDiario(rs.getString("pd.numero"));
+                todos.add(aux);
+            }
+            ps.close();
+            rs.close();
+        } catch(SQLException sql) {
+            System.err.println("Error al cargar los detalles de francos y vacaciones.");
+        }
+        return todos;
     }
 }

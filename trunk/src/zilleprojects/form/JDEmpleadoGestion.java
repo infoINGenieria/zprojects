@@ -27,6 +27,7 @@ import Modelo.Operario;
 
 import Modelo.Parametro;
 import Modelo.ParametrosSistema;
+import Modelo.tablemodel.DetalleFrancosLicenciasTableModel;
 import Utils.ComboEditorCelda;
 import Utils.Permisos;
 import Utils.SpinnerEditor;
@@ -35,6 +36,7 @@ import Vista.JDialogCustom;
 import Vista.JTableCustom;
 import Vista.OpcionPanel;
 import Vista.PanelAzul;
+import Vista.PanelEsquinaAzul;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
@@ -140,6 +142,18 @@ public class JDEmpleadoGestion extends JDialogCustom {
         lblLicenciasPendientesAnteriores = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
         lblLicenciasAcumuladas = new javax.swing.JLabel();
+        btnDetalles = new javax.swing.JButton();
+        detalles = new javax.swing.JDialog();
+        jPanel9 = new PanelEsquinaAzul();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        chooseFecha = new com.toedter.calendar.JDateChooser();
+        jLabel27 = new javax.swing.JLabel();
+        btnFiltrarDetalles = new javax.swing.JButton();
+        btnCerrarDetalle = new javax.swing.JButton();
+        cmbTipo = new javax.swing.JComboBox();
+        jLabel28 = new javax.swing.JLabel();
+        lblCantidad = new javax.swing.JLabel();
         panelAzul = new PanelAzul();
         jPanel1 = new javax.swing.JPanel();
         buscarEmpleado = new javax.swing.JTextField();
@@ -447,7 +461,7 @@ public class JDEmpleadoGestion extends JDialogCustom {
                 .addComponent(jLabel22)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(dateEntra1, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(68, Short.MAX_VALUE))
+                .addContainerGap(109, Short.MAX_VALUE))
         );
 
         jPanel7Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {dateEntra1, dateSale1});
@@ -510,7 +524,7 @@ public class JDEmpleadoGestion extends JDialogCustom {
                 .addComponent(jLabel25)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(dateEntra2, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(68, Short.MAX_VALUE))
+                .addContainerGap(109, Short.MAX_VALUE))
         );
 
         jPanel8Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {dateEntra2, dateSale2});
@@ -586,6 +600,11 @@ public class JDEmpleadoGestion extends JDialogCustom {
         lblLicenciasAcumuladas.setText(resourceMap.getString("lblLicenciasAcumuladas.text")); // NOI18N
         lblLicenciasAcumuladas.setName("lblLicenciasAcumuladas"); // NOI18N
 
+        btnDetalles.setAction(actionMap.get("MostrarDetallesFrancosLicencias")); // NOI18N
+        btnDetalles.setIcon(resourceMap.getIcon("btnDetalles.icon")); // NOI18N
+        btnDetalles.setText(resourceMap.getString("btnDetalles.text")); // NOI18N
+        btnDetalles.setName("btnDetalles"); // NOI18N
+
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
@@ -621,18 +640,20 @@ public class JDEmpleadoGestion extends JDialogCustom {
                             .addGroup(jPanel6Layout.createSequentialGroup()
                                 .addComponent(jLabel9)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(lblDiasAFavor, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(lblDiasAFavor, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                                .addComponent(btnDetalles, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel6Layout.createSequentialGroup()
                                 .addComponent(lblLicenciaPorAnio, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(jLabel19)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(lblLicenciasPendientesAnteriores, javax.swing.GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE))
+                                .addComponent(lblLicenciasPendientesAnteriores, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE))
                             .addGroup(jPanel6Layout.createSequentialGroup()
-                                .addComponent(jButton1)
-                                .addGap(26, 26, 26)
+                                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 103, Short.MAX_VALUE)
+                                .addGap(18, 18, 18)
                                 .addComponent(btnGuardarFrancos, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(btnSalirFrancos)))))
@@ -671,16 +692,21 @@ public class JDEmpleadoGestion extends JDialogCustom {
                     .addComponent(jLabel20)
                     .addComponent(lblLicenciasAcumuladas, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(btnSalirFrancos, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnGuardarFrancos, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblDiasAFavor, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel9))
-                .addGap(38, 38, 38))
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                            .addComponent(btnSalirFrancos, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnGuardarFrancos, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE)
+                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblDiasAFavor, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel9))
+                        .addGap(38, 38, 38))
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addComponent(btnDetalles, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())))
         );
 
-        jPanel6Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnGuardarFrancos, btnSalirFrancos, jButton1, txtAjusteFrancos, txtPagados});
+        jPanel6Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnDetalles, btnGuardarFrancos, btnSalirFrancos, jButton1, txtAjusteFrancos, txtPagados});
 
         javax.swing.GroupLayout francosLayout = new javax.swing.GroupLayout(francos.getContentPane());
         francos.getContentPane().setLayout(francosLayout);
@@ -691,6 +717,99 @@ public class JDEmpleadoGestion extends JDialogCustom {
         francosLayout.setVerticalGroup(
             francosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 434, Short.MAX_VALUE)
+        );
+
+        detalles.setLocationByPlatform(true);
+        detalles.setMinimumSize(new java.awt.Dimension(747, 471));
+        detalles.setModal(true);
+        detalles.setName("detalles"); // NOI18N
+        detalles.setResizable(false);
+
+        jPanel9.setMinimumSize(new java.awt.Dimension(747, 451));
+        jPanel9.setName("jPanel9"); // NOI18N
+
+        jScrollPane4.setName("jScrollPane4"); // NOI18N
+
+        jTable1.setModel(detalleTableModel);
+        jTable1.setName("jTable1"); // NOI18N
+        jScrollPane4.setViewportView(jTable1);
+
+        chooseFecha.setName("chooseFecha"); // NOI18N
+
+        jLabel27.setText(resourceMap.getString("jLabel27.text")); // NOI18N
+        jLabel27.setName("jLabel27"); // NOI18N
+
+        btnFiltrarDetalles.setAction(actionMap.get("recargarDetalles")); // NOI18N
+        btnFiltrarDetalles.setText(resourceMap.getString("btnFiltrarDetalles.text")); // NOI18N
+        btnFiltrarDetalles.setName("btnFiltrarDetalles"); // NOI18N
+
+        btnCerrarDetalle.setText(resourceMap.getString("btnCerrarDetalle.text")); // NOI18N
+        btnCerrarDetalle.setName("btnCerrarDetalle"); // NOI18N
+        btnCerrarDetalle.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCerrarDetalleActionPerformed(evt);
+            }
+        });
+
+        cmbTipo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Francos y Licencias", "Sólo francos", "Sólo licencias"}));
+        cmbTipo.setName("cmbTipo"); // NOI18N
+
+        jLabel28.setText(resourceMap.getString("jLabel28.text")); // NOI18N
+        jLabel28.setName("jLabel28"); // NOI18N
+
+        lblCantidad.setText(resourceMap.getString("lblCantidad.text")); // NOI18N
+        lblCantidad.setName("lblCantidad"); // NOI18N
+
+        javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
+        jPanel9.setLayout(jPanel9Layout);
+        jPanel9Layout.setHorizontalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel9Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 723, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel9Layout.createSequentialGroup()
+                        .addComponent(jLabel27)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(chooseFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel28)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cmbTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnFiltrarDetalles, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(lblCantidad, javax.swing.GroupLayout.DEFAULT_SIZE, 97, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnCerrarDetalle, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
+        );
+        jPanel9Layout.setVerticalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel9Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(jLabel27)
+                    .addComponent(chooseFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCerrarDetalle)
+                    .addComponent(cmbTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel28)
+                    .addComponent(btnFiltrarDetalles)
+                    .addComponent(lblCantidad))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 384, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        javax.swing.GroupLayout detallesLayout = new javax.swing.GroupLayout(detalles.getContentPane());
+        detalles.getContentPane().setLayout(detallesLayout);
+        detallesLayout.setHorizontalGroup(
+            detallesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        detallesLayout.setVerticalGroup(
+            detallesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -938,7 +1057,7 @@ public class JDEmpleadoGestion extends JDialogCustom {
                                         .addComponent(txtAntiguedad, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(lblanti)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 106, Short.MAX_VALUE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 123, Short.MAX_VALUE)
                                         .addComponent(lblanti1, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(txtDiasVacaciones, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))))
@@ -993,7 +1112,7 @@ public class JDEmpleadoGestion extends JDialogCustom {
                         .addComponent(lblanti1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(txtAntiguedad, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE)
-                    .addComponent(dateIngreso, javax.swing.GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE))
+                    .addComponent(dateIngreso, javax.swing.GroupLayout.PREFERRED_SIZE, 24, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(nuevoOperarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnVencimientos)
@@ -1250,6 +1369,10 @@ private void dateIngresoPropertyChange(java.beans.PropertyChangeEvent evt) {//GE
          setDatosDeFrancos();
        mostrarDatosDeFrancos();
     }//GEN-LAST:event_txtSolicitados2KeyReleased
+
+    private void btnCerrarDetalleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarDetalleActionPerformed
+        detalles.dispose();
+    }//GEN-LAST:event_btnCerrarDetalleActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1957,6 +2080,58 @@ private void dateIngresoPropertyChange(java.beans.PropertyChangeEvent evt) {//GE
         }
     }
 
+    @Action
+    public Task MostrarDetallesFrancosLicencias() {
+        return new MostrarDetallesFrancosLicenciasTask(org.jdesktop.application.Application.getInstance(zilleprojects.ZilleProjectsApp.class));
+    }
+
+    private class MostrarDetallesFrancosLicenciasTask extends org.jdesktop.application.Task<Object, Void> {
+        boolean isFranco=false, isLicencia= false;
+        MostrarDetallesFrancosLicenciasTask(org.jdesktop.application.Application app) {
+            // Runs on the EDT.  Copy GUI state that
+            // doInBackground() depends on from parameters
+            // to MostrarDetallesFrancosLicenciasTask fields, here.
+            super(app);
+             if (cmbTipo.getSelectedItem().toString().contains("y")){
+                isFranco = isLicencia = true;
+            } else if (cmbTipo.getSelectedItem().toString().equals("Sólo francos")) {
+                isFranco = true;
+            } else if (cmbTipo.getSelectedItem().toString().equals("Sólo licencias")) {
+                isLicencia = true;
+            }
+        }
+        @Override protected Object doInBackground() {
+            // Your Task's code here.  This method runs
+            // on a background thread, so don't reference
+            // the Swing GUI from here.
+            FrancosLicenciasDAO dao = new FrancosLicenciasDAO();
+            dao.conectar();
+            ArrayList<EntidadAbstracta> datos = dao.ReporteDetalles(opSelected.getId(), 
+                    isFranco, isLicencia, chooseFecha.getDate());
+            detalleTableModel.clean();
+            for(EntidadAbstracta ea : datos) {
+                detalleTableModel.addFila(ea);
+            }
+            return null;  // return your result
+        }
+        @Override protected void succeeded(Object result) {
+            // Runs on the EDT.  Update the GUI based on
+            // the result computed by doInBackground().
+            jTable1.setModel(detalleTableModel);
+            lblCantidad.setText("Cantidad: " + detalleTableModel.getData().size());
+            detalles.setSize(jPanel9.getSize());
+            detalles.setLocationRelativeTo(null);
+            detalles.setVisible(true);
+        }
+    }
+
+    @Action
+    public Task recargarDetalles() {
+        return new MostrarDetallesFrancosLicenciasTask(
+                org.jdesktop.application.Application.getInstance(zilleprojects.ZilleProjectsApp.class));
+    }
+
+
 
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -1967,7 +2142,10 @@ private void dateIngresoPropertyChange(java.beans.PropertyChangeEvent evt) {//GE
     private javax.swing.JButton botonSalir;
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnCerrar;
+    private javax.swing.JButton btnCerrarDetalle;
+    private javax.swing.JButton btnDetalles;
     private javax.swing.JButton btnEPP;
+    private javax.swing.JButton btnFiltrarDetalles;
     private javax.swing.JButton btnGuardar;
     private javax.swing.JButton btnGuardarEPP;
     private javax.swing.JButton btnGuardarFrancos;
@@ -1977,6 +2155,8 @@ private void dateIngresoPropertyChange(java.beans.PropertyChangeEvent evt) {//GE
     private javax.swing.JButton btnVacaciones;
     private javax.swing.JButton btnVencimientos;
     private javax.swing.JTextField buscarEmpleado;
+    private com.toedter.calendar.JDateChooser chooseFecha;
+    private javax.swing.JComboBox cmbTipo;
     private javax.swing.JComboBox comboFuncion;
     private javax.swing.JTextField cuil;
     private com.toedter.calendar.JDateChooser dateEntra1;
@@ -1988,6 +2168,7 @@ private void dateIngresoPropertyChange(java.beans.PropertyChangeEvent evt) {//GE
     private javax.swing.JTextField descripcion1;
     private javax.swing.JTextField descripcion2;
     private javax.swing.JTextField descripcion3;
+    private javax.swing.JDialog detalles;
     private javax.swing.JDialog epp;
     private javax.swing.JDialog francos;
     private javax.swing.JButton jButton1;
@@ -2011,6 +2192,8 @@ private void dateIngresoPropertyChange(java.beans.PropertyChangeEvent evt) {//GE
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel27;
+    private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -2026,9 +2209,13 @@ private void dateIngresoPropertyChange(java.beans.PropertyChangeEvent evt) {//GE
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
+    private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JLabel lblCantidad;
     private javax.swing.JLabel lblDiasAFavor;
     private javax.swing.JLabel lblFrancosAcumulados;
     private javax.swing.JLabel lblLicenciaPorAnio;
@@ -2070,4 +2257,5 @@ private void dateIngresoPropertyChange(java.beans.PropertyChangeEvent evt) {//GE
     String query ="";
     boolean isEdit= false;
     boolean isFrancosOpen = false;
+    DetalleFrancosLicenciasTableModel detalleTableModel = new DetalleFrancosLicenciasTableModel();
 }
