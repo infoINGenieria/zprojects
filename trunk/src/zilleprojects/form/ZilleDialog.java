@@ -11,20 +11,21 @@
 package zilleprojects.form;
 
 
-import DAO.AbstractDAO;
+import DAO.IAbstractDAO;
 import Modelo.EntidadAbstracta;
 import Modelo.tablemodel.ZilleAbstractTableModel;
 import Vista.JDialogCustom;
-import Vista.JTableCustom;
 import Vista.OpcionPanel;
 import Vista.PanelEsquinaAzul;
 import java.awt.Dimension;
+import java.awt.Rectangle;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
@@ -61,12 +62,12 @@ public abstract class ZilleDialog extends JDialogCustom {
         jPanel1 = new javax.swing.JPanel();
         lblTitulo = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
-        btnRecargar = new javax.swing.JButton();
         btnNuevo = new javax.swing.JButton();
         btnEditar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
+        btnRecargar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblDatos = new JTableCustom();
+        tblDatos = new javax.swing.JTable();
         lblTotalEntidad = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
         lblTotalFiltrado = new javax.swing.JLabel();
@@ -96,12 +97,6 @@ public abstract class ZilleDialog extends JDialogCustom {
         jPanel3.setLayout(new java.awt.GridLayout(1, 0, 10, 0));
 
         javax.swing.ActionMap actionMap = org.jdesktop.application.Application.getInstance(zilleprojects.ZilleProjectsApp.class).getContext().getActionMap(ZilleDialog.class, this);
-        btnRecargar.setAction(actionMap.get("cargarEntidades")); // NOI18N
-        btnRecargar.setIcon(resourceMap.getIcon("btnRecargar.icon")); // NOI18N
-        btnRecargar.setText(resourceMap.getString("btnRecargar.text")); // NOI18N
-        btnRecargar.setName("btnRecargar"); // NOI18N
-        jPanel3.add(btnRecargar);
-
         btnNuevo.setAction(actionMap.get("showNuevaEntidad")); // NOI18N
         btnNuevo.setIcon(resourceMap.getIcon("btnNuevo.icon")); // NOI18N
         btnNuevo.setText(resourceMap.getString("btnNuevo.text")); // NOI18N
@@ -119,6 +114,12 @@ public abstract class ZilleDialog extends JDialogCustom {
         btnEliminar.setText(resourceMap.getString("btnEliminar.text")); // NOI18N
         btnEliminar.setName("btnEliminar"); // NOI18N
         jPanel3.add(btnEliminar);
+
+        btnRecargar.setAction(actionMap.get("cargarEntidades")); // NOI18N
+        btnRecargar.setIcon(resourceMap.getIcon("btnRecargar.icon")); // NOI18N
+        btnRecargar.setText(resourceMap.getString("btnRecargar.text")); // NOI18N
+        btnRecargar.setName("btnRecargar"); // NOI18N
+        jPanel3.add(btnRecargar);
 
         jScrollPane1.setName("jScrollPane1"); // NOI18N
 
@@ -171,14 +172,17 @@ public abstract class ZilleDialog extends JDialogCustom {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 921, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 921, Short.MAX_VALUE)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(lblTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 356, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 553, Short.MAX_VALUE))
+                        .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 553, Short.MAX_VALUE)
+                        .addContainerGap())
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -191,8 +195,7 @@ public abstract class ZilleDialog extends JDialogCustom {
                         .addComponent(jLabel17)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(lblTotalFiltrado, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(10, 10, 10)))
-                .addContainerGap())
+                        .addGap(22, 22, 22))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -201,8 +204,8 @@ public abstract class ZilleDialog extends JDialogCustom {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 373, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 290, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblTotalEntidad)
@@ -211,7 +214,7 @@ public abstract class ZilleDialog extends JDialogCustom {
                     .addComponent(jLabel20)
                     .addComponent(txtBuscarTexto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
-                .addContainerGap())
+                .addGap(12, 12, 12))
         );
 
         wrap.add(jPanel1, java.awt.BorderLayout.CENTER);
@@ -224,7 +227,7 @@ public abstract class ZilleDialog extends JDialogCustom {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(wrap, javax.swing.GroupLayout.DEFAULT_SIZE, 481, Short.MAX_VALUE)
+            .addComponent(wrap, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -251,34 +254,61 @@ public abstract class ZilleDialog extends JDialogCustom {
     protected abstract String getTablaName();
     protected abstract String getNombreEntidad();
     protected abstract void limpiarEntidad();
-    protected abstract AbstractDAO getDao();
+    protected abstract IAbstractDAO getDao();
     protected abstract EntidadAbstracta getEntidadAbstracta();
     protected abstract void setEntidadAbstracta(EntidadAbstracta ea);
     protected abstract ZilleAbstractTableModel getTableModel();
     protected abstract ZilleAbstractTableModel setNewTableModel();
     protected abstract void setTableModel(ZilleAbstractTableModel ea);
     protected abstract void setTitulo();
-    protected abstract Dimension getSizeMainWindow();
+    
     protected abstract JDialog getAMEntidad();
     protected abstract JButton getBtnAceptarEntidadEdit();
     protected abstract JButton getBtnCancelarEntidadEdit();
     protected abstract void CargarEntidadAlEditar(EntidadAbstracta entidad);   
     protected abstract boolean GuardarEntidadAlEditar();
     protected abstract Dimension getSizeDialogEdit();
+    
+    public void SetButtonExtra(JButton btn) {
+        jPanel3.add(btn);
+        jPanel3.revalidate();
+        jPanel3.repaint();
+    }
+    
+    protected Dimension getSizeMainWindow() {
+        Rectangle rec = getWrapPanel().getBounds();
+        return rec.getSize();
+    }
+    
+    public boolean isNuevoEnabled() {
+        return true;
+    }
+    
+    public boolean isModificarEnabled() {
+        return true;
+    }
+    
+    public boolean isEliminarEnabled() {
+        return true;
+    }
 
     private void ConfigurarDialog() {
         setTitulo();
         setSizeDialogo();
-        lblTitulo.setText("Administración de " + getNombreEntidad());
-        
+        lblTitulo.setText(getTitle());
+        btnNuevo.setVisible(isNuevoEnabled());
+        btnEditar.setVisible(isModificarEnabled());
+        btnEliminar.setVisible(isEliminarEnabled());
     }
     
-    
+    protected String[] getConfigColumn() {
+        return null;
+    }
     
     private void configurarTabla() {
         setTableModel(setNewTableModel());
         
-        final AbstractDAO udao =  getDao();
+        final IAbstractDAO udao =  getDao();
         udao.conectar();
         ///Esto es para guardar los cambios cuando se edita desde la tabla
         getTableModel().addTableModelListener(new TableModelListener() {
@@ -298,18 +328,19 @@ public abstract class ZilleDialog extends JDialogCustom {
             }
         });
     }
+    
+    private void setSizeDialogo() {
+        this.setResizable(false);
+        this.setMinimumSize(getSizeMainWindow());
+        //this.setMaximumSize(getSizeMainWindow());
+        this.setPreferredSize(getSizeMainWindow());
+        this.pack();
+    }
+    
      @Action
     public final Task cargarEntidades() {
         limpiarFiltros();
         return new CargarEntidadesTask(zilleprojects.ZilleProjectsApp.getApplication());
-    }
-
-    private void setSizeDialogo() {
-        
-        this.setMinimumSize(getSizeMainWindow());
-        this.setMaximumSize(getSizeMainWindow());
-        this.setPreferredSize(getSizeMainWindow());
-        this.pack();
     }
      
     private class CargarEntidadesTask extends org.jdesktop.application.Task<Object, Void> {
@@ -320,7 +351,7 @@ public abstract class ZilleDialog extends JDialogCustom {
 
         @Override
         protected Object doInBackground()  {
-            final AbstractDAO udao = getDao();
+            final IAbstractDAO udao = getDao();
             udao.conectar();
             entidadesList = udao.cargarTodos();
             totalFiltrado = totalEntidad = udao.count(getTablaName());
@@ -365,9 +396,9 @@ public abstract class ZilleDialog extends JDialogCustom {
 
         @Override
         protected Object doInBackground()  {
-            AbstractDAO dao = getDao();
+            IAbstractDAO dao = getDao();
             dao.conectar();
-            entidades = dao.filtrarPorTexto(query);
+            entidades = new ArrayList<EntidadAbstracta>(dao.filtrarPorTexto(query));
             totalFiltrado = entidades.size();
             return null;
         }
@@ -377,7 +408,7 @@ public abstract class ZilleDialog extends JDialogCustom {
 
             if (entidades != null) {
                 configurarTabla();
-                for(EntidadAbstracta c:entidades){
+                for(EntidadAbstracta c: entidades){
                     getTableModel().addFila(c);
                 }
 
@@ -412,7 +443,7 @@ public abstract class ZilleDialog extends JDialogCustom {
 
         @Override
         protected Object doInBackground()  {
-            AbstractDAO dao = getDao();
+            IAbstractDAO dao = getDao();
             dao.conectar();
             if(esUpdate)
                 guardadoOk = dao.modificar(getEntidadAbstracta()) != 0;
@@ -453,17 +484,18 @@ public abstract class ZilleDialog extends JDialogCustom {
     public JTable getTabla() {
         return tblDatos;
     }
-    
-    public void setWidths(int[] valores) {
-        widths = valores;
-    }
-    
-    int[] widths = null;
-    
-    public void configurarColumnas() {
-        if (widths!= null) {
-            for(int i= 0; i < widths.length; i++) {
-                tblDatos.getColumnModel().getColumn(i).setWidth(widths[i]);
+        
+    public void configurarColumnas() {  
+        if (getConfigColumn() != null) {
+            for(String conf: getConfigColumn()) {
+                try {
+                    String[] column = conf.split(":");
+                    int colNum = Integer.parseInt(column[0]);
+                    int width = Integer.parseInt(column[1]);
+                    tblDatos.getColumnModel().getColumn(colNum).setPreferredWidth(width);
+                } catch(Exception ex) {
+                    
+                }
             }
         }
     }
@@ -494,7 +526,7 @@ public abstract class ZilleDialog extends JDialogCustom {
 
         @Override
         protected Object doInBackground()  {
-            AbstractDAO dao = getDao();
+            IAbstractDAO dao = getDao();
             dao.conectar();
             eliminadoOK = dao.eliminar(getEntidadAbstracta());
             return null;
@@ -562,8 +594,10 @@ public abstract class ZilleDialog extends JDialogCustom {
             limpiarEntidad();
         }
         
+    }
     
-        
+    public JPanel getWrapPanel(){
+        return wrap;
     }
 
 

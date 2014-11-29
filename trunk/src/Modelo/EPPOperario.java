@@ -4,40 +4,62 @@
  */
 package Modelo;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
 /**
  *
  * @author m4tuu
  */
-public class EPPOperario {
-    private int id, operarioId, eppId, tipo;
+@Entity
+@Table(name="epp_operarios")
+public class EPPOperario extends EntidadAbstracta {
+    
+    
+    private int id; 
+    private int tipo;
     private String valor;
+    private Operario operario;
+    private EPP epp;
     
     public static int UNIDAD = 1;
     public static int TALLE = 2;
     
-
-    public int getEppId() {
-        return eppId;
+    @ManyToOne
+    @JoinColumn(name = "epp_id",nullable = false)
+    public EPP getEpp() {
+        return epp;
     }
 
-    public void setEppId(int eppId) {
-        this.eppId = eppId;
+    public void setEpp(EPP epp) {
+        this.epp = epp;
     }
 
+    @Override
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     public int getId() {
         return id;
     }
 
+    @Override
     public void setId(int id) {
         this.id = id;
     }
 
-    public int getOperarioId() {
-        return operarioId;
+    @ManyToOne
+    @JoinColumn(name = "operario_id",nullable = false)
+    public Operario getOperario() {
+        return operario;
     }
 
-    public void setOperarioId(int operarioId) {
-        this.operarioId = operarioId;
+    public void setOperario(Operario operario) {
+        this.operario = operario;
     }
 
     public int getTipo() {
@@ -65,10 +87,10 @@ public class EPPOperario {
             return false;
         }
         final EPPOperario other = (EPPOperario) obj;
-        if (this.operarioId != other.operarioId) {
+        if (!this.operario.equals(other.operario)) {
             return false;
         }
-        if (this.eppId != other.eppId) {
+        if (!this.epp.equals(other.epp)) {
             return false;
         }
         return true;
@@ -80,20 +102,9 @@ public class EPPOperario {
         return hash;
     }
 
-    public EPPOperario(int operarioId, int eppId) {
-        this.operarioId = operarioId;
-        this.eppId = eppId;
-    }
-
-    public EPPOperario(int operarioId, int eppId, int tipo) {
-        this.operarioId = operarioId;
-        this.eppId = eppId;
-        this.tipo = tipo;
-    }
-    
-    public EPPOperario(int operarioId, EPP epp){
-        this.operarioId = operarioId;
-        this.eppId = epp.getId();
+    public EPPOperario(Operario operario, EPP epp) {
+        this.operario = operario;
+        this.epp = epp;
         if(epp.tieneTalle()){
             tipo = EPPOperario.TALLE;
         }else{
@@ -101,7 +112,27 @@ public class EPPOperario {
         }
     }
 
+    public EPPOperario(Operario operario, EPP epp, int tipo) {
+        this.operario = operario;
+        this.epp = epp;
+        this.tipo = tipo;
+    }
+
     public EPPOperario() {
+    }
+
+    @Override
+    public boolean validate() {
+        if (operario == null) {
+            error += "Falta asociación a Operario;";
+        }
+        if (epp == null) {
+            error += "Falta asociación a EPP;";
+        }
+        if (valor == null || valor.isEmpty()) {
+            error += "Valor no debería ser vacio;";
+        }
+        return error.isEmpty();
     }
     
     

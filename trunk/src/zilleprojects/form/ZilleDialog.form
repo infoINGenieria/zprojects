@@ -30,7 +30,7 @@
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="wrap" alignment="0" pref="481" max="32767" attributes="0"/>
+          <Component id="wrap" alignment="0" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
   </Layout>
@@ -59,16 +59,20 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="1" attributes="0">
+                  <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="jScrollPane1" alignment="0" pref="921" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
+                              <Component id="jScrollPane1" pref="921" max="32767" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
                               <Component id="lblTitulo" min="-2" pref="356" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jPanel3" pref="553" max="32767" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
                           </Group>
-                          <Group type="102" alignment="1" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
                               <Component id="jLabel2" min="-2" pref="61" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="txtBuscarTexto" min="-2" pref="420" max="-2" attributes="0"/>
@@ -80,10 +84,9 @@
                               <Component id="jLabel17" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="lblTotalFiltrado" min="-2" pref="81" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -95,8 +98,8 @@
                           <Component id="jPanel3" alignment="2" min="-2" max="-2" attributes="0"/>
                           <Component id="lblTitulo" alignment="2" min="-2" pref="41" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="jScrollPane1" pref="373" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jScrollPane1" pref="290" max="32767" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="lblTotalEntidad" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -106,7 +109,7 @@
                           <Component id="txtBuscarTexto" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -138,16 +141,6 @@
                 <Property name="horizontalGap" type="int" value="10"/>
               </Layout>
               <SubComponents>
-                <Component class="javax.swing.JButton" name="btnRecargar">
-                  <Properties>
-                    <Property name="action" type="javax.swing.Action" editor="org.netbeans.modules.swingapp.ActionEditor">
-                      <action class="zilleprojects.form.ZilleDialog" id="cargarEntidades" methodName="cargarEntidades"/>
-                    </Property>
-                    <Property name="icon" type="javax.swing.Icon" resourceKey="btnRecargar.icon"/>
-                    <Property name="text" type="java.lang.String" resourceKey="btnRecargar.text"/>
-                    <Property name="name" type="java.lang.String" value="btnRecargar" noResource="true"/>
-                  </Properties>
-                </Component>
                 <Component class="javax.swing.JButton" name="btnNuevo">
                   <Properties>
                     <Property name="action" type="javax.swing.Action" editor="org.netbeans.modules.swingapp.ActionEditor">
@@ -176,6 +169,16 @@
                     <Property name="icon" type="javax.swing.Icon" resourceKey="btnEliminar.icon"/>
                     <Property name="text" type="java.lang.String" resourceKey="btnEliminar.text"/>
                     <Property name="name" type="java.lang.String" value="btnEliminar" noResource="true"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JButton" name="btnRecargar">
+                  <Properties>
+                    <Property name="action" type="javax.swing.Action" editor="org.netbeans.modules.swingapp.ActionEditor">
+                      <action class="zilleprojects.form.ZilleDialog" id="cargarEntidades" methodName="cargarEntidades"/>
+                    </Property>
+                    <Property name="icon" type="javax.swing.Icon" resourceKey="btnRecargar.icon"/>
+                    <Property name="text" type="java.lang.String" resourceKey="btnRecargar.text"/>
+                    <Property name="name" type="java.lang.String" value="btnRecargar" noResource="true"/>
                   </Properties>
                 </Component>
               </SubComponents>
@@ -218,9 +221,6 @@
                     <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tblDatosMouseClicked"/>
                     <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tblDatosKeyReleased"/>
                   </Events>
-                  <AuxValues>
-                    <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new JTableCustom()"/>
-                  </AuxValues>
                 </Component>
               </SubComponents>
             </Container>

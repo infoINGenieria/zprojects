@@ -104,7 +104,8 @@ public class JDObrasGestion extends javax.swing.JDialog {
         jLabel21 = new javax.swing.JLabel();
         chkTieneRegistro = new javax.swing.JCheckBox();
         chkTieneEquipo = new javax.swing.JCheckBox();
-        chkDescuentaDias = new javax.swing.JCheckBox();
+        chkDescuentaFrancos = new javax.swing.JCheckBox();
+        chkDescuentaLicencias = new javax.swing.JCheckBox();
 
         org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(zilleprojects.ZilleProjectsApp.class).getContext().getResourceMap(JDObrasGestion.class);
         agregarObra.setTitle(resourceMap.getString("agregarObra.title")); // NOI18N
@@ -610,11 +611,11 @@ public class JDObrasGestion extends javax.swing.JDialog {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE)
-                    .addComponent(nuevaObra, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 127, Short.MAX_VALUE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE))
+                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
+                    .addComponent(nuevaObra, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
+                    .addComponent(jButton3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -673,8 +674,11 @@ public class JDObrasGestion extends javax.swing.JDialog {
         chkTieneEquipo.setText(resourceMap.getString("chkTieneEquipo.text")); // NOI18N
         chkTieneEquipo.setName("chkTieneEquipo"); // NOI18N
 
-        chkDescuentaDias.setText(resourceMap.getString("chkDescuentaDias.text")); // NOI18N
-        chkDescuentaDias.setName("chkDescuentaDias"); // NOI18N
+        chkDescuentaFrancos.setText(resourceMap.getString("chkDescuentaFrancos.text")); // NOI18N
+        chkDescuentaFrancos.setName("chkDescuentaFrancos"); // NOI18N
+
+        chkDescuentaLicencias.setText(resourceMap.getString("chkDescuentaLicencias.text")); // NOI18N
+        chkDescuentaLicencias.setName("chkDescuentaLicencias"); // NOI18N
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -683,29 +687,26 @@ public class JDObrasGestion extends javax.swing.JDialog {
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(chkTieneVianda)
+                    .addComponent(chkTieneComida)
+                    .addComponent(chkDescuentaFrancos)
+                    .addComponent(chkTieneRegistro))
+                .addGap(34, 34, 34)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(chkTieneDesarraigo)
+                    .addComponent(chkTieneEquipo)
+                    .addComponent(chkDescuentaLicencias)
                     .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(chkTieneVianda)
-                            .addComponent(chkTieneComida))
-                        .addGap(143, 143, 143)
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(chkTieneDesarraigo)
-                            .addGroup(jPanel5Layout.createSequentialGroup()
-                                .addComponent(pinLimiteViandaDoble, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel21, javax.swing.GroupLayout.DEFAULT_SIZE, 247, Short.MAX_VALUE))))
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addComponent(chkTieneRegistro)
-                        .addGap(41, 41, 41)
-                        .addComponent(chkTieneEquipo))
-                    .addComponent(chkDescuentaDias))
+                        .addComponent(pinLimiteViandaDoble, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel21, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(chkTieneComida)
                     .addComponent(chkTieneDesarraigo))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -714,11 +715,13 @@ public class JDObrasGestion extends javax.swing.JDialog {
                     .addComponent(pinLimiteViandaDoble, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel21))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(chkTieneRegistro)
                     .addComponent(chkTieneEquipo))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(chkDescuentaDias)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(chkDescuentaFrancos)
+                    .addComponent(chkDescuentaLicencias))
                 .addContainerGap(14, Short.MAX_VALUE))
         );
 
@@ -734,7 +737,7 @@ public class JDObrasGestion extends javax.swing.JDialog {
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(alertasObras, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 630, Short.MAX_VALUE))
+                    .addComponent(alertasObras, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 633, Short.MAX_VALUE))
                 .addContainerGap())
         );
         capaLayout.setVerticalGroup(
@@ -846,7 +849,8 @@ private void chkTieneRegistroItemStateChanged(java.awt.event.ItemEvent evt) {//G
         chkTieneDesarraigo.setSelected(o.isTieneDesarraigo());
         chkTieneRegistro.setSelected(o.isTieneRegistro());
         chkTieneEquipo.setSelected(o.isTieneEquipo());
-        chkDescuentaDias.setSelected(o.isDescuentaDias());
+        chkDescuentaFrancos.setSelected(o.isDescuentaFrancos());
+        chkDescuentaLicencias.setSelected(o.isDescuentaLicencias());
         int limite = (int) o.getLimiteViandaDoble();
         pinLimiteViandaDoble.setValue(limite);
         alertasObras.setText(null);
@@ -870,7 +874,8 @@ private void chkTieneRegistroItemStateChanged(java.awt.event.ItemEvent evt) {//G
         chkTieneDesarraigo.setSelected(true);
         chkTieneRegistro.setSelected(true);
         chkTieneEquipo.setSelected(true);
-        chkDescuentaDias.setSelected(false);
+        chkDescuentaFrancos.setSelected(false);
+        chkDescuentaLicencias.setSelected(false);
         pinLimiteViandaDoble.setValue(2);
         
     }
@@ -959,8 +964,8 @@ private void chkTieneRegistroItemStateChanged(java.awt.event.ItemEvent evt) {//G
             aux.setTieneDesarraigo(chkTieneDesarraigo.isSelected());
             aux.setTieneRegistro(chkTieneRegistro.isSelected());
             aux.setTieneEquipo(chkTieneEquipo.isSelected());
-            aux.setDescuentaDias(chkDescuentaDias.isSelected());
-            
+            aux.setDescuentaFrancos(chkDescuentaFrancos.isSelected());
+            aux.setDescuentaLicencias(chkDescuentaLicencias.isSelected());
             if(pinLimiteViandaDoble.isEnabled()){
                 double limite = (Integer)pinLimiteViandaDoble.getValue();
                 aux.setLimiteViandaDoble(limite);
@@ -1040,7 +1045,8 @@ private void chkTieneRegistroItemStateChanged(java.awt.event.ItemEvent evt) {//G
             o.setTieneRegistro(true);
             o.setTieneEquipo(true);
             o.setLimiteViandaDoble(2);
-            o.setDescuentaDias(false);
+            o.setDescuentaFrancos(false);
+            o.setDescuentaLicencias(false);
         }
         @Override protected Object doInBackground() {
             ObrasDAO odao= new ObrasDAO();
@@ -1070,7 +1076,8 @@ private void chkTieneRegistroItemStateChanged(java.awt.event.ItemEvent evt) {//G
     private javax.swing.JLabel alertasObras;
     private javax.swing.JButton cancelarAgregarObra;
     private javax.swing.JPanel capa;
-    private javax.swing.JCheckBox chkDescuentaDias;
+    private javax.swing.JCheckBox chkDescuentaFrancos;
+    private javax.swing.JCheckBox chkDescuentaLicencias;
     private javax.swing.JCheckBox chkTieneComida;
     private javax.swing.JCheckBox chkTieneDesarraigo;
     private javax.swing.JCheckBox chkTieneEquipo;

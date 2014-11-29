@@ -4,14 +4,41 @@
  */
 package Modelo;
 
+import java.util.List;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
 /**
  *
  * @author m4tuu
  */
+@Entity
+@Table(name="epp")
 public class EPP extends EntidadAbstracta {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
-    private String nombre, medida;
+    
+    private String nombre;
+    private String medida;
+    
+    @OneToMany(mappedBy = "epp", cascade= CascadeType.ALL)
+    private List<EppEntregaItem> eppEntregaItems;
 
+    public List<EppEntregaItem> getEppEntregaItems() {
+        return eppEntregaItems;
+    }
+
+    public void setEppEntregaItems(List<EppEntregaItem> eppEntregaItems) {
+        this.eppEntregaItems = eppEntregaItems;
+    }
+
+    
     @Override
     public int getId() {
         return id;
@@ -45,7 +72,14 @@ public class EPP extends EntidadAbstracta {
     
     public EPP(){
         this.nombre = "";
-        this.medida = "";}
+        this.medida = "";
+    }
+
+    public EPP(int id) {
+        this.id = id;
+    }
+    
+    
 
     @Override
     public boolean equals(Object obj) {

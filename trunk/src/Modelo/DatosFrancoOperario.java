@@ -11,15 +11,24 @@ import java.util.Date;
  * @author m4tuu
  */
 public class DatosFrancoOperario {
-    int id, operarioId, ajuste, pagados, solicitados1, solicitados2;
+    int id, operarioId, ajuste_francos, ajuste_licencias, pagados, solicitados1, solicitados2;
     Date entra1, entra2, sale1, sale2;
 
-    public int getAjuste() {
-        return ajuste;
+    public int getAjusteLicencias() {
+        return ajuste_licencias;
     }
 
-    public void setAjuste(int ajuste) {
-        this.ajuste = ajuste;
+    public void setAjusteLicencias(int ajuste_licencias) {
+        this.ajuste_licencias = ajuste_licencias;
+    }
+
+    
+    public int getAjusteFrancos() {
+        return ajuste_francos;
+    }
+
+    public void setAjusteFrancos(int ajuste) {
+        this.ajuste_francos = ajuste;
     }
 
     public Date getEntra1() {
@@ -95,7 +104,7 @@ public class DatosFrancoOperario {
     }
     
     public DatosFrancoOperario(){
-        ajuste = pagados = solicitados1 = solicitados2 = 0;
+        ajuste_francos = ajuste_licencias = pagados = solicitados1 = solicitados2 = 0;
     }
     
 }

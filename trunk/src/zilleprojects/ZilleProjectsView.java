@@ -20,7 +20,6 @@ import Modelo.Alarma;
 import Modelo.EntidadAbstracta;
 import Modelo.Equipos;
 import Modelo.EstacionServicio;
-import Modelo.Funcion;
 import ViewModel.ItemAlarma;
 import Modelo.Obras;
 import Modelo.Operario;
@@ -33,7 +32,6 @@ import Utils.FechaUtil;
 import Utils.ImageIconTable;
 import Utils.LabelResaltadoTable;
 import Utils.Permisos;
-import Vista.DialogPanel;
 import Vista.OpcionPanel;
 import Vista.PanelAlarma;
 import Vista.PanelAzul;
@@ -73,10 +71,12 @@ import org.jdesktop.application.Task;
 
 
 import zilleprojects.form.EPPDialog;
+import zilleprojects.form.FrancosLicenciasDialog;
 import zilleprojects.form.FuncionDialog;
 import zilleprojects.form.JDAlarmaActividad;
 import zilleprojects.form.JDAlarmas;
 import zilleprojects.form.JDEmpleadoGestion;
+import zilleprojects.form.JDEntregaIndumentaria;
 import zilleprojects.form.JDEquipos;
 import zilleprojects.form.JDEstacionServicio;
 import zilleprojects.form.JDObrasGestion;
@@ -715,6 +715,18 @@ public class ZilleProjectsView extends FrameView {
     }
     
     @Action
+    public void MostrarFrancosYVacacionesDialog() {
+       
+        if (Permisos.verificarCredenciales("Administrador,De Carga")) {
+            JFrame mainFrame = ZilleProjectsApp.getApplication().getMainFrame();
+            FrancosLicenciasDialog francos = new FrancosLicenciasDialog(mainFrame, true);
+            francos.setLocationRelativeTo(mainFrame);   
+            ZilleProjectsApp.getApplication().show(francos);
+        } 
+
+    }
+    
+    @Action
     public void mostrarJDParametros() {
        
         if (Permisos.verificarCredenciales("Administrador")) {
@@ -739,6 +751,17 @@ public class ZilleProjectsView extends FrameView {
 
     }
     
+    @Action
+    public void mostrarJDEntregaIndumentaria() {
+       
+        if (Permisos.verificarCredenciales("Administrador,De Carga")) {
+            JFrame mainFrame = ZilleProjectsApp.getApplication().getMainFrame();
+            JDEntregaIndumentaria eppEntregaJD = new JDEntregaIndumentaria(mainFrame, true);
+            eppEntregaJD.setLocationRelativeTo(mainFrame);   
+            ZilleProjectsApp.getApplication().show(eppEntregaJD);
+        } 
+
+    }    
     
     @Action
     public void mostrarBusquedaEmpleado() {
@@ -1237,6 +1260,8 @@ public class ZilleProjectsView extends FrameView {
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItem9 = new javax.swing.JMenuItem();
         menuUsuarios = new javax.swing.JMenuItem();
+        jMenuItem12 = new javax.swing.JMenuItem();
+        jMenuItem13 = new javax.swing.JMenuItem();
         jMenuParam = new javax.swing.JMenu();
         jMenuItem10 = new javax.swing.JMenuItem();
         menuIndumentaria = new javax.swing.JMenuItem();
@@ -1597,6 +1622,17 @@ public class ZilleProjectsView extends FrameView {
         menuUsuarios.setText(resourceMap.getString("menuUsuarios.text")); // NOI18N
         menuUsuarios.setName("menuUsuarios"); // NOI18N
         EmpleadosMenu.add(menuUsuarios);
+
+        jMenuItem12.setAction(actionMap.get("MostrarFrancosYVacacionesDialog")); // NOI18N
+        jMenuItem12.setIcon(resourceMap.getIcon("jMenuItem12.icon")); // NOI18N
+        jMenuItem12.setText(resourceMap.getString("jMenuItem12.text")); // NOI18N
+        jMenuItem12.setName("jMenuItem12"); // NOI18N
+        EmpleadosMenu.add(jMenuItem12);
+
+        jMenuItem13.setAction(actionMap.get("mostrarJDEntregaIndumentaria")); // NOI18N
+        jMenuItem13.setText(resourceMap.getString("jMenuItem13.text")); // NOI18N
+        jMenuItem13.setName("jMenuItem13"); // NOI18N
+        EmpleadosMenu.add(jMenuItem13);
 
         menuBar.add(EmpleadosMenu);
 
@@ -2405,6 +2441,8 @@ private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem10;
     private javax.swing.JMenuItem jMenuItem11;
+    private javax.swing.JMenuItem jMenuItem12;
+    private javax.swing.JMenuItem jMenuItem13;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;

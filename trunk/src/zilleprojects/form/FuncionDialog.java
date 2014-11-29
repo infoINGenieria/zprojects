@@ -26,14 +26,12 @@ import javax.swing.JDialog;
  * @author m4tuu
  */
 public class FuncionDialog extends ZilleDialog {
-
+   
     /** Creates new form FuncionDialog */
     public FuncionDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         
         initComponents();
-        int[] width1 = {40}; 
-        setWidths(width1);
         
     }
 
@@ -190,11 +188,6 @@ public class FuncionDialog extends ZilleDialog {
     }
 
     @Override
-    protected Dimension getSizeMainWindow() {
-        return new Dimension(900, 430);
-    }
-
-    @Override
     protected JDialog getAMEntidad() {
         return jDialog1;
     }
@@ -225,6 +218,13 @@ public class FuncionDialog extends ZilleDialog {
     @Override
     protected Dimension getSizeDialogEdit() {
         return new Dimension(350, 180);
+    }
+    
+
+    @Override
+    protected String[] getConfigColumn() {
+        String[] conf = new String[] {"0:100"};
+        return conf;
     }
     
     Funcion func = new Funcion();

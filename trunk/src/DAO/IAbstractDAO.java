@@ -18,4 +18,5 @@ public interface IAbstractDAO {
     public boolean eliminar(EntidadAbstracta entidad);
     public ArrayList<EntidadAbstracta> cargarTodos();
     public ArrayList<EntidadAbstracta> filtrarPorTexto(String text);
+    public int count(String name);
 }
