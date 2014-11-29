@@ -11,11 +11,10 @@
 package zilleprojects.form;
 
 
-import DAO.AbstractDAO;
+import DAO.IAbstractDAO;
 import Modelo.EntidadAbstracta;
 import Modelo.tablemodel.ZilleAbstractTableModel;
 import Vista.JDialogCustom;
-import Vista.JTableCustom;
 import Vista.OpcionPanel;
 import Vista.PanelEsquinaAzul;
 import java.awt.Dimension;
@@ -25,7 +24,6 @@ import java.util.Date;
 import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JDialog;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTable;
@@ -207,7 +205,7 @@ public abstract class ZilleDialog extends JDialogCustom {
                     .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 318, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 290, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblTotalEntidad)
@@ -216,7 +214,7 @@ public abstract class ZilleDialog extends JDialogCustom {
                     .addComponent(jLabel20)
                     .addComponent(txtBuscarTexto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
-                .addGap(46, 46, 46))
+                .addGap(12, 12, 12))
         );
 
         wrap.add(jPanel1, java.awt.BorderLayout.CENTER);
@@ -229,7 +227,7 @@ public abstract class ZilleDialog extends JDialogCustom {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(wrap, javax.swing.GroupLayout.DEFAULT_SIZE, 420, Short.MAX_VALUE)
+            .addComponent(wrap, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -256,7 +254,7 @@ public abstract class ZilleDialog extends JDialogCustom {
     protected abstract String getTablaName();
     protected abstract String getNombreEntidad();
     protected abstract void limpiarEntidad();
-    protected abstract AbstractDAO getDao();
+    protected abstract IAbstractDAO getDao();
     protected abstract EntidadAbstracta getEntidadAbstracta();
     protected abstract void setEntidadAbstracta(EntidadAbstracta ea);
     protected abstract ZilleAbstractTableModel getTableModel();
@@ -310,7 +308,7 @@ public abstract class ZilleDialog extends JDialogCustom {
     private void configurarTabla() {
         setTableModel(setNewTableModel());
         
-        final AbstractDAO udao =  getDao();
+        final IAbstractDAO udao =  getDao();
         udao.conectar();
         ///Esto es para guardar los cambios cuando se edita desde la tabla
         getTableModel().addTableModelListener(new TableModelListener() {
@@ -353,7 +351,7 @@ public abstract class ZilleDialog extends JDialogCustom {
 
         @Override
         protected Object doInBackground()  {
-            final AbstractDAO udao = getDao();
+            final IAbstractDAO udao = getDao();
             udao.conectar();
             entidadesList = udao.cargarTodos();
             totalFiltrado = totalEntidad = udao.count(getTablaName());
@@ -398,9 +396,9 @@ public abstract class ZilleDialog extends JDialogCustom {
 
         @Override
         protected Object doInBackground()  {
-            AbstractDAO dao = getDao();
+            IAbstractDAO dao = getDao();
             dao.conectar();
-            entidades = dao.filtrarPorTexto(query);
+            entidades = new ArrayList<EntidadAbstracta>(dao.filtrarPorTexto(query));
             totalFiltrado = entidades.size();
             return null;
         }
@@ -410,7 +408,7 @@ public abstract class ZilleDialog extends JDialogCustom {
 
             if (entidades != null) {
                 configurarTabla();
-                for(EntidadAbstracta c:entidades){
+                for(EntidadAbstracta c: entidades){
                     getTableModel().addFila(c);
                 }
 
@@ -445,7 +443,7 @@ public abstract class ZilleDialog extends JDialogCustom {
 
         @Override
         protected Object doInBackground()  {
-            AbstractDAO dao = getDao();
+            IAbstractDAO dao = getDao();
             dao.conectar();
             if(esUpdate)
                 guardadoOk = dao.modificar(getEntidadAbstracta()) != 0;
@@ -528,7 +526,7 @@ public abstract class ZilleDialog extends JDialogCustom {
 
         @Override
         protected Object doInBackground()  {
-            AbstractDAO dao = getDao();
+            IAbstractDAO dao = getDao();
             dao.conectar();
             eliminadoOK = dao.eliminar(getEntidadAbstracta());
             return null;

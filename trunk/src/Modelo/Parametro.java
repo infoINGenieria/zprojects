@@ -123,6 +123,11 @@ public class Parametro extends EntidadAbstracta {
     public void setId(int id) {
         
     }
+
+    @Override
+    public String toString() {
+        return "" + valor ;
+    }
     
     
 }

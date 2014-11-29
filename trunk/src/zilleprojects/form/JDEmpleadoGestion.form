@@ -1043,7 +1043,7 @@
                           <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
-                                  <Component id="alertas" pref="781" max="32767" attributes="0"/>
+                                  <Component id="alertas" pref="798" max="32767" attributes="0"/>
                                   <EmptySpace min="-2" max="-2" attributes="0"/>
                                   <Component id="botonSalir" min="-2" pref="135" max="-2" attributes="0"/>
                               </Group>
@@ -1064,7 +1064,7 @@
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="nuevoOperario" min="-2" max="-2" attributes="1"/>
+                          <Component id="nuevoOperario" min="-2" pref="362" max="-2" attributes="1"/>
                           <EmptySpace pref="21" max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="1" attributes="0">
                               <Component id="botonSalir" min="-2" max="-2" attributes="0"/>
@@ -1264,10 +1264,10 @@
                                               <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                                               <Component id="jLabel3" min="-2" pref="200" max="-2" attributes="0"/>
                                               <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
-                                              <Component id="cuil" pref="227" max="32767" attributes="0"/>
+                                              <Component id="cuil" pref="244" max="32767" attributes="0"/>
                                           </Group>
-                                          <Component id="nombre" pref="692" max="32767" attributes="0"/>
-                                          <Component id="jScrollPane2" pref="692" max="32767" attributes="0"/>
+                                          <Component id="nombre" pref="709" max="32767" attributes="0"/>
+                                          <Component id="jScrollPane2" pref="709" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>

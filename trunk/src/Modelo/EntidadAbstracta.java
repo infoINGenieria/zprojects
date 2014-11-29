@@ -4,16 +4,17 @@
  */
 package Modelo;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  *
  * @author m4tuu
  */
-public abstract class EntidadAbstracta {
+public abstract class EntidadAbstracta  implements Serializable, IEntidadAbstracta{
     
     protected Date fechabaja;
-    protected String error;
+    protected String error="";
 
     public Date getFechabaja() {
         return fechabaja;
@@ -38,7 +39,6 @@ public abstract class EntidadAbstracta {
     public String[] getErrores() {
         return error.split(";");
     }
-    public abstract boolean validate();
     public abstract int getId();
     public abstract void setId(int id);
 }

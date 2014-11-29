@@ -10,13 +10,13 @@
  */
 package zilleprojects.form;
 
+import DAO.AbstractHibernateDAO;
 import DAO.EPPDAO;
+import DAO.EPPOperarioDAO;
 import DAO.FrancosLicenciasDAO;
 import DAO.FuncionDAO;
 import DAO.OperarioDAO;
 
-import DAO.ParteDiarioDAO;
-import Modelo.DatosFrancoOperario;
 import Modelo.EPP;
 import ViewModel.EPPItem;
 import Modelo.EPPOperario;
@@ -652,7 +652,7 @@ public class JDEmpleadoGestion extends JDialogCustom {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(lblLicenciasPendientesAnteriores, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE))
                             .addGroup(jPanel6Layout.createSequentialGroup()
-                                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 103, Short.MAX_VALUE)
+                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 103, Short.MAX_VALUE)
                                 .addGap(18, 18, 18)
                                 .addComponent(btnGuardarFrancos, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
@@ -1073,9 +1073,9 @@ public class JDEmpleadoGestion extends JDialogCustom {
                                         .addGap(10, 10, 10)
                                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(10, 10, 10)
-                                        .addComponent(cuil, javax.swing.GroupLayout.DEFAULT_SIZE, 227, Short.MAX_VALUE))
-                                    .addComponent(nombre, javax.swing.GroupLayout.DEFAULT_SIZE, 692, Short.MAX_VALUE)
-                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 692, Short.MAX_VALUE)))))
+                                        .addComponent(cuil, javax.swing.GroupLayout.DEFAULT_SIZE, 244, Short.MAX_VALUE))
+                                    .addComponent(nombre, javax.swing.GroupLayout.DEFAULT_SIZE, 709, Short.MAX_VALUE)
+                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 709, Short.MAX_VALUE)))))
                     .addGroup(nuevoOperarioLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -1112,7 +1112,7 @@ public class JDEmpleadoGestion extends JDialogCustom {
                         .addComponent(lblanti1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(txtAntiguedad, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE)
-                    .addComponent(dateIngreso, javax.swing.GroupLayout.PREFERRED_SIZE, 24, Short.MAX_VALUE))
+                    .addComponent(dateIngreso, javax.swing.GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(nuevoOperarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnVencimientos)
@@ -1217,7 +1217,7 @@ public class JDEmpleadoGestion extends JDialogCustom {
                         .addGap(12, 12, 12)
                         .addGroup(panelAzulLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(panelAzulLayout.createSequentialGroup()
-                                .addComponent(alertas, javax.swing.GroupLayout.DEFAULT_SIZE, 781, Short.MAX_VALUE)
+                                .addComponent(alertas, javax.swing.GroupLayout.DEFAULT_SIZE, 798, Short.MAX_VALUE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(botonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(nuevoOperario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
@@ -1232,7 +1232,7 @@ public class JDEmpleadoGestion extends JDialogCustom {
                     .addGroup(panelAzulLayout.createSequentialGroup()
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(nuevoOperario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(nuevoOperario, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
                         .addGroup(panelAzulLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(botonSalir)
@@ -1866,11 +1866,10 @@ private void dateIngresoPropertyChange(java.beans.PropertyChangeEvent evt) {//GE
             // on a background thread, so don't reference
             // the Swing GUI from here.
             EPPDAO odao = new EPPDAO();
-            OperarioDAO operDAO = new OperarioDAO();
+            EPPOperarioDAO operDAO = new EPPOperarioDAO();
             odao.conectar();
-            operDAO.conectar();
             epps = odao.cargarTodos();
-            eppValores = operDAO.cargarTodos(opSelected.getId());
+            eppValores =  operDAO.getTodos(opSelected);
             return null;  // return your result
         }
 
@@ -1885,7 +1884,7 @@ private void dateIngresoPropertyChange(java.beans.PropertyChangeEvent evt) {//GE
                     EPPItem item = new EPPItem();
                     item.setOperario(opSelected);
                     item.setEpp((EPP)epp);
-                    EPPOperario aux = new EPPOperario(opSelected.getId(),(EPP) epp);
+                    EPPOperario aux = new EPPOperario(opSelected,(EPP) epp);
                     if(eppValores.contains(aux)){
                         aux = eppValores.get(eppValores.indexOf(aux));
                     }    
@@ -1936,10 +1935,8 @@ private void dateIngresoPropertyChange(java.beans.PropertyChangeEvent evt) {//GE
             // Your Task's code here.  This method runs
             // on a background thread, so don't reference
             // the Swing GUI from here.
-            OperarioDAO oDAO = new OperarioDAO();
-            oDAO.conectar();
             for(int i = 0; i < model.getRowCount(); i++){
-                oDAO.guardarEPP(((EPPItem)model.getFila(i)).getValores());
+                AbstractHibernateDAO.almacenaEntidad(((EPPItem)model.getFila(i)).getValores());
             }
             return null;  // return your result
         }

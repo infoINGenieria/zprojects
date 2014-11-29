@@ -76,6 +76,7 @@ import zilleprojects.form.FuncionDialog;
 import zilleprojects.form.JDAlarmaActividad;
 import zilleprojects.form.JDAlarmas;
 import zilleprojects.form.JDEmpleadoGestion;
+import zilleprojects.form.JDEntregaIndumentaria;
 import zilleprojects.form.JDEquipos;
 import zilleprojects.form.JDEstacionServicio;
 import zilleprojects.form.JDObrasGestion;
@@ -750,6 +751,17 @@ public class ZilleProjectsView extends FrameView {
 
     }
     
+    @Action
+    public void mostrarJDEntregaIndumentaria() {
+       
+        if (Permisos.verificarCredenciales("Administrador,De Carga")) {
+            JFrame mainFrame = ZilleProjectsApp.getApplication().getMainFrame();
+            JDEntregaIndumentaria eppEntregaJD = new JDEntregaIndumentaria(mainFrame, true);
+            eppEntregaJD.setLocationRelativeTo(mainFrame);   
+            ZilleProjectsApp.getApplication().show(eppEntregaJD);
+        } 
+
+    }    
     
     @Action
     public void mostrarBusquedaEmpleado() {
@@ -1249,6 +1261,7 @@ public class ZilleProjectsView extends FrameView {
         jMenuItem9 = new javax.swing.JMenuItem();
         menuUsuarios = new javax.swing.JMenuItem();
         jMenuItem12 = new javax.swing.JMenuItem();
+        jMenuItem13 = new javax.swing.JMenuItem();
         jMenuParam = new javax.swing.JMenu();
         jMenuItem10 = new javax.swing.JMenuItem();
         menuIndumentaria = new javax.swing.JMenuItem();
@@ -1615,6 +1628,11 @@ public class ZilleProjectsView extends FrameView {
         jMenuItem12.setText(resourceMap.getString("jMenuItem12.text")); // NOI18N
         jMenuItem12.setName("jMenuItem12"); // NOI18N
         EmpleadosMenu.add(jMenuItem12);
+
+        jMenuItem13.setAction(actionMap.get("mostrarJDEntregaIndumentaria")); // NOI18N
+        jMenuItem13.setText(resourceMap.getString("jMenuItem13.text")); // NOI18N
+        jMenuItem13.setName("jMenuItem13"); // NOI18N
+        EmpleadosMenu.add(jMenuItem13);
 
         menuBar.add(EmpleadosMenu);
 
@@ -2424,6 +2442,7 @@ private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     private javax.swing.JMenuItem jMenuItem10;
     private javax.swing.JMenuItem jMenuItem11;
     private javax.swing.JMenuItem jMenuItem12;
+    private javax.swing.JMenuItem jMenuItem13;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;

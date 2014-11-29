@@ -52,6 +52,16 @@ public abstract class ZilleAbstractTableModel extends AbstractTableModel{
         avisaSuscriptores (evento);
     }
     
+    public void delFila (int index) {
+        datos.remove(index);
+        TableModelEvent evento;
+        evento = new TableModelEvent (this, this.getRowCount()-1,
+            this.getRowCount()-1, TableModelEvent.ALL_COLUMNS,
+            TableModelEvent.DELETE);
+
+        avisaSuscriptores (evento);
+    }
+    
     public void delFila (EntidadAbstracta reg) {
         datos.remove(reg);
         TableModelEvent evento;
