@@ -4,6 +4,8 @@
  */
 package Utils;
 
+import DAO.Conexion.Conexion;
+import DAO.Conexion.LeerXML;
 import org.hibernate.cfg.AnnotationConfiguration;
 import org.hibernate.SessionFactory;
 
@@ -14,13 +16,27 @@ import org.hibernate.SessionFactory;
  */
 public class HibernateUtil {
 
-    private static final SessionFactory sessionFactory;
+    private static SessionFactory sessionFactory;
+    private static final LeerXML configDB = new LeerXML();
     
     static {
+        ReloadConfig();
+    }
+    
+    public static void ReloadConfig() {
         try {
-            // Create the SessionFactory from standard (hibernate.cfg.xml) 
-            // config file.
-            sessionFactory = new AnnotationConfiguration().configure().buildSessionFactory();
+            AnnotationConfiguration config = new AnnotationConfiguration();
+            Conexion conn = configDB.config();
+             /*
+            <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/zille2</property>
+            <property name="hibernate.connection.username">root</property>
+            <property name="hibernate.connection.password">infomati</property>*/
+            config.setProperty("hibernate.connection.url", 
+                    "jdbc:mysql://" + conn.getHost() + ":3306/" + conn.getDbname());
+            config.setProperty("hibernate.connection.username", conn.getDbuser());
+            config.setProperty("hibernate.connection.password", conn.getDbpass());
+            System.out.println("Reiniciando configuración hibernate");
+            sessionFactory = config.configure().buildSessionFactory();
         } catch (Throwable ex) {
             // Log the exception. 
             System.err.println("Initial SessionFactory creation failed." + ex);

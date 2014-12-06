@@ -4,9 +4,7 @@
   <session-factory>
     <!-- Conexión -->
     <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-    <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/zille2</property>
-    <property name="hibernate.connection.username">root</property>
-    <property name="hibernate.connection.password">infomati</property>
+    <!-- El resto de los datos de conexión se configuran por código-->
     <!-- Configuracion del pool interno -->
     <property name="connection.pool_size">10</property>
     <!-- Dialecto de la base de datos -->
