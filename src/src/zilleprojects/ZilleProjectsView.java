@@ -29,6 +29,7 @@ import Modelo.Perfiles;
 import Modelo.tablemodel.TablaAlarmasModel;
 import Modelo.UsuarioLogged;
 import Utils.FechaUtil;
+import Utils.HibernateUtil;
 import Utils.ImageIconTable;
 import Utils.LabelResaltadoTable;
 import Utils.Permisos;
@@ -557,6 +558,7 @@ public class ZilleProjectsView extends FrameView {
                 OpcionPanel.showMessageDialog(mainPanel, "Se ha establecido una conexión.",
                         "Conexión exitosa", OpcionPanel.INFORMATION_MESSAGE);
                 configurarConnDialog.dispose();
+                HibernateUtil.ReloadConfig();
             } else {
                 OpcionPanel.showMessageDialog(mainPanel, "No se pudo establecer la conexión. "
                         + "Revise los datos.", "Fallo de conexión", OpcionPanel.INFORMATION_MESSAGE);
