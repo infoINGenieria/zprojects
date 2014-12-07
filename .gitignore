@@ -1,0 +1,14 @@
+public
+dist
+build
+Backups
+NuevaVersion
+*.xls
+project.properties
+/*/nbproject/private/
+Docs
+tmp
+version.txt
+db.xml
+*.sql
+*.class
