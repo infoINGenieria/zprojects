@@ -75,7 +75,7 @@ public class FrancosLicenciasDAO extends AbstractDAO {
             if (!text.isEmpty()) {
                 query += "where op.nombre like '%" + text + "%' ";
             }
-            query +="group by op.id";
+            query +="group by op.id order by op.nombre";
             PreparedStatement ps = conector.prepareStatement(query);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {

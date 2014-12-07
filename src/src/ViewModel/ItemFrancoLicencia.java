@@ -26,7 +26,7 @@ public class ItemFrancoLicencia extends EntidadAbstracta {
     }
     
     public int getLicenciaDisponibles() {
-        return getTotal() + getDiasLicenciaAnual() + getLicenciasPendientes();
+        return  getDiasLicenciaAnual() + getLicenciasPendientes();
     }
     
     public int getFrancosAjustados() {
