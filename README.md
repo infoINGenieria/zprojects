@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/infoINGenieria/zprojects.png?label=ready&title=Ready)](https://waffle.io/infoINGenieria/zprojects)
 zprojects
 =========
 
