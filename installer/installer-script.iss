@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "ZProjects"
-#define MyAppVersion "1.0"
+#define MyAppVersion "1.1"
 #define MyAppPublisher "InfoINGeniería"
 #define MyAppURL "http://www.info-ingenieria.com.ar/"
 #define MyAppExeName "zProjectsLaucher.exe"
@@ -37,6 +37,7 @@ Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{
 [Files]
 Source: "Z:\Home\proyectos\zprojects\installer\zProjectsLaucher.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "Z:\Home\proyectos\zprojects\src\dist\lib\*"; DestDir: "{app}\lib"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "Z:\Home\proyectos\zprojects\src\dist\ZilleProjects.jar"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "Z:\Home\proyectos\zprojects\LICENSE"; DestDir: "{app}"; Flags: ignoreversion
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
@@ -44,6 +45,106 @@ Source: "Z:\Home\proyectos\zprojects\LICENSE"; DestDir: "{app}"; Flags: ignoreve
 Name: "{group}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"
 Name: "{group}\{cm:UninstallProgram,{#MyAppName}}"; Filename: "{uninstallexe}"
 Name: "{commondesktop}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; Tasks: desktopicon
+
+[Code]
+function GetNumber(var temp: String): Integer;
+var
+  part: String;
+  pos1: Integer;
+begin
+  if Length(temp) = 0 then
+  begin
+    Result := -1;
+    Exit;
+  end;
+    pos1 := Pos('.', temp);
+    if (pos1 = 0) then
+    begin
+      Result := StrToInt(temp);
+    temp := '';
+    end
+    else
+    begin
+    part := Copy(temp, 1, pos1 - 1);
+      temp := Copy(temp, pos1 + 1, Length(temp));
+      Result := StrToInt(part);
+    end;
+end;
+ 
+function CompareInner(var temp1, temp2: String): Integer;
+var
+  num1, num2: Integer;
+begin
+    num1 := GetNumber(temp1);
+  num2 := GetNumber(temp2);
+  if (num1 = -1) or (num2 = -1) then
+  begin
+    Result := 0;
+    Exit;
+  end;
+      if (num1 > num2) then
+      begin
+        Result := 1;
+      end
+      else if (num1 < num2) then
+      begin
+        Result := -1;
+      end
+      else
+      begin
+        Result := CompareInner(temp1, temp2);
+      end;
+end;
+ 
+function CompareVersion(str1, str2: String): Integer;
+var
+  temp1, temp2: String;
+begin
+    temp1 := str1;
+    temp2 := str2;
+    Result := CompareInner(temp1, temp2);
+end;
+
+function InitializeSetup(): Boolean;
+var
+  oldVersion: String;
+  uninstaller: String;
+  ErrorCode: Integer;
+begin
+  if RegKeyExists(HKEY_LOCAL_MACHINE,
+    'SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\{5CC1175E-DB5D-46FD-AA6B-A89A27CE96D8}_is1') then
+  begin
+    RegQueryStringValue(HKEY_LOCAL_MACHINE,
+      'SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\{5CC1175E-DB5D-46FD-AA6B-A89A27CE96D8}_is1',
+      'DisplayVersion', oldVersion);
+    if (CompareVersion(oldVersion, '1.1') < 0) then
+    begin
+      if MsgBox('La versión ' + oldVersion + ' de zProjects ya se encuentra instalada. ¿Desea quitar esta versión y continuar con la instalación?',
+        mbConfirmation, MB_YESNO) = IDNO then
+      begin
+        Result := False;
+      end
+      else
+      begin
+          RegQueryStringValue(HKEY_LOCAL_MACHINE,
+            'SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\{5CC1175E-DB5D-46FD-AA6B-A89A27CE96D8}_is1',
+            'UninstallString', uninstaller);
+          ShellExec('runas', uninstaller, '/SILENT', '', SW_HIDE, ewWaitUntilTerminated, ErrorCode);
+          Result := True;
+      end;
+    end
+    else
+    begin
+      MsgBox('La versión ' + oldVersion + ' de zProjects ya se encuentra instalada. El instalador no continuará.',
+        mbInformation, MB_OK);
+      Result := False;
+    end;
+  end
+  else
+  begin
+    Result := True;
+  end;
+end;
 
 [Run]
 Filename: "{app}\{#MyAppExeName}"; Description: "{cm:LaunchProgram,{#StringChange(MyAppName, '&', '&&')}}"; Flags: nowait postinstall skipifsilent
