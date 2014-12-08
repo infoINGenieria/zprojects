@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <launch4jConfig>
-  <dontWrapJar>false</dontWrapJar>
+  <dontWrapJar>true</dontWrapJar>
   <headerType>gui</headerType>
-  <jar>Z:\Home\proyectos\zprojects\src\dist\ZilleProjects.jar</jar>
+  <jar>ZilleProjects.jar</jar>
   <outfile>Z:\Home\proyectos\zprojects\installer\zProjectsLaucher.exe</outfile>
   <errTitle>Error al ejecutar zProjects</errTitle>
   <cmdLine></cmdLine>
