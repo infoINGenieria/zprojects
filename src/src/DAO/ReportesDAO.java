@@ -6,6 +6,7 @@ package DAO;
 
 import Modelo.Obras;
 import Utils.FechaUtil;
+import Utils.FileManager;
 import ViewModel.ItemAlarmaBean;
 import java.awt.Desktop;
 import java.io.File;
@@ -446,45 +447,27 @@ public class ReportesDAO {
             if (master == null) {
                 System.out.println("No se encuentra el archivo master.");
                 //System.exit(2);
-            }
-            
+            }           
             JasperReport masterReport = (JasperReport) JRLoader.loadObject(master);
             JasperPrint jasperPrint = JasperFillManager.fillReport(masterReport, parametro, conector);          
             //Exporta el informe a excel
             
             JRXlsExporter exporter = new JRXlsExporter();
             exporter.setExporterInput(new SimpleExporterInput(jasperPrint));
-            
-
-            String soName = System.getProperty("os.name").toUpperCase();
             String archivo="OT"+idOT +" ("+ interno+ ").xls";
-            //String command = "start " +archivo ;
-            File folder = new File("Ordenes\\");
-            if (soName.equals("LINUX")) { //Si se ejecuta en Linux  
-                    folder = new File("Ordenes/");
-                    if(!folder.exists()){
-                        folder.mkdirs();
-                    }
-                    archivo=folder.getAbsoluteFile()+"/"+archivo;
-                    //command = "xdg-open "+archivo;
-            }else if(soName.equals("WINDOWS")|| soName.equals("WINDOWS 7")) {  //si se ejecuta en Windows)
-                    folder = new File("Ordenes\\");
-                    if(!folder.exists()){
-                        folder.mkdirs();
-                    }
-                    archivo=folder.getAbsoluteFile()+"\\"+archivo;
-                    //command = "start " +archivo ;
-            }
-            exporter.setExporterOutput(new SimpleOutputStreamExporterOutput(archivo));
+            File ordenesFolder = FileManager.getPathDirectory(new String[]{"Ordenes"}, true);
+            File exportF = new File(ordenesFolder, archivo);
+
+            exporter.setExporterOutput(new SimpleOutputStreamExporterOutput(exportF));
             SimpleXlsReportConfiguration configuration = new SimpleXlsReportConfiguration();
             configuration.setOnePagePerSheet(true);
             configuration.setDetectCellType(true);
             configuration.setCollapseRowSpan(false);
             exporter.setConfiguration(configuration);
             exporter.exportReport();
-            Desktop.getDesktop().open(new File(archivo));
+            Desktop.getDesktop().open(exportF);
             result="Se ha exportado correctamente la órden de trabajo.\n"
-                    + "Archivo: "+archivo;
+                    + "Archivo: "+exportF;
 
         } catch (IOException ex) {
             Logger.getLogger(ReportesDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -515,35 +498,20 @@ public class ReportesDAO {
             //Exporta el informe a excel
             JRXlsExporter exporter = new JRXlsExporter();
             exporter.setExporterInput(new SimpleExporterInput(jasperPrint));
-            String soName = System.getProperty("os.name").toUpperCase();
             String archivo="RI"+riid +"("+ ri_num+ ").xls";
-            //String command = "start " +archivo ;
-            File folder = new File("RI\\");
-            if (soName.equals("LINUX")) { //Si se ejecuta en Linux  
-                    folder = new File("RI/");
-                    if(!folder.exists()){
-                        folder.mkdirs();
-                    }
-                    archivo=folder.getAbsoluteFile()+"/"+archivo;
-                    //command = "xdg-open "+archivo;
-            }else if(soName.equals("WINDOWS")|| soName.equals("WINDOWS 7")) {  //si se ejecuta en Windows)
-                    folder = new File("RI\\");
-                    if(!folder.exists()){
-                        folder.mkdirs();
-                    }
-                    archivo=folder.getAbsoluteFile()+"\\"+archivo;
-                    //command = "start " +archivo ;
-            }
-            exporter.setExporterOutput(new SimpleOutputStreamExporterOutput(archivo));
+            File riFolder = FileManager.getPathDirectory(new String[]{"RI"}, true);
+            File exportF = new File(riFolder, archivo);
+            
+            exporter.setExporterOutput(new SimpleOutputStreamExporterOutput(exportF));
             SimpleXlsReportConfiguration configuration = new SimpleXlsReportConfiguration();
             configuration.setOnePagePerSheet(true);
             configuration.setDetectCellType(true);
             configuration.setCollapseRowSpan(false);
             exporter.setConfiguration(configuration);
             exporter.exportReport();
-            Desktop.getDesktop().open(new File(archivo));
+            Desktop.getDesktop().open(exportF);
             result="Se ha exportado correctamente el Requerimirnto Interno "+ri_num+".\n"
-                    + "Archivo: "+archivo;
+                    + "Archivo: "+exportF;
 
         } catch (IOException ex) {
             Logger.getLogger(ReportesDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -559,7 +527,7 @@ public class ReportesDAO {
      */
 
     public void reportCustom(int idOperario, ArrayList<Obras> obrasIDlist, Date desde, Date hasta) {
-        String dest = "customReport.xls";
+        
         System.out.println("Cantidad de obras: "+obrasIDlist.size());
         //POIFSFileSystem fs = new POIFSFileSystem(new InputStream() {})
         HSSFWorkbook myWorkBook = new HSSFWorkbook();
@@ -730,9 +698,10 @@ public class ReportesDAO {
             }
             
             mySheet.createFreezePane(2, 2);
+            File dest = new File(FileManager.getDefaultFolder(), "customReport.xls");
             FileOutputStream out = new FileOutputStream(dest);
             myWorkBook.write(out);
-            Desktop.getDesktop().open(new File(dest));
+            Desktop.getDesktop().open(dest);
             out.close();
             
         } catch (SQLException ex){
@@ -742,7 +711,7 @@ public class ReportesDAO {
     }
     
     public boolean reportRISeguimiento( Date desde, Date hasta) {
-        String dest = "SeguimientoRI.xls";
+        
         //Array con los nombres de las campos
         //14
         String[] cabecera = {
@@ -914,9 +883,10 @@ public class ReportesDAO {
             }   
             
             mySheet.createFreezePane(0,5);
+            File dest = new File(FileManager.getDefaultFolder(),"SeguimientoRI.xls");
             FileOutputStream out = new FileOutputStream(dest);
             myWorkBook.write(out);
-            Desktop.getDesktop().open(new File(dest));
+            Desktop.getDesktop().open(dest);
             out.close();
             return true;
         } catch (SQLException ex){

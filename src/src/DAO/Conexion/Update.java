@@ -4,6 +4,7 @@
  */
 package DAO.Conexion;
 
+import Utils.FileManager;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -29,7 +30,7 @@ public class Update {
 
             // Download routine
             InputStream reader = url.openStream();
-            FileOutputStream writer = new FileOutputStream("version.txt");
+            FileOutputStream writer = new FileOutputStream(new File(FileManager.getDefaultFolder(), "version.txt"));
 
             byte[] buffer = new byte[1024];
             int totalBytesRead = 0;
@@ -52,7 +53,7 @@ public class Update {
             // Close input and output streams
             writer.close();
             reader.close();
-            File f = new File("version.txt");
+            File f = new File(FileManager.getDefaultFolder(), "version.txt");
             if (f.canRead()) {
                 String contenido = getArchivo(f.getAbsolutePath());
                 try {

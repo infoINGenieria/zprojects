@@ -5,6 +5,7 @@
 package DAO.Conexion;
 
 
+import Utils.FileManager;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -35,11 +36,11 @@ public class LeerXML {
     public boolean readXML() {
         SAXBuilder builder = new SAXBuilder();
         try {
-            File f = new File("db.xml");
+            File f = FileManager.getPath("db.xml");
             if (f.canRead()) {
                 doc = builder.build(f);
             } else {
-                CrearXML n = new CrearXML("db.xml");
+                CrearXML n = new CrearXML(FileManager.getPath("db.xml").getPath());
                 if (f.canRead()) {
                     doc = builder.build(f);
                 } else {
@@ -102,7 +103,7 @@ public class LeerXML {
 
             try {
                 XMLOutputter out = new XMLOutputter();
-                FileOutputStream file = new FileOutputStream("db.xml");
+                FileOutputStream file = new FileOutputStream(FileManager.getPath("db.xml"));
                 out.output(doc, file);
                 file.flush();
                 file.close();

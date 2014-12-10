@@ -49,12 +49,7 @@ import org.jdesktop.application.FrameView;
 import org.jdesktop.application.TaskMonitor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.net.URI;
 import java.sql.Connection;
 import java.util.ArrayList;
@@ -214,77 +209,6 @@ public class ZilleProjectsView extends FrameView {
         empleadoMasivo= new Operario();
         
     }
-    public void backUp() {
-        /***
-         * @comment: Realiza un backup de la base de datos
-         *
-         */
-    
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            
-            
-            @Override
-            public void run() {
-                String soName = System.getProperty("os.name").toUpperCase();
-                System.out.println(soName);
-                try {
-                    if (soName.equals("LINUX")) { //Si se ejecuta en Linux   
-                        File folder = new File("Backups/");
-                        if(!folder.exists()) folder.mkdirs();
-                        String archivo = folder.getAbsoluteFile()+"/"+ FechaUtil.getDay() + ".sql";
-                        File f = new File(archivo);      
-                        FileWriter wr= new FileWriter(f);
-                        String command = "mysqldump --host=" + conn.getHost() + " --password=" + 
-                                conn.getDbpass() + " --user=" + conn.getDbuser() + " " + conn.getDbname() ;
-                        Process hijo = Runtime.getRuntime().exec(command);
-                        InputStream stdout = hijo.getInputStream();
-                        BufferedReader br = new BufferedReader (new InputStreamReader (stdout));              
-                        String aux = br.readLine(); 
-                        while (aux!=null) 
-                        { 
-                            wr.write(aux);
-                            aux = br.readLine(); 
-                        } 
-                        wr.close();
-
-                        System.out.println("Se realizó correctamente el backup de la base de datos.");
-                        resultBKP = "Se realizó correctamente el backup de la base de datos.";
-
-
-                    } else if (soName.equals("WINDOWS")|| soName.equals("WINDOWS 7")) {  //si se ejecuta en Windows
-                        //String path = "C:\\ZilleProjects\\backups\\";
-                        File folder = new File("Backups\\");
-                        if(!folder.exists()) folder.mkdirs();
-                        String archivo = folder.getAbsoluteFile()+"\\"+ FechaUtil.getDay() + ".sql";
-
-                        File f = new File(archivo);
-                        FileWriter wr= new FileWriter(f);
-                        String command = "mysqldump --opt -h " + conn.getHost() + " --password=" + 
-                                conn.getDbpass() + " --user=" + conn.getDbuser() + " " + conn.getDbname() ;
-                        Process hijo = Runtime.getRuntime().exec(command);
-                        InputStream stdout = hijo.getInputStream();
-                        BufferedReader br = new BufferedReader (new InputStreamReader (stdout));              
-                        String aux = br.readLine(); 
-                        while (aux!=null) 
-                        { 
-                            wr.write(aux);
-                            aux = br.readLine(); 
-                        } 
-                        wr.close();
-                        System.out.println("Se realizó correctamente el backup de la base de datos.");
-                        resultBKP = "Se realizó correctamente el backup de la base de datos.";
-
-                    }
-                } catch (IOException ex) {
-                    System.err.println("Ocurrio un error al realizar el backup de la base de datos.");
-                    resultBKP = "Ocurrio un error al realizar el backup de la base de datos.";
-                    System.err.println(ex);
-
-                }
-            }
-        });
-   
-    }
 
     /*******************************************************************
      * Configuración de la base de datos, lectura de la configuracion,
@@ -370,11 +294,8 @@ public class ZilleProjectsView extends FrameView {
                 loginOut.setText("Identificado como " + UsuarioLogged.getUser());
                 iniciarSesion.setEnabled(false);
                 if(Permisos.verificarCredenciales("Administrador,De Carga")){
-                    //luego del login, se realiza el backup de la db
-                    backUp();
-                    // y se verifican las alarmas
-                    //AlarmasTask al = new AlarmasTask();
-                    //al.start();
+                    
+                    // se verifican las alarmas
                     verificarAlarmas().execute();
                     CargarParametros().execute();
                 }
@@ -565,38 +486,6 @@ public class ZilleProjectsView extends FrameView {
             }
         }
     }
-
-    @Action
-    public Task RespaldarDB() {
-        if (!Permisos.verificarCredenciales("Administrador")) {
-            return null;
-        } else {
-            return new RespaldarDBTask(getApplication());
-        }
-    }
-
-    private class RespaldarDBTask extends org.jdesktop.application.Task<Object, Void> {
-        
-        RespaldarDBTask(org.jdesktop.application.Application app) {
-            super(app);
-        }
-
-        @Override
-        protected Object doInBackground()  {
-
-            backUp();
-            
-            return null;  // return your result
-        }
-
-        @Override
-        protected void succeeded(Object result) {
-               statusMessageLabel.setText(resultBKP);
-               OpcionPanel.showMessageDialog(null, resultBKP, "Aviso", OpcionPanel.INFORMATION_MESSAGE);
-        }
-    }
-    
-    
 
     /*************************************************************************
      * **************   FIN de Configuracion base de datos  ******************
@@ -1274,8 +1163,6 @@ public class ZilleProjectsView extends FrameView {
         jMenu1 = new javax.swing.JMenu();
         menuGenerarInforme = new javax.swing.JMenuItem();
         informesAntesMenu = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
-        backupDB = new javax.swing.JMenuItem();
         javax.swing.JMenu helpMenu = new javax.swing.JMenu();
         javax.swing.JMenuItem aboutMenuItem = new javax.swing.JMenuItem();
         statusPanel = new javax.swing.JPanel();
@@ -1698,18 +1585,6 @@ public class ZilleProjectsView extends FrameView {
         jMenu1.add(informesAntesMenu);
 
         menuBar.add(jMenu1);
-
-        jMenu2.setText(resourceMap.getString("jMenu2.text")); // NOI18N
-        jMenu2.setMargin(new java.awt.Insets(0, 10, 5, 10));
-        jMenu2.setName("jMenu2"); // NOI18N
-
-        backupDB.setAction(actionMap.get("RespaldarDB")); // NOI18N
-        backupDB.setIcon(resourceMap.getIcon("backupDB.icon")); // NOI18N
-        backupDB.setText(resourceMap.getString("backupDB.text")); // NOI18N
-        backupDB.setName("backupDB"); // NOI18N
-        jMenu2.add(backupDB);
-
-        menuBar.add(jMenu2);
 
         helpMenu.setText(resourceMap.getString("helpMenu.text")); // NOI18N
         helpMenu.setMargin(new java.awt.Insets(0, 10, 5, 10));
@@ -2396,7 +2271,6 @@ private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     private javax.swing.JButton BotonGrandeLogin;
     private javax.swing.JMenu EmpleadosMenu;
     private javax.swing.JDialog SituacionExtra;
-    private javax.swing.JMenuItem backupDB;
     private javax.swing.JButton botonBuscarEmpleado;
     private javax.swing.JButton botonGrandeSalir;
     private javax.swing.JButton botonLogin;
@@ -2437,7 +2311,6 @@ private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuItem jMenuItem1;

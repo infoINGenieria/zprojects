@@ -27,6 +27,7 @@ import Modelo.tablemodel.ObrasTablaInforme;
 import Modelo.Operario;
 import Modelo.Periodo;
 import Utils.FechaUtil;
+import Utils.FileManager;
 import Utils.UtilReport;
 import Vista.JDialogCustom;
 import Vista.OpcionPanel;
@@ -2567,7 +2568,7 @@ public class JDReportes extends JDialogCustom {
             // doInBackground() depends on from parameters
             // to GenerarResumenRegistroPersonasTask fields, here.
             super(app);
-            
+            Info("Aguarde mientras se generar el informe...");
         }
         @Override protected Object doInBackground() {
            ReportesDAO rdao=new ReportesDAO();
@@ -2881,7 +2882,7 @@ public class JDReportes extends JDialogCustom {
             // doInBackground() depends on from parameters
             // to NerarExportacionActionTask fields, here.
             super(app);
-            
+            Info("Aguarde mientras se generar los informes...");
         }
         @Override protected Object doInBackground() {
             InformesHorasDAO ihDao= new InformesHorasDAO();
@@ -2889,20 +2890,12 @@ public class JDReportes extends JDialogCustom {
             pDao.conectar();
             ihDao.conectar();
             ArrayList<InformesHoras> list= ihDao.findByPeriodo(periodo);
-            String soName = System.getProperty("os.name").toUpperCase();
-            File folder = new File("Informes("+periodo+")\\");
-                if (soName.equals("LINUX")) { //Si se ejecuta en Linux  
-                        folder = new File("Informes("+periodo+")/");
-                        if(!folder.exists()){
-                            folder.mkdirs();
-                        }
-                }else  {  //si se ejecuta en Windows u otro
-                        if(!folder.exists()){
-                            folder.mkdirs();
-                        }                       
-                }
-                r=true;
-                ruta = folder.getAbsolutePath();
+            
+            File folder = FileManager.getPath(new String[] {"Informes", "Informes("+periodo+")"});
+            if(!folder.exists()){
+                folder.mkdirs();
+            }
+            ruta = folder.getAbsolutePath();
             for(InformesHoras ih: list){
                 
                 try {
@@ -2911,12 +2904,9 @@ public class JDReportes extends JDialogCustom {
                     String operName = pDao.buscar(ih.getId_operario()).getNombre();
                     operName=operName.replaceAll(",","").trim();
                     String archivo=operName+".xls";
-                    if (soName.equals("LINUX")) { //Si se ejecuta en Linux                    
-                            archivo=folder.getAbsoluteFile()+"/"+archivo;
-                    }else  {  //si se ejecuta en Windows)                       
-                            archivo=folder.getAbsoluteFile()+"\\"+archivo;
-                    }
-                    exporter.setExporterOutput(new SimpleOutputStreamExporterOutput(archivo));
+                    File export = new File(folder, archivo);
+                    
+                    exporter.setExporterOutput(new SimpleOutputStreamExporterOutput(export));
                     SimpleXlsReportConfiguration configuration = new SimpleXlsReportConfiguration();
                     configuration.setOnePagePerSheet(true);
                     configuration.setDetectCellType(false);
@@ -2924,7 +2914,7 @@ public class JDReportes extends JDialogCustom {
                     exporter.setConfiguration(configuration);
                     exporter.exportReport();
                     System.out.println("Se ha exportado correctamente:\n"
-                    + "Archivo: "+archivo);
+                    + "Archivo: "+export);
                 } catch (JRException ex) {
                     Logger.getLogger(JDReportes.class.getName()).log(Level.SEVERE, null, ex);
                     r= false;
@@ -2936,7 +2926,7 @@ public class JDReportes extends JDialogCustom {
             } catch (IOException ex) {
                 Logger.getLogger(JDReportes.class.getName()).log(Level.SEVERE, null, ex);
             }
-         return null;   
+         return r=true;   
         }
         @Override protected void succeeded(Object result) {
             if(r){

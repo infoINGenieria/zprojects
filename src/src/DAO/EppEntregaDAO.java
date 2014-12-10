@@ -9,6 +9,7 @@ import Modelo.EntidadAbstracta;
 import Modelo.EppEntrega;
 import Modelo.EppEntregaItem;
 import Modelo.Operario;
+import Utils.FileManager;
 import java.awt.Desktop;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -109,7 +110,7 @@ public class EppEntregaDAO extends AbstractHibernateDAO implements IAbstractDAO 
          * Exportar lo filtrado en la tabla a xla
          * 
          */
-        String dest = "EntregaEpp.xls";
+        
         System.out.println("Cantidad de entregas de indumentaria: "+data.size());
         //POIFSFileSystem fs = new POIFSFileSystem(new InputStream() {})
         HSSFWorkbook myWorkBook = new HSSFWorkbook();
@@ -218,10 +219,11 @@ public class EppEntregaDAO extends AbstractHibernateDAO implements IAbstractDAO 
             catch(Exception e) { }
         }        
         FileOutputStream out;
+        File dest = new File(FileManager.getDefaultFolder(), "EntregaEpp.xls");
         try {
             out = new FileOutputStream(dest);
             myWorkBook.write(out);
-            Desktop.getDesktop().open(new File(dest));
+            Desktop.getDesktop().open(dest);
             out.close();
         } catch (FileNotFoundException ex) {
             Logger.getLogger(FrancosLicenciasDAO.class.getName()).log(Level.SEVERE, null, ex);

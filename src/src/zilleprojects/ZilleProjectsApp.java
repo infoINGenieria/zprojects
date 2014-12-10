@@ -3,6 +3,8 @@
  */
 package zilleprojects;
 
+import Utils.FileManager;
+import Vista.OpcionPanel;
 import java.awt.Component;
 import java.util.EventObject;
 import javax.swing.JOptionPane;
@@ -15,7 +17,7 @@ import org.jdesktop.application.SingleFrameApplication;
  */
 public class ZilleProjectsApp extends SingleFrameApplication {
 
-    public static double VERSION = 1.10;
+    public static double VERSION = 1.11;
     /**
      * At startup create and show the main frame of the application.
      */
@@ -39,7 +41,10 @@ public class ZilleProjectsApp extends SingleFrameApplication {
             }
         });
         
-        
+        if(!FileManager.checkUserFolder()) {
+            OpcionPanel.showError("Error al crear las carpetas de usuario. \n"
+                    + "Es posible que no pueda realizar exportaciones.");
+        }
         show(new ZilleProjectsView(this));
     }
 
