@@ -26,6 +26,7 @@ public class CrearXML {
             XMLOutputter out = new XMLOutputter();
             FileOutputStream salida = new FileOutputStream(file);
             out.output(doc, salida);
+            
             salida.flush();
             salida.close();
             //out.output(doc, System.out);

@@ -11,16 +11,64 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import javax.swing.JFileChooser;
 
 /**
  *
  * @author m4tuu
  */
 public class FileManager {
+    public static String getDefaultFolder() {
+        File defaultDirectory = new JFileChooser().getFileSystemView().getDefaultDirectory();
+        File zProjectsFolder = new File(defaultDirectory, "zProjects");
+        System.out.println("Default folder: " + zProjectsFolder.getPath());
+        return zProjectsFolder.getPath();
+    }
+    
+    public static boolean checkUserFolder() {
+        File f = new File(getDefaultFolder());
+        if(!f.exists()) {
+            f.mkdir();
+        }
+        if(f.isDirectory() && f.canWrite()) {
+            File tmp = new File(f, "tmp");
+            if (!tmp.exists()) {
+                tmp.mkdir();
+            }
+            return true;
+        }
+        return false;
+    }
+    
+    public static File getPath(String[] paths) {
+        File result = new File(getDefaultFolder());
+        for(String str:paths){
+            result = new File(result, str);
+        }
+        System.out.println("get folder: " + result.getPath());
+        return result;
+    }
+    
+    public static File getPathDirectory(String[] paths, boolean createIt) {
+        File result = getPath(paths);
+        if(!result.exists() && createIt){
+            result.mkdirs();
+        }
+        return result;
+    }
+    
+    public static File getPath(String path) {
+        return new File(getDefaultFolder(), path);
+    }
+    
     public static boolean copyfile(String srFile, String dtFile){
+        File f1 = new File(srFile);
+        File f2 = new File(dtFile);
+        return copyfile(f1, f2);
+    }
+    public static boolean copyfile(File f1, File f2){
         try{
-            File f1 = new File(srFile);
-            File f2 = new File(dtFile);
+            
             InputStream in = new FileInputStream(f1);
   
             //For Append the file.
@@ -45,5 +93,9 @@ public class FileManager {
             System.out.println(e.getMessage());  
         }
         return false;
-    }  
+    }
+
+    public static File getTmpFolder() {
+        return new File(getDefaultFolder(), "tmp");
+    }
 }

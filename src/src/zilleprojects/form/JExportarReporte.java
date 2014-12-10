@@ -219,10 +219,10 @@ public class JExportarReporte extends JDialogCustom {
             // Your Task's code here.  This method runs
             // on a background thread, so don't reference
             // the Swing GUI from here.
-            String folder = VerifyFolder();
+            
             JRXlsExporter exporter = new JRXlsExporter();
             exporter.setExporterInput(new SimpleExporterInput(report));
-            File xls = new File(folder + "/" + "export.xls");
+            File xls = new File(FileManager.getTmpFolder(), "export.xls");
             if(!xls.canWrite()) xls.setWritable(true);
             exporter.setExporterOutput(new SimpleOutputStreamExporterOutput(xls));
             SimpleXlsReportConfiguration configuration = new SimpleXlsReportConfiguration();
@@ -235,9 +235,9 @@ public class JExportarReporte extends JDialogCustom {
             try {
                 exporter.exportReport();
                 try {
-                    if(FileManager.copyfile(folder + "/" + "export.xls", folder + "/" + "export-open.xls")){
-                        File xls1 = new File(folder + "/" + "export-open.xls");
-                        Desktop.getDesktop().open(xls1);
+                    File dest = new File(FileManager.getTmpFolder(), "export-open.xls");
+                    if(FileManager.copyfile(xls, dest)){
+                        Desktop.getDesktop().open(dest);
                         xls.delete();
                         
                     }else{
@@ -246,7 +246,7 @@ public class JExportarReporte extends JDialogCustom {
                     }
                 } catch (IOException ex) {
                     Logger.getLogger(JExportarReporte.class.getName()).log(Level.SEVERE, null, ex);
-                    Error("Reporte generado pero fallo la apertura. Su reporte se encuentra en " + folder + "/" + "export.xls");
+                    Error("Reporte generado pero fallo la apertura. Su reporte se encuentra en " + xls);
                 }
                 Success("Reporte exportado correctamente. Recuerde guardarlo en otra ubicación.");
             } catch (JRException ex) {
@@ -281,19 +281,20 @@ public class JExportarReporte extends JDialogCustom {
             // Your Task's code here.  This method runs
             // on a background thread, so don't reference
             // the Swing GUI from here.
-            String folder = VerifyFolder();
+            File tmp = FileManager.getTmpFolder();
             try {
                 byte[] pdfBytes = JasperExportManager.exportReportToPdf(report);   
-                File pdf = new File(folder + "/report.pdf");
+                File pdf = new File(tmp, "report.pdf");
                 
                 FileOutputStream fos = new FileOutputStream(pdf);
                 fos.write(pdfBytes);
                 fos.close();
                 
                 try {
-                    if(FileManager.copyfile(folder + "/report.pdf", folder + "/report-open.pdf")){
+                    File dest = new File(tmp, "report-open.pdf");
+                    if(FileManager.copyfile(pdf, dest)){
                         pdf.delete();
-                        Desktop.getDesktop().open(new File(folder + "/report-open.pdf"));
+                        Desktop.getDesktop().open(dest);
                     }
                     else {
                         pdf.setReadOnly();
@@ -301,7 +302,7 @@ public class JExportarReporte extends JDialogCustom {
                     }
                 } catch (IOException ex) {
                     Logger.getLogger(JExportarReporte.class.getName()).log(Level.SEVERE, null, ex);
-                    Error("Reporte generado pero fallo la apertura. Su reporte se encuentra en " + folder + "/" + "export.pdf");
+                    Error("Reporte generado pero fallo la apertura. Su reporte se encuentra en " + pdf);
                 }
                 
             }catch(FileNotFoundException ex){
@@ -320,15 +321,6 @@ public class JExportarReporte extends JDialogCustom {
         }
     }
 
-    private String VerifyFolder(){
-        
-        File folder = new File("tmp");
-        if(!folder.exists()){
-            folder.mkdirs();
-            
-        }                       
-        return folder.getAbsolutePath();
-    }
 
     @Action
     public Task printReport() {

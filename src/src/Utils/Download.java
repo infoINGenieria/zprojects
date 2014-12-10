@@ -147,17 +147,9 @@ public class Download extends Observable implements Runnable {
                 size = contentLength;
                 stateChanged();
             }
-            String filename = folder;
-            if (System.getProperty("os.name").toUpperCase().equals("LINUX")) { //Si se ejecuta en Linux  
-                File _folder = new File(folder);
-                if(!_folder.exists()) _folder.mkdirs();
-                filename = _folder.getAbsoluteFile()+ "/" + getFileName(url);
-            } else if (System.getProperty("os.name").toUpperCase().equals("WINDOWS") || 
-                    System.getProperty("os.name").toUpperCase().equals("WINDOWS 7")) {  //si se ejecuta en Windows
-                File _folder = new File(folder);
-                if(!_folder.exists()) _folder.mkdirs();
-                filename = _folder.getAbsoluteFile() + "\\" + getFileName(url);
-            }
+            File _folder = new File(folder);
+            if(!_folder.exists()) _folder.mkdirs();
+            File filename = new File(_folder, getFileName(url));
             
             // Open file and seek to the end of it.
             file = new RandomAccessFile(filename, "rw");

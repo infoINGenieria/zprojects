@@ -8,6 +8,7 @@ import Modelo.DatosFrancoOperario;
 import Modelo.EntidadAbstracta;
 import Modelo.Operario;
 import Utils.FechaUtil;
+import Utils.FileManager;
 import ViewModel.ItemDetalleFrancosLicencias;
 import ViewModel.ItemFrancoLicencia;
 import java.awt.Desktop;
@@ -158,7 +159,7 @@ public class FrancosLicenciasDAO extends AbstractDAO {
     }
     
     public void ReporteXlsResumenFrancosLicencias(List<EntidadAbstracta> data) {
-        String dest = "Francos&Licencias.xls";
+        
         System.out.println("Cantidad de obras: "+data.size());
         //POIFSFileSystem fs = new POIFSFileSystem(new InputStream() {})
         HSSFWorkbook myWorkBook = new HSSFWorkbook();
@@ -275,12 +276,12 @@ public class FrancosLicenciasDAO extends AbstractDAO {
         }   
         
 
-        
+        File dest = new File(FileManager.getDefaultFolder(), "Francos&Licencias.xls");
         FileOutputStream out;
         try {
             out = new FileOutputStream(dest);
             myWorkBook.write(out);
-            Desktop.getDesktop().open(new File(dest));
+            Desktop.getDesktop().open(dest);
             out.close();
         } catch (FileNotFoundException ex) {
             Logger.getLogger(FrancosLicenciasDAO.class.getName()).log(Level.SEVERE, null, ex);
