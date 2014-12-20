@@ -118,7 +118,7 @@ begin
     RegQueryStringValue(HKEY_LOCAL_MACHINE,
       'SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\{5CC1175E-DB5D-46FD-AA6B-A89A27CE96D8}_is1',
       'DisplayVersion', oldVersion);
-    if (CompareVersion(oldVersion, '1.1') < 0) then
+    if (CompareVersion(oldVersion, '1.12') < 0) then
     begin
       if MsgBox('La versión ' + oldVersion + ' de zProjects ya se encuentra instalada. ¿Desea quitar esta versión y continuar con la instalación?',
         mbConfirmation, MB_YESNO) = IDNO then

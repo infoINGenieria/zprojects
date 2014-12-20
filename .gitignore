@@ -12,3 +12,4 @@ version.txt
 db.xml
 *.sql
 *.class
+installer/ZProjectsInstall.exe
