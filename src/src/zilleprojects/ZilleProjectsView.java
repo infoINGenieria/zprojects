@@ -49,7 +49,9 @@ import org.jdesktop.application.FrameView;
 import org.jdesktop.application.TaskMonitor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URI;
 import java.sql.Connection;
 import java.util.ArrayList;
@@ -168,24 +170,45 @@ public class ZilleProjectsView extends FrameView {
 
     
     class OpenUrlAction implements ActionListener {
-      @Override public void actionPerformed(ActionEvent e) {
-          try{
-              final URI uri = new URI("http://matiasvarela.com.ar/static/shared/zille/ZilleProjects.jar");
-              open(uri);
-          }catch (Exception ex) {}
-      }
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+
+            if (OpcionPanel.YES_OPTION
+                    == OpcionPanel.showConfirmDialog(null, "Se cerrará la aplicación para "
+                    + "realizar la actualización. ¿Desea continuar?\nNota:Si tiene problemas con la actualización, intente ejecutando ZProjects como administrador.", "Actualización", OpcionPanel.YES_NO_OPTION,
+                    OpcionPanel.INFORMATION_MESSAGE)) {
+                try {
+                    ZilleProjectsApp.closeDirectlly = true;
+                    String currentPath = new File(".").getAbsolutePath();
+                    System.out.println("Current: " + currentPath);
+                    // Run a java app in a separate system process
+                    Process proc = Runtime.getRuntime().exec("java -jar ZProjectsUpdater.jar "+currentPath);
+                    // Then retreive the process output
+//                    InputStream in = proc.getInputStream();
+//                    InputStream err = proc.getErrorStream();
+//                    System.out.println(in.toString());
+//                    System.out.println(err.toString());
+                    ZilleProjectsApp.getApplication().exit();
+
+                } catch (Exception ex) {
+                }
+            }
+        }
     }
-    private static void open(URI uri) {
-    if (Desktop.isDesktopSupported()) {
-      try {
-        Desktop.getDesktop().browse(uri);
-      } catch (IOException e) { OpcionPanel.showMessageDialog(null, "Por favor, descargue la última versión desde "
-              + "el siguiente link:\nhttp://matiasvarela.com.ar/static/shared/zille/ZilleProjects.jar"); }
-    } else { 
-        OpcionPanel.showMessageDialog(null, "Por favor, descargue la última versión desde el siguiente "
-                + "link:\nhttp://matiasvarela.com.ar/static/shared/zille/ZilleProjects.jar");
-    }
-  }
+
+    
+//    private static void open(URI uri) {
+//    if (Desktop.isDesktopSupported()) {
+//      try {
+//        Desktop.getDesktop().browse(uri);
+//      } catch (IOException e) { OpcionPanel.showMessageDialog(null, "Por favor, descargue la última versión desde "
+//              + "el siguiente link:\nhttp://matiasvarela.com.ar/static/shared/zille/ZilleProjects.jar"); }
+//    } else { 
+//        OpcionPanel.showMessageDialog(null, "Por favor, descargue la última versión desde el siguiente "
+//                + "link:\nhttp://matiasvarela.com.ar/static/shared/zille/ZilleProjects.jar");
+//    }
+//  }
     
     @Action
     public void showAboutBox() {
@@ -1323,7 +1346,8 @@ public class ZilleProjectsView extends FrameView {
         jPanel1.setName("jPanel1"); // NOI18N
         jPanel1.setOpaque(false);
 
-        btnDescargarVersion.setText("<HTML><FONT color=\"#000099\"><U>Descargar la última versión del sistema.</U></FONT></HTML>");
+        btnDescargarVersion.setIcon(resourceMap.getIcon("btnDescargarVersion.icon")); // NOI18N
+        btnDescargarVersion.setText(resourceMap.getString("btnDescargarVersion.text")); // NOI18N
         btnDescargarVersion.setName("btnDescargarVersion"); // NOI18N
         btnDescargarVersion.setVisible(false);
         btnDescargarVersion.setHorizontalAlignment(SwingConstants.CENTER);

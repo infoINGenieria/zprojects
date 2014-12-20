@@ -17,7 +17,8 @@ import org.jdesktop.application.SingleFrameApplication;
  */
 public class ZilleProjectsApp extends SingleFrameApplication {
 
-    public static double VERSION = 1.11;
+    public static double VERSION = 1.12;
+    public static boolean closeDirectlly = false;
     /**
      * At startup create and show the main frame of the application.
      */
@@ -27,13 +28,16 @@ public class ZilleProjectsApp extends SingleFrameApplication {
 
             @Override
             public boolean canExit(EventObject e) {
-                boolean bOkToExit = false;
-                Component source = (Component) e.getSource();
-                bOkToExit = JOptionPane.showConfirmDialog(null,
-                        "¿Realmente desea salir?", "Salir?", 0)
-                        == JOptionPane.YES_OPTION;
+                if (!closeDirectlly) {
+                    boolean bOkToExit = false;
+                    Component source = (Component) e.getSource();
+                    bOkToExit = JOptionPane.showConfirmDialog(null,
+                            "¿Realmente desea salir?", "Salir?", 0)
+                            == JOptionPane.YES_OPTION;
 
-                return bOkToExit;
+                    return bOkToExit;
+                }
+                return true;
             }
 
             @Override
