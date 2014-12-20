@@ -5,19 +5,21 @@
 package DAO.Conexion;
 
 import Utils.FileManager;
+import Utils.JsonReader;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.InputStream;
 import java.net.URL;
+import org.json.JSONObject;
 
 /**
  *
  * @author matuuar
  */
 public class Update {
-
+    public static String lastVersionDiscovery="";
     public static boolean isLastVersion(LeerXML config) {
         boolean isLast = true;
         try {
@@ -25,45 +27,27 @@ public class Update {
             long startTime = System.currentTimeMillis();
             // Open connection
             System.out.println("Connecting...");
-            URL url = new URL("http://matiasvarela.com.ar/static/shared/zille/version.txt");
-            url.openConnection();
-
-            // Download routine
-            InputStream reader = url.openStream();
-            FileOutputStream writer = new FileOutputStream(new File(FileManager.getDefaultFolder(), "version.txt"));
-
-            byte[] buffer = new byte[1024];
-            int totalBytesRead = 0;
-            int bytesRead = 0;
-
-            while ((bytesRead = reader.read(buffer)) > 0) {
-                writer.write(buffer, 0, bytesRead);
-                buffer = new byte[1024];
-                totalBytesRead += bytesRead;
-            }
-
+            JSONObject json;
+            json = JsonReader.readJsonFromUrl("http://matiasvarela.com.ar/api/last");
+            String v = json.getString("version");
             // Download finished
             long endTime = System.currentTimeMillis();
 
             // Output download information
-            System.out.println("Done.");
-            System.out.println((new Integer(totalBytesRead).toString()) + " bytes read.");
+            System.out.println("Done. Last version: " + v);
             System.out.println("It took " + (new Long(endTime - startTime).toString()) + " milliseconds.");
 
-            // Close input and output streams
-            writer.close();
-            reader.close();
-            File f = new File(FileManager.getDefaultFolder(), "version.txt");
-            if (f.canRead()) {
-                String contenido = getArchivo(f.getAbsolutePath());
-                try {
-                    double _version = Double.parseDouble(contenido);
-                    if (zilleprojects.ZilleProjectsApp.VERSION < _version) {
-                        isLast = false;
-                    }
-                } catch (NumberFormatException e) {
+            
+            
+            try {
+                double _version = Double.parseDouble(v);
+                if (zilleprojects.ZilleProjectsApp.VERSION < _version) {
+                    isLast = false;
+                    lastVersionDiscovery = v;
                 }
+            } catch (NumberFormatException e) {
             }
+            
         } catch (Exception ex) {
         }
         return isLast;

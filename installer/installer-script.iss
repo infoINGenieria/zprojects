@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "ZProjects"
-#define MyAppVersion "1.1"
+#define MyAppVersion "1.12"
 #define MyAppPublisher "InfoINGeniería"
 #define MyAppURL "http://www.info-ingenieria.com.ar/"
 #define MyAppExeName "zProjectsLaucher.exe"
@@ -36,6 +36,7 @@ Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{
 
 [Files]
 Source: "Z:\Home\proyectos\zprojects\installer\zProjectsLaucher.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "Z:\Home\proyectos\zprojects\installer\ZProjectsUpdater.jar"; DestDir: "{app}"; Flags: ignoreversion
 Source: "Z:\Home\proyectos\zprojects\src\dist\lib\*"; DestDir: "{app}\lib"; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "Z:\Home\proyectos\zprojects\src\dist\ZilleProjects.jar"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "Z:\Home\proyectos\zprojects\LICENSE"; DestDir: "{app}"; Flags: ignoreversion
