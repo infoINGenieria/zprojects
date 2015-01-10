@@ -538,6 +538,15 @@
                 <Property name="name" type="java.lang.String" value="jMenuItem11" noResource="true"/>
               </Properties>
             </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="jFamiliaMenu">
+              <Properties>
+                <Property name="action" type="javax.swing.Action" editor="org.netbeans.modules.swingapp.ActionEditor">
+                  <action class="zilleprojects.ZilleProjectsView" id="mostrarFamiliaEquipo" methodName="mostrarFamiliaEquipo"/>
+                </Property>
+                <Property name="text" type="java.lang.String" resourceKey="jFamiliaMenu.text"/>
+                <Property name="name" type="java.lang.String" value="jFamiliaMenu" noResource="true"/>
+              </Properties>
+            </MenuItem>
           </SubComponents>
         </Menu>
         <Menu class="javax.swing.JMenu" name="jMenu5">

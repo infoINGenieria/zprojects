@@ -42,8 +42,8 @@ public class EquiposDAO {
             */
             query = "insert into equipos (N_INTERNO, EQUIPO, MARCA,"
                     + " MODELO, AÑO, DOMINIO, VTO_VTV, VTO_SEGURO, "
-                    + " VTO_OTROS1, VTO_OTROS2, VTO_OTROS3, DESCRIPCION_VTO1, DESCRIPCION_VTO2, DESCRIPCION_VTO3"
-                    + ") values ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                    + " VTO_OTROS1, VTO_OTROS2, VTO_OTROS3, DESCRIPCION_VTO1, DESCRIPCION_VTO2, DESCRIPCION_VTO3,"
+                    + " FAMILIA_EQUIPO_ID) values ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?)";
             PreparedStatement ps = conector.prepareStatement(query);
             ps.setString(1, eq.getN_interno());
             ps.setString(2, eq.getEquipos());
@@ -59,6 +59,7 @@ public class EquiposDAO {
             ps.setString(12, eq.getDescripcion_vto1());
             ps.setString(13, eq.getDescripcion_vto2());
             ps.setString(14, eq.getDescripcion_vto3());
+            ps.setInt(15, eq.getFamilia_equipo_id());
             ps.executeUpdate();
             ResultSet generatedKeys = ps.getGeneratedKeys();
 
@@ -81,7 +82,7 @@ public class EquiposDAO {
             String query = "update equipos set N_INTERNO=?, EQUIPO=?, MARCA=?, "
                     + "MODELO=?, AÑO=?, DOMINIO=?, VTO_VTV=?, VTO_SEGURO=?, "
                     + "VTO_OTROS1=?, VTO_OTROS2=?, VTO_OTROS3=?, DESCRIPCION_VTO1=?, "
-                    + "DESCRIPCION_VTO2=?, DESCRIPCION_VTO3=? "
+                    + "DESCRIPCION_VTO2=?, DESCRIPCION_VTO3=?, FAMILIA_EQUIPO_ID=? "
                     + "where ID = ?";
             PreparedStatement ps = conector.prepareStatement(query);
             ps.setString(1, eq.getN_interno());
@@ -98,7 +99,8 @@ public class EquiposDAO {
             ps.setString(12, eq.getDescripcion_vto1());
             ps.setString(13, eq.getDescripcion_vto2());
             ps.setString(14, eq.getDescripcion_vto3());
-            ps.setInt(15, eq.getId());
+            ps.setInt(15, eq.getFamilia_equipo_id());
+            ps.setInt(16, eq.getId());
             ps.executeUpdate();
             ResultSet rs = ps.getGeneratedKeys();
             if (rs.next()) {
@@ -140,7 +142,7 @@ public class EquiposDAO {
                 eq.setDescripcion_vto1(rs.getString("DESCRIPCION_VTO1"));
                 eq.setDescripcion_vto2(rs.getString("DESCRIPCION_VTO2"));
                 eq.setDescripcion_vto3(rs.getString("DESCRIPCION_VTO3"));
-                
+                eq.setFamilia_equipo_id(rs.getInt("FAMILIA_EQUIPO_ID"));
                 equipos.add(eq);
             }
             rs.close();
@@ -176,6 +178,7 @@ public class EquiposDAO {
                 eq.setDescripcion_vto1(rs.getString("DESCRIPCION_VTO1"));
                 eq.setDescripcion_vto2(rs.getString("DESCRIPCION_VTO2"));
                 eq.setDescripcion_vto3(rs.getString("DESCRIPCION_VTO3"));
+                eq.setFamilia_equipo_id(rs.getInt("FAMILIA_EQUIPO_ID"));
                 equipos.add(eq);
             }
             rs.close();
@@ -212,6 +215,7 @@ public class EquiposDAO {
                 eq.setDescripcion_vto1(rs.getString("DESCRIPCION_VTO1"));
                 eq.setDescripcion_vto2(rs.getString("DESCRIPCION_VTO2"));
                 eq.setDescripcion_vto3(rs.getString("DESCRIPCION_VTO3"));
+                eq.setFamilia_equipo_id(rs.getInt("FAMILIA_EQUIPO_ID"));
             }
             rs.close();
             ps.close();
@@ -253,6 +257,7 @@ public class EquiposDAO {
                 eq.setDescripcion_vto1(rs.getString("DESCRIPCION_VTO1"));
                 eq.setDescripcion_vto2(rs.getString("DESCRIPCION_VTO2"));
                 eq.setDescripcion_vto3(rs.getString("DESCRIPCION_VTO3"));
+                eq.setFamilia_equipo_id(rs.getInt("FAMILIA_EQUIPO_ID"));
                equipos.add(eq);
             }
             rs.close();
@@ -321,6 +326,7 @@ public class EquiposDAO {
                 eq.setDescripcion_vto1(rs.getString("DESCRIPCION_VTO1"));
                 eq.setDescripcion_vto2(rs.getString("DESCRIPCION_VTO2"));
                 eq.setDescripcion_vto3(rs.getString("DESCRIPCION_VTO3"));
+                eq.setFamilia_equipo_id(rs.getInt("FAMILIA_EQUIPO_ID"));
                equipos.add(eq);
             }
             rs.close();

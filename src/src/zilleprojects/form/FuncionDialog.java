@@ -53,13 +53,16 @@ public class FuncionDialog extends ZilleDialog {
         btnCancelar = new javax.swing.JButton();
         btnAceptar = new javax.swing.JButton();
 
+        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(zilleprojects.ZilleProjectsApp.class).getContext().getResourceMap(FuncionDialog.class);
+        jDialog1.setTitle(resourceMap.getString("jDialog1.title")); // NOI18N
+        jDialog1.setAlwaysOnTop(true);
+        jDialog1.setModal(true);
         jDialog1.setName("jDialog1"); // NOI18N
 
         jPanel1.setName("jPanel1"); // NOI18N
         jPanel1.setLayout(new java.awt.GridLayout(3, 2, 10, 10));
 
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(zilleprojects.ZilleProjectsApp.class).getContext().getResourceMap(FuncionDialog.class);
         jLabel2.setText(resourceMap.getString("jLabel2.text")); // NOI18N
         jLabel2.setName("jLabel2"); // NOI18N
         jPanel1.add(jLabel2);
@@ -166,8 +169,7 @@ public class FuncionDialog extends ZilleDialog {
     }
 
     @Override
-    protected ZilleAbstractTableModel getTableModel() {
-        
+    protected ZilleAbstractTableModel getTableModel() {      
         return model;
     }
 

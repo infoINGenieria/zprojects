@@ -19,5 +19,7 @@
     <mapping class="Modelo.EPP"/>
     <mapping class="Modelo.EPPOperario" />
     <mapping class="Modelo.Operario" />
+    <mapping class="Modelo.FamiliaEquipo" />
+    <mapping class="Modelo.TipoCosto" />
   </session-factory>
 </hibernate-configuration>
