@@ -77,6 +77,7 @@ import zilleprojects.form.JDEmpleadoGestion;
 import zilleprojects.form.JDEntregaIndumentaria;
 import zilleprojects.form.JDEquipos;
 import zilleprojects.form.JDEstacionServicio;
+import zilleprojects.form.JDFamiliaEquipo;
 import zilleprojects.form.JDObrasGestion;
 import zilleprojects.form.JDOrdenTrabajo;
 import zilleprojects.form.JDParametrosSistema;
@@ -567,6 +568,16 @@ public class ZilleProjectsView extends FrameView {
             ZilleProjectsApp.getApplication().show(ordenDeTrabajo);
         } 
 
+    }
+    
+    @Action
+    public void mostrarFamiliaEquipo() {
+        if (Permisos.verificarCredenciales("Administrador,De Carga")) {
+            JFrame mainFrame = ZilleProjectsApp.getApplication().getMainFrame();
+            JDFamiliaEquipo dialog = new JDFamiliaEquipo(mainFrame, true);
+            dialog.setLocationRelativeTo(mainFrame);   
+            ZilleProjectsApp.getApplication().show(dialog);
+        } 
     }
     
     @Action
@@ -1180,6 +1191,7 @@ public class ZilleProjectsView extends FrameView {
         jMenuItem10 = new javax.swing.JMenuItem();
         menuIndumentaria = new javax.swing.JMenuItem();
         jMenuItem11 = new javax.swing.JMenuItem();
+        jFamiliaMenu = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
         jMenuItem6 = new javax.swing.JMenuItem();
         jMenuItem7 = new javax.swing.JMenuItem();
@@ -1571,6 +1583,11 @@ public class ZilleProjectsView extends FrameView {
         jMenuItem11.setText(resourceMap.getString("jMenuItem11.text")); // NOI18N
         jMenuItem11.setName("jMenuItem11"); // NOI18N
         jMenuParam.add(jMenuItem11);
+
+        jFamiliaMenu.setAction(actionMap.get("mostrarFamiliaEquipo")); // NOI18N
+        jFamiliaMenu.setText(resourceMap.getString("jFamiliaMenu.text")); // NOI18N
+        jFamiliaMenu.setName("jFamiliaMenu"); // NOI18N
+        jMenuParam.add(jFamiliaMenu);
 
         menuBar.add(jMenuParam);
 
@@ -2323,6 +2340,7 @@ private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     private javax.swing.JCheckBox isHasta;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JMenuItem jFamiliaMenu;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;

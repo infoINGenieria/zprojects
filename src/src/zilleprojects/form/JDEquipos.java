@@ -10,14 +10,17 @@
  */
 package zilleprojects.form;
 
+import DAO.AbstractHibernateDAO;
 import DAO.EquiposDAO;
 import Modelo.Equipos;
+import Modelo.FamiliaEquipo;
 import Utils.Permisos;
 import Vista.OpcionPanel;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 import org.jdesktop.application.Action;
 import org.jdesktop.application.Task;
@@ -37,6 +40,11 @@ public class JDEquipos extends javax.swing.JDialog {
         getRootPane().setDefaultButton(botonBuscar);
         setIconImage(icono);
         desbloquearCampos(false);
+        ArrayList<FamiliaEquipo> familias = new ArrayList<FamiliaEquipo>();
+        familias.add(new FamiliaEquipo(0) {{ setNombre("Seleccione una familia"); }});
+        familias.addAll(AbstractHibernateDAO.getListaEntidades(FamiliaEquipo.class));
+        familiasCombo = new DefaultComboBoxModel(familias.toArray());
+        cmbFamilia.setModel(familiasCombo);
     }
 
     /** This method is called from within the constructor to
@@ -85,6 +93,8 @@ public class JDEquipos extends javax.swing.JDialog {
         descripcionVto1 = new javax.swing.JTextField();
         descripcionVto2 = new javax.swing.JTextField();
         descripcionVto3 = new javax.swing.JTextField();
+        cmbFamilia = new javax.swing.JComboBox();
+        jLabel9 = new javax.swing.JLabel();
         btnGuardar = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         alertasText = new javax.swing.JLabel();
@@ -306,6 +316,12 @@ public class JDEquipos extends javax.swing.JDialog {
         descripcionVto3.setName("descripcionVto3"); // NOI18N
         descripcionVto3.setPreferredSize(new java.awt.Dimension(100, 31));
 
+        cmbFamilia.setModel(familiasCombo);
+        cmbFamilia.setName("cmbFamilia"); // NOI18N
+
+        jLabel9.setText(resourceMap.getString("jLabel9.text")); // NOI18N
+        jLabel9.setName("jLabel9"); // NOI18N
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -322,26 +338,19 @@ public class JDEquipos extends javax.swing.JDialog {
                 .addGap(10, 10, 10)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(nInternoText, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(10, 10, 10)
-                        .addComponent(marcaText, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(descripcionVto3, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
                         .addComponent(vtoOtros3, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(descripcionVto1, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
                         .addComponent(vtoOtros1, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(descripcionVto2, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
                         .addComponent(vtoOtros2, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(modeloText, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 458, Short.MAX_VALUE)
-                    .addComponent(equipoText, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 458, Short.MAX_VALUE)
-                    .addComponent(IDequipos, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(modeloText, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 462, Short.MAX_VALUE)
+                    .addComponent(equipoText, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 462, Short.MAX_VALUE)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(añoText, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -356,7 +365,21 @@ public class JDEquipos extends javax.swing.JDialog {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(dominioText, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(dominioText, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(nInternoText, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(IDequipos, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 110, Short.MAX_VALUE)
+                                .addComponent(jLabel9)))
+                        .addGap(10, 10, 10)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(cmbFamilia, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(marcaText, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
         );
 
@@ -365,6 +388,8 @@ public class JDEquipos extends javax.swing.JDialog {
         jPanel3Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jLabel3, jLabel7, jLabel8});
 
         jPanel3Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {añoText, nInternoText, vtoVt});
+
+        jPanel3Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {cmbFamilia, marcaText});
 
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -380,7 +405,10 @@ public class JDEquipos extends javax.swing.JDialog {
                                 .addComponent(idAutolabel))
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addGap(5, 5, 5)
-                                .addComponent(IDequipos, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(IDequipos, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(cmbFamilia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel9))))
                         .addGap(10, 10, 10)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(nInternoText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -444,6 +472,8 @@ public class JDEquipos extends javax.swing.JDialog {
                     .addComponent(descripcionVto3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(27, Short.MAX_VALUE))
         );
+
+        jPanel3Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {cmbFamilia, marcaText});
 
         btnGuardar.setAction(actionMap.get("agregarEquipo")); // NOI18N
         btnGuardar.setIcon(resourceMap.getIcon("btnGuardar.icon")); // NOI18N
@@ -639,6 +669,7 @@ public class JDEquipos extends javax.swing.JDialog {
         vtoOtros3.setEnabled(b);
         vtoVt.setEnabled(b);  
         vto_seguro.setEnabled(b);
+        cmbFamilia.setEnabled(b);
         alertasText.setText(null);
     }
     
@@ -696,33 +727,7 @@ public class JDEquipos extends javax.swing.JDialog {
         vtoOtros3.setDate(eq.getVto_otros3());
         vtoVt.setDate(eq.getVto_vtv());
         vto_seguro.setDate((eq.getVto_seguro()));
-        
-        /*
-            if (a.getVto_vtv() != null) {
-                vtoVt.setDate(a.getVto_vtv());
-            } else {
-                vtoVt.setDate(null);
-            }
-            if (a.getVto_seguro() != null) {
-                vto_seguro.setDate(a.getVto_seguro());
-            } else {
-                vto_seguro.setDate(null);
-            }
-            if (a.getVto_otros1() != null) {
-                vtoOtros1.setDate(a.getVto_otros1());
-            } else {
-                vtoOtros1.setDate(null);
-            }
-            if (a.getVto_otros2() != null) {
-                vtoOtros2.setDate(a.getVto_otros2());
-            } else {
-                vtoOtros2.setDate(null);
-            }
-            if (a.getVto_otros3() != null) {
-                vtoOtros3.setDate(a.getVto_otros3());
-            } else {
-                vtoOtros3.setDate(null);
-            }*/
+        cmbFamilia.setSelectedItem(new FamiliaEquipo(eq.getFamilia_equipo_id()));
     }
     
     public void limpiarCampos() {
@@ -741,6 +746,7 @@ public class JDEquipos extends javax.swing.JDialog {
         vtoOtros3.setDate(null);
         vtoVt.setDate(null);
         vto_seguro.setDate(null);
+        cmbFamilia.setSelectedIndex(0);
         //alertasText.setText(null);
     }
     
@@ -892,6 +898,13 @@ public class JDEquipos extends javax.swing.JDialog {
                 OpcionPanel.YES_NO_OPTION)) {
             return null;
         }
+        if(nInternoText.getText().isEmpty()){
+            OpcionPanel.showMessageDialog(null, "El campo N° INTERNO es obligatorio.", "Error!", OpcionPanel.ERROR_MESSAGE);
+            return null;
+        } else if (cmbFamilia.getSelectedIndex() == 0) {
+            OpcionPanel.showMessageDialog(null, "Debe seleccionar una familia de equipo", "Error!", OpcionPanel.ERROR_MESSAGE);
+            return null;
+        }
         return new ModificarEquiposTask(org.jdesktop.application.Application.getInstance(zilleprojects.ZilleProjectsApp.class));
     }
 
@@ -937,6 +950,7 @@ public class JDEquipos extends javax.swing.JDialog {
             eq.setDescripcion_vto1(descripcionVto1.getText());
             eq.setDescripcion_vto2(descripcionVto2.getText());
             eq.setDescripcion_vto3(descripcionVto3.getText());
+            eq.setFamilia_equipo_id(((FamiliaEquipo)cmbFamilia.getSelectedItem()).getId());
 
         }
 
@@ -964,6 +978,9 @@ public class JDEquipos extends javax.swing.JDialog {
     public Task agregarEquipo() {
         if(nInternoText.getText().isEmpty()){
             OpcionPanel.showMessageDialog(null, "El campo N° INTERNO es obligatorio.", "Error!", OpcionPanel.ERROR_MESSAGE);
+            return null;
+        } else if (cmbFamilia.getSelectedIndex() == 0) {
+            OpcionPanel.showMessageDialog(null, "Debe seleccionar una familia de equipo", "Error!", OpcionPanel.ERROR_MESSAGE);
             return null;
         }else{
             return new AgregarEquipoTask(org.jdesktop.application.Application.getInstance(zilleprojects.ZilleProjectsApp.class));
@@ -1009,6 +1026,7 @@ public class JDEquipos extends javax.swing.JDialog {
             a.setDescripcion_vto1(descripcionVto1.getText());
             a.setDescripcion_vto2(descripcionVto2.getText());
             a.setDescripcion_vto3(descripcionVto3.getText());
+            a.setFamilia_equipo_id(((FamiliaEquipo)cmbFamilia.getSelectedItem()).getId());
         }
         @Override protected Object doInBackground() {
             EquiposDAO aDao= new EquiposDAO();
@@ -1040,6 +1058,7 @@ public class JDEquipos extends javax.swing.JDialog {
     private javax.swing.JButton btnModificar;
     private javax.swing.JTextField buscarText;
     private javax.swing.JPanel capaAzul;
+    private javax.swing.JComboBox cmbFamilia;
     private javax.swing.JButton delEquipo;
     private javax.swing.JTextField descripcionVto1;
     private javax.swing.JTextField descripcionVto2;
@@ -1058,6 +1077,7 @@ public class JDEquipos extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -1079,4 +1099,5 @@ public class JDEquipos extends javax.swing.JDialog {
     private ArrayList<Equipos> equipos = new ArrayList<Equipos>();
     private String query ="";
     private boolean isEdit = false;
+    private DefaultComboBoxModel familiasCombo = new DefaultComboBoxModel();
 }

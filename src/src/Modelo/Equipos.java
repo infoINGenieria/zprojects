@@ -12,7 +12,7 @@ import java.util.Date;
  */
 public class Equipos {
     
-     int id;
+     int id, familia_equipo_id;;
     String n_interno, equipos, marca, modelo,dominio, descripcion_vto1,
             descripcion_vto2, descripcion_vto3;
     double año;
@@ -107,10 +107,19 @@ public class Equipos {
     public Equipos(){
         
     }
+    
     @Override
     public String toString(){
         if(id==0) return "";
-        return n_interno + " "+equipos +" "+ marca + "(" + modelo + ")";
+        String toStr = n_interno;
+        if (equipos!= null && !equipos.isEmpty()) {
+            toStr+=" " + equipos;
+        }
+        if(marca != null && !marca.isEmpty())
+            toStr+= " " + marca;
+        if(modelo != null && !modelo.isEmpty())
+            toStr+=" (" + modelo + ")";
+        return toStr;
     }
 
     @Override
@@ -183,9 +192,12 @@ public class Equipos {
         this.vto_otros3 = vto_otros3;
     }
 
-    
-    
-    
-    
-    
+    public int getFamilia_equipo_id() {
+        return familia_equipo_id;
+    }
+
+    public void setFamilia_equipo_id(int familia_equipo_id) {
+        this.familia_equipo_id = familia_equipo_id;
+    }
+
 }
