@@ -64,10 +64,12 @@ public class FrancosLicenciasDAO extends AbstractDAO {
     public ArrayList<EntidadAbstracta> filtrarPorTexto(String text) {
         ArrayList<EntidadAbstracta> todos = new ArrayList<EntidadAbstracta>();
         String query = "";
+        int anio = Calendar.getInstance().get(Calendar.YEAR);
         try {
             query = "select distinct sum(if (r.especial,1,0)) as francos, "
                     + "sum(if(o.descuenta_francos,1,0)) as devueltos, "
-                    + "sum(if(o.descuenta_licencias,1,0)) as dias_vacaciones, "
+                    + "sum(if(o.descuenta_licencias and pd.fecha < '" + anio+"-01-01',1,0)) as dias_vacaciones_ant, "
+                    + "sum(if(o.descuenta_licencias and pd.fecha >= '"+ anio+"-01-01',1,0)) as dias_vacaciones, "
                     + "op.nombre, op.fecha_ingreso, fl.* from operarios op "
                     + "left join  partediario pd  on pd.operario = op.id "
                     + "left join registro r on r.id = pd.horario "
@@ -79,30 +81,8 @@ public class FrancosLicenciasDAO extends AbstractDAO {
             query +="group by op.id order by op.nombre";
             PreparedStatement ps = conector.prepareStatement(query);
             ResultSet rs = ps.executeQuery();
-            while (rs.next()) {
-                ItemFrancoLicencia ifl = new ItemFrancoLicencia();
-                DatosFrancoOperario dfo = new DatosFrancoOperario();
-                if (rs.getObject("id") != null){
-                    dfo.setOperarioId(rs.getInt("operario_id"));
-                    dfo.setId(rs.getInt("id"));
-                    dfo.setAjusteFrancos(rs.getInt("ajuste_francos"));
-                    dfo.setAjusteLicencias(rs.getInt("ajuste_licencias"));
-                    dfo.setPagados(rs.getInt("pagados"));
-                    dfo.setSolicitados1(rs.getInt("solicitados1"));
-                    dfo.setSolicitados2(rs.getInt("solicitados2"));
-                    dfo.setSale1(rs.getDate("sale1"));
-                    dfo.setSale2(rs.getDate("sale2"));
-                    dfo.setEntra1(rs.getDate("entra1"));
-                    dfo.setEntra2(rs.getDate("entra2"));
-                }
-                ifl.francosEntidad = dfo;
-                ifl.francosTrabajados = rs.getInt("francos");
-                ifl.francosCompensatorios = rs.getInt("devueltos");
-                ifl.nombre = rs.getString("nombre");
-                ifl.diasLicenciasTomadas = rs.getInt("dias_vacaciones");
-                ifl.diasLicencia = Operario.DiasVacaciones(rs.getDate("fecha_ingreso"));
-                ifl.diasLicenciasAnteriores = Operario.DiasVacacionesAnteriores(rs.getDate("fecha_ingreso"));
-                todos.add(ifl);
+            while (rs.next()) {              
+                todos.add(fillData(rs));
             }
         } catch (Exception ex) {
             
@@ -110,13 +90,46 @@ public class FrancosLicenciasDAO extends AbstractDAO {
         return todos;
     }
     
+    private ItemFrancoLicencia fillData(ResultSet rs) {
+        try {
+            ItemFrancoLicencia ifl = new ItemFrancoLicencia();
+            DatosFrancoOperario dfo = new DatosFrancoOperario();
+            if (rs.getObject("id") != null){
+                dfo.setOperarioId(rs.getInt("operario_id"));
+                dfo.setId(rs.getInt("id"));
+                dfo.setAjusteFrancos(rs.getInt("ajuste_francos"));
+                dfo.setAjusteLicencias(rs.getInt("ajuste_licencias"));
+                dfo.setPagados(rs.getInt("pagados"));
+                dfo.setSolicitados1(rs.getInt("solicitados1"));
+                dfo.setSolicitados2(rs.getInt("solicitados2"));
+                dfo.setSale1(rs.getDate("sale1"));
+                dfo.setSale2(rs.getDate("sale2"));
+                dfo.setEntra1(rs.getDate("entra1"));
+                dfo.setEntra2(rs.getDate("entra2"));
+            }
+            ifl.francosEntidad = dfo;
+            ifl.francosTrabajados = rs.getInt("francos");
+            ifl.francosCompensatorios = rs.getInt("devueltos");
+            ifl.nombre = rs.getString("nombre");
+            ifl.diasLicenciasTomadasAnterior = rs.getInt("dias_vacaciones_ant");
+            ifl.diasLicenciasTomadas = rs.getInt("dias_vacaciones");
+            ifl.diasLicencia = Operario.DiasVacaciones(rs.getDate("fecha_ingreso"));
+            ifl.diasLicenciasAnteriores = Operario.DiasVacacionesAnteriores(rs.getDate("fecha_ingreso"));
+            return ifl;
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return null;
+    }
     public ItemFrancoLicencia getByIdOperario(int id) {
         String query = "";
         ItemFrancoLicencia ifl = new ItemFrancoLicencia();
+        int anio = Calendar.getInstance().get(Calendar.YEAR);
         try {
             query = "select distinct sum(if (r.especial,1,0)) as francos, "
                     + "sum(if(o.descuenta_francos,1,0)) as devueltos, "
-                    + "sum(if(o.descuenta_licencias,1,0)) as dias_vacaciones, "
+                    + "sum(if(o.descuenta_licencias and pd.fecha < '" + anio+"-01-01',1,0)) as dias_vacaciones_ant, "
+                    + "sum(if(o.descuenta_licencias and pd.fecha >= '"+ anio+"-01-01',1,0)) as dias_vacaciones, "
                     + "op.nombre, op.fecha_ingreso, fl.* from operarios op "
                     + "left join partediario pd on pd.operario = op.id "
                     + "left join registro r on r.id = pd.horario "
@@ -126,30 +139,8 @@ public class FrancosLicenciasDAO extends AbstractDAO {
             query += "where op.id = " + id + " group by op.id limit 1";
             PreparedStatement ps = conector.prepareStatement(query);
             ResultSet rs = ps.executeQuery();
-            if (rs.next()) {
-                
-                DatosFrancoOperario dfo = new DatosFrancoOperario();
-                if (rs.getObject("id") != null){
-                    dfo.setOperarioId(rs.getInt("operario_id"));
-                    dfo.setId(rs.getInt("id"));
-                    dfo.setAjusteFrancos(rs.getInt("ajuste_francos"));
-                    dfo.setAjusteLicencias(rs.getInt("ajuste_licencias"));
-                    dfo.setPagados(rs.getInt("pagados"));
-                    dfo.setSolicitados1(rs.getInt("solicitados1"));
-                    dfo.setSolicitados2(rs.getInt("solicitados2"));
-                    dfo.setSale1(rs.getDate("sale1"));
-                    dfo.setSale2(rs.getDate("sale2"));
-                    dfo.setEntra1(rs.getDate("entra1"));
-                    dfo.setEntra2(rs.getDate("entra2"));
-                }
-                ifl.francosEntidad = dfo;
-                ifl.francosTrabajados = rs.getInt("francos");
-                ifl.francosCompensatorios = rs.getInt("devueltos");
-                ifl.nombre = rs.getString("nombre");
-                ifl.diasLicenciasTomadas = rs.getInt("dias_vacaciones");
-                ifl.diasLicencia = Operario.DiasVacaciones(rs.getDate("fecha_ingreso"));
-                ifl.diasLicenciasAnteriores = Operario.DiasVacacionesAnteriores(rs.getDate("fecha_ingreso"));
-                
+            if (rs.next()) {        
+                ifl = fillData(rs);
             }
             rs.close();
             ps.close();
