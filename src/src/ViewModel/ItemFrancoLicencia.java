@@ -14,7 +14,7 @@ import Modelo.EntidadAbstracta;
 public class ItemFrancoLicencia extends EntidadAbstracta {
 
     public String nombre;
-    public int francosTrabajados, francosCompensatorios, diasLicencia, diasLicenciasTomadas, diasLicenciasAnteriores;
+    public int francosTrabajados, francosCompensatorios, diasLicencia, diasLicenciasTomadasAnterior, diasLicenciasTomadas, diasLicenciasAnteriores;
     public DatosFrancoOperario francosEntidad;
 
     public ItemFrancoLicencia() {
@@ -24,9 +24,9 @@ public class ItemFrancoLicencia extends EntidadAbstracta {
     public int getTotal() {
         return getFrancosAjustados() - getPagados();
     }
-    
+  
     public int getLicenciaDisponibles() {
-        return  getDiasLicenciaAnual() + getLicenciasPendientes();
+        return  getDiasLicenciaAnual() + getLicenciasPendientes() - diasLicenciasTomadas;
     }
     
     public int getFrancosAjustados() {
@@ -60,11 +60,19 @@ public class ItemFrancoLicencia extends EntidadAbstracta {
     }
 
     public int getLicenciasPendientes() {
-        return diasLicenciasAnteriores - diasLicenciasTomadas - francosEntidad.getAjusteLicencias();
+        return diasLicenciasAnteriores - diasLicenciasTomadasAnterior - francosEntidad.getAjusteLicencias();
     }
 
     public int getPendientesActual() {
         return getLicenciaDisponibles() + getTotal() - francosEntidad.getSolicitados1() - francosEntidad.getSolicitados2();
+    }
+
+    public int getDiasLicenciasTomadas() {
+        return diasLicenciasTomadas;
+    }
+
+    public void setDiasLicenciasTomadas(int diasLicenciasTomadas) {
+        this.diasLicenciasTomadas = diasLicenciasTomadas;
     }
     
 }
