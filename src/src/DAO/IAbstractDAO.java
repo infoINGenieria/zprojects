@@ -11,12 +11,10 @@ import java.util.ArrayList;
  *
  * @author m4tuu
  */
-public interface IAbstractDAO {
-    public void conectar();
-    public int guardar(EntidadAbstracta entidad);
-    public int modificar(EntidadAbstracta entidad);
-    public boolean eliminar(EntidadAbstracta entidad);
+public interface IAbstractDAO extends IBaseDAO {
+    
     public ArrayList<EntidadAbstracta> cargarTodos();
     public ArrayList<EntidadAbstracta> filtrarPorTexto(String text);
     public int count(String name);
+    
 }

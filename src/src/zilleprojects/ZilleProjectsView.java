@@ -1079,7 +1079,6 @@ public class ZilleProjectsView extends FrameView {
             dia = FechaUtil.resetTime(dia);
             GregorianCalendar gc = new GregorianCalendar();
             gc.setTime(dia);
-            //TODO: cambiar 20 por parametro
             gc.add(GregorianCalendar.DATE, ParametrosSistema.getValorInt("DIAS_AVISO_ALARMA"));
             Date proximo = gc.getTime();
             EquiposDAO edao=new EquiposDAO();

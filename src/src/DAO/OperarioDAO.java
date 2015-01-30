@@ -271,7 +271,6 @@ public class OperarioDAO {
     }
     
     public ArrayList<ItemAlarmaBean> getAlarmasOperariosForReport(java.util.Date inicio, java.util.Date fin){
-        //TODO: arreglar esto
         ArrayList<ItemAlarma> alarmas = getAlarmasOperarios(inicio, fin);
         ArrayList<ItemAlarmaBean> itemes = new ArrayList<ItemAlarmaBean>();
         for(ItemAlarma item: alarmas){

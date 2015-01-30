@@ -5,45 +5,51 @@
 package Modelo.tablemodel;
 
 import Modelo.FamiliaEquipo;
+import Modelo.PrecioHistorico;
+import Utils.FechaUtil;
 
 /**
  *
  * @author m4tuu
  */
-public class FamiliaEquipoTableModel  extends ZilleAbstractTableModel {
+public class PrecioHistoricoTableModel  extends ZilleAbstractTableModel {
 
     @Override
     public String getColumnName(int columnIndex) {
         switch(columnIndex) {
             case 0:
-                return "Nombre";
+                return "Tipo";
             case 1:
-                return "$ posesión vigente";
+                return "Valor";
             case 2:
-                return "$ utilización vigente";
+                return "Fecha de alta";
+            case 3:
+                return "Fecha de baja";
         }
         return null;
     }
 
     @Override
     public int getColumnCount() {
-        return 3;
+        return 4;
     }
 
     @Override
     public Object getValueAt(int arg0, int arg1) {
-       FamiliaEquipo aux;
+       PrecioHistorico aux;
       
-        aux = (FamiliaEquipo)(datos.get(arg0));
+        aux = (PrecioHistorico)(datos.get(arg0));
 
         switch (arg1)
         {
             case 0:
-                return aux.getNombre();
+                return aux.getTipo().getNombre();
             case 1:
-                return aux.getValorPosesion();
+                return aux.getValor();
             case 2:
-                return aux.getValorUtilizacion();
+                return FechaUtil.getFecha(aux.getFechaAlta());
+            case 3:
+                return FechaUtil.getFecha(aux.getFechaBaja());
         }
         return null;
     }

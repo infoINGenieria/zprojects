@@ -44,9 +44,6 @@ public abstract class ZilleDialog extends JDialogCustom {
     public ZilleDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);  
         initComponents();
-        configurarTabla();
-        cargarEntidades().execute();
-        ConfigurarDialog();
     }
 
     /** This method is called from within the constructor to
@@ -59,38 +56,74 @@ public abstract class ZilleDialog extends JDialogCustom {
     private void initComponents() {
 
         wrap = new PanelEsquinaAzul();
-        jPanel1 = new javax.swing.JPanel();
+        filler9 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 10), new java.awt.Dimension(0, 10), new java.awt.Dimension(32767, 10));
+        panBotones = new javax.swing.JPanel();
+        filler10 = new javax.swing.Box.Filler(new java.awt.Dimension(10, 0), new java.awt.Dimension(10, 0), new java.awt.Dimension(10, 32767));
         lblTitulo = new javax.swing.JLabel();
+        filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(20, 0), new java.awt.Dimension(20, 0), new java.awt.Dimension(20, 32767));
         jPanel3 = new javax.swing.JPanel();
         btnNuevo = new javax.swing.JButton();
         btnEditar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
         btnRecargar = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tblDatos = new javax.swing.JTable();
+        filler11 = new javax.swing.Box.Filler(new java.awt.Dimension(10, 0), new java.awt.Dimension(10, 0), new java.awt.Dimension(10, 32767));
+        filler8 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 10), new java.awt.Dimension(0, 10), new java.awt.Dimension(32767, 10));
+        jPanel2 = new javax.swing.JPanel();
+        filler12 = new javax.swing.Box.Filler(new java.awt.Dimension(10, 0), new java.awt.Dimension(10, 0), new java.awt.Dimension(10, 32767));
+        jLabel2 = new javax.swing.JLabel();
+        filler5 = new javax.swing.Box.Filler(new java.awt.Dimension(10, 0), new java.awt.Dimension(10, 0), new java.awt.Dimension(10, 32767));
+        txtBuscarTexto = new javax.swing.JTextField();
+        filler2 = new javax.swing.Box.Filler(new java.awt.Dimension(30, 0), new java.awt.Dimension(30, 0), new java.awt.Dimension(20, 32767));
+        jLabel20 = new javax.swing.JLabel();
         lblTotalEntidad = new javax.swing.JLabel();
+        filler3 = new javax.swing.Box.Filler(new java.awt.Dimension(30, 0), new java.awt.Dimension(30, 0), new java.awt.Dimension(30, 32767));
         jLabel17 = new javax.swing.JLabel();
         lblTotalFiltrado = new javax.swing.JLabel();
-        jLabel20 = new javax.swing.JLabel();
-        txtBuscarTexto = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
+        filler4 = new javax.swing.Box.Filler(new java.awt.Dimension(20, 0), new java.awt.Dimension(20, 0), new java.awt.Dimension(20, 32767));
+        filler13 = new javax.swing.Box.Filler(new java.awt.Dimension(10, 0), new java.awt.Dimension(10, 0), new java.awt.Dimension(10, 32767));
+        filler6 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 10), new java.awt.Dimension(0, 10), new java.awt.Dimension(32767, 10));
+        panGrid = new javax.swing.JPanel();
+        filler14 = new javax.swing.Box.Filler(new java.awt.Dimension(10, 0), new java.awt.Dimension(10, 0), new java.awt.Dimension(10, 32767));
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblDatos = new javax.swing.JTable();
+        filler15 = new javax.swing.Box.Filler(new java.awt.Dimension(10, 0), new java.awt.Dimension(10, 0), new java.awt.Dimension(10, 32767));
+        filler7 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 20), new java.awt.Dimension(0, 20), new java.awt.Dimension(32767, 100));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(zilleprojects.ZilleProjectsApp.class).getContext().getResourceMap(ZilleDialog.class);
         setTitle(resourceMap.getString("Form.title")); // NOI18N
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setLocationByPlatform(true);
         setName("Form"); // NOI18N
+        addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                formComponentShown(evt);
+            }
+        });
 
         wrap.setName("wrap"); // NOI18N
-        wrap.setLayout(new java.awt.BorderLayout());
+        wrap.setLayout(new javax.swing.BoxLayout(wrap, javax.swing.BoxLayout.Y_AXIS));
 
-        jPanel1.setName("jPanel1"); // NOI18N
-        jPanel1.setOpaque(false);
+        filler9.setFocusable(false);
+        filler9.setName("filler9"); // NOI18N
+        wrap.add(filler9);
+
+        panBotones.setMaximumSize(new java.awt.Dimension(32965, 34));
+        panBotones.setName("panBotones"); // NOI18N
+        panBotones.setOpaque(false);
+        panBotones.setLayout(new javax.swing.BoxLayout(panBotones, javax.swing.BoxLayout.LINE_AXIS));
+
+        filler10.setName("filler10"); // NOI18N
+        panBotones.add(filler10);
 
         lblTitulo.setFont(lblTitulo.getFont().deriveFont(lblTitulo.getFont().getStyle() | java.awt.Font.BOLD, lblTitulo.getFont().getSize()+4));
         lblTitulo.setLabelFor(this);
         lblTitulo.setText(resourceMap.getString("lblTitulo.text")); // NOI18N
         lblTitulo.setName("lblTitulo"); // NOI18N
+        panBotones.add(lblTitulo);
+
+        filler1.setName("filler1"); // NOI18N
+        panBotones.add(filler1);
 
         jPanel3.setName("jPanel3"); // NOI18N
         jPanel3.setOpaque(false);
@@ -121,6 +154,87 @@ public abstract class ZilleDialog extends JDialogCustom {
         btnRecargar.setName("btnRecargar"); // NOI18N
         jPanel3.add(btnRecargar);
 
+        panBotones.add(jPanel3);
+
+        filler11.setName("filler11"); // NOI18N
+        panBotones.add(filler11);
+
+        wrap.add(panBotones);
+
+        filler8.setName("filler8"); // NOI18N
+        wrap.add(filler8);
+
+        jPanel2.setMaximumSize(new java.awt.Dimension(2147483647, 45));
+        jPanel2.setName("jPanel2"); // NOI18N
+        jPanel2.setOpaque(false);
+        jPanel2.setLayout(new javax.swing.BoxLayout(jPanel2, javax.swing.BoxLayout.LINE_AXIS));
+
+        filler12.setName("filler12"); // NOI18N
+        jPanel2.add(filler12);
+
+        jLabel2.setText(resourceMap.getString("jLabel2.text")); // NOI18N
+        jLabel2.setMinimumSize(new java.awt.Dimension(58, 15));
+        jLabel2.setName("jLabel2"); // NOI18N
+        jPanel2.add(jLabel2);
+
+        filler5.setName("filler5"); // NOI18N
+        jPanel2.add(filler5);
+
+        txtBuscarTexto.setText(resourceMap.getString("txtBuscarTexto.text")); // NOI18N
+        txtBuscarTexto.setMargin(new java.awt.Insets(10, 10, 10, 10));
+        txtBuscarTexto.setName("txtBuscarTexto"); // NOI18N
+        txtBuscarTexto.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtBuscarTextoKeyReleased(evt);
+            }
+        });
+        jPanel2.add(txtBuscarTexto);
+
+        filler2.setName("filler2"); // NOI18N
+        jPanel2.add(filler2);
+
+        jLabel20.setForeground(resourceMap.getColor("jLabel20.foreground")); // NOI18N
+        jLabel20.setText(resourceMap.getString("jLabel20.text")); // NOI18N
+        jLabel20.setName("jLabel20"); // NOI18N
+        jPanel2.add(jLabel20);
+
+        lblTotalEntidad.setFont(lblTotalEntidad.getFont().deriveFont(lblTotalEntidad.getFont().getStyle() | java.awt.Font.BOLD, lblTotalEntidad.getFont().getSize()+2));
+        lblTotalEntidad.setText(resourceMap.getString("lblTotalEntidad.text")); // NOI18N
+        lblTotalEntidad.setName("lblTotalEntidad"); // NOI18N
+        jPanel2.add(lblTotalEntidad);
+
+        filler3.setName("filler3"); // NOI18N
+        jPanel2.add(filler3);
+
+        jLabel17.setForeground(resourceMap.getColor("jLabel20.foreground")); // NOI18N
+        jLabel17.setText(resourceMap.getString("jLabel17.text")); // NOI18N
+        jLabel17.setName("jLabel17"); // NOI18N
+        jPanel2.add(jLabel17);
+
+        lblTotalFiltrado.setFont(lblTotalFiltrado.getFont().deriveFont(lblTotalFiltrado.getFont().getStyle() | java.awt.Font.BOLD, lblTotalFiltrado.getFont().getSize()+2));
+        lblTotalFiltrado.setText(resourceMap.getString("lblTotalFiltrado.text")); // NOI18N
+        lblTotalFiltrado.setName("lblTotalFiltrado"); // NOI18N
+        jPanel2.add(lblTotalFiltrado);
+
+        filler4.setName("filler4"); // NOI18N
+        jPanel2.add(filler4);
+
+        filler13.setName("filler13"); // NOI18N
+        jPanel2.add(filler13);
+
+        wrap.add(jPanel2);
+
+        filler6.setName("filler6"); // NOI18N
+        wrap.add(filler6);
+
+        panGrid.setName("panGrid"); // NOI18N
+        panGrid.setOpaque(false);
+        panGrid.setPreferredSize(new java.awt.Dimension(1058, 340));
+        panGrid.setLayout(new javax.swing.BoxLayout(panGrid, javax.swing.BoxLayout.X_AXIS));
+
+        filler14.setName("filler14"); // NOI18N
+        panGrid.add(filler14);
+
         jScrollPane1.setName("jScrollPane1"); // NOI18N
 
         tblDatos.setAutoCreateRowSorter(true);
@@ -141,93 +255,25 @@ public abstract class ZilleDialog extends JDialogCustom {
         });
         jScrollPane1.setViewportView(tblDatos);
 
-        lblTotalEntidad.setFont(lblTotalEntidad.getFont().deriveFont(lblTotalEntidad.getFont().getStyle() | java.awt.Font.BOLD, lblTotalEntidad.getFont().getSize()+2));
-        lblTotalEntidad.setText(resourceMap.getString("lblTotalEntidad.text")); // NOI18N
-        lblTotalEntidad.setName("lblTotalEntidad"); // NOI18N
+        panGrid.add(jScrollPane1);
 
-        jLabel17.setForeground(resourceMap.getColor("jLabel20.foreground")); // NOI18N
-        jLabel17.setText(resourceMap.getString("jLabel17.text")); // NOI18N
-        jLabel17.setName("jLabel17"); // NOI18N
+        filler15.setName("filler15"); // NOI18N
+        panGrid.add(filler15);
 
-        lblTotalFiltrado.setFont(lblTotalFiltrado.getFont().deriveFont(lblTotalFiltrado.getFont().getStyle() | java.awt.Font.BOLD, lblTotalFiltrado.getFont().getSize()+2));
-        lblTotalFiltrado.setText(resourceMap.getString("lblTotalFiltrado.text")); // NOI18N
-        lblTotalFiltrado.setName("lblTotalFiltrado"); // NOI18N
+        wrap.add(panGrid);
 
-        jLabel20.setForeground(resourceMap.getColor("jLabel20.foreground")); // NOI18N
-        jLabel20.setText(resourceMap.getString("jLabel20.text")); // NOI18N
-        jLabel20.setName("jLabel20"); // NOI18N
-
-        txtBuscarTexto.setText(resourceMap.getString("txtBuscarTexto.text")); // NOI18N
-        txtBuscarTexto.setName("txtBuscarTexto"); // NOI18N
-        txtBuscarTexto.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtBuscarTextoKeyReleased(evt);
-            }
-        });
-
-        jLabel2.setText(resourceMap.getString("jLabel2.text")); // NOI18N
-        jLabel2.setName("jLabel2"); // NOI18N
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 921, Short.MAX_VALUE)
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(lblTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 356, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 553, Short.MAX_VALUE)
-                        .addContainerGap())
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtBuscarTexto, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 111, Short.MAX_VALUE)
-                        .addComponent(jLabel20)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblTotalEntidad, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel17)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(lblTotalFiltrado, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(22, 22, 22))))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 290, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblTotalEntidad)
-                    .addComponent(jLabel17)
-                    .addComponent(lblTotalFiltrado)
-                    .addComponent(jLabel20)
-                    .addComponent(txtBuscarTexto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
-                .addGap(12, 12, 12))
-        );
-
-        wrap.add(jPanel1, java.awt.BorderLayout.CENTER);
+        filler7.setName("filler7"); // NOI18N
+        wrap.add(filler7);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(wrap, javax.swing.GroupLayout.DEFAULT_SIZE, 945, Short.MAX_VALUE)
+            .addComponent(wrap, javax.swing.GroupLayout.DEFAULT_SIZE, 1058, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(wrap, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(wrap, javax.swing.GroupLayout.DEFAULT_SIZE, 332, Short.MAX_VALUE)
         );
 
         pack();
@@ -249,6 +295,12 @@ public abstract class ZilleDialog extends JDialogCustom {
     private void tblDatosKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tblDatosKeyReleased
         setEntidadAbstracta(getTableModel().getFila(tblDatos.getSelectedRow()));
     }//GEN-LAST:event_tblDatosKeyReleased
+
+    private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
+        configurarTabla();
+        cargarEntidades().execute();
+        ConfigurarDialog();
+    }//GEN-LAST:event_formComponentShown
 
     /* Metodos que debe ser sobreescritos*/
     protected abstract String getTablaName();
@@ -275,8 +327,11 @@ public abstract class ZilleDialog extends JDialogCustom {
         jPanel3.repaint();
     }
     
+    
     protected Dimension getSizeMainWindow() {
         Rectangle rec = getWrapPanel().getBounds();
+        rec.height += 5;
+        //rec.width += 5;
         return rec.getSize();
     }
     
@@ -330,11 +385,15 @@ public abstract class ZilleDialog extends JDialogCustom {
     }
     
     private void setSizeDialogo() {
-        this.setResizable(false);
-        this.setMinimumSize(getSizeMainWindow());
-        //this.setMaximumSize(getSizeMainWindow());
-        this.setPreferredSize(getSizeMainWindow());
+        this.setResizable(true);    
+        Dimension dim = getSizeMainWindow();    
+        this.setMinimumSize(dim);
+        this.setPreferredSize(dim);
+        dim.height -= 20;
+        getWrapPanel().setSize(dim);    
+        getWrapPanel().repaint();
         this.pack();
+        this.repaint();
     }
     
      @Action
@@ -596,7 +655,7 @@ public abstract class ZilleDialog extends JDialogCustom {
         
     }
     
-    public JPanel getWrapPanel(){
+    public final JPanel getWrapPanel(){
         return wrap;
     }
 
@@ -606,15 +665,32 @@ public abstract class ZilleDialog extends JDialogCustom {
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnNuevo;
     private javax.swing.JButton btnRecargar;
+    private javax.swing.Box.Filler filler1;
+    private javax.swing.Box.Filler filler10;
+    private javax.swing.Box.Filler filler11;
+    private javax.swing.Box.Filler filler12;
+    private javax.swing.Box.Filler filler13;
+    private javax.swing.Box.Filler filler14;
+    private javax.swing.Box.Filler filler15;
+    private javax.swing.Box.Filler filler2;
+    private javax.swing.Box.Filler filler3;
+    private javax.swing.Box.Filler filler4;
+    private javax.swing.Box.Filler filler5;
+    private javax.swing.Box.Filler filler6;
+    private javax.swing.Box.Filler filler7;
+    private javax.swing.Box.Filler filler8;
+    private javax.swing.Box.Filler filler9;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblTitulo;
     private javax.swing.JLabel lblTotalEntidad;
     private javax.swing.JLabel lblTotalFiltrado;
+    private javax.swing.JPanel panBotones;
+    private javax.swing.JPanel panGrid;
     private javax.swing.JTable tblDatos;
     private javax.swing.JTextField txtBuscarTexto;
     private javax.swing.JPanel wrap;

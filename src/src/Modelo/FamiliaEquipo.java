@@ -5,14 +5,13 @@
 package Modelo;
 
 import java.util.List;
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 /**
  *
@@ -25,7 +24,9 @@ public class FamiliaEquipo extends EntidadAbstracta {
     
     private int id; 
     private String nombre;
+    private double valorPosesion, valorUtilizacion;
     //private List<Equipos> equipos;
+    private List<PrecioHistorico> precioHistoricos;
 
     @Override
     @Id
@@ -38,15 +39,24 @@ public class FamiliaEquipo extends EntidadAbstracta {
     public void setId(int id) {
         this.id = id;
     }
+    @Transient
+    public double getValorPosesion() {
+        return valorPosesion;
+    }
+
+    public void setValorPosesion(double valorPosesion) {
+        this.valorPosesion = valorPosesion;
+    }
+
+    @Transient
+    public double getValorUtilizacion() {
+        return valorUtilizacion;
+    }
+
+    public void setValorUtilizacion(double valorUtilizacion) {
+        this.valorUtilizacion = valorUtilizacion;
+    }
     
-//    @OneToMany(mappedBy = "equipos", fetch= FetchType.EAGER, cascade= CascadeType.ALL)
-//    public List<Equipos> getEquipos() {
-//        return equipos;
-//    }
-//
-//    public void setEquipos(List<Equipos> items) {
-//        this.equipos = items;
-//    }
 
     public FamiliaEquipo() {
     }
@@ -95,6 +105,15 @@ public class FamiliaEquipo extends EntidadAbstracta {
     @Override
     public String toString() {
         return nombre;
+    }
+
+    @OneToMany(mappedBy = "familia")
+    public List<PrecioHistorico> getPrecioHistoricos() {
+        return precioHistoricos;
+    }
+
+    public void setPrecioHistoricos(List<PrecioHistorico> precioHistoricos) {
+        this.precioHistoricos = precioHistoricos;
     }
     
     

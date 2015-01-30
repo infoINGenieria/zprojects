@@ -36,6 +36,10 @@ public abstract class EntidadAbstracta  implements Serializable, IEntidadAbstrac
         this.error = error;
     }
     
+    public void addError(String error) {
+        this.error+= error +";";
+    }
+    
     public String[] getErrores() {
         return error.split(";");
     }

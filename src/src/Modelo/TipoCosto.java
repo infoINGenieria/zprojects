@@ -4,10 +4,12 @@
  */
 package Modelo;
 
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
@@ -25,8 +27,13 @@ public class TipoCosto extends EntidadAbstracta {
     private int tipo;
     //private List<Equipos> equipos;
 
-    public static final int POR_DIA = 1;
-    public static final int POR_PARTE = 2;
+    public static final int POSESION = 1;
+    public static final int UTILIZACION = 2;
+    
+    public static final String POSESION_TXT = "Costo por posesión";
+    public static final String UTILIZACION_TXT = "Costo por utilización";
+    
+    private List<PrecioHistorico> precioHistoricos;
     
     @Override
     @Id
@@ -59,7 +66,23 @@ public class TipoCosto extends EntidadAbstracta {
 //    }
 
     public TipoCosto() {
-        tipo = POR_DIA;
+        tipo = POSESION;
+    }
+    
+    public static TipoCosto getTipoPosesion() {
+        TipoCosto t = new TipoCosto();
+        t.setId(POSESION);
+        t.setTipo(POSESION);
+        t.setNombre(POSESION_TXT);
+        return t;
+    }
+    
+    public static TipoCosto getTipoUtilizacion() {
+        TipoCosto t = new TipoCosto();
+        t.setId(UTILIZACION);
+        t.setTipo(UTILIZACION);
+        t.setNombre(UTILIZACION_TXT);
+        return t;
     }
 
     @Override
@@ -67,7 +90,7 @@ public class TipoCosto extends EntidadAbstracta {
         if (nombre == null) {
             error += "Nombre no puede dejarse vacio;";
         }
-        if (tipo != POR_DIA && tipo != POR_PARTE) {
+        if (tipo != POSESION && tipo != UTILIZACION) {
             error += "El tipo no es válido;";
         }
         return error.isEmpty();
@@ -106,26 +129,35 @@ public class TipoCosto extends EntidadAbstracta {
     @Transient
     public String getTipoLabel() {
         switch(tipo){
-            case POR_DIA:
-                return "Por día";
-            case POR_PARTE:
-                return "Por parte diario";
+            case POSESION:
+                return POSESION_TXT;
+            case UTILIZACION:
+                return UTILIZACION_TXT;
         }
         return null;
     }
     
     @Transient
     public static String[] getTipos() {
-        return new String[] { "Por día", "Por parte diario" };
+        return new String[] { POSESION_TXT, UTILIZACION_TXT };
     }
 
     public void setTipoByLabel(String str) {
-        if (str.equals("Por día")) {
-            tipo = POR_DIA;
-        } else if (str.equals("Por parte diario")) {
-            tipo = POR_PARTE;
+        if (str.equals(POSESION_TXT)) {
+            tipo = POSESION;
+        } else if (str.equals(UTILIZACION_TXT)) {
+            tipo = UTILIZACION;
         }
         
+    }
+
+    @OneToMany(mappedBy = "tipo")
+    public List<PrecioHistorico> getPrecioHistoricos() {
+        return precioHistoricos;
+    }
+
+    public void setPrecioHistoricos(List<PrecioHistorico> precioHistoricos) {
+        this.precioHistoricos = precioHistoricos;
     }
     
     
