@@ -18,7 +18,6 @@ public class TablaParametrosModel extends ZilleAbstractTableModel{
     public TablaParametrosModel(){
         super();
     }  
-    // TODO: Terminar este modelo y reparar todo lo que se rompió
     @Override
     public Object getValueAt(int row, int col) {
        Parametro aux;

@@ -6,10 +6,12 @@ package DAO;
 
 import Modelo.EntidadAbstracta;
 import Modelo.FamiliaEquipo;
+import Modelo.FamiliaEquipoBean;
 import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.HibernateException;
-import org.hibernate.SQLQuery;
+import org.hibernate.Query;
+import org.hibernate.transform.AliasToBeanResultTransformer;
 
 /**
  *
@@ -42,8 +44,8 @@ public class FamiliaEquipoDAO extends AbstractHibernateDAO implements IAbstractD
 
     @Override
     public ArrayList<EntidadAbstracta> cargarTodos() {
-        List<FamiliaEquipo> list = getListaEntidades(FamiliaEquipo.class);
-        ArrayList<EntidadAbstracta> returnList = new ArrayList<EntidadAbstracta>(list);
+//        List<FamiliaEquipo> list = getListaEntidades(FamiliaEquipo.class);
+        ArrayList<EntidadAbstracta> returnList = filtrarPorTexto("");
         return returnList;
     }
 
@@ -51,15 +53,26 @@ public class FamiliaEquipoDAO extends AbstractHibernateDAO implements IAbstractD
     public ArrayList<EntidadAbstracta> filtrarPorTexto(String text) {
         AbstractHibernateDAO dummy = new AbstractHibernateDAO(){};
 
-        ArrayList<FamiliaEquipo> listaResultado = null;
+        ArrayList<FamiliaEquipo> listaResultado = new ArrayList<FamiliaEquipo>();
 
         try
         {
             dummy.iniciaOperacion();
-            SQLQuery query = dummy.getSession().createSQLQuery(
-                    "SELECT distinct f.* FROM familia_equipo f "
-                    + "where f.nombre like '%" +text + "%' ").addEntity(FamiliaEquipo.class);
-            listaResultado = (ArrayList<FamiliaEquipo>) query.list();        
+            Query query = dummy.getSession().createSQLQuery(
+                    "SELECT distinct f.* , " +
+                    "(select valor from precio_historico "
+                    + "where familia_id = f.id and tipo_id = 1 and fechaBaja is null "
+                    + "order by id desc limit 1) as valorPosesion, "
+                    + "(select valor from precio_historico "
+                    + "where familia_id = f.id and tipo_id = 2 and fechaBaja is null "
+                    + "order by id desc limit 1) as valorUtilizacion FROM familia_equipo f "
+                    + "left join precio_historico ph on ph.familia_id = f.id "
+                    + "where f.nombre like '%"+ text +"%' ").setResultTransformer(new AliasToBeanResultTransformer(FamiliaEquipoBean.class));
+            
+            for(FamiliaEquipoBean a: (List<FamiliaEquipoBean>)query.list()) {
+                listaResultado.add(a.convert2FamiliaEquipo());
+            }
+                 
         }
         catch (HibernateException he)
         {

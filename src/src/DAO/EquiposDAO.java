@@ -339,7 +339,6 @@ public class EquiposDAO {
 
     }
     public ArrayList<ItemAlarmaBean> getAlarmasEquiposForReport(java.util.Date inicio, java.util.Date limite){
-        //TODO: arreglar esto
         ArrayList<ItemAlarma> alarmas = new ArrayList<ItemAlarma>();
         ArrayList<ItemAlarmaBean> itemes = new ArrayList<ItemAlarmaBean>();
         alarmas = getAlarmasEquipos(inicio, limite);

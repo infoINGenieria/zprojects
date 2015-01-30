@@ -17,19 +17,24 @@ import Modelo.FamiliaEquipo;
 import Modelo.tablemodel.FamiliaEquipoTableModel;
 import Modelo.tablemodel.ZilleAbstractTableModel;
 import java.awt.Dimension;
+import java.awt.Frame;
 import javax.swing.JButton;
 import javax.swing.JDialog;
+import org.jdesktop.application.Action;
+import zilleprojects.ZilleProjectsApp;
 
 /**
  *
  * @author m4tuu
  */
 public class JDFamiliaEquipo extends ZilleDialog {
-
+    Frame parent;
     /** Creates new form JDFamiliaEquipo */
     public JDFamiliaEquipo(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
+        this.parent = parent;
         initComponents();
+        SetButtonExtra(btnVerHistoricos);
     }
 
     /** This method is called from within the constructor to
@@ -45,9 +50,9 @@ public class JDFamiliaEquipo extends ZilleDialog {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         txtNombre = new javax.swing.JTextField();
-        javax.swing.ActionMap actionMap = org.jdesktop.application.Application.getInstance(zilleprojects.ZilleProjectsApp.class).getContext().getActionMap(JDFamiliaEquipo.class, this);
         btnAceptar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
+        btnVerHistoricos = new javax.swing.JButton();
 
         org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(zilleprojects.ZilleProjectsApp.class).getContext().getResourceMap(JDFamiliaEquipo.class);
         jDialog1.setTitle(resourceMap.getString("jDialog1.title")); // NOI18N
@@ -62,7 +67,7 @@ public class JDFamiliaEquipo extends ZilleDialog {
 
         txtNombre.setText(resourceMap.getString("txtNombre.text")); // NOI18N
         txtNombre.setName("txtNombre"); // NOI18N
-
+        javax.swing.ActionMap actionMap = org.jdesktop.application.Application.getInstance(zilleprojects.ZilleProjectsApp.class).getContext().getActionMap(JDFamiliaEquipo.class, this);
         btnAceptar.setAction(actionMap.get("GuardarEntidad"));
         btnAceptar.setIcon(resourceMap.getIcon("btnAceptar.icon")); // NOI18N
         btnAceptar.setText(resourceMap.getString("btnAceptar.text")); // NOI18N
@@ -123,6 +128,11 @@ public class JDFamiliaEquipo extends ZilleDialog {
             jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
+
+        
+        btnVerHistoricos.setAction(actionMap.get("mostrarHistoricos")); // NOI18N
+        btnVerHistoricos.setText(resourceMap.getString("btnVerHistoricos.text")); // NOI18N
+        btnVerHistoricos.setName("btnVerHistoricos"); // NOI18N
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setName("Form"); // NOI18N
@@ -191,6 +201,7 @@ public class JDFamiliaEquipo extends ZilleDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAceptar;
     private javax.swing.JButton btnCancelar;
+    private javax.swing.JButton btnVerHistoricos;
     private javax.swing.JDialog jDialog1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
@@ -247,7 +258,7 @@ public class JDFamiliaEquipo extends ZilleDialog {
 
     @Override
     protected void setTitulo() {
-        setTitle("Administración de familias de equipo");
+        setTitle("Administrador de familias de equipo");
     }
 
     @Override
@@ -280,6 +291,16 @@ public class JDFamiliaEquipo extends ZilleDialog {
     @Override
     protected Dimension getSizeDialogEdit() {
         return new Dimension(400, 150);
+    }
+
+    @Action
+    public void mostrarHistoricos() {
+        if(getTabla().getSelectedRow( )> -1 && familiaSelected.getId() != 0) {
+            JDPrecioHistorico dialog = new JDPrecioHistorico(this.parent, true, familiaSelected);
+            ZilleProjectsApp.getApplication().show(dialog);
+        } else {
+            Error("Información", "Debe seleccionar una familia");
+        }
     }
     
     private FamiliaEquipoTableModel tableModel = new FamiliaEquipoTableModel();
