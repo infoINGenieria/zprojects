@@ -26,7 +26,7 @@ public class FrancosLicenciasCellRenderer extends DefaultTableCellRenderer {
             c.setBackground(Color.decode("#87ceeb"));
             c.setForeground(Color.DARK_GRAY);
         } else {
-            if (column == 3 || column == 6 || column == 9)
+            if (column == 3 || column == 7 || column == 10)
             {
                 c.setForeground(Color.black);
                 

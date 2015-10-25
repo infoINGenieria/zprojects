@@ -9,7 +9,8 @@ package Modelo;
  * @author m4tuu
  */
 public class VacacionesRango {
-    int minDias, maxDias, cantidadDias;
+    double minDias, maxDias;
+    int cantidadDias;
 
     public int getCantidadDias() {
         return cantidadDias;
@@ -19,23 +20,23 @@ public class VacacionesRango {
         this.cantidadDias = cantidadDias;
     }
 
-    public int getMaxDias() {
+    public double getMaxDias() {
         return maxDias;
     }
 
-    public void setMaxDias(int maxDias) {
+    public void setMaxDias(double maxDias) {
         this.maxDias = maxDias;
     }
 
-    public int getMinDias() {
+    public double getMinDias() {
         return minDias;
     }
 
-    public void setMinDias(int minDias) {
+    public void setMinDias(double minDias) {
         this.minDias = minDias;
     }
 
-    public VacacionesRango(int minDias, int maxDias, int cantidadDias) {
+    public VacacionesRango(double minDias, double maxDias, int cantidadDias) {
         this.minDias = minDias;
         this.maxDias = maxDias;
         this.cantidadDias = cantidadDias;
@@ -44,7 +45,7 @@ public class VacacionesRango {
     public VacacionesRango() {
     }
     
-    public int getCantidadDiasSegunAntiguedad(int antiguedad){
+    public int getCantidadDiasSegunAntiguedad(double antiguedad){
         if(minDias <= antiguedad && maxDias >= antiguedad){
                     return cantidadDias;
         }

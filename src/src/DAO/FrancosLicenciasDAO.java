@@ -85,7 +85,7 @@ public class FrancosLicenciasDAO extends AbstractDAO {
                 todos.add(fillData(rs));
             }
         } catch (Exception ex) {
-            
+            ex.printStackTrace();
         }
         return todos;
     }
@@ -107,14 +107,15 @@ public class FrancosLicenciasDAO extends AbstractDAO {
                 dfo.setEntra1(rs.getDate("entra1"));
                 dfo.setEntra2(rs.getDate("entra2"));
             }
+            Date ingreso = rs.getDate("fecha_ingreso");
             ifl.francosEntidad = dfo;
             ifl.francosTrabajados = rs.getInt("francos");
             ifl.francosCompensatorios = rs.getInt("devueltos");
             ifl.nombre = rs.getString("nombre");
             ifl.diasLicenciasTomadasAnterior = rs.getInt("dias_vacaciones_ant");
             ifl.diasLicenciasTomadas = rs.getInt("dias_vacaciones");
-            ifl.diasLicencia = Operario.DiasVacaciones(rs.getDate("fecha_ingreso"));
-            ifl.diasLicenciasAnteriores = Operario.DiasVacacionesAnteriores(rs.getDate("fecha_ingreso"));
+            ifl.diasLicencia = Operario.DiasVacaciones(ingreso);
+            ifl.diasLicenciasAnteriores = Operario.DiasVacacionesAnteriores(ingreso);
             return ifl;
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -171,7 +172,7 @@ public class FrancosLicenciasDAO extends AbstractDAO {
         int anioPasado = cal.get(Calendar.YEAR) - 1 ;
         //ENCABEZADOS
         String[] cabecera = {
-           "NOMBRE Y APELLIDO", "SUBTOTAL", "PAGOS", "TOTAL", "DIAS LIC. X AÑO",
+           "NOMBRE Y APELLIDO", "SUBTOTAL", "PAGOS", "TOTAL", "DIAS LIC. X AÑO", "OTORGADAS " + cal.get(Calendar.YEAR),
             "PENDIENTE " + anioPasado, "LIC. DISP.", "SOLICITADOS", "SOLICITADOS2",
             "PENDIENTE ACTUAL", "SALE", "ENTRA", 
             "SALE", "ENTRA"
@@ -214,9 +215,14 @@ public class FrancosLicenciasDAO extends AbstractDAO {
             // licencias disponibles por año
             myCell = myRow.createCell(c++);
             myCell.setCellValue(ifl.getDiasLicenciaAnual());
+            // tomadas año actual
+            myCell = myRow.createCell(c++);
+            myCell.setCellValue(ifl.getDiasLicenciasTomadas());
             // pendientes
             myCell = myRow.createCell(c++);
             myCell.setCellValue(ifl.getLicenciasPendientes());
+            
+            
             // licencia diponibles
             myCell = myRow.createCell(c++);
             myCell.setCellValue(ifl.getLicenciaDisponibles());
@@ -262,7 +268,7 @@ public class FrancosLicenciasDAO extends AbstractDAO {
         }
         
 
-        for (int b = 0; b < 14; b++){
+        for (int b = 0; b < 15; b++){
             mySheet.autoSizeColumn((short)b); //ajusta el ancho de la primera columna  
         }   
         
@@ -281,18 +287,25 @@ public class FrancosLicenciasDAO extends AbstractDAO {
         } 
     }
     
-    public ArrayList<EntidadAbstracta> ReporteDetalles(int operarioId, boolean isFranco, boolean isLicencia, Date fecha){
+    public ArrayList<EntidadAbstracta> ReporteDetalles(int operarioId, boolean isFrancoTrabajado, 
+            boolean isFrancoCompensado, boolean isLicencia, Date fecha){
         ArrayList<EntidadAbstracta> todos = new ArrayList<EntidadAbstracta>();
         String query = "";
         String query1 ="", sep2 ="";
         try {
             query = "select pd.fecha, o.codigo, pd.numero from partediario pd "
                     + "inner join obras o on o.id = pd.obra "
+                    + "left join registro r on r.id = pd.horario "
                     + "where pd.operario = ? ";
-            if (isFranco && isLicencia) {
-                query1 = " and (o.descuenta_francos is true or o.descuenta_licencias is true) ";
-            } else if (isFranco) {
+            if(isFrancoCompensado && isFrancoTrabajado && isLicencia){
+                query1 = " and (o.descuenta_francos is true or o.descuenta_licencias is true or r.especial is true) ";
+            }
+            else if (isFrancoCompensado && isFrancoTrabajado) {
+                query1 = " and (o.descuenta_francos is true or r.especial is true) ";
+            } else if (isFrancoCompensado) {
                 query1 = " and o.descuenta_francos is true ";
+            } else if (isFrancoTrabajado){
+                query1 = " and r.especial is true ";
             } else if (isLicencia) {
                 query1 = " and o.descuenta_licencias is true ";
             }

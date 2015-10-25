@@ -4,6 +4,8 @@
  */
 package Modelo;
 
+import Utils.CalculosUtils;
+import Utils.FechaUtil;
 import java.util.Calendar;
 import java.util.Date;
 import javax.persistence.Entity;
@@ -215,7 +217,7 @@ public class Operario extends EntidadAbstracta {
         this.fecha_ingreso = fecha_ingreso;
     }
     @Transient
-    public int getAniosAntiguedad(){
+    public double getAniosAntiguedad(){
         if(this.fecha_ingreso != null){
             return CalcularAniosAntiguedad(this.fecha_ingreso);
         }
@@ -229,34 +231,39 @@ public class Operario extends EntidadAbstracta {
         return 0;
     }
     
-    public static int CalcularAniosAntiguedad(Date fecha){
+    public static double CalcularAniosAntiguedad(Date fecha){
         if(fecha == null) return 0;
-        Calendar cal = Calendar.getInstance();
-        Calendar hoy = Calendar.getInstance();
-        cal.setTime(fecha);
-        hoy.setTime(new Date());
-        int anios = hoy.get(Calendar.YEAR) - cal.get(Calendar.YEAR);
-        if(hoy.get(Calendar.MONTH) < cal.get(Calendar.MONTH)){
-            anios--;
-        }else if(hoy.get(Calendar.MONTH) == cal.get(Calendar.MONTH) &&
-                hoy.get(Calendar.DATE) < cal.get(Calendar.DATE)){
-            anios--;
-        }
-        if(anios < 0) return 0;
-        return anios;
+        int dias = calcularDias(fecha, FechaUtil.get31DicAnioActual());
+        double ant = CalcDIAS360(dias);
+        return ant;
+    }
+    
+    public static double CalcDIAS360(int dias) {
+        return CalculosUtils.Redondear(((float) dias/360), 2);
     }
     
     public static int DiasVacaciones(Date fecha){
-        int antiguedad = CalcularAniosAntiguedad(fecha);
+        double antiguedad = CalcularAniosAntiguedad(fecha);
         return ParametrosSistema.rangosVacaciones.getDiasDeVacaciones(antiguedad);
     }
             
-    public static int DiasVacacionesAnteriores(Date fecha) {
-        int antiguedad = CalcularAniosAntiguedad(fecha);
+    public static int DiasVacacionesAnteriores(Date fecha) { 
+        /* de la fecha de ingreso al 31 de diciembre de ese año, calcular antiguedad,
+         * Luego, calcular la antiguedad de cada año al 31 de diciembre.
+         */
+        if(fecha == null) return 0;
         int contador = 0;
-        for (int i = 0; i < antiguedad; i++) {
-            contador += ParametrosSistema.rangosVacaciones.getDiasDeVacaciones(i);
+       
+        Date limite = FechaUtil.get31Dic(fecha); // el 31 de diciembre del año en que ingreso
+        while(FechaUtil.getAño(limite) < FechaUtil.getAño(new Date())){  // el limite debe llegar al año anterior al actual
+            // cuento los días entre el ingreso el 31 de diciembre de cada año.
+            // calculo cuantos días le corresponde
+            contador += ParametrosSistema.rangosVacaciones
+                    .getDiasDeVacaciones(CalcDIAS360(calcularDias(fecha, limite)));
+            // corro el límite un año
+            limite = FechaUtil.addAño(limite);
         }
+        
         return contador;
     }
 
@@ -269,5 +276,32 @@ public class Operario extends EntidadAbstracta {
             error += "El Nombre es obligatorio;";
         }
         return error.isEmpty();
+    }
+    
+    public static int calcularDias(Date ini, Date fin) {
+        Calendar cini = Calendar.getInstance();
+        cini.setTime(ini);
+        Calendar cfin = Calendar.getInstance();
+        cfin.setTime(fin);
+        int anos = cfin.get(Calendar.YEAR) - cini.get(Calendar.YEAR);
+        int meses = cfin.get(Calendar.MONTH) - cini.get(Calendar.MONTH);
+        int dia1 = 0, dia2 = 0;
+        if (cini.get(Calendar.DATE) == 31) {
+            dia1 = 30;
+        } else if (cini.get(Calendar.MONTH) == Calendar.FEBRUARY && cini.get(Calendar.DATE) >= 28) {
+            dia1 = 30;
+        } else {
+            dia1 = cini.get(Calendar.DATE);
+        }
+        if (cfin.get(Calendar.DATE) == 31) {
+            dia2 = 30;
+        } else if (cfin.get(Calendar.MONTH) == Calendar.FEBRUARY && cfin.get(Calendar.DATE) >= 28) {
+            dia2 = 30;
+        } else {
+            dia2 = cfin.get(Calendar.DATE);
+        }
+        int dias = dia2 - dia1;
+        int diasLab = anos * 360 + meses * 30 + dias;
+        return diasLab;
     }
 }

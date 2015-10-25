@@ -76,6 +76,19 @@ public class FechaUtil {
       }
   }
   
+  public static int getAño(Date fecha){
+      Calendar calendar = Calendar.getInstance();
+      calendar.setTime(fecha);
+      return calendar.get(Calendar.YEAR);
+  }
+  
+  public static Date addAño(Date fecha) {
+      Calendar calendar = Calendar.getInstance();
+      calendar.setTime(fecha);
+      calendar.add(Calendar.YEAR, 1);
+      return calendar.getTime();
+  }
+  
   public static java.sql.Date getFechatoDB(Date d){
       java.sql.Date fecha;
       if(d!=null){ 
@@ -171,5 +184,36 @@ public class FechaUtil {
         gc.set(GregorianCalendar.SECOND,0);
         gc.set(GregorianCalendar.MILLISECOND,0);
         return gc.getTime();
+  }
+  
+  public static Date get31DicAnioActual(){
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(new Date());
+        cal.set(Calendar.DAY_OF_MONTH, 31);
+        cal.set(Calendar.MONTH, 11);
+        return cal.getTime();
+  }
+  public static Date get31DicAnioAnterior(){
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(new Date());
+        cal.set(Calendar.DAY_OF_MONTH, 31);
+        cal.set(Calendar.MONTH, 11);
+        cal.set(Calendar.YEAR, cal.get(Calendar.YEAR) -1);
+        return cal.getTime();
+  }
+  public static Date get31DicByAnio(int año){
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(new Date());
+        cal.set(Calendar.YEAR, año);
+        cal.set(Calendar.DAY_OF_MONTH, 31);
+        cal.set(Calendar.MONTH, 11);
+        return cal.getTime();
+  }
+  public static Date get31Dic(Date fecha){
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(fecha);
+        cal.set(Calendar.DAY_OF_MONTH, 31);
+        cal.set(Calendar.MONTH, 11);
+        return cal.getTime();
   }
 }

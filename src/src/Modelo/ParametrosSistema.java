@@ -56,6 +56,14 @@ public class ParametrosSistema {
         }
     }
     
+    public static double getValorDouble(String clave){
+        try{
+            return Double.parseDouble(ParametrosSistema.get(clave).getValor().replace(',', '.'));
+        }catch(Exception ex){
+            return 0;
+        }
+    }
+    
     public static class RangoVacaciones{
         private ArrayList<VacacionesRango> rangos = new ArrayList<VacacionesRango>();
         private boolean leidos = false;
@@ -63,9 +71,10 @@ public class ParametrosSistema {
         public void CargarRangos(){
             for(int i = 1; i <= getValorInt("RANGO_CANTIDAD"); i ++)
             {
-                int minDias, maxDias, cantidad;
-                minDias = getValorInt("MIN_DIAS_RANGO_" + i);
-                maxDias = getValorInt("MAX_DIAS_RANGO_" + i);
+                double minDias, maxDias;
+                int cantidad;
+                minDias = getValorDouble("MIN_DIAS_RANGO_" + i);
+                maxDias = getValorDouble("MAX_DIAS_RANGO_" + i);
                 cantidad = getValorInt("VACACIONES_DIAS_RANGO_" + i);
                 rangos.add(new VacacionesRango(minDias, maxDias, cantidad));
                 
@@ -81,7 +90,7 @@ public class ParametrosSistema {
             return leidos;
         }
         
-        public int getDiasDeVacaciones(int antiguedad){
+        public int getDiasDeVacaciones(double antiguedad){
         
             for(VacacionesRango vr: rangos){
                 int cant = vr.getCantidadDiasSegunAntiguedad(antiguedad);

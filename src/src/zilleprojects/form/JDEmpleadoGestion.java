@@ -110,13 +110,7 @@ public class JDEmpleadoGestion extends JDialogCustom {
         francos = new javax.swing.JDialog();
         jPanel6 = new PanelAzul();
         jLabel8 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jLabel9 = new javax.swing.JLabel();
-        lblDiasAFavor = new javax.swing.JLabel();
-        btnSalirFrancos = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        lblLicenciaPorAnio = new javax.swing.JLabel();
         jPanel7 = new javax.swing.JPanel();
         jLabel21 = new javax.swing.JLabel();
         dateEntra1 = new com.toedter.calendar.JDateChooser();
@@ -131,17 +125,38 @@ public class JDEmpleadoGestion extends JDialogCustom {
         jLabel26 = new javax.swing.JLabel();
         dateSale2 = new com.toedter.calendar.JDateChooser();
         txtSolicitados2 = new javax.swing.JFormattedTextField();
-        jLabel18 = new javax.swing.JLabel();
-        lblFrancosAcumulados = new javax.swing.JLabel();
-        btnGuardarFrancos = new javax.swing.JButton();
         txtAjusteFrancos = new javax.swing.JFormattedTextField();
         txtPagados = new javax.swing.JFormattedTextField();
         jLabel13 = new javax.swing.JLabel();
         txtAjusteLicencia = new javax.swing.JFormattedTextField();
-        jLabel19 = new javax.swing.JLabel();
-        lblLicenciasPendientesAnteriores = new javax.swing.JLabel();
-        jLabel20 = new javax.swing.JLabel();
-        lblLicenciasAcumuladas = new javax.swing.JLabel();
+        jPanel10 = new javax.swing.JPanel();
+        jLabel34 = new javax.swing.JLabel();
+        lblTrabajados = new javax.swing.JLabel();
+        jLabel30 = new javax.swing.JLabel();
+        lblCompensados = new javax.swing.JLabel();
+        jLabel32 = new javax.swing.JLabel();
+        lblFrancosAjustados = new javax.swing.JLabel();
+        jLabel35 = new javax.swing.JLabel();
+        lblPagados = new javax.swing.JLabel();
+        jLabel37 = new javax.swing.JLabel();
+        lblAcumulados = new javax.swing.JLabel();
+        jPanel11 = new javax.swing.JPanel();
+        jLabel29 = new javax.swing.JLabel();
+        lblTotalAnteriores = new javax.swing.JLabel();
+        jLabel33 = new javax.swing.JLabel();
+        lblOtorgadasAnteriores = new javax.swing.JLabel();
+        jLabel38 = new javax.swing.JLabel();
+        lblLicenciaAjuste = new javax.swing.JLabel();
+        jLabel40 = new javax.swing.JLabel();
+        lblLicenciaActual = new javax.swing.JLabel();
+        jLabel42 = new javax.swing.JLabel();
+        lblOtorgadasAñoActual = new javax.swing.JLabel();
+        jLabel44 = new javax.swing.JLabel();
+        lblLicenciasDisponibles = new javax.swing.JLabel();
+        jPanel12 = new javax.swing.JPanel();
+        btnSalirFrancos = new javax.swing.JButton();
+        btnGuardarFrancos = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         btnDetalles = new javax.swing.JButton();
         detalles = new javax.swing.JDialog();
         jPanel9 = new PanelEsquinaAzul();
@@ -388,36 +403,8 @@ public class JDEmpleadoGestion extends JDialogCustom {
         jLabel8.setText(resourceMap.getString("jLabel8.text")); // NOI18N
         jLabel8.setName("jLabel8"); // NOI18N
 
-        jButton1.setAction(actionMap.get("CalcularDiasFrancos")); // NOI18N
-        jButton1.setIcon(resourceMap.getIcon("jButton1.icon")); // NOI18N
-        jButton1.setText(resourceMap.getString("jButton1.text")); // NOI18N
-        jButton1.setName("jButton1"); // NOI18N
-
-        jLabel9.setText(resourceMap.getString("jLabel9.text")); // NOI18N
-        jLabel9.setName("jLabel9"); // NOI18N
-
-        lblDiasAFavor.setFont(lblDiasAFavor.getFont().deriveFont(lblDiasAFavor.getFont().getStyle() | java.awt.Font.BOLD, lblDiasAFavor.getFont().getSize()+4));
-        lblDiasAFavor.setForeground(resourceMap.getColor("lblDiasAFavor.foreground")); // NOI18N
-        lblDiasAFavor.setText(resourceMap.getString("lblDiasAFavor.text")); // NOI18N
-        lblDiasAFavor.setName("lblDiasAFavor"); // NOI18N
-
-        btnSalirFrancos.setIcon(resourceMap.getIcon("btnSalirFrancos.icon")); // NOI18N
-        btnSalirFrancos.setText(resourceMap.getString("btnSalirFrancos.text")); // NOI18N
-        btnSalirFrancos.setName("btnSalirFrancos"); // NOI18N
-        btnSalirFrancos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSalirFrancosActionPerformed(evt);
-            }
-        });
-
         jLabel10.setText(resourceMap.getString("jLabel10.text")); // NOI18N
         jLabel10.setName("jLabel10"); // NOI18N
-
-        jLabel11.setText(resourceMap.getString("jLabel11.text")); // NOI18N
-        jLabel11.setName("jLabel11"); // NOI18N
-
-        lblLicenciaPorAnio.setText(resourceMap.getString("lblLicenciaPorAnio.text")); // NOI18N
-        lblLicenciaPorAnio.setName("lblLicenciaPorAnio"); // NOI18N
 
         jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder(resourceMap.getString("jPanel7.border.title"))); // NOI18N
         jPanel7.setName("jPanel7"); // NOI18N
@@ -461,7 +448,7 @@ public class JDEmpleadoGestion extends JDialogCustom {
                 .addComponent(jLabel22)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(dateEntra1, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(109, Short.MAX_VALUE))
+                .addContainerGap(121, Short.MAX_VALUE))
         );
 
         jPanel7Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {dateEntra1, dateSale1});
@@ -477,7 +464,7 @@ public class JDEmpleadoGestion extends JDialogCustom {
                     .addComponent(jLabel21)
                     .addComponent(dateSale1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(dateEntra1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel7Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {dateEntra1, dateSale1});
@@ -540,23 +527,10 @@ public class JDEmpleadoGestion extends JDialogCustom {
                     .addComponent(jLabel24)
                     .addComponent(dateSale2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(dateEntra2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addContainerGap(10, Short.MAX_VALUE))
         );
 
         jPanel8Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {dateEntra2, dateSale2});
-
-        jLabel18.setText(resourceMap.getString("jLabel18.text")); // NOI18N
-        jLabel18.setName("jLabel18"); // NOI18N
-
-        lblFrancosAcumulados.setFont(lblFrancosAcumulados.getFont().deriveFont(lblFrancosAcumulados.getFont().getStyle() | java.awt.Font.BOLD, lblFrancosAcumulados.getFont().getSize()+2));
-        lblFrancosAcumulados.setForeground(resourceMap.getColor("lblDiasAFavor.foreground")); // NOI18N
-        lblFrancosAcumulados.setText(resourceMap.getString("lblFrancosAcumulados.text")); // NOI18N
-        lblFrancosAcumulados.setName("lblFrancosAcumulados"); // NOI18N
-
-        btnGuardarFrancos.setAction(actionMap.get("GuardarDatosFrancos")); // NOI18N
-        btnGuardarFrancos.setIcon(resourceMap.getIcon("btnGuardarFrancos.icon")); // NOI18N
-        btnGuardarFrancos.setText(resourceMap.getString("btnGuardarFrancos.text")); // NOI18N
-        btnGuardarFrancos.setName("btnGuardarFrancos"); // NOI18N
 
         txtAjusteFrancos.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
         txtAjusteFrancos.setText(resourceMap.getString("txtAjusteFrancos.text")); // NOI18N
@@ -586,24 +560,178 @@ public class JDEmpleadoGestion extends JDialogCustom {
             }
         });
 
-        jLabel19.setText(resourceMap.getString("jLabel19.text")); // NOI18N
-        jLabel19.setName("jLabel19"); // NOI18N
+        jPanel10.setBorder(javax.swing.BorderFactory.createTitledBorder(resourceMap.getString("jPanel10.border.title"))); // NOI18N
+        jPanel10.setName("jPanel10"); // NOI18N
+        jPanel10.setOpaque(false);
+        jPanel10.setLayout(new java.awt.GridLayout(5, 2, 15, 5));
 
-        lblLicenciasPendientesAnteriores.setText(resourceMap.getString("lblLicenciasPendientesAnteriores.text")); // NOI18N
-        lblLicenciasPendientesAnteriores.setName("lblLicenciasPendientesAnteriores"); // NOI18N
+        jLabel34.setText(resourceMap.getString("jLabel34.text")); // NOI18N
+        jLabel34.setName("jLabel34"); // NOI18N
+        jPanel10.add(jLabel34);
 
-        jLabel20.setText(resourceMap.getString("jLabel20.text")); // NOI18N
-        jLabel20.setName("jLabel20"); // NOI18N
+        lblTrabajados.setFont(lblTrabajados.getFont().deriveFont(lblTrabajados.getFont().getStyle() | java.awt.Font.BOLD, lblTrabajados.getFont().getSize()+2));
+        lblTrabajados.setText(resourceMap.getString("lblTrabajados.text")); // NOI18N
+        lblTrabajados.setName("lblTrabajados"); // NOI18N
+        jPanel10.add(lblTrabajados);
 
-        lblLicenciasAcumuladas.setFont(lblLicenciasAcumuladas.getFont().deriveFont(lblLicenciasAcumuladas.getFont().getStyle() | java.awt.Font.BOLD, lblLicenciasAcumuladas.getFont().getSize()+2));
-        lblLicenciasAcumuladas.setForeground(resourceMap.getColor("lblLicenciasAcumuladas.foreground")); // NOI18N
-        lblLicenciasAcumuladas.setText(resourceMap.getString("lblLicenciasAcumuladas.text")); // NOI18N
-        lblLicenciasAcumuladas.setName("lblLicenciasAcumuladas"); // NOI18N
+        jLabel30.setText(resourceMap.getString("jLabel30.text")); // NOI18N
+        jLabel30.setName("jLabel30"); // NOI18N
+        jPanel10.add(jLabel30);
+
+        lblCompensados.setFont(lblCompensados.getFont().deriveFont(lblCompensados.getFont().getStyle() | java.awt.Font.BOLD, lblCompensados.getFont().getSize()+2));
+        lblCompensados.setForeground(resourceMap.getColor("lblCompensados.foreground")); // NOI18N
+        lblCompensados.setText(resourceMap.getString("lblCompensados.text")); // NOI18N
+        lblCompensados.setName("lblCompensados"); // NOI18N
+        jPanel10.add(lblCompensados);
+
+        jLabel32.setText(resourceMap.getString("jLabel32.text")); // NOI18N
+        jLabel32.setName("jLabel32"); // NOI18N
+        jPanel10.add(jLabel32);
+
+        lblFrancosAjustados.setFont(lblFrancosAjustados.getFont().deriveFont(lblFrancosAjustados.getFont().getStyle() | java.awt.Font.BOLD, lblFrancosAjustados.getFont().getSize()+2));
+        lblFrancosAjustados.setForeground(resourceMap.getColor("lblFrancosAjustados.foreground")); // NOI18N
+        lblFrancosAjustados.setText(resourceMap.getString("lblFrancosAjustados.text")); // NOI18N
+        lblFrancosAjustados.setName("lblFrancosAjustados"); // NOI18N
+        jPanel10.add(lblFrancosAjustados);
+
+        jLabel35.setText(resourceMap.getString("jLabel35.text")); // NOI18N
+        jLabel35.setName("jLabel35"); // NOI18N
+        jPanel10.add(jLabel35);
+
+        lblPagados.setFont(lblPagados.getFont().deriveFont(lblPagados.getFont().getStyle() | java.awt.Font.BOLD, lblPagados.getFont().getSize()+2));
+        lblPagados.setForeground(resourceMap.getColor("lblPagados.foreground")); // NOI18N
+        lblPagados.setText(resourceMap.getString("lblPagados.text")); // NOI18N
+        lblPagados.setName("lblPagados"); // NOI18N
+        jPanel10.add(lblPagados);
+
+        jLabel37.setFont(jLabel37.getFont().deriveFont(jLabel37.getFont().getStyle() | java.awt.Font.BOLD, jLabel37.getFont().getSize()+2));
+        jLabel37.setText(resourceMap.getString("jLabel37.text")); // NOI18N
+        jLabel37.setName("jLabel37"); // NOI18N
+        jPanel10.add(jLabel37);
+
+        lblAcumulados.setFont(lblAcumulados.getFont().deriveFont(lblAcumulados.getFont().getStyle() | java.awt.Font.BOLD, lblAcumulados.getFont().getSize()+2));
+        lblAcumulados.setText(resourceMap.getString("lblAcumulados.text")); // NOI18N
+        lblAcumulados.setName("lblAcumulados"); // NOI18N
+        jPanel10.add(lblAcumulados);
+
+        jPanel11.setBorder(javax.swing.BorderFactory.createTitledBorder(resourceMap.getString("jPanel11.border.title"))); // NOI18N
+        jPanel11.setName("jPanel11"); // NOI18N
+        jPanel11.setOpaque(false);
+        jPanel11.setLayout(new java.awt.GridLayout(6, 2, 15, 5));
+
+        jLabel29.setText(resourceMap.getString("jLabel29.text")); // NOI18N
+        jLabel29.setName("jLabel29"); // NOI18N
+        jPanel11.add(jLabel29);
+
+        lblTotalAnteriores.setFont(lblTotalAnteriores.getFont().deriveFont(lblTotalAnteriores.getFont().getStyle() | java.awt.Font.BOLD, lblTotalAnteriores.getFont().getSize()+2));
+        lblTotalAnteriores.setText(resourceMap.getString("lblTotalAnteriores.text")); // NOI18N
+        lblTotalAnteriores.setName("lblTotalAnteriores"); // NOI18N
+        jPanel11.add(lblTotalAnteriores);
+
+        jLabel33.setText(resourceMap.getString("jLabel33.text")); // NOI18N
+        jLabel33.setName("jLabel33"); // NOI18N
+        jPanel11.add(jLabel33);
+
+        lblOtorgadasAnteriores.setFont(lblOtorgadasAnteriores.getFont().deriveFont(lblOtorgadasAnteriores.getFont().getStyle() | java.awt.Font.BOLD, lblOtorgadasAnteriores.getFont().getSize()+2));
+        lblOtorgadasAnteriores.setForeground(resourceMap.getColor("lblOtorgadasAnteriores.foreground")); // NOI18N
+        lblOtorgadasAnteriores.setText(resourceMap.getString("lblOtorgadasAnteriores.text")); // NOI18N
+        lblOtorgadasAnteriores.setName("lblOtorgadasAnteriores"); // NOI18N
+        jPanel11.add(lblOtorgadasAnteriores);
+
+        jLabel38.setText(resourceMap.getString("jLabel38.text")); // NOI18N
+        jLabel38.setName("jLabel38"); // NOI18N
+        jPanel11.add(jLabel38);
+
+        lblLicenciaAjuste.setFont(lblLicenciaAjuste.getFont().deriveFont(lblLicenciaAjuste.getFont().getStyle() | java.awt.Font.BOLD, lblLicenciaAjuste.getFont().getSize()+2));
+        lblLicenciaAjuste.setForeground(resourceMap.getColor("lblLicenciaAjuste.foreground")); // NOI18N
+        lblLicenciaAjuste.setText(resourceMap.getString("lblLicenciaAjuste.text")); // NOI18N
+        lblLicenciaAjuste.setName("lblLicenciaAjuste"); // NOI18N
+        jPanel11.add(lblLicenciaAjuste);
+
+        jLabel40.setText(resourceMap.getString("jLabel40.text")); // NOI18N
+        jLabel40.setName("jLabel40"); // NOI18N
+        jPanel11.add(jLabel40);
+
+        lblLicenciaActual.setFont(lblLicenciaActual.getFont().deriveFont(lblLicenciaActual.getFont().getStyle() | java.awt.Font.BOLD, lblLicenciaActual.getFont().getSize()+2));
+        lblLicenciaActual.setText(resourceMap.getString("lblLicenciaActual.text")); // NOI18N
+        lblLicenciaActual.setName("lblLicenciaActual"); // NOI18N
+        jPanel11.add(lblLicenciaActual);
+
+        jLabel42.setText(resourceMap.getString("jLabel42.text")); // NOI18N
+        jLabel42.setName("jLabel42"); // NOI18N
+        jPanel11.add(jLabel42);
+
+        lblOtorgadasAñoActual.setFont(lblOtorgadasAñoActual.getFont().deriveFont(lblOtorgadasAñoActual.getFont().getStyle() | java.awt.Font.BOLD, lblOtorgadasAñoActual.getFont().getSize()+2));
+        lblOtorgadasAñoActual.setForeground(resourceMap.getColor("lblOtorgadasAñoActual.foreground")); // NOI18N
+        lblOtorgadasAñoActual.setText(resourceMap.getString("lblOtorgadasAñoActual.text")); // NOI18N
+        lblOtorgadasAñoActual.setName("lblOtorgadasAñoActual"); // NOI18N
+        jPanel11.add(lblOtorgadasAñoActual);
+
+        jLabel44.setFont(jLabel44.getFont().deriveFont(jLabel44.getFont().getStyle() | java.awt.Font.BOLD, jLabel44.getFont().getSize()+2));
+        jLabel44.setText(resourceMap.getString("jLabel44.text")); // NOI18N
+        jLabel44.setName("jLabel44"); // NOI18N
+        jPanel11.add(jLabel44);
+
+        lblLicenciasDisponibles.setFont(lblLicenciasDisponibles.getFont().deriveFont(lblLicenciasDisponibles.getFont().getStyle() | java.awt.Font.BOLD, lblLicenciasDisponibles.getFont().getSize()+2));
+        lblLicenciasDisponibles.setText(resourceMap.getString("lblLicenciasDisponibles.text")); // NOI18N
+        lblLicenciasDisponibles.setName("lblLicenciasDisponibles"); // NOI18N
+        jPanel11.add(lblLicenciasDisponibles);
+
+        jPanel12.setName("jPanel12"); // NOI18N
+        jPanel12.setOpaque(false);
+
+        btnSalirFrancos.setIcon(resourceMap.getIcon("btnSalirFrancos.icon")); // NOI18N
+        btnSalirFrancos.setText(resourceMap.getString("btnSalirFrancos.text")); // NOI18N
+        btnSalirFrancos.setName("btnSalirFrancos"); // NOI18N
+        btnSalirFrancos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalirFrancosActionPerformed(evt);
+            }
+        });
+
+        btnGuardarFrancos.setAction(actionMap.get("GuardarDatosFrancos")); // NOI18N
+        btnGuardarFrancos.setIcon(resourceMap.getIcon("btnGuardarFrancos.icon")); // NOI18N
+        btnGuardarFrancos.setText(resourceMap.getString("btnGuardarFrancos.text")); // NOI18N
+        btnGuardarFrancos.setName("btnGuardarFrancos"); // NOI18N
+
+        jButton1.setAction(actionMap.get("CalcularDiasFrancos")); // NOI18N
+        jButton1.setIcon(resourceMap.getIcon("jButton1.icon")); // NOI18N
+        jButton1.setText(resourceMap.getString("jButton1.text")); // NOI18N
+        jButton1.setName("jButton1"); // NOI18N
 
         btnDetalles.setAction(actionMap.get("MostrarDetallesFrancosLicencias")); // NOI18N
         btnDetalles.setIcon(resourceMap.getIcon("btnDetalles.icon")); // NOI18N
         btnDetalles.setText(resourceMap.getString("btnDetalles.text")); // NOI18N
         btnDetalles.setName("btnDetalles"); // NOI18N
+
+        javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
+        jPanel12.setLayout(jPanel12Layout);
+        jPanel12Layout.setHorizontalGroup(
+            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel12Layout.createSequentialGroup()
+                .addContainerGap(207, Short.MAX_VALUE)
+                .addComponent(btnDetalles, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(12, 12, 12)
+                .addComponent(btnGuardarFrancos, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnSalirFrancos)
+                .addContainerGap())
+        );
+        jPanel12Layout.setVerticalGroup(
+            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel12Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnSalirFrancos, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnGuardarFrancos, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnDetalles, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+        );
+
+        jPanel12Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnDetalles, btnGuardarFrancos, btnSalirFrancos, jButton1});
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -612,49 +740,32 @@ public class JDEmpleadoGestion extends JDialogCustom {
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, 698, Short.MAX_VALUE)
                     .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addComponent(jLabel8)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtAjusteFrancos, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel13)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtAjusteLicencia, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel10)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtPagados, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, 686, Short.MAX_VALUE)
-                    .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, 686, Short.MAX_VALUE)
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel6Layout.createSequentialGroup()
+                                .addComponent(jLabel8)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtAjusteFrancos, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel13)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtAjusteLicencia, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel10)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtPagados, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel6Layout.createSequentialGroup()
+                                .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, 443, Short.MAX_VALUE)))
+                        .addContainerGap())
                     .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addComponent(jLabel9)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(lblDiasAFavor, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
-                        .addComponent(btnDetalles, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 124, Short.MAX_VALUE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnGuardarFrancos, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnSalirFrancos))
-                    .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel20, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel18, javax.swing.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(lblLicenciasAcumuladas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lblFrancosAcumulados, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE)))
+                        .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, 686, Short.MAX_VALUE)
+                        .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                        .addComponent(jLabel11)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblLicenciaPorAnio, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel19, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
-                        .addGap(18, 18, 18)
-                        .addComponent(lblLicenciasPendientesAnteriores, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                        .addComponent(jPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())))
         );
 
         jPanel6Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {txtAjusteFrancos, txtPagados});
@@ -662,7 +773,7 @@ public class JDEmpleadoGestion extends JDialogCustom {
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(jLabel8)
                     .addComponent(txtAjusteFrancos, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -670,40 +781,19 @@ public class JDEmpleadoGestion extends JDialogCustom {
                     .addComponent(txtAjusteLicencia, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel10)
                     .addComponent(txtPagados, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel11)
-                    .addComponent(lblLicenciaPorAnio)
-                    .addComponent(jLabel19)
-                    .addComponent(lblLicenciasPendientesAnteriores, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(15, 15, 15)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(jLabel18)
-                    .addComponent(lblFrancosAcumulados, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel20)
-                    .addComponent(lblLicenciasAcumuladas, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                            .addComponent(btnSalirFrancos, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnGuardarFrancos, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE)
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblDiasAFavor, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel9))
-                        .addGap(38, 38, 38))
-                    .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addComponent(btnDetalles, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        jPanel6Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnDetalles, btnGuardarFrancos, btnSalirFrancos, jButton1, txtAjusteFrancos, txtPagados});
+        jPanel6Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {txtAjusteFrancos, txtPagados});
 
         javax.swing.GroupLayout francosLayout = new javax.swing.GroupLayout(francos.getContentPane());
         francos.getContentPane().setLayout(francosLayout);
@@ -713,7 +803,7 @@ public class JDEmpleadoGestion extends JDialogCustom {
         );
         francosLayout.setVerticalGroup(
             francosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 434, Short.MAX_VALUE)
+            .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         detalles.setLocationByPlatform(true);
@@ -748,7 +838,7 @@ public class JDEmpleadoGestion extends JDialogCustom {
             }
         });
 
-        cmbTipo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Francos y Licencias", "Sólo francos", "Sólo licencias"}));
+        cmbTipo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Francos y licencias", "Francos (Trab/Comp)", "Francos compensatorios", "Francos trabajados", "Licencias otorgadas"}));
         cmbTipo.setName("cmbTipo"); // NOI18N
 
         jLabel28.setText(resourceMap.getString("jLabel28.text")); // NOI18N
@@ -1051,10 +1141,10 @@ public class JDEmpleadoGestion extends JDialogCustom {
                                     .addGroup(nuevoOperarioLayout.createSequentialGroup()
                                         .addComponent(dateIngreso, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(txtAntiguedad, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(txtAntiguedad, javax.swing.GroupLayout.DEFAULT_SIZE, 59, Short.MAX_VALUE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(lblanti)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 140, Short.MAX_VALUE)
+                                        .addComponent(lblanti, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(lblanti1, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(txtDiasVacaciones, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))))
@@ -1102,14 +1192,15 @@ public class JDEmpleadoGestion extends JDialogCustom {
                     .addComponent(btnMasFuncion, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(desaCheck, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(nuevoOperarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(nuevoOperarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(lblanti, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(txtDiasVacaciones, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(lblanti1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(txtAntiguedad, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE)
-                    .addComponent(dateIngreso, javax.swing.GroupLayout.PREFERRED_SIZE, 24, Short.MAX_VALUE))
+                .addGroup(nuevoOperarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(nuevoOperarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(nuevoOperarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblanti, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtDiasVacaciones, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblanti1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE)
+                        .addComponent(dateIngreso, javax.swing.GroupLayout.PREFERRED_SIZE, 24, Short.MAX_VALUE))
+                    .addComponent(txtAntiguedad, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(nuevoOperarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnVencimientos)
@@ -1532,9 +1623,7 @@ private void dateIngresoPropertyChange(java.beans.PropertyChangeEvent evt) {//GE
             return null;
         }
         return new BuscarTask(org.jdesktop.application.Application.getInstance(zilleprojects.ZilleProjectsApp.class));
-    }
-
-    
+    }    
     private class BuscarTask extends org.jdesktop.application.Task<Object, Void> {
 
         BuscarTask(org.jdesktop.application.Application app) {
@@ -1573,6 +1662,7 @@ private void dateIngresoPropertyChange(java.beans.PropertyChangeEvent evt) {//GE
         }
     }
 
+    
     @Action
     public Task verTodos() {
         return new VerTodosTask(org.jdesktop.application.Application.getInstance(zilleprojects.ZilleProjectsApp.class));
@@ -1610,6 +1700,7 @@ private void dateIngresoPropertyChange(java.beans.PropertyChangeEvent evt) {//GE
         }
     }
 
+    
     @Action
     public Task eliminarEmpleado() {
         if(!Permisos.verificarCredenciales("Administrador")) return null;
@@ -1652,6 +1743,7 @@ private void dateIngresoPropertyChange(java.beans.PropertyChangeEvent evt) {//GE
         }
     } 
 
+    
     @Action
     public Task agregarOperarios() {
         if (nombre.getText().isEmpty()) {
@@ -1734,7 +1826,6 @@ private void dateIngresoPropertyChange(java.beans.PropertyChangeEvent evt) {//GE
         opSelected.setFecha_ingreso(dateIngreso.getDate());
         return new ModificarOperarioTask(org.jdesktop.application.Application.getInstance(zilleprojects.ZilleProjectsApp.class));
     }
-    
     private class ModificarOperarioTask extends org.jdesktop.application.Task<Object, Void> {
         int r = -1;
 
@@ -1773,6 +1864,7 @@ private void dateIngresoPropertyChange(java.beans.PropertyChangeEvent evt) {//GE
             }
         }
     }
+    
     
     @Action
     public Task agregarFuncion() {
@@ -1818,6 +1910,7 @@ private void dateIngresoPropertyChange(java.beans.PropertyChangeEvent evt) {//GE
         }
     }
 
+    
     @Action
     public void showVencimientos() {
         vencimientos.setLocationRelativeTo(null);
@@ -1844,9 +1937,7 @@ private void dateIngresoPropertyChange(java.beans.PropertyChangeEvent evt) {//GE
     @Action
     public final Task mostrarEpps() {
         return new MostrarEppTask(org.jdesktop.application.Application.getInstance(zilleprojects.ZilleProjectsApp.class));
-    }
-
-    
+    }    
     private class MostrarEppTask extends org.jdesktop.application.Task<Object, Void> {
         ArrayList<EntidadAbstracta> epps;
         ArrayList<EPPOperario> eppValores = new ArrayList<EPPOperario>();
@@ -1910,6 +2001,8 @@ private void dateIngresoPropertyChange(java.beans.PropertyChangeEvent evt) {//GE
            
         }
     }
+    
+    
     @Action
     public Task guardarEPP() {
         
@@ -1946,6 +2039,7 @@ private void dateIngresoPropertyChange(java.beans.PropertyChangeEvent evt) {//GE
     
     }
 
+    
     @Action
     public Task CalcularDiasFrancos() {
         
@@ -2028,11 +2122,24 @@ private void dateIngresoPropertyChange(java.beans.PropertyChangeEvent evt) {//GE
         dateEntra2.setDate(itemFl.francosEntidad.getEntra2());
         dateSale1.setDate(itemFl.francosEntidad.getSale1());
         dateSale2.setDate(itemFl.francosEntidad.getSale2());
-        lblLicenciaPorAnio.setText(itemFl.getDiasLicenciaAnual()+"");
-        lblLicenciasPendientesAnteriores.setText(itemFl.getLicenciasPendientes()+ "");
-        lblFrancosAcumulados.setText(itemFl.getTotal()+"");
-        lblLicenciasAcumuladas.setText(itemFl.getLicenciaDisponibles()+"");
-        lblDiasAFavor.setText(itemFl.getPendientesActual()+"");
+        
+        //Mostrar los resumenes
+        //Francos
+        lblTrabajados.setText(itemFl.francosTrabajados+"");
+        lblCompensados.setText(itemFl.francosCompensatorios+"");
+        lblFrancosAjustados.setText(itemFl.francosEntidad.getAjusteFrancos()+"");
+        lblPagados.setText(itemFl.francosEntidad.getPagados()+"");
+        lblAcumulados.setText(itemFl.getTotal()+"");
+        
+        //Licencias
+        lblTotalAnteriores.setText(itemFl.diasLicenciasAnteriores+"");
+        lblOtorgadasAnteriores.setText(itemFl.diasLicenciasTomadasAnterior+"");
+        lblLicenciaAjuste.setText(itemFl.francosEntidad.getAjusteLicencias()+"");
+        lblLicenciaActual.setText(itemFl.diasLicencia +"");
+        lblOtorgadasAñoActual.setText(itemFl.diasLicenciasTomadas+"");
+        lblLicenciasDisponibles.setText(itemFl.getLicenciaDisponibles()+"");
+        
+          
     }
 
     @Action
@@ -2080,19 +2187,26 @@ private void dateIngresoPropertyChange(java.beans.PropertyChangeEvent evt) {//GE
     }
 
     private class MostrarDetallesFrancosLicenciasTask extends org.jdesktop.application.Task<Object, Void> {
-        boolean isFranco=false, isLicencia= false;
+        boolean isFrancoCompensado=false, isFrancoTrabajado=false, isLicencia= false;
         MostrarDetallesFrancosLicenciasTask(org.jdesktop.application.Application app) {
             // Runs on the EDT.  Copy GUI state that
             // doInBackground() depends on from parameters
             // to MostrarDetallesFrancosLicenciasTask fields, here.
             super(app);
-             if (cmbTipo.getSelectedItem().toString().contains("y")){
-                isFranco = isLicencia = true;
-            } else if (cmbTipo.getSelectedItem().toString().equals("Sólo francos")) {
-                isFranco = true;
-            } else if (cmbTipo.getSelectedItem().toString().equals("Sólo licencias")) {
+            if (cmbTipo.getSelectedItem().toString().equals("Francos trabajados")){
+                isFrancoTrabajado = true;
+            } else if (cmbTipo.getSelectedItem().toString().equals("Francos compensatorios")) {
+                isFrancoCompensado = true;
+            } else if (cmbTipo.getSelectedItem().toString().equals("Licencias otorgadas")) {
                 isLicencia = true;
+            } else if(cmbTipo.getSelectedItem().toString().equals("Francos (Trab/Comp)")) {
+                isFrancoCompensado = isFrancoTrabajado = true;
+            } else {
+                isFrancoCompensado = isFrancoTrabajado = isLicencia = true;
             }
+        
+             
+             
         }
         @Override protected Object doInBackground() {
             // Your Task's code here.  This method runs
@@ -2101,7 +2215,7 @@ private void dateIngresoPropertyChange(java.beans.PropertyChangeEvent evt) {//GE
             FrancosLicenciasDAO dao = new FrancosLicenciasDAO();
             dao.conectar();
             ArrayList<EntidadAbstracta> datos = dao.ReporteDetalles(opSelected.getId(), 
-                    isFranco, isLicencia, chooseFecha.getDate());
+                    isFrancoTrabajado, isFrancoCompensado, isLicencia, chooseFecha.getDate());
             detalleTableModel.clean();
             for(EntidadAbstracta ea : datos) {
                 detalleTableModel.addFila(ea);
@@ -2169,17 +2283,13 @@ private void dateIngresoPropertyChange(java.beans.PropertyChangeEvent evt) {//GE
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
@@ -2188,14 +2298,27 @@ private void dateIngresoPropertyChange(java.beans.PropertyChangeEvent evt) {//GE
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
+    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel30;
+    private javax.swing.JLabel jLabel32;
+    private javax.swing.JLabel jLabel33;
+    private javax.swing.JLabel jLabel34;
+    private javax.swing.JLabel jLabel35;
+    private javax.swing.JLabel jLabel37;
+    private javax.swing.JLabel jLabel38;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel40;
+    private javax.swing.JLabel jLabel42;
+    private javax.swing.JLabel jLabel44;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel10;
+    private javax.swing.JPanel jPanel11;
+    private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -2209,12 +2332,18 @@ private void dateIngresoPropertyChange(java.beans.PropertyChangeEvent evt) {//GE
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTable jTable1;
+    private javax.swing.JLabel lblAcumulados;
     private javax.swing.JLabel lblCantidad;
-    private javax.swing.JLabel lblDiasAFavor;
-    private javax.swing.JLabel lblFrancosAcumulados;
-    private javax.swing.JLabel lblLicenciaPorAnio;
-    private javax.swing.JLabel lblLicenciasAcumuladas;
-    private javax.swing.JLabel lblLicenciasPendientesAnteriores;
+    private javax.swing.JLabel lblCompensados;
+    private javax.swing.JLabel lblFrancosAjustados;
+    private javax.swing.JLabel lblLicenciaActual;
+    private javax.swing.JLabel lblLicenciaAjuste;
+    private javax.swing.JLabel lblLicenciasDisponibles;
+    private javax.swing.JLabel lblOtorgadasAnteriores;
+    private javax.swing.JLabel lblOtorgadasAñoActual;
+    private javax.swing.JLabel lblPagados;
+    private javax.swing.JLabel lblTotalAnteriores;
+    private javax.swing.JLabel lblTrabajados;
     private javax.swing.JLabel lblanti;
     private javax.swing.JLabel lblanti1;
     private javax.swing.JList listaEmpleados;
