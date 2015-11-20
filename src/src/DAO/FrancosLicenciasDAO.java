@@ -25,6 +25,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFCellStyle;
 import org.apache.poi.hssf.usermodel.HSSFRichTextString;
@@ -278,8 +279,11 @@ public class FrancosLicenciasDAO extends AbstractDAO {
         try {
             out = new FileOutputStream(dest);
             myWorkBook.write(out);
-            Desktop.getDesktop().open(dest);
             out.close();
+            Desktop.getDesktop().open(dest);
+            
+        } catch(UnsupportedOperationException ex) {
+            JOptionPane.showMessageDialog(null, "Archivo creado en: " + dest.getAbsolutePath(), "Exportación finalizada", JOptionPane.INFORMATION_MESSAGE);
         } catch (FileNotFoundException ex) {
             Logger.getLogger(FrancosLicenciasDAO.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {

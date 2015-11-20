@@ -147,7 +147,7 @@
                           </Group>
                           <EmptySpace min="-2" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="appVersionLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblVersion" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="appVendorLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Group type="103" alignment="0" groupAlignment="1" attributes="0">
                                   <Group type="102" alignment="1" attributes="0">
@@ -160,7 +160,7 @@
                           </Group>
                       </Group>
                       <Component id="appTitleLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="appDescLabel" alignment="0" pref="339" max="32767" attributes="0"/>
+                      <Component id="appDescLabel" alignment="0" pref="393" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -178,7 +178,7 @@
                           <EmptySpace min="-2" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="versionLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="appVersionLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblVersion" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
@@ -257,15 +257,13 @@
             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="0"/>
           </AuxValues>
         </Component>
-        <Component class="javax.swing.JLabel" name="appVersionLabel">
+        <Component class="javax.swing.JLabel" name="lblVersion">
           <Properties>
-            <Property name="text" type="java.lang.String" resourceKey="Application.version"/>
-            <Property name="name" type="java.lang.String" value="appVersionLabel" noResource="true"/>
+            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="ZilleProjectsApp.VERSION+&quot;&quot;" type="code"/>
+            </Property>
+            <Property name="name" type="java.lang.String" value="lblVersion" noResource="true"/>
           </Properties>
-          <AuxValues>
-            <AuxValue name="JavaCodeGenerator_VariableLocal" type="java.lang.Boolean" value="true"/>
-            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="0"/>
-          </AuxValues>
         </Component>
         <Component class="javax.swing.JLabel" name="vendorLabel">
           <Properties>

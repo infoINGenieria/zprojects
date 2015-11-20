@@ -265,6 +265,7 @@ public class ZilleProjectsView extends FrameView {
                 
                 loginDialogo.setLocationRelativeTo(mainPanel);
                 loginDialogo.setIconImage(icono);
+                loginDialogo.pack();
                 loginDialogo.setVisible(true);
                 
             } else {
@@ -468,8 +469,9 @@ public class ZilleProjectsView extends FrameView {
             configurarConnDialog.setLocationRelativeTo(mainPanel);
             configurarConnDialog.getRootPane().setDefaultButton(guardarDatos);
             configurarConnDialog.setIconImage(icono);
+            configurarConnDialog.pack();
             configurarConnDialog.setVisible(true);
-
+            
         }
     }
     

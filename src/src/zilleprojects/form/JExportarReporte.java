@@ -234,8 +234,9 @@ public class JExportarReporte extends JDialogCustom {
             exporter.setConfiguration(configuration);
             try {
                 exporter.exportReport();
+                File dest = null;
                 try {
-                    File dest = new File(FileManager.getTmpFolder(), "export-open.xls");
+                    dest = new File(FileManager.getTmpFolder(), "export-open.xls");
                     if(FileManager.copyfile(xls, dest)){
                         Desktop.getDesktop().open(dest);
                         xls.delete();
@@ -244,6 +245,11 @@ public class JExportarReporte extends JDialogCustom {
                         Desktop.getDesktop().open(xls); 
                         
                     }
+                } catch(UnsupportedOperationException ex) {
+                    if(dest != null)
+                        Info("Exportación existosa!\nArchivo creado en: " + dest.getAbsolutePath());
+                    else 
+                        Info("Exportación existosa! Pero no es posible abrirlo. Busque en " + FileManager.getTmpFolder().getAbsolutePath());
                 } catch (IOException ex) {
                     Logger.getLogger(JExportarReporte.class.getName()).log(Level.SEVERE, null, ex);
                     Error("Reporte generado pero fallo la apertura. Su reporte se encuentra en " + xls);

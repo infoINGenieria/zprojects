@@ -46,7 +46,7 @@ import org.apache.poi.ss.util.CellRangeAddress;
  *
  * @author matuu
  */
-public class ReportesDAO {
+public class ReportesDAO  extends HSSFMixin {
 
     Connection conector;
 
@@ -522,9 +522,102 @@ public class ReportesDAO {
         }
         return result;
     }
-    /*
-    
-     */
+         
+     
+    public String reportUtilizacionEquipoPorObra(Date desde, Date hasta) {
+        HSSFWorkbook myWorkBook = new HSSFWorkbook();
+        HSSFSheet mySheet = myWorkBook.createSheet("Lista de equipos por CC");
+        HSSFCellStyle amarillo = getCellStyle(myWorkBook, STYLE_AMARILLO);
+        
+        HSSFCellStyle azul = getCellStyle(myWorkBook, STYLE_AZUL);
+        
+        String query= "SELECT EQ.N_INTERNO as nint, f.nombre as familia, O.NOMBRE as nombre, "
+                + "COUNT(PD.id) as DiasEnMes, OB.OBRA as obra, OB.id as obraid "
+                + "FROM partediario PD "
+                + "INNER JOIN operarios O ON PD.operario = O.id "
+                + "INNER JOIN obras OB ON PD.obra = OB.id "
+                + "INNER JOIN registro_equipo RQ ON PD.equipo = RQ.id "
+                + "INNER JOIN equipos EQ ON RQ.equipo = EQ.id "
+                + "INNER JOIN familia_equipo f ON f.id = EQ.familia_equipo_id "
+                + "where PD.fecha <= '"+ FechaUtil.getFechaSQL(hasta)+"' and "
+                + "PD.fecha >= '"+ FechaUtil.getFechaSQL(desde)+"' and EQ.id != 1 "
+                + "AND PD.situacion =1 "
+                + "group by OB.id, EQ.N_INTERNO "
+                + "order by OB.id, EQ.N_INTERNO desc";
+        try {
+            
+            PreparedStatement ps = conector.prepareStatement(query);
+            ResultSet rs = ps.executeQuery();
+            int i = 0;
+            
+            //Datos
+            int lastObraId = 0;
+            while (rs.next()) {
+                // si es distinto, creo cabecera
+                HSSFRow myRow = null;
+                HSSFCell myCell = null;
+                if(lastObraId != rs.getInt("obraid")) {
+                    if(lastObraId != 0) // NO en la primera vez
+                    {
+                        i = i +3;
+                    }
+                    lastObraId = rs.getInt("obraid");
+                    
+                    //ENCABEZADOS
+                    myRow = createRow(mySheet, i);
+                    myRow.setHeight((short)600);
+                    myCell = createCell(myRow, 0, "Listado de equipos en " + rs.getString("obra"), amarillo);
+                    
+                    mySheet.addMergedRegion(new CellRangeAddress(i,i,0,3));  // merge cell
+                    //Siguiente renglón
+                    i++; 
+                    myRow = createRow(mySheet, i);    
+                    myRow.setHeight((short)400);
+                    // Interno
+                    myCell = createCell(myRow, 0,"Interno", azul);
+                    
+                    // Función
+                    myCell = createCell(myRow, 1,"Función", azul);
+                    // Operario
+                    myCell = createCell(myRow, 2,"Operario", azul);
+                    // Dias en el mes
+                    myCell = createCell(myRow, 3,"Días en el mes", azul);
+                    i++;
+                }
+                
+                myRow = createRow(mySheet, i);
+                // Interno
+                myCell = createCell(myRow, 0, rs.getString("nint"));
+                // Funcion
+                myCell = createCell(myRow, 1, rs.getString("familia"));
+                // Operario
+                myCell = createCell(myRow, 2, rs.getString("nombre"));
+                // Dias
+                myCell = createCell(myRow, 3, rs.getInt("DiasEnMes"));
+                i++;
+            }
+            
+            for (int b = 0; b < 4; b++){
+                if(b == 0 || b == 3){
+                    mySheet.setColumnWidth(b, 3500); 
+                }else {
+                    mySheet.setColumnWidth(b, 8000); 
+                }
+            }  
+            File dest = new File(FileManager.getTmpFolder(), "UtilizacionEquiposPorCC.xls");
+            FileOutputStream out = new FileOutputStream(dest);
+            myWorkBook.write(out);
+            out.close();
+            Desktop.getDesktop().open(dest);
+            return "Reporte creado en: " + dest.getAbsolutePath();
+        } catch (UnsupportedOperationException ex) {
+            return "Reporte creado en: " + FileManager.getTmpFolder().getAbsolutePath() + "/" + "UtilizacionEquiposPorCC.xls";
+        } catch (SQLException ex){
+            return "No se pudo crear el reporte.\nError de lectura en la base de datos"; 
+        } catch (Exception e) {
+            return "No se pudo crear el reporte.\nError desconocido"; 
+        }
+    }
 
     public void reportCustom(int idOperario, ArrayList<Obras> obrasIDlist, Date desde, Date hasta) {
         
@@ -533,40 +626,9 @@ public class ReportesDAO {
         HSSFWorkbook myWorkBook = new HSSFWorkbook();
         HSSFSheet mySheet = myWorkBook.createSheet("Reporte Personalizado");
         //Style
-            HSSFCellStyle amarillo = myWorkBook.createCellStyle();
-            amarillo.setFillForegroundColor(HSSFColor.YELLOW.index);
-            amarillo.setFillPattern(HSSFCellStyle.SOLID_FOREGROUND);
-            amarillo.setBorderBottom((short)14);
-            amarillo.setBorderLeft((short)14);
-            amarillo.setBorderRight((short)14);
-            amarillo.setBorderTop((short)14);
-            amarillo.setAlignment(HSSFCellStyle.ALIGN_CENTER);
-            amarillo.setVerticalAlignment(HSSFCellStyle.VERTICAL_CENTER);
-            amarillo.setWrapText(true);
-           
-            
-            HSSFCellStyle azul = myWorkBook.createCellStyle();
-            azul.setFillForegroundColor(HSSFColor.LIGHT_BLUE.index);
-            azul.setFillPattern(HSSFCellStyle.SOLID_FOREGROUND);
-            azul.setAlignment(HSSFCellStyle.ALIGN_CENTER);
-            azul.setVerticalAlignment(HSSFCellStyle.VERTICAL_CENTER);
-            azul.setBorderBottom((short)14);
-            azul.setBorderLeft((short)14);
-            azul.setBorderRight((short)14);
-            azul.setBorderTop((short)14);
-            azul.setWrapText(true);
-            
-            
-            HSSFCellStyle verde = myWorkBook.createCellStyle();
-            verde.setFillForegroundColor(HSSFColor.LIGHT_GREEN.index);
-            verde.setFillPattern(HSSFCellStyle.SOLID_FOREGROUND);
-            verde.setAlignment(HSSFCellStyle.ALIGN_CENTER);
-            verde.setVerticalAlignment(HSSFCellStyle.VERTICAL_CENTER);
-            verde.setWrapText(true);
-            verde.setBorderBottom((short)14);
-            verde.setBorderLeft((short)14);
-            verde.setBorderRight((short)14);
-            verde.setBorderTop((short)14);
+            HSSFCellStyle amarillo = getCellStyle(myWorkBook, STYLE_AMARILLO);
+            HSSFCellStyle azul = getCellStyle(myWorkBook, STYLE_AZUL);           
+            HSSFCellStyle verde = getCellStyle(myWorkBook, STYLE_VERDE);
             
         String query= "select  OP.nombre, OP.id FROM partediario PD "
                 + "LEFT JOIN obras OB ON PD.obra = OB.id "

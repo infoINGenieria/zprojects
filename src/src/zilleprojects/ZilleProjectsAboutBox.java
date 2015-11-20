@@ -4,7 +4,6 @@
 
 package zilleprojects;
 
-import Vista.PanelAzul;
 import java.awt.Image;
 import java.awt.Toolkit;
 import org.jdesktop.application.Action;
@@ -16,6 +15,7 @@ public class ZilleProjectsAboutBox extends javax.swing.JDialog {
         initComponents();
         getRootPane().setDefaultButton(closeButton);
         setIconImage(icono);
+        
     }
 
     @Action public void closeAboutBox() {
@@ -32,6 +32,7 @@ public class ZilleProjectsAboutBox extends javax.swing.JDialog {
        //        licencia.setLocationRelativeTo(InfoHorasAboutBox.this);
         licencia.setIconImage(icono);
         licencia.setLocationRelativeTo(this);
+        
         ZilleProjectsApp.getApplication().show(licencia);
     }
 
@@ -52,7 +53,7 @@ public class ZilleProjectsAboutBox extends javax.swing.JDialog {
         javax.swing.JLabel appTitleLabel = new javax.swing.JLabel();
         javax.swing.JLabel appDescLabel = new javax.swing.JLabel();
         javax.swing.JLabel versionLabel = new javax.swing.JLabel();
-        javax.swing.JLabel appVersionLabel = new javax.swing.JLabel();
+        lblVersion = new javax.swing.JLabel();
         javax.swing.JLabel vendorLabel = new javax.swing.JLabel();
         javax.swing.JLabel appVendorLabel = new javax.swing.JLabel();
         javax.swing.JLabel homepageLabel = new javax.swing.JLabel();
@@ -130,8 +131,8 @@ public class ZilleProjectsAboutBox extends javax.swing.JDialog {
         versionLabel.setText(resourceMap.getString("versionLabel.text")); // NOI18N
         versionLabel.setName("versionLabel"); // NOI18N
 
-        appVersionLabel.setText(resourceMap.getString("Application.version")); // NOI18N
-        appVersionLabel.setName("appVersionLabel"); // NOI18N
+        lblVersion.setText(ZilleProjectsApp.VERSION+"");
+        lblVersion.setName("lblVersion"); // NOI18N
 
         vendorLabel.setFont(vendorLabel.getFont().deriveFont(vendorLabel.getFont().getStyle() | java.awt.Font.BOLD));
         vendorLabel.setText(resourceMap.getString("vendorLabel.text")); // NOI18N
@@ -173,7 +174,7 @@ public class ZilleProjectsAboutBox extends javax.swing.JDialog {
                             .addComponent(homepageLabel))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(appVersionLabel)
+                            .addComponent(lblVersion)
                             .addComponent(appVendorLabel)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addGroup(jPanel1Layout.createSequentialGroup()
@@ -182,7 +183,7 @@ public class ZilleProjectsAboutBox extends javax.swing.JDialog {
                                     .addComponent(closeButton))
                                 .addComponent(appHomepageLabel))))
                     .addComponent(appTitleLabel, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(appDescLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 339, Short.MAX_VALUE))
+                    .addComponent(appDescLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 393, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -197,7 +198,7 @@ public class ZilleProjectsAboutBox extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(versionLabel)
-                            .addComponent(appVersionLabel))
+                            .addComponent(lblVersion))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(vendorLabel)
@@ -236,6 +237,7 @@ public class ZilleProjectsAboutBox extends javax.swing.JDialog {
     private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblVersion;
     private javax.swing.JDialog licencia;
     private javax.swing.JTextArea textLicencia;
     // End of variables declaration//GEN-END:variables
