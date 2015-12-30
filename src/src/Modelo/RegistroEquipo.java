@@ -10,8 +10,11 @@ package Modelo;
  */
 public class RegistroEquipo {
     
-    int id, idEquipo, estacionServicioID;
+    int id, idEquipo, estacionServicioID, partediario_id;
     String iniHoro, finHoro, iniOdo, finOdo, cantCombustible, est_Servicio,tarea;
+    String cantera_cargadero, material;
+    int viajes;
+    double cantidad, distancia;
     boolean datosCarga;
 
     public RegistroEquipo() {
@@ -25,6 +28,15 @@ public class RegistroEquipo {
     public void setEstacionServicioID(int estacionServicioID) {
         this.estacionServicioID = estacionServicioID;
     }
+
+    public int getPartediario_id() {
+        return partediario_id;
+    }
+
+    public void setPartediario_id(int partediario_id) {
+        this.partediario_id = partediario_id;
+    }
+    
     
 
     public String getCantCombustible() {
@@ -131,6 +143,46 @@ public class RegistroEquipo {
         hash = 47 * hash + this.id;
         hash = 47 * hash + this.idEquipo;
         return hash;
+    }
+
+    public String getCantera_cargadero() {
+        return cantera_cargadero;
+    }
+
+    public void setCantera_cargadero(String cantera_cargadero) {
+        this.cantera_cargadero = cantera_cargadero;
+    }
+
+    public double getCantidad() {
+        return cantidad;
+    }
+
+    public void setCantidad(double cantidad) {
+        this.cantidad = cantidad;
+    }
+
+    public double getDistancia() {
+        return distancia;
+    }
+
+    public void setDistancia(double distancia) {
+        this.distancia = distancia;
+    }
+
+    public String getMaterial() {
+        return material;
+    }
+
+    public void setMaterial(String material) {
+        this.material = material;
+    }
+
+    public int getViajes() {
+        return viajes;
+    }
+
+    public void setViajes(int viajes) {
+        this.viajes = viajes;
     }
     
     

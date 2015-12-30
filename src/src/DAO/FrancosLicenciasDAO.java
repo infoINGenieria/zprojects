@@ -73,8 +73,8 @@ public class FrancosLicenciasDAO extends AbstractDAO {
                     + "sum(if(o.descuenta_licencias and pd.fecha >= '"+ anio+"-01-01',1,0)) as dias_vacaciones, "
                     + "op.nombre, op.fecha_ingreso, fl.* from operarios op "
                     + "left join  partediario pd  on pd.operario = op.id "
-                    + "left join registro r on r.id = pd.horario "
-                    + "inner join obras o on  o.id = pd.obra "
+                    + "left join registro r on r.partediario_id = pd.id "
+                    + "inner join obras o on o.id = pd.obra "
                     + "left join franco_licencia fl on fl.operario_id = op.id ";
             if (!text.isEmpty()) {
                 query += "where op.nombre like '%" + text + "%' ";
@@ -134,7 +134,7 @@ public class FrancosLicenciasDAO extends AbstractDAO {
                     + "sum(if(o.descuenta_licencias and pd.fecha >= '"+ anio+"-01-01',1,0)) as dias_vacaciones, "
                     + "op.nombre, op.fecha_ingreso, fl.* from operarios op "
                     + "left join partediario pd on pd.operario = op.id "
-                    + "left join registro r on r.id = pd.horario "
+                    + "left join registro r on r.partediario_id = pd.id "
                     + "inner join obras o on  o.id = pd.obra "
                     + "left join franco_licencia fl on fl.operario_id = op.id ";
             
@@ -299,7 +299,7 @@ public class FrancosLicenciasDAO extends AbstractDAO {
         try {
             query = "select pd.fecha, o.codigo, pd.numero from partediario pd "
                     + "inner join obras o on o.id = pd.obra "
-                    + "left join registro r on r.id = pd.horario "
+                    + "left join registro r on r.partediario_id = pd.id "
                     + "where pd.operario = ? ";
             if(isFrancoCompensado && isFrancoTrabajado && isLicencia){
                 query1 = " and (o.descuenta_francos is true or o.descuenta_licencias is true or r.especial is true) ";

@@ -1264,7 +1264,7 @@ private void selectEquipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
 
         ParteDiario pd = new ParteDiario();
         Registro reg = new Registro();
-        Materiales mat = new Materiales();
+        //Materiales mat = new Materiales();
         RegistroEquipo regEq = new RegistroEquipo();
         public ArrayList<Materiales> datosTr = new ArrayList<Materiales>();
         OrdenTrabajo ot = new OrdenTrabajo();
@@ -1358,6 +1358,7 @@ private void selectEquipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
 
         @Override
         protected void succeeded(Object result) {
+            boolean iscreatedPD = false;
             if(rPD == -10){
                 OpcionPanel.showMessageDialog(null, "¡No se pudo guardar!\n"
                         + "Existe un parte diario\n"
@@ -1372,6 +1373,7 @@ private void selectEquipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                             + "Intente nuevamente.", "Error", OpcionPanel.ERROR_MESSAGE);
                 } else {
                     resetearForm();
+                    iscreatedPD =true;
                     outText.setText("Datos guardados.");
 
                 }
@@ -1386,7 +1388,12 @@ private void selectEquipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                     ordenDeTrabajo.setLocationRelativeTo(mainFrame); 
                     ordenDeTrabajo.setSelectedOT(ot);
                     ZilleProjectsApp.getApplication().show(ordenDeTrabajo);
-                    
+                    if(iscreatedPD){
+                        OpcionPanel.showMessageDialog(null, "No pudo crearse el Parte Diario, "
+                                + "pero si la Orden de Trabajo. Se desactiva la opción de \"Crear "
+                                + "Orden de trabajo\".", "Error", OpcionPanel.INFORMATION_MESSAGE);
+                        isCrearOT.setSelected(false);
+                    }
                 }
             }
         }

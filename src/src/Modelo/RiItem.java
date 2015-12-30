@@ -12,10 +12,10 @@ import java.util.Date;
  */
 public class RiItem extends EntidadAbstracta {
     
-    private int id, riId;
+    private int id, riId, cantidad;
     private String OC_num, proveedor;
     private Date fecha_necesidad, fecha_emision, fecha_oc, fecha_entrega;
-    private String cantidad, unidad, detalle, observacion, valor;
+    private String unidad, detalle, observacion, valor;
 
     public RiItem() {
         fecha_necesidad = new Date();
@@ -31,11 +31,11 @@ public class RiItem extends EntidadAbstracta {
     }
 
 
-    public String getCantidad() {
+    public int getCantidad() {
         return cantidad;
     }
 
-    public void setCantidad(String cantidad) {
+    public void setCantidad(int cantidad) {
         this.cantidad = cantidad;
     }
 
@@ -169,8 +169,8 @@ public class RiItem extends EntidadAbstracta {
         if (riId == 0) {
             error += "El item debe estar relacionado con un RI;";
         }
-        if (cantidad.isEmpty()) {
-            error += "El campo cantidad no puede ser nulo;";
+        if (cantidad <= 0) {
+            error += "El campo cantidad no puede ser menor o igual a 0;";
         }
         return error.isEmpty();
     }

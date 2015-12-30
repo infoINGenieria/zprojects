@@ -13,6 +13,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -119,6 +121,11 @@ public class RIDAO {
 
         } catch (SQLException ex) {
             r = 0;
+            try {
+                conector.rollback();
+            } catch (SQLException ex1) {
+                Logger.getLogger(RIDAO.class.getName()).log(Level.SEVERE, null, ex1);
+            }
         }
         return r;
     }
@@ -128,7 +135,7 @@ public class RIDAO {
         boolean r =false;
         try {
             conector.setAutoCommit(false);
-            String query = "delete from ri where RIID = ?";
+            String query = "delete from ri_item where riId = ?";
             PreparedStatement ps = conector.prepareStatement(query);
             ps.setInt(1, ri.getRI_ID());
             int rs = ps.executeUpdate();
@@ -139,7 +146,7 @@ public class RIDAO {
                 ps.setInt(1, ri.getRI_ID());
                 rs = ps.executeUpdate();
                 
-                query = "delete from ri_item where riId = ?";
+                query = "delete from ri where RIID = ?";
                 ps = conector.prepareStatement(query);
                 ps.setInt(1, ri.getRI_ID());
                 rs = ps.executeUpdate();

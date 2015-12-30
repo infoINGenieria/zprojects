@@ -561,7 +561,7 @@
                   <EmptySpace min="-2" max="-2" attributes="0"/>
                   <Component id="horarioPanel" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" max="-2" attributes="0"/>
-                  <Component id="equipoPanel" min="-2" max="-2" attributes="0"/>
+                  <Component id="equipoPanel" min="-2" pref="182" max="-2" attributes="0"/>
                   <EmptySpace min="-2" max="-2" attributes="0"/>
                   <Component id="jPanel3" max="32767" attributes="0"/>
                   <EmptySpace min="-2" max="-2" attributes="0"/>
@@ -603,7 +603,7 @@
                               <Component id="fechaParte" min="-2" pref="143" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="multifuncionCheck" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace pref="154" max="32767" attributes="0"/>
+                              <EmptySpace pref="197" max="32767" attributes="0"/>
                               <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="numPre" min="-2" pref="49" max="-2" attributes="0"/>
@@ -616,7 +616,7 @@
                               <Component id="jButton2" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="isDesarrango" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace pref="168" max="32767" attributes="0"/>
+                              <EmptySpace pref="217" max="32767" attributes="0"/>
                               <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="comboObra" min="-2" pref="301" max="-2" attributes="0"/>
@@ -910,7 +910,7 @@
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="comboEquipos" pref="622" max="32767" attributes="0"/>
+                              <Component id="comboEquipos" pref="650" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="botonBuscarEquipoMostrar" min="-2" max="-2" attributes="0"/>
                           </Group>
@@ -943,10 +943,10 @@
                       </Group>
                       <EmptySpace min="-2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="jPanel7" pref="89" max="32767" attributes="2"/>
-                          <Component id="jPanel6" alignment="0" pref="89" max="32767" attributes="2"/>
+                          <Component id="jPanel7" pref="91" max="32767" attributes="2"/>
+                          <Component id="jPanel6" alignment="0" max="32767" attributes="2"/>
                           <Component id="jPanel5" alignment="0" min="-2" pref="89" max="-2" attributes="2"/>
-                          <Component id="jPanel4" alignment="0" pref="89" max="32767" attributes="2"/>
+                          <Component id="jPanel4" alignment="0" max="32767" attributes="2"/>
                       </Group>
                       <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                   </Group>
@@ -1200,7 +1200,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jScrollPane2" pref="861" max="32767" attributes="0"/>
+                      <Component id="jScrollPane2" pref="877" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="isCrearOT" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
@@ -1212,7 +1212,7 @@
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="isCrearOT" min="-2" max="-2" attributes="0"/>
-                          <Component id="jScrollPane2" alignment="0" pref="52" max="32767" attributes="0"/>
+                          <Component id="jScrollPane2" alignment="0" pref="37" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
                   </Group>

@@ -181,7 +181,7 @@
                               </Group>
                               <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="detalle" alignment="0" pref="474" max="32767" attributes="0"/>
+                                  <Component id="detalle" alignment="0" pref="476" max="32767" attributes="0"/>
                                   <Component id="valorOC" linkSize="11" min="-2" max="-2" attributes="0"/>
                                   <Component id="jScrollPane5" min="-2" pref="466" max="-2" attributes="0"/>
                                   <Group type="102" alignment="0" attributes="0">
@@ -189,7 +189,7 @@
                                           <Component id="proveedor" linkSize="11" alignment="0" min="-2" max="-2" attributes="0"/>
                                           <Component id="fechaOc" linkSize="11" alignment="0" min="-2" pref="150" max="-2" attributes="0"/>
                                       </Group>
-                                      <EmptySpace pref="46" max="32767" attributes="0"/>
+                                      <EmptySpace pref="48" max="32767" attributes="0"/>
                                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                           <Component id="jLabel14" alignment="0" max="32767" attributes="1"/>
                                           <Component id="jLabel10" alignment="0" pref="113" max="32767" attributes="1"/>
@@ -205,7 +205,7 @@
                                           <Component id="fechaNecesidad" linkSize="11" alignment="0" min="-2" max="-2" attributes="0"/>
                                           <Component id="cantidad" linkSize="11" alignment="0" min="-2" max="-2" attributes="0"/>
                                       </Group>
-                                      <EmptySpace pref="45" max="32767" attributes="0"/>
+                                      <EmptySpace pref="47" max="32767" attributes="0"/>
                                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                           <Component id="jLabel6" alignment="0" max="32767" attributes="1"/>
                                           <Component id="jLabel12" alignment="0" pref="117" max="32767" attributes="1"/>
@@ -324,7 +324,7 @@
                               <Component id="fechaEmision" linkSize="14" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace pref="39" max="32767" attributes="0"/>
+                      <EmptySpace pref="37" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -938,7 +938,7 @@
                           <Component id="remItemRI" linkSize="9" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jScrollPane2" pref="1072" max="32767" attributes="0"/>
+                      <Component id="jScrollPane2" pref="1086" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -1043,7 +1043,7 @@
                       <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="riNum" min="-2" pref="133" max="-2" attributes="0"/>
-                      <EmptySpace pref="81" max="32767" attributes="0"/>
+                      <EmptySpace pref="100" max="32767" attributes="0"/>
                       <Component id="jButton1" min="-2" pref="138" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="btnGuardar" min="-2" pref="127" max="-2" attributes="0"/>
@@ -1141,7 +1141,7 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace pref="149" max="32767" attributes="0"/>
+                      <EmptySpace pref="156" max="32767" attributes="0"/>
                       <Component id="lblStatus" min="-2" pref="345" max="-2" attributes="2"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jLabel16" min="-2" max="-2" attributes="1"/>

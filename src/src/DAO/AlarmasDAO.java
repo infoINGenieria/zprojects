@@ -34,16 +34,23 @@ public class AlarmasDAO {
         int r = 0;
         String query = null;
 
-        try {          
-            query = "insert into alarma (FECHA, NOMBRE, COMENTARIO, "
+        try {   
+            if(al.getRiID() > 0) {
+                query = "insert into alarma (FECHA, NOMBRE, COMENTARIO, "
                     + "FECHA_PREVIA, RI_ID) "
                     + "values ( ?, ?, ?, ?, ?)";
+            } else {
+                query = "insert into alarma (FECHA, NOMBRE, COMENTARIO, "
+                    + "FECHA_PREVIA) "
+                    + "values ( ?, ?, ?, ?)";
+            }
             PreparedStatement ps = conector.prepareStatement(query);          
             ps.setDate(1, FechaUtil.getFechatoDB(al.getFecha()));
             ps.setString(2, al.getNombre());
             ps.setString(3, al.getComentario());
             ps.setDate(4, FechaUtil.getFechatoDB(al.getFecha_previa()));
-            ps.setInt(5, al.getRiID());
+            if(al.getRiID() > 0)
+                ps.setInt(5, al.getRiID());
             ps.executeUpdate();
             ResultSet generatedKeys = ps.getGeneratedKeys();
 
@@ -67,13 +74,17 @@ public class AlarmasDAO {
             /*(ALARMAID, FECHA, NOMBRE, COMENTARIO, "
                     + "FECHA_PREVIA, RI_ID)*/
             query = "update alarma set FECHA=?, NOMBRE=?, COMENTARIO=?,"
-                    + " FECHA_PREVIA =?, RI_ID=? where ALARMAID =" +al.getAlarmaID();
+                    + " FECHA_PREVIA =?";
+            if (al.getRiID() > 0)
+                query += ", RI_ID=?";
+            query += "where ALARMAID =" +al.getAlarmaID();
             PreparedStatement ps = conector.prepareStatement(query);
             ps.setDate(1, FechaUtil.getFechatoDB(al.getFecha()));
             ps.setString(2, al.getNombre());
             ps.setString(3, al.getComentario());
             ps.setDate(4, FechaUtil.getFechatoDB(al.getFecha_previa()));
-            ps.setInt(5, al.getRiID());
+            if(al.getRiID() > 0)
+                ps.setInt(5, al.getRiID());
             ps.executeUpdate();
             ResultSet generatedKeys = ps.getGeneratedKeys();
 

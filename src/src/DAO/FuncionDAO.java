@@ -87,11 +87,10 @@ public class FuncionDAO extends AbstractDAO{
             String query = "delete from funcion where id = ?";
             PreparedStatement ps = conector.prepareStatement(query);
             ps.setInt(1, entidad.getId());
-            ResultSet rs = ps.executeQuery();
-            if (rs.next()) {
+            int rs = ps.executeUpdate();
+            if (rs > 0) {
                 r = true;
             }
-            rs.close();
             ps.close();
         } catch(Exception ex) {
             ex.printStackTrace();

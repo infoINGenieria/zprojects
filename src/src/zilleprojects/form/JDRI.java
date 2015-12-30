@@ -1127,7 +1127,7 @@ public class JDRI extends javax.swing.JDialog {
         fechaEmision.setDate(it.getFecha_emision());
         fechaOc.setDate(it.getFecha_oc());
         fechaEntrega.setDate(it.getFecha_entrega());
-        cantidad.setText(it.getCantidad());
+        cantidad.setText(String.valueOf(it.getCantidad()));
         unidad.setText(it.getUnidad());
         detalle.setText(it.getDetalle());
         observaciones.setText(it.getObservacion());
@@ -1140,7 +1140,7 @@ public class JDRI extends javax.swing.JDialog {
         it.setFecha_emision(fechaEmision.getDate());
         it.setFecha_oc(fechaOc.getDate());
         it.setFecha_entrega(fechaEntrega.getDate());
-        it.setCantidad(cantidad.getText());
+        it.setCantidad(Integer.parseInt(cantidad.getText()));
         it.setUnidad(unidad.getText());
         it.setDetalle(detalle.getText());
         it.setObservacion(observaciones.getText());
@@ -1474,7 +1474,9 @@ public class JDRI extends javax.swing.JDialog {
                 } catch (Exception ex) {
                 }
             } else {
-                OpcionPanel.showMessageDialog(null, "Ocurrió un error al procesar la solicitud. \nIntente nuevamente. ", "Error", OpcionPanel.ERROR_MESSAGE);
+                OpcionPanel.showMessageDialog(null, 
+                        "Ocurrió un error al procesar la solicitud. \nIntente nuevamente. ", 
+                        "Error", OpcionPanel.ERROR_MESSAGE);
             }
         }
     }

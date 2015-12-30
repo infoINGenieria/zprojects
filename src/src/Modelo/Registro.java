@@ -16,7 +16,7 @@ import java.util.GregorianCalendar;
  */
 public final class Registro extends EntidadAbstracta {
 
-    int id;
+    int id, partediario_id;
     boolean especial = false;
     Time hs_salida, hs_llegada, hs_inicio, hs_fin,
             hs_ialmuerzo, hs_falmuerzo;
@@ -409,4 +409,14 @@ public final class Registro extends EntidadAbstracta {
     public boolean validate() {
         return true;
     }
+
+    public int getPartediario_id() {
+        return partediario_id;
+    }
+
+    public void setPartediario_id(int partediario_id) {
+        this.partediario_id = partediario_id;
+    }
+    
+    
 }

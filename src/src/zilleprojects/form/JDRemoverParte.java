@@ -593,10 +593,10 @@ private void SalirBotonGestionPartesActionPerformed(java.awt.event.ActionEvent e
             op = odao.buscar(pd.getIdOperario());
             ob = obrasDAO.findById(pd.getIdObra());
 
-            r = parteDao.traerRegistro(pd.getIdHorario());
-            re = parteDao.traerRegistroEquipo(pd.getIdEquipo());
+            r = parteDao.traerRegistro(pd.getId());
+            re = parteDao.traerRegistroEquipo(pd.getId());
             eq = edao.findById(re.getIdEquipo());
-            mat = parteDao.traerArrayMateriales(re.getId());
+            mat = parteDao.traerArrayMateriales(pd.getId());
             return null;
         }
 

@@ -562,7 +562,7 @@ private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
         @Override protected void succeeded(Object result) {
             if (r > 0) {
                 ///OpcionPanel.showMessageDialog(null, "Alarma creada correctamente.", "Éxito", OpcionPanel.INFORMATION_MESSAGE);
-                lblResultados.setText("Alarma modificada correctamente.");
+                lblResultados.setText("Alarma creada correctamente.");
                 listaDeAlarmas.addElement(alActual);
                 //jListDeOT.setModel(listDeOT);
                 jListAlarmas.setSelectedValue(alActual, true);

@@ -34,78 +34,69 @@ public class RIItemDAO {
         }catch (Exception ex) {}
     }
     
-    public int guardar(RiItem it) {
+    public int guardar(RiItem it) throws SQLException {
         int r = 0;
         String query = null;
+        query = "insert into ri_item (riId, cantidad, unidad,"
+                + " detalle, observacion, oc_num, proveedor, "
+                +" fecha_entrega, fecha_oc, fecha_emision, fecha_necesidad,"
+                +" valor) values ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        PreparedStatement ps = conector.prepareStatement(query);
+        ps.setInt(1, it.getRiId());
+        ps.setInt(2, it.getCantidad());
+        ps.setString(3, it.getUnidad());
+        ps.setString(4, it.getDetalle());
+        ps.setString(5, it.getObservacion());
+        ps.setString(6, it.getOC_num());
+        ps.setString(7, it.getProveedor());
+        ps.setDate(8, FechaUtil.getFechatoDB( it.getFecha_entrega()));
+        ps.setDate(9, FechaUtil.getFechatoDB(it.getFecha_oc()));
+        ps.setDate(10, FechaUtil.getFechatoDB(it.getFecha_emision()));
+        ps.setDate(11, FechaUtil.getFechatoDB(it.getFecha_necesidad()));
+        ps.setString(12, it.getValor());
+        ps.executeUpdate();
+        ResultSet generatedKeys = ps.getGeneratedKeys();
 
-        try {
-            
-            query = "insert into ri_item (riId, cantidad, unidad,"
-                    + " detalle, observacion, oc_num, proveedor, "
-                    +" fecha_entrega, fecha_oc, fecha_emision, fecha_necesidad,"
-                    +" valor) values ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-            PreparedStatement ps = conector.prepareStatement(query);
-            ps.setInt(1, it.getRiId());
-            ps.setString(2, it.getCantidad());
-            ps.setString(3, it.getUnidad());
-            ps.setString(4, it.getDetalle());
-            ps.setString(5, it.getObservacion());
-            ps.setString(6, it.getOC_num());
-            ps.setString(7, it.getProveedor());
-            ps.setDate(8, FechaUtil.getFechatoDB( it.getFecha_entrega()));
-            ps.setDate(9, FechaUtil.getFechatoDB(it.getFecha_oc()));
-            ps.setDate(10, FechaUtil.getFechatoDB(it.getFecha_emision()));
-            ps.setDate(11, FechaUtil.getFechatoDB(it.getFecha_necesidad()));
-            ps.setString(12, it.getValor());
-            ps.executeUpdate();
-            ResultSet generatedKeys = ps.getGeneratedKeys();
-
-            if (generatedKeys.next()) {
-                r = generatedKeys.getInt(1);
-            }
-            generatedKeys.close();
-            ps.close();
-
-        } catch (SQLException ex) {
-            r = 0;
+        if (generatedKeys.next()) {
+            r = generatedKeys.getInt(1);
         }
+        generatedKeys.close();
+        ps.close();
+
+        
         return r;
     }
 
-    public int modificar(RiItem it) {
+    public int modificar(RiItem it) throws SQLException {
 
         int r = 0;
-        try {
-             /*`riItemId , riId, cantidad, unidad, detalle, observacion
-            */
-            String query = "update ri_item set riId=?, cantidad=?, unidad=?,"
-                    + " detalle=?, observacion=?, oc_num=?, proveedor=?, fecha_entrega=?, "
-                    + " fecha_oc=?, fecha_emision=?, fecha_necesidad=?, valor=? where riItemId = ?";
-            PreparedStatement ps = conector.prepareStatement(query);
-            ps.setInt(1, it.getRiId());
-            ps.setString(2, it.getCantidad());
-            ps.setString(3, it.getUnidad());
-            ps.setString(4, it.getDetalle());
-            ps.setString(5, it.getObservacion());
-            ps.setString(6, it.getOC_num());
-            ps.setString(7, it.getProveedor());
-            ps.setDate(8, FechaUtil.getFechatoDB( it.getFecha_entrega()));
-            ps.setDate(9, FechaUtil.getFechatoDB(it.getFecha_oc()));
-            ps.setDate(10, FechaUtil.getFechatoDB(it.getFecha_emision()));
-            ps.setDate(11, FechaUtil.getFechatoDB(it.getFecha_necesidad()));
-            ps.setString(12, it.getValor());
-            ps.setInt(13, it.getId());
-            ps.executeUpdate();
-            ResultSet rs = ps.getGeneratedKeys();
-            if (rs.next()) {
-                r = rs.getInt(1);
-            }
-            ps.close();
-            rs.close();
-
-        } catch (SQLException ex) {
-            r = 0;
+        
+         /*`riItemId , riId, cantidad, unidad, detalle, observacion
+        */
+        String query = "update ri_item set riId=?, cantidad=?, unidad=?,"
+                + " detalle=?, observacion=?, oc_num=?, proveedor=?, fecha_entrega=?, "
+                + " fecha_oc=?, fecha_emision=?, fecha_necesidad=?, valor=? where riItemId = ?";
+        PreparedStatement ps = conector.prepareStatement(query);
+        ps.setInt(1, it.getRiId());
+        ps.setInt(2, it.getCantidad());
+        ps.setString(3, it.getUnidad());
+        ps.setString(4, it.getDetalle());
+        ps.setString(5, it.getObservacion());
+        ps.setString(6, it.getOC_num());
+        ps.setString(7, it.getProveedor());
+        ps.setDate(8, FechaUtil.getFechatoDB( it.getFecha_entrega()));
+        ps.setDate(9, FechaUtil.getFechatoDB(it.getFecha_oc()));
+        ps.setDate(10, FechaUtil.getFechatoDB(it.getFecha_emision()));
+        ps.setDate(11, FechaUtil.getFechatoDB(it.getFecha_necesidad()));
+        ps.setString(12, it.getValor());
+        ps.setInt(13, it.getId());
+        ps.executeUpdate();
+        ResultSet rs = ps.getGeneratedKeys();
+        if (rs.next()) {
+            r = rs.getInt(1);
         }
+        ps.close();
+        rs.close();
 
         return r;
     }
@@ -121,7 +112,7 @@ public class RIItemDAO {
                 RiItem it = new RiItem();
                 it.setId(rs.getInt("riItemId"));
                 it.setRiId(rs.getInt("riId"));
-                it.setCantidad(rs.getString("cantidad"));
+                it.setCantidad(rs.getInt("cantidad"));
                 it.setUnidad(rs.getString("unidad"));
                 it.setDetalle(rs.getString("detalle"));
                 it.setObservacion(rs.getString("observacion"));
@@ -155,7 +146,7 @@ public class RIItemDAO {
                 
                 it.setId(rs.getInt("riItemId"));
                 it.setRiId(rs.getInt("riId"));
-                it.setCantidad(rs.getString("cantidad"));
+                it.setCantidad(rs.getInt("cantidad"));
                 it.setUnidad(rs.getString("unidad"));
                 it.setDetalle(rs.getString("detalle"));
                 it.setObservacion(rs.getString("observacion"));

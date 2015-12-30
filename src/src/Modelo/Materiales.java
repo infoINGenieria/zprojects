@@ -9,7 +9,7 @@ package Modelo;
  * @author matuu
  */
 public class Materiales extends EntidadAbstracta {
-    int id, idRegistroEquipo;
+    int id, idParteDiario;
     String material, cantidad, distancia, viajes,cantera_cargadero;
     boolean ok;
 
@@ -65,13 +65,15 @@ public class Materiales extends EntidadAbstracta {
         this.id = id;
     }
 
-    public int getIdRegistroEquipo() {
-        return idRegistroEquipo;
+    public int getIdParteDiario() {
+        return idParteDiario;
     }
 
-    public void setIdRegistroEquipo(int idRegistroEquipo) {
-        this.idRegistroEquipo = idRegistroEquipo;
+    public void setIdParteDiario(int idParteDiario) {
+        this.idParteDiario = idParteDiario;
     }
+
+    
 
     public String getMaterial() {
         return material;
@@ -91,8 +93,8 @@ public class Materiales extends EntidadAbstracta {
 
     @Override
     public boolean validate() {
-        if (idRegistroEquipo == 0) {
-            error += "Un material debe estar asociado a un Equipo;";
+        if (idParteDiario == 0) {
+            error += "Un material debe estar asociado a un ParteDiario;";
         }
         return error.isEmpty();
     }

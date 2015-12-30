@@ -61,6 +61,8 @@ public class TablaRIItemModel  extends ZilleAbstractTableModel {
         {
             case 0:
                 return Date.class;
+            case 1:
+                return Integer.class;
             case 6:
                 return Date.class;
             case 7:
@@ -119,7 +121,7 @@ public class TablaRIItemModel  extends ZilleAbstractTableModel {
                     aux.setFecha_necesidad(FechaUtil.getFecha(value.toString()));
                     break;
                 case 1:
-                    aux.setCantidad(value.toString());
+                    aux.setCantidad((Integer)value);
                     break;
                 case 2:
                     aux.setUnidad(value.toString());

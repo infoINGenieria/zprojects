@@ -17,7 +17,7 @@ import java.util.GregorianCalendar;
  */
 public class ParteDiario {
 
-    int id, idOperario, idFuncion, idObra, idHorario, idEquipo, idSituacion, comida, vianda, vianda_desa;
+    int id, idOperario, idFuncion, idObra, idSituacion, comida, vianda, vianda_desa;
     Date fecha;
     String numero, observaciones, nombreO;
     boolean multifuncion, desarraigo;
@@ -129,28 +129,12 @@ public class ParteDiario {
         this.id = id;
     }
 
-    public int getIdEquipo() {
-        return idEquipo;
-    }
-
-    public void setIdEquipo(int idEquipo) {
-        this.idEquipo = idEquipo;
-    }
-
     public int getIdFuncion() {
         return idFuncion;
     }
 
     public void setIdFuncion(int idFuncion) {
         this.idFuncion = idFuncion;
-    }
-
-    public int getIdHorario() {
-        return idHorario;
-    }
-
-    public void setIdHorario(int idHorario) {
-        this.idHorario = idHorario;
     }
 
     public int getIdObra() {
