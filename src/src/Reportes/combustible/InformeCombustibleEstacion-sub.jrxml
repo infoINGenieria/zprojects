@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="589" leftMargin="3" rightMargin="3" topMargin="3" bottomMargin="3">
+<!-- Created with Jaspersoft Studio version 6.2.0.final using JasperReports Library version 6.2.0  -->
+<!-- 2016-01-03T17:13:45 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="589" leftMargin="3" rightMargin="3" topMargin="3" bottomMargin="3" uuid="b7120509-5835-4f2a-b7e2-679d399debc0">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
@@ -13,7 +15,7 @@
 FROM partediario PD
 LEFT JOIN obras OB ON PD.obra = OB.id
 LEFT JOIN operarios OP ON PD.operario = OP.id
-LEFT JOIN registro_equipo RQ ON PD.equipo = RQ.id
+LEFT JOIN registro_equipo RQ ON PD.id = RQ.partediario_id
 LEFT JOIN equipos EQ ON RQ.equipo = EQ.id
 LEFT JOIN est_servicio ES ON RQ.IDSERVICIO = ES.id
 
@@ -37,35 +39,35 @@ order by OB.codigo asc]]>
 	<columnHeader>
 		<band height="20" splitType="Stretch">
 			<staticText>
-				<reportElement x="0" y="0" width="188" height="20"/>
+				<reportElement x="0" y="0" width="188" height="20" uuid="6cc51c32-ee54-49fd-a72b-50caf56ad0b1"/>
 				<textElement verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[Nombre]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="282" y="0" width="94" height="20"/>
+				<reportElement x="282" y="0" width="94" height="20" uuid="8061707a-8c24-4e42-9afa-367eb5fbce4a"/>
 				<textElement verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[N° Parte Diario]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="376" y="0" width="85" height="20"/>
+				<reportElement x="376" y="0" width="85" height="20" uuid="2ba36f9a-f88e-4a6a-8b1a-3d0a5f216db3"/>
 				<textElement verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[Obra]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="461" y="0" width="78" height="20"/>
+				<reportElement x="461" y="0" width="78" height="20" uuid="cbfe6a66-41e3-42e2-bf54-602ad8c36877"/>
 				<textElement verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[Cantidad Litros]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="188" y="0" width="94" height="20"/>
+				<reportElement x="188" y="0" width="94" height="20" uuid="dbe5f7db-0a0a-4e40-a910-ecb1643a465e"/>
 				<textElement verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
@@ -76,35 +78,35 @@ order by OB.codigo asc]]>
 	<detail>
 		<band height="21" splitType="Stretch">
 			<textField isBlankWhenNull="true">
-				<reportElement x="461" y="0" width="78" height="20"/>
+				<reportElement x="461" y="0" width="78" height="20" uuid="e49d96a6-3631-4f93-aa03-b8f421007420"/>
 				<textElement verticalAlignment="Middle">
 					<font isBold="true" isItalic="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{consumo}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="0" y="0" width="188" height="20"/>
+				<reportElement x="0" y="0" width="188" height="20" uuid="07b30271-e6dc-4468-ad9f-529fdc0b770b"/>
 				<textElement verticalAlignment="Middle">
 					<font isItalic="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="376" y="0" width="85" height="20"/>
+				<reportElement x="376" y="0" width="85" height="20" uuid="da786fe4-c6e6-4a08-8463-4a7150da472d"/>
 				<textElement verticalAlignment="Middle">
 					<font isItalic="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{codigo}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="282" y="0" width="94" height="20"/>
+				<reportElement x="282" y="0" width="94" height="20" uuid="435ea97c-a0b9-4153-aa76-114497c49735"/>
 				<textElement verticalAlignment="Middle">
 					<font isItalic="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{numero}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="188" y="0" width="94" height="20"/>
+				<reportElement x="188" y="0" width="94" height="20" uuid="a8ddfb8e-ec5a-462d-8598-f876466bb282"/>
 				<textElement verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{n_interno}]]></textFieldExpression>
 			</textField>
@@ -119,7 +121,7 @@ order by OB.codigo asc]]>
 	<summary>
 		<band height="32" splitType="Stretch">
 			<subreport runToBottom="false">
-				<reportElement mode="Opaque" x="0" y="0" width="589" height="30"/>
+				<reportElement mode="Opaque" x="0" y="0" width="589" height="30" uuid="532ec4ac-4bd9-48be-ab1e-34670d1f9d20"/>
 				<subreportParameter name="fecha">
 					<subreportParameterExpression><![CDATA[$P{fecha}]]></subreportParameterExpression>
 				</subreportParameter>

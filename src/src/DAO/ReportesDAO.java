@@ -536,7 +536,7 @@ public class ReportesDAO  extends HSSFMixin {
                 + "FROM partediario PD "
                 + "INNER JOIN operarios O ON PD.operario = O.id "
                 + "INNER JOIN obras OB ON PD.obra = OB.id "
-                + "INNER JOIN registro_equipo RQ ON PD.equipo = RQ.id "
+                + "INNER JOIN registro_equipo RQ ON PD.id = RQ.partediario_id "
                 + "INNER JOIN equipos EQ ON RQ.equipo = EQ.id "
                 + "INNER JOIN familia_equipo f ON f.id = EQ.familia_equipo_id "
                 + "where PD.fecha <= '"+ FechaUtil.getFechaSQL(hasta)+"' and "

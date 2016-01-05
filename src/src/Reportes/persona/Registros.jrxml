@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version last-->
+<!-- Created with Jaspersoft Studio version 6.2.0.final using JasperReports Library version 6.2.0  -->
+<!-- 2016-01-03T17:20:59 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="fc3970cf-bbc4-4de7-814d-efb15194bf3c">
 	<property name="ireport.zoom" value="1.3310000000000004"/>
 	<property name="ireport.x" value="434"/>
@@ -24,9 +25,9 @@ FROM partediario PD
 LEFT JOIN operarios O ON PD.operario = O.id
 LEFT JOIN informes_horas IH ON PD.operario = IH.id_operario
 LEFT JOIN obras OB ON PD.obra = OB.id
-LEFT JOIN registro R ON PD.horario = R.id
+LEFT JOIN registro R ON PD.id = R.partediario_id
 LEFT JOIN funcion F ON PD.funcion = F.id
-LEFT JOIN registro_equipo RQ ON PD.equipo = RQ.id
+LEFT JOIN registro_equipo RQ ON PD.id = RQ.partediario_id
 LEFT JOIN equipos EQ ON RQ.equipo = EQ.id
 LEFT JOIN situacion S ON PD.situacion = S.id
 

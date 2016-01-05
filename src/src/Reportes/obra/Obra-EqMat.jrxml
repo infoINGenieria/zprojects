@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+<!-- Created with Jaspersoft Studio version 6.2.0.final using JasperReports Library version 6.2.0  -->
+<!-- 2016-01-03T17:01:32 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="62cd3fde-a95e-469d-a9fc-5af2362f19f8">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
@@ -15,7 +17,7 @@
 OB.codigo AS COD_OBRA, OB.obra AS NOM_OBRA
 FROM partediario PD
 LEFT JOIN obras OB ON PD.obra = OB.id
-LEFT JOIN registro_equipo RE ON PD.equipo = RE.id
+LEFT JOIN registro_equipo RE ON PD.id = RE.partediario_id
 WHERE PD.fecha <= $P{hasta_f}
 AND PD.fecha >= $P{desde_f}
 AND PD.situacion =1 AND RE.equipo != 1 AND OB.id = $P{id_obra} 
@@ -41,35 +43,35 @@ ORDER BY OB.codigo desc,  PD.fecha ASC]]>
 	<pageHeader>
 		<band height="54" splitType="Stretch">
 			<image>
-				<reportElement x="0" y="0" width="216" height="54"/>
-				<imageExpression class="java.lang.String"><![CDATA[$P{urlimagenZille}]]></imageExpression>
+				<reportElement x="0" y="0" width="216" height="54" uuid="e29dea32-800e-4b7b-a71e-84865a8b6857"/>
+				<imageExpression><![CDATA[$P{urlimagenZille}]]></imageExpression>
 			</image>
 			<staticText>
-				<reportElement x="249" y="0" width="306" height="34"/>
+				<reportElement x="249" y="0" width="306" height="34" uuid="6c17fd67-3a23-4957-b92f-df745b7c9784"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font fontName="SansSerif" size="16" isBold="true" isStrikeThrough="false"/>
 				</textElement>
 				<text><![CDATA[Informe Equipo/Materiales por Obra]]></text>
 			</staticText>
 			<textField pattern="dd-MMM-yyyy">
-				<reportElement x="435" y="34" width="120" height="20"/>
+				<reportElement x="435" y="34" width="120" height="20" uuid="7282ff40-2132-4a8a-b737-af81fc84ae65"/>
 				<textElement verticalAlignment="Middle"/>
-				<textFieldExpression class="java.util.Date"><![CDATA[$P{hasta_f}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$P{hasta_f}]]></textFieldExpression>
 			</textField>
 			<textField pattern="dd-MMM-yyyy">
-				<reportElement x="293" y="34" width="89" height="20"/>
+				<reportElement x="293" y="34" width="89" height="20" uuid="55766f04-8101-43b1-88ae-0102af0ffd04"/>
 				<textElement verticalAlignment="Middle"/>
-				<textFieldExpression class="java.util.Date"><![CDATA[$P{desde_f}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$P{desde_f}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="249" y="34" width="44" height="20"/>
+				<reportElement x="249" y="34" width="44" height="20" uuid="fc3dace8-20d5-4ec3-a4dc-e0457607c932"/>
 				<textElement verticalAlignment="Middle">
 					<font isUnderline="true"/>
 				</textElement>
 				<text><![CDATA[Desde:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="395" y="34" width="40" height="20"/>
+				<reportElement x="395" y="34" width="40" height="20" uuid="22ed4b4f-5e8f-4130-9acb-3e13d52fb6f8"/>
 				<textElement verticalAlignment="Middle">
 					<font isUnderline="true"/>
 				</textElement>
@@ -83,31 +85,31 @@ ORDER BY OB.codigo desc,  PD.fecha ASC]]>
 	<detail>
 		<band height="51" splitType="Stretch">
 			<textField>
-				<reportElement mode="Opaque" x="202" y="0" width="180" height="20"/>
+				<reportElement mode="Opaque" x="202" y="0" width="180" height="20" uuid="638be283-c976-4f79-a47e-c044f24cbbe8"/>
 				<textElement verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{COD_OBRA}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{COD_OBRA}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement mode="Opaque" x="382" y="0" width="173" height="20"/>
+				<reportElement mode="Opaque" x="382" y="0" width="173" height="20" uuid="b0267770-c887-4ca3-88d6-602e8b2f3d03"/>
 				<textElement verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{NOM_OBRA}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{NOM_OBRA}]]></textFieldExpression>
 			</textField>
 			<textField pattern="dd MMMMM yyyy">
-				<reportElement mode="Opaque" x="0" y="0" width="119" height="20"/>
+				<reportElement mode="Opaque" x="0" y="0" width="119" height="20" uuid="ec3da663-61cb-424e-87ef-a22a33494643"/>
 				<textElement verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
-				<textFieldExpression class="java.util.Date"><![CDATA[$F{fecha}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{fecha}]]></textFieldExpression>
 			</textField>
 			<line>
-				<reportElement x="0" y="21" width="555" height="1"/>
+				<reportElement x="0" y="21" width="555" height="1" uuid="c2f79445-483a-4b6c-8bd4-c834ae88661c"/>
 			</line>
 			<subreport>
-				<reportElement mode="Opaque" x="0" y="20" width="555" height="31"/>
+				<reportElement mode="Opaque" x="0" y="20" width="555" height="31" uuid="bf76b532-07bc-4f47-a051-0ff8d1a7354b"/>
 				<subreportParameter name="fecha">
 					<subreportParameterExpression><![CDATA[$F{fecha}]]></subreportParameterExpression>
 				</subreportParameter>
@@ -118,7 +120,7 @@ ORDER BY OB.codigo desc,  PD.fecha ASC]]>
 					<subreportParameterExpression><![CDATA[$F{ID_OBRA}]]></subreportParameterExpression>
 				</subreportParameter>
 				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
-				<subreportExpression class="net.sf.jasperreports.engine.JasperReport"><![CDATA[$P{subreport}]]></subreportExpression>
+				<subreportExpression><![CDATA[$P{subreport}]]></subreportExpression>
 			</subreport>
 		</band>
 	</detail>
@@ -128,17 +130,16 @@ ORDER BY OB.codigo desc,  PD.fecha ASC]]>
 	<pageFooter>
 		<band height="20" splitType="Stretch">
 			<textField>
-				<reportElement x="423" y="0" width="80" height="20"/>
+				<reportElement x="423" y="0" width="80" height="20" uuid="b7b9aa0b-a46a-41aa-aa60-d1417fbbb477"/>
 				<textElement textAlignment="Right"/>
-				<textFieldExpression class="java.lang.String"><![CDATA["Página "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Página "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
 			</textField>
 			<textField evaluationTime="Report">
-				<reportElement x="503" y="0" width="52" height="20"/>
-				<textElement/>
-				<textFieldExpression class="java.lang.String"><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				<reportElement x="503" y="0" width="52" height="20" uuid="6af1181a-76bd-4ed8-a85a-9fa7791ce545"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="13" y="0" width="174" height="20"/>
+				<reportElement x="13" y="0" width="174" height="20" uuid="2dc778c0-6ded-45c7-9354-c4a9e0fcd39a"/>
 				<textElement verticalAlignment="Middle"/>
 				<text><![CDATA[Zille SRL]]></text>
 			</staticText>
@@ -147,7 +148,7 @@ ORDER BY OB.codigo desc,  PD.fecha ASC]]>
 	<summary>
 		<band height="41" splitType="Stretch">
 			<subreport>
-				<reportElement x="16" y="1" width="539" height="38"/>
+				<reportElement x="16" y="1" width="539" height="38" uuid="cee2516f-b0f0-4324-b101-11c9e55e7cb7"/>
 				<subreportParameter name="hasta_f">
 					<subreportParameterExpression><![CDATA[$P{hasta_f}]]></subreportParameterExpression>
 				</subreportParameter>
@@ -158,7 +159,7 @@ ORDER BY OB.codigo desc,  PD.fecha ASC]]>
 					<subreportParameterExpression><![CDATA[$P{desde_f}]]></subreportParameterExpression>
 				</subreportParameter>
 				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
-				<subreportExpression class="net.sf.jasperreports.engine.JasperReport"><![CDATA[$P{subreport2}]]></subreportExpression>
+				<subreportExpression><![CDATA[$P{subreport2}]]></subreportExpression>
 			</subreport>
 		</band>
 	</summary>

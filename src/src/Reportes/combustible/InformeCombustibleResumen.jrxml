@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+<!-- Created with Jaspersoft Studio version 6.2.0.final using JasperReports Library version 6.2.0  -->
+<!-- 2016-01-03T17:11:05 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="90aaf507-efb6-4789-8273-72602223440b">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
@@ -11,7 +13,7 @@
 
 FROM partediario PD
 LEFT JOIN obras OB ON PD.obra = OB.id
-LEFT JOIN registro_equipo RQ ON PD.equipo = RQ.id
+LEFT JOIN registro_equipo RQ ON PD.id = RQ.partediario_id
 LEFT JOIN equipos EQ ON RQ.equipo = EQ.id 
 LEFT JOIN est_servicio ES ON RQ.IDSERVICIO = ES.id
 
@@ -43,57 +45,57 @@ order by PD.fecha asc]]>
 	<pageHeader>
 		<band height="54" splitType="Stretch">
 			<image>
-				<reportElement x="0" y="0" width="216" height="54"/>
-				<imageExpression class="java.lang.String"><![CDATA[$P{urlimagenZille}]]></imageExpression>
+				<reportElement x="0" y="0" width="216" height="54" uuid="8063c96c-b45b-4c65-aed8-9e4fecf91f20"/>
+				<imageExpression><![CDATA[$P{urlimagenZille}]]></imageExpression>
 			</image>
 			<staticText>
-				<reportElement x="216" y="0" width="326" height="34"/>
+				<reportElement x="216" y="0" width="326" height="34" uuid="a22ff015-cdc0-499a-99b0-9f3daceee2f2"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font fontName="SansSerif" size="18" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Consumo de Combustible]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="216" y="34" width="54" height="20"/>
+				<reportElement x="216" y="34" width="54" height="20" uuid="79fda9f0-984d-468a-ab25-f40f174de908"/>
 				<textElement verticalAlignment="Middle">
 					<font size="15"/>
 				</textElement>
 				<text><![CDATA[Desde: ]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="381" y="34" width="63" height="20"/>
+				<reportElement x="381" y="34" width="63" height="20" uuid="9cbe8a45-9209-46ca-a2ea-2289093edb59"/>
 				<textElement verticalAlignment="Middle">
 					<font size="15"/>
 				</textElement>
 				<text><![CDATA[Hasta:]]></text>
 			</staticText>
 			<textField pattern="dd/MM/yyyy">
-				<reportElement x="270" y="34" width="111" height="20"/>
+				<reportElement x="270" y="34" width="111" height="20" uuid="4f898ceb-982e-40a2-a598-dd51812f6183"/>
 				<textElement>
 					<font size="15"/>
 				</textElement>
-				<textFieldExpression class="java.util.Date"><![CDATA[$P{desde_f}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$P{desde_f}]]></textFieldExpression>
 			</textField>
 			<textField pattern="dd/MM/yyyy">
-				<reportElement x="444" y="34" width="111" height="20"/>
+				<reportElement x="444" y="34" width="111" height="20" uuid="aba8b2ae-da4a-4d76-a21d-7ff5a2afc93f"/>
 				<textElement>
 					<font size="15"/>
 				</textElement>
-				<textFieldExpression class="java.util.Date"><![CDATA[$P{hasta_f}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$P{hasta_f}]]></textFieldExpression>
 			</textField>
 		</band>
 	</pageHeader>
 	<columnHeader>
 		<band height="21" splitType="Stretch">
 			<staticText>
-				<reportElement mode="Opaque" x="398" y="0" width="157" height="20" backcolor="#ECECEC"/>
+				<reportElement mode="Opaque" x="398" y="0" width="157" height="20" backcolor="#ECECEC" uuid="2fa542fe-42a8-40dc-85b1-0520544eae6a"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Consumo en Litros]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="0" y="0" width="398" height="20" backcolor="#ECECEC"/>
+				<reportElement mode="Opaque" x="0" y="0" width="398" height="20" backcolor="#ECECEC" uuid="67155331-ac52-4fe7-bb2c-abfb5ccb4138"/>
 				<textElement verticalAlignment="Middle">
 					<font size="12" isBold="true"/>
 				</textElement>
@@ -104,21 +106,21 @@ order by PD.fecha asc]]>
 	<detail>
 		<band height="22" splitType="Stretch">
 			<textField isBlankWhenNull="true">
-				<reportElement mode="Transparent" x="0" y="1" width="356" height="20" backcolor="#FEFEFE"/>
+				<reportElement mode="Transparent" x="0" y="1" width="356" height="20" backcolor="#FEFEFE" uuid="606df83d-73ae-44ce-98e9-9aa497d87ebc"/>
 				<textElement verticalAlignment="Middle">
 					<font size="12" isBold="false"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{codigo}+" ("+$F{responsable}+")"]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{codigo}+" ("+$F{responsable}+")"]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement mode="Transparent" x="356" y="1" width="180" height="20" backcolor="#FEFEFE"/>
+				<reportElement mode="Transparent" x="356" y="1" width="180" height="20" backcolor="#FEFEFE" uuid="02a782cc-7a18-4c08-9018-6649d5edbf13"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font size="12" isBold="false"/>
 				</textElement>
-				<textFieldExpression class="java.lang.Double"><![CDATA[$F{consumo}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{consumo}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement mode="Transparent" x="536" y="0" width="19" height="20" backcolor="#FEFEFE"/>
+				<reportElement mode="Transparent" x="536" y="0" width="19" height="20" backcolor="#FEFEFE" uuid="d3e6fbcb-ad17-4fd5-a3cb-1b4cd35d73ac"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="12" isBold="false"/>
 				</textElement>
@@ -132,17 +134,16 @@ order by PD.fecha asc]]>
 	<pageFooter>
 		<band height="20" splitType="Stretch">
 			<textField>
-				<reportElement x="423" y="0" width="80" height="20"/>
+				<reportElement x="423" y="0" width="80" height="20" uuid="4df7e77b-105a-49f0-abe9-18e975ef9b8a"/>
 				<textElement textAlignment="Right"/>
-				<textFieldExpression class="java.lang.String"><![CDATA["Página "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Página "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
 			</textField>
 			<textField evaluationTime="Report">
-				<reportElement x="503" y="0" width="52" height="20"/>
-				<textElement/>
-				<textFieldExpression class="java.lang.String"><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				<reportElement x="503" y="0" width="52" height="20" uuid="97b9c442-7d3b-416f-96dd-885fae668791"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="13" y="0" width="174" height="20"/>
+				<reportElement x="13" y="0" width="174" height="20" uuid="11a2cc41-e0a3-4b1b-b5be-75673c29ee41"/>
 				<textElement verticalAlignment="Middle"/>
 				<text><![CDATA[Zille SRL]]></text>
 			</staticText>
@@ -151,28 +152,28 @@ order by PD.fecha asc]]>
 	<summary>
 		<band height="28" splitType="Stretch">
 			<staticText>
-				<reportElement x="299" y="2" width="57" height="26"/>
+				<reportElement x="299" y="2" width="57" height="26" uuid="c625a26b-d1f6-4623-ab99-5b8fdb96d076"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font size="16"/>
 				</textElement>
 				<text><![CDATA[Total: ]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="491" y="2" width="51" height="26"/>
+				<reportElement x="491" y="2" width="51" height="26" uuid="953acc1b-3ccc-4981-a71b-37cf85853798"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font size="16"/>
 				</textElement>
 				<text><![CDATA[Litros]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="356" y="2" width="135" height="26"/>
+				<reportElement x="356" y="2" width="135" height="26" uuid="8243bb8d-b3d7-4ccf-ae8f-0555d8108b6e"/>
 				<textElement verticalAlignment="Middle">
 					<font size="16" isBold="true"/>
 				</textElement>
-				<textFieldExpression class="java.lang.Double"><![CDATA[$V{consumo_2}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$V{consumo_2}]]></textFieldExpression>
 			</textField>
 			<line>
-				<reportElement x="0" y="1" width="555" height="1"/>
+				<reportElement x="0" y="1" width="555" height="1" uuid="bdf84f5e-0518-4d48-a3f9-c13084477eb5"/>
 			</line>
 		</band>
 	</summary>

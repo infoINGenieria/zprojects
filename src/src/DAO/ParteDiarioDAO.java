@@ -1021,7 +1021,7 @@ public class ParteDiarioDAO {
 
         } catch (SQLException ex) {
             System.out.print("Falló al cargar los Obras.\n");
-        }
+        } 
         return partes;
 
     }

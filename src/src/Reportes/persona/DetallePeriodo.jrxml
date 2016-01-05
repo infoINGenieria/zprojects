@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version last-->
+<!-- Created with Jaspersoft Studio version 6.2.0.final using JasperReports Library version 6.2.0  -->
+<!-- 2016-01-03T17:22:30 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a0f85fdf-e450-4268-9c3a-3b183adf0d9d">
 	<property name="ireport.zoom" value="1.1000000000000005"/>
 	<property name="ireport.x" value="0"/>
@@ -23,7 +24,7 @@ FROM partediario PD
 LEFT JOIN obras OB ON PD.obra = OB.id
 LEFT JOIN operarios O ON PD.operario = O.id
 LEFT JOIN informes_horas IH ON PD.operario = IH.id_operario
-LEFT JOIN registro R ON PD.horario = R.id
+LEFT JOIN registro R ON PD.id = R.partediario_id
 LEFT JOIN situacion S ON PD.situacion = S.id
 
 where IH.id = $P{id_informe} and  PD.fecha <= IH.hasta_f and PD.fecha >= IH.desde_f

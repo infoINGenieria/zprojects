@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="589" leftMargin="3" rightMargin="3" topMargin="3" bottomMargin="3">
+<!-- Created with Jaspersoft Studio version 6.2.0.final using JasperReports Library version 6.2.0  -->
+<!-- 2016-01-03T17:14:39 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="589" leftMargin="3" rightMargin="3" topMargin="3" bottomMargin="3" uuid="d5771647-17b5-40bb-ac9c-559ca9059c6b">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
@@ -12,7 +14,7 @@ ES.nombre
 
 FROM partediario PD
 LEFT JOIN obras OB ON PD.obra = OB.id
-LEFT JOIN registro_equipo RQ ON PD.equipo = RQ.id
+LEFT JOIN registro_equipo RQ ON PD.id = RQ.partediario_id
 LEFT JOIN equipos EQ ON RQ.equipo = EQ.id 
 LEFT JOIN est_servicio ES ON RQ.IDSERVICIO = ES.id
 
@@ -43,28 +45,28 @@ order by OB.codigo asc]]>
 	<columnHeader>
 		<band height="20" splitType="Stretch">
 			<staticText>
-				<reportElement x="17" y="0" width="184" height="20"/>
+				<reportElement x="17" y="0" width="184" height="20" uuid="c89f5d51-963a-4ea9-8b19-116414871eb0"/>
 				<textElement verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[Obra]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="201" y="0" width="126" height="20"/>
+				<reportElement x="201" y="0" width="126" height="20" uuid="9c2181e2-b293-4f6e-baf6-f3fbaf9070f9"/>
 				<textElement verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[Número Parte Diario]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="327" y="0" width="117" height="20"/>
+				<reportElement x="327" y="0" width="117" height="20" uuid="ec892580-3c29-42d5-a1d5-0c02ff765b8e"/>
 				<textElement verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[Estación de Servicio]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="444" y="0" width="95" height="20"/>
+				<reportElement x="444" y="0" width="95" height="20" uuid="ecf9edab-4cfb-4760-8a04-cc89d75074bc"/>
 				<textElement verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
@@ -75,28 +77,28 @@ order by OB.codigo asc]]>
 	<detail>
 		<band height="21" splitType="Stretch">
 			<textField isBlankWhenNull="true">
-				<reportElement x="444" y="0" width="95" height="20"/>
+				<reportElement x="444" y="0" width="95" height="20" uuid="dbb77fa8-c198-4bde-be50-7f212fea4615"/>
 				<textElement verticalAlignment="Middle">
 					<font isBold="true" isItalic="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{consumo}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="327" y="0" width="117" height="20"/>
+				<reportElement x="327" y="0" width="117" height="20" uuid="214032ea-8d81-4dbb-b82e-860302a74de3"/>
 				<textElement verticalAlignment="Middle">
 					<font isItalic="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="17" y="0" width="184" height="20"/>
+				<reportElement x="17" y="0" width="184" height="20" uuid="ba066ad6-8227-4919-abc6-c7ca97ed39f7"/>
 				<textElement verticalAlignment="Middle">
 					<font isItalic="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{codigo}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="201" y="0" width="126" height="20"/>
+				<reportElement x="201" y="0" width="126" height="20" uuid="e92274d4-4008-48a3-96bd-f3f9fc8e9dd0"/>
 				<textElement verticalAlignment="Middle">
 					<font isItalic="false"/>
 				</textElement>

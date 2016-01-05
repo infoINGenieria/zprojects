@@ -2849,6 +2849,7 @@ public class JDReportes extends JDialogCustom {
             // the result computed by doInBackground().
             try{
                 JasperPrint jp = (JasperPrint) result;
+                
                 UtilReport.MostrarDialogSeleccion(parent, jp);
             }catch(Exception ex){
                 Error("No se pudo generar el informe.");
@@ -3207,6 +3208,7 @@ public class JDReportes extends JDialogCustom {
             strHasta = sdf.format(hasta);
         }
         @Override protected Object doInBackground() {
+            String errorsEquipos = "";
             ReportesDAO rDao= new ReportesDAO();
             EquiposDAO eqDao = new EquiposDAO();
             eqDao.conectar();
@@ -3252,6 +3254,9 @@ public class JDReportes extends JDialogCustom {
                 } catch (JRException ex) {
                     Logger.getLogger(JDReportes.class.getName()).log(Level.SEVERE, null, ex);
                     r= false;
+                } catch(Exception ex) {
+                    Logger.getLogger(JDReportes.class.getName()).log(Level.SEVERE, null, ex);
+                    errorsEquipos+=eq.getN_interno() + ";";
                 }
                 
             } //End for
@@ -3261,6 +3266,9 @@ public class JDReportes extends JDialogCustom {
                 Info("Todos los archivos fueron creados en: " + folder.getAbsolutePath());
             } catch (IOException ex) {
                 Logger.getLogger(JDReportes.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            if(errorsEquipos.isEmpty()){
+                Info("Algunos reportes nopudieron crearse:\n" + errorsEquipos.replaceAll(";", "\n"));
             }
          return null; 
         }

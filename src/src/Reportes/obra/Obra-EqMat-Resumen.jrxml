@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="555" pageHeight="802" columnWidth="535" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
+<!-- Created with Jaspersoft Studio version 6.2.0.final using JasperReports Library version 6.2.0  -->
+<!-- 2016-01-03T17:00:51 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="555" pageHeight="802" columnWidth="535" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="b7224b82-2666-4ce8-be95-77753ab19b95">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Sample DB"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<parameter name="id_obra" class="java.lang.Integer"/>
 	<parameter name="desde_f" class="java.util.Date"/>
 	<parameter name="hasta_f" class="java.util.Date"/>
@@ -8,9 +12,9 @@
 
 FROM partediario PD
 LEFT JOIN obras OB ON PD.obra = OB.id
-LEFT JOIN registro_equipo RQ ON RQ.id = PD.equipo
+LEFT JOIN registro_equipo RQ ON RQ.partediario_id = PD.id
 LEFT JOIN equipos EQ ON RQ.equipo = EQ.id 
-LEFT JOIN materiales M ON RQ.id = M.id_registroequipo
+LEFT JOIN materiales M ON PD.id = M.partediario_id
 
 WHERE  M.material != '' and PD.fecha <= $P{hasta_f} AND PD.fecha >= $P{desde_f} AND EQ.id != 1 AND OB.id = $P{id_obra} AND PD.situacion =1 
 GROUP BY M.material 
@@ -34,21 +38,21 @@ ORDER BY M.material]]>
 	<columnHeader>
 		<band height="45" splitType="Stretch">
 			<staticText>
-				<reportElement x="20" y="0" width="222" height="25"/>
+				<reportElement x="20" y="0" width="222" height="25" uuid="78a9d530-79a2-466b-a707-ddc7627f7679"/>
 				<textElement>
 					<font size="18" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Totales]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="20" y="25" width="110" height="20"/>
+				<reportElement x="20" y="25" width="110" height="20" uuid="796ab456-4b21-463c-9cf2-f74a7fae0933"/>
 				<textElement verticalAlignment="Middle">
 					<font size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Material]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="130" y="25" width="112" height="20"/>
+				<reportElement x="130" y="25" width="112" height="20" uuid="bdfa8e44-6391-4ea1-855a-8c873cd3671e"/>
 				<textElement verticalAlignment="Middle">
 					<font size="12" isBold="true"/>
 				</textElement>
@@ -59,14 +63,12 @@ ORDER BY M.material]]>
 	<detail>
 		<band height="17" splitType="Stretch">
 			<textField isBlankWhenNull="true">
-				<reportElement x="130" y="1" width="112" height="16"/>
-				<textElement/>
-				<textFieldExpression class="java.lang.Double"><![CDATA[$F{total}]]></textFieldExpression>
+				<reportElement x="130" y="1" width="112" height="16" uuid="66508eaf-d084-4d57-99fe-a1fde9c3ad64"/>
+				<textFieldExpression><![CDATA[$F{total}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="20" y="1" width="110" height="16"/>
-				<textElement/>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{material}]]></textFieldExpression>
+				<reportElement x="20" y="1" width="110" height="16" uuid="c88469c8-ba47-47cf-bc82-4c4257bb3b5b"/>
+				<textFieldExpression><![CDATA[$F{material}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>

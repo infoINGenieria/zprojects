@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="4" bottomMargin="4">
+<!-- Created with Jaspersoft Studio version 6.2.0.final using JasperReports Library version 6.2.0  -->
+<!-- 2016-01-03T16:58:44 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="4" bottomMargin="4" uuid="b0f70b93-07fd-4e94-9ca7-8ae63b85da8c">
 	<property name="ireport.zoom" value="1.771561000000001"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
@@ -17,9 +19,9 @@ M.MATERIAL, M.CANTIDAD, M.DISTANCIA, M.VIAJES, M.CANTERA_CARGADERO
 
 FROM partediario PD
 LEFT JOIN obras OB ON PD.obra = OB.id
-LEFT JOIN registro_equipo RQ ON PD.equipo = RQ.id
+LEFT JOIN registro_equipo RQ ON PD.id = RQ.partediario_id
 INNER JOIN equipos EQ ON RQ.equipo = EQ.id 
-LEFT JOIN materiales M ON RQ.id = M.id_registroequipo
+LEFT JOIN materiales M ON PD.id = M.partediario_id
 
 where  PD.fecha = $P{fecha}  and PD.situacion = 1 and OB.id= $P{id_obra} and RQ.equipo != 1
 order by EQ.n_interno asc]]>
@@ -78,77 +80,77 @@ order by EQ.n_interno asc]]>
 	<columnHeader>
 		<band height="18" splitType="Stretch">
 			<staticText>
-				<reportElement mode="Opaque" x="0" y="0" width="168" height="18"/>
+				<reportElement mode="Opaque" x="0" y="0" width="168" height="18" uuid="8fea98d0-157c-4eae-b3d7-42679b5d5cdb"/>
 				<textElement verticalAlignment="Middle">
 					<font size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Equipo]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="168" y="0" width="80" height="10"/>
+				<reportElement mode="Opaque" x="168" y="0" width="80" height="10" uuid="6892745f-73a3-4959-ae54-773e67e6a266"/>
 				<textElement textAlignment="Center">
 					<font size="7" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Horometro]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="247" y="0" width="80" height="10"/>
+				<reportElement mode="Opaque" x="247" y="0" width="80" height="10" uuid="e596c680-de7b-4b1b-8dee-8df466ccb7c4"/>
 				<textElement textAlignment="Center">
 					<font size="7" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Odometro]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="327" y="0" width="59" height="18"/>
+				<reportElement mode="Opaque" x="327" y="0" width="59" height="18" uuid="35dc651e-9087-4322-9fad-dab6557ee56c"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Material]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="287" y="9" width="40" height="9"/>
+				<reportElement mode="Opaque" x="287" y="9" width="40" height="9" uuid="9cfa5df4-f649-4bfb-95f7-cac753d759da"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="7" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Fin]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="208" y="9" width="40" height="9"/>
+				<reportElement mode="Opaque" x="208" y="9" width="40" height="9" uuid="e4238657-f18c-43f3-bb73-3910842eb2b5"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="7" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Fin]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="168" y="9" width="40" height="9"/>
+				<reportElement mode="Opaque" x="168" y="9" width="40" height="9" uuid="c90563f7-bac4-4a23-904d-bbea11c1f68f"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="7" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Inicio]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="248" y="9" width="40" height="9"/>
+				<reportElement mode="Opaque" x="248" y="9" width="40" height="9" uuid="4854ce4d-a8e5-4459-9667-d78895e0e18c"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="7" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Inicio]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="385" y="0" width="57" height="18"/>
+				<reportElement mode="Opaque" x="385" y="0" width="57" height="18" uuid="c6c5761b-3ba3-4e77-b9c8-7d8a2be4ca27"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Cantidad]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="441" y="0" width="57" height="18"/>
+				<reportElement mode="Opaque" x="441" y="0" width="57" height="18" uuid="e3b2f2a1-70d5-4689-b863-fe3f4222c539"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Distancia]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="498" y="0" width="57" height="18"/>
+				<reportElement mode="Opaque" x="498" y="0" width="57" height="18" uuid="a8909cda-5b97-4ac1-9ea5-85cbaf186dca"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="8" isBold="true"/>
 				</textElement>
@@ -159,84 +161,84 @@ order by EQ.n_interno asc]]>
 	<detail>
 		<band height="27" splitType="Stretch">
 			<textField>
-				<reportElement mode="Opaque" x="0" y="0" width="168" height="11"/>
+				<reportElement mode="Opaque" x="0" y="0" width="168" height="11" uuid="442c7810-16e6-4506-8621-62620be84b80"/>
 				<textElement>
 					<font size="8"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{n_interno} +"  "+$F{equipo}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{n_interno} +"  "+$F{equipo}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement mode="Opaque" x="168" y="0" width="40" height="11"/>
+				<reportElement mode="Opaque" x="168" y="0" width="40" height="11" uuid="d160f3ef-53f7-473f-9090-8d17c58b82f6"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="8"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{INI_HORO}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{INI_HORO}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement mode="Opaque" x="248" y="0" width="40" height="11"/>
+				<reportElement mode="Opaque" x="248" y="0" width="40" height="11" uuid="70a3b312-07f7-4ff2-aabd-c6658e229972"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="8"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{INI_ODO}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{INI_ODO}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement mode="Opaque" x="0" y="12" width="340" height="13"/>
+				<reportElement mode="Opaque" x="0" y="12" width="340" height="13" uuid="6e4495fd-ac50-4b2a-842f-26882c736268"/>
 				<textElement verticalAlignment="Middle">
 					<font size="8"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{TAREA}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{TAREA}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement mode="Opaque" x="386" y="0" width="57" height="11"/>
+				<reportElement mode="Opaque" x="386" y="0" width="57" height="11" uuid="087a94b3-8283-416f-976b-bd44e7364199"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="8"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{CANTIDAD}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{CANTIDAD}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement mode="Opaque" x="442" y="0" width="57" height="11"/>
+				<reportElement mode="Opaque" x="442" y="0" width="57" height="11" uuid="f9319218-2772-418f-8f70-ac63c7144a80"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="8"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{DISTANCIA}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{DISTANCIA}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement mode="Opaque" x="498" y="0" width="57" height="11"/>
+				<reportElement mode="Opaque" x="498" y="0" width="57" height="11" uuid="ea9e239f-cafc-4be3-bedc-aba59cbeab2b"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="8"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{VIAJES}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{VIAJES}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement mode="Opaque" x="386" y="12" width="169" height="13"/>
+				<reportElement mode="Opaque" x="386" y="12" width="169" height="13" uuid="aaa29646-000a-4d86-94d7-a1985d5aae40"/>
 				<textElement verticalAlignment="Middle">
 					<font size="8"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{CANTERA_CARGADERO}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{CANTERA_CARGADERO}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement mode="Opaque" x="327" y="0" width="59" height="11"/>
+				<reportElement mode="Opaque" x="327" y="0" width="59" height="11" uuid="c01c76a2-76c4-4464-bbbc-c951ecf55d9b"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="8"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{MATERIAL}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{MATERIAL}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement mode="Opaque" x="208" y="0" width="40" height="11"/>
+				<reportElement mode="Opaque" x="208" y="0" width="40" height="11" uuid="082d0b7e-715a-4660-aa81-86f34ae48c5f"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="8"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{FIN_HORO}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{FIN_HORO}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement mode="Opaque" x="287" y="0" width="40" height="11"/>
+				<reportElement mode="Opaque" x="287" y="0" width="40" height="11" uuid="0788ef81-564c-4f26-bb93-a9ab63311cee"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="8"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{FIN_ODO}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{FIN_ODO}]]></textFieldExpression>
 			</textField>
 			<line>
-				<reportElement mode="Opaque" x="0" y="25" width="553" height="1" forecolor="#D5D5D5"/>
+				<reportElement mode="Opaque" x="0" y="25" width="553" height="1" forecolor="#D5D5D5" uuid="dc871d42-2094-47c4-8563-2635e7928849"/>
 			</line>
 		</band>
 	</detail>

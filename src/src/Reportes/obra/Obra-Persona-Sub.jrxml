@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.2.0.final using JasperReports Library version 6.2.0  -->
+<!-- 2016-01-03T17:03:12 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="595" leftMargin="0" rightMargin="0" topMargin="1" bottomMargin="1" uuid="0df0991c-72d5-4dca-86af-76343e06e2a7">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
@@ -20,7 +22,7 @@ FROM partediario PD
 LEFT JOIN operarios O ON PD.operario = O.id
 LEFT JOIN obras OB ON PD.obra = OB.id
 LEFT JOIN funcion F ON O.funcion = F.id
-LEFT JOIN registro_equipo RQ ON PD.equipo = RQ.id
+LEFT JOIN registro_equipo RQ ON PD.id = RQ.partediario_id
 LEFT JOIN equipos EQ ON RQ.equipo = EQ.id
 LEFT JOIN situacion S ON PD.situacion = S.id
 
@@ -61,28 +63,28 @@ order by NOM_OP asc]]>
 	<columnHeader>
 		<band height="14" splitType="Stretch">
 			<staticText>
-				<reportElement uuid="03a024e4-34b3-4dba-82c0-d0c36fad9c5e" x="0" y="0" width="180" height="14"/>
+				<reportElement x="0" y="0" width="180" height="14" uuid="03a024e4-34b3-4dba-82c0-d0c36fad9c5e"/>
 				<textElement verticalAlignment="Top">
 					<font size="10" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Nombre]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="8bd92348-249a-4c95-b853-91359b745290" x="180" y="0" width="86" height="14"/>
+				<reportElement x="180" y="0" width="86" height="14" uuid="8bd92348-249a-4c95-b853-91359b745290"/>
 				<textElement verticalAlignment="Top">
 					<font size="10" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Función]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="daf8dca9-cfae-4de3-8d3b-df0c302180b1" x="266" y="0" width="171" height="14"/>
+				<reportElement x="266" y="0" width="171" height="14" uuid="daf8dca9-cfae-4de3-8d3b-df0c302180b1"/>
 				<textElement verticalAlignment="Top">
 					<font size="10" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Equipo]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="7056697a-5e9d-4107-b11e-27d83d7f1170" x="437" y="0" width="136" height="14"/>
+				<reportElement x="437" y="0" width="136" height="14" uuid="7056697a-5e9d-4107-b11e-27d83d7f1170"/>
 				<textElement textAlignment="Left" verticalAlignment="Top">
 					<font size="10" isBold="true"/>
 				</textElement>
@@ -93,34 +95,34 @@ order by NOM_OP asc]]>
 	<detail>
 		<band height="12" splitType="Stretch">
 			<textField isStretchWithOverflow="true">
-				<reportElement uuid="971b2b13-adc6-4d27-bae0-7b832706e8f9" mode="Opaque" x="0" y="1" width="180" height="11"/>
+				<reportElement mode="Opaque" x="0" y="1" width="180" height="11" uuid="971b2b13-adc6-4d27-bae0-7b832706e8f9"/>
 				<textElement>
 					<font size="9"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{NOM_OP}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement uuid="a32c9cb8-0b28-4521-893a-a7eb8ed6adbb" mode="Opaque" x="266" y="1" width="171" height="11"/>
+				<reportElement mode="Opaque" x="266" y="1" width="171" height="11" uuid="a32c9cb8-0b28-4521-893a-a7eb8ed6adbb"/>
 				<textElement>
 					<font size="9"/>
 				</textElement>
 				<textFieldExpression><![CDATA[($F{n_interno}!=null) ? $F{n_interno} +" "+$F{equipo} : ""]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement uuid="a2fa96cb-a284-478b-9d6f-ae94144e6773" mode="Opaque" x="180" y="1" width="86" height="11"/>
+				<reportElement mode="Opaque" x="180" y="1" width="86" height="11" uuid="a2fa96cb-a284-478b-9d6f-ae94144e6773"/>
 				<textElement>
 					<font size="9"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{FUNORI}]]></textFieldExpression>
 			</textField>
 			<image hAlign="Center">
-				<reportElement uuid="ba4c6a3e-a17d-4c60-a420-a22657ef59f0" x="437" y="1" width="24" height="11">
+				<reportElement x="437" y="1" width="24" height="11" uuid="ba4c6a3e-a17d-4c60-a420-a22657ef59f0">
 					<printWhenExpression><![CDATA[$F{multi}.booleanValue() ? Boolean.TRUE: Boolean.FALSE]]></printWhenExpression>
 				</reportElement>
 				<imageExpression><![CDATA[$P{urlimagenMF}]]></imageExpression>
 			</image>
 			<subreport>
-				<reportElement uuid="a4996c84-f059-4949-a628-c45d82aea74d" x="461" y="1" width="112" height="11"/>
+				<reportElement x="461" y="1" width="112" height="11" uuid="a4996c84-f059-4949-a628-c45d82aea74d"/>
 				<subreportParameter name="id_fc">
 					<subreportParameterExpression><![CDATA[$F{id_fc}]]></subreportParameterExpression>
 				</subreportParameter>
