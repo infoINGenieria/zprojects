@@ -27,7 +27,8 @@ public class ParteDiario {
         if (idSituacion == 1) {
             return getNumero() + " " + nombreO + " - " + getStringWFecha(fecha);
         } else {
-            return nombreO + " - " + getStringWFecha(fecha);
+            return getNumero() + " " + nombreO + " - " + getStringWFecha(fecha)+ " (NO EDITABLE)";
+            //return nombreO + " - " + getStringWFecha(fecha);
         }
     }
 

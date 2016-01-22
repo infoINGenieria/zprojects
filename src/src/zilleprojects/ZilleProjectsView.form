@@ -465,7 +465,6 @@
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" resourceKey="jMenuItem9.icon"/>
                 <Property name="text" type="java.lang.String" resourceKey="jMenuItem9.text"/>
-                <Property name="enabled" type="boolean" value="false"/>
                 <Property name="name" type="java.lang.String" value="jMenuItem9" noResource="true"/>
               </Properties>
               <Events>
@@ -498,7 +497,6 @@
                   <action class="zilleprojects.ZilleProjectsView" id="mostrarJDEntregaIndumentaria" methodName="mostrarJDEntregaIndumentaria"/>
                 </Property>
                 <Property name="text" type="java.lang.String" resourceKey="jMenuItem13.text"/>
-                <Property name="enabled" type="boolean" value="false"/>
                 <Property name="name" type="java.lang.String" value="jMenuItem13" noResource="true"/>
               </Properties>
             </MenuItem>
@@ -528,7 +526,6 @@
                   <action class="zilleprojects.ZilleProjectsView" id="mostrarJDEPPDialog" methodName="mostrarJDEPPDialog"/>
                 </Property>
                 <Property name="text" type="java.lang.String" resourceKey="menuIndumentaria.text"/>
-                <Property name="enabled" type="boolean" value="false"/>
                 <Property name="name" type="java.lang.String" value="menuIndumentaria" noResource="true"/>
               </Properties>
               <Events>
@@ -1237,7 +1234,7 @@
                               <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="1" attributes="0">
                                   <Group type="102" alignment="1" attributes="0">
-                                      <Component id="empleadoText" pref="406" max="32767" attributes="0"/>
+                                      <Component id="empleadoText" pref="414" max="32767" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Component id="botonBuscarEmpleado" min="-2" pref="37" max="-2" attributes="0"/>
                                   </Group>
@@ -1246,7 +1243,7 @@
                                           <Component id="jLabel8" alignment="1" min="-2" max="-2" attributes="0"/>
                                           <Group type="102" alignment="1" attributes="1">
                                               <Component id="fechaChoose" linkSize="5" min="-2" pref="164" max="-2" attributes="0"/>
-                                              <EmptySpace pref="37" max="32767" attributes="0"/>
+                                              <EmptySpace pref="50" max="32767" attributes="0"/>
                                               <Component id="isHasta" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
@@ -1256,7 +1253,7 @@
                                           <Component id="hastaDateChoose" linkSize="5" alignment="0" min="-2" pref="142" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
-                                  <Component id="comboObrasParteMasivo" alignment="1" pref="455" max="32767" attributes="1"/>
+                                  <Component id="comboObrasParteMasivo" alignment="1" pref="463" max="32767" attributes="1"/>
                               </Group>
                           </Group>
                           <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
@@ -1265,7 +1262,7 @@
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace pref="378" max="32767" attributes="0"/>
+                              <EmptySpace pref="392" max="32767" attributes="0"/>
                               <Component id="txtNumeroParte2" min="-2" pref="94" max="-2" attributes="0"/>
                           </Group>
                           <Component id="jScrollPane1" alignment="1" pref="582" max="32767" attributes="1"/>
@@ -1302,11 +1299,11 @@
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="txtNumeroParte2" linkSize="6" pref="34" max="32767" attributes="1"/>
+                          <Component id="txtNumeroParte2" linkSize="6" pref="36" max="32767" attributes="1"/>
                           <Group type="103" alignment="0" groupAlignment="3" attributes="0">
                               <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="txtNumeroParte" linkSize="6" alignment="3" pref="34" max="32767" attributes="1"/>
+                              <Component id="txtNumeroParte" linkSize="6" alignment="3" pref="36" max="32767" attributes="1"/>
                           </Group>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>

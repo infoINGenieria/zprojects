@@ -532,6 +532,7 @@ public class ReportesDAO  extends HSSFMixin {
         HSSFCellStyle azul = getCellStyle(myWorkBook, STYLE_AZUL);
         
         String query= "SELECT EQ.N_INTERNO as nint, f.nombre as familia, O.NOMBRE as nombre, "
+                + "EQ.marca as marca, EQ.modelo as modelo, "
                 + "COUNT(PD.id) as DiasEnMes, OB.OBRA as obra, OB.id as obraid "
                 + "FROM partediario PD "
                 + "INNER JOIN operarios O ON PD.operario = O.id "
@@ -568,7 +569,7 @@ public class ReportesDAO  extends HSSFMixin {
                     myRow.setHeight((short)600);
                     myCell = createCell(myRow, 0, "Listado de equipos en " + rs.getString("obra"), amarillo);
                     
-                    mySheet.addMergedRegion(new CellRangeAddress(i,i,0,3));  // merge cell
+                    mySheet.addMergedRegion(new CellRangeAddress(i,i,0,4));  // merge cell
                     //Siguiente renglón
                     i++; 
                     myRow = createRow(mySheet, i);    
@@ -576,29 +577,33 @@ public class ReportesDAO  extends HSSFMixin {
                     // Interno
                     myCell = createCell(myRow, 0,"Interno", azul);
                     
-                    // Función
-                    myCell = createCell(myRow, 1,"Función", azul);
+                    // Familia
+                    myCell = createCell(myRow, 1,"Familia de equipo", azul);
+                    // Equipo
+                    myCell = createCell(myRow, 2,"Equipo", azul);
                     // Operario
-                    myCell = createCell(myRow, 2,"Operario", azul);
+                    myCell = createCell(myRow, 3,"Operario", azul);
                     // Dias en el mes
-                    myCell = createCell(myRow, 3,"Días en el mes", azul);
+                    myCell = createCell(myRow, 4,"Días en el mes", azul);
                     i++;
                 }
                 
                 myRow = createRow(mySheet, i);
                 // Interno
                 myCell = createCell(myRow, 0, rs.getString("nint"));
-                // Funcion
+                // Familia
                 myCell = createCell(myRow, 1, rs.getString("familia"));
+                // Marca y modelo
+                myCell = createCell(myRow, 2, rs.getString("marca") + " " + rs.getString("modelo"));
                 // Operario
-                myCell = createCell(myRow, 2, rs.getString("nombre"));
+                myCell = createCell(myRow, 3, rs.getString("nombre"));
                 // Dias
-                myCell = createCell(myRow, 3, rs.getInt("DiasEnMes"));
+                myCell = createCell(myRow, 4, rs.getInt("DiasEnMes"));
                 i++;
             }
             
-            for (int b = 0; b < 4; b++){
-                if(b == 0 || b == 3){
+            for (int b = 0; b < 5; b++){
+                if(b == 0 || b == 4){
                     mySheet.setColumnWidth(b, 3500); 
                 }else {
                     mySheet.setColumnWidth(b, 8000); 

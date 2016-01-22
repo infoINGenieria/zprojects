@@ -759,7 +759,7 @@ public class ZilleProjectsView extends FrameView {
                 resetearParteDiarioMasivo();
                 
             }else{
-                OpcionPanel.showMessageDialog(null, "Ocurrió un error. \n i="+i, "Error!", OpcionPanel.ERROR_MESSAGE);
+                OpcionPanel.showMessageDialog(null, "Ocurrió un error.", "Error!", OpcionPanel.ERROR_MESSAGE);
                 
             }
         }

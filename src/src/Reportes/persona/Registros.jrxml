@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.0.final using JasperReports Library version 6.2.0  -->
-<!-- 2016-01-03T17:20:59 -->
+<!-- 2016-01-22T12:15:17 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="fc3970cf-bbc4-4de7-814d-efb15194bf3c">
 	<property name="ireport.zoom" value="1.3310000000000004"/>
 	<property name="ireport.x" value="434"/>
@@ -150,21 +150,21 @@ order by PD.fecha asc]]>
 	<pageHeader>
 		<band height="48" splitType="Stretch">
 			<textField>
-				<reportElement x="246" y="0" width="556" height="24" uuid="0fdf4bc2-b304-435f-837f-d8192e1607b4"/>
+				<reportElement x="234" y="0" width="568" height="24" uuid="0fdf4bc2-b304-435f-837f-d8192e1607b4"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font size="16" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA["Totales del periodo "+$F{PERIODO}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="246" y="24" width="556" height="23" uuid="23f2da87-c5ae-4d33-9a11-1243a8183a8f"/>
+				<reportElement x="234" y="24" width="568" height="24" uuid="23f2da87-c5ae-4d33-9a11-1243a8183a8f"/>
 				<textElement textAlignment="Left">
 					<font size="16" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{NOM_OP}]]></textFieldExpression>
 			</textField>
 			<image>
-				<reportElement mode="Opaque" x="0" y="1" width="234" height="47" uuid="2717653d-a05d-4b4d-8d63-628dd4dae89f"/>
+				<reportElement mode="Opaque" x="0" y="0" width="234" height="48" uuid="2717653d-a05d-4b4d-8d63-628dd4dae89f"/>
 				<imageExpression><![CDATA[$P{urlimagenZille}]]></imageExpression>
 			</image>
 		</band>
@@ -251,11 +251,9 @@ order by PD.fecha asc]]>
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="23" splitType="Stretch">
+		<band height="20" splitType="Stretch">
 			<textField isStretchWithOverflow="true" pattern="###0.00" isBlankWhenNull="true">
-				<reportElement mode="Transparent" x="737" y="0" width="65" height="17" backcolor="#E9E9E9" uuid="04a64cf9-e99b-4df8-bc1e-2dd21b1dc14c">
-					<printWhenExpression><![CDATA[$F{id_sit}.intValue() == 1 ? Boolean.TRUE: Boolean.FALSE]]></printWhenExpression>
-				</reportElement>
+				<reportElement mode="Transparent" x="737" y="0" width="65" height="20" backcolor="#E9E9E9" uuid="04a64cf9-e99b-4df8-bc1e-2dd21b1dc14c"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="8"/>
 				</textElement>
@@ -263,9 +261,7 @@ order by PD.fecha asc]]>
 				<patternExpression><![CDATA[$F{hs_100}.getHours() +","+ (int) ( (float) $F{hs_100}.getMinutes()/60*100 )]]></patternExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" pattern="###0.00" isBlankWhenNull="true">
-				<reportElement mode="Transparent" x="672" y="0" width="65" height="17" uuid="81983e68-fd24-4142-a99b-7d88bcd6aed9">
-					<printWhenExpression><![CDATA[$F{id_sit}.intValue() == 1 ? Boolean.TRUE: Boolean.FALSE]]></printWhenExpression>
-				</reportElement>
+				<reportElement mode="Transparent" x="672" y="0" width="65" height="20" uuid="81983e68-fd24-4142-a99b-7d88bcd6aed9"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="8"/>
 				</textElement>
@@ -273,9 +269,7 @@ order by PD.fecha asc]]>
 				<patternExpression><![CDATA[$F{hs_50}.getHours() +","+ (int) ( (float)   $F{hs_50}.getMinutes()/60*100)]]></patternExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" pattern="###0.00" isBlankWhenNull="true">
-				<reportElement mode="Transparent" x="614" y="0" width="58" height="17" uuid="e4b89b5b-e3c9-4e98-a35f-7ad534bbe959">
-					<printWhenExpression><![CDATA[$F{id_sit}.intValue() == 1 ? Boolean.TRUE: Boolean.FALSE]]></printWhenExpression>
-				</reportElement>
+				<reportElement mode="Transparent" x="614" y="0" width="58" height="20" uuid="e4b89b5b-e3c9-4e98-a35f-7ad534bbe959"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="8"/>
 				</textElement>
@@ -283,9 +277,7 @@ order by PD.fecha asc]]>
 				<patternExpression><![CDATA[$F{hs_viaje}.getHours() +","+( (int) ( (float) $F{hs_viaje}.getMinutes()/60*100))]]></patternExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" pattern="###0.00" isBlankWhenNull="true">
-				<reportElement mode="Transparent" x="525" y="0" width="89" height="17" uuid="f17627c5-75e5-4527-9c1e-5d05936f6765">
-					<printWhenExpression><![CDATA[$F{id_sit}.intValue() == 1 ? Boolean.TRUE: Boolean.FALSE]]></printWhenExpression>
-				</reportElement>
+				<reportElement mode="Transparent" x="525" y="0" width="89" height="20" uuid="f17627c5-75e5-4527-9c1e-5d05936f6765"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="8"/>
 				</textElement>
@@ -293,73 +285,45 @@ order by PD.fecha asc]]>
 				<patternExpression><![CDATA[$F{hs_tarea}.getHours()+","+  (int)  ( (float) $F{hs_tarea}.getMinutes()/60*100 )]]></patternExpression>
 			</textField>
 			<textField>
-				<reportElement x="88" y="0" width="146" height="17" uuid="685ed6e0-4e30-4e7e-85e6-75fcc2a96634">
-					<printWhenExpression><![CDATA[$F{id_sit}.intValue() == 1 ? Boolean.TRUE: Boolean.FALSE]]></printWhenExpression>
-				</reportElement>
+				<reportElement x="88" y="0" width="146" height="20" uuid="685ed6e0-4e30-4e7e-85e6-75fcc2a96634"/>
 				<textElement verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{COD_OBRA}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="234" y="0" width="189" height="17" uuid="5b4f30f7-e87b-4f25-aaf2-8bbb6636351f">
-					<printWhenExpression><![CDATA[$F{id_sit}.intValue() == 1 ? Boolean.TRUE: Boolean.FALSE]]></printWhenExpression>
-				</reportElement>
+				<reportElement x="234" y="0" width="189" height="20" uuid="5b4f30f7-e87b-4f25-aaf2-8bbb6636351f"/>
 				<textElement verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[($F{n_interno} != null) ? $F{n_interno} +" "+$F{equipo} +" "+ $F{marca} +"("+$F{modelo}+")" : ""]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="451" y="0" width="24" height="17" uuid="7a5eb123-e0cc-4829-9c05-911cbb5b33d5">
-					<printWhenExpression><![CDATA[$F{id_sit}.intValue() == 1 ? Boolean.TRUE: Boolean.FALSE]]></printWhenExpression>
-				</reportElement>
+				<reportElement x="451" y="0" width="24" height="20" uuid="7a5eb123-e0cc-4829-9c05-911cbb5b33d5"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{comida}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="475" y="0" width="24" height="17" uuid="e1d54a0c-7b93-411b-adda-fcd149f90c00">
-					<printWhenExpression><![CDATA[$F{id_sit}.intValue() == 1 ? Boolean.TRUE: Boolean.FALSE]]></printWhenExpression>
-				</reportElement>
+				<reportElement x="475" y="0" width="24" height="20" uuid="e1d54a0c-7b93-411b-adda-fcd149f90c00"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{vianda}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="499" y="0" width="26" height="17" uuid="6542331f-803a-40b5-8d17-3deab99c9e2d">
-					<printWhenExpression><![CDATA[$F{id_sit}.intValue() == 1 ? Boolean.TRUE: Boolean.FALSE]]></printWhenExpression>
-				</reportElement>
+				<reportElement x="499" y="0" width="26" height="20" uuid="6542331f-803a-40b5-8d17-3deab99c9e2d"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{vianda_desa}]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement x="336" y="0" width="464" height="17" uuid="d0811961-b2e6-4f40-82f4-7aee801eff90">
-					<printWhenExpression><![CDATA[$F{id_sit}.intValue() == 1 ? Boolean.FALSE : Boolean.TRUE]]></printWhenExpression>
-				</reportElement>
-				<textElement verticalAlignment="Middle">
-					<font fontName="SansSerif" isItalic="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{observaciones}]]></textFieldExpression>
-			</textField>
 			<textField pattern="dd MMM yyyy">
-				<reportElement x="0" y="0" width="88" height="17" uuid="e5147ded-0f0d-4d55-aed5-b05267cab4f9"/>
+				<reportElement x="0" y="0" width="88" height="20" uuid="e5147ded-0f0d-4d55-aed5-b05267cab4f9"/>
 				<textElement verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{fecha}]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement x="88" y="0" width="248" height="17" uuid="e612b887-cb11-4016-93a6-95caa3e4c751">
-					<printWhenExpression><![CDATA[$F{id_sit}.intValue() == 1 ? Boolean.FALSE : Boolean.TRUE]]></printWhenExpression>
-				</reportElement>
-				<textElement verticalAlignment="Middle">
-					<font isItalic="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{situacion}]]></textFieldExpression>
-			</textField>
 			<textField evaluationTime="Report">
-				<reportElement x="423" y="0" width="28" height="17" uuid="e144f9b3-1980-4b19-91b0-687d57fa9963">
-					<printWhenExpression><![CDATA[$F{id_sit}.intValue() == 1 && $F{multi}.booleanValue() ==  Boolean.FALSE ? Boolean.TRUE : Boolean.FALSE]]></printWhenExpression>
+				<reportElement x="423" y="0" width="28" height="20" uuid="e144f9b3-1980-4b19-91b0-687d57fa9963">
+					<printWhenExpression><![CDATA[$F{multi}.booleanValue() ==  Boolean.FALSE ? Boolean.TRUE : Boolean.FALSE]]></printWhenExpression>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[0]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="423" y="0" width="28" height="17" uuid="c53a56d4-5ae3-4739-b7c2-f685f3d27586">
-					<printWhenExpression><![CDATA[$F{multi}.booleanValue() && ($F{id_sit}.intValue() == 1) ? Boolean.TRUE: Boolean.FALSE]]></printWhenExpression>
+				<reportElement x="423" y="0" width="28" height="20" uuid="c53a56d4-5ae3-4739-b7c2-f685f3d27586">
+					<printWhenExpression><![CDATA[$F{multi}.booleanValue() ? Boolean.TRUE: Boolean.FALSE]]></printWhenExpression>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[1]]></textFieldExpression>
@@ -370,19 +334,19 @@ order by PD.fecha asc]]>
 		<band splitType="Stretch"/>
 	</columnFooter>
 	<pageFooter>
-		<band height="19" splitType="Stretch">
+		<band height="22" splitType="Stretch">
 			<textField>
-				<reportElement x="602" y="4" width="169" height="15" uuid="a246ec60-5f8e-410f-87d4-14740da69bf3"/>
+				<reportElement x="614" y="3" width="123" height="19" uuid="a246ec60-5f8e-410f-87d4-14740da69bf3"/>
 				<textElement textAlignment="Right"/>
 				<textFieldExpression><![CDATA["Pagina "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
 			</textField>
 			<textField evaluationTime="Report">
-				<reportElement x="771" y="4" width="30" height="15" uuid="6e14f8cb-3399-4d66-9acf-41da5b26a595"/>
+				<reportElement x="737" y="3" width="65" height="19" uuid="6e14f8cb-3399-4d66-9acf-41da5b26a595"/>
 				<textElement textAlignment="Right"/>
 				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
 			<textField pattern="dd/MM/yyyy HH.mm.ss">
-				<reportElement x="14" y="4" width="306" height="15" uuid="a3188a13-5362-4964-a226-81d98fbd4173"/>
+				<reportElement x="0" y="3" width="234" height="19" uuid="a3188a13-5362-4964-a226-81d98fbd4173"/>
 				<textElement textAlignment="Left"/>
 				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>
@@ -426,7 +390,7 @@ order by PD.fecha asc]]>
 				<text><![CDATA[Totales:]]></text>
 			</staticText>
 			<line>
-				<reportElement x="0" y="15" width="801" height="1" uuid="71202e61-f930-4daa-843f-f548ed0a5cc3"/>
+				<reportElement x="1" y="10" width="801" height="1" uuid="71202e61-f930-4daa-843f-f548ed0a5cc3"/>
 			</line>
 			<staticText>
 				<reportElement x="122" y="54" width="76" height="20" uuid="4105d484-3e23-4032-b264-a9f6b7d3d04c"/>
@@ -464,21 +428,21 @@ order by PD.fecha asc]]>
 				<textFieldExpression><![CDATA[$F{TOTAL_100}]]></textFieldExpression>
 			</textField>
 			<textField pattern="###0.0">
-				<reportElement x="711" y="54" width="89" height="20" uuid="e07dfd2a-5cb3-4626-8f71-a08cebb5c9fd"/>
+				<reportElement x="711" y="54" width="91" height="20" uuid="e07dfd2a-5cb3-4626-8f71-a08cebb5c9fd"/>
 				<textElement verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{TOTAL_TAREA}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="122" y="19" width="76" height="34" uuid="f19b0998-4c98-4bd5-b43d-432fe565e181"/>
+				<reportElement x="122" y="19" width="76" height="35" uuid="f19b0998-4c98-4bd5-b43d-432fe565e181"/>
 				<textElement verticalAlignment="Middle">
 					<font isUnderline="true"/>
 				</textElement>
 				<text><![CDATA[Obras:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="198" y="19" width="602" height="34" uuid="a4199728-2742-4087-a696-a20a1543d3bf"/>
+				<reportElement x="198" y="19" width="604" height="35" uuid="a4199728-2742-4087-a696-a20a1543d3bf"/>
 				<textElement verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
@@ -499,7 +463,7 @@ order by PD.fecha asc]]>
 				<textFieldExpression><![CDATA[$V{vianda_1}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="737" y="74" width="63" height="20" uuid="c1fec7d7-fb6d-4af8-a7ab-f1877e6c9ddf"/>
+				<reportElement x="737" y="74" width="65" height="20" uuid="c1fec7d7-fb6d-4af8-a7ab-f1877e6c9ddf"/>
 				<textElement verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>

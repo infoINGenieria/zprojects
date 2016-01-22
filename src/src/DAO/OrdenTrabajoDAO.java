@@ -203,7 +203,7 @@ public class OrdenTrabajoDAO {
         String query = null;
         ArrayList<OrdenTrabajo> ordenes = new ArrayList<OrdenTrabajo>();
         try {
-            query = "select * from orden_trabajo";
+            query = "select * from orden_trabajo order by fecha desc";
             PreparedStatement ps = conector.prepareStatement(query);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {

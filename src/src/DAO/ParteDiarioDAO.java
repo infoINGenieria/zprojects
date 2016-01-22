@@ -513,11 +513,14 @@ public class ParteDiarioDAO {
                     }//for
                     if(!ids.isEmpty())
                         ids = ids.substring(0, ids.length()-1);
-                    query = "delete from materiales where partediario_id = ? and id not in (" + ids +");";
-                    mat = conector.prepareStatement(query);
-                    mat.setInt(1, pd.getId());
-                    mat.executeUpdate();
-                    mat.close();
+                    if(!ids.isEmpty()){
+                        query = "delete from materiales where partediario_id = ? and id not in (" + ids +");";
+                        mat = conector.prepareStatement(query);
+                        mat.setInt(1, pd.getId());
+                        mat.executeUpdate();
+                        mat.close();
+                    }
+                    
 
                 } // if
             }
@@ -909,7 +912,8 @@ public class ParteDiarioDAO {
         try {
             conector.setAutoCommit(false);
             query = "insert into partediario ( OPERARIO, FECHA,"
-                    + " OBSERVACIONES, OBRA, NUMERO, COMIDA, VIANDA, VIANDA_DESA) values (?,?,?,?,?,?,?,?)";
+                    + " OBSERVACIONES, OBRA, NUMERO, COMIDA, VIANDA, "
+                    + "VIANDA_DESA, MULTIFUNCION, DESARRAIGO) values (?,?,?,?,?,?,?,?,?,?)";
             PreparedStatement partes = conector.prepareStatement(query);
             partes.setInt(1, pd.getIdOperario());
             partes.setDate(2, new java.sql.Date(pd.getFecha().getTime()));
@@ -919,6 +923,8 @@ public class ParteDiarioDAO {
             partes.setInt(6, pd.getComida());
             partes.setInt(7, pd.getVianda());
             partes.setInt(8, pd.getVianda_desa());
+            partes.setBoolean(9, false);
+            partes.setBoolean(10, false);
             partes.executeUpdate();
             ResultSet generatedKeys = partes.getGeneratedKeys();
             if (generatedKeys.next()) {

@@ -1388,7 +1388,7 @@ private void selectEquipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                     ordenDeTrabajo.setLocationRelativeTo(mainFrame); 
                     ordenDeTrabajo.setSelectedOT(ot);
                     ZilleProjectsApp.getApplication().show(ordenDeTrabajo);
-                    if(iscreatedPD){
+                    if(!iscreatedPD){
                         OpcionPanel.showMessageDialog(null, "No pudo crearse el Parte Diario, "
                                 + "pero si la Orden de Trabajo. Se desactiva la opción de \"Crear "
                                 + "Orden de trabajo\".", "Error", OpcionPanel.INFORMATION_MESSAGE);
