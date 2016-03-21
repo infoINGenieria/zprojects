@@ -10,17 +10,16 @@
     <!-- Dialecto de la base de datos -->
     <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
     <!-- Otras configuraciones -->
-    <property name="hibernate.hbm2ddl.auto">update</property>
     <property name="hibernate.show_sql">true</property>
     <!--property name="hibernate.query.factory_class">org.hibernate.hql.classic.ClassicQueryTranslatorFactory</property-->
     <!-- Mapeo de clases -->
     <mapping class="Modelo.EppEntrega"/>
     <mapping class="Modelo.EppEntregaItem"/>
     <mapping class="Modelo.EPP"/>
-    <mapping class="Modelo.EPPOperario" />
-    <mapping class="Modelo.Operario" />
-    <mapping class="Modelo.FamiliaEquipo" />
-    <mapping class="Modelo.TipoCosto" />
-    <mapping class="Modelo.PrecioHistorico" />
+    <mapping class="Modelo.EPPOperario"/>
+    <mapping class="Modelo.Operario"/>
+    <mapping class="Modelo.FamiliaEquipo"/>
+    <mapping class="Modelo.TipoCosto"/>
+    <mapping class="Modelo.PrecioHistorico"/>
   </session-factory>
 </hibernate-configuration>

@@ -638,8 +638,7 @@ public class ReportesDAO  extends HSSFMixin {
         String query= "select  OP.nombre, OP.id FROM partediario PD "
                 + "LEFT JOIN obras OB ON PD.obra = OB.id "
                 + "LEFT JOIN operarios OP ON PD.operario = OP.id "
-                + "WHERE PD.fecha <= '"+FechaUtil.getFechaSQL(hasta)+"' AND PD.fecha >= '"+FechaUtil.getFechaSQL(desde)+"' "
-                + "AND PD.situacion =1 ";
+                + "WHERE PD.fecha <= '"+FechaUtil.getFechaSQL(hasta)+"' AND PD.fecha >= '"+FechaUtil.getFechaSQL(desde)+"'";
         if(idOperario != 0){
                 query += " AND PD.operario = " + idOperario;
         }
@@ -705,7 +704,7 @@ public class ReportesDAO  extends HSSFMixin {
                 for (int j = 0; j < obrasIDlist.size(); j++) {
                     String subq = "select count(PD.obra) as cantidad FROM partediario PD WHERE PD.fecha <= '"
                             + FechaUtil.getFechaSQL(hasta) + "' AND PD.fecha >= '" + FechaUtil.getFechaSQL(desde)
-                            + "' AND PD.situacion =1 AND PD.obra = " + obrasIDlist.get(j).getId() + " and PD.operario = "
+                            + "' AND PD.obra = " + obrasIDlist.get(j).getId() + " and PD.operario = "
                             + rs.getInt("id");
                     ps = conector.prepareStatement(subq);
                     ResultSet rs2 = ps.executeQuery();
